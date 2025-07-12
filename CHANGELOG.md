@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.1...cadenzaflow-v1.2.2) (2025-07-12)
+
+
+### Bug Fixes
+
+* fix the listener behaviour ([ca41e7c](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/ca41e7c38ed8e4d100d81f07558c4df4931cd7e3))
+
 ## [1.2.1](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.0...cadenzaflow-v1.2.1) (2025-07-12)
 
 
