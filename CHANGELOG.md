@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.2...cadenzaflow-v1.2.3) (2025-07-12)
+
+
+### Bug Fixes
+
+* adjust dockerfile edit for version check ([34f192e](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/34f192e69cdbb9e3d93bdf221b974912849ab8f7))
+
 ## [1.2.2](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.1...cadenzaflow-v1.2.2) (2025-07-12)
 
 
