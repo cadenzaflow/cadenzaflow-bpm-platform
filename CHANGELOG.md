@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.1.0...cadenzaflow-v1.2.0) (2025-07-12)
+
+
+### Features
+
+* adjust pipeline trigger and event listener cel filter test for tagging ([f7566bd](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/f7566bd96a3fb41b96fe4b13bfcd71036d43e46a))
+
 # [1.1.0](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.0.0...cadenzaflow-v1.1.0) (2025-07-12)
 
 
