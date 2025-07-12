@@ -37,7 +37,7 @@ RUN addgroup -g 1000 -S camunda && \
 # Camunda Tomcat dağıtımını Nexus'tan indir ve unpack et
 RUN mkdir -p /camunda \
     && curl -f -L -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -o /tmp/camunda-bpm-tomcat.tar.gz \
-       "${NEXUS_URL}/camunda-bpm-tomcat-7.22.0.tar.gz" \
+       "${NEXUS_URL}/camunda-bpm-tomcat-${CAMUNDA_VERSION}.tar.gz" \
     && tar -xzf /tmp/camunda-bpm-tomcat.tar.gz -C /camunda --strip-components=2 \
     && rm /tmp/camunda-bpm-tomcat.tar.gz
 
