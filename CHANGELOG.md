@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.3...cadenzaflow-v1.2.4) (2025-07-13)
+
+
+### Bug Fixes
+
+* test the argocd notify and helm chart update ([2ab5acd](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/2ab5acd41d9346f84ffe24695f033d4f7e3ba148))
+
 ## [1.2.3](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.2...cadenzaflow-v1.2.3) (2025-07-12)
 
 
