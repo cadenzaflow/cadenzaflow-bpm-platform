@@ -1,3 +1,16 @@
+## [1.2.6](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.5...cadenzaflow-v1.2.6) (2025-07-13)
+
+
+### Bug Fixes
+
+* test argocd 2 ([fad5b8f](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/fad5b8f69417a8e0d3814a099f12d1c0af0ba4cc))
+* test argocd 3 ([1e21a27](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/1e21a27adedf6d2a13ee036543d361173c7a7a7c))
+* test argocd 4 ([911ff00](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/911ff006a341e87854eeff444402bb06ba11e21f))
+* test argocd 5 ([b0682a7](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/b0682a7cc5889e9911e2c3779dbc975036c7e833))
+* test argocd 6 ([0713c69](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/0713c6909da0991a4eb0cef2dc59bae455a6533e))
+* test the argocd ([0f7c471](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/0f7c471d6d1f79994f65605e4b22fe5ab432b48a))
+* test the argocd notify and helm chart update ([b8f1ec9](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/b8f1ec948db9bac95f6edd453ac4dcd04e7c3aa8))
+
 ## [1.2.5](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.4...cadenzaflow-v1.2.5) (2025-07-13)
 
 
