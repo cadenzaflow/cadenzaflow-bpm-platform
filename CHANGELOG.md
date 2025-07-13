@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.8...cadenzaflow-v1.2.9) (2025-07-13)
+
+
+### Bug Fixes
+
+* fully automated ([983895c](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/983895cdfa274e02a5acf7f652bbe46dc2931639))
+
 ## [1.2.8](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.2.7...cadenzaflow-v1.2.8) (2025-07-13)
 
 
