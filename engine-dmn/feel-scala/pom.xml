@@ -2,27 +2,27 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.dmn</groupId>
-    <artifactId>camunda-engine-dmn-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.dmn</groupId>
+    <artifactId>cadenzaflow-engine-dmn-root</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-engine-feel-scala</artifactId>
-  <name>camunda DMN - engine FEEL - SCALA</name>
+  <artifactId>cadenzaflow-engine-feel-scala</artifactId>
+  <name>CadenzaFlow DMN - engine FEEL - SCALA</name>
   <properties>
     <camunda.artifact>org.camunda.bpm.dmn.feel.impl.scala</camunda.artifact>
   </properties>
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.feel</groupId>
+      <groupId>org.cadenzaflow.feel</groupId>
       <artifactId>feel-engine</artifactId>
       <classifier>scala-shaded</classifier>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-feel-api</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-feel-api</artifactId>
     </dependency>
 
     <dependency>

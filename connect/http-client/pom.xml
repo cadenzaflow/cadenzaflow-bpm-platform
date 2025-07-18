@@ -2,20 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <artifactId>camunda-connect-root</artifactId>
-    <groupId>org.camunda.connect</groupId>
-    <version>7.23.0</version>
+    <artifactId>cadenzaflow-connect-root</artifactId>
+    <groupId>org.cadenzaflow.connect</groupId>
+    <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>camunda-connect-http-client</artifactId>
-  <name>Camunda Platform - connect - http client</name>
+  <artifactId>cadenzaflow-connect-http-client</artifactId>
+  <name>CadenzaFlow Platform - connect - http client</name>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-core</artifactId>
+      <groupId>org.cadenzaflow.connect</groupId>
+      <artifactId>cadenzaflow-connect-core</artifactId>
     </dependency>
 
     <dependency>

@@ -3,36 +3,36 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.dmn</groupId>
-    <artifactId>camunda-engine-dmn-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.dmn</groupId>
+    <artifactId>cadenzaflow-engine-dmn-root</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-engine-feel-juel</artifactId>
-  <name>camunda DMN - engine FEEL - JUEL</name>
+  <artifactId>cadenzaflow-engine-feel-juel</artifactId>
+  <name>CadenzaFlow DMN - engine FEEL - JUEL</name>
 
   <properties>
     <camunda.artifact>org.camunda.bpm.dmn.feel.impl.juel</camunda.artifact>
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-feel-api</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-feel-api</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-logging</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-logging</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-typed-values</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-typed-values</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.juel</groupId>
-      <artifactId>camunda-juel</artifactId>
+      <groupId>org.cadenzaflow.bpm.juel</groupId>
+      <artifactId>cadenzaflow-juel</artifactId>
     </dependency>
 
     <dependency>

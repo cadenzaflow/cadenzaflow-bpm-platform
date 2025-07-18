@@ -2,23 +2,23 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-database-settings</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
   
-  <groupId>org.camunda.bpm.jboss</groupId>
-  <artifactId>camunda-jboss</artifactId>
+  <groupId>org.cadenzaflow.bpm.jboss</groupId>
+  <artifactId>cadenzaflow-jboss</artifactId>
   <packaging>pom</packaging>
 
-  <name>Camunda Platform - JBoss</name>
+  <name>CadenzaFlow Platform - JBoss</name>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-core-internal-dependencies</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>

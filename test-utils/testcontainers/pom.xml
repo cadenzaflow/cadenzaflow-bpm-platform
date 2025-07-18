@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-database-settings</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-test-utils-testcontainers</artifactId>
-  <name>Camunda Test Utils - Testcontainers</name>
+  <artifactId>cadenzaflow-test-utils-testcontainers</artifactId>
+  <name>CadenzaFlow Test Utils - Testcontainers</name>
   <packaging>jar</packaging>
 
   <properties>
@@ -19,8 +19,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-core-internal-dependencies</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>

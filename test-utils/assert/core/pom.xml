@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>camunda-bpm-assert</artifactId>
+  <artifactId>cadenzaflow-bpm-assert</artifactId>
   <packaging>jar</packaging>
 
-  <name>Camunda Platform - Assert</name>
+  <name>CadenzaFlow Platform - Assert</name>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-bpm-assert-root</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-bpm-assert-root</artifactId>
     <relativePath>../</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
   
   <dependencies>
@@ -22,8 +22,8 @@
 
     <!-- managed by camunda internal dependencies -->
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>

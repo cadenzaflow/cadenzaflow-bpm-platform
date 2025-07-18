@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>camunda-qa-integration-tests-engine</artifactId>
-  <name>Camunda Platform - QA Integration Tests - Engine</name>
+  <artifactId>cadenzaflow-qa-integration-tests-engine</artifactId>
+  <name>CadenzaFlow Platform - QA Integration Tests - Engine</name>
 
   <parent>
-    <groupId>org.camunda.bpm.qa</groupId>
-    <artifactId>camunda-qa</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.qa</groupId>
+    <artifactId>cadenzaflow-qa</artifactId>
+    <version>1.0.0</version>
   </parent>
 
   <properties>
@@ -104,33 +104,33 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.javaee</groupId>
-      <artifactId>camunda-ejb-client</artifactId>
+      <groupId>org.cadenzaflow.bpm.javaee</groupId>
+      <artifactId>cadenzaflow-ejb-client</artifactId>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-cdi</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-cdi</artifactId>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>camunda-engine</artifactId>
-          <groupId>org.camunda.bpm</groupId>
+          <artifactId>cadenzaflow-engine</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
         </exclusion>
       </exclusions>
     </dependency>
 
     <!-- camunda -->
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-dmn</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-dmn</artifactId>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -149,25 +149,25 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-spring</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-spring</artifactId>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>camunda-engine</artifactId>
-          <groupId>org.camunda.bpm</groupId>
+          <artifactId>cadenzaflow-engine</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
         </exclusion>
       </exclusions>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-core</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-core</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
     </dependency>
 
     <dependency>
@@ -180,24 +180,24 @@
       BOM must be installed before this module is built
     -->
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-bom</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-bom</artifactId>
       <version>${project.version}</version>
       <type>pom</type>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-core-internal-dependencies</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
       <version>${project.version}</version>
       <type>pom</type>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-core</artifactId>
+      <groupId>org.cadenzaflow.connect</groupId>
+      <artifactId>cadenzaflow-connect-core</artifactId>
     </dependency>
 
     <!-- explicit Spring dependencies for applications
@@ -292,8 +292,8 @@
       <dependencies>
         <dependency>
           <!-- make sure this comes after runtime in the reactor build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-wildfly26-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-wildfly26-runtime</artifactId>
           <version>${project.version}</version>
           <scope>provided</scope>
           <type>pom</type>
@@ -371,8 +371,8 @@
       <dependencies>
         <dependency>
           <!-- make sure this comes after runtime in the reactor build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-wildfly26-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-wildfly26-runtime</artifactId>
           <version>${project.version}</version>
           <scope>provided</scope>
           <type>pom</type>
@@ -489,8 +489,8 @@
         <dependencies>
           <!-- import internal dependencies before JBoss to preserve internal versions, e.g. for JUnit -->
           <dependency>
-            <groupId>org.camunda.bpm</groupId>
-            <artifactId>camunda-core-internal-dependencies</artifactId>
+            <groupId>org.cadenzaflow.bpm</groupId>
+            <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
             <version>${project.version}</version>
             <scope>import</scope>
             <type>pom</type>
@@ -507,8 +507,8 @@
       <dependencies>
         <dependency>
           <!-- make sure this comes after runtime in the reactor build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-tomcat9-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-tomcat9-runtime</artifactId>
           <version>${project.version}</version>
           <scope>provided</scope>
           <type>pom</type>
@@ -667,8 +667,8 @@
       <id>clean-db</id>
       <dependencies>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine</artifactId>
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -687,8 +687,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm</groupId>
-                      <artifactId>camunda-engine</artifactId>
+                      <groupId>org.cadenzaflow.bpm</groupId>
+                      <artifactId>cadenzaflow-engine</artifactId>
                       <outputDirectory>${project.build.directory}/sql-scripts/engine</outputDirectory>
                       <overWrite>true</overWrite>
                     </artifactItem>

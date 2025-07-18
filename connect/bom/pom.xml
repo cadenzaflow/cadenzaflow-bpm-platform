@@ -4,42 +4,42 @@
   <!-- HEADS-UP: Do not use camunda-parent as parent,
   it would introduce a cyclic dependency to this bom -->
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-root</artifactId>
+    <version>1.0.0</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>org.camunda.connect</groupId>
-  <artifactId>camunda-connect-bom</artifactId>
-  <version>7.23.0</version>
-  <name>Camunda Platform - connect - bom</name>
+  <groupId>org.cadenzaflow.connect</groupId>
+  <artifactId>cadenzaflow-connect-bom</artifactId>
+  <version>1.0.0</version>
+  <name>CadenzaFlow Platform - connect - bom</name>
   <packaging>pom</packaging>
 
   <dependencyManagement>
     <dependencies>
 
       <dependency>
-        <groupId>org.camunda.connect</groupId>
-        <artifactId>camunda-connect-core</artifactId>
+        <groupId>org.cadenzaflow.connect</groupId>
+        <artifactId>cadenzaflow-connect-core</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.connect</groupId>
-        <artifactId>camunda-connect-http-client</artifactId>
+        <groupId>org.cadenzaflow.connect</groupId>
+        <artifactId>cadenzaflow-connect-http-client</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.connect</groupId>
-        <artifactId>camunda-connect-soap-http-client</artifactId>
+        <groupId>org.cadenzaflow.connect</groupId>
+        <artifactId>cadenzaflow-connect-soap-http-client</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.connect</groupId>
-        <artifactId>camunda-connect-connectors-all</artifactId>
+        <groupId>org.cadenzaflow.connect</groupId>
+        <artifactId>cadenzaflow-connect-connectors-all</artifactId>
         <version>${project.version}</version>
       </dependency>
 
@@ -47,10 +47,10 @@
   </dependencyManagement>
 
   <scm>
-    <url>https://github.com/camunda/camunda-bpm-platform</url>
-    <connection>scm:git:git@github.com:camunda/camunda-bpm-platform.git</connection>
-    <developerConnection>scm:git:git@github.com:camunda/camunda-bpm-platform.git</developerConnection>
-    <tag>7.23.0</tag>
+    <url>https://github.com/cadenzaflow/cadenzaflow-bpm-platform</url>
+    <connection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</connection>
+    <developerConnection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</developerConnection>
+    <tag>1.0.0</tag>
   </scm>
 
 </project>

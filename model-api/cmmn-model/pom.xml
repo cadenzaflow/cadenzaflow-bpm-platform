@@ -2,17 +2,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.model</groupId>
-    <artifactId>camunda-model-apis</artifactId>
+    <groupId>org.cadenzaflow.bpm.model</groupId>
+    <artifactId>cadenzaflow-model-apis</artifactId>
     <relativePath>../</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-cmmn-model</artifactId>
+  <artifactId>cadenzaflow-cmmn-model</artifactId>
   <packaging>jar</packaging>
 
-  <name>Camunda Platform - CMMN Model API</name>
-  <inceptionYear>2014</inceptionYear>
+  <name>CadenzaFlow Platform - CMMN Model API</name>
+  <inceptionYear>2025</inceptionYear>
   <properties>
     <camunda.artifact>org.camunda.bpm.model.cmmn</camunda.artifact>
     <camunda.osgi.export>
@@ -23,8 +23,8 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.bpm.model</groupId>
-      <artifactId>camunda-xml-model</artifactId>
+      <groupId>org.cadenzaflow.bpm.model</groupId>
+      <artifactId>cadenzaflow-xml-model</artifactId>
     </dependency>
 
     <dependency>
@@ -40,8 +40,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-bpm-archunit</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-bpm-archunit</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>

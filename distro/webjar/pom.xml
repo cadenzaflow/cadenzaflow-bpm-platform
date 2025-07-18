@@ -4,16 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-parent</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../../parent</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
-  <groupId>org.camunda.bpm.webapp</groupId>
-  <artifactId>camunda-webapp-webjar</artifactId>
+  <groupId>org.cadenzaflow.bpm.webapp</groupId>
+  <artifactId>cadenzaflow-webapp-webjar</artifactId>
   <packaging>jar</packaging>
-  <name>Camunda Platform - webapp - webjar</name>
+  <name>CadenzaFlow Platform - webapp - webjar</name>
 
   <properties>
     <skipTests>true</skipTests>
@@ -22,8 +22,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-core-internal-dependencies</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
@@ -34,8 +34,8 @@
   <!-- add dependency so this is run after the war was build -->
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm.webapp</groupId>
-      <artifactId>camunda-webapp-jakarta</artifactId>
+      <groupId>org.cadenzaflow.bpm.webapp</groupId>
+      <artifactId>cadenzaflow-webapp-jakarta</artifactId>
       <version>${project.parent.version}</version>
       <type>jar</type>
       <classifier>classes</classifier>
@@ -57,8 +57,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>org.camunda.bpm.webapp</groupId>
-                  <artifactId>camunda-webapp-jakarta</artifactId>
+                  <groupId>org.cadenzaflow.bpm.webapp</groupId>
+                  <artifactId>cadenzaflow-webapp-jakarta</artifactId>
                   <version>${project.parent.version}</version>
                   <type>war</type>
                   <overWrite>true</overWrite>

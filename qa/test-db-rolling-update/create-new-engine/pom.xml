@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.qa.upgrade</groupId>
-    <artifactId>camunda-qa-db-rolling-update</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
+    <artifactId>cadenzaflow-qa-db-rolling-update</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-qa-db-create-new-engine</artifactId>
+  <artifactId>cadenzaflow-qa-db-create-new-engine</artifactId>
   <packaging>jar</packaging>
-  <name>Camunda Platform - QA - upgrade - rolling update - create new engine</name>
+  <name>CadenzaFlow Platform - QA - upgrade - rolling update - create new engine</name>
 
   <properties>
     <camunda.version.current>${project.version}</camunda.version.current>
@@ -20,13 +20,13 @@
     <!-- NOTE: this pulls transitive dependencies of version ${project.version} in unless
       you declare them to be ${camunda.version.current} here -->
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.qa.upgrade</groupId>
-      <artifactId>camunda-qa-db-rolling-update-util</artifactId>
+      <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
+      <artifactId>cadenzaflow-qa-db-rolling-update-util</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
@@ -102,8 +102,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.distro</groupId>
-                      <artifactId>camunda-sql-scripts</artifactId>
+                      <groupId>org.cadenzaflow.bpm.distro</groupId>
+                      <artifactId>cadenzaflow-sql-scripts</artifactId>
                       <version>${camunda.version.current}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/scripts-current</outputDirectory>

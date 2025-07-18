@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <artifactId>camunda-engine-rest-root</artifactId>
-    <groupId>org.camunda.bpm</groupId>
-    <version>7.23.0</version>
+    <artifactId>cadenzaflow-engine-rest-root</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>docs</artifactId>
-  <name>Camunda Platform - engine - REST - Docs</name>
+  <name>CadenzaFlow Platform - engine - REST - Docs</name>
   <packaging>pom</packaging>
 
   <properties>
@@ -17,8 +17,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-rest-openapi</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-rest-openapi</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
@@ -38,8 +38,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>org.camunda.bpm</groupId>
-                  <artifactId>camunda-engine-rest-openapi</artifactId>
+                  <groupId>org.cadenzaflow.bpm</groupId>
+                  <artifactId>cadenzaflow-engine-rest-openapi</artifactId>
                   <version>${project.version}</version>
                   <type>jar</type>
                 </artifactItem>

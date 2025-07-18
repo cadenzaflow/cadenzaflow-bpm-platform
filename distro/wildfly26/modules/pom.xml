@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.wildfly</groupId>
-    <artifactId>camunda-wildfly26</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.wildfly</groupId>
+    <artifactId>cadenzaflow-wildfly26</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-wildfly26-modules</artifactId>
+  <artifactId>cadenzaflow-wildfly26-modules</artifactId>
   <packaging>jar</packaging>
-  <name>Camunda Platform - Wildfly 26 Modules</name>
+  <name>CadenzaFlow Platform - Wildfly 26 Modules</name>
 
   <properties>
     <org.jboss.shrinkwrap.resolver.version>1.0.0-beta-5</org.jboss.shrinkwrap.resolver.version>
@@ -23,8 +23,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm.wildfly</groupId>
-      <artifactId>camunda-wildfly26-subsystem</artifactId>
+      <groupId>org.cadenzaflow.bpm.wildfly</groupId>
+      <artifactId>cadenzaflow-wildfly26-subsystem</artifactId>
       <version>${project.version}</version>
       <exclusions>
         <exclusion>
@@ -43,38 +43,38 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.identity</groupId>
-      <artifactId>camunda-identity-ldap</artifactId>
+      <groupId>org.cadenzaflow.bpm.identity</groupId>
+      <artifactId>cadenzaflow-identity-ldap</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-spin</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-plugin-spin</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-xml-dom</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-connect</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-plugin-connect</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-http-client</artifactId>
+      <groupId>org.cadenzaflow.connect</groupId>
+      <artifactId>cadenzaflow-connect-http-client</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-soap-http-client</artifactId>
+      <groupId>org.cadenzaflow.connect</groupId>
+      <artifactId>cadenzaflow-connect-soap-http-client</artifactId>
     </dependency>
 
     <!-- script engine dependencies -->
@@ -123,8 +123,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.template-engines</groupId>
-      <artifactId>camunda-template-engines-freemarker</artifactId>
+      <groupId>org.cadenzaflow.template-engines</groupId>
+      <artifactId>cadenzaflow-template-engines-freemarker</artifactId>
     </dependency>
 
     <dependency>

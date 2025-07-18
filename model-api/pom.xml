@@ -2,24 +2,24 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.camunda.bpm.model</groupId>
-  <artifactId>camunda-model-apis</artifactId>
+  <groupId>org.cadenzaflow.bpm.model</groupId>
+  <artifactId>cadenzaflow-model-apis</artifactId>
 
-  <name>camunda Model APIs</name>
+  <name>CadenzaFlow Model APIs</name>
   <packaging>pom</packaging>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-database-settings</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../database</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-core-internal-dependencies</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>

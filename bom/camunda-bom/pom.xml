@@ -3,18 +3,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-bom-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-bom-root</artifactId>
+    <version>1.0.0</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>camunda-bom</artifactId>
+  <artifactId>cadenzaflow-bom</artifactId>
   <packaging>pom</packaging>
-  <name>Camunda Platform - Bom</name>
+  <name>CadenzaFlow Platform - Bom</name>
   <url>http://camunda.org</url>
 
-  <description>Camunda Platform bill of material</description>
+  <description>CadenzaFlow Platform bill of material</description>
 
   <licenses>
     <license>
@@ -24,8 +24,8 @@
   </licenses>
 
   <organization>
-    <name>camunda services GmbH</name>
-    <url>http://www.camunda.com</url>
+    <name>cadenzaflow services GmbH</name>
+    <url>http://www.cadenzaflow.com</url>
   </organization>
 
   <dependencyManagement>
@@ -46,10 +46,10 @@
         <artifactId>java-uuid-generator</artifactId>
         <version>${version.uuid-generator}</version>
       </dependency>
-      <!-- Camunda Platform public artifacts -->
+      <!-- CadenzaFlow Platform public artifacts -->
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-only-bom</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-only-bom</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>

@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>camunda-qa-wildfly26-runtime</artifactId>
+  <artifactId>cadenzaflow-qa-wildfly26-runtime</artifactId>
   <packaging>jar</packaging>
 
-  <name>Camunda Platform - QA Wildfly 26 Test Runtime</name>
+  <name>CadenzaFlow Platform - QA Wildfly 26 Test Runtime</name>
 
   <parent>
-    <groupId>org.camunda.bpm.qa</groupId>
-    <artifactId>camunda-qa</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.qa</groupId>
+    <artifactId>cadenzaflow-qa</artifactId>
+    <version>1.0.0</version>
   </parent>
 
   <dependencies>
@@ -35,8 +35,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.qa</groupId>
-      <artifactId>camunda-qa-ensure-clean-db</artifactId>
+      <groupId>org.cadenzaflow.bpm.qa</groupId>
+      <artifactId>cadenzaflow-qa-ensure-clean-db</artifactId>
       <version>${project.version}</version>
       <scope>runtime</scope>
     </dependency>
@@ -132,8 +132,8 @@
       <dependencies>
         <dependency>
           <!-- make sure it comes after WildFly 26 modules in the build -->
-          <groupId>org.camunda.bpm.wildfly</groupId>
-          <artifactId>camunda-wildfly26-modules</artifactId>
+          <groupId>org.cadenzaflow.bpm.wildfly</groupId>
+          <artifactId>cadenzaflow-wildfly26-modules</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
           <scope>test</scope>
@@ -196,8 +196,8 @@
                       <excludes>**/h2database/**</excludes>
                     </artifactItem>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.wildfly</groupId>
-                      <artifactId>camunda-wildfly26-modules</artifactId>
+                      <groupId>org.cadenzaflow.bpm.wildfly</groupId>
+                      <artifactId>cadenzaflow-wildfly26-modules</artifactId>
                       <version>${project.version}</version>
                       <type>tar.gz</type>
                       <overWrite>true</overWrite>
@@ -301,8 +301,8 @@
       <dependencies>
         <dependency>
           <!-- make sure it comes after WildFly 26 modules in the build -->
-          <groupId>org.camunda.bpm.wildfly</groupId>
-          <artifactId>camunda-wildfly26-modules</artifactId>
+          <groupId>org.cadenzaflow.bpm.wildfly</groupId>
+          <artifactId>cadenzaflow-wildfly26-modules</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
           <scope>test</scope>
@@ -335,8 +335,8 @@
                       <excludes>**/h2database/**</excludes>
                     </artifactItem>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.wildfly</groupId>
-                      <artifactId>camunda-wildfly26-modules</artifactId>
+                      <groupId>org.cadenzaflow.bpm.wildfly</groupId>
+                      <artifactId>cadenzaflow-wildfly26-modules</artifactId>
                       <version>${project.version}</version>
                       <type>tar.gz</type>
                       <overWrite>true</overWrite>

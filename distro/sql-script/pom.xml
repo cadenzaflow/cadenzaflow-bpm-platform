@@ -2,17 +2,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-database-settings</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
-  <groupId>org.camunda.bpm.distro</groupId>
-  <artifactId>camunda-sql-scripts</artifactId>
+  <groupId>org.cadenzaflow.bpm.distro</groupId>
+  <artifactId>cadenzaflow-sql-scripts</artifactId>
   <packaging>jar</packaging>
 
-  <name>Camunda Platform - SQL scripts</name>
+  <name>CadenzaFlow Platform - SQL scripts</name>
   
   <properties>
     <!-- exclude tests by default, only run in check-sql profile -->
@@ -22,8 +22,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-core-internal-dependencies</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
@@ -33,8 +33,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -116,7 +116,7 @@
               <goal>parse-version</goal>
             </goals>
             <configuration>
-              <propertyPrefix>camunda.current</propertyPrefix>
+              <propertyPrefix>cadenzaflow.current</propertyPrefix>
             </configuration>
           </execution>
           <execution>
@@ -145,8 +145,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>org.camunda.bpm</groupId>
-                  <artifactId>camunda-engine</artifactId>
+                  <groupId>org.cadenzaflow.bpm</groupId>
+                  <artifactId>cadenzaflow-engine</artifactId>
                   <version>${project.version}</version>
                   <type>jar</type>
                   <overWrite>true</overWrite>
@@ -418,8 +418,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.distro</groupId>
-                      <artifactId>camunda-sql-scripts</artifactId>
+                      <groupId>org.cadenzaflow.bpm.distro</groupId>
+                      <artifactId>cadenzaflow-sql-scripts</artifactId>
                       <version>${camunda.version.old}</version>
                       <outputDirectory>${project.build.directory}/test-classes/scripts-old</outputDirectory>
                       <overWrite>true</overWrite>

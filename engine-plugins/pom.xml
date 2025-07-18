@@ -2,16 +2,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-database-settings</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../database</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-engine-plugins</artifactId>
+  <artifactId>cadenzaflow-engine-plugins</artifactId>
   <packaging>pom</packaging>
 
-  <name>Camunda Platform - engine plugins</name>
+  <name>CadenzaFlow Platform - engine plugins</name>
 
   <modules>
     <module>identity-ldap</module>
@@ -22,8 +22,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-core-internal-dependencies</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
         <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
@@ -38,8 +38,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -62,8 +62,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-testing</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-testing</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

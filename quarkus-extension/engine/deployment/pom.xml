@@ -4,21 +4,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.quarkus</groupId>
-    <artifactId>camunda-bpm-quarkus-engine-parent</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.quarkus</groupId>
+    <artifactId>cadenzaflow-bpm-quarkus-engine-parent</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-bpm-quarkus-engine-deployment</artifactId>
+  <artifactId>cadenzaflow-bpm-quarkus-engine-deployment</artifactId>
 
-  <name>Camunda Platform - Quarkus Extension - Engine - Deployment</name>
+  <name>CadenzaFlow Platform - Quarkus Extension - Engine - Deployment</name>
 
   <dependencies>
 
     <!-- Camunda dependencies -->
     <dependency>
-      <groupId>org.camunda.bpm.quarkus</groupId>
-      <artifactId>camunda-bpm-quarkus-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm.quarkus</groupId>
+      <artifactId>cadenzaflow-bpm-quarkus-engine</artifactId>
       <version>${project.version}</version>
     </dependency>
 

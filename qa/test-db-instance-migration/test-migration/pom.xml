@@ -2,34 +2,34 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.qa.upgrade</groupId>
-    <artifactId>camunda-qa-db-instance-migration</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
+    <artifactId>cadenzaflow-qa-db-instance-migration</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-qa-upgrade-test-migration</artifactId>
+  <artifactId>cadenzaflow-qa-upgrade-test-migration</artifactId>
   <packaging>jar</packaging>
-  <name>Camunda Platform - QA - upgrade - instance migration - test</name>
+  <name>CadenzaFlow Platform - QA - upgrade - instance migration - test</name>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-spin</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-plugin-spin</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.qa.upgrade</groupId>
-      <artifactId>camunda-qa-upgrade-scenario-util</artifactId>
+      <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
+      <artifactId>cadenzaflow-qa-upgrade-scenario-util</artifactId>
       <version>${project.version}</version>
     </dependency>
 
@@ -118,8 +118,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.distro</groupId>
-                      <artifactId>camunda-sql-scripts</artifactId>
+                      <groupId>org.cadenzaflow.bpm.distro</groupId>
+                      <artifactId>cadenzaflow-sql-scripts</artifactId>
                       <version>${project.version}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/scripts-current</outputDirectory>
@@ -181,8 +181,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.distro</groupId>
-                      <artifactId>camunda-sql-scripts</artifactId>
+                      <groupId>org.cadenzaflow.bpm.distro</groupId>
+                      <artifactId>cadenzaflow-sql-scripts</artifactId>
                       <version>${project.version}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/scripts-current</outputDirectory>

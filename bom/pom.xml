@@ -3,19 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-root</artifactId>
+    <version>1.0.0</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>camunda-bom-root</artifactId>
+  <artifactId>cadenzaflow-bom-root</artifactId>
   <packaging>pom</packaging>
-  <name>Camunda Platform - Bom Root</name>
+  <name>CadenzaFlow Platform - Bom Root</name>
 
   <modules>
-    <module>camunda-only-bom</module>
-    <module>camunda-bom</module>
+    <module>cadenzaflow-only-bom</module>
+    <module>cadenzaflow-bom</module>
   </modules>
 
 </project>

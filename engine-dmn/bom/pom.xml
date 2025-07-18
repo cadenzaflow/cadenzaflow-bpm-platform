@@ -3,49 +3,49 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-root</artifactId>
+    <version>1.0.0</version>
     <relativePath>../../</relativePath>
   </parent>
 
-  <groupId>org.camunda.bpm.dmn</groupId>
-  <artifactId>camunda-engine-dmn-bom</artifactId>
-  <version>7.23.0</version>
-  <name>camunda DMN - engine - bom</name>
+  <groupId>org.cadenzaflow.bpm.dmn</groupId>
+  <artifactId>cadenzaflow-engine-dmn-bom</artifactId>
+  <version>1.0.0</version>
+  <name>CadenzaFlow DMN - engine - bom</name>
   <packaging>pom</packaging>
 
   <dependencyManagement>
     <dependencies>
 
       <dependency>
-        <groupId>org.camunda.bpm.dmn</groupId>
-        <artifactId>camunda-engine-dmn</artifactId>
+        <groupId>org.cadenzaflow.bpm.dmn</groupId>
+        <artifactId>cadenzaflow-engine-dmn</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.bpm.dmn</groupId>
-        <artifactId>camunda-engine-feel-api</artifactId>
+        <groupId>org.cadenzaflow.bpm.dmn</groupId>
+        <artifactId>cadenzaflow-engine-feel-api</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.bpm.dmn</groupId>
-        <artifactId>camunda-engine-feel-juel</artifactId>
+        <groupId>org.cadenzaflow.bpm.dmn</groupId>
+        <artifactId>cadenzaflow-engine-feel-juel</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.bpm.dmn</groupId>
-        <artifactId>camunda-engine-feel-scala</artifactId>
+        <groupId>org.cadenzaflow.bpm.dmn</groupId>
+        <artifactId>cadenzaflow-engine-feel-scala</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <!-- See CAM-11346
       <dependency>
-        <groupId>org.camunda.bpm.dmn</groupId>
-        <artifactId>camunda-engine-feel-spin</artifactId>
+        <groupId>org.cadenzaflow.bpm.dmn</groupId>
+        <artifactId>cadenzaflow-engine-feel-spin</artifactId>
         <version>${project.version}</version>
       </dependency>
       -->

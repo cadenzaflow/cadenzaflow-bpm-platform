@@ -3,22 +3,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-parent</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>7.23.0</version>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-core-internal-dependencies</artifactId>
+  <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
   <packaging>pom</packaging>
-  <name>Camunda Platform - Core - Internal Dependencies</name>
+  <name>CadenzaFlow Platform - Core - Internal Dependencies</name>
 
   <description>Camunda Platform core internal bill of material for dependencies</description>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.feel</groupId>
+        <groupId>org.cadenzaflow.feel</groupId>
         <artifactId>feel-engine</artifactId>
         <version>${version.feel-scala}</version>
         <classifier>scala-shaded</classifier>

@@ -2,24 +2,24 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.spin</groupId>
-    <artifactId>camunda-spin-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.spin</groupId>
+    <artifactId>cadenzaflow-spin-root</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-spin-core</artifactId>
-  <name>camunda Spin - core</name>
+  <artifactId>cadenzaflow-spin-core</artifactId>
+  <name>CadenzaFlow Spin - core</name>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-logging</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-logging</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-utils</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-utils</artifactId>
     </dependency>
 
     <dependency>

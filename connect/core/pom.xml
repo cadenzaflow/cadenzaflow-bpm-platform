@@ -2,24 +2,24 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.connect</groupId>
-    <artifactId>camunda-connect-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.connect</groupId>
+    <artifactId>cadenzaflow-connect-root</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-connect-core</artifactId>
-  <name>Camunda Platform - connect - core</name>
+  <artifactId>cadenzaflow-connect-core</artifactId>
+  <name>CadenzaFlow Platform - connect - core</name>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-logging</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-logging</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-utils</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-utils</artifactId>
     </dependency>
 
     <dependency>

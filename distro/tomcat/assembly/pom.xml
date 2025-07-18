@@ -2,24 +2,24 @@
   <modelVersion>4.0.0</modelVersion>
 
   <description>
-    Assembles the Camunda Platform and makes it ready for qa. 
+    Assembles the CadenzaFlow Platform and makes it ready for qa.
     The assembly is installed to maven later in the reactor, if the integration tests pass sucessfully
   </description>
 
-  <artifactId>camunda-tomcat-assembly</artifactId>
+  <artifactId>cadenzaflow-tomcat-assembly</artifactId>
   <packaging>pom</packaging>
 
   <parent>
-    <groupId>org.camunda.bpm.tomcat</groupId>
-    <artifactId>camunda-tomcat</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.tomcat</groupId>
+    <artifactId>cadenzaflow-tomcat</artifactId>
+    <version>1.0.0</version>
   </parent>
   
   <properties>
     <skip-third-party-bom>false</skip-third-party-bom>
   </properties>
 
-  <name>Camunda Platform - tomcat Assembly</name>
+  <name>CadenzaFlow Platform - tomcat Assembly</name>
 
   <dependencies>
     <dependency>
@@ -83,8 +83,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
       <exclusions>
         <exclusion>
           <groupId>org.springframework</groupId>
@@ -98,67 +98,67 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-cdi-jakarta</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-cdi-jakarta</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.identity</groupId>
-      <artifactId>camunda-identity-ldap</artifactId>
+      <groupId>org.cadenzaflow.bpm.identity</groupId>
+      <artifactId>cadenzaflow-identity-ldap</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-core</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-core</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-spin</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-plugin-spin</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-all</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-all</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-core</artifactId>
+      <groupId>org.cadenzaflow.connect</groupId>
+      <artifactId>cadenzaflow-connect-core</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-connect</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-plugin-connect</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.connect</groupId>
-      <artifactId>camunda-connect-connectors-all</artifactId>
+      <groupId>org.cadenzaflow.connect</groupId>
+      <artifactId>cadenzaflow-connect-connectors-all</artifactId>
       <exclusions>
         <exclusion>
-          <groupId>org.camunda.connect</groupId>
-          <artifactId>camunda-connect-http-client</artifactId>
+          <groupId>org.cadenzaflow.connect</groupId>
+          <artifactId>cadenzaflow-connect-http-client</artifactId>
         </exclusion>
         <exclusion>
-          <groupId>org.camunda.connect</groupId>
-          <artifactId>camunda-connect-soap-http-client</artifactId>
+          <groupId>org.cadenzaflow.connect</groupId>
+          <artifactId>cadenzaflow-connect-soap-http-client</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
+      <groupId>org.cadenzaflow.bpm</groupId>
       <artifactId>license-book</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.template-engines</groupId>
-      <artifactId>camunda-template-engines-freemarker</artifactId>
+      <groupId>org.cadenzaflow.template-engines</groupId>
+      <artifactId>cadenzaflow-template-engines-freemarker</artifactId>
     </dependency>
 
     <dependency>

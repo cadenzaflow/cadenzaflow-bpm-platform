@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.dmn</groupId>
-    <artifactId>camunda-engine-dmn-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm.dmn</groupId>
+    <artifactId>cadenzaflow-engine-dmn-root</artifactId>
+    <version>1.0.0</version>
   </parent>
 
-  <artifactId>camunda-engine-dmn</artifactId>
-  <name>camunda DMN - engine</name>
+  <artifactId>cadenzaflow-engine-dmn</artifactId>
+  <name>CadenzaFlow DMN - engine</name>
   <properties>
     <camunda.artifact>org.camunda.bpm.dmn.engine</camunda.artifact>
     <camunda.osgi.import.additional>
@@ -18,44 +18,44 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-utils</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-utils</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-typed-values</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-typed-values</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.model</groupId>
-      <artifactId>camunda-dmn-model</artifactId>
+      <groupId>org.cadenzaflow.bpm.model</groupId>
+      <artifactId>cadenzaflow-dmn-model</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-feel-api</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-feel-api</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-feel-juel</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-feel-juel</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-feel-scala</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-feel-scala</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.feel</groupId>
+      <groupId>org.cadenzaflow.feel</groupId>
       <artifactId>feel-engine</artifactId>
       <classifier>scala-shaded</classifier>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.juel</groupId>
-      <artifactId>camunda-juel</artifactId>
+      <groupId>org.cadenzaflow.bpm.juel</groupId>
+      <artifactId>cadenzaflow-juel</artifactId>
     </dependency>
 
     <dependency>
@@ -107,8 +107,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-bpm-archunit</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-bpm-archunit</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>

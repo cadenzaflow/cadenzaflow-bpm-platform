@@ -3,15 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-database-settings</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
+    <version>1.0.0</version>
     <relativePath>../../database</relativePath>
   </parent>
 
-  <groupId>org.camunda.bpm.run</groupId>
-  <artifactId>camunda-bpm-run-root</artifactId>
-  <name>Camunda Platform - Run - Root</name>
+  <groupId>org.cadenzaflow.bpm.run</groupId>
+  <artifactId>cadenzaflow-bpm-run-root</artifactId>
+  <name>CadenzaFlow Platform - Run - Root</name>
   <description>This is the root of Camunda Platform Run</description>
   <packaging>pom</packaging>
 

@@ -4,47 +4,47 @@
   <!-- HEADS-UP: Do not use camunda-parent as parent,
   it would introduce a cyclic dependency to this bom -->
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-root</artifactId>
+    <version>1.0.0</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>org.camunda.spin</groupId>
-  <artifactId>camunda-spin-bom</artifactId>
-  <name>camunda spin - bom</name>
-  <version>7.23.0</version>
+  <groupId>org.cadenzaflow.spin</groupId>
+  <artifactId>cadenzaflow-spin-bom</artifactId>
+  <name>CadenzaFlow spin - bom</name>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <dependencyManagement>
     <dependencies>
 
       <dependency>
-        <groupId>org.camunda.spin</groupId>
-        <artifactId>camunda-spin-core</artifactId>
+        <groupId>org.cadenzaflow.spin</groupId>
+        <artifactId>cadenzaflow-spin-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       
       <dependency>
-        <groupId>org.camunda.spin</groupId>
-        <artifactId>camunda-spin-core</artifactId>
+        <groupId>org.cadenzaflow.spin</groupId>
+        <artifactId>cadenzaflow-spin-core</artifactId>
         <type>test-jar</type>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.spin</groupId>
-        <artifactId>camunda-spin-dataformat-all</artifactId>
+        <groupId>org.cadenzaflow.spin</groupId>
+        <artifactId>cadenzaflow-spin-dataformat-all</artifactId>
         <version>${project.version}</version>
         <!-- Excluding dependencies that are shaded in camunda-spin-dataformat-all -->
         <exclusions>
           <exclusion>
-            <groupId>org.camunda.spin</groupId>
-            <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+            <groupId>org.cadenzaflow.spin</groupId>
+            <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
           </exclusion>
           <exclusion>
-            <groupId>org.camunda.spin</groupId>
-            <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+            <groupId>org.cadenzaflow.spin</groupId>
+            <artifactId>cadenzaflow-spin-dataformat-xml-dom</artifactId>
           </exclusion>
           <exclusion>
             <groupId>jakarta.xml.bind</groupId>
@@ -58,30 +58,30 @@
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.spin</groupId>
-        <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+        <groupId>org.cadenzaflow.spin</groupId>
+        <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.spin</groupId>
-        <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+        <groupId>org.cadenzaflow.spin</groupId>
+        <artifactId>cadenzaflow-spin-dataformat-xml-dom</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.camunda.spin</groupId>
-        <artifactId>camunda-spin-dataformat-xml-dom-jakarta</artifactId>
+        <groupId>org.cadenzaflow.spin</groupId>
+        <artifactId>cadenzaflow-spin-dataformat-xml-dom-jakarta</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
 
   <scm>
-    <url>https://github.com/camunda/camunda-bpm-platform</url>
-    <connection>scm:git:git@github.com:camunda/camunda-bpm-platform.git</connection>
-    <developerConnection>scm:git:git@github.com:camunda/camunda-bpm-platform.git</developerConnection>
-    <tag>7.23.0</tag>
+    <url>https://github.com/cadenzaflow/cadenzaflow-bpm-platform</url>
+    <connection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</connection>
+    <developerConnection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</developerConnection>
+    <tag>1.0.0</tag>
   </scm>
 
 </project>

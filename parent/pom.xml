@@ -2,19 +2,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-root</artifactId>
-    <version>7.23.0</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-root</artifactId>
+    <version>1.0.0</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>camunda-parent</artifactId>
-  <name>Camunda Platform - Parent Pom</name>
-  <inceptionYear>2013</inceptionYear>
+  <artifactId>cadenzaflow-parent</artifactId>
+  <name>CadenzaFlow Platform - Parent Pom</name>
+  <inceptionYear>2025</inceptionYear>
   <packaging>pom</packaging>
 
   <description>
-    This pom is the parent of all Camunda Platform projects
+    This pom is the parent of all CadenzaFlow Platform projects
   </description>
 
   <properties>
@@ -121,8 +121,8 @@
     <dependencies>
 
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-bom</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-bom</artifactId>
         <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -221,7 +221,7 @@
              <Import-Package>${camunda.osgi.import}</Import-Package>
              <DynamicImport-Package>${camunda.osgi.dynamic}</DynamicImport-Package>
              <Private-Package>${camunda.osgi.private.pkg}</Private-Package>
-             <Implementation-Title>camunda</Implementation-Title>
+             <Implementation-Title>cadenzaFlow</Implementation-Title>
              <Implementation-Version>${project.version}</Implementation-Version>
              <Include-Resource>${camunda.osgi.include.resource}</Include-Resource>
              <_versionpolicy>${camunda.osgi.import.default.version}</_versionpolicy>
@@ -282,8 +282,8 @@
               <additionalJOption>-Xdoclint:none</additionalJOption>
               <additionalJOption>--ignore-source-errors</additionalJOption>
             </additionalJOptions>
-            <doctitle>Camunda Platform Javadocs ${project.version}</doctitle>
-            <windowtitle>Camunda Platform Javadocs ${project.version}</windowtitle>
+            <doctitle>CadenzaFlow Platform Javadocs ${project.version}</doctitle>
+            <windowtitle>CadenzaFlow Platform Javadocs ${project.version}</windowtitle>
           </configuration>
         </plugin>
 
@@ -355,8 +355,8 @@
   </licenses>
 
   <organization>
-    <name>camunda services GmbH</name>
-    <url>http://www.camunda.com</url>
+    <name>CadenzaFlow services GmbH</name>
+    <url>http://www.cadenzaflow.com</url>
   </organization>
 
   <url>http://www.camunda.org</url>
