@@ -326,9 +326,9 @@
       </snapshots>
     </repository>
     <repository>
-      <id>cadenzaflow-public-repository</id>
-      <name>CadenzaFlow Platform Maven Repository</name>
-      <url>http://18.157.182.187:32265/repository/public/</url>
+      <id>cadenzaflow-nexus</id>
+      <name>CadenzaFlow Nexus Repository</name>
+      <url>http://18.157.182.187:32265/repository/cadenzaflow-nexus</url>
     </repository>
   </repositories>
 
