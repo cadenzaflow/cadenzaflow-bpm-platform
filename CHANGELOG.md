@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.4...cadenzaflow-v1.5.5) (2025-07-22)
+
+
+### Bug Fixes
+
+* testing ([509ef2e](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/509ef2e789a12d1a20703527ea3f4c68193c6eed))
+
 ## [1.5.4](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.3...cadenzaflow-v1.5.4) (2025-07-22)
 
 
