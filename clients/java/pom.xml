@@ -34,9 +34,9 @@
   </dependencyManagement>
 
   <scm>
-    <url>http://github.com/camunda/camunda-external-task-client-java</url>
-    <connection>scm:git:git@github.com:camunda/camunda-external-task-client-java.git</connection>
-    <developerConnection>scm:git:git@github.com:camunda/camunda-external-task-client-java.git</developerConnection>
+    <url>http://github.com/cadenzaflow/cadenzaflow-external-task-client-java</url>
+    <connection>scm:git:git@github.com:cadenzaflow/cadenzaflow-external-task-client-java.git</connection>
+    <developerConnection>scm:git:git@github.com:cadenzaflow/cadenzaflow-external-task-client-java.git</developerConnection>
     <tag>1.0.0</tag>
   </scm>
 

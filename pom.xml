@@ -326,16 +326,9 @@
       </snapshots>
     </repository>
     <repository>
-      <!-- Required for local builds by community users on master branch -->
       <id>cadenzaflow-public-repository</id>
       <name>CadenzaFlow Platform Maven Repository</name>
-      <url>https://artifacts.camunda.com/artifactory/public/</url>
-    </repository>
-    <repository>
-      <!-- Required for local builds by developers on maintainance branches -->
-      <id>cadenzaflow-nexus</id>
-      <name>CadenzaFlow Nexus</name>
-      <url>https://artifacts.camunda.com/artifactory/internal</url>
+      <url>http://18.157.182.187:32265/repository/public/</url>
     </repository>
   </repositories>
 
