@@ -61,7 +61,7 @@
   <fileSets>
     <fileSet>
       <directory>../../camunda-welcome</directory>
-      <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/camunda-welcome.war</outputDirectory>
+      <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/cadenzaflow-welcome.war</outputDirectory>
     </fileSet>
   </fileSets>
   
@@ -69,8 +69,8 @@
      <file>
       <source>src/EMPTY_FILE</source>
       <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/</outputDirectory>
-      <destName>camunda-welcome.war.dodeploy</destName>
-    </file>  
+      <destName>cadenzaflow-welcome.war.dodeploy</destName>
+    </file>
   </files>
   
 </assembly>
