@@ -15,7 +15,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.cadenzaflow.feel</groupId>
+      <groupId>org.camunda.feel</groupId>
       <artifactId>feel-engine</artifactId>
       <classifier>scala-shaded</classifier>
     </dependency>
