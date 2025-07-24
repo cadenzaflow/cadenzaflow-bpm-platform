@@ -88,7 +88,7 @@
               <descriptors>
                 <descriptor>assembly-war-wildfly.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <classifier>wildfly</classifier>
               <outputDirectory>target/</outputDirectory>
@@ -106,7 +106,7 @@
               <descriptors>
                 <descriptor>assembly-war-tomcat.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <classifier>tomcat</classifier>
               <outputDirectory>target/</outputDirectory>
@@ -124,7 +124,7 @@
               <descriptors>
                 <descriptor>assembly-war-was.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <classifier>was</classifier>
               <outputDirectory>target/</outputDirectory>
@@ -142,7 +142,7 @@
               <descriptors>
                 <descriptor>assembly-war-wls.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <classifier>wls</classifier>
               <outputDirectory>target/</outputDirectory>
@@ -160,7 +160,7 @@
               <descriptors>
                 <descriptor>assembly-classes.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <outputDirectory>target/</outputDirectory>
               <workDirectory>target/assembly/work</workDirectory>
@@ -177,7 +177,7 @@
               <descriptors>
                 <descriptor>assembly-sources.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <outputDirectory>target/</outputDirectory>
               <workDirectory>target/assembly/work</workDirectory>
@@ -194,7 +194,7 @@
               <descriptors>
                 <descriptor>assembly-tests.xml</descriptor>
               </descriptors>
-              <finalName>camunda-engine-rest-${project.version}</finalName>
+              <finalName>cadenzaflow-engine-rest-${project.version}</finalName>
               <attach>true</attach>
               <outputDirectory>target/</outputDirectory>
               <workDirectory>target/assembly/work</workDirectory>
