@@ -16,7 +16,7 @@
     <dependencySet>
       <unpack>true</unpack>
       <includes>
-        <include>org.camunda.bpm.wildfly:camunda-wildfly-assembly</include>
+        <include>org.cadenzaflow.bpm.wildfly:cadenzaflow-wildfly-assembly</include>
       </includes>
       <outputDirectory />
     </dependencySet>
@@ -30,7 +30,7 @@
         </excludes>
       </unpackOptions>
       <includes>
-        <include>org.camunda.bpm.distro:camunda-sql-scripts:jar:*</include>
+        <include>org.cadenzaflow.bpm.distro:cadenzaflow-sql-scripts:jar:*</include>
       </includes>
     </dependencySet>
 
@@ -44,14 +44,14 @@
     
     <dependencySet>
         <includes>
-          <include>org.camunda.bpm.webapp:camunda-webapp-wildfly:war:*</include>
+          <include>org.cadenzaflow.bpm.webapp:cadenzaflow-webapp-wildfly:war:*</include>
         </includes>
         <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments</outputDirectory>
     </dependencySet>
 
     <dependencySet>
         <includes>
-          <include>org.camunda.bpm.example:camunda-example-invoice-jakarta:war:*</include>
+          <include>org.cadenzaflow.bpm.example:cadenzaflow-example-invoice-jakarta:war:*</include>
         </includes>
         <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments</outputDirectory>
     </dependencySet>

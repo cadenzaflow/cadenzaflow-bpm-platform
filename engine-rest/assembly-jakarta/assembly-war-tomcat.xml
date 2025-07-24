@@ -18,7 +18,7 @@
       <useTransitiveDependencies>true</useTransitiveDependencies>
       <useTransitiveFiltering>true</useTransitiveFiltering>
       <includes>
-        <include>org.camunda.bpm:camunda-engine-rest-core-jakarta:jar</include>
+        <include>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core-jakarta:jar</include>
       </includes>
     </dependencySet>
 
@@ -41,8 +41,8 @@
 
       </includes>
       <excludes>
-        <exclude>org.camunda.bpm:camunda-engine-rest-core-jakarta:jar:tests</exclude>
-        <exclude>org.camunda.bpm:camunda-engine-rest-core-jakarta:jar:sources</exclude>
+        <exclude>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core-jakarta:jar:tests</exclude>
+        <exclude>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core-jakarta:jar:sources</exclude>
       </excludes>
 
     </dependencySet>

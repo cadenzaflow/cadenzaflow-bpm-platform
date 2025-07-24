@@ -24,11 +24,11 @@
       <useTransitiveFiltering>true</useTransitiveFiltering>
       <scope>provided</scope>
       <includes>
-        <include>org.camunda.bpm:camunda-engine-rest-core:jar</include>
+        <include>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core:jar</include>
       </includes>
       <excludes>
-        <exclude>org.camunda.bpm:camunda-engine-rest-core:jar:tests</exclude>
-        <exclude>org.camunda.bpm:camunda-engine-rest-core:jar:sources</exclude>
+        <exclude>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core:jar:tests</exclude>
+        <exclude>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core:jar:sources</exclude>
       </excludes>
     </dependencySet>
 

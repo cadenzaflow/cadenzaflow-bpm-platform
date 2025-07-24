@@ -60,8 +60,8 @@
               <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
               <artifactSet>
                 <excludes>
-                  <exclude>org.camunda.commons:*</exclude>
-                  <exclude>org.camunda.spin:camunda-spin-core</exclude>
+                  <exclude>org.cadenzaflow.commons:*</exclude>
+                  <exclude>org.cadenzaflow.spin:cadenzaflow-spin-core</exclude>
                   <exclude>org.slf4j:*</exclude>
                 </excludes>
               </artifactSet>
@@ -136,7 +136,7 @@
         <configuration>
           <includeDependencySources>true</includeDependencySources>
           <includeTransitiveDependencySources>true</includeTransitiveDependencySources>
-          <dependencySourceIncludes><include>org.camunda.spin:*</include></dependencySourceIncludes>
+          <dependencySourceIncludes><include>org.cadenzaflow.spin:*</include></dependencySourceIncludes>
           <additionalDependencies>
            <additionalDependency>
              <groupId>junit</groupId>

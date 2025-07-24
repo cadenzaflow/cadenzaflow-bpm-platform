@@ -47,8 +47,8 @@
               <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
               <artifactSet>
                 <excludes>
-                  <exclude>org.camunda.commons:*</exclude>
-                  <exclude>org.camunda.connect:camunda-connect-core</exclude>
+                  <exclude>org.cadenzaflow.commons:*</exclude>
+                  <exclude>org.cadenzaflow.connect:camunda-connect-core</exclude>
                   <exclude>org.slf4j:*</exclude>
                 </excludes>
               </artifactSet>
@@ -73,7 +73,7 @@
           <includeDependencySources>true</includeDependencySources>
           <includeTransitiveDependencySources>true</includeTransitiveDependencySources>
           <dependencySourceIncludes>
-            <include>org.camunda.connect:*</include>
+            <include>org.cadenzaflow.connect:*</include>
           </dependencySourceIncludes>
         </configuration>
       </plugin>
