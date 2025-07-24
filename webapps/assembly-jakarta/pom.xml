@@ -124,7 +124,7 @@
   </dependencies>
 
   <build>
-    <finalName>camunda-webapp-jakarta</finalName>
+    <finalName>cadenzaflow-webapp-jakarta</finalName>
 
     <plugins>
       <plugin>

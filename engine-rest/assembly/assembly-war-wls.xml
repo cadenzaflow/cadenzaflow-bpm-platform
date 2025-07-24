@@ -43,7 +43,7 @@
         </excludes>
       </unpackOptions>
       <includes>
-        <include>org.camunda.bpm:camunda-engine-rest:war:*</include>
+        <include>org.cadenzaflow.bpm:cadenzaflow-engine-rest:war:*</include>
       </includes>
     </dependencySet>
   </dependencySets>

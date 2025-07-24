@@ -35,7 +35,7 @@
     <dependencySet>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>org.camunda.bpm:camunda-engine-rest-jakarta:war:*</include>
+        <include>org.cadenzaflow.bpm:cadenzaflow-engine-rest-jakarta:war:*</include>
       </includes>
       <unpack>true</unpack>
       <unpackOptions>
