@@ -1,6 +1,6 @@
 <module xmlns="urn:jboss:module:1.0" name="org.camunda.commons.camunda-commons-typed-values">
   <resources>
-    <resource-root path="camunda-commons-typed-values-@project.version@.jar" />
+    <resource-root path="cadenzaflow-commons-typed-values-@project.version@.jar" />
   </resources>
 
   <dependencies>
@@ -8,8 +8,8 @@
     <module name="java.compiler" />
     <module name="java.desktop" />
     <module name="java.logging"/>
-    
+
     <module name="org.camunda.commons.camunda-commons-utils" />
-    
+
   </dependencies>
 </module>
