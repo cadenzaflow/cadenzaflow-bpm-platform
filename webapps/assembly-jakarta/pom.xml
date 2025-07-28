@@ -536,7 +536,7 @@
             <artifactId>jetty-maven-plugin</artifactId>
             <configuration>
               <webApp>
-                <contextPath>/camunda</contextPath>
+                <contextPath>/cadenzaflow</contextPath>
                 <defaultsDescriptor>${jakarta.runtime}/develop/jetty/webdefault.xml</defaultsDescriptor>
                 <resourceBases>
                   <resourceBase>${project.basedir}/target/webapp</resourceBase>
