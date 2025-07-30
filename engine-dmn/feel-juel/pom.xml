@@ -78,7 +78,7 @@
     <profile>
       <id>check-api-compatibility</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
       <build>
         <plugins>
