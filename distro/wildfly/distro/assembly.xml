@@ -60,7 +60,7 @@
   
   <fileSets>
     <fileSet>
-      <directory>../../camunda-welcome</directory>
+      <directory>../../cadenzaflow-welcome</directory>
       <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/cadenzaflow-welcome.war</outputDirectory>
     </fileSet>
   </fileSets>

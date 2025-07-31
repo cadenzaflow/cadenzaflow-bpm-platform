@@ -83,9 +83,9 @@
                 <move file="${project.build.outputDirectory}/META-INF/resources/webjars/cadenzaflow/WEB-INF/securityFilterRules.json" todir="${project.build.outputDirectory}/META-INF/resources/webjars/cadenzaflow/" />
                 <delete dir="${project.build.outputDirectory}/META-INF/resources/webjars/cadenzaflow/WEB-INF" />
                 <move file="${project.build.outputDirectory}/META-INF/resources/webjars/cadenzaflow/plugin" tofile="${project.build.outputDirectory}/META-INF/resources/plugin" verbose="true" />
-                <!-- add camunda-welcome page -->
+                <!-- add cadenzaflow-welcome page -->
                 <copy todir="${project.build.outputDirectory}/META-INF/resources/cadenzaflow-welcome/">
-                  <fileset dir="../camunda-welcome/" />
+                  <fileset dir="../cadenzaflow-welcome/" />
                 </copy>
               </target>
             </configuration>
