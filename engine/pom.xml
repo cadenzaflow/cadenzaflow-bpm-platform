@@ -478,11 +478,11 @@
           <keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
           <artifactSet>
             <excludes>
-              <exclude>org.camunda.bpm.model:*</exclude>
-              <exclude>org.camunda.bpm.dmn:*</exclude>
-              <exclude>org.camunda.bpm.juel:*</exclude>
-              <exclude>org.camunda.commons:*</exclude>
-              <exclude>org.camunda.feel:*</exclude>
+              <exclude>org.cadenzaflow.bpm.model:*</exclude>
+              <exclude>org.cadenzaflow.bpm.dmn:*</exclude>
+              <exclude>org.cadenzaflow.bpm.juel:*</exclude>
+              <exclude>org.cadenzaflow.commons:*</exclude>
+              <exclude>org.cadenzaflow.feel:*</exclude>
 
               <exclude>org.springframework:*</exclude>
               <exclude>org.slf4j:*</exclude>

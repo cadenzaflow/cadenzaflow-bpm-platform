@@ -295,8 +295,8 @@
             <rules>
               <jakartaDefaults>true</jakartaDefaults>
               <renames>
-                <rename>jar:file:${org.camunda.bpm:camunda-engine:jar}!/META-INF/jakarta-renames.properties</rename>
-                <rename>jar:file:${org.camunda.bpm:camunda-engine:jar}!/META-INF/camunda-renames.properties</rename>
+                <rename>jar:file:${org.cadenzaflow.bpm:cadenzaflow-engine:jar}!/META-INF/jakarta-renames.properties</rename>
+                <rename>jar:file:${org.cadenzaflow.bpm:cadenzaflow-engine:jar}!/META-INF/cadenzaflow-renames.properties</rename>
               </renames>
             </rules>
             <classifier>jakarta</classifier>
@@ -361,5 +361,3 @@
 
   <url>http://www.camunda.org</url>
 </project>
-
-

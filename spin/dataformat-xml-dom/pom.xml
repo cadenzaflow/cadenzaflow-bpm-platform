@@ -189,6 +189,7 @@
     <profile>
       <id>check-api-compatibility</id>
       <activation>
+        <activeByDefault>false</activeByDefault>
         <jdk>(,)</jdk>
       </activation>
       <build>

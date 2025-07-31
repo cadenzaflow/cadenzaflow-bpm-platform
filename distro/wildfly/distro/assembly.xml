@@ -16,7 +16,7 @@
     <dependencySet>
       <unpack>true</unpack>
       <includes>
-        <include>org.camunda.bpm.wildfly:camunda-wildfly-assembly</include>
+        <include>org.cadenzaflow.bpm.wildfly:cadenzaflow-wildfly-assembly</include>
       </includes>
       <outputDirectory />
     </dependencySet>
@@ -30,28 +30,28 @@
         </excludes>
       </unpackOptions>
       <includes>
-        <include>org.camunda.bpm.distro:camunda-sql-scripts:jar:*</include>
+        <include>org.cadenzaflow.bpm.distro:cadenzaflow-sql-scripts:jar:*</include>
       </includes>
     </dependencySet>
 
     <dependencySet>
         <outputFileNameMapping>${artifact.artifactId}-${artifact.version}.${artifact.extension}</outputFileNameMapping>
         <includes>
-            <include>org.camunda.bpm:camunda-engine-rest-jakarta:war:*</include>
+            <include>org.cadenzaflow.bpm:cadenzaflow-engine-rest-jakarta:war:*</include>
         </includes>
         <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments</outputDirectory>
     </dependencySet>
     
     <dependencySet>
         <includes>
-          <include>org.camunda.bpm.webapp:camunda-webapp-wildfly:war:*</include>
+          <include>org.cadenzaflow.bpm.webapp:cadenzaflow-webapp-wildfly:war:*</include>
         </includes>
         <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments</outputDirectory>
     </dependencySet>
 
     <dependencySet>
         <includes>
-          <include>org.camunda.bpm.example:camunda-example-invoice-jakarta:war:*</include>
+          <include>org.cadenzaflow.bpm.example:cadenzaflow-example-invoice-jakarta:war:*</include>
         </includes>
         <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments</outputDirectory>
     </dependencySet>
@@ -61,7 +61,7 @@
   <fileSets>
     <fileSet>
       <directory>../../camunda-welcome</directory>
-      <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/camunda-welcome.war</outputDirectory>
+      <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/cadenzaflow-welcome.war</outputDirectory>
     </fileSet>
   </fileSets>
   
@@ -69,8 +69,8 @@
      <file>
       <source>src/EMPTY_FILE</source>
       <outputDirectory>server/wildfly-${version.wildfly}/standalone/deployments/</outputDirectory>
-      <destName>camunda-welcome.war.dodeploy</destName>
-    </file>  
+      <destName>cadenzaflow-welcome.war.dodeploy</destName>
+    </file>
   </files>
   
 </assembly>

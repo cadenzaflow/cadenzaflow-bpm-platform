@@ -1,6 +1,6 @@
 <module xmlns="urn:jboss:module:1.0" name="org.camunda.bpm.dmn.camunda-engine-feel-scala">
   <resources>
-    <resource-root path="camunda-engine-feel-scala-@project.version@.jar" />
+    <resource-root path="cadenzaflow-engine-feel-scala-@project.version@.jar" />
   </resources>
 
   <dependencies>
