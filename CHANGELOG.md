@@ -1,3 +1,10 @@
+## [1.5.7](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.6...cadenzaflow-v1.5.7) (2025-07-31)
+
+
+### Bug Fixes
+
+* Merge pull request [#1](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues/1) from cadenzaflow/rebranding-fixes-vedat ([101e343](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/101e34378ab07e3238eb333d4d92ee66b4f575ea))
+
 ## [1.5.6](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.5...cadenzaflow-v1.5.6) (2025-07-22)
 
 
