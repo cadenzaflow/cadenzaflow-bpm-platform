@@ -96,7 +96,7 @@
     "FILTER": "Filter",
     "FILTERS": "Filter",
     "FIRST_LOGIN_HEADING": "Willkommen bei CadenzaFlow",
-    "FIRST_LOGIN_INFO": "Anscheinend verwenden Sie die Webapps zum ersten Mal. Besuchen Sie die <a href=\"/camunda-welcome\">CadenzaFlow Welcome Seite</a> für einen schnellen Überblick.",
+    "FIRST_LOGIN_INFO": "Anscheinend verwenden Sie die Webapps zum ersten Mal. Besuchen Sie die <a href=\"/cadenzaflow-welcome\">CadenzaFlow Welcome Seite</a> für einen schnellen Überblick.",
     "FIRST_NAME": "Vorname",
     "GROUPS": "Benutzergruppen",
     "INTEGER": "Integer",

@@ -66,7 +66,7 @@ var ResponseErrorHandlerInitializer = [
       // avoid displaying any error message when performing a request against /camunda-welcome
       // since the get request against it is only necessary to determine if deployed
       const config = error.response.config;
-      if (config.method === 'GET' && config.url === '/camunda-welcome') {
+      if (config.method === 'GET' && config.url === '/cadenzaflow-welcome') {
         return;
       }
 

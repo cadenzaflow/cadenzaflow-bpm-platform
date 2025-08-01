@@ -44,7 +44,7 @@
         <includes>
             <include>org.cadenzaflow.bpm.webapp:cadenzaflow-webapp-tomcat-jakarta:war:*</include>
         </includes>
-        <outputDirectory>server/apache-tomcat-${version.tomcat}/webapps/camunda</outputDirectory>
+        <outputDirectory>server/apache-tomcat-${version.tomcat}/webapps/cadenzaflow</outputDirectory>
         <unpack>true</unpack>
     </dependencySet>
 
@@ -60,8 +60,8 @@
 
   <fileSets>
     <fileSet>
-      <directory>../../camunda-welcome</directory>
-      <outputDirectory>server/apache-tomcat-${version.tomcat}/webapps/camunda-welcome</outputDirectory>
+      <directory>../../cadenzaflow-welcome</directory>
+      <outputDirectory>server/apache-tomcat-${version.tomcat}/webapps/cadenzaflow-welcome</outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>
