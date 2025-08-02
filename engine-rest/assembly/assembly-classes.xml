@@ -9,5 +9,16 @@
   </formats>
 
   <includeBaseDirectory>false</includeBaseDirectory>
-  
+
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>/</outputDirectory>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>org.cadenzaflow.bpm:cadenzaflow-engine-rest-core:jar</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+
 </assembly>

@@ -107,7 +107,7 @@
               <archive>
                 <manifestEntries>
                   <!-- module dependencies for deployment on wildfly  -->
-                  <Dependencies>org.cadenzaflow.bpm.cadenzaflow-engine,org.cadenzaflow.bpm.dmn.cadenzaflow-engine-dmn,org.cadenzaflow.commons.cadenzaflow-commons-logging,org.cadenzaflow.spin.cadenzaflow-spin-core,org.cadenzaflow.bpm.juel.cadenzaflow-juel services,org.graalvm.js.js-scriptengine services</Dependencies>
+                  <Dependencies>org.cadenzaflow.bpm.cadenzaflow-engine,org.cadenzaflow.bpm.dmn.cadenzaflow-engine-dmn,org.cadenzaflow.commons.cadenzaflow-commons-logging,org.cadenzaflow.spin.cadenzaflow-spin-core,org.camunda.bpm.juel.camunda-juel services,org.graalvm.js.js-scriptengine services</Dependencies>
                 </manifestEntries>
               </archive>
               <descriptors>
