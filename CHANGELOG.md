@@ -1,3 +1,10 @@
+## [1.5.15](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.14...cadenzaflow-v1.5.15) (2025-08-03)
+
+
+### Bug Fixes
+
+* docker test ([c6a1390](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/c6a13908b90727fff60abc03ee10e61028daf9f9))
+
 ## [1.5.14](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.13...cadenzaflow-v1.5.14) (2025-08-03)
 
 
