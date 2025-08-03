@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v0.1.0...cadenzaflow-v1.0.0) (2025-08-03)
+
+
+### Features
+
+* initial CadenzaFlow release ([74d1350](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/74d135082c55c4a8d276d705c9bd26ebb0ebe2f4))
+
+
+### BREAKING CHANGES
+
+* This is the first stable release
+
 ## [1.5.16](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.15...cadenzaflow-v1.5.16) (2025-08-03)
 
 
