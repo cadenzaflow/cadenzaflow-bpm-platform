@@ -9,7 +9,6 @@ ARG NEXUS_URL=http://18.157.182.187:32265/repository/camunda-raw
 ARG NEXUS_USERNAME
 ARG NEXUS_PASSWORD
 
-
 # Çevresel değişkenler (container başlatılırken override edilebilir)
 ENV CAMUNDA_VERSION=${CAMUNDA_VERSION}
 ENV DB_DRIVER=
@@ -35,7 +34,7 @@ ENV JMX_PROMETHEUS_PORT=9404
 RUN addgroup -g 1000 -S cadenzaflow && \
     adduser -u 1000 -S cadenzaflow -G cadenzaflow -h /cadenzaflow -s /bin/bash -D cadenzaflow
 
-# Camunda Tomcat dağıtımını Nexus'tan indir ve unpack et
+# Cadenzaflow Tomcat dağıtımını Nexus'tan indir ve unpack et
 RUN mkdir -p /cadenzaflow \
     && curl -f -L -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -o /tmp/cadenzaflow-bpm-tomcat.tar.gz \
        "${NEXUS_URL}/cadenzaflow-bpm-tomcat-${CAMUNDA_VERSION}.tar.gz" \
