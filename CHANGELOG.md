@@ -1,3 +1,10 @@
+## [1.5.13](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.12...cadenzaflow-v1.5.13) (2025-08-03)
+
+
+### Bug Fixes
+
+* mvn fix test with pom version and semantic version ([2fe4e68](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/2fe4e6825d9b6a6b6d391693a7c758f3d5f5ec46))
+
 ## [1.5.12](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.5.11...cadenzaflow-v1.5.12) (2025-08-03)
 
 
