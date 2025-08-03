@@ -28,12 +28,12 @@ ENV TZ=UTC
 ENV DEBUG=false
 ENV JAVA_OPTS=""
 ENV JMX_PROMETHEUS=false
-ENV JMX_PROMETHEUS_CONF=/camunda/javaagent/prometheus-jmx.yml
+ENV JMX_PROMETHEUS_CONF=/cadenzaflow/javaagent/prometheus-jmx.yml
 ENV JMX_PROMETHEUS_PORT=9404
 
 # Kullanıcı oluştur
 RUN addgroup -g 1000 -S cadenzaflow && \
-    adduser -u 1000 -S cadenzaflow -G cadenzaflow -h /camunda -s /bin/bash -D cadenzaflow
+    adduser -u 1000 -S cadenzaflow -G cadenzaflow -h /cadenzaflow -s /bin/bash -D cadenzaflow
 
 # Camunda Tomcat dağıtımını Nexus'tan indir ve unpack et
 RUN mkdir -p /cadenzaflow \
