@@ -66,6 +66,7 @@ RUN chmod +x /camunda/*.sh \
     && mkdir -p /camunda/javaagent \
     && chown -R camunda:camunda /camunda
 
+
 USER camunda
 
 # Portu aç
