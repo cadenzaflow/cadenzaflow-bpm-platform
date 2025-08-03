@@ -6,7 +6,7 @@ trap 'Error on line $LINENO' ERR
 source $(dirname "$0")/camunda-lib.sh
 
 # Use existing tomcat distribution if present..
-CATALINA_HOME="${CATALINA_HOME:-/camunda}"
+CATALINA_HOME="${CATALINA_HOME:-/cadenzaflow}"
 
 # Set default values for DB_ variables
 # Set Password as Docker Secrets for Swarm-Mode
@@ -55,7 +55,7 @@ fi
 if [ "$JMX_PROMETHEUS" = "true" ] ; then
   echo "Enabling Prometheus JMX Exporter on port ${JMX_PROMETHEUS_PORT}"
   [ ! -f "$JMX_PROMETHEUS_CONF" ] && touch "$JMX_PROMETHEUS_CONF"
-  export CATALINA_OPTS="${CATALINA_OPTS:=} -javaagent:/camunda/javaagent/jmx_prometheus_javaagent.jar=${JMX_PROMETHEUS_PORT}:${JMX_PROMETHEUS_CONF}"
+  export CATALINA_OPTS="${CATALINA_OPTS:=} -javaagent:/cadenzaflow/javaagent/jmx_prometheus_javaagent.jar=${JMX_PROMETHEUS_PORT}:${JMX_PROMETHEUS_CONF}"
 fi
 
 CMD+=" run"
