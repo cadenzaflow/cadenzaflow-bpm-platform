@@ -119,6 +119,10 @@ module.exports = (_env, argv = {}) => {
           type: 'asset/source'
         },
         {
+          test: /\.(png|jpe?g|gif)$/i,
+          type: 'asset/resource'
+        },
+        {
           test: /\.less$/i,
           use: [
             MiniCssExtractPlugin.loader,

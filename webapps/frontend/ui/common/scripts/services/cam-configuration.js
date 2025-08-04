@@ -117,7 +117,7 @@ module.exports = function(config, app) {
       };
 
       this.getAppVendor = function() {
-        return 'CadenzaFlow';
+        return config.app?.vendor ?? 'CadenzaFlow';
       };
 
       this.getAppName = function() {

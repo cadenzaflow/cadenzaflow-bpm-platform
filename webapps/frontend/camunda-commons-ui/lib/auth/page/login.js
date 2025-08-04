@@ -18,7 +18,7 @@
 'use strict';
 
 var template = require('./login.html?raw');
-var logo = require('svg-inline-loader?classPrefix&removeSVGTagAttrs=false!./logo.svg');
+var logoUrl = require('./logo.png');
 
 var Controller = [
   '$scope',
@@ -45,7 +45,8 @@ var Controller = [
     views,
     canonicalAppName
   ) {
-    $scope.logo = $sce.trustAsHtml(logo);
+    var logoHtml = `<img src="${logoUrl}" alt="CadenzaFlow Logo" style="max-height: 150px;" />`;
+    $scope.logo = $sce.trustAsHtml(logoHtml);
     $scope.status = 'INIT';
     $scope.appName = configuration.getAppName();
 
