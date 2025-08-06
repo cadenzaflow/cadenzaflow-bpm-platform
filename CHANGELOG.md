@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.0.2...cadenzaflow-v1.0.3) (2025-08-06)
+
+
+### Bug Fixes
+
+* fix the update task for new registery ([6c9092d](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/6c9092d652a44b752577d0f5c80ceb24226edebc))
+
 ## [1.0.2](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.0.1...cadenzaflow-v1.0.2) (2025-08-06)
 
 
