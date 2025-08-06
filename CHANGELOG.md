@@ -1,3 +1,24 @@
+# [1.0.0](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v0.1.0...cadenzaflow-v1.0.0) (2025-08-06)
+
+
+### Bug Fixes
+
+* fix ([766c78c](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/766c78cab5ec96f343d3ec7faa44571e84e742fe))
+* fix the update task for new registery ([6c9092d](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/6c9092d652a44b752577d0f5c80ceb24226edebc))
+* Update Dockerfile ([d21adb4](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/d21adb43e1c54f5b5a4e402ff7b0dfea1444d505))
+
+
+### Features
+
+* initial CadenzaFlow release ([f14162b](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/f14162b3abf3a4ca38de00a093cb6488801760ca))
+* initial CadenzaFlow release ([74d1350](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/74d135082c55c4a8d276d705c9bd26ebb0ebe2f4))
+
+
+### BREAKING CHANGES
+
+* This is the first stable release
+* This is the first stable release
+
 ## [1.0.3](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.0.2...cadenzaflow-v1.0.3) (2025-08-06)
 
 
