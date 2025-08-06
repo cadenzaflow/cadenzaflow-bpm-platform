@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.0.1...cadenzaflow-v1.0.2) (2025-08-06)
+
+
+### Bug Fixes
+
+* Update Dockerfile ([d21adb4](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commit/d21adb43e1c54f5b5a4e402ff7b0dfea1444d505))
+
 ## [1.0.1](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/compare/cadenzaflow-v1.0.0...cadenzaflow-v1.0.1) (2025-08-05)
 
 
