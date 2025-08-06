@@ -9,7 +9,6 @@ ARG NEXUS_URL=http://18.157.182.187:32265/repository/camunda-raw
 ARG NEXUS_USERNAME
 ARG NEXUS_PASSWORD
 
-
 # Çevresel değişkenler (container başlatılırken override edilebilir)
 ENV CAMUNDA_VERSION=${CAMUNDA_VERSION}
 ENV DB_DRIVER=
