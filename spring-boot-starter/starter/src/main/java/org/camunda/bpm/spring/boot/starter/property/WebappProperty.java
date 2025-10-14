@@ -28,7 +28,7 @@ public class WebappProperty {
 
   protected boolean indexRedirectEnabled = true;
 
-  protected String webjarClasspath = "/META-INF/resources/webjars/camunda";
+  protected String webjarClasspath = "/META-INF/resources/webjars/cadenzaflow";
 
   protected String securityConfigFile = "/securityFilterRules.json";
 
