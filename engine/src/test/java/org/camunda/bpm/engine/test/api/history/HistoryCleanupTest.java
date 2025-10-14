@@ -57,6 +57,7 @@ import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.camunda.bpm.engine.impl.cmd.HistoryCleanupCmd;
 import org.camunda.bpm.engine.impl.interceptor.Command;
 import org.camunda.bpm.engine.impl.interceptor.CommandContext;
+import org.camunda.bpm.engine.impl.jobexecutor.historycleanup.BatchWindow;
 import org.camunda.bpm.engine.impl.jobexecutor.historycleanup.HistoryCleanupHelper;
 import org.camunda.bpm.engine.impl.jobexecutor.historycleanup.HistoryCleanupJobHandlerConfiguration;
 import org.camunda.bpm.engine.impl.metrics.Meter;
@@ -1221,6 +1222,7 @@ public class HistoryCleanupTest {
   @Test
   public void testHistoryCleanupHelper() throws ParseException {
     processEngineConfiguration.setHistoryCleanupBatchWindowStartTime("22:00+0100");
+    processEngineConfiguration.setHistoryCleanupBatchWindowEndTime("23:00+0100");
     processEngineConfiguration.initHistoryCleanup();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
