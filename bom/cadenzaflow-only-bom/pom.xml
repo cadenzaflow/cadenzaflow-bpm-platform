@@ -12,7 +12,7 @@
   <artifactId>cadenzaflow-only-bom</artifactId>
   <packaging>pom</packaging>
   <name>CadenzaFlow Platform Only - Bom</name>
-  <url>http://camunda.org</url>
+  <url>http://cadenzaflow.org</url>
 
   <description>CadenzaFlow Platform Only bill of material</description>
 

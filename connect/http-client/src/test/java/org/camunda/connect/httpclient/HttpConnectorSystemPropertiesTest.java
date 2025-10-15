@@ -40,11 +40,9 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
  */
 public class HttpConnectorSystemPropertiesTest {
 
-  public static final int PORT = 51234;
-
   @Rule
   public WireMockRule wireMockRule = new WireMockRule(
-      WireMockConfiguration.wireMockConfig().port(PORT));
+      WireMockConfiguration.wireMockConfig().dynamicPort());
 
   protected Set<String> updatedSystemProperties;
 
@@ -80,7 +78,7 @@ public class HttpConnectorSystemPropertiesTest {
     HttpConnector customConnector = new HttpConnectorImpl();
 
     // when
-    customConnector.createRequest().url("http://localhost:" + PORT).get().execute();
+    customConnector.createRequest().url("http://localhost:" + wireMockRule.port()).get().execute();
 
     // then
     verify(getRequestedFor(urlEqualTo("/")).withHeader(HTTP.USER_AGENT, equalTo("foo")));

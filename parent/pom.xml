@@ -138,7 +138,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.5.2</version>
           <configuration>
             <runOrder>hourly</runOrder>
             <systemPropertyVariables>
@@ -356,8 +356,8 @@
 
   <organization>
     <name>CadenzaFlow services GmbH</name>
-    <url>http://www.cadenzaflow.com</url>
+    <url>https://www.cadenzaflow.com</url>
   </organization>
 
-  <url>http://www.camunda.org</url>
+  <url>https://www.cadenzaflow.org</url>
 </project>

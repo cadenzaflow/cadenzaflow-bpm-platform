@@ -203,8 +203,11 @@ public class HistoryCleanupRestServiceInteractionTest extends AbstractRestServic
     Calendar today = Calendar.getInstance();
     today.setTime(now);
 
+    Calendar tomorrow = Calendar.getInstance();
+    tomorrow.setTime(DateTimeUtils.addDays(now, 1));
+
     Date dateToday = DateTimeUtils.updateTime(today.getTime(), startDate);
-    Date dateTomorrow = DateTimeUtils.updateTime(today.getTime(), endDate);
+    Date dateTomorrow = DateTimeUtils.updateTime(tomorrow.getTime(), endDate);
 
     given()
       .contentType(ContentType.JSON)
