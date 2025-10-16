@@ -24,6 +24,7 @@
     <tomcat.connector.ajp.redirectPort>50443</tomcat.connector.ajp.redirectPort>
     <tomcat.server.port>50005</tomcat.server.port>
 
+    <cargo.servlet.port>58080</cargo.servlet.port>
     <cargo.timeout>240000</cargo.timeout>
     <cargo.deploy.timeout>60000</cargo.deploy.timeout>
   </properties>
@@ -268,7 +269,6 @@
             <type>standalone</type>
             <home>${project.build.directory}/cargo-config-tomcat</home>
             <properties>
-              <cargo.servlet.port>${tomcat.connector.http.port}</cargo.servlet.port>
               <cargo.tomcat.ajp.port>${tomcat.connector.ajp.port}</cargo.tomcat.ajp.port>
               <cargo.start.jvmargs>-Djava.security.egd=file:/dev/./urandom</cargo.start.jvmargs>
             </properties>
@@ -288,7 +288,7 @@
               <type>war</type>
               <classifier>tomcat</classifier>
               <pingURL>
-                http://localhost:${tomcat.connector.http.port}/engine-rest/engine/default/process-definition
+                http://localhost:${cargo.servlet.port}/engine-rest/engine/default/process-definition
               </pingURL>
               <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
               <properties>
