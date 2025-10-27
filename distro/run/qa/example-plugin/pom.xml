@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.run</groupId>
     <artifactId>cadenzaflow-bpm-run-qa</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <relativePath>..</relativePath>
   </parent>
 

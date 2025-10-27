@@ -8,7 +8,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.tomcat</groupId>
     <artifactId>cadenzaflow-tomcat</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <name>CadenzaFlow Platform - tomcat Distro</name>

@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
     <artifactId>cadenzaflow-qa-db-instance-migration</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>cadenzaflow-qa-upgrade-test-fixture-723</artifactId>
@@ -23,7 +23,7 @@
 <!--       <dependency> -->
 <!--         <groupId>org.cadenzaflow.bpm</groupId> -->
 <!--         <artifactId>cadenzaflow-bom</artifactId> -->
-<!--         <version>1.0.0</version> -->
+<!--         <version>1.0.1</version> -->
 <!--         <scope>import</scope> -->
 <!--         <type>pom</type> -->
 <!--       </dependency> -->
@@ -108,7 +108,7 @@
                       <artifactId>cadenzaflow-sql-scripts</artifactId>
                       <!-- Replace after 7.23.0 release -->
                       <version>${camunda.version.current}</version>
-                      <!--<version>1.0.0</version>-->
+                      <!--<version>1.0.1</version>-->
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/scripts-current</outputDirectory>
                       <overWrite>true</overWrite>

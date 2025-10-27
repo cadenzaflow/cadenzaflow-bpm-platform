@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.connect</groupId>
     <artifactId>cadenzaflow-connect-root</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>cadenzaflow-connect-connectors-all</artifactId>

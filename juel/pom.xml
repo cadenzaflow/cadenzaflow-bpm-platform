@@ -6,7 +6,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../database</relativePath>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <groupId>org.cadenzaflow.bpm.juel</groupId>
@@ -72,6 +72,19 @@
                 </relocation>
               </relocations>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>install-shaded-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>install</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

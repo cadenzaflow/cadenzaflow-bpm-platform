@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.spin</groupId>
     <artifactId>cadenzaflow-spin-root</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>cadenzaflow-spin-dataformat-all</artifactId>

@@ -9,7 +9,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-bpm-assert-root</artifactId>
     <relativePath>../</relativePath>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
   
   <dependencies>

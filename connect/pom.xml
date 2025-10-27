@@ -5,7 +5,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <groupId>org.cadenzaflow.connect</groupId>

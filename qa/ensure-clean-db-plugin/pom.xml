@@ -7,7 +7,7 @@
   <parent>
     <artifactId>cadenzaflow-qa</artifactId>
     <groupId>org.cadenzaflow.bpm.qa</groupId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <dependencies>

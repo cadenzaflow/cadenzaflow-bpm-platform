@@ -6,13 +6,13 @@
   <parent>
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-root</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.cadenzaflow.connect</groupId>
   <artifactId>cadenzaflow-connect-bom</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>CadenzaFlow Platform - connect - bom</name>
   <packaging>pom</packaging>
 
