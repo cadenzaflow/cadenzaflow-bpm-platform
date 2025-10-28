@@ -328,7 +328,7 @@
     <repository>
       <id>cadenzaflow-nexus</id>
       <name>CadenzaFlow Nexus Repository</name>
-      <url>http://18.157.182.187:32265/repository/cadenzaflow-nexus</url>
+      <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus</url>
     </repository>
   </repositories>
 
