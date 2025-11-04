@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
     <artifactId>cadenzaflow-qa-db-instance-migration</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <artifactId>cadenzaflow-qa-upgrade-test-fixture-72</artifactId>
@@ -24,7 +24,7 @@
       <dependency>
         <groupId>org.cadenzaflow.bpm</groupId>
         <artifactId>cadenzaflow-bom</artifactId>
-        <version>7.2.0</version>
+        <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>

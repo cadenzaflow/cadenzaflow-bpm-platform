@@ -11,7 +11,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../database</relativePath>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <properties>
@@ -79,6 +79,9 @@
         <module>tomcat9-runtime</module>
         <module>integration-tests-webapps</module>
         <module>integration-tests-engine</module>
+        <module>test-db-util</module>
+        <module>test-db-instance-migration</module>
+        <module>test-db-rolling-update</module>
         <module>test-old-engine</module>
         <module>performance-tests-engine</module>
         <module>large-data-tests</module>

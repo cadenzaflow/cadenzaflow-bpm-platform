@@ -10,7 +10,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <dependencyManagement>
@@ -67,7 +67,53 @@
 
   <build>
     <plugins>
-
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>clirr-maven-plugin</artifactId>
+        <configuration>
+          <comparisonVersion>${camunda.version.old}</comparisonVersion>
+          <logResults>true</logResults>
+          <excludes>
+            <exclude>org/camunda/bpm/engine/impl/**</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>all</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check-no-fork</goal>
+            </goals>
+            <configuration>
+              <textOutputFile>${project.build.directory}/clirr-all.txt</textOutputFile>
+              <failOnWarning>false</failOnWarning>
+              <failOnError>false</failOnError>
+              <ignored>
+                <difference>
+                  <differenceType>8001</differenceType>
+                  <className>camundajar/com/sun/activation/**/*</className>
+                </difference>
+                <difference>
+                  <differenceType>8001</differenceType>
+                  <className>camundajar/javax/activation/**/*</className>
+                </difference>
+              </ignored>
+            </configuration>
+          </execution>
+          <execution>
+            <id>restrictive</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check-no-fork</goal>
+            </goals>
+            <configuration>
+              <textOutputFile>${project.build.directory}/clirr-restrictive.txt</textOutputFile>
+              <failOnWarning>true</failOnWarning>
+              <ignoredDifferencesFile>.clirr-jenkins-ignore.xml</ignoredDifferencesFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -127,66 +173,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <!-- check for api differences between latest minor release -->
-    <profile>
-      <id>check-api-compatibility</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>clirr-maven-plugin</artifactId>
-            <configuration>
-              <comparisonVersion>${camunda.version.old}</comparisonVersion>
-              <logResults>true</logResults>
-              <excludes>
-                <exclude>org/camunda/bpm/engine/impl/**</exclude>
-              </excludes>
-            </configuration>
-            <executions>
-              <execution>
-                <id>all</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>check-no-fork</goal>
-                </goals>
-                <configuration>
-                  <textOutputFile>${project.build.directory}/clirr-all.txt</textOutputFile>
-                  <failOnWarning>false</failOnWarning>
-                  <failOnError>false</failOnError>
-                  <ignored>
-                    <difference>
-                      <differenceType>8001</differenceType>
-                      <className>cadenzaflowjar/com/sun/activation/**/*</className>
-                    </difference>
-                    <difference>
-                      <differenceType>8001</differenceType>
-                      <className>cadenzaflowjar/javax/activation/**/*</className>
-                    </difference>
-                  </ignored>
-                </configuration>
-              </execution>
-              <execution>
-                <id>restrictive</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>check-no-fork</goal>
-                </goals>
-                <configuration>
-                  <textOutputFile>${project.build.directory}/clirr-restrictive.txt</textOutputFile>
-                  <failOnWarning>true</failOnWarning>
-                  <ignoredDifferencesFile>.clirr-jenkins-ignore.xml</ignoredDifferencesFile>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
 </project>

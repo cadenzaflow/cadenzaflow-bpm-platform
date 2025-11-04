@@ -5,13 +5,13 @@
   <parent>
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-root</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <relativePath>../../</relativePath>
   </parent>
 
   <groupId>org.cadenzaflow.bpm.dmn</groupId>
   <artifactId>cadenzaflow-engine-dmn-bom</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
   <name>CadenzaFlow DMN - engine - bom</name>
   <packaging>pom</packaging>
 

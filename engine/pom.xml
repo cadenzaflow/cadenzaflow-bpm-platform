@@ -9,7 +9,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../database</relativePath>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <dependencyManagement>
@@ -173,7 +173,7 @@
 
     <dependency>
       <groupId>org.apache.tomcat</groupId>
-      <artifactId>catalina</artifactId>
+      <artifactId>tomcat-catalina</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -194,6 +194,12 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cronutils</groupId>
+      <artifactId>cron-utils</artifactId>
+      <version>${version.cronutils}</version>
     </dependency>
 
     <!-- test dependencies  -->
@@ -497,6 +503,10 @@
               <pattern>com.google.gson</pattern>
               <shadedPattern>cadenzaflowjar.impl.com.google.gson</shadedPattern>
             </relocation>
+            <relocation>
+              <pattern>com.cronutils</pattern>
+              <shadedPattern>cadenzaflowjar.impl.com.cronutils</shadedPattern>
+            </relocation>
           </relocations>
           <transformers>
             <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
@@ -535,7 +545,7 @@
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.1</version>
+          <version>1.0.0</version>
           <configuration>
             <lifecycleMappingMetadata>
               <pluginExecutions>

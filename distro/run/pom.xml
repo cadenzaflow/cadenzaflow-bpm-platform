@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <relativePath>../../database</relativePath>
   </parent>
 
@@ -36,6 +36,12 @@
         <groupId>org.graalvm.js</groupId>
         <artifactId>js-scriptengine</artifactId>
         <version>${version.graal.js}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>9.37.4</version>
       </dependency>
 
     </dependencies>

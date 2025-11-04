@@ -11,7 +11,7 @@
 
   <groupId>org.cadenzaflow.bpm</groupId>
   <artifactId>cadenzaflow-root</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
   <packaging>pom</packaging>
   <name>CadenzaFlow Platform - Root Pom</name>
   <inceptionYear>2025</inceptionYear>
@@ -28,7 +28,7 @@
     <version.mybatis>3.5.15</version.mybatis>
     <version.joda-time>2.12.5</version.joda-time>
     <version.uuid-generator>4.3.0</version.uuid-generator>
-    <version.feel-scala>1.19.1</version.feel-scala>
+    <version.feel-scala>1.19.3</version.feel-scala>
   </properties>
 
   <build>
@@ -262,7 +262,7 @@
     </profile>
 
     <profile>
-      <id>sonatype-oss-release</id>
+      <id>central-sonatype-publish</id>
       <modules>
         <module>spring-boot-starter</module>
         <module>quarkus-extension</module>
@@ -330,6 +330,11 @@
       <name>CadenzaFlow Nexus Repository</name>
       <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus</url>
     </repository>
+    <repository>
+      <id>cadenzaflow-release</id>
+      <name>CadenzaFlow Release Repository (HTTPS)</name>
+      <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-release</url>
+    </repository>
   </repositories>
 
   <licenses>
@@ -359,7 +364,7 @@
     <url>https://github.com/cadenzaflow/cadenzaflow-bpm-platform</url>
     <connection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</connection>
     <developerConnection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</developerConnection>
-    <tag>1.0.0</tag>
+    <tag>1.1.0</tag>
   </scm>
 
   <issueManagement>

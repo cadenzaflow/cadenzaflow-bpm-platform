@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.wildfly</groupId>
     <artifactId>cadenzaflow-wildfly26</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <artifactId>cadenzaflow-wildfly26-modules</artifactId>
@@ -306,7 +306,11 @@
                   <include name="**/module.xml" />
                 </replace>
 
-                <replace dir="target/modules" token="@version.httpclient@" value="${version.httpclient}">
+                <replace dir="target/modules" token="@version.httpclient5@" value="${version.httpclient5}">
+                  <include name="**/module.xml" />
+                </replace>
+
+                <replace dir="target/modules" token="@version.httpcore5@" value="${version.httpcore5}">
                   <include name="**/module.xml" />
                 </replace>
 

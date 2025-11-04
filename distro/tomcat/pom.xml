@@ -5,7 +5,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <artifactId>cadenzaflow-tomcat</artifactId>
@@ -43,7 +43,6 @@
       </activation>
       <modules>
         <module>distro</module>
-        <module>webapp</module>
         <module>webapp-jakarta</module>
       </modules>
     </profile>

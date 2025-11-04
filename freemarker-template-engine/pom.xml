@@ -5,12 +5,12 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
   </parent>
 
   <groupId>org.cadenzaflow.template-engines</groupId>
   <artifactId>cadenzaflow-template-engines-freemarker</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
   
   <name>CadenzaFlow template engine jsr223 freemarker</name>
 
@@ -102,7 +102,7 @@
     <url>https://github.com/cadenzaflow/cadenzaflow-bpm-platform</url>
     <connection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</connection>
     <developerConnection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</developerConnection>
-    <tag>1.0.0</tag>
+    <tag>1.1.0</tag>
   </scm>
 
 </project>
