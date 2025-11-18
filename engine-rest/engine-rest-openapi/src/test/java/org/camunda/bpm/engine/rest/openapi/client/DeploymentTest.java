@@ -22,12 +22,15 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.verify;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.DeploymentApi;
 import org.openapitools.client.model.DeploymentWithDefinitionsDto;
@@ -36,12 +39,19 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 public class DeploymentTest {
 
-  private static final String ENGINE_REST_DEPLOYMENT = "/engine-rest/deployment";
+  private static final String ENGINE_REST_DEPLOYMENT = "/deployment";
 
-  final DeploymentApi api = new DeploymentApi();
+  DeploymentApi api;
 
   @Rule
-  public WireMockRule wireMockRule = new WireMockRule(8080);
+  public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort());
+
+  @Before
+  public void setUp() {
+    ApiClient client = new ApiClient();
+    client.setBasePath("http://localhost:" + wireMockRule.port());
+    api = new DeploymentApi(client);
+  }
 
   @Test
   public void shouldCreateDeployment() throws ApiException {

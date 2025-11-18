@@ -26,10 +26,13 @@ import static com.github.tomakehurst.wiremock.client.WireMock.putRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.verify;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ProcessInstanceApi;
 import org.openapitools.client.model.CountResultDto;
@@ -40,12 +43,19 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 public class ProcessInstanceTest {
 
-  private static final String ENGINE_REST_PROCESS_INSTANCE = "/engine-rest/process-instance";
+  private static final String ENGINE_REST_PROCESS_INSTANCE = "/process-instance";
 
-  final ProcessInstanceApi api = new ProcessInstanceApi();
+  ProcessInstanceApi api;
 
   @Rule
-  public WireMockRule wireMockRule = new WireMockRule(8080);
+  public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort());
+
+  @Before
+  public void setUp() {
+    ApiClient client = new ApiClient();
+    client.setBasePath("http://localhost:" + wireMockRule.port());
+    api = new ProcessInstanceApi(client);
+  }
 
   @Test
   public void shouldQueryProcessInstancesCount() throws ApiException {
