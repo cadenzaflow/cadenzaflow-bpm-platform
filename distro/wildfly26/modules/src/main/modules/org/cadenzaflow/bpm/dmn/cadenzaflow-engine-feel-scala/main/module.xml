@@ -1,0 +1,17 @@
+<module xmlns="urn:jboss:module:1.0" name="org.cadenzaflow.bpm.dmn.cadenzaflow-engine-feel-scala">
+  <resources>
+    <resource-root path="cadenzaflow-engine-feel-scala-@project.version@.jar" />
+  </resources>
+
+  <dependencies>
+    <module name="org.slf4j" />
+    <module name="sun.jdk" />
+    <module name="org.cadenzaflow.bpm.dmn.cadenzaflow-engine-feel-api" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-typed-values" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-logging" />
+
+    <module name="org.cadenzaflow.bpm.cadenzaflow-engine-plugin-spin" optional="true" />
+
+    <module name="org.cadenzaflow.feel.feel-engine" />
+  </dependencies>
+</module>

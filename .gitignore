@@ -23,3 +23,11 @@ faces-config.NavData
 camunda-h2-dbs
 
 *.DS_Store
+
+# AI Assistant Configuration (local only)
+.agent/
+AI_CONTEXT.md
+CLAUDE.md
+.cursorrules
+cop
+.github/copilot-instructions.md
