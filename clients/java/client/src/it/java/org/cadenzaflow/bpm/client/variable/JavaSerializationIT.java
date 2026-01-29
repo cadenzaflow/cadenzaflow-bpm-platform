@@ -17,16 +17,16 @@
 package org.cadenzaflow.bpm.client.variable;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.rule.ClientRule.LOCK_DURATION;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
-import static org.camunda.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
-import static org.camunda.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_NAME;
-import static org.camunda.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_REST;
-import static org.camunda.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
-import static org.camunda.bpm.client.util.PropertyUtil.loadProperties;
-import static org.camunda.bpm.engine.variable.Variables.SerializationDataFormats.JAVA;
-import static org.camunda.bpm.engine.variable.type.ValueType.OBJECT;
+import static org.cadenzaflow.bpm.client.rule.ClientRule.LOCK_DURATION;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_NAME;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_REST;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.loadProperties;
+import static org.cadenzaflow.bpm.engine.variable.Variables.SerializationDataFormats.JAVA;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.OBJECT;
 
 import java.util.Map;
 import java.util.Properties;

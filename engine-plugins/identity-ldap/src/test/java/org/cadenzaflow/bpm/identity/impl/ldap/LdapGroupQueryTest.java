@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.identity.impl.ldap;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Resources.GROUP;
-import static org.camunda.bpm.identity.ldap.util.LdapTestUtilities.checkPagingResults;
-import static org.camunda.bpm.identity.ldap.util.LdapTestUtilities.testGroupPaging;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.GROUP;
+import static org.cadenzaflow.bpm.identity.ldap.util.LdapTestUtilities.checkPagingResults;
+import static org.cadenzaflow.bpm.identity.ldap.util.LdapTestUtilities.testGroupPaging;
 
 import java.util.HashSet;
 import java.util.List;

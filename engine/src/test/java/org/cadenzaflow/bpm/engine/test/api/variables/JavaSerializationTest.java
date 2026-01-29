@@ -17,13 +17,13 @@
 package org.cadenzaflow.bpm.engine.test.api.variables;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.util.TypedValueAssert.assertObjectValueDeserialized;
-import static org.camunda.bpm.engine.test.util.TypedValueAssert.assertObjectValueDeserializedNull;
-import static org.camunda.bpm.engine.test.util.TypedValueAssert.assertObjectValueSerializedJava;
-import static org.camunda.bpm.engine.test.util.TypedValueAssert.assertObjectValueSerializedNull;
-import static org.camunda.bpm.engine.test.util.TypedValueAssert.assertUntypedNullValue;
-import static org.camunda.bpm.engine.variable.Variables.objectValue;
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.bpm.engine.test.util.TypedValueAssert.assertObjectValueDeserialized;
+import static org.cadenzaflow.bpm.engine.test.util.TypedValueAssert.assertObjectValueDeserializedNull;
+import static org.cadenzaflow.bpm.engine.test.util.TypedValueAssert.assertObjectValueSerializedJava;
+import static org.cadenzaflow.bpm.engine.test.util.TypedValueAssert.assertObjectValueSerializedNull;
+import static org.cadenzaflow.bpm.engine.test.util.TypedValueAssert.assertUntypedNullValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.objectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

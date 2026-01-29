@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization.task.getvariable;
 
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_TASK;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.TASK;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ_TASK;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TASK;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
 
 import java.util.Collection;
 

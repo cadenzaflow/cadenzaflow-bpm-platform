@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.engine.test.api.authorization.dmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 import java.util.Collection;

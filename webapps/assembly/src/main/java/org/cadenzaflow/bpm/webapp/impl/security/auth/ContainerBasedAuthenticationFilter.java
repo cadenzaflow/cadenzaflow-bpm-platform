@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.webapp.impl.security.auth;
 
-import static org.camunda.bpm.engine.rest.security.auth.ProcessEngineAuthenticationFilter.AUTHENTICATION_PROVIDER_PARAM;
+import static org.cadenzaflow.bpm.engine.rest.security.auth.ProcessEngineAuthenticationFilter.AUTHENTICATION_PROVIDER_PARAM;
 
 import java.io.IOException;
 import java.util.List;

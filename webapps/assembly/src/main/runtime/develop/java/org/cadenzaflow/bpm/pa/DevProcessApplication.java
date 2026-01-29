@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.pa;
 
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
-import static org.camunda.bpm.engine.variable.Variables.fileValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.engine.variable.Variables.fileValue;
 
 import java.io.InputStream;
 import java.util.Arrays;
@@ -287,9 +287,9 @@ public class DevProcessApplication extends ServletProcessApplication {
     String topicName = "ATopic";
     long lockDuration = 5 * 60L * 1000L;
     String errorDetails = "java.lang.RuntimeException: A exception message!\n" +
-      "  at org.camunda.bpm.pa.service.FailingDelegate.execute(FailingDelegate.java:10)\n" +
-      "  at org.camunda.bpm.engine.impl.delegate.JavaDelegateInvocation.invoke(JavaDelegateInvocation.java:34)\n" +
-      "  at org.camunda.bpm.engine.impl.delegate.DelegateInvocation.proceed(DelegateInvocation.java:37)\n" +
+      "  at org.cadenzaflow.bpm.pa.service.FailingDelegate.execute(FailingDelegate.java:10)\n" +
+      "  at org.cadenzaflow.bpm.engine.impl.delegate.JavaDelegateInvocation.invoke(JavaDelegateInvocation.java:34)\n" +
+      "  at org.cadenzaflow.bpm.engine.impl.delegate.DelegateInvocation.proceed(DelegateInvocation.java:37)\n" +
       "  ...\n";
 
 

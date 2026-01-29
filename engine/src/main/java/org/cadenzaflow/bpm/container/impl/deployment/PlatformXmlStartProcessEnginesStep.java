@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.container.impl.deployment;
 
-import static org.camunda.bpm.container.impl.deployment.Attachments.BPM_PLATFORM_XML;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.BPM_PLATFORM_XML;
 
 import java.util.List;
 

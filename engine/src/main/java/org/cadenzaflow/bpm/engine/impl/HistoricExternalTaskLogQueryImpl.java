@@ -26,7 +26,7 @@ import org.cadenzaflow.bpm.engine.impl.util.CollectionUtil;
 
 import java.util.List;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.*;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.*;
 
 public class HistoricExternalTaskLogQueryImpl extends AbstractQuery<HistoricExternalTaskLogQuery, HistoricExternalTaskLog> implements HistoricExternalTaskLogQuery {
 

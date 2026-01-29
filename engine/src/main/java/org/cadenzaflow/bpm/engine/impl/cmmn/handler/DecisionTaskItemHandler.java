@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.handler;
 
-import static org.camunda.bpm.engine.impl.util.DecisionEvaluationUtil.getDecisionResultMapperForName;
+import static org.cadenzaflow.bpm.engine.impl.util.DecisionEvaluationUtil.getDecisionResultMapperForName;
 
 import org.cadenzaflow.bpm.engine.impl.cmmn.behavior.CmmnActivityBehavior;
 import org.cadenzaflow.bpm.engine.impl.cmmn.behavior.DmnDecisionTaskActivityBehavior;

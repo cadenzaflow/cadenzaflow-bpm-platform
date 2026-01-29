@@ -35,7 +35,7 @@ import org.cadenzaflow.bpm.model.dmn.DmnModelInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.camunda.bpm.qa.largedata.util.DmnHelper.createSimpleDmnModel;
+import static org.cadenzaflow.bpm.qa.largedata.util.DmnHelper.createSimpleDmnModel;
 
 import java.util.Date;
 import java.util.HashMap;

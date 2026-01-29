@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.engine.batch.history;
 import java.util.Date;
 
 /**
- * Historic representation of a {@link org.camunda.bpm.engine.batch.Batch}.
+ * Historic representation of a {@link org.cadenzaflow.bpm.engine.batch.Batch}.
  */
 public interface HistoricBatch {
 

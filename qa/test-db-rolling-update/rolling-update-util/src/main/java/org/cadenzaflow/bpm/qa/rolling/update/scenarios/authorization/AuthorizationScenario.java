@@ -20,7 +20,7 @@ import org.cadenzaflow.bpm.engine.AuthorizationService;
 import org.cadenzaflow.bpm.engine.IdentityService;
 import org.cadenzaflow.bpm.engine.ProcessEngine;
 import org.cadenzaflow.bpm.engine.authorization.Authorization;
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
 import org.cadenzaflow.bpm.engine.authorization.Permission;
 import org.cadenzaflow.bpm.engine.authorization.Permissions;
 import org.cadenzaflow.bpm.engine.authorization.Resources;

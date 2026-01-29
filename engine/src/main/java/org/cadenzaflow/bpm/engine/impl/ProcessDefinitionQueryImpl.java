@@ -40,8 +40,8 @@ import org.cadenzaflow.bpm.engine.repository.ProcessDefinitionQuery;
 import org.cadenzaflow.bpm.model.bpmn.BpmnModelInstance;
 import org.cadenzaflow.bpm.model.bpmn.instance.Documentation;
 import org.cadenzaflow.bpm.model.xml.instance.ModelElementInstance;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensurePositive;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensurePositive;
 
 
 /**

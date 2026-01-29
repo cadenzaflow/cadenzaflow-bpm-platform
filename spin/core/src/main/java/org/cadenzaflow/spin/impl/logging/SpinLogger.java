@@ -26,6 +26,6 @@ public abstract class SpinLogger extends BaseLogger {
 
   public static final String PROJECT_CODE = "SPIN";
 
-  public static final SpinCoreLogger CORE_LOGGER = BaseLogger.createLogger(SpinCoreLogger.class, PROJECT_CODE, "org.camunda.spin", "01");
+  public static final SpinCoreLogger CORE_LOGGER = BaseLogger.createLogger(SpinCoreLogger.class, PROJECT_CODE, "org.cadenzaflow.spin", "01");
 
 }

@@ -21,9 +21,9 @@ import org.cadenzaflow.bpm.webapp.impl.util.HeaderRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static org.camunda.bpm.webapp.impl.security.filter.headersec.provider.impl.XssProtectionOption.BLOCK;
-import static org.camunda.bpm.webapp.impl.security.filter.headersec.provider.impl.XssProtectionOption.SANITIZE;
-import static org.camunda.bpm.webapp.impl.security.filter.headersec.provider.impl.XssProtectionProvider.HEADER_NAME;
+import static org.cadenzaflow.bpm.webapp.impl.security.filter.headersec.provider.impl.XssProtectionOption.BLOCK;
+import static org.cadenzaflow.bpm.webapp.impl.security.filter.headersec.provider.impl.XssProtectionOption.SANITIZE;
+import static org.cadenzaflow.bpm.webapp.impl.security.filter.headersec.provider.impl.XssProtectionProvider.HEADER_NAME;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.assertThat;

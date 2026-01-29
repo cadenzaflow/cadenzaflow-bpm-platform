@@ -71,7 +71,7 @@ import java.net.URISyntaxException;
 import java.util.*;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.createMockSerializedVariables;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.createMockSerializedVariables;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;

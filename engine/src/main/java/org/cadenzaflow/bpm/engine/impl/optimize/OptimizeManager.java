@@ -36,12 +36,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_HISTORY;
-import static org.camunda.bpm.engine.authorization.Resources.DECISION_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.TENANT;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ_HISTORY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.DECISION_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TENANT;
 
 public class OptimizeManager extends AbstractManager {
 

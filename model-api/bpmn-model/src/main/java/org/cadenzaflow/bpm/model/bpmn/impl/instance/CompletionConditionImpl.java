@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.impl.instance;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_COMPLETION_CONDITION;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_COMPLETION_CONDITION;
 
 import org.cadenzaflow.bpm.model.bpmn.instance.CompletionCondition;
 import org.cadenzaflow.bpm.model.bpmn.instance.Expression;

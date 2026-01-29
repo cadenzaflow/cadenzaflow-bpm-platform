@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.management;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureOnlyOneNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureOnlyOneNotNull;
 
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 import org.cadenzaflow.bpm.engine.impl.cmd.ActivateJobCmd;

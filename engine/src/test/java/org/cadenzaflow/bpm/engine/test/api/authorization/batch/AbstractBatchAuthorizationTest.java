@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization.batch;
 
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
 
 import org.cadenzaflow.bpm.engine.ManagementService;
 import org.cadenzaflow.bpm.engine.RuntimeService;

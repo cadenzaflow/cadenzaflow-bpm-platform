@@ -17,9 +17,9 @@
 package org.cadenzaflow.bpm.engine.test.api.mgmt.telemetry;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.impl.util.ParseUtil.parseProcessEngineVersion;
-import static org.camunda.bpm.engine.impl.util.ProcessEngineDetails.EDITION_COMMUNITY;
-import static org.camunda.bpm.engine.impl.util.ProcessEngineDetails.EDITION_ENTERPRISE;
+import static org.cadenzaflow.bpm.engine.impl.util.ParseUtil.parseProcessEngineVersion;
+import static org.cadenzaflow.bpm.engine.impl.util.ProcessEngineDetails.EDITION_COMMUNITY;
+import static org.cadenzaflow.bpm.engine.impl.util.ProcessEngineDetails.EDITION_ENTERPRISE;
 
 import org.cadenzaflow.bpm.engine.impl.util.ProcessEngineDetails;
 import org.cadenzaflow.bpm.engine.test.util.TestconfigProperties;

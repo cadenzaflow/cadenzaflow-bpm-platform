@@ -24,9 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription.LONG_NULL_VALUE;
-import static org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription.ProcessVariable;
-import static org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription.STRING_NULL_VALUE;
+import static org.cadenzaflow.bpm.client.spring.annotation.ExternalTaskSubscription.LONG_NULL_VALUE;
+import static org.cadenzaflow.bpm.client.spring.annotation.ExternalTaskSubscription.ProcessVariable;
+import static org.cadenzaflow.bpm.client.spring.annotation.ExternalTaskSubscription.STRING_NULL_VALUE;
 
 public class SubscriptionConfiguration {
 

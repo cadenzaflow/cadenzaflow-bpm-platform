@@ -494,7 +494,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *
    * @return  TaskAssert inspecting the only task available. Inspecting a
    *          'null' Task in case no such Task is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more
    *          than one task is delivered by the query (after being narrowed
    *          to actual ProcessInstance)
    */
@@ -511,7 +511,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *          tasks
    * @return  TaskAssert inspecting the only task available. Inspecting a
    *          'null' Task in case no such Task is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than one
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than one
    *          task is delivered by the query (after being narrowed to actual
    *          ProcessInstance)
    */
@@ -535,7 +535,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    * @return  TaskAssert inspecting the only task resulting from the given
    *          search. Inspecting a 'null' Task in case no such Task is
    *          available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one task is delivered by the query (after being narrowed to
    *          actual ProcessInstance)
    */
@@ -554,7 +554,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *
    * @return  ExternalTaskAssert inspecting the only external task available. Inspecting a
    *          'null' external task in case no such external task is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more
    *          than one external task is delivered by the query (after being narrowed
    *          to actual ProcessInstance)
    */
@@ -571,7 +571,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *          tasks
    * @return  ExternalTaskAssert inspecting the only external task available. Inspecting a
    *          'null' external task in case no such external task is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than one
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than one
    *          external task is delivered by the query (after being narrowed to actual
    *          ProcessInstance)
    */
@@ -595,7 +595,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    * @return  ExternalTaskAssert inspecting the only external task resulting from the given
    *          search. Inspecting a 'null' external task in case no such external task is
    *          available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one external task is delivered by the query (after being narrowed to
    *          actual ProcessInstance)
    */
@@ -615,7 +615,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *
    * @return  ProcessInstanceAssert inspecting the only called process instance available. Inspecting a
    *          'null' process instance in case no such Task is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more
    *          than one process instance is delivered by the query (after being narrowed
    *          to actual ProcessInstance)
    */
@@ -632,7 +632,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *          process instances
    * @return  ProcessInstanceAssert inspecting the only such process instance available.
    *          Inspecting a 'null' ProcessInstance in case no such ProcessInstance is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than one
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than one
    *          process instance is delivered by the query (after being narrowed to actual
    *          ProcessInstance)
    */
@@ -652,7 +652,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    * @return  ProcessInstanceAssert inspecting the only such process instance resulting
    *          from the given search. Inspecting a 'null' ProcessInstance in case no such
    *          ProcessInstance is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one ProcessInstance is delivered by the query (after being narrowed to
    *          actual ProcessInstance)
    */
@@ -671,7 +671,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    *
    * @return  JobAssert inspecting the only job available. Inspecting
    *          a 'null' Job in case no such Job is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more
    *          than one task is delivered by the query (after being narrowed
    *          to actual ProcessInstance)
    */
@@ -687,7 +687,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    * @param   activityId id narrowing down the search for jobs
    * @return  JobAssert inspecting the retrieved job. Inspecting a
    *          'null' Task in case no such Job is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than one
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than one
    *          job is delivered by the query (after being narrowed to actual
    *          ProcessInstance)
    */
@@ -710,7 +710,7 @@ public class ProcessInstanceAssert extends AbstractProcessAssert<ProcessInstance
    * @return  JobAssert inspecting the only job resulting from the
    *          given search. Inspecting a 'null' job in case no such job
    *          is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more
    *          than one job is delivered by the query (after being narrowed
    *          to actual ProcessInstance)
    */

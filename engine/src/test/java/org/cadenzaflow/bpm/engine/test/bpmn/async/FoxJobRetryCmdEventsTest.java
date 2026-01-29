@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.engine.test.bpmn.async;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.bpmn.async.RetryCmdDeployment.deployment;
-import static org.camunda.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareCompensationEventProcess;
-import static org.camunda.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareEscalationEventProcess;
-import static org.camunda.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareMessageEventProcess;
-import static org.camunda.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareSignalEventProcess;
+import static org.cadenzaflow.bpm.engine.test.bpmn.async.RetryCmdDeployment.deployment;
+import static org.cadenzaflow.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareCompensationEventProcess;
+import static org.cadenzaflow.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareEscalationEventProcess;
+import static org.cadenzaflow.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareMessageEventProcess;
+import static org.cadenzaflow.bpm.engine.test.bpmn.async.RetryCmdDeployment.prepareSignalEventProcess;
 
 import java.util.Collection;
 

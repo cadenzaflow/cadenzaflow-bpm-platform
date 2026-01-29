@@ -24,7 +24,7 @@ import org.cadenzaflow.bpm.engine.test.assertions.cmmn.CmmnAwareTests;
  * Convenience class to access all available Camunda Platform related
  * Assertions PLUS helper methods. Use it with a static import:
  *
- * import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
+ * import static org.cadenzaflow.bpm.engine.test.assertions.ProcessEngineTests.*;
  *
  * @see BpmnAwareTests if you only want to see BPMN related functionality
  *

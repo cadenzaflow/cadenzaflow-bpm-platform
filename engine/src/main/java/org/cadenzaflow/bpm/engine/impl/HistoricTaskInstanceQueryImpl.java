@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.impl;
 
 import static java.lang.Boolean.TRUE;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;

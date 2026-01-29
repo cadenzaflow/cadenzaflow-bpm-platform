@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.bpmn.async;
 
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -767,14 +767,14 @@ public class AsyncTaskTest extends PluggableProcessEngineTest {
 
     try {
       // given a deployment that contains a process called "process" with an async task "task"
-      org.camunda.bpm.engine.repository.Deployment deployment1 = repositoryService
+      org.cadenzaflow.bpm.engine.repository.Deployment deployment1 = repositoryService
           .createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/bpmn/async/AsyncTaskTest.testDeployAndRemoveAsyncActivity.v1.bpmn20.xml")
           .deploy();
       deployments.add(deployment1.getId());
 
       // when redeploying the process where that task is not contained anymore
-      org.camunda.bpm.engine.repository.Deployment deployment2 = repositoryService
+      org.cadenzaflow.bpm.engine.repository.Deployment deployment2 = repositoryService
           .createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/bpmn/async/AsyncTaskTest.testDeployAndRemoveAsyncActivity.v2.bpmn20.xml")
           .deploy();

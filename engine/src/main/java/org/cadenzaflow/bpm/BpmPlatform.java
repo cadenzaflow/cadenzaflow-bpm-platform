@@ -32,8 +32,8 @@ public final class BpmPlatform {
   public final static String APP_JNDI_NAME = "camunda-bpm-platform";
   public final static String MODULE_JNDI_NAME = "process-engine";
 
-  public final static String PROCESS_ENGINE_SERVICE_NAME = "ProcessEngineService!org.camunda.bpm.ProcessEngineService";
-  public final static String PROCESS_APPLICATION_SERVICE_NAME = "ProcessApplicationService!org.camunda.bpm.ProcessApplicationService";
+  public final static String PROCESS_ENGINE_SERVICE_NAME = "ProcessEngineService!org.cadenzaflow.bpm.ProcessEngineService";
+  public final static String PROCESS_APPLICATION_SERVICE_NAME = "ProcessApplicationService!org.cadenzaflow.bpm.ProcessApplicationService";
 
   public final static String PROCESS_ENGINE_SERVICE_JNDI_NAME = JNDI_NAME_PREFIX + "/" + APP_JNDI_NAME + "/" + MODULE_JNDI_NAME + "/" + PROCESS_ENGINE_SERVICE_NAME;
   public final static String PROCESS_APPLICATION_SERVICE_JNDI_NAME = JNDI_NAME_PREFIX + "/" + APP_JNDI_NAME + "/" + MODULE_JNDI_NAME + "/" + PROCESS_APPLICATION_SERVICE_NAME;

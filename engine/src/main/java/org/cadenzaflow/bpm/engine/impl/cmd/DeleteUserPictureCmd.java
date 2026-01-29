@@ -20,7 +20,7 @@ import org.cadenzaflow.bpm.engine.impl.interceptor.Command;
 import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;
 import org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * @author Daniel Meyer

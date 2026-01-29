@@ -24,7 +24,7 @@ import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;
 import org.cadenzaflow.bpm.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.cadenzaflow.bpm.engine.impl.util.EnsureUtil;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 
 /**

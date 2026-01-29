@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.dmn.impl.instance;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_OUTPUT_ENTRY;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_OUTPUT_ENTRY;
 
 import org.cadenzaflow.bpm.model.dmn.instance.LiteralExpression;
 import org.cadenzaflow.bpm.model.dmn.instance.OutputEntry;

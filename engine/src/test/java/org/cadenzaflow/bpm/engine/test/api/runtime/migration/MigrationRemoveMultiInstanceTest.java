@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration;
 
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
 
 import java.util.List;
 

@@ -43,7 +43,7 @@ import org.cadenzaflow.commons.logging.BaseLogger;
 public class ExternalTaskClientLogger extends BaseLogger {
 
   protected static final String PROJECT_CODE = "TASK/CLIENT";
-  protected static final String PROJECT_LOGGER = "org.camunda.bpm.client";
+  protected static final String PROJECT_LOGGER = "org.cadenzaflow.bpm.client";
 
   public static final ExternalTaskClientLogger CLIENT_LOGGER =
     createLogger(ExternalTaskClientLogger.class, PROJECT_CODE, PROJECT_LOGGER, "01");

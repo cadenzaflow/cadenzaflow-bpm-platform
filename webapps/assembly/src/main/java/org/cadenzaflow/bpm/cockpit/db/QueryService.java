@@ -20,6 +20,6 @@ package org.cadenzaflow.bpm.cockpit.db;
  *
  * @author Nico Rehwaldt
  */
-public interface QueryService extends org.camunda.bpm.webapp.db.QueryService {
+public interface QueryService extends org.cadenzaflow.bpm.webapp.db.QueryService {
 
 }

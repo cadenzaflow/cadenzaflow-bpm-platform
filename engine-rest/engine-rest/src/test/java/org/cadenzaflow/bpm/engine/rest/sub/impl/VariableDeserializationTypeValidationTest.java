@@ -92,7 +92,7 @@ public class VariableDeserializationTypeValidationTest {
     variablesResourceSpy.validateType(type);
 
     // then
-    Mockito.verify(validator).validate("org.camunda.bpm.engine.rest.sub.impl.VariableDeserializationTypeValidationTest$Complex");
+    Mockito.verify(validator).validate("org.cadenzaflow.bpm.engine.rest.sub.impl.VariableDeserializationTypeValidationTest$Complex");
     Mockito.verifyNoMoreInteractions(validator);
   }
 
@@ -178,7 +178,7 @@ public class VariableDeserializationTypeValidationTest {
 
     // then
     thrown.expect(IllegalArgumentException.class);
-    thrown.expectMessage("[org.camunda.bpm.engine.rest.sub.impl.VariableDeserializationTypeValidationTest$Complex]");
+    thrown.expectMessage("[org.cadenzaflow.bpm.engine.rest.sub.impl.VariableDeserializationTypeValidationTest$Complex]");
 
     // when
     variablesResourceSpy.validateType(type);

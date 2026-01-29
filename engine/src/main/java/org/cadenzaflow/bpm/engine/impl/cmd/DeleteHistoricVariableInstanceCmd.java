@@ -29,8 +29,8 @@ import org.cadenzaflow.bpm.engine.impl.repository.ResourceDefinitionEntity;
 
 import java.io.Serializable;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * @author Tobias Metzke

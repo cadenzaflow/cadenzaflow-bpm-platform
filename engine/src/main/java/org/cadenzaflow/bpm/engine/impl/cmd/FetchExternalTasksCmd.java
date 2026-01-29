@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd;
 
-import static org.camunda.bpm.engine.impl.Direction.DESCENDING;
-import static org.camunda.bpm.engine.impl.ExternalTaskQueryProperty.PRIORITY;
+import static org.cadenzaflow.bpm.engine.impl.Direction.DESCENDING;
+import static org.cadenzaflow.bpm.engine.impl.ExternalTaskQueryProperty.PRIORITY;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.impl.errorcode;
 
-import static org.camunda.bpm.engine.impl.errorcode.BuiltinExceptionCode.COLUMN_SIZE_TOO_SMALL;
-import static org.camunda.bpm.engine.impl.errorcode.BuiltinExceptionCode.DEADLOCK;
-import static org.camunda.bpm.engine.impl.errorcode.BuiltinExceptionCode.FOREIGN_KEY_CONSTRAINT_VIOLATION;
-import static org.camunda.bpm.engine.impl.errorcode.BuiltinExceptionCode.OPTIMISTIC_LOCKING;
+import static org.cadenzaflow.bpm.engine.impl.errorcode.BuiltinExceptionCode.COLUMN_SIZE_TOO_SMALL;
+import static org.cadenzaflow.bpm.engine.impl.errorcode.BuiltinExceptionCode.DEADLOCK;
+import static org.cadenzaflow.bpm.engine.impl.errorcode.BuiltinExceptionCode.FOREIGN_KEY_CONSTRAINT_VIOLATION;
+import static org.cadenzaflow.bpm.engine.impl.errorcode.BuiltinExceptionCode.OPTIMISTIC_LOCKING;
 
 import java.sql.SQLException;
 import org.cadenzaflow.bpm.engine.OptimisticLockingException;

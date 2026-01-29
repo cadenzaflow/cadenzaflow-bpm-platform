@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.qa.performance.engine.steps;
 
-import static org.camunda.bpm.qa.performance.engine.steps.PerfTestConstants.TASK_ID;
+import static org.cadenzaflow.bpm.qa.performance.engine.steps.PerfTestConstants.TASK_ID;
 
 import org.cadenzaflow.bpm.engine.delegate.DelegateTask;
 import org.cadenzaflow.bpm.engine.delegate.TaskListener;

@@ -21,8 +21,8 @@ import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.TYPE_NAME_CHILD_RELATIONSHIP_DEFINITION;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.TYPE_NAME_CHILD_RELATIONSHIP_DEFINITION;
 
 /**
  * @author Sebastian Menski

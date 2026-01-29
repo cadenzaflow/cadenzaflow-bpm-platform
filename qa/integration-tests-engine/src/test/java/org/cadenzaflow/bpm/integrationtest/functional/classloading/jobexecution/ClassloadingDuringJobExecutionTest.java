@@ -49,7 +49,7 @@ public class ClassloadingDuringJobExecutionTest extends AbstractFoxPlatformInteg
       "      <extensionElements>\r\n" +
       "        <camunda:inputOutput>\r\n" +
       "          <camunda:outputParameter name=\"output\">\r\n" +
-      "            <camunda:script scriptFormat=\"Javascript\">throw new org.camunda.bpm.engine.delegate.BpmnError(\"Test error thrown\");</camunda:script>\r\n" +
+      "            <camunda:script scriptFormat=\"Javascript\">throw new org.cadenzaflow.bpm.engine.delegate.BpmnError(\"Test error thrown\");</camunda:script>\r\n" +
       "          </camunda:outputParameter>\r\n" +
       "        </camunda:inputOutput>\r\n" +
       "      </extensionElements>\r\n" +

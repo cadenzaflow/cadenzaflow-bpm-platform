@@ -19,10 +19,10 @@ package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.PERSISTENCE_EXCEPTION_MESSAGE;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.wrapPersistenceException;
-import static org.camunda.bpm.engine.rest.exception.ExceptionLogger.REST_API;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_USER_FIRST_NAME;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.PERSISTENCE_EXCEPTION_MESSAGE;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.wrapPersistenceException;
+import static org.cadenzaflow.bpm.engine.rest.exception.ExceptionLogger.REST_API;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_USER_FIRST_NAME;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

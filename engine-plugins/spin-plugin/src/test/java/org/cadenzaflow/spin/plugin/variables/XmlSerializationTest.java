@@ -17,11 +17,11 @@
 package org.cadenzaflow.spin.plugin.variables;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.variable.Variables.objectValue;
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
-import static org.camunda.spin.plugin.variables.TypedValueAssert.assertObjectValueDeserializedNull;
-import static org.camunda.spin.plugin.variables.TypedValueAssert.assertObjectValueSerializedNull;
-import static org.camunda.spin.plugin.variables.TypedValueAssert.assertUntypedNullValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.objectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.spin.plugin.variables.TypedValueAssert.assertObjectValueDeserializedNull;
+import static org.cadenzaflow.spin.plugin.variables.TypedValueAssert.assertObjectValueSerializedNull;
+import static org.cadenzaflow.spin.plugin.variables.TypedValueAssert.assertUntypedNullValue;
 
 import java.io.Reader;
 import java.util.List;

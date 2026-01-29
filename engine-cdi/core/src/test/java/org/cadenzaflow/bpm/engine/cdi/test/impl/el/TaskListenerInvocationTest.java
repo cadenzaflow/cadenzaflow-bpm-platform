@@ -26,7 +26,7 @@ import org.junit.runner.RunWith;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.camunda.bpm.engine.cdi.test.impl.el.beans.CdiTaskListenerBean.*;
+import static org.cadenzaflow.bpm.engine.cdi.test.impl.el.beans.CdiTaskListenerBean.*;
 import static org.junit.Assert.assertEquals;
 
 /**

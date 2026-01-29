@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.telemetry.dto;
 
-import static org.camunda.bpm.engine.impl.util.ParseUtil.parseServerVendor;
+import static org.cadenzaflow.bpm.engine.impl.util.ParseUtil.parseServerVendor;
 
 import org.cadenzaflow.bpm.engine.telemetry.ApplicationServer;
 

@@ -32,7 +32,7 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE;
 
 public class CamundaEngineDefaultConfigTest {
 

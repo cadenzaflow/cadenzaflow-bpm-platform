@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd.batch;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureAtLeastOneNotNull;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureAtLeastOneNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
 
 import java.util.ArrayList;
 import java.util.HashSet;

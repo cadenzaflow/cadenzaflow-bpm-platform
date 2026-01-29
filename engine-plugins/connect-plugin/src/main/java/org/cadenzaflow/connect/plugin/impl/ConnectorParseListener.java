@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.connect.plugin.impl;
 
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParseUtil.findCamundaExtensionElement;
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseInputOutput;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParseUtil.findCamundaExtensionElement;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseInputOutput;
 
 import org.cadenzaflow.bpm.engine.BpmnParseException;
 import org.cadenzaflow.bpm.engine.impl.bpmn.parser.AbstractBpmnParseListener;

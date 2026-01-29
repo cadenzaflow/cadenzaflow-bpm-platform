@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.db.sql;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import java.sql.BatchUpdateException;
 import java.sql.Connection;

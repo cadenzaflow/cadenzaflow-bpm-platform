@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.jobexecutor;
 
-import static org.camunda.bpm.engine.test.util.ClockTestUtil.incrementClock;
+import static org.cadenzaflow.bpm.engine.test.util.ClockTestUtil.incrementClock;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

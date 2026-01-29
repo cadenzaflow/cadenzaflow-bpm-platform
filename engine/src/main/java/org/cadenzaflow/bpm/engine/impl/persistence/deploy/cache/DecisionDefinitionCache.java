@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.engine.impl.dmn.entity.repository.DecisionDefinitionE
 import org.cadenzaflow.bpm.engine.impl.dmn.entity.repository.DecisionDefinitionManager;
 import org.cadenzaflow.bpm.engine.impl.persistence.AbstractResourceDefinitionManager;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * @author: Johannes Heinemann

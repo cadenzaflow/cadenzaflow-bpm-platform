@@ -16,16 +16,16 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration;
 
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.BOUNDARY_ID;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.CONDITION_ID;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.PROC_DEF_KEY;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.SUB_PROCESS_ID;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.USER_TASK_ID;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.VARIABLE_NAME;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ConditionalModels.VAR_CONDITION;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.EventSubProcessModels.EVENT_SUB_PROCESS_START_ID;
-import static org.camunda.bpm.engine.test.bpmn.event.conditional.AbstractConditionalEventTestCase.TASK_AFTER_CONDITION_ID;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.BOUNDARY_ID;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.CONDITION_ID;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.PROC_DEF_KEY;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.SUB_PROCESS_ID;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.USER_TASK_ID;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.VARIABLE_NAME;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ConditionalModels.VAR_CONDITION;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.EventSubProcessModels.EVENT_SUB_PROCESS_START_ID;
+import static org.cadenzaflow.bpm.engine.test.bpmn.event.conditional.AbstractConditionalEventTestCase.TASK_AFTER_CONDITION_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 

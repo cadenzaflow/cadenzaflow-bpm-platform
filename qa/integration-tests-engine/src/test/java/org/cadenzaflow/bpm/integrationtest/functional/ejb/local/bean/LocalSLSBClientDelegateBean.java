@@ -32,7 +32,7 @@ import org.cadenzaflow.bpm.engine.delegate.JavaDelegate;
 @Named
 public class LocalSLSBClientDelegateBean implements JavaDelegate {
   
-  @EJB(lookup="java:global/service/LocalSLSBean!org.camunda.bpm.integrationtest.functional.ejb.local.bean.BusinessInterface")
+  @EJB(lookup="java:global/service/LocalSLSBean!org.cadenzaflow.bpm.integrationtest.functional.ejb.local.bean.BusinessInterface")
   private BusinessInterface businessInterface;
 
   @Override

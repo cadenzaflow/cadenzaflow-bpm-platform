@@ -22,8 +22,8 @@ import org.cadenzaflow.bpm.engine.repository.ProcessDefinition;
 
 import java.util.List;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * Command to delete process definitions by a given key.

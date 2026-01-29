@@ -17,9 +17,9 @@
 package org.cadenzaflow.spin.plugin.variables;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.DataFormats.json;
-import static org.camunda.spin.plugin.variable.SpinValues.jsonValue;
-import static org.camunda.spin.plugin.variable.type.SpinValueType.JSON;
+import static org.cadenzaflow.spin.DataFormats.json;
+import static org.cadenzaflow.spin.plugin.variable.SpinValues.jsonValue;
+import static org.cadenzaflow.spin.plugin.variable.type.SpinValueType.JSON;
 
 import java.util.HashMap;
 import java.util.List;

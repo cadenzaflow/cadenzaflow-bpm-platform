@@ -18,7 +18,7 @@
 package org.cadenzaflow.bpm.engine.test.jobexecutor;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.util.JobExecutorWaitUtils.waitForJobExecutorToProcessAllJobs;
+import static org.cadenzaflow.bpm.engine.test.util.JobExecutorWaitUtils.waitForJobExecutorToProcessAllJobs;
 
 import java.util.ArrayList;
 import java.util.HashSet;

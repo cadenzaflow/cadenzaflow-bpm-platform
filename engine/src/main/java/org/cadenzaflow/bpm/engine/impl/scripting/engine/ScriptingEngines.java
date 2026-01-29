@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.scripting.engine;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import javax.script.Bindings;
 import javax.script.ScriptEngine;

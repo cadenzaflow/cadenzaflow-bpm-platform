@@ -18,8 +18,8 @@ package org.cadenzaflow.bpm.engine.test.form.deployment;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.util.CamundaFormUtils.findAllCamundaFormDefinitionEntities;
-import static org.camunda.bpm.engine.test.util.CamundaFormUtils.writeTempFormFile;
+import static org.cadenzaflow.bpm.engine.test.util.CamundaFormUtils.findAllCamundaFormDefinitionEntities;
+import static org.cadenzaflow.bpm.engine.test.util.CamundaFormUtils.writeTempFormFile;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -25,10 +25,10 @@ import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.reference.AttributeReference;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMNDI_ATTRIBUTE_BPMN_ELEMENT;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMNDI_ELEMENT_BPMN_PLANE;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMNDI_NS;
-import static org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMNDI_ATTRIBUTE_BPMN_ELEMENT;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMNDI_ELEMENT_BPMN_PLANE;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMNDI_NS;
+import static org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
 /**
  * The BPMNDI BPMNPlane element

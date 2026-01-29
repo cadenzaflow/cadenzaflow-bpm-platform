@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.impl.json.jackson.format;
 
-import static org.camunda.spin.DataFormats.JSON_DATAFORMAT_NAME;
+import static org.cadenzaflow.spin.DataFormats.JSON_DATAFORMAT_NAME;
 
 import java.util.Set;
 

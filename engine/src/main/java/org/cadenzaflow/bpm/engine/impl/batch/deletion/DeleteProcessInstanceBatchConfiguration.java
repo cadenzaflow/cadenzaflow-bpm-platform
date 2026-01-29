@@ -28,7 +28,7 @@ import org.cadenzaflow.bpm.engine.impl.batch.DeploymentMappings;
  * This object will be serialized and persisted as run will be performed asynchronously.
  *
  * @author Askar Akhmerov
- * @see org.camunda.bpm.engine.impl.batch.deletion.DeleteProcessInstanceBatchConfigurationJsonConverter
+ * @see org.cadenzaflow.bpm.engine.impl.batch.deletion.DeleteProcessInstanceBatchConfigurationJsonConverter
  */
 public class DeleteProcessInstanceBatchConfiguration extends BatchConfiguration {
 

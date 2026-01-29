@@ -24,8 +24,8 @@ import org.cadenzaflow.bpm.model.xml.testmodel.instance.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.camunda.bpm.model.xml.test.assertions.ModelAssertions.assertThat;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.test.assertions.ModelAssertions.assertThat;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
 import static org.junit.Assert.fail;
 
 /**

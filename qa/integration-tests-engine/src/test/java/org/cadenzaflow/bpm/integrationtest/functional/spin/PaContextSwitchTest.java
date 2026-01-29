@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.Callable;
 
-import static org.camunda.bpm.application.ProcessApplicationContext.withProcessApplicationContext;
+import static org.cadenzaflow.bpm.application.ProcessApplicationContext.withProcessApplicationContext;
 
 /**
  * @author Thorben Lindhauer

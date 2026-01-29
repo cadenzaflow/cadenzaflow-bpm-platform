@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE;
-import static org.camunda.bpm.engine.authorization.Permissions.DELETE;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Resources.GROUP;
-import static org.camunda.bpm.engine.authorization.Resources.GROUP_MEMBERSHIP;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.DELETE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.GROUP;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.GROUP_MEMBERSHIP;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Mockito.any;

@@ -17,9 +17,9 @@
 package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.authorization.Permissions.DELETE;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Resources.USER;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.DELETE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.USER;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Mockito.any;
@@ -449,7 +449,7 @@ public class UserRestServiceInteractionTest extends AbstractRestServiceTest {
     verify(identityServiceMock).newUser(MockProvider.EXAMPLE_USER_ID);
     verify(identityServiceMock).saveUser(newUser);
 
-    verifyLogs(Level.WARN, "org.camunda.bpm.engine.ProcessEngineException");
+    verifyLogs(Level.WARN, "org.cadenzaflow.bpm.engine.ProcessEngineException");
   }
 
   @Test

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.persistence.entity;
 
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.createExceptionByteArray;
-import static org.camunda.bpm.engine.impl.util.StringUtil.toByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.createExceptionByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.StringUtil.toByteArray;
 
 import java.util.Date;
 import java.util.HashMap;

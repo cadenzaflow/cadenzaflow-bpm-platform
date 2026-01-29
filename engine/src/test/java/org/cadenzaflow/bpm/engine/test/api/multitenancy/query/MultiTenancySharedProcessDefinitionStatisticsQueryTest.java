@@ -79,7 +79,7 @@ public class MultiTenancySharedProcessDefinitionStatisticsQueryTest {
   protected static final BpmnModelInstance failingProcess = Bpmn.createExecutableProcess(FAILED_JOBS_PROCESS_DEFINITION_KEY)
     .startEvent()
     .serviceTask()
-      .camundaClass("org.camunda.bpm.engine.test.api.multitenancy.FailingDelegate")
+      .camundaClass("org.cadenzaflow.bpm.engine.test.api.multitenancy.FailingDelegate")
       .camundaAsyncBefore()
     .done();
 

@@ -49,8 +49,8 @@ public class AbstractCmmnTransformListener implements CmmnTransformListener {
   public void transformCase(Case element, CmmnCaseDefinition caseDefinition) {
   }
 
-  public void transformCasePlanModel(org.camunda.bpm.model.cmmn.impl.instance.CasePlanModel casePlanModel, CmmnActivity activity) {
-    transformCasePlanModel((org.camunda.bpm.model.cmmn.instance.CasePlanModel) casePlanModel, activity);
+  public void transformCasePlanModel(org.cadenzaflow.bpm.model.cmmn.impl.instance.CasePlanModel casePlanModel, CmmnActivity activity) {
+    transformCasePlanModel((org.cadenzaflow.bpm.model.cmmn.instance.CasePlanModel) casePlanModel, activity);
   }
 
   public void transformCasePlanModel(CasePlanModel casePlanModel, CmmnActivity activity) {

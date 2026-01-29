@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.engine.test.api.authorization.dmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Resources.DECISION_REQUIREMENTS_DEFINITION;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationSpec.revoke;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.DECISION_REQUIREMENTS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationSpec.revoke;
 
 import java.util.ArrayList;
 import java.util.Arrays;

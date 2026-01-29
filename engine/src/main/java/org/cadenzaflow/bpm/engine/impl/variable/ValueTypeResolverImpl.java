@@ -16,18 +16,18 @@
  */
 package org.cadenzaflow.bpm.engine.impl.variable;
 
-import static org.camunda.bpm.engine.variable.type.ValueType.BOOLEAN;
-import static org.camunda.bpm.engine.variable.type.ValueType.BYTES;
-import static org.camunda.bpm.engine.variable.type.ValueType.DATE;
-import static org.camunda.bpm.engine.variable.type.ValueType.DOUBLE;
-import static org.camunda.bpm.engine.variable.type.ValueType.FILE;
-import static org.camunda.bpm.engine.variable.type.ValueType.INTEGER;
-import static org.camunda.bpm.engine.variable.type.ValueType.LONG;
-import static org.camunda.bpm.engine.variable.type.ValueType.NULL;
-import static org.camunda.bpm.engine.variable.type.ValueType.NUMBER;
-import static org.camunda.bpm.engine.variable.type.ValueType.OBJECT;
-import static org.camunda.bpm.engine.variable.type.ValueType.SHORT;
-import static org.camunda.bpm.engine.variable.type.ValueType.STRING;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.BOOLEAN;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.BYTES;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.DATE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.DOUBLE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.FILE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.INTEGER;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.LONG;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.NULL;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.NUMBER;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.OBJECT;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.SHORT;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.STRING;
 
 import java.util.ArrayList;
 import java.util.Collection;

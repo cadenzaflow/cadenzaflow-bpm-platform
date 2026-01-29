@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_ASSOCIATION_DIRECTION;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_SOURCE_REF;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_TARGET_REF;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_ASSOCIATION;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_ASSOCIATION_DIRECTION;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_SOURCE_REF;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_TARGET_REF;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_ASSOCIATION;
 
 import org.cadenzaflow.bpm.model.cmmn.AssociationDirection;
 import org.cadenzaflow.bpm.model.cmmn.instance.Artifact;

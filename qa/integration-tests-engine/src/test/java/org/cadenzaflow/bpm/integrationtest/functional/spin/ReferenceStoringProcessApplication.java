@@ -20,14 +20,14 @@ import org.cadenzaflow.bpm.application.PostDeploy;
 import org.cadenzaflow.bpm.application.ProcessApplication;
 
 /**
- * {@link org.camunda.bpm.application.impl.ServletProcessApplication} is fine on all containers as the tests
+ * {@link org.cadenzaflow.bpm.application.impl.ServletProcessApplication} is fine on all containers as the tests
  * don't require Java EE features
  *
  * @author Thorben Lindhauer
  */
 @ProcessApplication
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class ReferenceStoringProcessApplication extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class ReferenceStoringProcessApplication extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
 
   public static ReferenceStoringProcessApplication INSTANCE = null;
 

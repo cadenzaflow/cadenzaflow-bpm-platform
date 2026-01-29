@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.jobexecutor;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import java.util.HashMap;
 import java.util.Map;

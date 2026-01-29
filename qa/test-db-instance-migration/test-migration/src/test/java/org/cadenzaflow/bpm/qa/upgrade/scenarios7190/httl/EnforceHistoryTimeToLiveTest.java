@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.qa.upgrade.scenarios7190.httl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.bpm.qa.upgrade.scenarios7190.httl.EnforceHistoryTimeToLiveTest.Assert.assertDoesNotThrow;
+import static org.cadenzaflow.bpm.qa.upgrade.scenarios7190.httl.EnforceHistoryTimeToLiveTest.Assert.assertDoesNotThrow;
 
 import org.cadenzaflow.bpm.engine.ManagementService;
 import org.cadenzaflow.bpm.engine.RepositoryService;

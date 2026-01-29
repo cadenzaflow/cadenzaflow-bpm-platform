@@ -37,7 +37,7 @@ import org.cadenzaflow.bpm.impl.juel.jakarta.el.MapELResolver;
  *
  * <pre>
  * &lt;property name="expressionManager"&gt;
- *      &lt;bean class="org.camunda.bpm.engine.test.cdi.CdiExpressionManager" /&gt;
+ *      &lt;bean class="org.cadenzaflow.bpm.engine.test.cdi.CdiExpressionManager" /&gt;
  * &lt;/property&gt;
  * </pre>
  *

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.dmn.engine.el;
 
-import static org.camunda.bpm.engine.variable.Variables.emptyVariableContext;
+import static org.cadenzaflow.bpm.engine.variable.Variables.emptyVariableContext;
 import static org.mockito.Mockito.*;
 
 import javax.script.CompiledScript;

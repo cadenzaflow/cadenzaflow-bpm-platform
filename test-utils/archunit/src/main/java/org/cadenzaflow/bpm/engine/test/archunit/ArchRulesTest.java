@@ -31,7 +31,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
         ImportOption.DoNotIncludeJars.class,
         ImportOption.DoNotIncludeTests.class
     },
-    packages = "org.camunda.bpm"
+    packages = "org.cadenzaflow.bpm"
 )
 public class ArchRulesTest {
 

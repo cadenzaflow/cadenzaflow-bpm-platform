@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance.camunda;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ELEMENT_EXPRESSION;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ELEMENT_EXPRESSION;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_NS;
 
 import org.cadenzaflow.bpm.model.cmmn.impl.instance.CmmnModelElementInstanceImpl;
 import org.cadenzaflow.bpm.model.cmmn.instance.camunda.CamundaExpression;

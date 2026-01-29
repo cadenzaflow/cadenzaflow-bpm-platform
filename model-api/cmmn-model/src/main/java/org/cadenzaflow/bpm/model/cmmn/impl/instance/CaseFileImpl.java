@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_CASE_FILE;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_CASE_FILE;
 
 import java.util.Collection;
 

@@ -1347,7 +1347,7 @@ public interface ManagementService {
   void deleteTaskMetrics(Date timestamp);
 
   /**
-   * Creates a query to search for {@link org.camunda.bpm.engine.batch.Batch} instances.
+   * Creates a query to search for {@link org.cadenzaflow.bpm.engine.batch.Batch} instances.
    *
    * @since 7.5
    */

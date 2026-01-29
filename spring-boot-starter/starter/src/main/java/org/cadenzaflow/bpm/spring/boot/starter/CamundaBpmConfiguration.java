@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.spring.boot.starter;
 
-import static org.camunda.bpm.spring.boot.starter.jdbc.HistoryLevelDeterminatorJdbcTemplateImpl.createHistoryLevelDeterminator;
+import static org.cadenzaflow.bpm.spring.boot.starter.jdbc.HistoryLevelDeterminatorJdbcTemplateImpl.createHistoryLevelDeterminator;
 
 import java.util.List;
 

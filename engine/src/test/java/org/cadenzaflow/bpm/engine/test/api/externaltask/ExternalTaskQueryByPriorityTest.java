@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.externaltask;
 
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.externalTaskByPriority;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySortingAndCount;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.externalTaskByPriority;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySortingAndCount;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN10_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_EXIT_CRITERION_REF;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_SENTRY_REF;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_SOURCE_REF;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_PLAN_ITEM_ON_PART;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN10_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_EXIT_CRITERION_REF;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_SENTRY_REF;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_SOURCE_REF;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_PLAN_ITEM_ON_PART;
 
 import org.cadenzaflow.bpm.model.cmmn.PlanItemTransition;
 import org.cadenzaflow.bpm.model.cmmn.instance.ExitCriterion;

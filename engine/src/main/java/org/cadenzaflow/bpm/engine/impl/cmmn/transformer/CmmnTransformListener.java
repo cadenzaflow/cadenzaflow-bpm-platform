@@ -51,10 +51,10 @@ public interface CmmnTransformListener {
   void transformCase(Case element, CmmnCaseDefinition caseDefinition);
 
   /**
-   * @deprecated use {@link #transformCasePlanModel(org.camunda.bpm.model.cmmn.instance.CasePlanModel, CmmnActivity)}
+   * @deprecated use {@link #transformCasePlanModel(org.cadenzaflow.bpm.model.cmmn.instance.CasePlanModel, CmmnActivity)}
    */
   @Deprecated
-  void transformCasePlanModel(org.camunda.bpm.model.cmmn.impl.instance.CasePlanModel casePlanModel, CmmnActivity caseActivity);
+  void transformCasePlanModel(org.cadenzaflow.bpm.model.cmmn.impl.instance.CasePlanModel casePlanModel, CmmnActivity caseActivity);
 
   void transformCasePlanModel(CasePlanModel casePlanModel, CmmnActivity caseActivity);
 

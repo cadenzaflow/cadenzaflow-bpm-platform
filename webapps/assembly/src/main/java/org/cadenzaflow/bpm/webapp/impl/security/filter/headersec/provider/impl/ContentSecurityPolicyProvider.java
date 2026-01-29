@@ -42,7 +42,7 @@ public class ContentSecurityPolicyProvider extends HeaderSecurityProvider {
 
   public static final String DISABLED_PARAM = "contentSecurityPolicyDisabled";
   public static final String VALUE_PARAM = "contentSecurityPolicyValue";
-  public static final String ATTR_CSP_FILTER_NONCE = "org.camunda.bpm.csp.nonce";
+  public static final String ATTR_CSP_FILTER_NONCE = "org.cadenzaflow.bpm.csp.nonce";
   public static final Base64.Encoder ENCODER = Base64.getUrlEncoder().withoutPadding();
 
   @Override

@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.engine.test.assertions.bpmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.complete;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.externalTask;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.externalTaskQuery;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.complete;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.externalTask;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.externalTaskQuery;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
 
 import org.cadenzaflow.bpm.engine.ProcessEngineException;
 import org.cadenzaflow.bpm.engine.externaltask.ExternalTaskQuery;
@@ -65,7 +65,7 @@ public class ProcessInstanceAssertExternalTaskTest extends ProcessAssertTestCase
     } catch (ProcessEngineException pe) {
       // Then
       assertThat(pe)
-        .hasStackTraceContaining("org.camunda.bpm.engine.impl.AbstractQuery.executeSingleResult");
+        .hasStackTraceContaining("org.cadenzaflow.bpm.engine.impl.AbstractQuery.executeSingleResult");
     }
   }
 
@@ -107,7 +107,7 @@ public class ProcessInstanceAssertExternalTaskTest extends ProcessAssertTestCase
     } catch (ProcessEngineException pe) {
       // Then
       assertThat(pe)
-        .hasStackTraceContaining("org.camunda.bpm.engine.impl.AbstractQuery.executeSingleResult");
+        .hasStackTraceContaining("org.cadenzaflow.bpm.engine.impl.AbstractQuery.executeSingleResult");
     }
   }
 
@@ -138,7 +138,7 @@ public class ProcessInstanceAssertExternalTaskTest extends ProcessAssertTestCase
     } catch (ProcessEngineException pe) {
       // Then
       assertThat(pe)
-      .hasStackTraceContaining("org.camunda.bpm.engine.impl.AbstractQuery.executeSingleResult");
+      .hasStackTraceContaining("org.cadenzaflow.bpm.engine.impl.AbstractQuery.executeSingleResult");
     }
   }
 

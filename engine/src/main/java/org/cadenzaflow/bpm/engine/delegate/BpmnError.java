@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.engine.delegate;
 import org.cadenzaflow.bpm.engine.ProcessEngineException;
 import org.cadenzaflow.bpm.engine.impl.bpmn.parser.Error;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
 
 
 /**

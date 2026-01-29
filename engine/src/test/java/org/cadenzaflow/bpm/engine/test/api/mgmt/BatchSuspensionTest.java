@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.api.mgmt;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.EntityTypes.BATCH;
+import static org.cadenzaflow.bpm.engine.EntityTypes.BATCH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

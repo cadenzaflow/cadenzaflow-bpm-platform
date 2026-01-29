@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.impl.cfg.CommandChecker;
 import org.cadenzaflow.bpm.engine.impl.interceptor.Command;

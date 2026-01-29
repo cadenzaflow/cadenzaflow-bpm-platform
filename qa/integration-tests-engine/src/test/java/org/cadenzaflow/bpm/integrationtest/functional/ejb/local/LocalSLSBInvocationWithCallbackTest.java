@@ -89,7 +89,7 @@ public class LocalSLSBInvocationWithCallbackTest extends AbstractFoxPlatformInte
       .addClass(AbstractFoxPlatformIntegrationTest.class)
       .addClass(StartProcessSLSB.class)
       .addClass(StartProcessInterface.class)
-      .addAsManifestResource(new StringAsset("Dependencies: org.camunda.bpm.camunda-engine"), "MANIFEST.MF"); // get access to engine classes
+      .addAsManifestResource(new StringAsset("Dependencies: org.cadenzaflow.bpm.camunda-engine"), "MANIFEST.MF"); // get access to engine classes
 
     TestContainer.addContainerSpecificResourcesForNonPa(webArchive);
 

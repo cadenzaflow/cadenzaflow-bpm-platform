@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.api.authorization.batch;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

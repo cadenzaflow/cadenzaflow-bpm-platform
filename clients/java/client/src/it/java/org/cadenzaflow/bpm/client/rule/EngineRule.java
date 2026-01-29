@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.client.rule;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
-import static org.camunda.bpm.client.util.PropertyUtil.loadProperties;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.loadProperties;
 
 import java.io.IOException;
 import java.io.InputStream;

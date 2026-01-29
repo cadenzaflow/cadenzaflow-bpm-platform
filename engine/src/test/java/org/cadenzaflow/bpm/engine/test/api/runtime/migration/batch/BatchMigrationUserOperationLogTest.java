@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration.batch;
 
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
 
 import java.util.Arrays;
 import java.util.HashMap;

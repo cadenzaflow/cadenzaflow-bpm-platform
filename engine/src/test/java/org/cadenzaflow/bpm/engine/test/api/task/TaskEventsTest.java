@@ -16,13 +16,13 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.task;
 
-import static org.camunda.bpm.engine.task.Event.ACTION_ADD_ATTACHMENT;
-import static org.camunda.bpm.engine.task.Event.ACTION_ADD_GROUP_LINK;
-import static org.camunda.bpm.engine.task.Event.ACTION_ADD_USER_LINK;
-import static org.camunda.bpm.engine.task.Event.ACTION_DELETE_ATTACHMENT;
-import static org.camunda.bpm.engine.task.Event.ACTION_DELETE_GROUP_LINK;
-import static org.camunda.bpm.engine.task.Event.ACTION_DELETE_USER_LINK;
-import static org.camunda.bpm.engine.task.IdentityLinkType.CANDIDATE;
+import static org.cadenzaflow.bpm.engine.task.Event.ACTION_ADD_ATTACHMENT;
+import static org.cadenzaflow.bpm.engine.task.Event.ACTION_ADD_GROUP_LINK;
+import static org.cadenzaflow.bpm.engine.task.Event.ACTION_ADD_USER_LINK;
+import static org.cadenzaflow.bpm.engine.task.Event.ACTION_DELETE_ATTACHMENT;
+import static org.cadenzaflow.bpm.engine.task.Event.ACTION_DELETE_GROUP_LINK;
+import static org.cadenzaflow.bpm.engine.task.Event.ACTION_DELETE_USER_LINK;
+import static org.cadenzaflow.bpm.engine.task.IdentityLinkType.CANDIDATE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

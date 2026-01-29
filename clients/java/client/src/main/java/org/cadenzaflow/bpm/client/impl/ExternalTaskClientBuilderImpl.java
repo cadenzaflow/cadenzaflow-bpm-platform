@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.client.impl;
 
-import static org.camunda.bpm.client.task.OrderingConfig.Direction.ASC;
-import static org.camunda.bpm.client.task.OrderingConfig.Direction.DESC;
-import static org.camunda.bpm.client.task.OrderingConfig.SortingField.CREATE_TIME;
+import static org.cadenzaflow.bpm.client.task.OrderingConfig.Direction.ASC;
+import static org.cadenzaflow.bpm.client.task.OrderingConfig.Direction.DESC;
+import static org.cadenzaflow.bpm.client.task.OrderingConfig.SortingField.CREATE_TIME;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

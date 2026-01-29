@@ -40,8 +40,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
-import static org.camunda.bpm.engine.test.api.runtime.migration.models.ProcessModels.USER_TASK_ID;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.models.ProcessModels.USER_TASK_ID;
 import static org.junit.Assert.assertNotNull;
 
 public class SetVariablesMigrationTest {

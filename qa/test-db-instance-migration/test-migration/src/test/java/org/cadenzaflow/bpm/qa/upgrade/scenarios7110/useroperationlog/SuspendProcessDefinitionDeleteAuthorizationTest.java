@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.qa.upgrade.scenarios7110.useroperationlog;
 
 
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Permissions.DELETE_HISTORY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.DELETE_HISTORY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;

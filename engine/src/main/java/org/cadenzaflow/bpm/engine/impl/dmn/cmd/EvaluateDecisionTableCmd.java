@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.dmn.cmd;
 
-import static org.camunda.bpm.engine.impl.util.DecisionEvaluationUtil.evaluateDecisionTable;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureOnlyOneNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.DecisionEvaluationUtil.evaluateDecisionTable;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureOnlyOneNotNull;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.dmn.impl.instance;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_REQUIRED_DECISION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_REQUIRED_DECISION;
 
 import org.cadenzaflow.bpm.model.dmn.instance.DmnElementReference;
 import org.cadenzaflow.bpm.model.dmn.instance.RequiredDecisionReference;
@@ -26,7 +26,7 @@ import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
-public class RequiredDecisionReferenceImpl extends DmnElementReferenceImpl implements org.camunda.bpm.model.dmn.instance.RequiredDecisionReference {
+public class RequiredDecisionReferenceImpl extends DmnElementReferenceImpl implements org.cadenzaflow.bpm.model.dmn.instance.RequiredDecisionReference {
 
   public RequiredDecisionReferenceImpl(ModelTypeInstanceContext instanceContext) {
     super(instanceContext);

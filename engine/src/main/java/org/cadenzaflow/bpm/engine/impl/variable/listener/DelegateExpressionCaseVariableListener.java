@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.variable.listener;
 
-import static org.camunda.bpm.engine.impl.util.ClassDelegateUtil.applyFieldDeclaration;
+import static org.cadenzaflow.bpm.engine.impl.util.ClassDelegateUtil.applyFieldDeclaration;
 
 import java.util.List;
 

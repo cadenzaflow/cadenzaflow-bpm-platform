@@ -37,7 +37,7 @@ import org.junit.runners.model.Statement;
 
 /**
  * A jUnit4 {@link TestRule} to load and execute a script. To
- * execute a {@link org.camunda.spin.impl.test.ScriptEngine} {@link ClassRule}
+ * execute a {@link org.cadenzaflow.spin.impl.test.ScriptEngine} {@link ClassRule}
  * is used to obtain a {@link ScriptEngine}.
  *
  * @author Sebastian Menski

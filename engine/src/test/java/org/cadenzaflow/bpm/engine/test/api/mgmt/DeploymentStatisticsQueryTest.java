@@ -39,7 +39,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   public void testDeploymentStatisticsQuery() {
     String deploymentName = "my deployment";
 
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
         .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
         .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
         .name(deploymentName)
@@ -75,7 +75,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
 
   @Test
   public void testDeploymentStatisticsQueryCountAndPaging() {
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
         .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
         .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
         .deploy();
@@ -83,7 +83,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
     runtimeService.startProcessInstanceByKey("MIExampleProcess");
     runtimeService.startProcessInstanceByKey("ParGatewayExampleProcess");
 
-    org.camunda.bpm.engine.repository.Deployment anotherDeployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment anotherDeployment = repositoryService.createDeployment()
         .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
         .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
         .deploy();

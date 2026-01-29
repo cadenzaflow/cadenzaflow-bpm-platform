@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.engine.test.assertions.cmmn;
 
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.complete;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.processInstanceQuery;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.task;
-import static org.camunda.bpm.engine.test.assertions.cmmn.CmmnAwareTests.assertThat;
-import static org.camunda.bpm.engine.test.assertions.cmmn.CmmnAwareTests.caseService;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.complete;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.processInstanceQuery;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.task;
+import static org.cadenzaflow.bpm.engine.test.assertions.cmmn.CmmnAwareTests.assertThat;
+import static org.cadenzaflow.bpm.engine.test.assertions.cmmn.CmmnAwareTests.caseService;
 
 import org.cadenzaflow.bpm.engine.runtime.CaseExecutionCommandBuilder;
 import org.cadenzaflow.bpm.engine.runtime.CaseInstance;

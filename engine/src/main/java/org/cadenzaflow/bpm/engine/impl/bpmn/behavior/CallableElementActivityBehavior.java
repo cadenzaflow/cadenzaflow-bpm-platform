@@ -24,9 +24,9 @@ import org.cadenzaflow.bpm.engine.delegate.DelegateVariableMapping;
 import org.cadenzaflow.bpm.engine.delegate.Expression;
 import org.cadenzaflow.bpm.engine.delegate.VariableScope;
 
-import static org.camunda.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_ACTIVE_INSTANCES;
-import static org.camunda.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_COMPLETED_INSTANCES;
-import static org.camunda.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_INSTANCES;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_ACTIVE_INSTANCES;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_COMPLETED_INSTANCES;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_INSTANCES;
 
 import org.cadenzaflow.bpm.engine.impl.context.Context;
 import org.cadenzaflow.bpm.engine.impl.context.ProcessApplicationContextUtil;

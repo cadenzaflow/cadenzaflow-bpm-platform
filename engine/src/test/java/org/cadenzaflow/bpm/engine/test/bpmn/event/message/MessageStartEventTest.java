@@ -74,8 +74,8 @@ public class MessageStartEventTest extends PluggableProcessEngineTest {
       assertTrue(e.getMessage().contains("there already is a message event subscription for the message with name"));
     } finally {
       // clean db:
-      List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
-      for (org.camunda.bpm.engine.repository.Deployment deployment : deployments) {
+      List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
+      for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : deployments) {
         repositoryService.deleteDeployment(deployment.getId(), true);
       }
       // Workaround for #CAM-4250: remove process definition of failed
@@ -281,8 +281,8 @@ public class MessageStartEventTest extends PluggableProcessEngineTest {
     } finally {
       // clean db:
       runtimeService.deleteProcessInstance(pi.getId(), "failure");
-      List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
-      for (org.camunda.bpm.engine.repository.Deployment d : deployments) {
+      List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
+      for (org.cadenzaflow.bpm.engine.repository.Deployment d : deployments) {
         repositoryService.deleteDeployment(d.getId(), true);
       }
       // Workaround for #CAM-4250: remove process definition of failed
@@ -310,8 +310,8 @@ public class MessageStartEventTest extends PluggableProcessEngineTest {
     } finally {
       // clean db:
       runtimeService.deleteProcessInstance(pi.getId(), "failure");
-      List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
-      for (org.camunda.bpm.engine.repository.Deployment d : deployments) {
+      List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
+      for (org.cadenzaflow.bpm.engine.repository.Deployment d : deployments) {
         repositoryService.deleteDeployment(d.getId(), true);
       }
       // Workaround for #CAM-4250: remove process definition of failed
@@ -339,8 +339,8 @@ public class MessageStartEventTest extends PluggableProcessEngineTest {
     } finally {
       // clean db:
       runtimeService.deleteProcessInstance(pi.getId(), "failure");
-      List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
-      for (org.camunda.bpm.engine.repository.Deployment d : deployments) {
+      List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
+      for (org.cadenzaflow.bpm.engine.repository.Deployment d : deployments) {
         repositoryService.deleteDeployment(d.getId(), true);
       }
       // Workaround for #CAM-4250: remove process definition of failed

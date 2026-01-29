@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.integrationtest.functional.spin;
 
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
-import static org.camunda.spin.Spin.JSON;
-import static org.camunda.spin.Spin.XML;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.spin.Spin.JSON;
+import static org.cadenzaflow.spin.Spin.XML;
 import static org.junit.Assert.assertEquals;
 
 import java.io.InputStream;

@@ -25,12 +25,12 @@ import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.attribute.Attribute;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_PARALLEL_GATEWAY;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_ATTRIBUTE_ASYNC;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_ATTRIBUTE_EXCLUSIVE;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
-import static org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_PARALLEL_GATEWAY;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_ATTRIBUTE_ASYNC;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_ATTRIBUTE_EXCLUSIVE;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
 /**
  * The BPMN parallelGateway element

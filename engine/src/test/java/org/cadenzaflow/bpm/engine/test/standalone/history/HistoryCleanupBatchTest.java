@@ -37,7 +37,7 @@ public class HistoryCleanupBatchTest {
   protected static final String PROCESS_ENGINE_CONFIG =
       "org/camunda/bpm/engine/test/standalone/history/camunda.cfg.xml";
 
-  protected static final String CONFIG_LOGGER = "org.camunda.bpm.engine.cfg";
+  protected static final String CONFIG_LOGGER = "org.cadenzaflow.bpm.engine.cfg";
 
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule()

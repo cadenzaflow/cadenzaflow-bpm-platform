@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.engine.test.bpmn.subprocess.transaction;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

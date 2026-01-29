@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.rest;
 
-import static org.camunda.bpm.engine.rest.util.DateTimeUtils.DATE_FORMAT_WITH_TIMEZONE;
-import static org.camunda.bpm.engine.rest.util.DateTimeUtils.withTimezone;
+import static org.cadenzaflow.bpm.engine.rest.util.DateTimeUtils.DATE_FORMAT_WITH_TIMEZONE;
+import static org.cadenzaflow.bpm.engine.rest.util.DateTimeUtils.withTimezone;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.given;
 import static org.mockito.Mockito.any;

@@ -76,7 +76,7 @@ public class ManagedJobExecutorTest {
 
   @Test
   public void testManagedExecutorUsed() throws InterruptedException {
-    org.camunda.bpm.engine.repository.Deployment deployment = processEngine.getRepositoryService().createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = processEngine.getRepositoryService().createDeployment()
       .addClasspathResource("org/camunda/bpm/integrationtest/jobexecutor/ManagedJobExecutorTest.testManagedExecutorUsed.bpmn20.xml")
       .deploy();
 

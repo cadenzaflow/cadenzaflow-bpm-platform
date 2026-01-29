@@ -46,7 +46,7 @@ public class FileValueProcessSerializationTest extends PluggableProcessEngineTes
   @Test
   public void testSerializeFileVariable() {
     BpmnModelInstance modelInstance = Bpmn.createExecutableProcess("process").startEvent().userTask().endEvent().done();
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment().addModelInstance("process.bpmn", modelInstance).deploy();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment().addModelInstance("process.bpmn", modelInstance).deploy();
     VariableMap variables = Variables.createVariables();
     String filename = "test.txt";
     String type = "text/plain";

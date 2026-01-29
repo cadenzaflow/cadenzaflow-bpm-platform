@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
 import static org.junit.Assert.assertTrue;
 
 import org.cadenzaflow.bpm.engine.AuthorizationService;

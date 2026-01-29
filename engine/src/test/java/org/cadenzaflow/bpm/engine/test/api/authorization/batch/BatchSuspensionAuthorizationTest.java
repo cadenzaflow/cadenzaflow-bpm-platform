@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.engine.test.api.authorization.batch;
 
 import static java.util.Collections.singletonList;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
 
 import java.util.Collection;
 

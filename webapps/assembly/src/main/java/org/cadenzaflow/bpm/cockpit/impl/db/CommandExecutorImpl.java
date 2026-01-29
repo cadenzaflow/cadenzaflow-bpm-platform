@@ -26,7 +26,7 @@ import java.util.List;
  * @author drobisch
  * @author nico.rehwaldt
  */
-public class CommandExecutorImpl extends org.camunda.bpm.webapp.impl.db.CommandExecutorImpl implements CommandExecutor {
+public class CommandExecutorImpl extends org.cadenzaflow.bpm.webapp.impl.db.CommandExecutorImpl implements CommandExecutor {
 
   public CommandExecutorImpl(ProcessEngineConfigurationImpl processEngineConfiguration, List<String> mappingFiles) {
     super(processEngineConfiguration, mappingFiles);

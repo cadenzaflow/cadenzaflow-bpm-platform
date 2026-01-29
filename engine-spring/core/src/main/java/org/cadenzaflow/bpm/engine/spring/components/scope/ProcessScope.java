@@ -44,7 +44,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * binds variables to a currently executing Activiti business process (a {@link org.camunda.bpm.engine.runtime.ProcessInstance}).
+ * binds variables to a currently executing Activiti business process (a {@link org.cadenzaflow.bpm.engine.runtime.ProcessInstance}).
  * <p/>
  * Parts of this code are lifted wholesale from Dave Syer's work on the Spring 3.1 RefreshScope.
  *

@@ -17,13 +17,13 @@
 package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.authorization.Permissions.DELETE;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Resources.AUTHORIZATION;
-import static org.camunda.bpm.engine.authorization.Resources.BATCH;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.TASK;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.DELETE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.AUTHORIZATION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.BATCH;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TASK;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Mockito.any;

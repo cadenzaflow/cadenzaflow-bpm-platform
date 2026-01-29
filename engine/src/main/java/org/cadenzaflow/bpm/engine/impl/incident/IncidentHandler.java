@@ -26,10 +26,10 @@ import org.cadenzaflow.bpm.engine.runtime.Incident;
  * <p>
  *
  * Custom implementations of this interface may be wired through
- * {@link org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl#setCustomIncidentHandlers(java.util.List)}.
+ * {@link org.cadenzaflow.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl#setCustomIncidentHandlers(java.util.List)}.
  *
  * @see FailedJobIncidentHandler
- * @see org.camunda.bpm.engine.runtime.Incident
+ * @see org.cadenzaflow.bpm.engine.runtime.Incident
  *
  * @author roman.smirnov
  */

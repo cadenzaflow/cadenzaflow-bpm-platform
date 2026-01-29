@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class SpringBootProcessEngineLogger extends BaseLogger {
   public static final String PROJECT_CODE = "STARTER";
   public static final String PROJECT_ID = "SB";
-  public static final String PACKAGE = "org.camunda.bpm.spring.boot";
+  public static final String PACKAGE = "org.cadenzaflow.bpm.spring.boot";
 
   public static final SpringBootProcessEngineLogger LOG = createLogger(SpringBootProcessEngineLogger.class, PROJECT_CODE, PACKAGE, PROJECT_ID);
 

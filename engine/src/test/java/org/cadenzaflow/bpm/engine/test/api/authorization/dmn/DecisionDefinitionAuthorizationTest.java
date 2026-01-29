@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization.dmn;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Resources.DECISION_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.DECISION_DEFINITION;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

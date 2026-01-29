@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ATTRIBUTE_REPEAT_ON_STANDARD_EVENT;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_CONTEXT_REF;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_NAME;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_REPETITION_RULE;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ATTRIBUTE_REPEAT_ON_STANDARD_EVENT;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_CONTEXT_REF;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ATTRIBUTE_NAME;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_REPETITION_RULE;
 
 import org.cadenzaflow.bpm.model.cmmn.instance.CaseFileItem;
 import org.cadenzaflow.bpm.model.cmmn.instance.CmmnElement;

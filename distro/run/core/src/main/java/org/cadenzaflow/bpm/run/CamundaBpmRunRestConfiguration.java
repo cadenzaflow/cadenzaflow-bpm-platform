@@ -76,7 +76,7 @@ public class CamundaBpmRunRestConfiguration {
     // if nothing is set, use Http Basic authentication
     CamundaBpmRunAuthenticationProperties properties = camundaBpmRunProperties.getAuth();
     if (properties.getAuthentication() == null || CamundaBpmRunAuthenticationProperties.DEFAULT_AUTH.equals(properties.getAuthentication())) {
-      registration.addInitParameter("authentication-provider", "org.camunda.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider");
+      registration.addInitParameter("authentication-provider", "org.cadenzaflow.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider");
     }
     return registration;
   }

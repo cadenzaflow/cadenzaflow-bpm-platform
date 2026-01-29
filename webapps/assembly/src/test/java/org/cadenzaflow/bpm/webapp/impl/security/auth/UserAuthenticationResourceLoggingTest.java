@@ -43,7 +43,7 @@ public class UserAuthenticationResourceLoggingTest {
   @Rule
   public ProcessEngineRule processEngineRule = new ProcessEngineRule("camunda-test-engine.cfg.xml");
   @Rule
-  public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().watch("org.camunda.bpm.webapp")
+  public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().watch("org.cadenzaflow.bpm.webapp")
       .level(Level.INFO);
 
   protected ProcessEngine processEngine;

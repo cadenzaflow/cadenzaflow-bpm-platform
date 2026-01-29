@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.impl.util.CallableElementUtil.getProcessDefinitionToCall;
+import static org.cadenzaflow.bpm.engine.impl.util.CallableElementUtil.getProcessDefinitionToCall;
 
 import java.util.Map;
 

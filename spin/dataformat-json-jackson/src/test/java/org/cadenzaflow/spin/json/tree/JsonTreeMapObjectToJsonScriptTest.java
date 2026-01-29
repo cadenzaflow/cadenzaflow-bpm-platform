@@ -18,7 +18,7 @@ package org.cadenzaflow.spin.json.tree;
 
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_JSON;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_JSON;
 
 import org.cadenzaflow.spin.SpinList;
 import org.cadenzaflow.spin.impl.test.Script;

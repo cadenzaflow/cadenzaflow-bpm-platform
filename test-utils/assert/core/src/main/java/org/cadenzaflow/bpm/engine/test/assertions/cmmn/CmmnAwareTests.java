@@ -35,7 +35,7 @@ import org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests;
  * Convenience class to access camunda *BPMN* and *CMMN*
  * related Assertions PLUS helper methods. Use it with a static import:
  *
- * import static org.camunda.bpm.engine.test.assertions.cmmn.CmmnAwareTests.*;
+ * import static org.cadenzaflow.bpm.engine.test.assertions.cmmn.CmmnAwareTests.*;
  *
  */
 public class CmmnAwareTests extends BpmnAwareTests {
@@ -74,7 +74,7 @@ public class CmmnAwareTests extends BpmnAwareTests {
    * Helper method to easily access CaseService
    *
    * @return  CaseService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.CaseService
+   * @see     org.cadenzaflow.bpm.engine.CaseService
    */
   public static CaseService caseService() {
     return processEngine().getCaseService();

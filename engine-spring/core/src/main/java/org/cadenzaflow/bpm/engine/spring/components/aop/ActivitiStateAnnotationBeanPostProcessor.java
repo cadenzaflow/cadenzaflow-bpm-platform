@@ -43,7 +43,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * the idea is that this bean post processor is responsible for registering all beans
- * that have the {@link org.camunda.bpm.engine.annotations.State} annotation.
+ * that have the {@link org.cadenzaflow.bpm.engine.annotations.State} annotation.
  *
  * @author Josh Long
  * @since 5.3
@@ -90,7 +90,7 @@ public class ActivitiStateAnnotationBeanPostProcessor implements BeanPostProcess
 		// then get all the annotations
 		// then build the metadata and register the metadata
 		final Class<?> targetClass = AopUtils.getTargetClass(bean);
-		final org.camunda.bpm.engine.spring.annotations.ProcessEngineComponent component = targetClass.getAnnotation(org.camunda.bpm.engine.spring.annotations.ProcessEngineComponent.class);
+		final org.cadenzaflow.bpm.engine.spring.annotations.ProcessEngineComponent component = targetClass.getAnnotation(org.cadenzaflow.bpm.engine.spring.annotations.ProcessEngineComponent.class);
 
 		ReflectionUtils.doWithMethods(targetClass,
 				new ReflectionUtils.MethodCallback() {

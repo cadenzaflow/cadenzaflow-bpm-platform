@@ -36,7 +36,7 @@ import org.cadenzaflow.bpm.model.xml.type.reference.Reference;
 import java.util.Collection;
 import java.util.HashSet;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.*;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.*;
 
 /**
  * The BPMN flowNode element

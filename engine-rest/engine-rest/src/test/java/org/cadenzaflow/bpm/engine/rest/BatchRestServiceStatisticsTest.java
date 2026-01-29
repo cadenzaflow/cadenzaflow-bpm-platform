@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.rest.util.JsonPathUtil.from;
+import static org.cadenzaflow.bpm.engine.rest.util.JsonPathUtil.from;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN10_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_CASE_ROLES;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN10_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_CASE_ROLES;
 
 import org.cadenzaflow.bpm.model.cmmn.instance.CaseRole;
 import org.cadenzaflow.bpm.model.cmmn.instance.Role;

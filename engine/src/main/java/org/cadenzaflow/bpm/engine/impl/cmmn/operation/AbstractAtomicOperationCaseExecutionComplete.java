@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.operation;
 
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.COMPLETE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
-import static org.camunda.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.COMPLETE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
+import static org.cadenzaflow.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
 
 import java.util.List;
 

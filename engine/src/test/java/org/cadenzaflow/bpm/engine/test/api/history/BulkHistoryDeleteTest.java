@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.history;
 
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.CATEGORY_OPERATOR;
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_DELETE_HISTORY;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.CATEGORY_OPERATOR;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_DELETE_HISTORY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.rest.util;
 
-import static org.camunda.bpm.engine.rest.util.EngineUtil.getProcessEngineProvider;
+import static org.cadenzaflow.bpm.engine.rest.util.EngineUtil.getProcessEngineProvider;
 
 import org.cadenzaflow.bpm.engine.impl.ManagementServiceImpl;
 import org.cadenzaflow.bpm.engine.impl.diagnostics.PlatformDiagnosticsRegistry;

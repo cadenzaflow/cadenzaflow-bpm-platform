@@ -19,9 +19,9 @@ package org.cadenzaflow.bpm.engine.test.history;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.propertyComparator;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.propertyComparator;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -1953,10 +1953,10 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     BpmnModelInstance subProcess = Bpmn.createExecutableProcess("subProcess")
         .startEvent()
         .camundaAsyncBefore()
-        .camundaExecutionListenerClass(ExecutionListener.EVENTNAME_END, "org.camunda.bpm.engine.test.history.SubProcessActivityStartListener")
+        .camundaExecutionListenerClass(ExecutionListener.EVENTNAME_END, "org.cadenzaflow.bpm.engine.test.history.SubProcessActivityStartListener")
         .endEvent()
         .done();
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
         .addModelInstance("process.bpmn", topProcess)
         .addModelInstance("subProcess.bpmn", subProcess)
         .deploy();
@@ -1980,7 +1980,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
       .endEvent()
       .done();
 
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
       .addModelInstance("process.bpmn", subProcess)
       .deploy();
 
@@ -2003,7 +2003,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
       .endEvent()
       .done();
 
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
       .addModelInstance("process.bpmn", subProcess)
       .deploy();
 

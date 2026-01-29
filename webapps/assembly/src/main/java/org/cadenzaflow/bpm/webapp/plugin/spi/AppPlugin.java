@@ -57,7 +57,7 @@ public interface AppPlugin {
    *
    * <p>
    *
-   * Typically, a plugin publishes its API via a subclass of {@link org.camunda.bpm.cockpit.plugin.resource.AbstractPluginRootResource}.
+   * Typically, a plugin publishes its API via a subclass of {@link org.cadenzaflow.bpm.cockpit.plugin.resource.AbstractPluginRootResource}.
    *
    * @return the set of resource classes provided by this plugin
    */

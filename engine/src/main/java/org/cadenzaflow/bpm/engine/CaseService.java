@@ -210,7 +210,7 @@ public interface CaseService {
    * {@link Stage} or {@link Task} related to the case execution does the following:
    *   <ul>
    *     <li>{@link Task}: the {@link Task task} is completed immediately</li>
-   *     <li>{@link HumanTask}: a new {@link org.camunda.bpm.engine.task.Task user task} is instantiated</li>
+   *     <li>{@link HumanTask}: a new {@link org.cadenzaflow.bpm.engine.task.Task user task} is instantiated</li>
    *     <li>{@link ProcessTask}: a new {@link ProcessInstance process instance} is instantiated</li>
    *     <li>{@link CaseTask}: a new {@link CaseInstance case instance} is instantiated</li>
    *   </ul>
@@ -237,7 +237,7 @@ public interface CaseService {
    * {@link Stage} or {@link Task} related to the case execution does the following:
    *   <ul>
    *     <li>{@link Task}: the {@link Task task} is completed immediately</li>
-   *     <li>{@link HumanTask}: a new {@link org.camunda.bpm.engine.task.Task user task} is instantiated</li>
+   *     <li>{@link HumanTask}: a new {@link org.cadenzaflow.bpm.engine.task.Task user task} is instantiated</li>
    *     <li>{@link ProcessTask}: a new {@link ProcessInstance process instance} is instantiated</li>
    *     <li>{@link CaseTask}: a new {@link CaseInstance case instance} is instantiated</li>
    *   </ul>

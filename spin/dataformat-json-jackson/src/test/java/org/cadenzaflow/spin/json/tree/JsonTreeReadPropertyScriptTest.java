@@ -17,8 +17,8 @@
 package org.cadenzaflow.spin.json.tree;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_JSON;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_JSON_FILE_NAME;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_JSON;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_JSON_FILE_NAME;
 
 import org.cadenzaflow.spin.Spin;
 import org.cadenzaflow.spin.impl.test.Script;

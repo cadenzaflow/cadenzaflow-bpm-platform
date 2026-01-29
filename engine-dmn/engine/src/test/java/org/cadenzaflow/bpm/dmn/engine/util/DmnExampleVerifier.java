@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.dmn.engine.util;
 
 import java.io.InputStream;
-import static org.camunda.bpm.dmn.engine.test.asserts.DmnEngineTestAssertions.assertThat;
+import static org.cadenzaflow.bpm.dmn.engine.test.asserts.DmnEngineTestAssertions.assertThat;
 import org.cadenzaflow.bpm.dmn.engine.DmnDecision;
 import org.cadenzaflow.bpm.dmn.engine.DmnDecisionTableResult;
 import org.cadenzaflow.bpm.dmn.engine.DmnEngine;

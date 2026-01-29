@@ -20,7 +20,7 @@ import org.cadenzaflow.bpm.engine.delegate.DelegateExecution;
 import org.cadenzaflow.bpm.engine.delegate.JavaDelegate;
 import org.cadenzaflow.spin.json.SpinJsonNode;
 
-import static org.camunda.spin.Spin.JSON;
+import static org.cadenzaflow.spin.Spin.JSON;
 
 /**
  * Created by hawky4s on 04.05.15.

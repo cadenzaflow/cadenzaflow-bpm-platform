@@ -21,9 +21,9 @@ import org.cadenzaflow.bpm.model.xml.impl.instance.ModelElementInstanceImpl;
 import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ELEMENT_NAME_FLIGHT_PARTNER_REF;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
-import static org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ELEMENT_NAME_FLIGHT_PARTNER_REF;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
 /**
  * @author Sebastian Menski

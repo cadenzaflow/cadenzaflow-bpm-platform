@@ -101,7 +101,7 @@ public class CmmnTransformerTest {
     Cmmn.writeModelToStream(outputStream, modelInstance);
     InputStream inputStream = IoUtil.convertOutputStreamToInputStream(outputStream);
 
-    byte[] model = org.camunda.bpm.engine.impl.util.IoUtil.readInputStream(inputStream, "model");
+    byte[] model = org.cadenzaflow.bpm.engine.impl.util.IoUtil.readInputStream(inputStream, "model");
 
     ResourceEntity resource = new ResourceEntity();
     resource.setBytes(model);

@@ -26,7 +26,7 @@ import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.attribute.Attribute;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.*;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.*;
 
 /**
  * The BPMN gateway element

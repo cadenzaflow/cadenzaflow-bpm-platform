@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.identity.Group;
 import org.cadenzaflow.bpm.engine.identity.GroupQuery;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.qa.performance.engine.junit;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
 
 import java.util.List;
 

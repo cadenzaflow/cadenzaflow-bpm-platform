@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.impl.instance;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ATTRIBUTE_METHOD;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_TRANSACTION;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ATTRIBUTE_METHOD;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_TRANSACTION;
 
 import org.cadenzaflow.bpm.model.bpmn.TransactionMethod;
 import org.cadenzaflow.bpm.model.bpmn.instance.SubProcess;

@@ -47,7 +47,7 @@ public class JobPrioritizationFailureTest extends AbstractFoxPlatformIntegration
 
   protected ProcessInstance processInstance;
 
-  public static final String VARIABLE_CLASS_NAME = "org.camunda.bpm.integrationtest.jobexecutor.beans.PriorityBean";
+  public static final String VARIABLE_CLASS_NAME = "org.cadenzaflow.bpm.integrationtest.jobexecutor.beans.PriorityBean";
   public static final String PRIORITY_BEAN_INSTANCE_FILE = "priorityBean.instance";
 
   @Before
@@ -58,7 +58,7 @@ public class JobPrioritizationFailureTest extends AbstractFoxPlatformIntegration
   }
 
   protected void unregisterProcessApplication() {
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         processEngine.getRepositoryService().createDeploymentQuery().singleResult();
 
     managementService.unregisterProcessApplication(deployment.getId(), false);

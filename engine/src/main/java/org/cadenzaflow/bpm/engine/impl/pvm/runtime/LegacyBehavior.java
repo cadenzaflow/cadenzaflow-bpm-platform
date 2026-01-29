@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.pvm.runtime;
 
-import static org.camunda.bpm.engine.impl.bpmn.helper.CompensationUtil.SIGNAL_COMPENSATION_DONE;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.helper.CompensationUtil.SIGNAL_COMPENSATION_DONE;
 
 import java.util.ArrayList;
 import java.util.Collection;

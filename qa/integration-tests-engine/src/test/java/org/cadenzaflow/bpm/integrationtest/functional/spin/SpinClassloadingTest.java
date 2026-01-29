@@ -26,7 +26,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.camunda.bpm.engine.variable.Variables.*;
+import static org.cadenzaflow.bpm.engine.variable.Variables.*;
 
 /**
  * @author Daniel Meyer
@@ -66,7 +66,7 @@ public class SpinClassloadingTest extends AbstractFoxPlatformIntegrationTest {
         .putValueTyped("xmlSerializable",
             serializedObjectValue(serializedValue)
               .serializationDataFormat(SerializationDataFormats.XML)
-              .objectTypeName("org.camunda.bpm.integrationtest.functional.spin.XmlSerializable")
+              .objectTypeName("org.cadenzaflow.bpm.integrationtest.functional.spin.XmlSerializable")
             .create()));
 
   }

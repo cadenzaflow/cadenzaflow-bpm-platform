@@ -85,7 +85,7 @@ public class SetVariablesAsyncTest extends AbstractFoxPlatformIntegrationTest {
 
     runtimeService.setVariablesAsync(Collections.singletonList(pi),
         Variables.putValue("foo", Variables.serializedObjectValue()
-            .objectTypeName("org.camunda.bpm.integrationtest.functional.context.classes.MyPojo")
+            .objectTypeName("org.cadenzaflow.bpm.integrationtest.functional.context.classes.MyPojo")
             .serializedValue("{\"name\": \"myName\", \"prio\": 5}")
             .serializationDataFormat("application/json")
             .create()));

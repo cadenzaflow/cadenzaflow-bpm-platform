@@ -39,7 +39,7 @@ public class RemoteSFSBClientDelegateBean implements JavaDelegate {
     BusinessInterface businessInterface = (BusinessInterface) new InitialContext().lookup("java:global/" +
         TestConstants.getAppName() +
         "service/" +
-        "RemoteSFSBean!org.camunda.bpm.integrationtest.functional.ejb.remote.bean.BusinessInterface");
+        "RemoteSFSBean!org.cadenzaflow.bpm.integrationtest.functional.ejb.remote.bean.BusinessInterface");
 
     execution.setVariable("result", businessInterface.doBusiness());
   }

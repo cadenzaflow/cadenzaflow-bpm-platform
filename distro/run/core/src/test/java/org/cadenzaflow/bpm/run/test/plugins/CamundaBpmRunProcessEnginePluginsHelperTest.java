@@ -36,7 +36,7 @@ public class CamundaBpmRunProcessEnginePluginsHelperTest {
     // given
     // a process engine plugins map with a class not on the classpath
     CamundaBpmRunProcessEnginePluginProperty pluginConfig = new CamundaBpmRunProcessEnginePluginProperty();
-    pluginConfig.setPluginClass("org.camunda.bpm.run.test.plugins.TestThirdPlugin");
+    pluginConfig.setPluginClass("org.cadenzaflow.bpm.run.test.plugins.TestThirdPlugin");
     pluginConfig.setPluginParameters(Collections.EMPTY_MAP);
     // a process engine plugins map with a plugin not configured properly
     List<CamundaBpmRunProcessEnginePluginProperty> plugins =
@@ -50,7 +50,7 @@ public class CamundaBpmRunProcessEnginePluginsHelperTest {
         // an exception is thrown with a user-friendly message asking to check the plugin class
         .isInstanceOf(ProcessEngineException.class)
         .hasMessageContaining("Unable to register the process engine plugin " +
-                                  "'org.camunda.bpm.run.test.plugins.TestThirdPlugin'.");
+                                  "'org.cadenzaflow.bpm.run.test.plugins.TestThirdPlugin'.");
   }
 
   @Test
@@ -58,7 +58,7 @@ public class CamundaBpmRunProcessEnginePluginsHelperTest {
     // given
     // a process engine plugins map with a class not implementing the ProcessEnginePlugin interface
     CamundaBpmRunProcessEnginePluginProperty pluginConfig = new CamundaBpmRunProcessEnginePluginProperty();
-    pluginConfig.setPluginClass("org.camunda.bpm.run.test.plugins.TestFalsePlugin");
+    pluginConfig.setPluginClass("org.cadenzaflow.bpm.run.test.plugins.TestFalsePlugin");
     pluginConfig.setPluginParameters(Collections.EMPTY_MAP);
     // a process engine plugins map with a plugin not configured properly
     List<CamundaBpmRunProcessEnginePluginProperty> plugins =
@@ -71,7 +71,7 @@ public class CamundaBpmRunProcessEnginePluginsHelperTest {
         // then
         // an exception is thrown with a user-friendly message asking to check the plugin class
         .isInstanceOf(ProcessEngineException.class)
-        .hasMessageContaining("'org.camunda.bpm.run.test.plugins.TestFalsePlugin'. " +
+        .hasMessageContaining("'org.cadenzaflow.bpm.run.test.plugins.TestFalsePlugin'. " +
                                   "Please ensure that the correct plugin class is configured");
   }
 
@@ -79,7 +79,7 @@ public class CamundaBpmRunProcessEnginePluginsHelperTest {
   public void shouldReportMissingPluginConfigurationProperty() {
     // given
     CamundaBpmRunProcessEnginePluginProperty pluginConfig = new CamundaBpmRunProcessEnginePluginProperty();
-    pluginConfig.setPluginClass("org.camunda.bpm.run.test.plugins.TestFirstPlugin");
+    pluginConfig.setPluginClass("org.cadenzaflow.bpm.run.test.plugins.TestFirstPlugin");
     pluginConfig.setPluginParameters(Collections.singletonMap("wrongKey", "wrongValue"));
     // a process engine plugins map with a plugin not configured properly
     List<CamundaBpmRunProcessEnginePluginProperty> plugins =
@@ -93,7 +93,7 @@ public class CamundaBpmRunProcessEnginePluginsHelperTest {
         // an exception is thrown with a user-friendly message asking to check the config options
         .isInstanceOf(ProcessEngineException.class)
         .hasMessageContaining("Please check the configuration options for plugin " +
-                                  "'org.camunda.bpm.run.test.plugins.TestFirstPlugin'.");
+                                  "'org.cadenzaflow.bpm.run.test.plugins.TestFirstPlugin'.");
   }
 
 }

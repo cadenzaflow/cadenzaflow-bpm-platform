@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.history;
 
-import static org.camunda.bpm.engine.query.PeriodUnit.MONTH;
-import static org.camunda.bpm.engine.query.PeriodUnit.QUARTER;
+import static org.cadenzaflow.bpm.engine.query.PeriodUnit.MONTH;
+import static org.cadenzaflow.bpm.engine.query.PeriodUnit.QUARTER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;

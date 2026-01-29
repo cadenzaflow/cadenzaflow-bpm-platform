@@ -45,7 +45,7 @@ import org.junit.Test;
  */
 public class EmbeddedProcessApplicationTest extends PluggableProcessEngineTest {
 
-  protected static final String CONFIG_LOGGER = "org.camunda.bpm.application";
+  protected static final String CONFIG_LOGGER = "org.cadenzaflow.bpm.application";
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule()
                                                     .watch(CONFIG_LOGGER)

@@ -29,10 +29,10 @@ import org.cadenzaflow.bpm.model.xml.type.child.ChildElement;
 import org.cadenzaflow.bpm.model.xml.type.child.SequenceBuilder;
 import org.cadenzaflow.bpm.model.xml.type.reference.AttributeReference;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ATTRIBUTE_DEFAULT;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_COMPLEX_GATEWAY;
-import static org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ATTRIBUTE_DEFAULT;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_COMPLEX_GATEWAY;
+import static org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
 /**
  * The BPMN complexGateway element

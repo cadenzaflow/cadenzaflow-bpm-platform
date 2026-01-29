@@ -47,7 +47,7 @@ public class LdapQueryToleranceTest {
   @Rule
   public ProcessEngineRule engineRule = new ProcessEngineRule("invalid-id-attributes.cfg.xml");
   @Rule
-  public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().level(Level.ERROR).watch("org.camunda.bpm.identity.impl.ldap");
+  public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().level(Level.ERROR).watch("org.cadenzaflow.bpm.identity.impl.ldap");
 
   ProcessEngine processEngine;
   LdapTestEnvironment ldapTestEnvironment;

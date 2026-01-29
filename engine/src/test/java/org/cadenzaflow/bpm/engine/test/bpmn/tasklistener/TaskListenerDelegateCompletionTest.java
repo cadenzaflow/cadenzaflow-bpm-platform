@@ -47,7 +47,7 @@ import org.junit.rules.RuleChain;
  */
 public class TaskListenerDelegateCompletionTest {
 
-  protected static final String COMPLETE_LISTENER = "org.camunda.bpm.engine.test.bpmn.tasklistener.util.CompletingTaskListener";
+  protected static final String COMPLETE_LISTENER = "org.cadenzaflow.bpm.engine.test.bpmn.tasklistener.util.CompletingTaskListener";
   protected static final String TASK_LISTENER_PROCESS = "taskListenerProcess";
   protected static final String ACTIVITY_ID = "UT";
 

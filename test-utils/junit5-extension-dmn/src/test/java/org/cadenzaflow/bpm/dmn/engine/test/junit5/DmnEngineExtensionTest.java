@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.dmn.engine.test.junit5;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
 
 import org.cadenzaflow.bpm.dmn.engine.DmnDecisionResult;
 import org.cadenzaflow.bpm.dmn.engine.DmnEngine;

@@ -16,18 +16,18 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE;
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_TASK;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE_TASK;
-import static org.camunda.bpm.engine.authorization.ProcessDefinitionPermissions.READ_TASK_VARIABLE;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.TASK;
-import static org.camunda.bpm.engine.authorization.TaskPermissions.READ_VARIABLE;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ_TASK;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE_TASK;
+import static org.cadenzaflow.bpm.engine.authorization.ProcessDefinitionPermissions.READ_TASK_VARIABLE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TASK;
+import static org.cadenzaflow.bpm.engine.authorization.TaskPermissions.READ_VARIABLE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.FAILED;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_IS_BLOCKING;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.FAILED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_IS_BLOCKING;
 
 import org.cadenzaflow.bpm.engine.impl.cmmn.execution.CmmnActivityExecution;
 import org.cadenzaflow.bpm.engine.impl.cmmn.model.CmmnActivity;

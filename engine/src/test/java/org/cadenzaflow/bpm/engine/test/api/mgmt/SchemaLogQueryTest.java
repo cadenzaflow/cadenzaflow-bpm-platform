@@ -17,9 +17,9 @@
 package org.cadenzaflow.bpm.engine.test.api.mgmt;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.schemaLogEntryByTimestamp;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.schemaLogEntryByTimestamp;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
 
 import java.util.Date;
 import java.util.List;

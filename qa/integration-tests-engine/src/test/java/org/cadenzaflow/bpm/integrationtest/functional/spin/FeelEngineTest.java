@@ -103,7 +103,7 @@ public class FeelEngineTest extends AbstractFoxPlatformIntegrationTest {
 
   @Test
   public void testSpinIntegration() {
-    // Accessing SPIN object from FEEL requires the org.camunda.spin.plugin.impl.feel.integration.SpinValueMapper SPI
+    // Accessing SPIN object from FEEL requires the org.cadenzaflow.spin.plugin.impl.feel.integration.SpinValueMapper SPI
     // given
     VariableMap variablesLarge = Variables.createVariables().putValue("amount", Spin.JSON("{\"value\": 25}"));
     VariableMap variablesSmall = Variables.createVariables().putValue("amount", Spin.JSON("{\"value\": 2}"));

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.impl.xml.dom.format;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import java.beans.Introspector;
 import javax.xml.bind.JAXBElement;

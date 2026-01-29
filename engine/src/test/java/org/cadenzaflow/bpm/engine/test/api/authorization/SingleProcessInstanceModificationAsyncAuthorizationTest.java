@@ -16,19 +16,19 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.BatchPermissions.CREATE_BATCH_MODIFY_PROCESS_INSTANCES;
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE;
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.BATCH;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.BatchPermissions.CREATE_BATCH_MODIFY_PROCESS_INSTANCES;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.BATCH;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

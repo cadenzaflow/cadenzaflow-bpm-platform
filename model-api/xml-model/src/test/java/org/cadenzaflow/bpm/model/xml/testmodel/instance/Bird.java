@@ -30,8 +30,8 @@ import org.cadenzaflow.bpm.model.xml.type.reference.ElementReferenceCollection;
 
 import java.util.Collection;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ELEMENT_NAME_BIRD;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ELEMENT_NAME_BIRD;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
 
 /**
  * @author Daniel Meyer

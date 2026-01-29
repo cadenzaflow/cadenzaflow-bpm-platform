@@ -172,7 +172,7 @@ public class CmmnDeployerTest extends PluggableProcessEngineTest {
 
   protected static CmmnModelInstance createCmmnModelInstance() {
     final CmmnModelInstance modelInstance = Cmmn.createEmptyModel();
-    org.camunda.bpm.model.cmmn.instance.Definitions definitions = modelInstance.newInstance(org.camunda.bpm.model.cmmn.instance.Definitions.class);
+    org.cadenzaflow.bpm.model.cmmn.instance.Definitions definitions = modelInstance.newInstance(org.cadenzaflow.bpm.model.cmmn.instance.Definitions.class);
     definitions.setTargetNamespace("http://camunda.org/examples");
     modelInstance.setDefinitions(definitions);
 
@@ -214,7 +214,7 @@ public class CmmnDeployerTest extends PluggableProcessEngineTest {
 
     // given empty case model
     final CmmnModelInstance modelInstance = Cmmn.createEmptyModel();
-    org.camunda.bpm.model.cmmn.instance.Definitions definitions = modelInstance.newInstance(org.camunda.bpm.model.cmmn.instance.Definitions.class);
+    org.cadenzaflow.bpm.model.cmmn.instance.Definitions definitions = modelInstance.newInstance(org.cadenzaflow.bpm.model.cmmn.instance.Definitions.class);
     definitions.setTargetNamespace("http://camunda.org/examples");
     modelInstance.setDefinitions(definitions);
 

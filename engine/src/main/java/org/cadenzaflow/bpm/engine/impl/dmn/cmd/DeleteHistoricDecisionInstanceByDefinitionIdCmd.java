@@ -27,7 +27,7 @@ import org.cadenzaflow.bpm.engine.impl.persistence.entity.PropertyChange;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * Deletes historic decision instances with the given id of the decision definition.

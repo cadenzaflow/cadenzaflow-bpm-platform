@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.filter;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import java.util.List;
 import org.cadenzaflow.bpm.engine.filter.Filter;

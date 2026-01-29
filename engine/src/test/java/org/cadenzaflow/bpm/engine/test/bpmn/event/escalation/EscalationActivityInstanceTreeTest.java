@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.bpmn.event.escalation;
 
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
 
 import org.cadenzaflow.bpm.engine.runtime.ActivityInstance;
 import org.cadenzaflow.bpm.engine.runtime.ProcessInstance;

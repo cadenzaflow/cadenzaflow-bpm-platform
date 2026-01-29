@@ -56,7 +56,7 @@ public class BuiltinTaskListenerTest {
 
   @Test
   @Deployment
-  @WatchLogger(loggerNames = {"org.camunda.bpm.engine.test"}, level = "INFO")
+  @WatchLogger(loggerNames = {"org.cadenzaflow.bpm.engine.test"}, level = "INFO")
   public void shouldExecuteBuiltinTaskListerInOrderAfterModification() {
     // given
     // PreParseListener registered as customPreBPMNParseListener, registers a 'create' TaskListener

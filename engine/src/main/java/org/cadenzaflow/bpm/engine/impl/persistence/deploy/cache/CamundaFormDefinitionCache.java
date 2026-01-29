@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.persistence.deploy.cache;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.impl.context.Context;
 import org.cadenzaflow.bpm.engine.impl.persistence.AbstractResourceDefinitionManager;

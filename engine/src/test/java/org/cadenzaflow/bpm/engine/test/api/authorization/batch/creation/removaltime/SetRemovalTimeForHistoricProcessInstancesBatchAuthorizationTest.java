@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization.batch.creation.removaltime;
 
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
-import static org.camunda.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationScenario.scenario;
+import static org.cadenzaflow.bpm.engine.test.api.authorization.util.AuthorizationSpec.grant;
 
 import java.util.Collection;
 import java.util.Date;

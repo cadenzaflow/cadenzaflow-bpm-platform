@@ -23,7 +23,7 @@ public class CamundaBpmRunLogger extends BaseLogger {
 
   public static final String PROJECT_CODE = "RUN";
   public static final String PROJECT_ID = "CR";
-  public static final String PACKAGE = "org.camunda.bpm.run";
+  public static final String PACKAGE = "org.cadenzaflow.bpm.run";
 
   public static final CamundaBpmRunLogger LOG = createLogger(CamundaBpmRunLogger.class, PROJECT_CODE, PACKAGE, PROJECT_ID);
 

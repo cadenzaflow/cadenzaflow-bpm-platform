@@ -92,7 +92,7 @@ public class JavaServiceTaskTest extends PluggableProcessEngineTest {
       runtimeService.startProcessInstanceByKey("unexistingClassDelegation");
       fail();
     } catch (ProcessEngineException e) {
-      assertTrue(e.getMessage().contains("Exception while instantiating class 'org.camunda.bpm.engine.test.BogusClass'"));
+      assertTrue(e.getMessage().contains("Exception while instantiating class 'org.cadenzaflow.bpm.engine.test.BogusClass'"));
       assertNotNull(e.getCause());
       assertTrue(e.getCause() instanceof ClassLoadingException);
     }

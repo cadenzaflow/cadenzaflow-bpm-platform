@@ -16,20 +16,20 @@
  */
 package org.cadenzaflow.bpm.engine.test.history.useroperationlog;
 
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_CREATE;
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_DELETE;
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_UPDATE;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.ASSIGNEE;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.CASE_INSTANCE_ID;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.DELEGATION;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.DELETE;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.DESCRIPTION;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.DUE_DATE;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.FOLLOW_UP_DATE;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.NAME;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.OWNER;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.PARENT_TASK;
-import static org.camunda.bpm.engine.impl.persistence.entity.TaskEntity.PRIORITY;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_CREATE;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_DELETE;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.ASSIGNEE;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.CASE_INSTANCE_ID;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.DELEGATION;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.DELETE;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.DESCRIPTION;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.DUE_DATE;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.FOLLOW_UP_DATE;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.NAME;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.OWNER;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.PARENT_TASK;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity.PRIORITY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.example.invoice;
 
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
-import static org.camunda.bpm.engine.variable.Variables.fileValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.engine.variable.Variables.fileValue;
 
 import java.io.InputStream;
 import java.util.Arrays;

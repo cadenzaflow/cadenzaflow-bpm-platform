@@ -21,7 +21,7 @@ import org.cadenzaflow.commons.logging.BaseLogger;
 public class FeelLogger extends BaseLogger {
 
   public static final String PROJECT_CODE = "FEEL";
-  public static final String PROJECT_LOGGER= "org.camunda.bpm.dmn.feel";
+  public static final String PROJECT_LOGGER= "org.cadenzaflow.bpm.dmn.feel";
 
   public static FeelEngineLogger ENGINE_LOGGER = createLogger(FeelEngineLogger.class, PROJECT_CODE, PROJECT_LOGGER, "01");
 

@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.engine.impl.persistence.entity.ExternalTaskEntity;
 
 import java.io.Serializable;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  *

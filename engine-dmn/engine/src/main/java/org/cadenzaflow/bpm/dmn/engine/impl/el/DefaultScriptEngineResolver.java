@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.dmn.engine.impl.el;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import java.util.HashMap;
 import java.util.Map;

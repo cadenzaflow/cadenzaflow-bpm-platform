@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.engine.impl.history.event;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.CLOSED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.FAILED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.CLOSED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.FAILED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
 
 import java.util.Date;
 

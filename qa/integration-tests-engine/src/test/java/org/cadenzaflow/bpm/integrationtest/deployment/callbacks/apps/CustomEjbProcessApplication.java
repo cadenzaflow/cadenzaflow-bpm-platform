@@ -32,7 +32,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngine;
 import org.junit.Assert;
 
 /**
- * Custom {@link org.camunda.bpm.application.impl.EjbProcessApplication} with PA lifecycle callbacks
+ * Custom {@link org.cadenzaflow.bpm.application.impl.EjbProcessApplication} with PA lifecycle callbacks
  *
  * @author Daniel Meyer
  *
@@ -44,7 +44,7 @@ import org.junit.Assert;
 @ProcessApplication
 @Local(ProcessApplicationInterface.class)
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class CustomEjbProcessApplication extends org.camunda.bpm.application.impl.EjbProcessApplication {
+public class CustomEjbProcessApplication extends org.cadenzaflow.bpm.application.impl.EjbProcessApplication {
 
   @PostDeploy
   public void postDeploy(ProcessEngine processEngine) {

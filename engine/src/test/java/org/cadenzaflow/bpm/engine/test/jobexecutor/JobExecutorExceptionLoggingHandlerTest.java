@@ -66,7 +66,7 @@ public class JobExecutorExceptionLoggingHandlerTest {
     BpmnModelInstance modelInstance = Bpmn.createExecutableProcess("failingDelegate")
         .startEvent()
         .serviceTask()
-          .camundaClass("org.camunda.bpm.engine.test.jobexecutor.FailingDelegate")
+          .camundaClass("org.cadenzaflow.bpm.engine.test.jobexecutor.FailingDelegate")
           .camundaAsyncBefore()
         .done();
     testRule.deploy(modelInstance);

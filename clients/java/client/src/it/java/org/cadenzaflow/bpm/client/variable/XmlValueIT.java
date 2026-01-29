@@ -17,13 +17,13 @@
 package org.cadenzaflow.bpm.client.variable;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
-import static org.camunda.bpm.client.util.ProcessModels.PROCESS_KEY_2;
-import static org.camunda.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
-import static org.camunda.bpm.client.util.ProcessModels.USER_TASK_ID;
-import static org.camunda.bpm.client.util.ProcessModels.createProcessWithExclusiveGateway;
-import static org.camunda.bpm.client.variable.ClientValues.XML;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.PROCESS_KEY_2;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.USER_TASK_ID;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.createProcessWithExclusiveGateway;
+import static org.cadenzaflow.bpm.client.variable.ClientValues.XML;
 
 import java.util.HashMap;
 import java.util.List;

@@ -31,7 +31,7 @@ import org.cadenzaflow.bpm.model.cmmn.instance.camunda.CamundaCaseExecutionListe
 public class ClassExecutionListenerSpec extends AbstractExecutionListenerSpec {
 
   // could be configurable
-  protected static final String CLASS_NAME = "org.camunda.bpm.test.caseexecutionlistener.ABC";
+  protected static final String CLASS_NAME = "org.cadenzaflow.bpm.test.caseexecutionlistener.ABC";
 
   public ClassExecutionListenerSpec(String eventName) {
     super(eventName);

@@ -17,14 +17,14 @@
 package org.cadenzaflow.bpm.model.bpmn.builder.di;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.END_EVENT_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SEND_TASK_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SEQUENCE_FLOW_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SERVICE_TASK_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.START_EVENT_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SUB_PROCESS_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TASK_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.USER_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.END_EVENT_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SEND_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SEQUENCE_FLOW_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SERVICE_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.START_EVENT_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SUB_PROCESS_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.USER_TASK_ID;
 
 import java.util.Collection;
 import java.util.Iterator;

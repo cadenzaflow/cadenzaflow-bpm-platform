@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.api.history.removaltime.batch;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
 
 import java.util.Calendar;
 import java.util.Collections;

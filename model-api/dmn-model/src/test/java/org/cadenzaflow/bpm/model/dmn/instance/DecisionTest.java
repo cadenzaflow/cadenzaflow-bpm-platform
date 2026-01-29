@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.model.dmn.instance;
 
 import java.util.Arrays;
 import java.util.Collection;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
 
 public class DecisionTest extends DmnModelElementInstanceTest {
 

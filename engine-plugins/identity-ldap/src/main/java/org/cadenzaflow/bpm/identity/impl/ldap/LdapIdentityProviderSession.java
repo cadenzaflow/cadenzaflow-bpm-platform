@@ -16,13 +16,13 @@
  */
 package org.cadenzaflow.bpm.identity.impl.ldap;
 
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Resources.GROUP;
-import static org.camunda.bpm.engine.authorization.Resources.USER;
-import static org.camunda.bpm.engine.impl.context.Context.getCommandContext;
-import static org.camunda.bpm.engine.impl.context.Context.getProcessEngineConfiguration;
-import static org.camunda.bpm.identity.impl.ldap.LdapConfiguration.DB_QUERY_WILDCARD;
-import static org.camunda.bpm.identity.impl.ldap.LdapConfiguration.LDAP_QUERY_WILDCARD;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.GROUP;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.USER;
+import static org.cadenzaflow.bpm.engine.impl.context.Context.getCommandContext;
+import static org.cadenzaflow.bpm.engine.impl.context.Context.getProcessEngineConfiguration;
+import static org.cadenzaflow.bpm.identity.impl.ldap.LdapConfiguration.DB_QUERY_WILDCARD;
+import static org.cadenzaflow.bpm.identity.impl.ldap.LdapConfiguration.LDAP_QUERY_WILDCARD;
 
 import java.io.StringWriter;
 

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.jobexecutor;
 
-import static org.camunda.bpm.engine.test.util.JobExecutorWaitUtils.waitForJobExecutionRunnablesToFinish;
-import static org.camunda.bpm.engine.test.util.JobExecutorWaitUtils.waitForJobExecutorToProcessAllJobs;
+import static org.cadenzaflow.bpm.engine.test.util.JobExecutorWaitUtils.waitForJobExecutionRunnablesToFinish;
+import static org.cadenzaflow.bpm.engine.test.util.JobExecutorWaitUtils.waitForJobExecutorToProcessAllJobs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 

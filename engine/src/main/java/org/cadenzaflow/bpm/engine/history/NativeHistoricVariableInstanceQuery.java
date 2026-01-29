@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.engine.history;
 import org.cadenzaflow.bpm.engine.query.NativeQuery;
 
 /**
- * Allows querying of {@link org.camunda.bpm.engine.history.HistoricVariableInstanceQuery}s via native (SQL) queries
+ * Allows querying of {@link org.cadenzaflow.bpm.engine.history.HistoricVariableInstanceQuery}s via native (SQL) queries
  * @author Ramona Koch
  */
 public interface NativeHistoricVariableInstanceQuery extends NativeQuery<NativeHistoricVariableInstanceQuery, HistoricVariableInstance> {

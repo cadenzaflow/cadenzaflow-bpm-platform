@@ -22,16 +22,16 @@ public class ExampleProcessEngineLogger extends BaseLogger {
   public static final String PROJECT_CODE = "ENGINE";
 
   public static final ExampleProcessEngineLogger PERSISTENCE_LOGGER = BaseLogger.createLogger(
-      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.persistence", "03");
+      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.persistence", "03");
 
   public static final ExampleProcessEngineLogger CONTAINER_INTEGRATION_LOGGER = BaseLogger.createLogger(
-      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.camunda.bpm.container", "08");
+      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.container", "08");
 
   public static final ExampleProcessEngineLogger JOB_EXECUTOR_LOGGER = BaseLogger.createLogger(
-      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.jobexecutor", "14");
+      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.jobexecutor", "14");
 
   public static final ExampleProcessEngineLogger PROCESS_APPLICATION_LOGGER = BaseLogger.createLogger(
-      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.camunda.bpm.application", "07");
+      ExampleProcessEngineLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.application", "07");
 
   public void info() {
     logInfo("01", "This is an INFO log in component {}}!", this.componentId);

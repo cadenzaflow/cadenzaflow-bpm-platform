@@ -17,10 +17,10 @@
 package org.cadenzaflow.bpm.engine.test.api.mgmt;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.batchStatisticsById;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.batchStatisticsByStartTime;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.batchStatisticsById;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.batchStatisticsByStartTime;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

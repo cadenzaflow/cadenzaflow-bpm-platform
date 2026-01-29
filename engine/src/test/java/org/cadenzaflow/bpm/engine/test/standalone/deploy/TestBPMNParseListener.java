@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.standalone.deploy;
 
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParse.COMPENSATE_EVENT_DEFINITION;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParse.COMPENSATE_EVENT_DEFINITION;
 
 import java.util.List;
 

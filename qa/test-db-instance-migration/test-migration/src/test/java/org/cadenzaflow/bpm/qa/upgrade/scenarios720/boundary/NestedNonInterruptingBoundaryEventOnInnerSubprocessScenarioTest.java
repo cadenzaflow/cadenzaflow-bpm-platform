@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.qa.upgrade.scenarios720.boundary;
 
-import static org.camunda.bpm.qa.upgrade.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.qa.upgrade.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.qa.upgrade.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.qa.upgrade.util.ActivityInstanceAssert.describeActivityInstanceTree;
 
 import java.util.List;
 

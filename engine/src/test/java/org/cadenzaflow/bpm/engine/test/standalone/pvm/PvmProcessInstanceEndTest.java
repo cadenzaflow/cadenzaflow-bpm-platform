@@ -34,8 +34,8 @@ public class PvmProcessInstanceEndTest {
     EventCollector eventCollector = new EventCollector();
     
     PvmProcessDefinition processDefinition = new ProcessDefinitionBuilder()
-      .executionListener(org.camunda.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_START, eventCollector)
-      .executionListener(org.camunda.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_END, eventCollector)
+      .executionListener(org.cadenzaflow.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_START, eventCollector)
+      .executionListener(org.cadenzaflow.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_END, eventCollector)
       .createActivity("start")
         .initial()
         .behavior(new Automatic())
@@ -43,8 +43,8 @@ public class PvmProcessInstanceEndTest {
       .endActivity()
       .createActivity("wait")
         .behavior(new WaitState())
-        .executionListener(org.camunda.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_START, eventCollector)
-        .executionListener(org.camunda.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_END, eventCollector)
+        .executionListener(org.cadenzaflow.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_START, eventCollector)
+        .executionListener(org.cadenzaflow.bpm.engine.impl.pvm.PvmEvent.EVENTNAME_END, eventCollector)
       .endActivity()
     .buildProcessDefinition();
     

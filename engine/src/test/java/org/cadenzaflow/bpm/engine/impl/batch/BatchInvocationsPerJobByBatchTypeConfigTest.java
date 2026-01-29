@@ -37,7 +37,7 @@ public class BatchInvocationsPerJobByBatchTypeConfigTest {
   protected static final String PROCESS_ENGINE_CONFIG =
       "camunda.cfg.invocationsPerJobByBatchType.xml";
 
-  protected static final String CONFIG_LOGGER = "org.camunda.bpm.engine.cfg";
+  protected static final String CONFIG_LOGGER = "org.cadenzaflow.bpm.engine.cfg";
 
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule()

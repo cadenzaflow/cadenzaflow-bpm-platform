@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.bpmn.behavior;
 
-import static org.camunda.bpm.engine.impl.util.DecisionEvaluationUtil.evaluateDecision;
+import static org.cadenzaflow.bpm.engine.impl.util.DecisionEvaluationUtil.evaluateDecision;
 
 import java.util.concurrent.Callable;
 

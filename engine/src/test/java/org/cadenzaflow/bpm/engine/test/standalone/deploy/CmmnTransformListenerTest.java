@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.standalone.deploy;
 
-import static org.camunda.bpm.engine.test.standalone.deploy.TestCmmnTransformListener.numberOfRegistered;
+import static org.cadenzaflow.bpm.engine.test.standalone.deploy.TestCmmnTransformListener.numberOfRegistered;
 import static org.junit.Assert.assertEquals;
 
 import org.cadenzaflow.bpm.engine.RepositoryService;

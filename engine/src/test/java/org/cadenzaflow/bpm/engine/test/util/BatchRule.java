@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.util;
 
-import static org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl.DEFAULT_INVOCATIONS_PER_BATCH_JOB;
+import static org.cadenzaflow.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl.DEFAULT_INVOCATIONS_PER_BATCH_JOB;
 
 import java.util.ArrayList;
 import java.util.HashMap;

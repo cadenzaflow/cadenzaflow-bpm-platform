@@ -25,7 +25,7 @@ import org.cadenzaflow.bpm.model.xml.type.child.SequenceBuilder;
 import org.cadenzaflow.bpm.model.xml.type.reference.ElementReference;
 import org.cadenzaflow.bpm.model.xml.type.reference.ElementReferenceCollection;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.*;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.*;
 
 import java.util.Collection;
 

@@ -69,7 +69,7 @@ public class CustomErrorCodeProviderTest {
 
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule()
-      .watch("org.camunda.bpm.engine.cmd")
+      .watch("org.cadenzaflow.bpm.engine.cmd")
       .level(Level.WARN);
 
   protected ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);

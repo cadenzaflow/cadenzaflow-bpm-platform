@@ -39,10 +39,10 @@ import java.util.Collections;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_NAME;
-import static org.camunda.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_REST;
-import static org.camunda.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
-import static org.camunda.bpm.client.util.PropertyUtil.loadProperties;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_NAME;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.CAMUNDA_ENGINE_REST;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.loadProperties;
 
 /**
  * @author Tassilo Weidner

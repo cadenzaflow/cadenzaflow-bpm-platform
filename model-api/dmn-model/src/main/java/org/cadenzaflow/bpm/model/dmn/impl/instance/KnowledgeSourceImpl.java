@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.model.dmn.impl.instance;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ATTRIBUTE_LOCATION_URI;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_KNOWLEDGE_SOURCE;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_ATTRIBUTE_LOCATION_URI;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_KNOWLEDGE_SOURCE;
 
 import java.util.Collection;
 

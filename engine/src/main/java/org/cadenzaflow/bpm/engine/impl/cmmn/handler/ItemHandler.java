@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.handler;
 
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.COMPLETE;
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.TERMINATE;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.COMPLETE;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.TERMINATE;
 
 import java.util.ArrayList;
 import java.util.Arrays;

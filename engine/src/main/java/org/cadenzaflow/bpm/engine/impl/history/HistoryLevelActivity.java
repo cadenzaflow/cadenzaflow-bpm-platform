@@ -16,25 +16,25 @@
  */
 package org.cadenzaflow.bpm.engine.impl.history;
 
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_END;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_START;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_UPDATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_MIGRATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.CASE_ACTIVITY_INSTANCE_CREATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.CASE_ACTIVITY_INSTANCE_END;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.CASE_ACTIVITY_INSTANCE_UPDATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.CASE_INSTANCE_CLOSE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.CASE_INSTANCE_CREATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.CASE_INSTANCE_UPDATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_END;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_START;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_UPDATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_MIGRATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_COMPLETE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_CREATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_DELETE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_MIGRATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_END;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_START;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.ACTIVITY_INSTANCE_MIGRATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.CASE_ACTIVITY_INSTANCE_CREATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.CASE_ACTIVITY_INSTANCE_END;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.CASE_ACTIVITY_INSTANCE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.CASE_INSTANCE_CLOSE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.CASE_INSTANCE_CREATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.CASE_INSTANCE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_END;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_START;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.PROCESS_INSTANCE_MIGRATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_COMPLETE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_CREATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_DELETE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_MIGRATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.TASK_INSTANCE_UPDATE;
 
 import org.cadenzaflow.bpm.engine.ProcessEngineConfiguration;
 import org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventType;

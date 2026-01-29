@@ -197,7 +197,7 @@ public class ConditionalStartEventTest {
 
     // deploy second version of the process
     String deploymentId = testRule.deploy(SINGLE_CONDITIONAL_XML).getId();
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
 
     // delete it
     repositoryService.deleteDeployment(deployment.getId(), true);
@@ -220,7 +220,7 @@ public class ConditionalStartEventTest {
 
     // deploy second version of the process
     String deploymentId = testRule.deploy(SINGLE_CONDITIONAL_XML).getId();
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
 
     // delete it
     repositoryService.deleteDeployment(deployment.getId(), true);

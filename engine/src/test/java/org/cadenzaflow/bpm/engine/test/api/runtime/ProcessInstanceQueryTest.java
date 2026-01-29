@@ -17,10 +17,10 @@
 package org.cadenzaflow.bpm.engine.test.api.runtime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.processInstanceByBusinessKey;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.processInstanceByProcessDefinitionId;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.processInstanceByProcessInstanceId;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.processInstanceByBusinessKey;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.processInstanceByProcessDefinitionId;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.processInstanceByProcessInstanceId;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -125,7 +125,7 @@ public class ProcessInstanceQueryTest {
    */
   @Before
   public void deployTestProcesses() throws Exception {
-    org.camunda.bpm.engine.repository.Deployment deployment = engineRule.getRepositoryService().createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = engineRule.getRepositoryService().createDeployment()
       .addClasspathResource("org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml")
       .addClasspathResource("org/camunda/bpm/engine/test/api/runtime/otherOneTaskProcess.bpmn20.xml")
       .deploy();
@@ -176,7 +176,7 @@ public class ProcessInstanceQueryTest {
     processInstanceIds.stream()
       .map(id -> new ImmutablePair<>(deploymentIdOne, id))
       .forEach(expectedMappings::add);
-    org.camunda.bpm.engine.repository.Deployment deploymentTwo = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deploymentTwo = repositoryService.createDeployment()
         .addClasspathResource("org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml")
         .deploy();
     engineRule.manageDeployment(deploymentTwo);
@@ -1959,7 +1959,7 @@ public class ProcessInstanceQueryTest {
         .getId();
 
     // make a second deployment and start an instance
-    org.camunda.bpm.engine.repository.Deployment secondDeployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment secondDeployment = repositoryService.createDeployment()
       .addClasspathResource("org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml")
       .deploy();
 

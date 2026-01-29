@@ -76,7 +76,7 @@ public class TaskQueryOrTest {
 
   @After
   public void tearDown() {
-    for (org.camunda.bpm.engine.repository.Deployment deployment:
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment:
       repositoryService.createDeploymentQuery().list()) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }

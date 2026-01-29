@@ -29,7 +29,7 @@ public class PropertiesUtilTest {
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule();
 
   @Test
-  @WatchLogger(loggerNames = {"org.camunda.bpm.engine.util"}, level = "DEBUG")
+  @WatchLogger(loggerNames = {"org.cadenzaflow.bpm.engine.util"}, level = "DEBUG")
   public void shouldLogMissingFile() {
     // given
     String invalidFile = "/missingProps.properties";

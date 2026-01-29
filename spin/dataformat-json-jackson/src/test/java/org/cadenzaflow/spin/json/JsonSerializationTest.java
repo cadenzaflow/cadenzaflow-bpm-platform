@@ -17,7 +17,7 @@
 package org.cadenzaflow.spin.json;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.DataFormats.json;
+import static org.cadenzaflow.spin.DataFormats.json;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

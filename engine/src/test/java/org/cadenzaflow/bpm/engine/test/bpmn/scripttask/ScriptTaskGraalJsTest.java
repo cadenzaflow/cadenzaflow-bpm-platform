@@ -218,7 +218,7 @@ public class ScriptTaskGraalJsTest extends AbstractScriptTaskTest {
         // GIVEN
         // setting Java classes as variables
         "execution.setVariable('date', new java.util.Date(0));"
-      + "execution.setVariable('myVar', new org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
+      + "execution.setVariable('myVar', new org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
 
     if (enableNashornCompat || configureHostAccess) {
       // WHEN

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureEquals;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureEquals;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
 
 import java.io.Serializable;
 import java.util.Collections;

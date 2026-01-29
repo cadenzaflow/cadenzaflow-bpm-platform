@@ -41,9 +41,9 @@ public interface HistoricActivityInstance {
    * The activity type of the activity.
    * Typically the activity type correspond to the XML tag used in the BPMN 2.0 process definition file.
    *
-   * All activity types are available in {@link org.camunda.bpm.engine.ActivityTypes}
+   * All activity types are available in {@link org.cadenzaflow.bpm.engine.ActivityTypes}
    *
-   * @see org.camunda.bpm.engine.ActivityTypes
+   * @see org.cadenzaflow.bpm.engine.ActivityTypes
    */
   String getActivityType();
 

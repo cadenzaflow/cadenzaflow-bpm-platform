@@ -21,7 +21,7 @@ import java.util.Collection;
 
 import org.cadenzaflow.bpm.model.bpmn.instance.BpmnModelElementInstanceTest;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
 
 /**
  * @author Sebastian Menski

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.qa.performance.engine.loadgenerator;
 
-import static org.camunda.bpm.qa.performance.engine.loadgenerator.CompletionSignalingRunnable.wrap;
+import static org.cadenzaflow.bpm.qa.performance.engine.loadgenerator.CompletionSignalingRunnable.wrap;
 
 import java.util.Timer;
 import java.util.TimerTask;

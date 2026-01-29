@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.builder.di;
 
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.END_EVENT_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SEQUENCE_FLOW_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.START_EVENT_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.USER_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.END_EVENT_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SEQUENCE_FLOW_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.START_EVENT_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.USER_TASK_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

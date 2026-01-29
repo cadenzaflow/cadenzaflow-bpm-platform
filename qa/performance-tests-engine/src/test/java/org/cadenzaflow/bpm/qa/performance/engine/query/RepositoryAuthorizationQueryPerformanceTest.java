@@ -40,8 +40,8 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import static org.camunda.bpm.engine.authorization.Resources.*;
-import static org.camunda.bpm.engine.authorization.Permissions.*;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.*;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.*;
 
 /**
  * @author Daniel Meyer

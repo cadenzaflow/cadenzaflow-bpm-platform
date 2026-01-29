@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.identity.db;
 
-import static org.camunda.bpm.engine.impl.util.EncryptionUtil.saltPassword;
+import static org.cadenzaflow.bpm.engine.impl.util.EncryptionUtil.saltPassword;
 
 import java.util.HashMap;
 import java.util.List;

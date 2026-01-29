@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.client.variable.impl.mapper;
 
-import static org.camunda.bpm.engine.variable.type.FileValueType.VALUE_INFO_FILE_ENCODING;
-import static org.camunda.bpm.engine.variable.type.FileValueType.VALUE_INFO_FILE_MIME_TYPE;
-import static org.camunda.bpm.engine.variable.type.FileValueType.VALUE_INFO_FILE_NAME;
-import static org.camunda.bpm.engine.variable.type.ValueType.FILE;
+import static org.cadenzaflow.bpm.engine.variable.type.FileValueType.VALUE_INFO_FILE_ENCODING;
+import static org.cadenzaflow.bpm.engine.variable.type.FileValueType.VALUE_INFO_FILE_MIME_TYPE;
+import static org.cadenzaflow.bpm.engine.variable.type.FileValueType.VALUE_INFO_FILE_NAME;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.FILE;
 
 import java.util.HashMap;
 import java.util.Map;

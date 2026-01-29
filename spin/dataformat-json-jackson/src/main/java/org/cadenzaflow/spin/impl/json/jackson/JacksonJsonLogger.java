@@ -36,7 +36,7 @@ import com.jayway.jsonpath.PathNotFoundException;
 public class JacksonJsonLogger extends SpinLogger {
 
   public static final String PROJECT_CODE = SpinLogger.PROJECT_CODE + "/JACKSON-JSON";
-  public static final JacksonJsonLogger JSON_TREE_LOGGER = BaseLogger.createLogger(JacksonJsonLogger.class, PROJECT_CODE, "org.camunda.spin.json", "01");
+  public static final JacksonJsonLogger JSON_TREE_LOGGER = BaseLogger.createLogger(JacksonJsonLogger.class, PROJECT_CODE, "org.cadenzaflow.spin.json", "01");
 
   public SpinJsonDataFormatException unableToParseInput(Exception e) {
     return new SpinJsonDataFormatException(exceptionMessage("001", "Unable to parse input into json node"), e);

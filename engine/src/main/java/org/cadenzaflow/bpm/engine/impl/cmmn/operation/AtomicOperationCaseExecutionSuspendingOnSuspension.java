@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.operation;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDING_ON_SUSPENSION;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDING_ON_SUSPENSION;
 
 import org.cadenzaflow.bpm.engine.impl.cmmn.behavior.CmmnActivityBehavior;
 import org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState;

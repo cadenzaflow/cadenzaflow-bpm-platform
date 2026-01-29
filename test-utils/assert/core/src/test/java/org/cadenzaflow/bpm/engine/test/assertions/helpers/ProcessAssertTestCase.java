@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.engine.test.assertions.helpers;
 
 
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.bpm.engine.test.assertions.bpmn.AbstractAssertions.reset;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.AbstractAssertions.reset;
 
 import org.assertj.core.util.Lists;
 import org.junit.After;

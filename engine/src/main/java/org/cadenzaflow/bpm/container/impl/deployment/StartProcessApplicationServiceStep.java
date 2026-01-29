@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.container.impl.deployment;
 
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESSES_XML_RESOURCES;
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESS_APPLICATION;
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESS_ARCHIVE_DEPLOYMENT_MAP;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESSES_XML_RESOURCES;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESS_APPLICATION;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESS_ARCHIVE_DEPLOYMENT_MAP;
 
 import java.net.URL;
 import java.util.ArrayList;

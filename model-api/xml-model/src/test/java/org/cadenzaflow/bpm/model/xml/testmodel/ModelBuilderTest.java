@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.model.xml.ModelBuilder;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAME;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAME;
 
 /**
  * @author Daniel Meyer

@@ -28,8 +28,8 @@ import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInsta
 import org.cadenzaflow.bpm.model.xml.type.child.ChildElementCollection;
 import org.cadenzaflow.bpm.model.xml.type.child.SequenceBuilder;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_ELEMENT_INPUT_OUTPUT;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_ELEMENT_INPUT_OUTPUT;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
 
 /**
  * The BPMN inputOutput camunda extension element

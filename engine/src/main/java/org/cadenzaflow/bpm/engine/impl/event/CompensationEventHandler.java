@@ -27,7 +27,7 @@ import org.cadenzaflow.bpm.engine.impl.persistence.entity.ExecutionEntity;
 import org.cadenzaflow.bpm.engine.impl.pvm.delegate.CompositeActivityBehavior;
 import org.cadenzaflow.bpm.engine.impl.pvm.process.ActivityImpl;
 import org.cadenzaflow.bpm.engine.impl.pvm.runtime.operation.PvmAtomicOperation;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 
 /**

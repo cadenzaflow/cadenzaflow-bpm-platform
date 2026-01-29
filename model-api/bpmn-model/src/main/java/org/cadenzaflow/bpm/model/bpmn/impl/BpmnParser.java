@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.impl;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_20_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_20_SCHEMA_LOCATION;
 
 import java.io.InputStream;
 

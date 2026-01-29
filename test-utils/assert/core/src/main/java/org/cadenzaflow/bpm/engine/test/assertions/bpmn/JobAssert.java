@@ -48,7 +48,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    *
    * @param   expectedId the expected job id
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getId()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getId()
    */
   public JobAssert hasId(final String expectedId) {
     Job current = getExistingCurrent();
@@ -68,7 +68,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    *
    * @param   expectedDueDate the expected due date
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getDuedate()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getDuedate()
    */
   public JobAssert hasDueDate(final Date expectedDueDate) {
     Job current = getExistingCurrent();
@@ -88,7 +88,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    *
    * @param   expectedProcessInstanceId the expected process instance id
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getProcessInstanceId()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getProcessInstanceId()
    */
   public JobAssert hasProcessInstanceId(final String expectedProcessInstanceId) {
     Job current = getExistingCurrent();
@@ -108,7 +108,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    *
    * @param   expectedExecutionId the expected execution id
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getExecutionId()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getExecutionId()
    */
   public JobAssert hasExecutionId(final String expectedExecutionId) {
     Job current = getExistingCurrent();
@@ -127,7 +127,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    * Verifies the expectation of a specific number of retries left for the {@link Job}.
    * @param   expectedRetries the expected number of retries
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getExecutionId()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getExecutionId()
    */
   public JobAssert hasRetries(final int expectedRetries) {
     Job current = getExistingCurrent();
@@ -146,7 +146,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    * for the {@link Job}.
    *
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getExceptionMessage()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getExceptionMessage()
    */
   public JobAssert hasExceptionMessage() {
     Job current = getExistingCurrent();
@@ -165,7 +165,7 @@ public class JobAssert extends AbstractProcessAssert<JobAssert, Job> {
    *
    * @param   expectedDeploymentId the expected deployment id
    * @return  this {@link JobAssert}
-   * @see     org.camunda.bpm.engine.runtime.Job#getDeploymentId()
+   * @see     org.cadenzaflow.bpm.engine.runtime.Job#getDeploymentId()
    */
   public JobAssert hasDeploymentId(final String expectedDeploymentId) {
     Job current = getExistingCurrent();

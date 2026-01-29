@@ -62,8 +62,8 @@ public class TestCmmnTransformListener implements CmmnTransformListener {
     cmmnActivities.add(caseDefinition);
   }
 
-  public void transformCasePlanModel(org.camunda.bpm.model.cmmn.impl.instance.CasePlanModel casePlanModel, CmmnActivity caseActivity) {
-    transformCasePlanModel((org.camunda.bpm.model.cmmn.instance.CasePlanModel) casePlanModel, caseActivity);
+  public void transformCasePlanModel(org.cadenzaflow.bpm.model.cmmn.impl.instance.CasePlanModel casePlanModel, CmmnActivity caseActivity) {
+    transformCasePlanModel((org.cadenzaflow.bpm.model.cmmn.instance.CasePlanModel) casePlanModel, caseActivity);
   }
 
   public void transformCasePlanModel(CasePlanModel casePlanModel, CmmnActivity activity) {

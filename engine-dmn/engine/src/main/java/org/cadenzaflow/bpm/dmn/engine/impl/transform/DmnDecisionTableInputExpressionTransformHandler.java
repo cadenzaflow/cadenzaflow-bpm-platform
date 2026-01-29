@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.dmn.engine.impl.transform;
 
-import static org.camunda.bpm.dmn.engine.impl.transform.DmnExpressionTransformHelper.createTypeDefinition;
-import static org.camunda.bpm.dmn.engine.impl.transform.DmnExpressionTransformHelper.getExpression;
-import static org.camunda.bpm.dmn.engine.impl.transform.DmnExpressionTransformHelper.getExpressionLanguage;
+import static org.cadenzaflow.bpm.dmn.engine.impl.transform.DmnExpressionTransformHelper.createTypeDefinition;
+import static org.cadenzaflow.bpm.dmn.engine.impl.transform.DmnExpressionTransformHelper.getExpression;
+import static org.cadenzaflow.bpm.dmn.engine.impl.transform.DmnExpressionTransformHelper.getExpressionLanguage;
 
 import org.cadenzaflow.bpm.dmn.engine.impl.DmnExpressionImpl;
 import org.cadenzaflow.bpm.dmn.engine.impl.spi.transform.DmnElementTransformContext;

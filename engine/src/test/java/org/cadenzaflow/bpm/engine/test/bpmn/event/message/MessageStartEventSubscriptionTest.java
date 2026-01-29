@@ -178,7 +178,7 @@ public class MessageStartEventSubscriptionTest {
     testRule.deploy(SINGLE_MESSAGE_START_EVENT_XML);
     // deploy second version of the process
     String deploymentId = testRule.deploy(SINGLE_MESSAGE_START_EVENT_XML).getId();
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
 
     // delete it
     repositoryService.deleteDeployment(deployment.getId(), true);
@@ -210,7 +210,7 @@ public class MessageStartEventSubscriptionTest {
 
     // deploy second version of the process
     String deploymentId = testRule.deploy(SINGLE_MESSAGE_START_EVENT_XML).getId();
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
 
     // delete it
     repositoryService.deleteDeployment(deployment.getId(), true);

@@ -19,11 +19,11 @@ package org.cadenzaflow.commons.utils;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.commons.utils.StringUtil.isExpression;
-import static org.camunda.commons.utils.StringUtil.join;
-import static org.camunda.commons.utils.StringUtil.split;
-import static org.camunda.commons.utils.StringUtil.defaultString;
-import static org.camunda.commons.utils.StringUtil.getStackTrace;
+import static org.cadenzaflow.commons.utils.StringUtil.isExpression;
+import static org.cadenzaflow.commons.utils.StringUtil.join;
+import static org.cadenzaflow.commons.utils.StringUtil.split;
+import static org.cadenzaflow.commons.utils.StringUtil.defaultString;
+import static org.cadenzaflow.commons.utils.StringUtil.getStackTrace;
 
 /**
  * @author Sebastian Menski
@@ -82,7 +82,7 @@ public class StringUtilTest {
   public void testGetStacktrace() {
     Throwable th = new IllegalArgumentException("Wrong argument!", new NullPointerException("This shouldn't have been empty"));
     assertThat(getStackTrace(th)).containsSubsequence("java.lang.IllegalArgumentException: Wrong argument!",
-      "at org.camunda.commons.utils.StringUtilTest.testGetStacktrace(StringUtilTest.java:",
+      "at org.cadenzaflow.commons.utils.StringUtilTest.testGetStacktrace(StringUtilTest.java:",
       "Caused by: java.lang.NullPointerException: This shouldn't have been empty");
   }
 

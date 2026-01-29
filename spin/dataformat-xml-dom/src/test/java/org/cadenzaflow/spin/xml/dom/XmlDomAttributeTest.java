@@ -17,7 +17,7 @@
 package org.cadenzaflow.spin.xml.dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.Spin.XML;
+import static org.cadenzaflow.spin.Spin.XML;
 
 import java.io.StringWriter;
 

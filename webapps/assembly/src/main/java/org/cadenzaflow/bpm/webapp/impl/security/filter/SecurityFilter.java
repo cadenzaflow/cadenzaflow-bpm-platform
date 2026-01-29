@@ -39,7 +39,7 @@ import org.cadenzaflow.bpm.webapp.impl.security.filter.util.FilterRules;
 
 /**
  * <p>Simple filter implementation which delegates to a list of {@link SecurityFilterRule FilterRules},
- * evaluating their {@link SecurityFilterRule#setAuthorized(org.camunda.bpm.webapp.impl.security.filter.AppRequest)} condition
+ * evaluating their {@link SecurityFilterRule#setAuthorized(org.cadenzaflow.bpm.webapp.impl.security.filter.AppRequest)} condition
  * for the given request.</p>
  *
  * <p>This filter must be configured using a init-param in the web.xml file. The parameter must be named

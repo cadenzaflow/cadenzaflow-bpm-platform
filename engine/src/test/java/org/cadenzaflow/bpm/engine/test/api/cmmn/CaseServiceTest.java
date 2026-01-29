@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.cmmn;
 
-import static org.camunda.bpm.engine.variable.Variables.booleanValue;
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
-import static org.camunda.bpm.engine.variable.Variables.integerValue;
-import static org.camunda.bpm.engine.variable.Variables.stringValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.booleanValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.engine.variable.Variables.integerValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.stringValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

@@ -79,7 +79,7 @@ public class SecurityActions {
   public static <T> T runWithoutAuthentication(SecurityAction<T> action, ProcessEngine processEngine) throws IOException, ServletException {
 
     final IdentityService identityService = processEngine.getIdentityService();
-    org.camunda.bpm.engine.impl.identity.Authentication currentAuth = identityService.getCurrentAuthentication();
+    org.cadenzaflow.bpm.engine.impl.identity.Authentication currentAuth = identityService.getCurrentAuthentication();
 
     try {
       identityService.clearAuthentication();

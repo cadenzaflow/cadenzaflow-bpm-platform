@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.springframework.core.env.PropertiesPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.spring.boot.starter.util.CamundaBpmVersion.key;
+import static org.cadenzaflow.bpm.spring.boot.starter.util.CamundaBpmVersion.key;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

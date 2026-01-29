@@ -58,14 +58,14 @@ public class ScriptEngineRule implements TestRule {
   }
 
   /**
-   * Create script engine from {@literal @}{@link org.camunda.spin.impl.test.ScriptEngine} Annotation. The created
+   * Create script engine from {@literal @}{@link org.cadenzaflow.spin.impl.test.ScriptEngine} Annotation. The created
    * script engines will be cached to speedup subsequent creations.
    *
    * @param description the {@link Description} of the test method
    * @return the script engine or null if no suitable found
    */
   private ScriptEngine createScriptEngine(Description description) {
-    org.camunda.spin.impl.test.ScriptEngine annotation = description.getTestClass().getAnnotation(org.camunda.spin.impl.test.ScriptEngine.class);
+    org.cadenzaflow.spin.impl.test.ScriptEngine annotation = description.getTestClass().getAnnotation(org.cadenzaflow.spin.impl.test.ScriptEngine.class);
     if (annotation == null) {
       return null;
     }
@@ -86,7 +86,7 @@ public class ScriptEngineRule implements TestRule {
   }
 
   /**
-   * Get the script engine defined by the {@literal @}{@link org.camunda.spin.impl.test.ScriptEngine} Annotation
+   * Get the script engine defined by the {@literal @}{@link org.cadenzaflow.spin.impl.test.ScriptEngine} Annotation
    *
    * @return the script engine or null if no script engine was found
    */

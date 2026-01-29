@@ -30,10 +30,10 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 @SuppressWarnings("unused")
 public class ProcessEngineLoggingRuleTest {
 
-  private static final String PERSISTENCE_LOGGER = "org.camunda.bpm.engine.persistence"; // 03
-  private static final String CONTAINER_INTEGRATION_LOGGER = "org.camunda.bpm.container"; //08
-  private static final String PROCESS_APPLICATION_LOGGER = "org.camunda.bpm.application"; //07
-  private static final String JOB_EXECUTOR_LOGGER = "org.camunda.bpm.engine.jobexecutor"; //14
+  private static final String PERSISTENCE_LOGGER = "org.cadenzaflow.bpm.engine.persistence"; // 03
+  private static final String CONTAINER_INTEGRATION_LOGGER = "org.cadenzaflow.bpm.container"; //08
+  private static final String PROCESS_APPLICATION_LOGGER = "org.cadenzaflow.bpm.application"; //07
+  private static final String JOB_EXECUTOR_LOGGER = "org.cadenzaflow.bpm.engine.jobexecutor"; //14
 
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule()

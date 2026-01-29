@@ -16,15 +16,15 @@
  */
 package org.cadenzaflow.bpm.engine.impl.util;
 
-import static org.camunda.bpm.engine.authorization.Resources.BATCH;
-import static org.camunda.bpm.engine.authorization.Resources.HISTORIC_PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.HISTORIC_TASK;
-import static org.camunda.bpm.engine.authorization.Resources.OPERATION_LOG_CATEGORY;
-import static org.camunda.bpm.engine.authorization.Resources.OPTIMIZE;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.TASK;
-import static org.camunda.bpm.engine.authorization.Resources.SYSTEM;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.BATCH;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.HISTORIC_PROCESS_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.HISTORIC_TASK;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.OPERATION_LOG_CATEGORY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.OPTIMIZE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TASK;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.SYSTEM;
 
 import java.util.HashMap;
 import java.util.Map;

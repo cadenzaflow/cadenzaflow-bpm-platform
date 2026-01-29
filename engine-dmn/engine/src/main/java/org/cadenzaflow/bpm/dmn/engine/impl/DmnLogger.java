@@ -23,7 +23,7 @@ import org.cadenzaflow.commons.logging.BaseLogger;
 public class DmnLogger extends BaseLogger {
 
  public static final String PROJECT_CODE = "DMN";
- public static final String PROJECT_LOGGER= "org.camunda.bpm.dmn";
+ public static final String PROJECT_LOGGER= "org.cadenzaflow.bpm.dmn";
 
  public static DmnEngineLogger ENGINE_LOGGER = createLogger(DmnEngineLogger.class, PROJECT_CODE, PROJECT_LOGGER, "01");
  public static DmnTransformLogger TRANSFORM_LOGGER = createLogger(DmnTransformLogger.class, PROJECT_CODE, PROJECT_LOGGER + ".transform", "02");

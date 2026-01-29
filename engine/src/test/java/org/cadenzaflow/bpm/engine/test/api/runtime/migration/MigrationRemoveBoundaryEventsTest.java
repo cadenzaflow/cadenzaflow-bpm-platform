@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration;
 
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -842,7 +842,7 @@ public class MigrationRemoveBoundaryEventsTest {
     BpmnModelInstance sourceProcess = modify(ProcessModels.ONE_TASK_PROCESS)
       .userTaskBuilder("userTask")
       .boundaryEvent("boundary").timerWithDate(TIMER_DATE)
-      .serviceTask("failingTask").camundaClass("org.camunda.bpm.engine.test.api.runtime.FailingDelegate")
+      .serviceTask("failingTask").camundaClass("org.cadenzaflow.bpm.engine.test.api.runtime.FailingDelegate")
       .endEvent()
       .done();
     BpmnModelInstance targetProcess = modify(sourceProcess)

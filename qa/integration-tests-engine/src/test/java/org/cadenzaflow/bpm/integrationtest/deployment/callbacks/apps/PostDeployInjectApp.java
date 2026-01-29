@@ -25,7 +25,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngine;
 
 @ProcessApplication
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class PostDeployInjectApp extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class PostDeployInjectApp extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
   
   public static ProcessEngine processEngine;
   public static ProcessApplicationInfo processApplicationInfo;

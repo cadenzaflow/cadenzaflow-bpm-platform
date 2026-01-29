@@ -23,7 +23,7 @@ import org.cadenzaflow.commons.logging.BaseLogger;
 public class LoggerUtil extends BaseLogger {
 
   protected static final String PROJECT_CODE = "TASK/CLIENT/SPRING";
-  protected static final String PROJECT_LOGGER = "org.camunda.bpm.client.spring";
+  protected static final String PROJECT_LOGGER = "org.cadenzaflow.bpm.client.spring";
 
   public static final ClientLoggerUtil CLIENT_LOGGER =
       createLogger(ClientLoggerUtil.class, PROJECT_CODE, PROJECT_LOGGER, "01");

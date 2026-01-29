@@ -36,7 +36,7 @@ import org.cadenzaflow.bpm.engine.impl.pvm.process.ActivityImpl;
 import org.cadenzaflow.bpm.engine.impl.pvm.process.ProcessDefinitionImpl;
 import org.cadenzaflow.bpm.engine.impl.util.ClockUtil;
 import org.cadenzaflow.bpm.engine.runtime.EventSubscription;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * @author Daniel Meyer

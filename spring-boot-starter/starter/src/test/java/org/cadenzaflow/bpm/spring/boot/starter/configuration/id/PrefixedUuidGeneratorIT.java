@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.spring.boot.starter.configuration.id.IdGeneratorConfiguration.PREFIXED;
+import static org.cadenzaflow.bpm.spring.boot.starter.configuration.id.IdGeneratorConfiguration.PREFIXED;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(

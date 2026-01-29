@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.client.spring.impl.client;
 
-import static org.camunda.bpm.client.spring.annotation.EnableExternalTaskClient.INT_NULL_VALUE;
-import static org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription.LONG_NULL_VALUE;
+import static org.cadenzaflow.bpm.client.spring.annotation.EnableExternalTaskClient.INT_NULL_VALUE;
+import static org.cadenzaflow.bpm.client.spring.annotation.ExternalTaskSubscription.LONG_NULL_VALUE;
 
 import org.cadenzaflow.bpm.client.spring.annotation.EnableExternalTaskClient;
 import org.cadenzaflow.bpm.client.spring.annotation.ExternalTaskSubscription;

@@ -27,8 +27,8 @@ import org.cadenzaflow.bpm.model.xml.type.child.SequenceBuilder;
 
 import java.util.Collection;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_ELEMENT_PLANE;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_ELEMENT_PLANE;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
 
 /**
  * The DI Plane element

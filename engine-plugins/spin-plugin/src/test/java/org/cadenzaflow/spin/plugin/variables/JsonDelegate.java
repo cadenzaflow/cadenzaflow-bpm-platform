@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.plugin.variables;
 
-import static org.camunda.spin.plugin.variable.SpinValues.jsonValue;
+import static org.cadenzaflow.spin.plugin.variable.SpinValues.jsonValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

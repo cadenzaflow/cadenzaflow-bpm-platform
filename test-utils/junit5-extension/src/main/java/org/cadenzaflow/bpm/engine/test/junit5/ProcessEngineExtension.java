@@ -262,7 +262,7 @@ public class ProcessEngineExtension implements TestWatcher,
     return this;
   }
 
-  public ProcessEngineExtension manageDeployment(org.camunda.bpm.engine.repository.Deployment deployment) {
+  public ProcessEngineExtension manageDeployment(org.cadenzaflow.bpm.engine.repository.Deployment deployment) {
     this.additionalDeployments.add(deployment.getId());
     return this;
   }

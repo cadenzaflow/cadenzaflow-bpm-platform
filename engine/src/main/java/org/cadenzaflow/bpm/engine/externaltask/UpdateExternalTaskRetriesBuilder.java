@@ -34,7 +34,7 @@ public interface UpdateExternalTaskRetriesBuilder extends UpdateExternalTaskRetr
    *
    * @param retries
    *
-   * @throws org.camunda.bpm.engine.BadUserRequestException
+   * @throws org.cadenzaflow.bpm.engine.BadUserRequestException
    *           If no external tasks are found
    *           If a external task id is set to null
    *
@@ -61,7 +61,7 @@ public interface UpdateExternalTaskRetriesBuilder extends UpdateExternalTaskRetr
    *
    * @param retries
    *
-   * @throws org.camunda.bpm.engine.BadUserRequestException
+   * @throws org.cadenzaflow.bpm.engine.BadUserRequestException
    *           If no external tasks are found or if a external task id is set to null
    *
    * @throws AuthorizationException

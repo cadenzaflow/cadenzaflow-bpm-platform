@@ -100,7 +100,7 @@ public interface UserOperationLogQuery extends Query<UserOperationLogQuery, User
 
   /** Query entries of a composite operation.
    * This allows grouping multiple updates which are part of the same operation:
-   * for instance, a User may update multiple fields of a UserTask when calling {@link TaskService#saveTask(org.camunda.bpm.engine.task.Task)}
+   * for instance, a User may update multiple fields of a UserTask when calling {@link TaskService#saveTask(org.cadenzaflow.bpm.engine.task.Task)}
    * which will be logged as separate {@link UserOperationLogEntry OperationLogEntries} with the same 'operationId'
    * */
   UserOperationLogQuery operationId(String operationId);

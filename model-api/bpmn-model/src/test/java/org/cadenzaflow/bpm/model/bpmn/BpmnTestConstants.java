@@ -51,8 +51,8 @@ public final class BpmnTestConstants {
 
   public static final String TEST_STRING_XML = "test";
   public static final String TEST_STRING_API = "api";
-  public static final String TEST_CLASS_XML = "org.camunda.test.Test";
-  public static final String TEST_CLASS_API = "org.camunda.test.Api";
+  public static final String TEST_CLASS_XML = "org.cadenzaflow.test.Test";
+  public static final String TEST_CLASS_API = "org.cadenzaflow.test.Api";
   public static final String TEST_EXPRESSION_XML = "${" + TEST_STRING_XML + "}";
   public static final String TEST_EXPRESSION_API = "${" + TEST_STRING_API + "}";
   public static final String TEST_DELEGATE_EXPRESSION_XML = "${" + TEST_CLASS_XML + "}";

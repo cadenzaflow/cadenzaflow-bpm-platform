@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration;
 
-import static org.camunda.bpm.engine.test.util.MigratingProcessInstanceValidationReportAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.MigratingProcessInstanceValidationReportAssert.assertThat;
 
 import org.cadenzaflow.bpm.engine.impl.pvm.PvmTransition;
 import org.cadenzaflow.bpm.engine.impl.pvm.delegate.ActivityExecution;

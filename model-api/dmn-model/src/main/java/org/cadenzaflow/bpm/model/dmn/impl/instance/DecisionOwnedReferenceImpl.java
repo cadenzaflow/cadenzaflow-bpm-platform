@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.dmn.impl.instance;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_DECISION_OWNED;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.LATEST_DMN_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_ELEMENT_DECISION_OWNED;
 
 import org.cadenzaflow.bpm.model.dmn.instance.DecisionOwnedReference;
 import org.cadenzaflow.bpm.model.dmn.instance.DmnElementReference;

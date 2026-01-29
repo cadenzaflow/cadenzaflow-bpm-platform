@@ -36,7 +36,7 @@ public class InvocationCounterDelegateBean implements JavaDelegate {
     InvocationCounterService invocationCounterService = (InvocationCounterService) new InitialContext().lookup("java:global/" +
         TestConstants.getAppName() +
         "service/" +
-        "InvocationCounterServiceBean!org.camunda.bpm.integrationtest.functional.ejb.request.beans.InvocationCounterService");
+        "InvocationCounterServiceBean!org.cadenzaflow.bpm.integrationtest.functional.ejb.request.beans.InvocationCounterService");
 
     execution.setVariable("invocationCounter", invocationCounterService.getNumOfInvocations());
   }

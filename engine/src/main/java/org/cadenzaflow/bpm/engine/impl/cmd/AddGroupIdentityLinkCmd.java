@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd;
 
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_ADD_GROUP_LINK;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_ADD_GROUP_LINK;
 
 import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;
 import org.cadenzaflow.bpm.engine.impl.persistence.entity.PropertyChange;

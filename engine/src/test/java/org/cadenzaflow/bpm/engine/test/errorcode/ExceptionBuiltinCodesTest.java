@@ -49,13 +49,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
 
 public class ExceptionBuiltinCodesTest {
 
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule()
-      .watch("org.camunda.bpm.engine.cmd")
+      .watch("org.cadenzaflow.bpm.engine.cmd")
       .level(Level.WARN);
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();

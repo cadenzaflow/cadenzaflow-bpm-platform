@@ -22,8 +22,8 @@ import org.cadenzaflow.bpm.model.xml.ModelBuilder;
 import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_ELEMENT_LABELED_SHAPE;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_ELEMENT_LABELED_SHAPE;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
 
 /**
  * The DI LabeledShape element

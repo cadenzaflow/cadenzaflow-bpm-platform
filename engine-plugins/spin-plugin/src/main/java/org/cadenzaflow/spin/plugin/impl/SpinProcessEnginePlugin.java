@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.spin.plugin.impl;
 
-import static org.camunda.spin.plugin.variable.type.SpinValueType.JSON;
-import static org.camunda.spin.plugin.variable.type.SpinValueType.XML;
+import static org.cadenzaflow.spin.plugin.variable.type.SpinValueType.JSON;
+import static org.cadenzaflow.spin.plugin.variable.type.SpinValueType.XML;
 
 import java.util.HashMap;
 import java.util.List;

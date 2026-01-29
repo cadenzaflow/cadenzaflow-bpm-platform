@@ -20,6 +20,6 @@ package org.cadenzaflow.bpm.cockpit.db;
  *
  * @author Nico Rehwaldt
  */
-public interface CommandExecutor extends org.camunda.bpm.webapp.db.CommandExecutor {
+public interface CommandExecutor extends org.cadenzaflow.bpm.webapp.db.CommandExecutor {
 
 }

@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.pa.service;
 
 
-import static org.camunda.bpm.engine.variable.Variables.*;
+import static org.cadenzaflow.bpm.engine.variable.Variables.*;
 
 import java.util.ArrayList;
 import java.util.Date;

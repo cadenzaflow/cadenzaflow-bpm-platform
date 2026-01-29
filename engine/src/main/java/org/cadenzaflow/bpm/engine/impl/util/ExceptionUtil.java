@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.engine.impl.util;
 
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.DB2;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.H2;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MSSQL;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MYSQL;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.ORACLE;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.POSTGRES;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.DB2;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.H2;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MSSQL;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MYSQL;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.ORACLE;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.POSTGRES;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.util;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.impl.cmmn.behavior.CmmnActivityBehavior;
 import org.cadenzaflow.bpm.engine.impl.cmmn.execution.CmmnExecution;

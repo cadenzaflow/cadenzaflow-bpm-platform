@@ -61,9 +61,9 @@ import org.cadenzaflow.bpm.model.bpmn.instance.Gateway;
  *
  * Use it with a static import:
  *
- * import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
+ * import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
  *
- * @see org.camunda.bpm.engine.test.assertions.ProcessEngineTests
+ * @see org.cadenzaflow.bpm.engine.test.assertions.ProcessEngineTests
  *      for full Camunda Platform Assertions functionality
  *
  */
@@ -129,7 +129,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access RuntimeService
    *
    * @return  RuntimeService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.RuntimeService
+   * @see     org.cadenzaflow.bpm.engine.RuntimeService
    */
   public static RuntimeService runtimeService() {
     return processEngine().getRuntimeService();
@@ -140,7 +140,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    *
    * @return  AuthorizationService of process engine bound to this
    *          testing thread
-   * @see     org.camunda.bpm.engine.AuthorizationService
+   * @see     org.cadenzaflow.bpm.engine.AuthorizationService
    */
   public static AuthorizationService authorizationService() {
     return processEngine().getAuthorizationService();
@@ -150,7 +150,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access FormService
    *
    * @return  FormService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.FormService
+   * @see     org.cadenzaflow.bpm.engine.FormService
    */
   public static FormService formService() {
     return processEngine().getFormService();
@@ -160,7 +160,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access HistoryService
    *
    * @return  HistoryService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.HistoryService
+   * @see     org.cadenzaflow.bpm.engine.HistoryService
    */
   public static HistoryService historyService() {
     return processEngine().getHistoryService();
@@ -170,7 +170,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access IdentityService
    *
    * @return  IdentityService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.IdentityService
+   * @see     org.cadenzaflow.bpm.engine.IdentityService
    */
   public static IdentityService identityService() {
     return processEngine().getIdentityService();
@@ -180,7 +180,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access ManagementService
    *
    * @return  ManagementService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.ManagementService
+   * @see     org.cadenzaflow.bpm.engine.ManagementService
    */
   public static ManagementService managementService() {
     return processEngine().getManagementService();
@@ -190,7 +190,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access RepositoryService
    *
    * @return  RepositoryService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.RepositoryService
+   * @see     org.cadenzaflow.bpm.engine.RepositoryService
    */
   public static RepositoryService repositoryService() {
     return processEngine().getRepositoryService();
@@ -200,7 +200,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access TaskService
    *
    * @return  TaskService of process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.TaskService
+   * @see     org.cadenzaflow.bpm.engine.TaskService
    */
   public static TaskService taskService() {
     return processEngine().getTaskService();
@@ -210,7 +210,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access ExternalTaskService
    *
    * @return ExternalTaskService of process engine bound to this testing thread
-   * @see org.camunda.bpm.engine.ExternalTaskService
+   * @see org.cadenzaflow.bpm.engine.ExternalTaskService
    */
   public static ExternalTaskService externalTaskService() {
     return processEngine().getExternalTaskService();
@@ -220,7 +220,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily access DecisionService
    *
    * @return DecisionService of process engine bound to this testing thread
-   * @see org.camunda.bpm.engine.DecisionService
+   * @see org.cadenzaflow.bpm.engine.DecisionService
    */
   public static DecisionService decisionService() {
     return processEngine().getDecisionService();
@@ -230,7 +230,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily create a new TaskQuery
    *
    * @return  new TaskQuery for process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.task.TaskQuery
+   * @see     org.cadenzaflow.bpm.engine.task.TaskQuery
    */
   public static TaskQuery taskQuery() {
     return taskService().createTaskQuery();
@@ -240,7 +240,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily create a new ExternalTaskQuery
    *
    * @return  new ExternalTaskQuery for process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.externaltask.ExternalTaskQuery
+   * @see     org.cadenzaflow.bpm.engine.externaltask.ExternalTaskQuery
    */
   public static ExternalTaskQuery externalTaskQuery() {
     return externalTaskService().createExternalTaskQuery();
@@ -250,7 +250,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily create a new JobQuery
    *
    * @return  new JobQuery for process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.runtime.JobQuery
+   * @see     org.cadenzaflow.bpm.engine.runtime.JobQuery
    */
   public static JobQuery jobQuery() {
     return managementService().createJobQuery();
@@ -261,7 +261,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    *
    * @return  new ProcessInstanceQuery for process engine bound to this
    *          testing thread
-   * @see     org.camunda.bpm.engine.runtime.ProcessInstanceQuery
+   * @see     org.cadenzaflow.bpm.engine.runtime.ProcessInstanceQuery
    */
   public static ProcessInstanceQuery processInstanceQuery() {
     return runtimeService().createProcessInstanceQuery();
@@ -272,7 +272,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    *
    * @return  new ProcessDefinitionQuery for process engine bound to this
    *          testing thread
-   * @see     org.camunda.bpm.engine.repository.ProcessDefinitionQuery
+   * @see     org.cadenzaflow.bpm.engine.repository.ProcessDefinitionQuery
    */
   public static ProcessDefinitionQuery processDefinitionQuery() {
     return repositoryService().createProcessDefinitionQuery();
@@ -282,7 +282,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    * Helper method to easily create a new ExecutionQuery
    *
    * @return  new ExecutionQuery for process engine bound to this testing thread
-   * @see     org.camunda.bpm.engine.runtime.ExecutionQuery
+   * @see     org.cadenzaflow.bpm.engine.runtime.ExecutionQuery
    */
   public static ExecutionQuery executionQuery() {
     return runtimeService().createExecutionQuery();
@@ -605,7 +605,7 @@ public class BpmnAwareTests extends AbstractAssertions {
    *          definition should be retrieved.
    * @return  the process definition compliant to the given query. May
    *          return null in case no such process definition exists.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more
    *          than one process definition is delivered by the underlying
    *          query.
    */

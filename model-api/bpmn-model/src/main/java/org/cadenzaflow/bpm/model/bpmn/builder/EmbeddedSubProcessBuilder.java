@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.builder;
 
-import static org.camunda.bpm.model.bpmn.builder.AbstractBaseElementBuilder.SPACE;
+import static org.cadenzaflow.bpm.model.bpmn.builder.AbstractBaseElementBuilder.SPACE;
 
 import org.cadenzaflow.bpm.model.bpmn.instance.StartEvent;
 import org.cadenzaflow.bpm.model.bpmn.instance.SubProcess;

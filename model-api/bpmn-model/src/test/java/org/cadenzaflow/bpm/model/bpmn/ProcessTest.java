@@ -41,7 +41,7 @@ public class ProcessTest extends BpmnModelTest {
 
     Collection<RootElement> rootElements = bpmnModelInstance.getDefinitions().getRootElements();
     assertThat(rootElements).hasSize(1);
-    org.camunda.bpm.model.bpmn.instance.Process process = (Process) rootElements.iterator().next();
+    org.cadenzaflow.bpm.model.bpmn.instance.Process process = (Process) rootElements.iterator().next();
 
     assertThat(process.getId()).isEqualTo("exampleProcessId");
     assertThat(process.getName()).isNull();

@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.engine.test.api.form;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.util.CamundaFormUtils.findAllCamundaFormDefinitionEntities;
+import static org.cadenzaflow.bpm.engine.test.util.CamundaFormUtils.findAllCamundaFormDefinitionEntities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -84,8 +84,8 @@ public class RetrieveCamundaFormRefTest {
 
   @After
   public void tearDown() throws Exception {
-    List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
-    for (org.camunda.bpm.engine.repository.Deployment deployment : deployments) {
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : deployments) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }
   }
@@ -187,7 +187,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.taskFormBindingLatest.bpmn"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.taskFormBindingLatest.bpmn"})
   public void shouldFailToRetrieveTaskFormBindingLatestUnexistingKey() throws IOException {
     // given BPMN model references missing form
     runtimeService.startProcessInstanceByKey("taskFormBindingLatest");
@@ -211,7 +211,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.taskFormBindingDeployment.bpmn"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.taskFormBindingDeployment.bpmn"})
   public void shouldFailToRetrieveTaskFormBindingDeploymentUnexistingKey() throws IOException {
     // given BPMN model references missing form
     runtimeService.startProcessInstanceByKey("taskFormBindingDeployment");
@@ -235,7 +235,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
       "org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.taskFormBindingVersion2.bpmn",
       "org/camunda/bpm/engine/test/api/form/task.form" })
   public void shouldFailToRetrieveTaskFormBindingVersionUnexistingVersion() throws IOException {
@@ -261,7 +261,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
       "org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.shouldRetrieveTaskFormBindingLatestWithKeyExpression.bpmn",
       "org/camunda/bpm/engine/test/api/form/task.form" })
   public void shouldRetrieveTaskFormBindingLatestWithKeyExpression() throws IOException {
@@ -287,7 +287,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
       "org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.shouldRetrieveTaskFormBindingVersionWithExpression.bpmn",
       "org/camunda/bpm/engine/test/api/form/task.form" })
   public void shouldRetrieveTaskFormBindingVersionWithExpression() throws IOException {
@@ -397,7 +397,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.startFormBindingLatest.bpmn"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.startFormBindingLatest.bpmn"})
   public void shouldFailToRetrieveStartFormBindingLatestUnexistingKey() throws IOException {
     // given BPMN model references missing form
     runtimeService.startProcessInstanceByKey("startFormBindingLatest");
@@ -418,7 +418,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.startFormBindingDeployment.bpmn"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.startFormBindingDeployment.bpmn"})
   public void shouldFailToRetrieveStartFormBindingDeploymentUnexistingKey() throws IOException {
     // given BPMN model references missing form
     runtimeService.startProcessInstanceByKey("startFormBindingDeployment");
@@ -439,7 +439,7 @@ public class RetrieveCamundaFormRefTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
       "org/camunda/bpm/engine/test/api/form/RetrieveCamundaFormRefTest.startFormBindingVersion2.bpmn",
       "org/camunda/bpm/engine/test/api/form/start.form" })
   public void shouldFailToRetrieveStartFormBindingVersionUnexistingVersion() throws IOException {

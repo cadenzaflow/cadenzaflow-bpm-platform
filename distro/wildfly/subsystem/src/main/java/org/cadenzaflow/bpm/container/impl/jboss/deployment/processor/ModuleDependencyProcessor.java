@@ -53,16 +53,16 @@ public class ModuleDependencyProcessor implements DeploymentUnitProcessor {
 
   public static final int PRIORITY = 0x2300;
 
-  public static String MODULE_IDENTIFIER_PROCESS_ENGINE = "org.camunda.bpm.camunda-engine";
-  public static String MODULE_IDENTIFIER_XML_MODEL = "org.camunda.bpm.model.camunda-xml-model";
-  public static String MODULE_IDENTIFIER_BPMN_MODEL = "org.camunda.bpm.model.camunda-bpmn-model";
-  public static String MODULE_IDENTIFIER_CMMN_MODEL = "org.camunda.bpm.model.camunda-cmmn-model";
-  public static String MODULE_IDENTIFIER_DMN_MODEL = "org.camunda.bpm.model.camunda-dmn-model";
-  public static String MODULE_IDENTIFIER_SPIN = "org.camunda.spin.camunda-spin-core";
-  public static String MODULE_IDENTIFIER_CONNECT = "org.camunda.connect.camunda-connect-core";
-  public static String MODULE_IDENTIFIER_ENGINE_DMN = "org.camunda.bpm.dmn.camunda-engine-dmn";
+  public static String MODULE_IDENTIFIER_PROCESS_ENGINE = "org.cadenzaflow.bpm.camunda-engine";
+  public static String MODULE_IDENTIFIER_XML_MODEL = "org.cadenzaflow.bpm.model.camunda-xml-model";
+  public static String MODULE_IDENTIFIER_BPMN_MODEL = "org.cadenzaflow.bpm.model.camunda-bpmn-model";
+  public static String MODULE_IDENTIFIER_CMMN_MODEL = "org.cadenzaflow.bpm.model.camunda-cmmn-model";
+  public static String MODULE_IDENTIFIER_DMN_MODEL = "org.cadenzaflow.bpm.model.camunda-dmn-model";
+  public static String MODULE_IDENTIFIER_SPIN = "org.cadenzaflow.spin.camunda-spin-core";
+  public static String MODULE_IDENTIFIER_CONNECT = "org.cadenzaflow.connect.camunda-connect-core";
+  public static String MODULE_IDENTIFIER_ENGINE_DMN = "org.cadenzaflow.bpm.dmn.camunda-engine-dmn";
   public static String MODULE_IDENTIFIER_GRAAL_JS = "org.graalvm.js.js-scriptengine";
-  public static String MODULE_IDENTIFIER_JUEL = "org.camunda.bpm.juel.camunda-juel";
+  public static String MODULE_IDENTIFIER_JUEL = "org.cadenzaflow.bpm.juel.camunda-juel";
 
   @Override
   public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {

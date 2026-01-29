@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.persistence.entity;
 
-import static org.camunda.bpm.engine.authorization.Permissions.READ_HISTORY;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ_HISTORY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
 
 import java.util.ArrayList;
 import java.util.List;

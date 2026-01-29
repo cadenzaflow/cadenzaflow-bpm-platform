@@ -93,7 +93,7 @@ public class CaseTaskAssert extends AbstractCaseAssert<CaseTaskAssert, CaseExecu
   }
 
   /**
-   * Verifies the expectation that the {@link org.camunda.bpm.model.cmmn.instance.CaseTask} holds no
+   * Verifies the expectation that the {@link org.cadenzaflow.bpm.model.cmmn.instance.CaseTask} holds no
    * case variables at all.
    *
    * @return  this {@link CaseTaskAssert}
@@ -103,7 +103,7 @@ public class CaseTaskAssert extends AbstractCaseAssert<CaseTaskAssert, CaseExecu
   }
 
   /**
-   * Verifies the expectation that the {@link org.camunda.bpm.model.cmmn.instance.CaseTask} holds one or
+   * Verifies the expectation that the {@link org.cadenzaflow.bpm.model.cmmn.instance.CaseTask} holds one or
    * more case variables with the specified names.
    *
    * @param   names the names of the case task variables expected to exist. In

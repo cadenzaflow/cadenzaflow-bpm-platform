@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.spring.boot.starter;
 
-import static org.camunda.bpm.application.ProcessApplicationInfo.PROP_SERVLET_CONTEXT_PATH;
-import static org.camunda.bpm.spring.boot.starter.util.GetProcessApplicationNameFromAnnotation.processApplicationNameFromAnnotation;
-import static org.camunda.bpm.spring.boot.starter.util.SpringBootProcessEngineLogger.LOG;
+import static org.cadenzaflow.bpm.application.ProcessApplicationInfo.PROP_SERVLET_CONTEXT_PATH;
+import static org.cadenzaflow.bpm.spring.boot.starter.util.GetProcessApplicationNameFromAnnotation.processApplicationNameFromAnnotation;
+import static org.cadenzaflow.bpm.spring.boot.starter.util.SpringBootProcessEngineLogger.LOG;
 
 import java.util.Collections;
 import java.util.Optional;

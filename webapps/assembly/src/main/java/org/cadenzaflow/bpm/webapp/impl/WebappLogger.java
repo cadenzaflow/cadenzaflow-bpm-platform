@@ -28,7 +28,7 @@ public class WebappLogger extends BaseLogger {
   public static final String PROJECT_CODE = "WEBAPP";
 
   public static final WebappLogger INSTANCE = BaseLogger.createLogger(WebappLogger.class, PROJECT_CODE,
-      "org.camunda.bpm.webapp", "00");
+      "org.cadenzaflow.bpm.webapp", "00");
 
   public InvalidRequestException invalidRequestEngineNotFoundForName(String engineName) {
     return new InvalidRequestException(Status.BAD_REQUEST,

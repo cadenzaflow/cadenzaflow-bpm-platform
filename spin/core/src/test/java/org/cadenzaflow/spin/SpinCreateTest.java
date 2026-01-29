@@ -17,7 +17,7 @@
 package org.cadenzaflow.spin;
 
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.spin.Spin.S;
+import static org.cadenzaflow.spin.Spin.S;
 
 import org.cadenzaflow.spin.spi.DataFormat;
 import org.junit.Test;

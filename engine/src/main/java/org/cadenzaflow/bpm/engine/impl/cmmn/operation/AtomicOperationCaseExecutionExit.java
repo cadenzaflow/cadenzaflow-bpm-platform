@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.operation;
 
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.EXIT;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.EXIT;
 
 /**
  * @author Roman Smirnov

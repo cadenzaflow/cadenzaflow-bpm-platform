@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.spring.boot.starter.configuration.impl;
 
-import static org.camunda.bpm.spring.boot.starter.util.CamundaSpringBootUtil.join;
+import static org.cadenzaflow.bpm.spring.boot.starter.util.CamundaSpringBootUtil.join;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +65,7 @@ public class DefaultJobConfiguration extends AbstractCamundaConfiguration implem
 
   protected void configureJobExecutor(SpringProcessEngineConfiguration configuration) {
     // note: the job executor will be activated in
-    // org.camunda.bpm.spring.boot.starter.runlistener.JobExecutorRunListener
+    // org.cadenzaflow.bpm.spring.boot.starter.runlistener.JobExecutorRunListener
     configuration.setJobExecutorActivate(false);
     configuration.setJobExecutorDeploymentAware(camundaBpmProperties.getJobExecution().isDeploymentAware());
     configuration.setJobExecutor(jobExecutor);

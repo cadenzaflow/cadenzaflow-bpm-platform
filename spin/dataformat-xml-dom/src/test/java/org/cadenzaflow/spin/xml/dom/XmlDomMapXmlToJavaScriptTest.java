@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.spin.xml.dom;
 
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_VALIDATION_XML_FILE_NAME;
-import static org.camunda.spin.xml.XmlTestConstants.assertIsExampleOrder;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_VALIDATION_XML_FILE_NAME;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.assertIsExampleOrder;
 
 import org.cadenzaflow.spin.impl.test.Script;
 import org.cadenzaflow.spin.impl.test.ScriptTest;

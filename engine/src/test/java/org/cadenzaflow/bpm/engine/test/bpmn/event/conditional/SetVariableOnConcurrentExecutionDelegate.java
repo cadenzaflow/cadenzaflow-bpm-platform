@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.bpmn.event.conditional;
 
-import static org.camunda.bpm.engine.test.bpmn.event.conditional.AbstractConditionalEventTestCase.TASK_WITH_CONDITION;
-import static org.camunda.bpm.engine.test.bpmn.event.conditional.AbstractConditionalEventTestCase.VARIABLE_NAME;
+import static org.cadenzaflow.bpm.engine.test.bpmn.event.conditional.AbstractConditionalEventTestCase.TASK_WITH_CONDITION;
+import static org.cadenzaflow.bpm.engine.test.bpmn.event.conditional.AbstractConditionalEventTestCase.VARIABLE_NAME;
 
 import org.cadenzaflow.bpm.engine.delegate.DelegateExecution;
 import org.cadenzaflow.bpm.engine.delegate.JavaDelegate;

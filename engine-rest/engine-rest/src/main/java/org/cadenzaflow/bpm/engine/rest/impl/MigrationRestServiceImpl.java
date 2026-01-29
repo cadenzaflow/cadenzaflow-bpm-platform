@@ -41,7 +41,7 @@ import org.cadenzaflow.bpm.engine.runtime.ProcessInstanceQuery;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.camunda.bpm.engine.rest.dto.VariableValueDto.toMap;
+import static org.cadenzaflow.bpm.engine.rest.dto.VariableValueDto.toMap;
 
 public class MigrationRestServiceImpl extends AbstractRestProcessEngineAware implements MigrationRestService {
 

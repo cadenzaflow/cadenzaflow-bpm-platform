@@ -88,7 +88,7 @@ public class JobExecutorRequestContextLocalInvocationTest extends AbstractFoxPla
 //    InvocationCounterServiceLocal service = InitialContext.doLookup("java:/" +
 //    "global/" +
 //    "service/" +
-//    "InvocationCounterServiceBean!org.camunda.bpm.integrationtest.functional.cdi.beans.InvocationCounterServiceLocal");
+//    "InvocationCounterServiceBean!org.cadenzaflow.bpm.integrationtest.functional.cdi.beans.InvocationCounterServiceLocal");
 //
 //    service.getNumOfInvocations();
 

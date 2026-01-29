@@ -31,7 +31,7 @@ public class LdapPluginLogger extends BaseLogger {
   public static final String PROJECT_CODE = "LDAP";
 
   public static final LdapPluginLogger INSTANCE = BaseLogger.createLogger(
-      LdapPluginLogger.class, PROJECT_CODE, "org.camunda.bpm.identity.impl.ldap", "00");
+      LdapPluginLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.identity.impl.ldap", "00");
 
   public void pluginActivated(String pluginClassName, String engineName) {
     logInfo("001", "PLUGIN {} activated on process engine {}", pluginClassName, engineName);

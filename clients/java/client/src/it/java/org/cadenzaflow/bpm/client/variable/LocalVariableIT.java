@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.client.variable;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
 
 import org.cadenzaflow.bpm.client.ExternalTaskClient;
 import org.cadenzaflow.bpm.client.dto.ProcessDefinitionDto;

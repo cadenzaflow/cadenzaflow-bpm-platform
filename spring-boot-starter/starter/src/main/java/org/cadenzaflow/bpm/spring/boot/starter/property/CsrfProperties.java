@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.camunda.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
+import static org.cadenzaflow.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
 
 /**
  * @author Nikola Koevski

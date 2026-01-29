@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.run.test.plugins;
 
 /**
  * This is a dummy class. It is used to test if our logic detects
- * that it doesn't extend the {@link org.camunda.bpm.engine.impl.cfg.ProcessEnginePlugin} interface.
+ * that it doesn't extend the {@link org.cadenzaflow.bpm.engine.impl.cfg.ProcessEnginePlugin} interface.
  */
 public class TestFalsePlugin {
 }

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.instance.camunda;
 
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.PROCESS_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.PROCESS_ID;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;
 import org.cadenzaflow.bpm.engine.impl.persistence.entity.AuthorizationEntity;
 import org.cadenzaflow.bpm.engine.impl.persistence.entity.AuthorizationManager;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.history.UserOperationLogEntry;
 

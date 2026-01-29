@@ -32,7 +32,7 @@ public class InvocationCounterDelegateBeanLocal implements JavaDelegate {
   
   @EJB(lookup="java:global/" +
   	"service/" +
-  	"InvocationCounterServiceBean!org.camunda.bpm.integrationtest.functional.ejb.request.beans.InvocationCounterServiceLocal")
+  	"InvocationCounterServiceBean!org.cadenzaflow.bpm.integrationtest.functional.ejb.request.beans.InvocationCounterServiceLocal")
   private InvocationCounterServiceLocal invocationCounterService;
 
   public void execute(DelegateExecution execution) throws Exception {    

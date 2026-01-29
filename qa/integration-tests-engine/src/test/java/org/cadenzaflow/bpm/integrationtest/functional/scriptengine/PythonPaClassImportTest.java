@@ -39,7 +39,7 @@ import org.junit.runner.RunWith;
 public class PythonPaClassImportTest extends AbstractFoxPlatformIntegrationTest {
 
   public static final String SCRIPT_WITH_IMPORT =
-      "from org.camunda.bpm.integrationtest.functional.scriptengine.classes import CustomClass\n"
+      "from org.cadenzaflow.bpm.integrationtest.functional.scriptengine.classes import CustomClass\n"
     + "execution.setVariable('greeting', CustomClass().greet())";
 
   public static final String JYTHON_MODULE_DEPENDENCY =

@@ -20,7 +20,7 @@ import org.cadenzaflow.spin.spi.TypeDetector;
 
 import java.util.Set;
 
-import static org.camunda.spin.impl.json.jackson.format.TypeHelper.constructType;
+import static org.cadenzaflow.spin.impl.json.jackson.format.TypeHelper.constructType;
 
 /**
  * Detects erased types of Set classes.

@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.model.bpmn.instance.dc.Point;
 
 import java.util.Collection;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
 
 /**
  * @author Sebastian Menski

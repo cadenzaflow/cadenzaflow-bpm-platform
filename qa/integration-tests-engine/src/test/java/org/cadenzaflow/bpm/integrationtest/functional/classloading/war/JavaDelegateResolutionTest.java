@@ -66,7 +66,7 @@ public class JavaDelegateResolutionTest extends AbstractFoxPlatformIntegrationTe
   public void testResolveClass() {
     // assert that we cannot load the delegate here:
     try {
-      Class.forName("org.camunda.bpm.integrationtest.functional.classloading.ExampleDelegate");
+      Class.forName("org.cadenzaflow.bpm.integrationtest.functional.classloading.ExampleDelegate");
       Assert.fail("CNFE expected");
     }catch (ClassNotFoundException e) {
       // expected

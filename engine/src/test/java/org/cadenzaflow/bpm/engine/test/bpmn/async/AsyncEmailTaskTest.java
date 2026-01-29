@@ -33,7 +33,7 @@ import org.subethamail.wiser.WiserMessage;
  */
 public class AsyncEmailTaskTest extends EmailTestCase {
 
-  // copied from org.camunda.bpm.engine.test.bpmn.mail.EmailServiceTaskTest
+  // copied from org.cadenzaflow.bpm.engine.test.bpmn.mail.EmailServiceTaskTest
   @Deployment
   public void testSimpleTextMail() throws Exception {
     String procId = runtimeService.startProcessInstanceByKey("simpleTextOnly").getId();
@@ -52,7 +52,7 @@ public class AsyncEmailTaskTest extends EmailTestCase {
     testRule.assertProcessEnded(procId);
   }
 
-  // copied from org.camunda.bpm.engine.test.bpmn.mail.EmailSendTaskTest
+  // copied from org.cadenzaflow.bpm.engine.test.bpmn.mail.EmailSendTaskTest
   @Deployment
   public void testSimpleTextMailSendTask() throws Exception {
     runtimeService.startProcessInstanceByKey("simpleTextOnly");

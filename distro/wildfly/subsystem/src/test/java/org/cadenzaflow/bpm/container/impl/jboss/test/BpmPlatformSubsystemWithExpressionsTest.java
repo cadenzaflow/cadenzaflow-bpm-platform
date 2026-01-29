@@ -35,12 +35,12 @@ public class BpmPlatformSubsystemWithExpressionsTest extends AbstractSubsystemBa
   private static Map<String, String> PROPERTIES = new HashMap<>();
 
   static {
-    PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.isDefault", "true");
-    PROPERTIES.put("org.camunda.bpm.jboss.job-executor.core-threads", "5");
-    PROPERTIES.put("org.camunda.bpm.jboss.job-executor.max-threads", "15");
-    PROPERTIES.put("org.camunda.bpm.jboss.job-executor.queue-length", "15");
-    PROPERTIES.put("org.camunda.bpm.jboss.job-executor.keepalive-time", "10");
-    PROPERTIES.put("org.camunda.bpm.jboss.job-executor.allow-core-timeout", "false");
+    PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.isDefault", "true");
+    PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.core-threads", "5");
+    PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.max-threads", "15");
+    PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.queue-length", "15");
+    PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.keepalive-time", "10");
+    PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.allow-core-timeout", "false");
   }
 
   public BpmPlatformSubsystemWithExpressionsTest() {

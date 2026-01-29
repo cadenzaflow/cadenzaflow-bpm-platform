@@ -162,7 +162,7 @@ public class JobExecutorAcquireJobsForPriorityRangeTest extends AbstractJobExecu
   }
 
   @Test
-  @WatchLogger(loggerNames = "org.camunda.bpm.engine.impl.persistence.entity.JobEntity", level = "debug")
+  @WatchLogger(loggerNames = "org.cadenzaflow.bpm.engine.impl.persistence.entity.JobEntity", level = "debug")
   public void shouldDisableRangeCheckInQueryWhenDefaultConfig() {
     // given default configuration
     configuration.setJobExecutorAcquireByPriority(false);
@@ -176,7 +176,7 @@ public class JobExecutorAcquireJobsForPriorityRangeTest extends AbstractJobExecu
   }
 
   @Test
-  @WatchLogger(loggerNames = "org.camunda.bpm.engine.impl.persistence.entity.JobEntity", level = "debug")
+  @WatchLogger(loggerNames = "org.cadenzaflow.bpm.engine.impl.persistence.entity.JobEntity", level = "debug")
   public void shouldEnableRangeCheckInQueryWhenUsingCustomMinBoundaryConfig() {
     // given default configuration
     configuration.setJobExecutorPriorityRangeMin(6);
@@ -192,7 +192,7 @@ public class JobExecutorAcquireJobsForPriorityRangeTest extends AbstractJobExecu
   }
 
   @Test
-  @WatchLogger(loggerNames = "org.camunda.bpm.engine.impl.persistence.entity.JobEntity", level = "debug")
+  @WatchLogger(loggerNames = "org.cadenzaflow.bpm.engine.impl.persistence.entity.JobEntity", level = "debug")
   public void shouldEnableRangeCheckInQueryWhenUsingCustomMaxBoundaryConfig() {
     // given default configuration
     configuration.setJobExecutorPriorityRangeMax(11);

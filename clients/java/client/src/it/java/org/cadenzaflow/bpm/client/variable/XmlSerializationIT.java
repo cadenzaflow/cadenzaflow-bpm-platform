@@ -18,11 +18,11 @@ package org.cadenzaflow.bpm.client.variable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
-import static org.camunda.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
-import static org.camunda.bpm.engine.variable.Variables.SerializationDataFormats.XML;
-import static org.camunda.bpm.engine.variable.type.ValueType.OBJECT;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
+import static org.cadenzaflow.bpm.engine.variable.Variables.SerializationDataFormats.XML;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.OBJECT;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -700,7 +700,7 @@ public class XmlSerializationIT {
     ObjectValue serializedValue = task.getVariableTyped(VARIABLE_NAME_XML, false);
     assertThat(serializedValue.isDeserialized()).isFalse();
     assertThat(serializedValue.getType()).isEqualTo(OBJECT);
-    assertThat(serializedValue.getObjectTypeName()).isEqualTo("org.camunda.bpm.client.variable.XmlSerializables");
+    assertThat(serializedValue.getObjectTypeName()).isEqualTo("org.cadenzaflow.bpm.client.variable.XmlSerializables");
 
     SpinXmlElement spinElement = Spin.XML(serializedValue.getValueSerialized());
     SpinList<SpinXmlElement> childElements = spinElement.childElements();
@@ -714,7 +714,7 @@ public class XmlSerializationIT {
     assertThat(deserializedValue.isDeserialized()).isTrue();
     assertThat(deserializedValue.getValue()).isEqualTo(VARIABLE_VALUE_XML_LIST_DESERIALIZED);
     assertThat(deserializedValue.getType()).isEqualTo(OBJECT);
-    assertThat(deserializedValue.getObjectTypeName()).isEqualTo("org.camunda.bpm.client.variable.XmlSerializables");
+    assertThat(deserializedValue.getObjectTypeName()).isEqualTo("org.cadenzaflow.bpm.client.variable.XmlSerializables");
 
     XmlSerializables variableValue = task.getVariable(VARIABLE_NAME_XML);
     assertThat(variableValue).isEqualTo(VARIABLE_VALUE_XML_LIST_DESERIALIZED);

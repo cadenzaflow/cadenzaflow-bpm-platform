@@ -26,7 +26,7 @@ import org.cadenzaflow.bpm.engine.impl.util.ClockUtil;
 import org.cadenzaflow.bpm.engine.impl.util.JsonUtil;
 import com.google.gson.JsonObject;
 
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_CLEANUP_STRATEGY_REMOVAL_TIME_BASED;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_CLEANUP_STRATEGY_REMOVAL_TIME_BASED;
 
 /**
  * Job handler for history cleanup job.

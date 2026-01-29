@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNull;
 
 /**
  * @author Tassilo Weidner

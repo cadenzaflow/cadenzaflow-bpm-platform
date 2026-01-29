@@ -47,8 +47,8 @@ public class SpinScriptTaskSupportWithAutoStoreScriptVariablesTest extends Plugg
   }
 
   public void testSpinInternalVariablesNotExportedGroovyScriptTask() {
-    String importXML = "XML = org.camunda.spin.Spin.&XML\n";
-    String importJSON = "JSON = org.camunda.spin.Spin.&JSON\n";
+    String importXML = "XML = org.cadenzaflow.spin.Spin.&XML\n";
+    String importJSON = "JSON = org.cadenzaflow.spin.Spin.&JSON\n";
 
     String script = importXML + importJSON + TEST_SCRIPT;
 
@@ -62,8 +62,8 @@ public class SpinScriptTaskSupportWithAutoStoreScriptVariablesTest extends Plugg
 
   // Check https://jira.camunda.com/browse/CAM-5869
   public void FAILING_testSpinInternalVariablesNotExportedByJavascriptScriptTask() {
-    String importXML = "var XML = org.camunda.spin.Spin.XML;\n";
-    String importJSON = "var JSON = org.camunda.spin.Spin.JSON;\n";
+    String importXML = "var XML = org.cadenzaflow.spin.Spin.XML;\n";
+    String importJSON = "var JSON = org.cadenzaflow.spin.Spin.JSON;\n";
 
     String script = importXML + importJSON + TEST_SCRIPT;
 
@@ -90,8 +90,8 @@ public class SpinScriptTaskSupportWithAutoStoreScriptVariablesTest extends Plugg
   }
 
   public void testSpinInternalVariablesNotExportedByRubyScriptTask() {
-    String importXML = "def XML(*args)\n\torg.camunda.spin.Spin.XML(*args)\nend\n";
-    String importJSON = "def JSON(*args)\n\torg.camunda.spin.Spin.JSON(*args)\nend\n";
+    String importXML = "def XML(*args)\n\torg.cadenzaflow.spin.Spin.XML(*args)\nend\n";
+    String importJSON = "def JSON(*args)\n\torg.cadenzaflow.spin.Spin.JSON(*args)\nend\n";
 
     String script = importXML + importJSON + TEST_SCRIPT;
 

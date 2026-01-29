@@ -17,14 +17,14 @@
 package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_PROCESS_INSTANCE_COMMENT_FULL_MESSAGE;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_PROCESS_INSTANCE_COMMENT_ID;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_TASK_ID;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.NON_EXISTING_ID;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.createMockBatch;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.createMockHistoricProcessInstance;
-import static org.camunda.bpm.engine.rest.util.DateTimeUtils.DATE_FORMAT_WITH_TIMEZONE;
-import static org.camunda.bpm.engine.rest.util.DateTimeUtils.withTimezone;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_PROCESS_INSTANCE_COMMENT_FULL_MESSAGE;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_PROCESS_INSTANCE_COMMENT_ID;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_TASK_ID;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.NON_EXISTING_ID;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.createMockBatch;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.createMockHistoricProcessInstance;
+import static org.cadenzaflow.bpm.engine.rest.util.DateTimeUtils.DATE_FORMAT_WITH_TIMEZONE;
+import static org.cadenzaflow.bpm.engine.rest.util.DateTimeUtils.withTimezone;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;

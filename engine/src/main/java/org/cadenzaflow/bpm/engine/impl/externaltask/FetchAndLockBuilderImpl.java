@@ -17,12 +17,12 @@
 
 package org.cadenzaflow.bpm.engine.impl.externaltask;
 
-import static org.camunda.bpm.engine.impl.Direction.ASCENDING;
-import static org.camunda.bpm.engine.impl.Direction.DESCENDING;
-import static org.camunda.bpm.engine.impl.ExternalTaskQueryProperty.CREATE_TIME;
-import static org.camunda.bpm.engine.impl.util.CollectionUtil.getLastElement;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNull;
+import static org.cadenzaflow.bpm.engine.impl.Direction.ASCENDING;
+import static org.cadenzaflow.bpm.engine.impl.Direction.DESCENDING;
+import static org.cadenzaflow.bpm.engine.impl.ExternalTaskQueryProperty.CREATE_TIME;
+import static org.cadenzaflow.bpm.engine.impl.util.CollectionUtil.getLastElement;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNull;
 
 import java.util.ArrayList;
 import java.util.List;

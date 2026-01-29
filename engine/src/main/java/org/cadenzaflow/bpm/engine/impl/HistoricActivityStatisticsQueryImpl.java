@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.engine.history.HistoricActivityStatistics;
 import org.cadenzaflow.bpm.engine.history.HistoricActivityStatisticsQuery;
 import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;
 import org.cadenzaflow.bpm.engine.impl.interceptor.CommandExecutor;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  *

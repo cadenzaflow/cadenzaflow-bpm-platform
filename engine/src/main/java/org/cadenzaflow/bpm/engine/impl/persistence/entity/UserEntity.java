@@ -27,7 +27,7 @@ import org.cadenzaflow.bpm.engine.impl.context.Context;
 import org.cadenzaflow.bpm.engine.impl.db.HasDbRevision;
 import org.cadenzaflow.bpm.engine.impl.db.DbEntity;
 
-import static org.camunda.bpm.engine.impl.util.EncryptionUtil.saltPassword;
+import static org.cadenzaflow.bpm.engine.impl.util.EncryptionUtil.saltPassword;
 
 
 /**

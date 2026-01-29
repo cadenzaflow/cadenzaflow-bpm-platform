@@ -146,7 +146,7 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
     String instanceAsString = Bpmn.convertToString(instance);
 
     //when instance is deployed via addString method
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
                                                                                .addString(resourceName, instanceAsString)
                                                                                .deploy();
 
@@ -397,7 +397,7 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
     Date inThreeDays = new Date(startTime.getTime() + (3 * 24 * 60 * 60 * 1000));
 
     // Deploy process, but activate after three days
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
             .addClasspathResource("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
             .addClasspathResource("org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml")
             .activateProcessDefinitionsOn(inThreeDays)
@@ -441,7 +441,7 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
     Date inThreeDays = new Date(startTime.getTime() + (3 * 24 * 60 * 60 * 1000));
 
     // Deploy process, but activate after three days
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
             .addClasspathResource("org/camunda/bpm/engine/test/api/oneAsyncTask.bpmn")
             .activateProcessDefinitionsOn(inThreeDays)
             .deploy();
@@ -489,7 +489,7 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
   @Test
   public void testGetResourceAsStreamUnexistingResourceInExistingDeployment() {
     // Get hold of the deployment id
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().singleResult();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().singleResult();
 
     try {
       repositoryService.getResourceAsStream(deployment.getId(), "org/camunda/bpm/engine/test/api/unexistingProcess.bpmn.xml");
@@ -763,7 +763,7 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
 
     // Setup both process engines
     ProcessEngine processEngine1 = new StandaloneProcessEngineConfiguration().setProcessEngineName("reboot-test-schema")
-        .setDatabaseSchemaUpdate(org.camunda.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE)
+        .setDatabaseSchemaUpdate(org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE)
         .setJdbcUrl("jdbc:h2:mem:activiti-process-cache-test;DB_CLOSE_DELAY=1000")
         .setJobExecutorActivate(false)
         .setEnforceHistoryTimeToLive(false)
@@ -772,7 +772,7 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
     RepositoryService repositoryService1 = processEngine1.getRepositoryService();
 
     ProcessEngine processEngine2 = new StandaloneProcessEngineConfiguration().setProcessEngineName("reboot-test")
-        .setDatabaseSchemaUpdate(org.camunda.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE)
+        .setDatabaseSchemaUpdate(org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE)
         .setJdbcUrl("jdbc:h2:mem:activiti-process-cache-test;DB_CLOSE_DELAY=1000")
         .setJobExecutorActivate(false)
         .setEnforceHistoryTimeToLive(false)
@@ -824,14 +824,14 @@ public class RepositoryServiceTest extends PluggableProcessEngineTest {
 
   @Test
   public void testDeploymentPersistence() {
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .name("strings")
       .addString("org/camunda/bpm/engine/test/test/HelloWorld.string", "hello world")
       .addString("org/camunda/bpm/engine/test/test/TheAnswer.string", "42")
       .deploy();
 
-    List<org.camunda.bpm.engine.repository.Deployment> deployments
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments
       = repositoryService.createDeploymentQuery().list();
     assertEquals(1, deployments.size());
     deployment = deployments.get(0);

@@ -34,7 +34,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngineException;
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 import org.cadenzaflow.bpm.engine.impl.util.ClassLoaderUtil;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * <p>Deployment operation step responsible for parsing and attaching the bpm-platform.xml file.</p>

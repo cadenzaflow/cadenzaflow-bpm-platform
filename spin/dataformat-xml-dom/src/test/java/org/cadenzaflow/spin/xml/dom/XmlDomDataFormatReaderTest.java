@@ -17,7 +17,7 @@
 package org.cadenzaflow.spin.xml.dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_XML;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_XML;
 
 import java.io.IOException;
 import java.io.Reader;

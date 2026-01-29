@@ -16,13 +16,13 @@
  */
 package org.cadenzaflow.bpm.model.dmn;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_ALTERNATIVE_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN12_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN13_ALTERNATIVE_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN13_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN14_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN15_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN11_ALTERNATIVE_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN12_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN13_ALTERNATIVE_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN13_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN14_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN15_NS;
 
 import java.io.File;
 import java.io.FileInputStream;

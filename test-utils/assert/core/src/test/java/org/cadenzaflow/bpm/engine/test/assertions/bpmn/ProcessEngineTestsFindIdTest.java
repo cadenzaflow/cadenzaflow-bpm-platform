@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.assertions.bpmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.findId;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.findId;
 
 import org.cadenzaflow.bpm.engine.test.Deployment;
 import org.cadenzaflow.bpm.engine.test.ProcessEngineRule;

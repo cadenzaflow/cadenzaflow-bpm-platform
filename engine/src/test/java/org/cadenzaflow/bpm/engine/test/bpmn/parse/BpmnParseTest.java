@@ -108,7 +108,7 @@ public class BpmnParseTest {
 
   @After
   public void tearDown() {
-    for (org.camunda.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }
   }
@@ -1370,7 +1370,7 @@ public class BpmnParseTest {
   }
 
   @Test
-  @WatchLogger(loggerNames = {"org.camunda.bpm.engine.bpmn.parser"}, level = "INFO")
+  @WatchLogger(loggerNames = {"org.cadenzaflow.bpm.engine.bpmn.parser"}, level = "INFO")
   public void testIntermediateCatchTimerEventWithTimeCycleNotRecommendedInfoMessage() {
     BpmnModelInstance process = Bpmn.createExecutableProcess("process")
         .startEvent()

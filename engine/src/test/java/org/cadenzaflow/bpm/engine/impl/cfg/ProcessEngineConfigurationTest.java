@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.impl.cfg;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.camunda.bpm.engine.impl.ProcessEngineLogger.CONFIG_LOGGER;
+import static org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger.CONFIG_LOGGER;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

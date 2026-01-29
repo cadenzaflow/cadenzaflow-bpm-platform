@@ -42,7 +42,7 @@ public class FallbackSerializationTest extends PluggableProcessEngineTestCase {
     // when
     ObjectValue objectValue = Variables.serializedObjectValue("foo")
       .serializationDataFormat("application/foo")
-      .objectTypeName("org.camunda.Foo")
+      .objectTypeName("org.cadenzaflow.Foo")
       .create();
 
     runtimeService.setVariable(instance.getId(), "var", objectValue);
@@ -59,7 +59,7 @@ public class FallbackSerializationTest extends PluggableProcessEngineTestCase {
     assertFalse(returnedValue.isDeserialized());
     assertEquals("application/foo", returnedValue.getSerializationDataFormat());
     assertEquals("foo", returnedValue.getValueSerialized());
-    assertEquals("org.camunda.Foo", returnedValue.getObjectTypeName());
+    assertEquals("org.cadenzaflow.Foo", returnedValue.getObjectTypeName());
 
   }
 }

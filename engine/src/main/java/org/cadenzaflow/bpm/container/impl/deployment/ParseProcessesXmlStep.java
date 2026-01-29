@@ -35,8 +35,8 @@ import org.cadenzaflow.bpm.container.impl.spi.DeploymentOperationStep;
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 import org.cadenzaflow.bpm.engine.impl.util.IoUtil;
 
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESSES_XML_RESOURCES;
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESS_APPLICATION;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESSES_XML_RESOURCES;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESS_APPLICATION;
 
 
 /**

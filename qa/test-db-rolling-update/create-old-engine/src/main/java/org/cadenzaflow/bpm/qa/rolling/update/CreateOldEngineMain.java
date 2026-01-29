@@ -26,6 +26,6 @@ package org.cadenzaflow.bpm.qa.rolling.update;
 public class CreateOldEngineMain {
 
   public static void main(String[] args) {
-    org.camunda.bpm.qa.rolling.update.TestFixture.main(new String[]{RollingUpdateConstants.OLD_ENGINE_TAG});
+    org.cadenzaflow.bpm.qa.rolling.update.TestFixture.main(new String[]{RollingUpdateConstants.OLD_ENGINE_TAG});
   }
 }

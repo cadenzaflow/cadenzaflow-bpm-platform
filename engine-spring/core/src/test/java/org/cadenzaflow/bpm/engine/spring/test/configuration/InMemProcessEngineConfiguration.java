@@ -33,7 +33,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @author Philipp Ossler
  */
 @Configuration
-@ComponentScan("org.camunda.bpm.engine.spring.test.configuration")
+@ComponentScan("org.cadenzaflow.bpm.engine.spring.test.configuration")
 public class InMemProcessEngineConfiguration {
 
   @Bean

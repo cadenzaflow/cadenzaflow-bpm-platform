@@ -21,7 +21,7 @@ import static java.lang.Integer.MIN_VALUE;
 
 import static org.assertj.core.api.Assertions.entry;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
-import static org.camunda.bpm.dmn.engine.test.asserts.DmnEngineTestAssertions.assertThat;
+import static org.cadenzaflow.bpm.dmn.engine.test.asserts.DmnEngineTestAssertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;

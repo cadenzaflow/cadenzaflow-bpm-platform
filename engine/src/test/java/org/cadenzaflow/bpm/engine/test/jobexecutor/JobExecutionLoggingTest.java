@@ -45,7 +45,7 @@ public class JobExecutionLoggingTest {
   protected ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   public ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().watch(
-      "org.camunda.bpm.engine.jobexecutor", Level.DEBUG);
+      "org.cadenzaflow.bpm.engine.jobexecutor", Level.DEBUG);
 
   @Rule
   public RuleChain ruleChain = RuleChain.outerRule(engineRule).around(testRule).around(loggingRule);

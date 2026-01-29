@@ -35,12 +35,12 @@ import java.util.concurrent.CountDownLatch;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.DB2;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.H2;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MSSQL;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MYSQL;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.ORACLE;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.POSTGRES;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.DB2;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.H2;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MSSQL;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.MYSQL;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.ORACLE;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.DEADLOCK_CODES.POSTGRES;
 
 /**
  * HEADS-UP: If a test fails, please make sure to adjust the error code / sql state for the respective

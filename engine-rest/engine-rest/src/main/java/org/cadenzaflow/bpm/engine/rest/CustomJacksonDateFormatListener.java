@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.engine.rest.mapper.JacksonConfigurator;
 
 public class CustomJacksonDateFormatListener implements ServletContextListener {
 
-  public final static String CONTEXT_PARAM_NAME = "org.camunda.bpm.engine.rest.jackson.dateFormat";
+  public final static String CONTEXT_PARAM_NAME = "org.cadenzaflow.bpm.engine.rest.jackson.dateFormat";
 
   public void contextInitialized(ServletContextEvent sce) {
     String dateFormat = sce.getServletContext().getInitParameter(CONTEXT_PARAM_NAME);

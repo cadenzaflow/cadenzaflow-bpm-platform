@@ -36,7 +36,7 @@ import org.springframework.aop.support.ComposablePointcut;
  * Advised methods start a process after the method executes.
  *
  * Advised methods can declare a return
- * type of {@link org.camunda.bpm.engine.runtime.ProcessInstance} and then subsequently
+ * type of {@link org.cadenzaflow.bpm.engine.runtime.ProcessInstance} and then subsequently
  * return null. The real return ProcessInstance value will be given by the aspect.
  * 
  *
@@ -62,7 +62,7 @@ public class ProcessStartingPointcutAdvisor implements PointcutAdvisor, Serializ
 	protected Pointcut pointcut;
 
 	/**
-	 * the injected reference to the {@link org.camunda.bpm.engine.ProcessEngine}
+	 * the injected reference to the {@link org.cadenzaflow.bpm.engine.ProcessEngine}
 	 */
 	protected ProcessEngine processEngine;
 

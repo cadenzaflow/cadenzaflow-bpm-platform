@@ -35,7 +35,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.camunda.bpm.application.ProcessApplicationContext.withProcessApplicationContext;
+import static org.cadenzaflow.bpm.application.ProcessApplicationContext.withProcessApplicationContext;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)

@@ -105,7 +105,7 @@ public class ProcessApplicationProcessor implements DeploymentUnitProcessor {
 
     if (compositeIndex != null) {
       // allow coexistence of Javax- and Jakarta-based servlet process applications in deployments but only consider Javax-based ones here
-      unsupportedClasses = compositeIndex.getAllKnownSubclasses(DotName.createSimple("org.camunda.bpm.application.impl.JakartaServletProcessApplication"));
+      unsupportedClasses = compositeIndex.getAllKnownSubclasses(DotName.createSimple("org.cadenzaflow.bpm.application.impl.JakartaServletProcessApplication"));
       processApplicationAnnotations = getAnnotationsFromSupportedClasses(compositeIndex, ProcessApplication.class, unsupportedClasses);
       postDeployAnnnotations = getAnnotationsFromSupportedClasses(compositeIndex, PostDeploy.class, unsupportedClasses);
       preUndeployAnnnotations = getAnnotationsFromSupportedClasses(compositeIndex, PreUndeploy.class, unsupportedClasses);

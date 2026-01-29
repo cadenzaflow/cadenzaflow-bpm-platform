@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.engine.test.standalone.history;
 
-import static org.camunda.bpm.engine.EntityTypes.JOB;
-import static org.camunda.bpm.engine.EntityTypes.JOB_DEFINITION;
-import static org.camunda.bpm.engine.EntityTypes.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.EntityTypes.PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP;
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_SET_JOB_RETRIES;
+import static org.cadenzaflow.bpm.engine.EntityTypes.JOB;
+import static org.cadenzaflow.bpm.engine.EntityTypes.JOB_DEFINITION;
+import static org.cadenzaflow.bpm.engine.EntityTypes.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.EntityTypes.PROCESS_INSTANCE;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_CREATE_DROP;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.OPERATION_TYPE_SET_JOB_RETRIES;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

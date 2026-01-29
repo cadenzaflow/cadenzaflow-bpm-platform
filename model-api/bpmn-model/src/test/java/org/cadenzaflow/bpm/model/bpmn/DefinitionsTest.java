@@ -32,8 +32,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.XML_SCHEMA_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.XPATH_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.XML_SCHEMA_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.XPATH_NS;
 
 /**
  * @author Daniel Meyer

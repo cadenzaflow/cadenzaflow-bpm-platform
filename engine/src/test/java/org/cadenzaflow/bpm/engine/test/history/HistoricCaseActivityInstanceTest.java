@@ -16,13 +16,13 @@
  */
 package org.cadenzaflow.bpm.engine.test.history;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.DISABLED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ENABLED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.DISABLED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ENABLED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;

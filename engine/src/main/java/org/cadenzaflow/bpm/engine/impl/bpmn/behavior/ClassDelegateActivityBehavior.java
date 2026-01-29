@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.bpmn.behavior;
 
-import static org.camunda.bpm.engine.impl.util.ClassDelegateUtil.instantiateDelegate;
+import static org.cadenzaflow.bpm.engine.impl.util.ClassDelegateUtil.instantiateDelegate;
 
 import java.util.List;
 import java.util.concurrent.Callable;

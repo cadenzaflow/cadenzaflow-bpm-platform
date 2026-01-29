@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.engine.impl.bpmn.parser;
 
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParseUtil.findCamundaExtensionElement;
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseCamundaExtensionProperties;
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseCamundaScript;
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseInputOutput;
-import static org.camunda.bpm.engine.impl.util.ClassDelegateUtil.instantiateDelegate;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParseUtil.findCamundaExtensionElement;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseCamundaExtensionProperties;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseCamundaScript;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParseUtil.parseInputOutput;
+import static org.cadenzaflow.bpm.engine.impl.util.ClassDelegateUtil.instantiateDelegate;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -434,7 +434,7 @@ public class BpmnParse extends Parse {
       if (importType.equals("http://schemas.xmlsoap.org/wsdl/")) {
         Class<?> wsdlImporterClass;
         try {
-          wsdlImporterClass = Class.forName("org.camunda.bpm.engine.impl.webservice.CxfWSDLImporter", true, Thread.currentThread().getContextClassLoader());
+          wsdlImporterClass = Class.forName("org.cadenzaflow.bpm.engine.impl.webservice.CxfWSDLImporter", true, Thread.currentThread().getContextClassLoader());
           XMLImporter newInstance = (XMLImporter) wsdlImporterClass.newInstance();
           this.importers.put(importType, newInstance);
           return newInstance;

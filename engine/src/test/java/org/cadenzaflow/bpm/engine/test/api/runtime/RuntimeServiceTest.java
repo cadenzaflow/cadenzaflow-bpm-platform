@@ -18,11 +18,11 @@ package org.cadenzaflow.bpm.engine.test.api.runtime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
-import static org.camunda.bpm.engine.test.util.ExecutableProcessUtil.USER_TASK_PROCESS;
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
-import static org.camunda.bpm.engine.variable.Variables.objectValue;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutableProcessUtil.USER_TASK_PROCESS;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.engine.variable.Variables.objectValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -2778,7 +2778,7 @@ public class RuntimeServiceTest {
     // Reboot the process engine
     processEngine = new StandaloneProcessEngineConfiguration()
       .setProcessEngineName("reboot-test")
-      .setDatabaseSchemaUpdate(org.camunda.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE)
+      .setDatabaseSchemaUpdate(org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.DB_SCHEMA_UPDATE_FALSE)
       .setJdbcUrl("jdbc:h2:mem:activiti-reboot-test;DB_CLOSE_DELAY=1000")
       .setJobExecutorActivate(false)
       .buildProcessEngine();

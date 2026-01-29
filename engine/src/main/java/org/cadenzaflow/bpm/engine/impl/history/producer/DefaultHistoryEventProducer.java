@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.engine.impl.history.producer;
 
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_END;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_START;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.createJobExceptionByteArray;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.getExceptionStacktrace;
-import static org.camunda.bpm.engine.impl.util.StringUtil.toByteArray;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_END;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_START;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.createJobExceptionByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.getExceptionStacktrace;
+import static org.cadenzaflow.bpm.engine.impl.util.StringUtil.toByteArray;
 
 import java.util.ArrayList;
 import java.util.Date;

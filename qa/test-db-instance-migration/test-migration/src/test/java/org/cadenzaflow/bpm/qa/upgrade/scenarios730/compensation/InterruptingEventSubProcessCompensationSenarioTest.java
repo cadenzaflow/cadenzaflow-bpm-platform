@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.qa.upgrade.scenarios730.compensation;
 
-import static org.camunda.bpm.qa.upgrade.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.qa.upgrade.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.qa.upgrade.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.qa.upgrade.util.ActivityInstanceAssert.describeActivityInstanceTree;
 
 import org.cadenzaflow.bpm.engine.history.HistoricActivityInstance;
 import org.cadenzaflow.bpm.engine.runtime.ActivityInstance;

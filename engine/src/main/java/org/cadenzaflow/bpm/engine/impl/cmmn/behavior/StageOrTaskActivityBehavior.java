@@ -16,14 +16,14 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.DISABLED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ENABLED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_MANUAL_ACTIVATION_RULE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ACTIVE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.DISABLED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ENABLED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_MANUAL_ACTIVATION_RULE;
 
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 import org.cadenzaflow.bpm.engine.impl.cmmn.CaseControlRule;

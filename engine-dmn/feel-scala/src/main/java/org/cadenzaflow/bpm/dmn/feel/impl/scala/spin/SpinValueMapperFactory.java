@@ -17,14 +17,14 @@
 package org.cadenzaflow.bpm.dmn.feel.impl.scala.spin;
 
 import org.cadenzaflow.bpm.dmn.feel.impl.scala.ScalaFeelLogger;
-import org.cadenzaflow.feel.valuemapper.CustomValueMapper;
+import org.camunda.feel.valuemapper.CustomValueMapper;
 
 public class SpinValueMapperFactory {
 
   protected static final ScalaFeelLogger LOGGER = ScalaFeelLogger.LOGGER;
 
   public static final String SPIN_VALUE_MAPPER_CLASS_NAME =
-    "org.camunda.spin.plugin.impl.feel.integration.SpinValueMapper";
+    "org.cadenzaflow.spin.plugin.impl.feel.integration.SpinValueMapper";
 
   public CustomValueMapper createInstance() {
     Class<?> valueMapperClass = lookupClass();

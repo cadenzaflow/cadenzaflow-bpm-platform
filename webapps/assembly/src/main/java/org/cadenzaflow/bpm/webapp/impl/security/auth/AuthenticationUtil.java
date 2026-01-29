@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.webapp.impl.security.auth;
 
-import static org.camunda.bpm.engine.authorization.Permissions.ACCESS;
-import static org.camunda.bpm.engine.authorization.Resources.APPLICATION;
-import static org.camunda.bpm.webapp.impl.security.filter.util.HttpSessionMutexListener.AUTH_TIME_SESSION_MUTEX;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.ACCESS;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.APPLICATION;
+import static org.cadenzaflow.bpm.webapp.impl.security.filter.util.HttpSessionMutexListener.AUTH_TIME_SESSION_MUTEX;
 
 import java.util.ArrayList;
 import java.util.Collections;

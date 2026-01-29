@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.engine.delegate.DelegateTask;
 
 
 /**
- * @deprecated use org.camunda.bpm.engine.delegate.TaskListener instead
+ * @deprecated use org.cadenzaflow.bpm.engine.delegate.TaskListener instead
  * 
  * @author Tom Baeyens
  */

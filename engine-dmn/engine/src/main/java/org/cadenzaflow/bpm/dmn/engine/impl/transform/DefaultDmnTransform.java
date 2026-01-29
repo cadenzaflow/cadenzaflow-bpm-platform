@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.dmn.engine.impl.transform;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import java.io.File;
 import java.io.InputStream;

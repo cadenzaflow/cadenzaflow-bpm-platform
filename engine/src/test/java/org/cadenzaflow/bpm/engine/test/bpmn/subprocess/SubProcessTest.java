@@ -558,7 +558,7 @@ public class SubProcessTest extends PluggableProcessEngineTest {
   @Test
   public void testConcurrencyInSubProcess() {
 
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
       repositoryService.createDeployment()
                   .addClasspathResource("org/camunda/bpm/engine/test/bpmn/subprocess/SubProcessTest.fixSystemFailureProcess.bpmn20.xml")
                   .deploy();

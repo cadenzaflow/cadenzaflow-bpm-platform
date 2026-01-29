@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.engine.delegate.JavaDelegate;
 import org.cadenzaflow.bpm.engine.variable.Variables;
 import org.cadenzaflow.bpm.engine.variable.value.TypedValue;
 
-import static org.camunda.spin.plugin.variable.SpinValues.xmlValue;
+import static org.cadenzaflow.spin.plugin.variable.SpinValues.xmlValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

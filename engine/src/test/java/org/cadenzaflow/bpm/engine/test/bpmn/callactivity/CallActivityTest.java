@@ -1923,8 +1923,8 @@ public class CallActivityTest extends PluggableProcessEngineTest {
   }
 
   protected void cleanupDeployments() {
-    List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
-    for (org.camunda.bpm.engine.repository.Deployment currentDeployment : deployments) {
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery().list();
+    for (org.cadenzaflow.bpm.engine.repository.Deployment currentDeployment : deployments) {
       repositoryService.deleteDeployment(currentDeployment.getId(), true);
     }
   }

@@ -21,6 +21,6 @@ package org.cadenzaflow.bpm.cockpit.db;
  *
  * @author Nico Rehwaldt
  */
-public class QueryParameters extends org.camunda.bpm.webapp.db.QueryParameters {
+public class QueryParameters extends org.cadenzaflow.bpm.webapp.db.QueryParameters {
 
 }

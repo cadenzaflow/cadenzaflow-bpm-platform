@@ -27,11 +27,11 @@ import org.cadenzaflow.bpm.webapp.plugin.spi.AppPlugin;
  * A cockpit plugin may provide additional MyBatis mapping files, see {@link #getMappingFiles()}.
  *
  * Plugin developers should not use this interface directly but use
- * {@link org.camunda.bpm.cockpit.plugin.spi.impl.AbstractCockpitPlugin} as a base class.
+ * {@link org.cadenzaflow.bpm.cockpit.plugin.spi.impl.AbstractCockpitPlugin} as a base class.
  *
  * @author nico.rehwaldt
  *
- * @see org.camunda.bpm.cockpit.plugin.spi.impl.AbstractCockpitPlugin
+ * @see org.cadenzaflow.bpm.cockpit.plugin.spi.impl.AbstractCockpitPlugin
  */
 public interface CockpitPlugin extends AppPlugin {
 
@@ -45,8 +45,8 @@ public interface CockpitPlugin extends AppPlugin {
    *
    * <p>
    *
-   * Inside the plugin the queries may be executed via the {@link org.camunda.bpm.cockpit.db.QueryService} that may be obtained through
-   * {@link org.camunda.bpm.cockpit.Cockpit#getQueryService(java.lang.String) }.
+   * Inside the plugin the queries may be executed via the {@link org.cadenzaflow.bpm.cockpit.db.QueryService} that may be obtained through
+   * {@link org.cadenzaflow.bpm.cockpit.Cockpit#getQueryService(java.lang.String) }.
    *
    * @return the list of additional mapping files
    */

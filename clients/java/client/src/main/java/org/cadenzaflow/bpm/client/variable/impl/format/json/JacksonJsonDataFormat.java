@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.client.variable.impl.format.json;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import java.io.IOException;
 import java.io.StringWriter;

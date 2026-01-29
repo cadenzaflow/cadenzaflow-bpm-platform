@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.pa.demo;
 
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
-import static org.camunda.bpm.engine.authorization.Permissions.ACCESS;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Resources.APPLICATION;
-import static org.camunda.bpm.engine.authorization.Resources.USER;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.ACCESS;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.APPLICATION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.USER;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -18,11 +18,11 @@ package org.cadenzaflow.bpm.client.variable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
-import static org.camunda.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
-import static org.camunda.bpm.engine.variable.Variables.SerializationDataFormats.JSON;
-import static org.camunda.bpm.engine.variable.type.ValueType.OBJECT;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
+import static org.cadenzaflow.bpm.engine.variable.Variables.SerializationDataFormats.JSON;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.OBJECT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -694,13 +694,13 @@ public class JsonSerializationIT {
     assertThat(serializedValue.isDeserialized()).isFalse();
     JSONAssert.assertEquals(VARIABLE_VALUE_JSON_LIST_SERIALIZED, new String(serializedValue.getValueSerialized()), true);
     assertThat(serializedValue.getType()).isEqualTo(OBJECT);
-    assertThat(serializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.camunda.bpm.client.variable.JsonSerializable>");
+    assertThat(serializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.cadenzaflow.bpm.client.variable.JsonSerializable>");
 
     ObjectValue deserializedValue = task.getVariableTyped(VARIABLE_NAME_JSON);
     assertThat(deserializedValue.isDeserialized()).isTrue();
     assertThat(deserializedValue.getValue()).isEqualTo(variable);
     assertThat(deserializedValue.getType()).isEqualTo(OBJECT);
-    assertThat(deserializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.camunda.bpm.client.variable.JsonSerializable>");
+    assertThat(deserializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.cadenzaflow.bpm.client.variable.JsonSerializable>");
 
     List<JsonSerializable> variableValue = task.getVariable(VARIABLE_NAME_JSON);
     assertThat(variableValue).isEqualTo(variable);
@@ -743,13 +743,13 @@ public class JsonSerializationIT {
     assertThat(serializedValue.isDeserialized()).isFalse();
     JSONAssert.assertEquals(VARIABLE_VALUE_JSON_LIST_SERIALIZED, new String(serializedValue.getValueSerialized()), true);
     assertThat(serializedValue.getType()).isEqualTo(OBJECT);
-    assertThat(serializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.camunda.bpm.client.variable.JsonSerializable>");
+    assertThat(serializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.cadenzaflow.bpm.client.variable.JsonSerializable>");
 
     ObjectValue deserializedValue = task.getVariableTyped(VARIABLE_NAME_JSON);
     assertThat(deserializedValue.isDeserialized()).isTrue();
     assertThat(deserializedValue.getValue()).isEqualTo(variable);
     assertThat(deserializedValue.getType()).isEqualTo(OBJECT);
-    assertThat(deserializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.camunda.bpm.client.variable.JsonSerializable>");
+    assertThat(deserializedValue.getObjectTypeName()).isEqualTo("java.util.ArrayList<org.cadenzaflow.bpm.client.variable.JsonSerializable>");
 
     List<JsonSerializable> variableValue = task.getVariable(VARIABLE_NAME_JSON);
     assertThat(variableValue).isEqualTo(variable);

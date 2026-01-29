@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.impl.diagnostics;
 
-import static org.camunda.bpm.engine.management.Metrics.ACTIVTY_INSTANCE_START;
-import static org.camunda.bpm.engine.management.Metrics.EXECUTED_DECISION_ELEMENTS;
-import static org.camunda.bpm.engine.management.Metrics.EXECUTED_DECISION_INSTANCES;
-import static org.camunda.bpm.engine.management.Metrics.ROOT_PROCESS_INSTANCE_START;
+import static org.cadenzaflow.bpm.engine.management.Metrics.ACTIVTY_INSTANCE_START;
+import static org.cadenzaflow.bpm.engine.management.Metrics.EXECUTED_DECISION_ELEMENTS;
+import static org.cadenzaflow.bpm.engine.management.Metrics.EXECUTED_DECISION_INSTANCES;
+import static org.cadenzaflow.bpm.engine.management.Metrics.ROOT_PROCESS_INSTANCE_START;
 
 import java.util.HashMap;
 import java.util.Map;

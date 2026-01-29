@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.spring.boot.starter.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import static org.camunda.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
+import static org.cadenzaflow.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
 
 @ConfigurationProperties("management")
 public class ManagementProperties {

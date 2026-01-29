@@ -18,13 +18,13 @@ package org.cadenzaflow.spin.xml.dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.spin.DataFormats.xml;
-import static org.camunda.spin.Spin.S;
-import static org.camunda.spin.Spin.XML;
-import static org.camunda.spin.impl.util.SpinIoUtil.stringAsReader;
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_EMPTY_STRING;
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_INVALID_XML;
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_XML;
+import static org.cadenzaflow.spin.DataFormats.xml;
+import static org.cadenzaflow.spin.Spin.S;
+import static org.cadenzaflow.spin.Spin.XML;
+import static org.cadenzaflow.spin.impl.util.SpinIoUtil.stringAsReader;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_EMPTY_STRING;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_INVALID_XML;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_XML;
 
 import java.io.Reader;
 

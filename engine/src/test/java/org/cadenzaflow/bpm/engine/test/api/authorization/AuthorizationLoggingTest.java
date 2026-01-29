@@ -36,7 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AuthorizationLoggingTest {
 
-  protected static final String CONTEXT_LOGGER = "org.camunda.bpm.engine.context";
+  protected static final String CONTEXT_LOGGER = "org.cadenzaflow.bpm.engine.context";
 
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   public AuthorizationTestRule authRule = new AuthorizationTestRule(engineRule);

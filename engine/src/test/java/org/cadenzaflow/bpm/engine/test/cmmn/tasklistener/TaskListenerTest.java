@@ -1354,7 +1354,7 @@ public class TaskListenerTest extends PluggableProcessEngineTest {
       // then
       Throwable cause = e.getCause();
       String message = cause.getMessage();
-      testRule.assertTextPresent("Exception while instantiating class 'org.camunda.bpm.engine.test.cmmn.tasklistener.util.NotExistingTaskListener'", message);
+      testRule.assertTextPresent("Exception while instantiating class 'org.cadenzaflow.bpm.engine.test.cmmn.tasklistener.util.NotExistingTaskListener'", message);
     }
 
   }

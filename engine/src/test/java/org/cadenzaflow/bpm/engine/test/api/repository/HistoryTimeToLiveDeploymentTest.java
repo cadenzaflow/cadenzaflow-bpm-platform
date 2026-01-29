@@ -45,7 +45,7 @@ import org.junit.rules.RuleChain;
 
 public class HistoryTimeToLiveDeploymentTest {
 
-  protected static final String CONFIG_LOGGER = "org.camunda.bpm.engine.cfg";
+  protected static final String CONFIG_LOGGER = "org.cadenzaflow.bpm.engine.cfg";
 
   protected static final String EXPECTED_DEFAULT_CONFIG_MSG = "History Time To Live (TTL) cannot be null. ";
 

@@ -57,9 +57,9 @@ public class RedeployProcessClassloadingTest extends AbstractFoxPlatformIntegrat
   @OperateOnDeployment("clientDeployment")
   public void testRedeployClassloading() {
     // given
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().singleResult();
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery().singleResult();
 
-    org.camunda.bpm.engine.repository.Deployment deployment2 = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment2 = repositoryService
       .createDeployment()
       .nameFromDeployment(deployment.getId())
       .addDeploymentResources(deployment.getId())

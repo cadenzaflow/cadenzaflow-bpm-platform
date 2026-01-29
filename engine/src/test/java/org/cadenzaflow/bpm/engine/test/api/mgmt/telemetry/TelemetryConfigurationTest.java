@@ -89,7 +89,7 @@ public class TelemetryConfigurationTest {
   }
 
   @Test
-  @WatchLogger(loggerNames = {"org.camunda.bpm.engine.persistence"}, level = "DEBUG")
+  @WatchLogger(loggerNames = {"org.cadenzaflow.bpm.engine.persistence"}, level = "DEBUG")
   public void shouldNotLogDefaultTelemetryValue() {
     // given
 

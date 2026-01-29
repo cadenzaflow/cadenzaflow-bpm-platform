@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.cockpit.plugin.base.authorization;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
-import static org.camunda.bpm.engine.authorization.Permissions.ALL;
-import static org.camunda.bpm.engine.authorization.Resources.AUTHORIZATION;
-import static org.camunda.bpm.engine.authorization.Resources.USER;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.ALL;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.AUTHORIZATION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.USER;
 
 import java.util.Arrays;
 import org.cadenzaflow.bpm.cockpit.plugin.test.AbstractCockpitPluginTest;

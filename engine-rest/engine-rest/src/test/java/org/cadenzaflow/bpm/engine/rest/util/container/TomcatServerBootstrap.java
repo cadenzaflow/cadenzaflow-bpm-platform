@@ -96,7 +96,7 @@ public abstract class TomcatServerBootstrap extends AbstractServerBootstrap {
 
         .addAsServiceProvider(ProcessEngineProvider.class, MockedProcessEngineProvider.class)
         .add(new ClassLoaderAsset("runtime/tomcat/context.xml"), "META-INF/context.xml")
-        .addPackages(true, "org.camunda.bpm.engine.rest");
+        .addPackages(true, "org.cadenzaflow.bpm.engine.rest");
 
     addRuntimeSpecificLibraries(wa, resolver);
     wa.setWebXML(webXmlPath);

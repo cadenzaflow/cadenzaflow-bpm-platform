@@ -23,8 +23,8 @@ import org.cadenzaflow.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.cadenzaflow.bpm.engine.spring.SpringProcessEngineConfiguration;
 import org.cadenzaflow.bpm.engine.spring.SpringProcessEnginePlugin;
 
-import static org.camunda.bpm.spring.boot.starter.util.CamundaSpringBootUtil.processEngineImpl;
-import static org.camunda.bpm.spring.boot.starter.util.CamundaSpringBootUtil.springProcessEngineConfiguration;
+import static org.cadenzaflow.bpm.spring.boot.starter.util.CamundaSpringBootUtil.processEngineImpl;
+import static org.cadenzaflow.bpm.spring.boot.starter.util.CamundaSpringBootUtil.springProcessEngineConfiguration;
 
 /**
  * Convenience class that specializes {@link AbstractProcessEnginePlugin} to

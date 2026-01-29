@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.identity.impl.ldap;
 
-import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Resources.GROUP;
-import static org.camunda.bpm.engine.authorization.Resources.USER;
-import static org.camunda.bpm.identity.ldap.util.LdapTestUtilities.testGroupPaging;
-import static org.camunda.bpm.identity.ldap.util.LdapTestUtilities.testUserPaging;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.GROUP;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.USER;
+import static org.cadenzaflow.bpm.identity.ldap.util.LdapTestUtilities.testGroupPaging;
+import static org.cadenzaflow.bpm.identity.ldap.util.LdapTestUtilities.testUserPaging;
 
 import org.cadenzaflow.bpm.engine.AuthorizationService;
 import org.cadenzaflow.bpm.engine.IdentityService;

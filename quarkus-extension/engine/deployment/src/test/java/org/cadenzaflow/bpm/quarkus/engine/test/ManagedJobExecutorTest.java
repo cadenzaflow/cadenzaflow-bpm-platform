@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.quarkus.engine.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.impl.test.TestHelper.waitForJobExecutorToProcessAllJobs;
+import static org.cadenzaflow.bpm.engine.impl.test.TestHelper.waitForJobExecutorToProcessAllJobs;
 
 import io.quarkus.test.QuarkusUnitTest;
 import jakarta.enterprise.context.ApplicationScoped;

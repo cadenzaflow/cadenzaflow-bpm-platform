@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration;
 
-import static org.camunda.bpm.engine.test.util.MigrationPlanValidationReportAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.MigrationPlanValidationReportAssert.assertThat;
 import static org.junit.Assert.fail;
 
 import org.cadenzaflow.bpm.engine.migration.MigrationPlanValidationException;

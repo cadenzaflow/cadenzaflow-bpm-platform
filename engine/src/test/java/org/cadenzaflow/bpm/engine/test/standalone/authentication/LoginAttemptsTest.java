@@ -41,7 +41,7 @@ import org.junit.Test;
 public class LoginAttemptsTest {
 
   private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-  private static final String INDENTITY_LOGGER = "org.camunda.bpm.engine.identity";
+  private static final String INDENTITY_LOGGER = "org.cadenzaflow.bpm.engine.identity";
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(configuration -> {

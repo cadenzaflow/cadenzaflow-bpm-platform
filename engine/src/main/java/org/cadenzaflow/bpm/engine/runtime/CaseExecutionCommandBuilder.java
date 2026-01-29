@@ -238,7 +238,7 @@ public interface CaseExecutionCommandBuilder {
    * executing in this state:
    *   <ul>
    *     <li>{@link Task}: the {@link Task task} will be completed immediately</li>
-   *     <li>{@link HumanTask}: a new {@link org.camunda.bpm.engine.task.Task user task} will be instantiated</li>
+   *     <li>{@link HumanTask}: a new {@link org.cadenzaflow.bpm.engine.task.Task user task} will be instantiated</li>
    *     <li>{@link ProcessTask}: a new {@link ProcessInstance process instance} will be instantiated</li>
    *     <li>{@link CaseTask}: a new {@link CaseInstance case instance} will be instantiated</li>
    *   </ul>

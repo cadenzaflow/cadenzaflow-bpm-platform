@@ -17,7 +17,7 @@
 
 package org.cadenzaflow.bpm.engine.impl;
 
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParse.CAMUNDA_BPMN_EXTENSIONS_NS;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParse.CAMUNDA_BPMN_EXTENSIONS_NS;
 
 import java.util.Objects;
 import org.cadenzaflow.bpm.engine.exception.NotAllowedException;

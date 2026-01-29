@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance.camunda;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ATTRIBUTE_RESOURCE;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ATTRIBUTE_SCRIPT_FORMAT;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ELEMENT_SCRIPT;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ATTRIBUTE_RESOURCE;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ATTRIBUTE_SCRIPT_FORMAT;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_ELEMENT_SCRIPT;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CAMUNDA_NS;
 
 import org.cadenzaflow.bpm.model.cmmn.impl.instance.CmmnModelElementInstanceImpl;
 import org.cadenzaflow.bpm.model.cmmn.instance.camunda.CamundaScript;

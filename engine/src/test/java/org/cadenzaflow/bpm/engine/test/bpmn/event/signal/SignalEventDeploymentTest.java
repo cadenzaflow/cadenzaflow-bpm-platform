@@ -82,7 +82,7 @@ public class SignalEventDeploymentTest extends PluggableProcessEngineTest {
   @Test
   public void testAsyncSignalStartEventDeleteDeploymentWhileAsync() {
     // given a deployment
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         repositoryService.createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent.bpmn20.xml")
           .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventTests.throwAlertSignalAsync.bpmn20.xml")

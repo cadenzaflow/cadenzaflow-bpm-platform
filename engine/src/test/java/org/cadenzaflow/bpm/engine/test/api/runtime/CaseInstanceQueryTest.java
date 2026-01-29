@@ -83,7 +83,7 @@ public class CaseInstanceQueryTest extends PluggableProcessEngineTest {
 
   @After
   public void tearDown() throws Exception {
-    for (org.camunda.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }
 
@@ -207,7 +207,7 @@ public class CaseInstanceQueryTest extends PluggableProcessEngineTest {
   @Test
   public void testQueryByCompleted() {
 
-    for (org.camunda.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }
 

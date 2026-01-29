@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.rest.exception;
 
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.PERSISTENCE_CONNECTION_ERROR_CLASS;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.getExceptionStacktrace;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.PERSISTENCE_CONNECTION_ERROR_CLASS;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.getExceptionStacktrace;
 
 import java.sql.SQLException;
 import javax.ws.rs.core.Response;
@@ -27,7 +27,7 @@ import org.cadenzaflow.commons.logging.BaseLogger;
 public class ExceptionLogger extends BaseLogger {
 
   public static final String PROJECT_CODE = "ENGINE-REST";
-  public static final String REST_API = "org.camunda.bpm.engine.rest.exception";
+  public static final String REST_API = "org.cadenzaflow.bpm.engine.rest.exception";
 
   public static final ExceptionLogger REST_LOGGER = BaseLogger.createLogger(ExceptionLogger.class,
       PROJECT_CODE,

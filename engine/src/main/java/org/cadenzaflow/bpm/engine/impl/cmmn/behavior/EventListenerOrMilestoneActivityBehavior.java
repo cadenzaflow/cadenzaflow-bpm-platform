@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.COMPLETED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.SUSPENDED;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.TERMINATED;
 
 import org.cadenzaflow.bpm.engine.exception.cmmn.CaseIllegalStateTransitionException;
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;

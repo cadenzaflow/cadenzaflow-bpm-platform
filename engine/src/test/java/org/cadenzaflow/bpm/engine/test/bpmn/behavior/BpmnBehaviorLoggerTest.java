@@ -37,7 +37,7 @@ public class BpmnBehaviorLoggerTest extends PluggableProcessEngineTest {
 
   @Rule
   public ProcessEngineLoggingRule processEngineLoggingRule = new ProcessEngineLoggingRule().watch(
-      "org.camunda.bpm.engine.bpmn.behavior", Level.INFO);
+      "org.cadenzaflow.bpm.engine.bpmn.behavior", Level.INFO);
 
   @Test
   @Deployment(resources = {

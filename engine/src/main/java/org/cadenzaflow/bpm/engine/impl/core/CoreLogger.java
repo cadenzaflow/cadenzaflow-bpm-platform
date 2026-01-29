@@ -25,7 +25,7 @@ import org.cadenzaflow.bpm.engine.impl.core.variable.scope.AbstractVariableScope
 
 import java.text.MessageFormat;
 
-import static org.camunda.bpm.engine.impl.core.variable.VariableUtil.ERROR_MSG;
+import static org.cadenzaflow.bpm.engine.impl.core.variable.VariableUtil.ERROR_MSG;
 
 /**
  * @author Daniel Meyer

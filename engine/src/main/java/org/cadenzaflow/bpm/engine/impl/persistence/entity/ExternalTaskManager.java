@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.impl.persistence.entity;
 
-import static org.camunda.bpm.engine.impl.ExternalTaskQueryProperty.CREATE_TIME;
-import static org.camunda.bpm.engine.impl.db.sql.DbSqlSessionFactory.POSTGRES;
-import static org.camunda.bpm.engine.impl.util.DatabaseUtil.checkDatabaseType;
+import static org.cadenzaflow.bpm.engine.impl.ExternalTaskQueryProperty.CREATE_TIME;
+import static org.cadenzaflow.bpm.engine.impl.db.sql.DbSqlSessionFactory.POSTGRES;
+import static org.cadenzaflow.bpm.engine.impl.util.DatabaseUtil.checkDatabaseType;
 
 import java.util.Collection;
 import java.util.Collections;

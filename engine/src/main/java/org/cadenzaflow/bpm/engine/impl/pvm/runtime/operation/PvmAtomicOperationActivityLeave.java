@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.pvm.runtime.operation;
 
-import static org.camunda.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
+import static org.cadenzaflow.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
 
 import org.cadenzaflow.bpm.engine.impl.bpmn.behavior.FlowNodeActivityBehavior;
 import org.cadenzaflow.bpm.engine.impl.pvm.PvmException;

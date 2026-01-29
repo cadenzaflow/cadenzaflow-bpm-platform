@@ -27,7 +27,7 @@ import org.cadenzaflow.bpm.engine.delegate.TaskListener;
  */
 @ProcessApplication
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class CdiEventSupportProcessApplication extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class CdiEventSupportProcessApplication extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
 
   public static final String LISTENER_INVOCATION_COUNT = "listenerInvocationCount";
 

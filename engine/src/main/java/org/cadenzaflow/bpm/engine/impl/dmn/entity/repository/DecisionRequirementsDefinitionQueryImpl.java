@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.dmn.entity.repository;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensurePositive;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensurePositive;
 
 import java.util.Collections;
 import java.util.List;

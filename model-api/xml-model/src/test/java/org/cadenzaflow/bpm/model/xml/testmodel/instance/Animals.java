@@ -27,8 +27,8 @@ import org.cadenzaflow.bpm.model.xml.type.child.SequenceBuilder;
 
 import java.util.Collection;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ELEMENT_NAME_ANIMALS;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ELEMENT_NAME_ANIMALS;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
 
 /**
  * @author Daniel Meyer

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd;
 
-import static org.camunda.bpm.engine.impl.ProcessEngineLogger.CMD_LOGGER;
+import static org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger.CMD_LOGGER;
 
 import java.util.ArrayList;
 import java.util.Collection;

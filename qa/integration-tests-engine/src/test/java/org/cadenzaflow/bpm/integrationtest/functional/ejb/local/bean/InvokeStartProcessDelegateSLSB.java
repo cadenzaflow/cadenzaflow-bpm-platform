@@ -32,7 +32,7 @@ import org.cadenzaflow.bpm.engine.delegate.JavaDelegate;
 @Named
 public class InvokeStartProcessDelegateSLSB implements JavaDelegate {
 
-  @EJB(lookup="java:global/service/StartProcessSLSB!org.camunda.bpm.integrationtest.functional.ejb.local.bean.StartProcessInterface")
+  @EJB(lookup="java:global/service/StartProcessSLSB!org.cadenzaflow.bpm.integrationtest.functional.ejb.local.bean.StartProcessInterface")
   private StartProcessInterface businessInterface;
 
   @Override

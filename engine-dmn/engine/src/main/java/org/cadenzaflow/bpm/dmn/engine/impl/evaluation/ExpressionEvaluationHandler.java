@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.dmn.engine.impl.evaluation;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import javax.script.Bindings;
 import javax.script.Compilable;

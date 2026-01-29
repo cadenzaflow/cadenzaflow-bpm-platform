@@ -30,7 +30,7 @@ import javax.inject.Inject;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static org.camunda.bpm.integrationtest.util.TestContainer.addContainerSpecificResourcesForNonPaWithoutWeld;
+import static org.cadenzaflow.bpm.integrationtest.util.TestContainer.addContainerSpecificResourcesForNonPaWithoutWeld;
 import static org.junit.Assert.assertEquals;
 
 

@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.test.assertions.bpmn;
 
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.jobQuery;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.jobQuery;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
 
 import org.cadenzaflow.bpm.engine.test.Deployment;
 import org.cadenzaflow.bpm.engine.test.ProcessEngineRule;

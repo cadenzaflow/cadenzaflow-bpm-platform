@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.history;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.util.ExecutableProcessUtil.USER_TASK_PROCESS;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutableProcessUtil.USER_TASK_PROCESS;
 
 import java.util.List;
 import java.util.Map;

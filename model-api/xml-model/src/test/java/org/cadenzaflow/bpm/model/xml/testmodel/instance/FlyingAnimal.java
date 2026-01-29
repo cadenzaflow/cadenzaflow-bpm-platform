@@ -26,7 +26,7 @@ import org.cadenzaflow.bpm.model.xml.type.reference.ElementReferenceCollection;
 
 import java.util.Collection;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.*;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.*;
 
 /**
  * @author Daniel Meyer

@@ -38,8 +38,8 @@ public class ManagedJobExecutorBean {
   @PostConstruct
   public void startEngine() {
     // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-    org.camunda.bpm.engine.impl.cfg.JtaProcessEngineConfiguration processEngineConfiguration =
-        new org.camunda.bpm.engine.impl.cfg.JtaProcessEngineConfiguration();
+    org.cadenzaflow.bpm.engine.impl.cfg.JtaProcessEngineConfiguration processEngineConfiguration =
+        new org.cadenzaflow.bpm.engine.impl.cfg.JtaProcessEngineConfiguration();
     processEngineConfiguration.setDatabaseSchemaUpdate("true")
       .setHistory("auto")
       .setDbMetricsReporterActivate(false)

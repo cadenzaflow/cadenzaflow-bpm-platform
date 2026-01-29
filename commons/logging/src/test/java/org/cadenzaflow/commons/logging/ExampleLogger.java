@@ -24,7 +24,7 @@ public class ExampleLogger extends BaseLogger {
 
   public static final String COMPONENT_ID = "01";
 
-  public static final String NAME = "org.camunda.commons.logging";
+  public static final String NAME = "org.cadenzaflow.commons.logging";
 
   public static final String PROJECT_CODE = "TEST";
 

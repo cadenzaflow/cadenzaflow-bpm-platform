@@ -41,7 +41,7 @@ public abstract class BpmnModelElementInstanceImpl extends ModelElementInstanceI
   }
 
   public boolean isScope() {
-    return this instanceof org.camunda.bpm.model.bpmn.instance.Process || this instanceof SubProcess;
+    return this instanceof org.cadenzaflow.bpm.model.bpmn.instance.Process || this instanceof SubProcess;
   }
 
   public BpmnModelElementInstance getScope() {

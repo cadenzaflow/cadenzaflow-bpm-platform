@@ -2535,7 +2535,7 @@ public class CaseExecutionListenerTest extends CmmnTest {
     } catch (Exception e) {
       // then
       String message = e.getMessage();
-      testRule.assertTextPresent("ENGINE-05016 Class 'org.camunda.bpm.engine.test.cmmn.listener.NotCaseExecutionListener' doesn't implement '" + CaseExecutionListener.class.getName() + "'", message);
+      testRule.assertTextPresent("ENGINE-05016 Class 'org.cadenzaflow.bpm.engine.test.cmmn.listener.NotCaseExecutionListener' doesn't implement '" + CaseExecutionListener.class.getName() + "'", message);
     }
 
   }
@@ -2573,7 +2573,7 @@ public class CaseExecutionListenerTest extends CmmnTest {
     } catch (Exception e) {
       // then
       String message = e.getMessage();
-      testRule.assertTextPresent("Exception while instantiating class 'org.camunda.bpm.engine.test.cmmn.listener.NotExistingCaseExecutionListener'", message);
+      testRule.assertTextPresent("Exception while instantiating class 'org.cadenzaflow.bpm.engine.test.cmmn.listener.NotExistingCaseExecutionListener'", message);
     }
 
   }

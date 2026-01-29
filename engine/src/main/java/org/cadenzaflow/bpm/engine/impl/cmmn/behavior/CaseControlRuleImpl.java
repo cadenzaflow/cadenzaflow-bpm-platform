@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 import org.cadenzaflow.bpm.engine.impl.cmmn.CaseControlRule;
 import org.cadenzaflow.bpm.engine.impl.cmmn.execution.CmmnActivityExecution;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * @author Roman Smirnov

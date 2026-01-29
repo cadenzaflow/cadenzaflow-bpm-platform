@@ -157,7 +157,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
   @Test
   public void testPropagateTenantIdToCandidateStarterUser() {
     // when
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
       .addClasspathResource(CANDIDATE_STARTER_USER)
       .tenantId(TENANT_ONE)
       .deploy();
@@ -176,7 +176,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
   @Test
   public void testPropagateTenantIdToCandidateStarterUsers() {
     // when
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
         .addClasspathResource(CANDIDATE_STARTER_USERS)
         .tenantId(TENANT_ONE)
         .deploy();
@@ -196,7 +196,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
   @Test
   public void testPropagateTenantIdToCandidateStarterGroup() {
     // when
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
         .addClasspathResource(CANDIDATE_STARTER_GROUP)
         .tenantId(TENANT_ONE)
         .deploy();
@@ -215,7 +215,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
   @Test
   public void testPropagateTenantIdToCandidateStarterGroups() {
     // when
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
         .addClasspathResource(CANDIDATE_STARTER_GROUPS)
         .tenantId(TENANT_ONE)
         .deploy();

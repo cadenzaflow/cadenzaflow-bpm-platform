@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl.instance;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_CASE_PLAN_MODEL;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_ELEMENT_CASE_PLAN_MODEL;
 
 import org.cadenzaflow.bpm.model.cmmn.instance.Stage;
 import org.cadenzaflow.bpm.model.xml.ModelBuilder;
@@ -28,14 +28,14 @@ import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
  * @author Roman Smirnov
  *
  */
-public class CasePlanModel extends StageImpl implements org.camunda.bpm.model.cmmn.instance.CasePlanModel {
+public class CasePlanModel extends StageImpl implements org.cadenzaflow.bpm.model.cmmn.instance.CasePlanModel {
 
   public CasePlanModel(ModelTypeInstanceContext instanceContext) {
     super(instanceContext);
   }
 
   public static void registerType(ModelBuilder modelBuilder) {
-    ModelElementTypeBuilder typeBuilder = modelBuilder.defineType(org.camunda.bpm.model.cmmn.instance.CasePlanModel.class, CMMN_ELEMENT_CASE_PLAN_MODEL)
+    ModelElementTypeBuilder typeBuilder = modelBuilder.defineType(org.cadenzaflow.bpm.model.cmmn.instance.CasePlanModel.class, CMMN_ELEMENT_CASE_PLAN_MODEL)
       .namespaceUri(CMMN11_NS)
       .extendsType(Stage.class)
       .instanceProvider(new ModelElementTypeBuilder.ModelTypeInstanceProvider<CasePlanModel>() {

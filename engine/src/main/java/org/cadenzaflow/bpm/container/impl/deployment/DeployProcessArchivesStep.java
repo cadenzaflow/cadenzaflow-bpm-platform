@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.container.impl.deployment;
 
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESSES_XML_RESOURCES;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESSES_XML_RESOURCES;
 
 import java.net.URL;
 import java.util.Map;

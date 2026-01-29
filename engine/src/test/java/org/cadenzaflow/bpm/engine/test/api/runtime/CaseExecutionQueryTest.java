@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime;
 
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.caseExecutionByDefinitionId;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.caseExecutionByDefinitionKey;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.caseExecutionById;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.caseExecutionByDefinitionId;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.caseExecutionByDefinitionKey;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.caseExecutionById;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -80,7 +80,7 @@ public class CaseExecutionQueryTest extends PluggableProcessEngineTest {
 
   @After
   public void tearDown() throws Exception {
-    for (org.camunda.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }
 

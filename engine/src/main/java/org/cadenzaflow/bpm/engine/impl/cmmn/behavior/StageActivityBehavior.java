@@ -25,10 +25,10 @@ import org.cadenzaflow.bpm.engine.impl.cmmn.model.CmmnActivity;
 
 import java.util.List;
 
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.*;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_AUTO_COMPLETE;
-import static org.camunda.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureInstanceOf;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.*;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_AUTO_COMPLETE;
+import static org.cadenzaflow.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureInstanceOf;
 
 /**
  * @author Roman Smirnov

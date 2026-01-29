@@ -44,7 +44,7 @@ public class ProcessStartAnnotationBeanPostProcessor extends ProxyConfig impleme
 	private Log log = LogFactory.getLog(getClass()) ;
 
 	/**
-	 * the process engine as created by a {@link org.camunda.bpm.engine.spring.ProcessEngineFactoryBean}
+	 * the process engine as created by a {@link org.cadenzaflow.bpm.engine.spring.ProcessEngineFactoryBean}
 	 */
 	private ProcessEngine processEngine;
 

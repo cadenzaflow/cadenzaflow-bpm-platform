@@ -38,7 +38,7 @@ import javax.ejb.TransactionAttributeType;
 @ProcessApplication(deploymentDescriptors = {"deployment-descriptor-with-custom-filename.xml"})
 @Local(ProcessApplicationInterface.class)
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class AnnotatedEjbPa extends org.camunda.bpm.application.impl.EjbProcessApplication {
+public class AnnotatedEjbPa extends org.cadenzaflow.bpm.application.impl.EjbProcessApplication {
 
   @PostConstruct
   public void start() {

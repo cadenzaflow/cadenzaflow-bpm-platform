@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.rest.helper;
 
-import static org.camunda.bpm.engine.rest.util.DateTimeUtils.withTimezone;
+import static org.cadenzaflow.bpm.engine.rest.util.DateTimeUtils.withTimezone;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doThrow;

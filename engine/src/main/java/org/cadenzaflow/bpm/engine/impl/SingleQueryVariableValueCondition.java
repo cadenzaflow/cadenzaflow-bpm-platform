@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl;
 
-import static org.camunda.bpm.engine.impl.QueryOperator.*;
+import static org.cadenzaflow.bpm.engine.impl.QueryOperator.*;
 
 import java.util.Arrays;
 import java.util.Collections;

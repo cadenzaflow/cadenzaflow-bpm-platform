@@ -18,13 +18,13 @@ package org.cadenzaflow.spin.json.tree;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.spin.DataFormats.json;
-import static org.camunda.spin.Spin.JSON;
-import static org.camunda.spin.Spin.S;
-import static org.camunda.spin.impl.util.SpinIoUtil.stringAsReader;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_EMPTY_STRING;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_INVALID_JSON;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_JSON;
+import static org.cadenzaflow.spin.DataFormats.json;
+import static org.cadenzaflow.spin.Spin.JSON;
+import static org.cadenzaflow.spin.Spin.S;
+import static org.cadenzaflow.spin.impl.util.SpinIoUtil.stringAsReader;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_EMPTY_STRING;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_INVALID_JSON;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_JSON;
 
 import java.io.Reader;
 

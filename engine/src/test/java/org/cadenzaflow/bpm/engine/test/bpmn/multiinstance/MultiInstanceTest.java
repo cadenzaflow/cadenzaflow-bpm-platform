@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.engine.test.bpmn.multiinstance;
 
-import static org.camunda.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate.leaveExecution;
-import static org.camunda.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate.throwError;
-import static org.camunda.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate.throwException;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate.leaveExecution;
+import static org.cadenzaflow.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate.throwError;
+import static org.cadenzaflow.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate.throwException;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

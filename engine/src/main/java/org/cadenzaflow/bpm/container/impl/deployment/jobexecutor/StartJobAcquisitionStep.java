@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.container.impl.deployment.jobexecutor;
 
-import static org.camunda.bpm.container.impl.deployment.Attachments.PROCESS_APPLICATION;
+import static org.cadenzaflow.bpm.container.impl.deployment.Attachments.PROCESS_APPLICATION;
 
 import java.util.Map;
 

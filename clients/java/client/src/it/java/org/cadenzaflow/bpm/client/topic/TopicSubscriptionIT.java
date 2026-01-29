@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.util.ProcessModels.*;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.*;
 
 /**
  * @author Tassilo Weidner

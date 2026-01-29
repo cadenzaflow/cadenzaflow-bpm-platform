@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.test.concurrency;
 
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
-import static org.camunda.bpm.model.bpmn.Bpmn.createExecutableProcess;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.model.bpmn.Bpmn.createExecutableProcess;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;

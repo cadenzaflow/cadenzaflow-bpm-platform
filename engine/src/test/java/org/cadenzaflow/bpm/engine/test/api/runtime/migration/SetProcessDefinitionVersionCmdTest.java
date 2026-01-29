@@ -157,7 +157,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertNotNull(execution);
 
     // deploy new version of the process definition
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_ACTIVITY_MISSING)
       .deploy();
@@ -191,7 +191,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertNotNull(execution);
 
     // deploy new version of the process definition
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS)
       .deploy();
@@ -239,7 +239,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertEquals(2, taskService.createTaskQuery().count());
 
     // deploy new version of the process definition
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_WITH_PARALLEL_GATEWAY)
       .deploy();
@@ -280,7 +280,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertNotNull(execution);
 
     // deploy new version of the process definition
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_CALL_ACTIVITY)
       .deploy();
@@ -311,7 +311,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertEquals(1, taskService.createTaskQuery().processInstanceId(pi.getId()).count());
 
     // deploy new version of the process definition
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_USER_TASK_V2)
       .deploy();
@@ -389,7 +389,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertEquals(2, taskService.createTaskQuery().count());
 
     // deploy new version of the process definition
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_WITH_MULTIPLE_PARENTS)
       .deploy();
@@ -427,7 +427,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertNotNull(job);
 
     // and a second deployment of the process
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_ONE_JOB)
       .deploy();
@@ -472,7 +472,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
         .processInstanceId(asyncBeforeInstance.getId()).singleResult();
 
     // and a second deployment of the process
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_TWO_JOBS)
       .deploy();
@@ -531,7 +531,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     assertNotNull(incident);
 
     // and a second deployment of the process
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_ONE_JOB)
       .deploy();
@@ -571,7 +571,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
 
     Date timestamp = incident.getIncidentTimestamp();
 
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_ONE_JOB)
       .deploy();
@@ -601,7 +601,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
         runtimeService.startProcessInstanceByKey("attachedTimer");
 
     // and a second deployment of the process
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource(TEST_PROCESS_ATTACHED_TIMER)
       .deploy();
@@ -627,12 +627,12 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     String resource = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.bpmn";
 
     // Deployments
-    org.camunda.bpm.engine.repository.Deployment firstDeployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment firstDeployment = repositoryService
         .createDeployment()
         .addClasspathResource(resource)
         .deploy();
 
-    org.camunda.bpm.engine.repository.Deployment secondDeployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment secondDeployment = repositoryService
         .createDeployment()
         .addClasspathResource(resource)
         .deploy();
@@ -682,12 +682,12 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
       String resource = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.bpmn";
 
       // Deployments
-      org.camunda.bpm.engine.repository.Deployment firstDeployment = repositoryService
+      org.cadenzaflow.bpm.engine.repository.Deployment firstDeployment = repositoryService
           .createDeployment()
           .addClasspathResource(resource)
           .deploy();
 
-      org.camunda.bpm.engine.repository.Deployment secondDeployment = repositoryService
+      org.cadenzaflow.bpm.engine.repository.Deployment secondDeployment = repositoryService
           .createDeployment()
           .addClasspathResource(resource)
           .deploy();

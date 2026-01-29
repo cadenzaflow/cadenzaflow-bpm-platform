@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.bpmn.helper;
 
-import static org.camunda.bpm.engine.impl.bpmn.parser.BpmnParse.PROPERTYNAME_HAS_CONDITIONAL_EVENTS;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.parser.BpmnParse.PROPERTYNAME_HAS_CONDITIONAL_EVENTS;
 
 import java.util.Map;
 

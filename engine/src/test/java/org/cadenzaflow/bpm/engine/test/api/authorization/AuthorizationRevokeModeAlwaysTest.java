@@ -17,10 +17,10 @@
 package org.cadenzaflow.bpm.engine.test.api.authorization;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Resources.TASK;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.UPDATE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TASK;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -34,7 +34,7 @@ import org.junit.Test;
 
 public class AuthorizationRevokeModeAlwaysTest extends AuthorizationTest {
 
-  protected static final String LOGGING_CONTEXT = "org.camunda.bpm.engine.impl.persistence.entity.TaskEntity";
+  protected static final String LOGGING_CONTEXT = "org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity";
 
   protected String defaultRevokeMode;
 

@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization.history;
 
-import static org.camunda.bpm.engine.authorization.Resources.OPERATION_LOG_CATEGORY;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.UserOperationLogCategoryPermissions.READ;
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.CATEGORY_ADMIN;
-import static org.camunda.bpm.engine.history.UserOperationLogEntry.CATEGORY_OPERATOR;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.OPERATION_LOG_CATEGORY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.UserOperationLogCategoryPermissions.READ;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.CATEGORY_ADMIN;
+import static org.cadenzaflow.bpm.engine.history.UserOperationLogEntry.CATEGORY_OPERATOR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 

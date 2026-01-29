@@ -18,9 +18,9 @@ package org.cadenzaflow.bpm.engine.test.api.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.decisionDefinitionByDeployTime;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySortingAndCount;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.decisionDefinitionByDeployTime;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySortingAndCount;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -651,7 +651,7 @@ public class DecisionDefinitionQueryTest {
     assertThat(query.list().size()).isEqualTo(expectedCount);
   }
 
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
     "org/camunda/bpm/engine/test/api/repository/versionTag.dmn",
     "org/camunda/bpm/engine/test/api/repository/versionTagHigher.dmn" })
   @Test
@@ -720,7 +720,7 @@ public class DecisionDefinitionQueryTest {
     return ids;
   }
 
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
     "org/camunda/bpm/engine/test/api/repository/versionTag.dmn",
     "org/camunda/bpm/engine/test/api/repository/versionTagHigher.dmn" })
   @Test
@@ -734,7 +734,7 @@ public class DecisionDefinitionQueryTest {
     assertThat(decisionDefinition.getVersionTag()).isEqualTo("1.0.0");
   }
 
-  @org.camunda.bpm.engine.test.Deployment(resources = {
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {
     "org/camunda/bpm/engine/test/api/repository/versionTag.dmn",
     "org/camunda/bpm/engine/test/api/repository/versionTagHigher.dmn" })
   @Test

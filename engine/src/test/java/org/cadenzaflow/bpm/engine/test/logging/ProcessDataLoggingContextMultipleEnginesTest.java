@@ -36,7 +36,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 
 public class ProcessDataLoggingContextMultipleEnginesTest {
 
-  private static final String PVM_LOGGER = "org.camunda.bpm.engine.pvm";
+  private static final String PVM_LOGGER = "org.cadenzaflow.bpm.engine.pvm";
   private static final String DELEGATE_LOGGER = LogEngineNameDelegate.class.getName();
 
   private static final String PROCESS = "process";

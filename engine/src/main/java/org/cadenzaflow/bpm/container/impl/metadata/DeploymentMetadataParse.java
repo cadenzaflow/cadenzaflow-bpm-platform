@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.container.impl.metadata;
 
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.*;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -41,9 +41,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
 
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -83,7 +83,7 @@ public class ProcessInstanceModificationSubProcessTest {
           .startEvent()
             .scriptTask("scriptTaskInSubprocess")
               .scriptFormat("groovy")
-              .scriptText("throw new org.camunda.bpm.engine.delegate.BpmnError(\"anErrorCode\");")
+              .scriptText("throw new org.cadenzaflow.bpm.engine.delegate.BpmnError(\"anErrorCode\");")
             .userTask()
           .endEvent()
         .subProcessDone()

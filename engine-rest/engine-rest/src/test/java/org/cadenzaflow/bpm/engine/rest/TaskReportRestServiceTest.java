@@ -33,9 +33,9 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.path.json.JsonPath.from;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_GROUP_ID;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_TASK_COUNT_BY_CANDIDATE_GROUP;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.createMockTaskCountByCandidateGroupReport;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_GROUP_ID;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_TASK_COUNT_BY_CANDIDATE_GROUP;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.createMockTaskCountByCandidateGroupReport;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;

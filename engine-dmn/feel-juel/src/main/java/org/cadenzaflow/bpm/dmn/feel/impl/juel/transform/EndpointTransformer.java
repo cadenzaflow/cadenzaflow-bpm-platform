@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.dmn.feel.impl.juel.transform;
 
-import static org.camunda.bpm.dmn.feel.impl.juel.el.FeelFunctionMapper.JUEL_DATE_AND_TIME_METHOD;
+import static org.cadenzaflow.bpm.dmn.feel.impl.juel.el.FeelFunctionMapper.JUEL_DATE_AND_TIME_METHOD;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

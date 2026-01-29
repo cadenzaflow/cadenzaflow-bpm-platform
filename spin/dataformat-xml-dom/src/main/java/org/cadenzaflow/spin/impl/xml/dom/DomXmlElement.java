@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.spin.impl.xml.dom;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
-import static org.camunda.commons.utils.EnsureUtil.ensureParamInstanceOf;
-import static org.camunda.spin.impl.xml.dom.util.DomXmlEnsure.ensureChildElement;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureParamInstanceOf;
+import static org.cadenzaflow.spin.impl.xml.dom.util.DomXmlEnsure.ensureChildElement;
 
 import java.io.StringWriter;
 import java.io.Writer;

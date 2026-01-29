@@ -17,10 +17,10 @@
 package org.cadenzaflow.bpm.dmn.feel.impl.scala.function;
 
 import org.cadenzaflow.bpm.dmn.feel.impl.scala.ScalaFeelLogger;
-import org.cadenzaflow.feel.context.JavaFunction;
-import org.cadenzaflow.feel.context.JavaFunctionProvider;
-import org.cadenzaflow.feel.syntaxtree.Val;
-import org.cadenzaflow.feel.valuemapper.ValueMapper;
+import org.camunda.feel.context.JavaFunction;
+import org.camunda.feel.context.JavaFunctionProvider;
+import org.camunda.feel.syntaxtree.Val;
+import org.camunda.feel.valuemapper.ValueMapper;
 
 import java.util.Collection;
 import java.util.HashMap;

@@ -172,7 +172,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
                 .scriptText("println 'var ' + myVar")
                 .scriptTask()
                 .scriptFormat("groovy")
-                .scriptText("execution.setVariable('myVar', new org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable('updated value'))")
+                .scriptText("execution.setVariable('myVar', new org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable('updated value'))")
                 .userTask()
                 .endEvent()
                 .done());
@@ -202,7 +202,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
         // then
         assertThat(variable.getTextValue2())
                 .withFailMessage("The type of the variable didn't change and should be MySerializable")
-                .isEqualTo("org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable");
+                .isEqualTo("org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable");
 
         assertThat(((MySerializable)variable.getValue()).getName())
                 .withFailMessage("The variable changed value")
@@ -274,7 +274,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
                 .scriptText("println 'var ' + myVar")
                 .scriptTask()
                 .scriptFormat("groovy")                                                     // The new value is not null
-                .scriptText("execution.setVariable('myVar', new org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable('non null value'))")
+                .scriptText("execution.setVariable('myVar', new org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable('non null value'))")
                 .userTask()
                 .endEvent()
                 .done());
@@ -304,7 +304,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
         // then
         assertThat(variable.getTextValue2())
                 .withFailMessage("The type name of the variable should be set on the text value 2 field")
-                .isEqualTo("org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable");
+                .isEqualTo("org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable");
 
         assertThat(((MySerializable)variable.getValue()).getName())
                 .withFailMessage("The variable changed value")
@@ -346,7 +346,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
     }
 
     protected void deployProcess(BpmnModelInstance process) {
-        org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
+        org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
                 .addModelInstance("testProcess.bpmn", process)
                 .deploy();
         deploymentIds.add(deployment.getId());

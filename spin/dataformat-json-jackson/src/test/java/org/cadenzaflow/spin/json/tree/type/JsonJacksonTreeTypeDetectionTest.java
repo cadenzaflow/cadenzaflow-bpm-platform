@@ -18,7 +18,7 @@ package org.cadenzaflow.spin.json.tree.type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.spin.DataFormats.json;
+import static org.cadenzaflow.spin.DataFormats.json;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class JsonJacksonTreeTypeDetectionTest {
   public void shouldDetectTypeFromObject() {
     RegularCustomer customer = new RegularCustomer();
     String canonicalTypeString = json().getMapper().getCanonicalTypeName(customer);
-    assertThat(canonicalTypeString).isEqualTo("org.camunda.spin.json.mapping.RegularCustomer");
+    assertThat(canonicalTypeString).isEqualTo("org.cadenzaflow.spin.json.mapping.RegularCustomer");
   }
 
   @Test
@@ -63,7 +63,7 @@ public class JsonJacksonTreeTypeDetectionTest {
     customers.add(new RegularCustomer());
 
     String canonicalTypeString = json().getMapper().getCanonicalTypeName(customers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.ArrayList<org.camunda.spin.json.mapping.RegularCustomer>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.ArrayList<org.cadenzaflow.spin.json.mapping.RegularCustomer>");
   }
 
   @Test
@@ -80,7 +80,7 @@ public class JsonJacksonTreeTypeDetectionTest {
     customers.add(new RegularCustomer());
 
     String canonicalTypeString = dataFormatWithSetTypeDetector.getCanonicalTypeName(customers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.HashSet<org.camunda.spin.json.mapping.RegularCustomer>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.HashSet<org.cadenzaflow.spin.json.mapping.RegularCustomer>");
   }
 
   @Test
@@ -97,7 +97,7 @@ public class JsonJacksonTreeTypeDetectionTest {
     customers.put("foo", new RegularCustomer());
 
     String canonicalTypeString = dataFormatWithMapTypeDetector.getCanonicalTypeName(customers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.Map<java.lang.String,org.camunda.spin.json.mapping.RegularCustomer>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.Map<java.lang.String,org.cadenzaflow.spin.json.mapping.RegularCustomer>");
   }
 
   @Test
@@ -126,7 +126,7 @@ public class JsonJacksonTreeTypeDetectionTest {
     nestedCustomers.add(customers);
 
     String canonicalTypeString = json().getMapper().getCanonicalTypeName(nestedCustomers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.ArrayList<java.util.ArrayList<org.camunda.spin.json.mapping.RegularCustomer>>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.ArrayList<java.util.ArrayList<org.cadenzaflow.spin.json.mapping.RegularCustomer>>");
   }
 
   @Test
@@ -138,7 +138,7 @@ public class JsonJacksonTreeTypeDetectionTest {
 
     String canonicalTypeString =
         dataFormatWithSetTypeDetector.getCanonicalTypeName(nestedCustomers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.HashSet<java.util.HashSet<org.camunda.spin.json.mapping.RegularCustomer>>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.HashSet<java.util.HashSet<org.cadenzaflow.spin.json.mapping.RegularCustomer>>");
   }
 
   @Test
@@ -150,7 +150,7 @@ public class JsonJacksonTreeTypeDetectionTest {
 
     String canonicalTypeString =
         dataFormatWithSetTypeDetector.getCanonicalTypeName(nestedCustomers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.HashSet<java.util.ArrayList<org.camunda.spin.json.mapping.RegularCustomer>>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.HashSet<java.util.ArrayList<org.cadenzaflow.spin.json.mapping.RegularCustomer>>");
   }
 
   @Test
@@ -162,7 +162,7 @@ public class JsonJacksonTreeTypeDetectionTest {
 
     String canonicalTypeString =
         dataFormatWithMapTypeDetector.getCanonicalTypeName(nestedCustomers);
-    assertThat(canonicalTypeString).isEqualTo("java.util.Map<java.lang.String,java.util.Map<java.lang.Integer,org.camunda.spin.json.mapping.RegularCustomer>>");
+    assertThat(canonicalTypeString).isEqualTo("java.util.Map<java.lang.String,java.util.Map<java.lang.Integer,org.cadenzaflow.spin.json.mapping.RegularCustomer>>");
   }
 
   @Test

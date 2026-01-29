@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.rest.sub.identity.impl;
 
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE;
-import static org.camunda.bpm.engine.authorization.Permissions.DELETE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.DELETE;
 
 import java.net.URI;
 

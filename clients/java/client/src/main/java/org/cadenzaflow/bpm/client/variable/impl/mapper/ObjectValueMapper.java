@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.client.variable.impl.mapper;
 
-import static org.camunda.bpm.engine.variable.type.SerializableValueType.VALUE_INFO_OBJECT_TYPE_NAME;
-import static org.camunda.bpm.engine.variable.type.SerializableValueType.VALUE_INFO_SERIALIZATION_DATA_FORMAT;
-import static org.camunda.bpm.engine.variable.type.ValueType.OBJECT;
+import static org.cadenzaflow.bpm.engine.variable.type.SerializableValueType.VALUE_INFO_OBJECT_TYPE_NAME;
+import static org.cadenzaflow.bpm.engine.variable.type.SerializableValueType.VALUE_INFO_SERIALIZATION_DATA_FORMAT;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.OBJECT;
 
 import java.util.Map;
 

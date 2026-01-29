@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.engine.test.api.multitenancy.tenantcheck;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
 import static org.junit.Assert.assertNull;
 
 import java.util.Arrays;

@@ -57,7 +57,7 @@ public class TaskListenerResolutionTest extends AbstractFoxPlatformIntegrationTe
   public void testResolveClassOnTaskComplete() {
     // assert that we cannot load the delegate here:
     try {
-      Class.forName("org.camunda.bpm.integrationtest.functional.classloading.beans.ExampleTaskListener");
+      Class.forName("org.cadenzaflow.bpm.integrationtest.functional.classloading.beans.ExampleTaskListener");
       Assert.fail("CNFE expected");
     }catch (ClassNotFoundException e) {
       // expected

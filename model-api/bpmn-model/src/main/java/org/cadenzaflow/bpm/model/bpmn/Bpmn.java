@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.model.bpmn;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.ACTIVITI_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
-import static org.camunda.bpm.model.bpmn.impl.instance.ProcessImpl.DEFAULT_HISTORY_TIME_TO_LIVE;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.ACTIVITI_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.instance.ProcessImpl.DEFAULT_HISTORY_TIME_TO_LIVE;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -635,7 +635,7 @@ public class Bpmn {
     DiagramImpl.registerType(bpmnModelBuilder);
     DiagramElementImpl.registerType(bpmnModelBuilder);
     EdgeImpl.registerType(bpmnModelBuilder);
-    org.camunda.bpm.model.bpmn.impl.instance.di.ExtensionImpl.registerType(bpmnModelBuilder);
+    org.cadenzaflow.bpm.model.bpmn.impl.instance.di.ExtensionImpl.registerType(bpmnModelBuilder);
     LabelImpl.registerType(bpmnModelBuilder);
     LabeledEdgeImpl.registerType(bpmnModelBuilder);
     LabeledShapeImpl.registerType(bpmnModelBuilder);

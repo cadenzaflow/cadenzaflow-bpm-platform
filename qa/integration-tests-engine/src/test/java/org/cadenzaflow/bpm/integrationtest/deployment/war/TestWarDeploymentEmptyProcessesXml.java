@@ -56,7 +56,7 @@ public class TestWarDeploymentEmptyProcessesXml extends AbstractFoxPlatformInteg
       .list();
 
     Assert.assertEquals(1, processDefinitions.size());
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeploymentQuery()
       .deploymentId(processDefinitions.get(0).getDeploymentId())
       .singleResult();
 

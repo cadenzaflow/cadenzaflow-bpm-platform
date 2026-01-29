@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.impl.json.jackson.format;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import java.util.ArrayList;
 import java.util.List;

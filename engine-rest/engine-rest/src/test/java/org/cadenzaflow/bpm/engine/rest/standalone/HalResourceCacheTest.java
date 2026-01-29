@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.rest.standalone;
 
-import static org.camunda.bpm.engine.rest.hal.cache.HalRelationCacheConfiguration.CONFIG_CACHES;
-import static org.camunda.bpm.engine.rest.hal.cache.HalRelationCacheConfiguration.CONFIG_CACHE_IMPLEMENTATION;
+import static org.cadenzaflow.bpm.engine.rest.hal.cache.HalRelationCacheConfiguration.CONFIG_CACHES;
+import static org.cadenzaflow.bpm.engine.rest.hal.cache.HalRelationCacheConfiguration.CONFIG_CACHE_IMPLEMENTATION;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -132,7 +132,7 @@ public class HalResourceCacheTest extends AbstractRestServiceTest {
   @Test
   public void testUnknownCacheImplementationClass() {
     try {
-      contextListener.configureCaches("{\"" + CONFIG_CACHE_IMPLEMENTATION +"\": \"org.camunda.bpm.UnknownCache\" }");
+      contextListener.configureCaches("{\"" + CONFIG_CACHE_IMPLEMENTATION +"\": \"org.cadenzaflow.bpm.UnknownCache\" }");
       fail("Exception expected");
     }
     catch (HalRelationCacheConfigurationException e) {

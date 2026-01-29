@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.resources;
 
-import static org.camunda.bpm.engine.repository.ResourceTypes.RUNTIME;
+import static org.cadenzaflow.bpm.engine.repository.ResourceTypes.RUNTIME;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;

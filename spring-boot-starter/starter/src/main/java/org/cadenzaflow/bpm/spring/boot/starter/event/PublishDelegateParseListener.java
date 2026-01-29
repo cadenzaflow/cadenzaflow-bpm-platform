@@ -34,8 +34,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.camunda.bpm.engine.delegate.ExecutionListener.*;
-import static org.camunda.bpm.engine.delegate.TaskListener.*;
+import static org.cadenzaflow.bpm.engine.delegate.ExecutionListener.*;
+import static org.cadenzaflow.bpm.engine.delegate.TaskListener.*;
 
 /**
  * Parse listener adding provided execution and task listeners.

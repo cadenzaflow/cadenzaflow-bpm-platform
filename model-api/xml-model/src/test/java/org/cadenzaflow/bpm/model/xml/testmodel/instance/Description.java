@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.*;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.*;
 
 public class Description extends ModelElementInstanceImpl {
 

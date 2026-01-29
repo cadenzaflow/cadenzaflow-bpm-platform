@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.spin.impl.xml.dom.query;
 
-import static org.camunda.spin.impl.xml.dom.util.DomXmlEnsure.ensureNotDocumentRootExpression;
-import static org.camunda.spin.impl.xml.dom.util.DomXmlEnsure.ensureXPathNotEmpty;
-import static org.camunda.spin.impl.xml.dom.util.DomXmlEnsure.ensureXPathNotNull;
+import static org.cadenzaflow.spin.impl.xml.dom.util.DomXmlEnsure.ensureNotDocumentRootExpression;
+import static org.cadenzaflow.spin.impl.xml.dom.util.DomXmlEnsure.ensureXPathNotEmpty;
+import static org.cadenzaflow.spin.impl.xml.dom.util.DomXmlEnsure.ensureXPathNotNull;
 
 import java.util.Map;
 

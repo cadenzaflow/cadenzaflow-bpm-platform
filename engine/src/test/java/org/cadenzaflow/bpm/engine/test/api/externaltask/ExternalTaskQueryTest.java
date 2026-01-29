@@ -38,7 +38,7 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.*;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.*;
 import static org.junit.Assert.*;
 
 /**
@@ -130,7 +130,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
   @Test
   public void testQueryByProcessDefinitionId() {
     // given
-    org.camunda.bpm.engine.repository.Deployment secondDeployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment secondDeployment = repositoryService
       .createDeployment()
       .addClasspathResource("org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
       .deploy();

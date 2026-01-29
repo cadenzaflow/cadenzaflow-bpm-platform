@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.authorization.batch;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
 
 import java.util.Arrays;
 import java.util.List;

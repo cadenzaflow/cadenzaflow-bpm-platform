@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.client.spring.impl.client;
 
-import static org.camunda.bpm.client.spring.annotation.EnableExternalTaskClient.STRING_ORDER_BY_ASC_VALUE;
-import static org.camunda.bpm.client.spring.annotation.EnableExternalTaskClient.STRING_ORDER_BY_DESC_VALUE;
+import static org.cadenzaflow.bpm.client.spring.annotation.EnableExternalTaskClient.STRING_ORDER_BY_ASC_VALUE;
+import static org.cadenzaflow.bpm.client.spring.annotation.EnableExternalTaskClient.STRING_ORDER_BY_DESC_VALUE;
 
 import java.util.ArrayList;
 import java.util.List;

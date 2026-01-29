@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.model.xml.test;
 
-import static org.camunda.bpm.model.xml.test.assertions.ModelAssertions.assertThat;
+import static org.cadenzaflow.bpm.model.xml.test.assertions.ModelAssertions.assertThat;
 import static org.junit.Assert.fail;
 
 import java.util.Collection;

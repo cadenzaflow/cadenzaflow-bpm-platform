@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.batch;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.impl.batch.BatchSeedJobHandler.BatchSeedJobConfiguration;
 import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;

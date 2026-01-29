@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.engine.impl.el;
 
 import org.cadenzaflow.bpm.engine.ProcessEngineException;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureInstanceOf;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureInstanceOf;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.engine.delegate.DelegateExecution;
 import org.cadenzaflow.bpm.engine.delegate.VariableScope;

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.rest.impl;
 
-import static org.camunda.bpm.engine.rest.util.EngineUtil.getProcessEngineProvider;
+import static org.cadenzaflow.bpm.engine.rest.util.EngineUtil.getProcessEngineProvider;
 
 import java.net.URI;
 import java.util.ArrayList;

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.util;
 
-import static org.camunda.bpm.engine.impl.ProcessEngineLogger.UTIL_LOGGER;
+import static org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger.UTIL_LOGGER;
 
 import org.cadenzaflow.bpm.engine.ProcessEngineException;
 import org.cadenzaflow.bpm.engine.delegate.VariableScope;

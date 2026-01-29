@@ -95,12 +95,12 @@ public class DecisionContextSwitchTest extends AbstractFoxPlatformIntegrationTes
   public void shouldSwitchContextWhenUsingDecisionServiceAfterRedeployment() {
 
     // given
-    List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery()
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery()
         .list();
 
     // find dmn deployment
-    org.camunda.bpm.engine.repository.Deployment dmnDeployment = null;
-    for (org.camunda.bpm.engine.repository.Deployment deployment : deployments) {
+    org.cadenzaflow.bpm.engine.repository.Deployment dmnDeployment = null;
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : deployments) {
       List<String> resourceNames = repositoryService.getDeploymentResourceNames(deployment.getId());
       if(resourceNames.contains(DMN_RESOURCE_NAME)) {
         dmnDeployment = deployment;
@@ -111,7 +111,7 @@ public class DecisionContextSwitchTest extends AbstractFoxPlatformIntegrationTes
       Assert.fail("Expected to find DMN deployment");
     }
 
-    org.camunda.bpm.engine.repository.Deployment deployment2 = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment2 = repositoryService
       .createDeployment()
       .nameFromDeployment(dmnDeployment.getId())
       .addDeploymentResources(dmnDeployment.getId())
@@ -133,12 +133,12 @@ public class DecisionContextSwitchTest extends AbstractFoxPlatformIntegrationTes
   @OperateOnDeployment("clientDeployment")
   public void shouldSwitchContextWhenCallingFromBpmnAfterRedeployment() {
     // given
-    List<org.camunda.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery()
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deployments = repositoryService.createDeploymentQuery()
         .list();
 
     // find dmn deployment
-    org.camunda.bpm.engine.repository.Deployment dmnDeployment = null;
-    for (org.camunda.bpm.engine.repository.Deployment deployment : deployments) {
+    org.cadenzaflow.bpm.engine.repository.Deployment dmnDeployment = null;
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : deployments) {
       List<String> resourceNames = repositoryService.getDeploymentResourceNames(deployment.getId());
       if(resourceNames.contains(DMN_RESOURCE_NAME)) {
         dmnDeployment = deployment;
@@ -149,7 +149,7 @@ public class DecisionContextSwitchTest extends AbstractFoxPlatformIntegrationTes
       Assert.fail("Expected to find DMN deployment");
     }
 
-    org.camunda.bpm.engine.repository.Deployment deployment2 = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment2 = repositoryService
       .createDeployment()
       .nameFromDeployment(dmnDeployment.getId())
       .addDeploymentResources(dmnDeployment.getId())

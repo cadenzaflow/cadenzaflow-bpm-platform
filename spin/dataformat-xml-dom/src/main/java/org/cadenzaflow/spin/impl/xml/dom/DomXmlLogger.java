@@ -35,7 +35,7 @@ import org.w3c.dom.Node;
 public class DomXmlLogger extends SpinLogger {
 
   public static final String PROJECT_CODE = SpinLogger.PROJECT_CODE + "/DOM-XML";
-  public static final DomXmlLogger XML_DOM_LOGGER = BaseLogger.createLogger(DomXmlLogger.class, PROJECT_CODE, "org.camunda.spin.xml", "01");
+  public static final DomXmlLogger XML_DOM_LOGGER = BaseLogger.createLogger(DomXmlLogger.class, PROJECT_CODE, "org.cadenzaflow.spin.xml", "01");
 
   public void usingDocumentBuilderFactory(String name) {
     logDebug("001", "Using document builder factory '{}'", name);

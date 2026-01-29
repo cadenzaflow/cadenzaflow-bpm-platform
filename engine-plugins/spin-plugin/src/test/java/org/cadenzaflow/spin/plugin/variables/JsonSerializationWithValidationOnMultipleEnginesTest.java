@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.plugin.variables;
 
-import static org.camunda.bpm.engine.variable.Variables.objectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.objectValue;
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.anyString;

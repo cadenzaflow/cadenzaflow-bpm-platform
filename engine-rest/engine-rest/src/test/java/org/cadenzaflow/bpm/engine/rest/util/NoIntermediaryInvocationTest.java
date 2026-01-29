@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.rest.util;
 
-import static org.camunda.bpm.engine.rest.helper.NoIntermediaryInvocation.immediatelyAfter;
+import static org.cadenzaflow.bpm.engine.rest.helper.NoIntermediaryInvocation.immediatelyAfter;
 
 import org.junit.Assert;
 import org.junit.Before;

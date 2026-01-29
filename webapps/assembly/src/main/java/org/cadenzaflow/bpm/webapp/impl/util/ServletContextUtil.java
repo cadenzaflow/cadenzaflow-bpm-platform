@@ -35,13 +35,13 @@ import java.util.Date;
 public class ServletContextUtil {
 
   protected static final String APP_PATH_ATTR_NAME =
-    "org.camunda.bpm.spring.boot.starter.webapp.applicationPath";
+    "org.cadenzaflow.bpm.spring.boot.starter.webapp.applicationPath";
 
   protected static final String SUCCESSFUL_ET_ATTR_NAME =
-    "org.camunda.bpm.webapp.telemetry.data.stored";
+    "org.cadenzaflow.bpm.webapp.telemetry.data.stored";
 
   protected static final String AUTH_CACHE_TTL_ATTR_NAME =
-    "org.camunda.bpm.webapp.auth.cache.ttl";
+    "org.cadenzaflow.bpm.webapp.auth.cache.ttl";
 
   /**
    * Consumed by Camunda Platform CE & EE Webapp:

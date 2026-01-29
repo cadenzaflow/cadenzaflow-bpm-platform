@@ -47,7 +47,7 @@ public class TestDeploymentTenantId extends AbstractFoxPlatformIntegrationTest {
   public void testDeployProcessArchiveWithTenantId() {
     assertThat(processEngine, is(notNullValue()));
 
-    org.camunda.bpm.engine.repository.Deployment deployment = processEngine
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = processEngine
         .getRepositoryService()
         .createDeploymentQuery()
         .singleResult();

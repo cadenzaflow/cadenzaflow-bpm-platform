@@ -16,18 +16,18 @@
  */
 package org.cadenzaflow.bpm.model.dmn.impl;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_ALTERNATIVE_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN12_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN13_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN14_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN15_NS;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_11_ALTERNATIVE_SCHEMA_LOCATION;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_11_SCHEMA_LOCATION;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_12_SCHEMA_LOCATION;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_13_SCHEMA_LOCATION;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_14_SCHEMA_LOCATION;
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.DMN_15_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN11_ALTERNATIVE_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN11_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN12_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN13_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN14_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN15_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_11_ALTERNATIVE_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_11_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_12_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_13_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_14_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.DMN_15_SCHEMA_LOCATION;
 
 import java.io.InputStream;
 

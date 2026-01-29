@@ -118,8 +118,8 @@ public class CallActivityDelegateMappingTest {
       engineRule.getRuntimeService().startProcessInstanceByKey("callSimpleSubProcess");
       fail("Execption expected!");
     } catch (ProcessEngineException e) {
-      //Exception while instantiating class 'org.camunda.bpm.engine.test.bpmn.callactivity.NotFoundMapping'
-      assertEquals("ENGINE-09008 Exception while instantiating class 'org.camunda.bpm.engine.test.bpmn.callactivity.NotFoundMapping': ENGINE-09017 Cannot load class 'org.camunda.bpm.engine.test.bpmn.callactivity.NotFoundMapping': org.camunda.bpm.engine.test.bpmn.callactivity.NotFoundMapping",
+      //Exception while instantiating class 'org.cadenzaflow.bpm.engine.test.bpmn.callactivity.NotFoundMapping'
+      assertEquals("ENGINE-09008 Exception while instantiating class 'org.cadenzaflow.bpm.engine.test.bpmn.callactivity.NotFoundMapping': ENGINE-09017 Cannot load class 'org.cadenzaflow.bpm.engine.test.bpmn.callactivity.NotFoundMapping': org.cadenzaflow.bpm.engine.test.bpmn.callactivity.NotFoundMapping",
               e.getMessage());
     }
   }
@@ -153,7 +153,7 @@ public class CallActivityDelegateMappingTest {
       engineRule.getTaskService().complete(taskBeforeSubProcess.getId());
       fail("Exeption expected!");
     } catch (ProcessEngineException pex) { //then
-      Assert.assertTrue(pex.getMessage().equalsIgnoreCase("org.camunda.bpm.engine.ProcessEngineException: New process engine exception.")
+      Assert.assertTrue(pex.getMessage().equalsIgnoreCase("org.cadenzaflow.bpm.engine.ProcessEngineException: New process engine exception.")
               || pex.getMessage().contains("1234"));
     }
 
@@ -222,7 +222,7 @@ public class CallActivityDelegateMappingTest {
       engineRule.getTaskService().complete(taskInSubProcess.getId());
       fail("Exeption expected!");
     } catch (ProcessEngineException pex) { //then
-      Assert.assertTrue(pex.getMessage().equalsIgnoreCase("org.camunda.bpm.engine.ProcessEngineException: New process engine exception.")
+      Assert.assertTrue(pex.getMessage().equalsIgnoreCase("org.cadenzaflow.bpm.engine.ProcessEngineException: New process engine exception.")
               || pex.getMessage().contains("1234"));
     }
 

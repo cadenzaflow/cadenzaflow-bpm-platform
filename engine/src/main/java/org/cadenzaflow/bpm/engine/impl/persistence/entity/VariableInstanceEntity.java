@@ -49,7 +49,7 @@ import org.cadenzaflow.bpm.engine.variable.impl.value.UntypedValueImpl;
 import org.cadenzaflow.bpm.engine.variable.type.ValueType;
 import org.cadenzaflow.bpm.engine.variable.value.TypedValue;
 
-import static org.camunda.bpm.engine.impl.persistence.entity.util.TypedValueField.getSerializers;
+import static org.cadenzaflow.bpm.engine.impl.persistence.entity.util.TypedValueField.getSerializers;
 
 /**
  * @author Tom Baeyens
@@ -744,7 +744,7 @@ public class VariableInstanceEntity implements VariableInstance, CoreVariableIns
   /**
    * 
    * @return <code>true</code> <code>processDefinitionId</code> is introduced in 7.13,
-   * the check is used to created missing history at {@link LegacyBehavior#createMissingHistoricVariables(org.camunda.bpm.engine.impl.pvm.runtime.PvmExecutionImpl) LegacyBehavior#createMissingHistoricVariables}
+   * the check is used to created missing history at {@link LegacyBehavior#createMissingHistoricVariables(org.cadenzaflow.bpm.engine.impl.pvm.runtime.PvmExecutionImpl) LegacyBehavior#createMissingHistoricVariables}
    */
   public boolean wasCreatedBefore713() {
     return this.getProcessDefinitionId() == null;

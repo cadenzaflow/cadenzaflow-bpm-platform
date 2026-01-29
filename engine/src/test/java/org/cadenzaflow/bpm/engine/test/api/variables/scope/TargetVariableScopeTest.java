@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.engine.test.api.variables.scope;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
 
 import java.util.Arrays;
 
@@ -86,7 +86,7 @@ public class TargetVariableScopeTest {
     assertThatThrownBy(() -> engineRule.getRuntimeService().startProcessInstanceByKey("Process_MultiInstanceCallAcitivity",variables))
       .isInstanceOf(ScriptEvaluationException.class)
       .hasMessageContaining("Unable to evaluate script while executing activity 'CallActivity_1' in the process definition with id '"
-          + processDefinition.getId() + "': org.camunda.bpm.engine.ProcessEngineException: ENGINE-20011 "
+          + processDefinition.getId() + "': org.cadenzaflow.bpm.engine.ProcessEngineException: ENGINE-20011 "
               + "Scope with specified activity Id NOT_EXISTING and execution");
   }
 
@@ -100,9 +100,9 @@ public class TargetVariableScopeTest {
             .startEvent()
               .callActivity()
                 .calledElement("Process_StuffDoer")
-                .camundaVariableMappingClass("org.camunda.bpm.engine.test.api.variables.scope.SetVariableMappingDelegate")
+                .camundaVariableMappingClass("org.cadenzaflow.bpm.engine.test.api.variables.scope.SetVariableMappingDelegate")
               .serviceTask()
-                .camundaClass("org.camunda.bpm.engine.test.api.variables.scope.AssertVariableScopeDelegate")
+                .camundaClass("org.cadenzaflow.bpm.engine.test.api.variables.scope.AssertVariableScopeDelegate")
             .endEvent()
           .subProcessDone()
         .endEvent()
@@ -131,9 +131,9 @@ public class TargetVariableScopeTest {
               .startEvent()
               .callActivity()
                 .calledElement("Process_StuffDoer")
-                .camundaVariableMappingClass("org.camunda.bpm.engine.test.api.variables.scope.SetVariableToChildMappingDelegate")
+                .camundaVariableMappingClass("org.cadenzaflow.bpm.engine.test.api.variables.scope.SetVariableToChildMappingDelegate")
               .serviceTask()
-                .camundaClass("org.camunda.bpm.engine.test.api.variables.scope.AssertVariableScopeDelegate")
+                .camundaClass("org.cadenzaflow.bpm.engine.test.api.variables.scope.AssertVariableScopeDelegate")
               .endEvent()
             .subProcessDone()
           .moveToLastGateway()
@@ -161,11 +161,11 @@ public class TargetVariableScopeTest {
     //fails due to inappropriate variable scope target
     assertThatThrownBy(() -> engineRule.getRuntimeService().startProcessInstanceById(processDefinition.getId(),variables))
       .isInstanceOf(ProcessEngineException.class)
-      .hasMessageContaining("org.camunda.bpm.engine.ProcessEngineException: ENGINE-20011 Scope with specified activity Id SubProcess_2 and execution");
+      .hasMessageContaining("org.cadenzaflow.bpm.engine.ProcessEngineException: ENGINE-20011 Scope with specified activity Id SubProcess_2 and execution");
 
   }
 
-  public static class JavaDelegate implements org.camunda.bpm.engine.delegate.JavaDelegate {
+  public static class JavaDelegate implements org.cadenzaflow.bpm.engine.delegate.JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) {
@@ -175,7 +175,7 @@ public class TargetVariableScopeTest {
 
   }
 
-  public static class ExecutionListener implements org.camunda.bpm.engine.delegate.ExecutionListener {
+  public static class ExecutionListener implements org.cadenzaflow.bpm.engine.delegate.ExecutionListener {
 
     @Override
     public void notify(DelegateExecution execution) {
@@ -185,7 +185,7 @@ public class TargetVariableScopeTest {
 
   }
 
-  public static class TaskListener implements org.camunda.bpm.engine.delegate.TaskListener {
+  public static class TaskListener implements org.cadenzaflow.bpm.engine.delegate.TaskListener {
 
     @Override
     public void notify(DelegateTask delegateTask) {

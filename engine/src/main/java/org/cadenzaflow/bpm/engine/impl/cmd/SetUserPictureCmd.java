@@ -24,7 +24,7 @@ import org.cadenzaflow.bpm.engine.impl.persistence.entity.ByteArrayEntity;
 import org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity;
 import org.cadenzaflow.bpm.engine.repository.ResourceTypes;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 
 /**

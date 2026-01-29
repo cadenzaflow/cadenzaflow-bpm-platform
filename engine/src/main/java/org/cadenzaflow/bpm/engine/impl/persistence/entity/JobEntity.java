@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.impl.persistence.entity;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.createJobExceptionByteArray;
-import static org.camunda.bpm.engine.impl.util.StringUtil.toByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.createJobExceptionByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.StringUtil.toByteArray;
 
 import java.io.Serializable;
 import java.util.Collections;

@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import org.cadenzaflow.bpm.model.xml.type.attribute.Attribute;
 import org.cadenzaflow.bpm.model.xml.type.reference.AttributeReference;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.*;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.*;
 
 /**
  * @author Sebastian Menski

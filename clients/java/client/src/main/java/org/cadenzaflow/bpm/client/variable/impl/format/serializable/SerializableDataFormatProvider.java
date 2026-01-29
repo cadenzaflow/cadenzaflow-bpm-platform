@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.client.variable.impl.format.serializable;
 
-import static org.camunda.bpm.engine.variable.Variables.SerializationDataFormats.JAVA;
+import static org.cadenzaflow.bpm.engine.variable.Variables.SerializationDataFormats.JAVA;
 
 import org.cadenzaflow.bpm.client.spi.DataFormat;
 import org.cadenzaflow.bpm.client.spi.DataFormatProvider;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.impl.instance;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_LOOP_DATA_OUTPUT_REF;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN_ELEMENT_LOOP_DATA_OUTPUT_REF;
 
 import org.cadenzaflow.bpm.model.xml.ModelBuilder;
 import org.cadenzaflow.bpm.model.xml.impl.instance.ModelTypeInstanceContext;

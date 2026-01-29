@@ -77,7 +77,7 @@ public class DomXmlDeserializationValidationTest {
     format.getMapper().validateType(Complex.class, validator);
 
     // then
-    Mockito.verify(validator).validate("org.camunda.spin.impl.xml.dom.format.DomXmlDeserializationValidationTest$Complex");
+    Mockito.verify(validator).validate("org.cadenzaflow.spin.impl.xml.dom.format.DomXmlDeserializationValidationTest$Complex");
     Mockito.verifyNoMoreInteractions(validator);
   }
 
@@ -114,7 +114,7 @@ public class DomXmlDeserializationValidationTest {
 
     // then
     thrown.expect(SpinRuntimeException.class);
-    thrown.expectMessage("'org.camunda.spin.impl.xml.dom.format.DomXmlDeserializationValidationTest$Complex'");
+    thrown.expectMessage("'org.cadenzaflow.spin.impl.xml.dom.format.DomXmlDeserializationValidationTest$Complex'");
 
     // when
     format.getMapper().validateType(Complex.class, validator);

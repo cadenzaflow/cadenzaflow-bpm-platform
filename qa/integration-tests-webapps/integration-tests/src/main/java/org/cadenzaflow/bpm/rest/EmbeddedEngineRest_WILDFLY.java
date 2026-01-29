@@ -48,7 +48,7 @@ public class EmbeddedEngineRest_WILDFLY {
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "embedded-engine-rest.war")
         .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
         .addAsWebInfResource("jboss-deployment-structure.xml")
-        .addAsManifestResource("org.camunda.bpm.engine.rest.spi.ProcessEngineProvider", "META-INF/services/org.camunda.bpm.engine.rest.spi.ProcessEngineProvider")
+        .addAsManifestResource("org.cadenzaflow.bpm.engine.rest.spi.ProcessEngineProvider", "META-INF/services/org.cadenzaflow.bpm.engine.rest.spi.ProcessEngineProvider")
         .addAsLibraries(engineRestClasses)
         .addClasses(CustomRestApplication.class, CustomProcessEngineProvider.class);
 
@@ -67,7 +67,7 @@ public class EmbeddedEngineRest_WILDFLY {
   }
 
   private static JavaArchive[] getEngineRestClasses() {
-    String coordinates = "org.camunda.bpm:camunda-engine-rest:jar:classes:" + System.getProperty("projectversion");
+    String coordinates = "org.cadenzaflow.bpm:camunda-engine-rest:jar:classes:" + System.getProperty("projectversion");
 
     JavaArchive[] resolvedArchives = Maven.configureResolver()
           .workOffline()

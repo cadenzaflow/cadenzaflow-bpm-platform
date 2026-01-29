@@ -45,7 +45,7 @@ import org.cadenzaflow.bpm.engine.impl.util.ReflectUtil;
  * The activiti-webapp-init webapp will
  * call the {@link #init()} method when the webapp is deployed and it will call the
  * {@link #destroy()} method when the webapp is destroyed, using a context-listener
- * (<code>org.camunda.bpm.engine.test.impl.servlet.listener.ProcessEnginesServletContextListener</code>).  That way,
+ * (<code>org.cadenzaflow.bpm.engine.test.impl.servlet.listener.ProcessEnginesServletContextListener</code>).  That way,
  * all applications can just use the {@link #getProcessEngines()} to
  * obtain pre-initialized and cached process engines. <br>
  * <br>
@@ -133,7 +133,7 @@ public abstract class ProcessEngines {
 
   protected static void initProcessEngineFromSpringResource(URL resource) {
     try {
-      Class< ? > springConfigurationHelperClass = ReflectUtil.loadClass("org.camunda.bpm.engine.spring.SpringConfigurationHelper");
+      Class< ? > springConfigurationHelperClass = ReflectUtil.loadClass("org.cadenzaflow.bpm.engine.spring.SpringConfigurationHelper");
       Method method = springConfigurationHelperClass.getMethod("buildProcessEngine", new Class<?>[]{URL.class});
       ProcessEngine processEngine = (ProcessEngine) method.invoke(null, new Object[]{resource});
 

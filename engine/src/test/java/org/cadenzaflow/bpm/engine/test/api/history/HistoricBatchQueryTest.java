@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.engine.test.api.history;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.historicBatchByEndTime;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.historicBatchById;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.historicBatchByStartTime;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.historicBatchByEndTime;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.historicBatchById;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.historicBatchByStartTime;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;

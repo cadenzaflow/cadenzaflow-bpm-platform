@@ -24,7 +24,7 @@ import org.cadenzaflow.bpm.application.ProcessApplication;
  */
 @ProcessApplication(name = CustomNameServletPA.NAME)
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class CustomNameServletPA extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class CustomNameServletPA extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
 
   public static final String NAME = "fooooooooooooo";
 }

@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.dmn.engine.el;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
-import static org.camunda.bpm.dmn.engine.util.DmnExampleVerifier.assertExample;
+import static org.cadenzaflow.bpm.dmn.engine.util.DmnExampleVerifier.assertExample;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.eq;

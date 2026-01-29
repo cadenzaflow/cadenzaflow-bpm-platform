@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.plugin.variable.value.impl;
 
-import static org.camunda.spin.Spin.S;
+import static org.cadenzaflow.spin.Spin.S;
 
 import org.cadenzaflow.bpm.engine.variable.impl.value.AbstractTypedValue;
 import org.cadenzaflow.bpm.engine.variable.type.ValueType;

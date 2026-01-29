@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.api.multitenancy;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.variable.Variables.stringValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.stringValue;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class TenantIdProviderTest {
   protected static final BpmnModelInstance TASK_PROCESS = Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().userTask().done();
   protected static final BpmnModelInstance FAILING_PROCESS = Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent()
       .serviceTask()
-        .camundaClass("org.camunda.bpm.engine.test.api.multitenancy.FailingDelegate")
+        .camundaClass("org.cadenzaflow.bpm.engine.test.api.multitenancy.FailingDelegate")
         .camundaAsyncBefore()
       .done();
 

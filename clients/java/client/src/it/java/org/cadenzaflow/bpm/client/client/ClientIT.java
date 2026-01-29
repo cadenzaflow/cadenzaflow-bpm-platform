@@ -18,12 +18,12 @@ package org.cadenzaflow.bpm.client.client;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.client.util.ProcessModels.BPMN_ERROR_EXTERNAL_TASK_PROCESS;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_PRIORITY;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
-import static org.camunda.bpm.client.util.ProcessModels.TWO_PRIORITISED_EXTERNAL_TASKS_PROCESS;
-import static org.camunda.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
-import static org.camunda.bpm.client.util.PropertyUtil.loadProperties;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.BPMN_ERROR_EXTERNAL_TASK_PROCESS;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_PRIORITY;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.TWO_PRIORITISED_EXTERNAL_TASKS_PROCESS;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.DEFAULT_PROPERTIES_PATH;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.loadProperties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

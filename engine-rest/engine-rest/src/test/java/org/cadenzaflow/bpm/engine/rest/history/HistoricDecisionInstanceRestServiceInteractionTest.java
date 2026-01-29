@@ -18,8 +18,8 @@ package org.cadenzaflow.bpm.engine.rest.history;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.path.json.JsonPath.from;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_DECISION_DEFINITION_ID;
-import static org.camunda.bpm.engine.rest.helper.MockProvider.EXAMPLE_DECISION_INSTANCE_ID;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_DECISION_DEFINITION_ID;
+import static org.cadenzaflow.bpm.engine.rest.helper.MockProvider.EXAMPLE_DECISION_INSTANCE_ID;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;

@@ -21,7 +21,7 @@ import org.slf4j.helpers.MessageFormatter;
 
 public class TestLogger extends BaseLogger {
 
-  public static final TestLogger INSTANCE = BaseLogger.createLogger(TestLogger.class, "QA", "org.camunda.bpm.qa", "01");
+  public static final TestLogger INSTANCE = BaseLogger.createLogger(TestLogger.class, "QA", "org.cadenzaflow.bpm.qa", "01");
 
   /**
    * Verify that camunda commons log a messages with a single format parameter.

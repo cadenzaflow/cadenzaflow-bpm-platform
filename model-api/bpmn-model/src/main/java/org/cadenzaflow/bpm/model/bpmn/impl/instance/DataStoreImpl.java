@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.model.bpmn.impl.instance;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.*;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.*;
 
 import org.cadenzaflow.bpm.model.bpmn.instance.DataState;
 import org.cadenzaflow.bpm.model.bpmn.instance.DataStore;

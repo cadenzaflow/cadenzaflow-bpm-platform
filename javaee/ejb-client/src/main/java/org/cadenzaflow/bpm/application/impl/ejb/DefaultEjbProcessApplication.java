@@ -40,7 +40,7 @@ import org.cadenzaflow.bpm.application.ProcessApplicationInterface;
 @ProcessApplication
 @Local(ProcessApplicationInterface.class)
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class DefaultEjbProcessApplication extends org.camunda.bpm.application.impl.EjbProcessApplication {
+public class DefaultEjbProcessApplication extends org.cadenzaflow.bpm.application.impl.EjbProcessApplication {
   
   protected Map<String, String> properties = new HashMap<String, String>();
   

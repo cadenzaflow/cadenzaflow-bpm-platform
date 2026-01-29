@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.camunda.commons.logging.ExampleLogger.*;
+import static org.cadenzaflow.commons.logging.ExampleLogger.*;
 
 /**
  * @author Daniel Meyer

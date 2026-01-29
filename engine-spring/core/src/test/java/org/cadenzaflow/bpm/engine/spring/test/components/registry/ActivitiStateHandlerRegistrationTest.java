@@ -44,10 +44,10 @@ public class ActivitiStateHandlerRegistrationTest {
     ActivitiStateHandlerRegistration registration = new ActivitiStateHandlerRegistration(processVariablesExpected, 
         handlerMethod, handler, stateName, beanName,
         processVariablesIndex, processIdIndex, processName);
-    assertEquals("org.camunda.bpm.engine.spring.components.registry.ActivitiStateHandlerRegistration@" + Integer.toHexString(registration.hashCode()) + "["
+    assertEquals("org.cadenzaflow.bpm.engine.spring.components.registry.ActivitiStateHandlerRegistration@" + Integer.toHexString(registration.hashCode()) + "["
         + "processVariablesExpected={34=testValue}, "
-        + "handlerMethod=public void org.camunda.bpm.engine.spring.test.components.registry.ActivitiStateHandlerRegistrationTest.shouldHaveDetailledStringRepresentation() throws java.lang.Exception, "
-        + "handler=org.camunda.bpm.engine.spring.test.components.registry.ActivitiStateHandlerRegistrationTest$1@" + Integer.toHexString(handler.hashCode()) + ", "
+        + "handlerMethod=public void org.cadenzaflow.bpm.engine.spring.test.components.registry.ActivitiStateHandlerRegistrationTest.shouldHaveDetailledStringRepresentation() throws java.lang.Exception, "
+        + "handler=org.cadenzaflow.bpm.engine.spring.test.components.registry.ActivitiStateHandlerRegistrationTest$1@" + Integer.toHexString(handler.hashCode()) + ", "
         + "stateName=running, "
         + "beanName=testBean, "
         + "processVariablesIndex=4, "
@@ -68,7 +68,7 @@ public class ActivitiStateHandlerRegistrationTest {
     ActivitiStateHandlerRegistration registration = new ActivitiStateHandlerRegistration(processVariablesExpected, 
         handlerMethod, handler, stateName, beanName,
         processVariablesIndex, processIdIndex, processName);
-    assertEquals("org.camunda.bpm.engine.spring.components.registry.ActivitiStateHandlerRegistration@" + Integer.toHexString(registration.hashCode()) + "["
+    assertEquals("org.cadenzaflow.bpm.engine.spring.components.registry.ActivitiStateHandlerRegistration@" + Integer.toHexString(registration.hashCode()) + "["
         + "processVariablesExpected={34=testValue}, "
         + "handlerMethod=null, "
         + "handler=null, "

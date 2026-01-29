@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.client.variable.impl.format.xml;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import java.beans.Introspector;
 import java.io.BufferedReader;

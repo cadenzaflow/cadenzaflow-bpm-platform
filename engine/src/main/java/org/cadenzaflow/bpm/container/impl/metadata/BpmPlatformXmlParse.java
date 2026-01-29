@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.container.impl.metadata;
 
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.JOB_ACQUISITION;
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.JOB_EXECUTOR;
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.JOB_EXECUTOR_CLASS_NAME;
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.NAME;
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.PROCESS_ENGINE;
-import static org.camunda.bpm.container.impl.metadata.DeploymentMetadataConstants.PROPERTIES;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.JOB_ACQUISITION;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.JOB_EXECUTOR;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.JOB_EXECUTOR_CLASS_NAME;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.NAME;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.PROCESS_ENGINE;
+import static org.cadenzaflow.bpm.container.impl.metadata.DeploymentMetadataConstants.PROPERTIES;
 
 import java.net.URL;
 import java.util.ArrayList;

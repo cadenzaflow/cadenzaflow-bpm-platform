@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.engine.test.cmmn.handler;
 
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_ACTIVITY_DESCRIPTION;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_ACTIVITY_TYPE;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_IS_BLOCKING;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_MANUAL_ACTIVATION_RULE;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REPETITION_RULE;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REQUIRED_RULE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_ACTIVITY_DESCRIPTION;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_ACTIVITY_TYPE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_IS_BLOCKING;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_MANUAL_ACTIVATION_RULE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REPETITION_RULE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REQUIRED_RULE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -529,7 +529,7 @@ public class HumanTaskPlanItemHandlerTest extends CmmnElementHandlerTest {
     ExtensionElements extensionElements = addExtensionElements(humanTask);
     CamundaTaskListener taskListener = createElement(extensionElements, null, CamundaTaskListener.class);
 
-    String className = "org.camunda.bpm.test.tasklistener.ABC";
+    String className = "org.cadenzaflow.bpm.test.tasklistener.ABC";
     String event = TaskListener.EVENTNAME_CREATE;
     taskListener.setCamundaEvent(event);
     taskListener.setCamundaClass(className);
@@ -636,7 +636,7 @@ public class HumanTaskPlanItemHandlerTest extends CmmnElementHandlerTest {
     ExtensionElements extensionElements = addExtensionElements(humanTask);
     CamundaTaskListener taskListener = createElement(extensionElements, null, CamundaTaskListener.class);
 
-    String className = "org.camunda.bpm.test.tasklistener.ABC";
+    String className = "org.cadenzaflow.bpm.test.tasklistener.ABC";
     String event = TaskListener.EVENTNAME_COMPLETE;
     taskListener.setCamundaEvent(event);
     taskListener.setCamundaClass(className);
@@ -743,7 +743,7 @@ public class HumanTaskPlanItemHandlerTest extends CmmnElementHandlerTest {
     ExtensionElements extensionElements = addExtensionElements(humanTask);
     CamundaTaskListener taskListener = createElement(extensionElements, null, CamundaTaskListener.class);
 
-    String className = "org.camunda.bpm.test.tasklistener.ABC";
+    String className = "org.cadenzaflow.bpm.test.tasklistener.ABC";
     String event = TaskListener.EVENTNAME_ASSIGNMENT;
     taskListener.setCamundaEvent(event);
     taskListener.setCamundaClass(className);
@@ -850,7 +850,7 @@ public class HumanTaskPlanItemHandlerTest extends CmmnElementHandlerTest {
     ExtensionElements extensionElements = addExtensionElements(humanTask);
     CamundaTaskListener taskListener = createElement(extensionElements, null, CamundaTaskListener.class);
 
-    String className = "org.camunda.bpm.test.tasklistener.ABC";
+    String className = "org.cadenzaflow.bpm.test.tasklistener.ABC";
     String event = TaskListener.EVENTNAME_UPDATE;
     taskListener.setCamundaEvent(event);
     taskListener.setCamundaClass(className);
@@ -957,7 +957,7 @@ public class HumanTaskPlanItemHandlerTest extends CmmnElementHandlerTest {
     ExtensionElements extensionElements = addExtensionElements(humanTask);
     CamundaTaskListener taskListener = createElement(extensionElements, null, CamundaTaskListener.class);
 
-    String className = "org.camunda.bpm.test.tasklistener.ABC";
+    String className = "org.cadenzaflow.bpm.test.tasklistener.ABC";
     String event = TaskListener.EVENTNAME_DELETE;
     taskListener.setCamundaEvent(event);
     taskListener.setCamundaClass(className);

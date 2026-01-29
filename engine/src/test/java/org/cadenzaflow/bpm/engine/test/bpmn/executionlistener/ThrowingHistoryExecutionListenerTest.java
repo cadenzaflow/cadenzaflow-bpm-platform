@@ -18,8 +18,8 @@ package org.cadenzaflow.bpm.engine.test.bpmn.executionlistener;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.bpmn.executionlistener.ThrowingHistoryEventProducer.ERROR_CODE;
-import static org.camunda.bpm.engine.test.bpmn.executionlistener.ThrowingHistoryEventProducer.EXCEPTION_MESSAGE;
+import static org.cadenzaflow.bpm.engine.test.bpmn.executionlistener.ThrowingHistoryEventProducer.ERROR_CODE;
+import static org.cadenzaflow.bpm.engine.test.bpmn.executionlistener.ThrowingHistoryEventProducer.EXCEPTION_MESSAGE;
 import static org.junit.Assert.assertEquals;
 
 import org.cadenzaflow.bpm.engine.HistoryService;

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.variable;
 
-import static org.camunda.bpm.engine.variable.Variables.*;
+import static org.cadenzaflow.bpm.engine.variable.Variables.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.model.xml.testmodel.instance;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.NEWER_NAMESPACE;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.TYPE_NAME_WINGS;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.NEWER_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.TYPE_NAME_WINGS;
 
 import org.cadenzaflow.bpm.model.xml.ModelBuilder;
 import org.cadenzaflow.bpm.model.xml.impl.instance.ModelElementInstanceImpl;

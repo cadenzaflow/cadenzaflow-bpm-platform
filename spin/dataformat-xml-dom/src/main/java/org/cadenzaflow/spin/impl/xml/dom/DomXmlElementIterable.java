@@ -24,7 +24,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.Iterator;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 /**
  * @author Sebastian Menski

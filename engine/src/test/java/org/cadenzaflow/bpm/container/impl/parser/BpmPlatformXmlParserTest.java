@@ -69,7 +69,7 @@ public class BpmPlatformXmlParserTest {
 
     JobAcquisitionXml jobAcquisitionXml = jobExecutorXml.getJobAcquisitions().get(0);
     assertEquals("default", jobAcquisitionXml.getName());
-    assertEquals("org.camunda.bpm.engine.impl.jobexecutor.DefaultJobExecutor", jobAcquisitionXml.getJobExecutorClassName());
+    assertEquals("org.cadenzaflow.bpm.engine.impl.jobexecutor.DefaultJobExecutor", jobAcquisitionXml.getJobExecutorClassName());
 
     assertEquals(2, jobAcquisitionXml.getProperties().size());
 
@@ -93,7 +93,7 @@ public class BpmPlatformXmlParserTest {
 
     JobAcquisitionXml jobAcquisitionXml = jobExecutorXml.getJobAcquisitions().get(0);
     assertEquals("default", jobAcquisitionXml.getName());
-    assertEquals("org.camunda.bpm.engine.impl.jobexecutor.DefaultJobExecutor", jobAcquisitionXml.getJobExecutorClassName());
+    assertEquals("org.cadenzaflow.bpm.engine.impl.jobexecutor.DefaultJobExecutor", jobAcquisitionXml.getJobExecutorClassName());
 
     assertEquals(2, jobAcquisitionXml.getProperties().size());
 
@@ -132,7 +132,7 @@ public class BpmPlatformXmlParserTest {
     ProcessEnginePluginXml plugin1 = plugins.get(0);
     assertNotNull(plugin1);
 
-    assertEquals("org.camunda.bpm.MyAwesomePlugin", plugin1.getPluginClass());
+    assertEquals("org.cadenzaflow.bpm.MyAwesomePlugin", plugin1.getPluginClass());
 
     Map<String, String> properties = plugin1.getProperties();
     assertNotNull(properties);

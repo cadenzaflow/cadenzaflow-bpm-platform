@@ -218,7 +218,7 @@ public class JobPrioritizationBpmnConstantValueTest extends PluggableProcessEngi
 
     // deploying a process definition where the activity
     // has a priority but defines no jobs succeeds
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
       .createDeployment()
       .addClasspathResource("org/camunda/bpm/engine/test/bpmn/job/JobPrioritizationBpmnTest.testParsePriorityOnNonAsyncActivity.bpmn20.xml")
       .deploy();
@@ -230,7 +230,7 @@ public class JobPrioritizationBpmnConstantValueTest extends PluggableProcessEngi
   @Test
   public void testTimerStartEventPriorityOnProcessDefinition() {
     // given a timer start job
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
         .createDeployment()
         .addClasspathResource("org/camunda/bpm/engine/test/bpmn/job/JobPrioritizationBpmnConstantValueTest.testTimerStartEventPriorityOnProcessDefinition.bpmn20.xml")
         .deploy();
@@ -247,7 +247,7 @@ public class JobPrioritizationBpmnConstantValueTest extends PluggableProcessEngi
   @Test
   public void testTimerStartEventPriorityOnActivity() {
     // given a timer start job
-    org.camunda.bpm.engine.repository.Deployment deployment = repositoryService
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService
         .createDeployment()
         .addClasspathResource("org/camunda/bpm/engine/test/bpmn/job/JobPrioritizationBpmnConstantValueTest.testTimerStartEventPriorityOnActivity.bpmn20.xml")
         .deploy();

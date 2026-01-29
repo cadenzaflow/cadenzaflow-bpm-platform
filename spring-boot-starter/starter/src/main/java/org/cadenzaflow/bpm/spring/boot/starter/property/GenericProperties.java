@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.spring.boot.starter.property;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.camunda.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
+import static org.cadenzaflow.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
 
 public class GenericProperties {
 

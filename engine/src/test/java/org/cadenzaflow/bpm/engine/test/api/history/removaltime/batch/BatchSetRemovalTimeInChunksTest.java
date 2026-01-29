@@ -19,8 +19,8 @@ package org.cadenzaflow.bpm.engine.test.api.history.removaltime.batch;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
-import static org.camunda.bpm.engine.test.api.history.removaltime.batch.helper.BatchSetRemovalTimeRule.addDays;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
+import static org.cadenzaflow.bpm.engine.test.api.history.removaltime.batch.helper.BatchSetRemovalTimeRule.addDays;
 
 import java.io.ByteArrayInputStream;
 import java.util.Calendar;

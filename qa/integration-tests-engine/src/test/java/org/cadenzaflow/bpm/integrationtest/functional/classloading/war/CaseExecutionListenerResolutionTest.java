@@ -59,7 +59,7 @@ public class CaseExecutionListenerResolutionTest extends AbstractFoxPlatformInte
   public void testResolveCaseExecutionListenerClass() {
     // assert that we cannot load the delegate here:
     try {
-      Class.forName("org.camunda.bpm.integrationtest.functional.classloading.beans.ExampleCaseExecutionListener");
+      Class.forName("org.cadenzaflow.bpm.integrationtest.functional.classloading.beans.ExampleCaseExecutionListener");
       Assert.fail("CNFE expected");
     }catch (ClassNotFoundException e) {
       // expected

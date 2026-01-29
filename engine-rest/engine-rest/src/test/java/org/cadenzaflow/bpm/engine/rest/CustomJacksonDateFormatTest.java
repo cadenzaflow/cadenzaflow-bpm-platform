@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.rest;
 
 import static io.restassured.RestAssured.given;
-import static org.camunda.bpm.engine.rest.mapper.JacksonConfigurator.DEFAULT_DATE_FORMAT;
+import static org.cadenzaflow.bpm.engine.rest.mapper.JacksonConfigurator.DEFAULT_DATE_FORMAT;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 import static org.mockito.Mockito.eq;

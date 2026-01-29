@@ -65,10 +65,10 @@ public class ProcessDataLoggingContextTest {
   private static final String FAILING_PROCESS = "failing-process";
   private static final String TENANT_ID = "testTenant";
 
-  private static final String CMD_LOGGER = "org.camunda.bpm.engine.cmd";
-  private static final String CONTEXT_LOGGER = "org.camunda.bpm.engine.context";
-  private static final String JOBEXEC_LOGGER = "org.camunda.bpm.engine.jobexecutor";
-  private static final String PVM_LOGGER = "org.camunda.bpm.engine.pvm";
+  private static final String CMD_LOGGER = "org.cadenzaflow.bpm.engine.cmd";
+  private static final String CONTEXT_LOGGER = "org.cadenzaflow.bpm.engine.context";
+  private static final String JOBEXEC_LOGGER = "org.cadenzaflow.bpm.engine.jobexecutor";
+  private static final String PVM_LOGGER = "org.cadenzaflow.bpm.engine.pvm";
 
   private static final String LOG_IDENT_FAILURE = "ENGINE-16004";
 

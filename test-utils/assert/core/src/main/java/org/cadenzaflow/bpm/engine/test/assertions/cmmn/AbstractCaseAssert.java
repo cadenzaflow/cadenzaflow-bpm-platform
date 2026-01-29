@@ -226,7 +226,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					actual 'parent' CaseExecution under test of this assertion.
    * @return  the only CaseExecution resulting  from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -251,7 +251,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					actual 'parent' CaseExecution under test of this assertion.
    * @return  the only CaseExecution resulting  from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -280,7 +280,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'humanTask'.
    * @return  the only CaseExecution resulting from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -305,7 +305,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'humanTask'.
    * @return  the only CaseExecution with the given activitiy id. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -329,7 +329,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'caseTask'.
    * @return  the only CaseExecution resulting from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -354,7 +354,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'caseTask'.
    * @return  the only CaseExecution with the given activitiy id. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -378,7 +378,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'processTask'.
    * @return  the only CaseExecution resulting from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -403,7 +403,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'processTask'.
    * @return  the only CaseExecution with the given activitiy id. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -427,7 +427,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'stage'.
    * @return  the only CaseExecution resulting from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -452,7 +452,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'stage'.
    * @return  the only CaseExecution with the given activitiy id. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -476,7 +476,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'milestone'.
    * @return  the only CaseExecution resulting from the given search. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */
@@ -501,7 +501,7 @@ public abstract class AbstractCaseAssert<S extends AbstractCaseAssert<S, A>, A e
    * 					to the type 'milestone'.
    * @return  the only CaseExecution with the given activitiy id. A 'null'
    * 					CaseExecution in case no such CaseExecution is available.
-   * @throws  org.camunda.bpm.engine.ProcessEngineException in case more than
+   * @throws  org.cadenzaflow.bpm.engine.ProcessEngineException in case more than
    *          one CaseExecution is delivered by the query (after being narrowed
    *          to the actual 'parent' CaseExecution)
    */

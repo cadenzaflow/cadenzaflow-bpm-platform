@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.impl.util.DecisionEvaluationUtil.evaluateDecision;
+import static org.cadenzaflow.bpm.engine.impl.util.DecisionEvaluationUtil.evaluateDecision;
 
 import org.cadenzaflow.bpm.engine.impl.cmmn.entity.runtime.CaseExecutionEntity;
 import org.cadenzaflow.bpm.engine.impl.cmmn.execution.CmmnActivityExecution;

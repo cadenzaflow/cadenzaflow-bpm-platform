@@ -17,7 +17,7 @@
 package org.cadenzaflow.spin.xml.dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.Spin.S;
+import static org.cadenzaflow.spin.Spin.S;
 
 import java.util.HashMap;
 import java.util.Map;

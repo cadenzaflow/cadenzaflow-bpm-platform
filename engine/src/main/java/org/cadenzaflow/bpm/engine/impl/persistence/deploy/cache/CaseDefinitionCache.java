@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.engine.impl.cmmn.entity.repository.CaseDefinitionEnti
 import org.cadenzaflow.bpm.engine.impl.context.Context;
 import org.cadenzaflow.bpm.engine.impl.persistence.AbstractResourceDefinitionManager;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * @author: Johannes Heinemann

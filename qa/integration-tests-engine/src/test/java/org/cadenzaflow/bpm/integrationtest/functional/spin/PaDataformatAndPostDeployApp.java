@@ -29,7 +29,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngine;
  */
 @ProcessApplication(PaDataformatAndPostDeployApp.PA_NAME)
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class PaDataformatAndPostDeployApp extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class PaDataformatAndPostDeployApp extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
 
   public final static String PA_NAME  = "PaDataformatAndPostDeployApp";
 

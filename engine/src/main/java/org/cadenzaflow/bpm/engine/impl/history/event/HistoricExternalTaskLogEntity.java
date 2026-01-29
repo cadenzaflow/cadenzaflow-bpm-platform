@@ -27,8 +27,8 @@ import org.cadenzaflow.bpm.engine.repository.ResourceTypes;
 
 import java.util.Date;
 
-import static org.camunda.bpm.engine.impl.util.ExceptionUtil.createExceptionByteArray;
-import static org.camunda.bpm.engine.impl.util.StringUtil.toByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.ExceptionUtil.createExceptionByteArray;
+import static org.cadenzaflow.bpm.engine.impl.util.StringUtil.toByteArray;
 
 public class HistoricExternalTaskLogEntity extends HistoryEvent implements HistoricExternalTaskLog {
 

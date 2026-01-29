@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.cadenzaflow.bpm.engine.identity.User;
 
 import static java.util.Objects.requireNonNull;
-import static org.camunda.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
+import static org.cadenzaflow.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
 
 
 public class AdminUserProperty implements User {

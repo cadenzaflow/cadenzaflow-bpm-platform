@@ -16,11 +16,11 @@
  */
 package org.cadenzaflow.bpm.engine.impl.history;
 
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.FORM_PROPERTY_UPDATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_CREATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_DELETE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_UPDATE;
-import static org.camunda.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_MIGRATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.FORM_PROPERTY_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_CREATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_DELETE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventTypes.VARIABLE_INSTANCE_MIGRATE;
 
 import org.cadenzaflow.bpm.engine.ProcessEngineConfiguration;
 import org.cadenzaflow.bpm.engine.impl.history.event.HistoryEventType;

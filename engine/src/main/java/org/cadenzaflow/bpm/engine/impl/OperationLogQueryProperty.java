@@ -20,7 +20,7 @@ import org.cadenzaflow.bpm.engine.query.QueryProperty;
 
 
 /**
- * Contains sortable properties which can be used in a {@link org.camunda.bpm.engine.history.UserOperationLogQuery}.
+ * Contains sortable properties which can be used in a {@link org.cadenzaflow.bpm.engine.history.UserOperationLogQuery}.
  *
  * @author Danny Gräf
  */

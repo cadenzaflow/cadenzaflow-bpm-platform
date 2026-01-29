@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.cockpit.impl.db;
 import org.cadenzaflow.bpm.cockpit.db.CommandExecutor;
 import org.cadenzaflow.bpm.cockpit.db.QueryService;
 
-public class QueryServiceImpl extends org.camunda.bpm.webapp.impl.db.QueryServiceImpl implements QueryService {
+public class QueryServiceImpl extends org.cadenzaflow.bpm.webapp.impl.db.QueryServiceImpl implements QueryService {
 
   public QueryServiceImpl(CommandExecutor commandExecutor) {
     super(commandExecutor);

@@ -60,9 +60,9 @@ public class CamundaRunProcessEnginePluginsRegistrationTest {
   @Test
   public void shouldPickUpAllPluginConfigurations() {
     // given a CamundaBpmRunProperties instance
-    String pluginOne = "org.camunda.bpm.run.test.plugins.TestFirstPlugin";
-    String pluginTwo = "org.camunda.bpm.run.test.plugins.TestSecondPlugin";
-    String pluginThree = "org.camunda.bpm.run.test.plugins.TestDefaultValuesPlugin";
+    String pluginOne = "org.cadenzaflow.bpm.run.test.plugins.TestFirstPlugin";
+    String pluginTwo = "org.cadenzaflow.bpm.run.test.plugins.TestSecondPlugin";
+    String pluginThree = "org.cadenzaflow.bpm.run.test.plugins.TestDefaultValuesPlugin";
     List<CamundaBpmRunProcessEnginePluginProperty> pluginConfigs = properties
         .getProcessEnginePlugins();
 

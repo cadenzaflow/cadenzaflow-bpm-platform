@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmd;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotEmpty;
 
 import org.cadenzaflow.bpm.engine.BadUserRequestException;
 import org.cadenzaflow.bpm.engine.authorization.BatchPermissions;

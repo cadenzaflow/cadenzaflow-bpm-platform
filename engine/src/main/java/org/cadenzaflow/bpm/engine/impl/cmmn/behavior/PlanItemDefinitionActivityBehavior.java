@@ -16,14 +16,14 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.ENABLE;
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.OCCUR;
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.START;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.NEW;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REPETITION_RULE;
-import static org.camunda.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REQUIRED_RULE;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.ENABLE;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.OCCUR;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.START;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.AVAILABLE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.NEW;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REPETITION_RULE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.handler.ItemHandler.PROPERTY_REQUIRED_RULE;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import java.util.Arrays;
 import java.util.List;

@@ -281,7 +281,7 @@ public class ProcessDefinitionStatisticsQueryTest extends PluggableProcessEngine
   @Test
   @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
   public void testProcessDefinitionStatisticsQueryForMultipleVersions() {
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         repositoryService.createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
           .deploy();
@@ -325,7 +325,7 @@ public class ProcessDefinitionStatisticsQueryTest extends PluggableProcessEngine
   @Test
   @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
   public void testProcessDefinitionStatisticsQueryForMultipleVersionsWithFailedJobsAndIncidents() {
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         repositoryService.createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
           .deploy();
@@ -386,7 +386,7 @@ public class ProcessDefinitionStatisticsQueryTest extends PluggableProcessEngine
   @Test
   @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
   public void testProcessDefinitionStatisticsQueryForMultipleVersionsWithIncidentType() {
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         repositoryService.createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
           .deploy();
@@ -430,7 +430,7 @@ public class ProcessDefinitionStatisticsQueryTest extends PluggableProcessEngine
   @Test
   @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml")
   public void testProcessDefinitionStatisticsQueryPagination() {
-    org.camunda.bpm.engine.repository.Deployment deployment =
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         repositoryService.createDeployment()
           .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQuery.bpmn20.xml")
           .deploy();

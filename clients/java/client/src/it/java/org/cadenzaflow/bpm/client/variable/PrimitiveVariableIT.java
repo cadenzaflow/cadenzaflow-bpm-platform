@@ -17,18 +17,18 @@
 package org.cadenzaflow.bpm.client.variable;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
-import static org.camunda.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
-import static org.camunda.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
-import static org.camunda.bpm.engine.variable.type.ValueType.BOOLEAN;
-import static org.camunda.bpm.engine.variable.type.ValueType.BYTES;
-import static org.camunda.bpm.engine.variable.type.ValueType.DATE;
-import static org.camunda.bpm.engine.variable.type.ValueType.DOUBLE;
-import static org.camunda.bpm.engine.variable.type.ValueType.INTEGER;
-import static org.camunda.bpm.engine.variable.type.ValueType.LONG;
-import static org.camunda.bpm.engine.variable.type.ValueType.NULL;
-import static org.camunda.bpm.engine.variable.type.ValueType.SHORT;
-import static org.camunda.bpm.engine.variable.type.ValueType.STRING;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_BAR;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.EXTERNAL_TASK_TOPIC_FOO;
+import static org.cadenzaflow.bpm.client.util.ProcessModels.TWO_EXTERNAL_TASK_PROCESS;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.BOOLEAN;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.BYTES;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.DATE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.DOUBLE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.INTEGER;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.LONG;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.NULL;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.SHORT;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.STRING;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.api.multitenancy.tenantcheck;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.query.PeriodUnit.MONTH;
+import static org.cadenzaflow.bpm.engine.query.PeriodUnit.MONTH;
 
 import java.util.Arrays;
 import java.util.Calendar;

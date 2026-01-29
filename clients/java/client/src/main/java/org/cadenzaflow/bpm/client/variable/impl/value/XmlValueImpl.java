@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.client.variable.impl.value;
 
-import static org.camunda.bpm.client.variable.ClientValues.XML;
+import static org.cadenzaflow.bpm.client.variable.ClientValues.XML;
 
 import org.cadenzaflow.bpm.client.variable.value.XmlValue;
 import org.cadenzaflow.bpm.engine.variable.impl.value.PrimitiveTypeValueImpl;

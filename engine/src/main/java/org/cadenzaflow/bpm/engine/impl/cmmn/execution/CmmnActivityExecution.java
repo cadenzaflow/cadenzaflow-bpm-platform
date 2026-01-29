@@ -702,7 +702,7 @@ public interface CmmnActivityExecution extends DelegateCaseExecution {
    *
    * @param taskDecorator the task decorator used to create task
    */
-   org.camunda.bpm.engine.task.Task createTask(TaskDecorator taskDecorator);
+   org.cadenzaflow.bpm.engine.task.Task createTask(TaskDecorator taskDecorator);
 
   /**
    * <p>Creates a new sub process instance.</p>

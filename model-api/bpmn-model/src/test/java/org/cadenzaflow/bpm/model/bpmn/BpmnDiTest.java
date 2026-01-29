@@ -30,7 +30,7 @@ import org.junit.Test;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.*;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.*;
 
 /**
  * @author Sebastian Menski

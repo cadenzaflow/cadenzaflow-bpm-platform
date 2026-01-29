@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.spring.boot.starter.plugin.spin;
 
-import static org.camunda.spin.Spin.S;
+import static org.cadenzaflow.spin.Spin.S;
 
 import org.cadenzaflow.bpm.engine.delegate.JavaDelegate;
 import org.cadenzaflow.spin.json.SpinJsonNode;

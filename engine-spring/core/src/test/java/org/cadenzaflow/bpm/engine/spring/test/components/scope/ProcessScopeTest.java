@@ -54,12 +54,12 @@ public class ProcessScopeTest {
       // test for logged exception
       String message = new String(out.toByteArray(), StandardCharsets.UTF_8);
       assertTrue(!message.isEmpty());
-      assertTrue(message.contains("org.camunda.bpm.engine.spring.components.scope.ProcessScope get"));
+      assertTrue(message.contains("org.cadenzaflow.bpm.engine.spring.components.scope.ProcessScope get"));
       assertTrue(message.contains("couldn't return value from process scope! java.lang.NullPointerException"));
-      assertTrue(message.contains("at org.camunda.bpm.engine.spring.components.scope.ProcessScope.getExecutionId(ProcessScope.java:")); 
-      assertTrue(message.contains("at org.camunda.bpm.engine.spring.components.scope.ProcessScope.getConversationId(ProcessScope.java:")); 
-      assertTrue(message.contains("at org.camunda.bpm.engine.spring.components.scope.ProcessScope.get(ProcessScope.java:")); 
-      assertTrue(message.contains("at org.camunda.bpm.engine.spring.test.components.scope.ProcessScopeTest.shouldLogExceptionStacktrace(ProcessScopeTest.java:")); 
+      assertTrue(message.contains("at org.cadenzaflow.bpm.engine.spring.components.scope.ProcessScope.getExecutionId(ProcessScope.java:")); 
+      assertTrue(message.contains("at org.cadenzaflow.bpm.engine.spring.components.scope.ProcessScope.getConversationId(ProcessScope.java:")); 
+      assertTrue(message.contains("at org.cadenzaflow.bpm.engine.spring.components.scope.ProcessScope.get(ProcessScope.java:")); 
+      assertTrue(message.contains("at org.cadenzaflow.bpm.engine.spring.test.components.scope.ProcessScopeTest.shouldLogExceptionStacktrace(ProcessScopeTest.java:")); 
     }
   }
 }

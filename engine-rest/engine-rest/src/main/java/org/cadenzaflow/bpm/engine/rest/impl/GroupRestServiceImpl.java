@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.rest.impl;
 
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE;
-import static org.camunda.bpm.engine.authorization.Resources.GROUP;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.CREATE;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.GROUP;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;

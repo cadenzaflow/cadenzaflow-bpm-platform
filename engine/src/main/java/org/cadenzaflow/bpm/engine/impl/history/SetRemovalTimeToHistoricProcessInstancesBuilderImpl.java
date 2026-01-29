@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.history;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNull;
 
 import java.util.Arrays;
 import java.util.Date;

@@ -16,16 +16,16 @@
  */
 package org.cadenzaflow.bpm.model.xml.testmodel.instance;
 
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_AGE;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_BEST_FRIEND_REFS;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_FATHER;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_GENDER;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_ID;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_IS_ENDANGERED;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_MOTHER;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_NAME;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.TYPE_NAME_ANIMAL;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_AGE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_BEST_FRIEND_REFS;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_FATHER;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_GENDER;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_ID;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_IS_ENDANGERED;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_MOTHER;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.ATTRIBUTE_NAME_NAME;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.TYPE_NAME_ANIMAL;
 
 import java.util.Collection;
 

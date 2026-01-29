@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.engine.test.assertions.bpmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.withVariables;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.withVariables;
 
 import java.util.ArrayList;
 import java.util.Arrays;

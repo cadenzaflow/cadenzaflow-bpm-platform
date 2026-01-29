@@ -34,7 +34,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 /**
- * Exposes the {@link org.camunda.bpm.engine.history.UserOperationLogQuery} as REST service.
+ * Exposes the {@link org.cadenzaflow.bpm.engine.history.UserOperationLogQuery} as REST service.
  *
  * @author Danny Gräf
  */

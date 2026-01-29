@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.assertions.cmmn;
 
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.withVariables;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.withVariables;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;

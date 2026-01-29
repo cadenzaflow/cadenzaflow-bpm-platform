@@ -28,7 +28,7 @@ import org.cadenzaflow.spin.impl.logging.SpinLogger;
  */
 public class SpinTestLogger extends SpinLogger {
 
-  public static final SpinTestLogger TEST_LOGGER = BaseLogger.createLogger(SpinTestLogger.class, PROJECT_CODE, "org.camunda.spin.test", "02");
+  public static final SpinTestLogger TEST_LOGGER = BaseLogger.createLogger(SpinTestLogger.class, PROJECT_CODE, "org.cadenzaflow.spin.test", "02");
 
   public void scriptEngineFoundForLanguage(String scriptLanguage) {
     logInfo("001", "Script engine found for script language '{}'", scriptLanguage);

@@ -18,43 +18,43 @@ package org.cadenzaflow.bpm.model.bpmn.builder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.BOUNDARY_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.CALL_ACTIVITY_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.CATCH_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.CONDITION_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.EXTERNAL_TASK_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.FORM_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.PROCESS_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SERVICE_TASK_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.START_EVENT_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.SUB_PROCESS_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TASK_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_CLASS_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITION;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITIONAL_VARIABLE_EVENTS;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITIONAL_VARIABLE_EVENTS_LIST;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITIONAL_VARIABLE_NAME;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_DELEGATE_EXPRESSION_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_DUE_DATE_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_EXPRESSION_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_EXTERNAL_TASK_TOPIC;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_FOLLOW_UP_DATE_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_GROUPS_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_GROUPS_LIST_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_HISTORY_TIME_TO_LIVE;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_PRIORITY_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_PROCESS_TASK_PRIORITY;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_SERVICE_TASK_PRIORITY;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_STARTABLE_IN_TASKLIST;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_STRING_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_STRING_FORM_REF_BINDING;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_STRING_FORM_REF_VERSION;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_USERS_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_USERS_LIST_API;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TEST_VERSION_TAG;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.TRANSACTION_ID;
-import static org.camunda.bpm.model.bpmn.BpmnTestConstants.USER_TASK_ID;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.BOUNDARY_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.CALL_ACTIVITY_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.CATCH_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.CONDITION_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.EXTERNAL_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.FORM_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.PROCESS_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SERVICE_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.START_EVENT_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.SUB_PROCESS_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_CLASS_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITION;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITIONAL_VARIABLE_EVENTS;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITIONAL_VARIABLE_EVENTS_LIST;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_CONDITIONAL_VARIABLE_NAME;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_DELEGATE_EXPRESSION_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_DUE_DATE_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_EXPRESSION_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_EXTERNAL_TASK_TOPIC;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_FOLLOW_UP_DATE_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_GROUPS_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_GROUPS_LIST_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_HISTORY_TIME_TO_LIVE;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_PRIORITY_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_PROCESS_TASK_PRIORITY;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_SERVICE_TASK_PRIORITY;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_STARTABLE_IN_TASKLIST;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_STRING_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_STRING_FORM_REF_BINDING;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_STRING_FORM_REF_VERSION;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_USERS_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_USERS_LIST_API;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TEST_VERSION_TAG;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.TRANSACTION_ID;
+import static org.cadenzaflow.bpm.model.bpmn.BpmnTestConstants.USER_TASK_ID;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.BPMN20_NS;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
@@ -570,7 +570,7 @@ public class ProcessBuilderTest {
         .camundaCandidateGroups("accounting")
       .serviceTask()
         .name("Archive Invoice")
-        .camundaClass("org.camunda.bpm.example.invoice.service.ArchiveInvoiceService" )
+        .camundaClass("org.cadenzaflow.bpm.example.invoice.service.ArchiveInvoiceService" )
       .endEvent()
         .name("Invoice processed")
       .moveToLastGateway()
@@ -851,7 +851,7 @@ public class ProcessBuilderTest {
       .done();
 
     BusinessRuleTask businessRuleTask = modelInstance.getModelElementById(TASK_ID);
-    assertThat(businessRuleTask.getCamundaClass()).isEqualTo("org.camunda.bpm.model.bpmn.Bpmn");
+    assertThat(businessRuleTask.getCamundaClass()).isEqualTo("org.cadenzaflow.bpm.model.bpmn.Bpmn");
   }
 
   @Test

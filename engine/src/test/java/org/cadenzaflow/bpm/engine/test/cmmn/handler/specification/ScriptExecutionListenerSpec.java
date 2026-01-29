@@ -31,7 +31,7 @@ import org.cadenzaflow.bpm.model.cmmn.instance.camunda.CamundaScript;
 public class ScriptExecutionListenerSpec extends AbstractExecutionListenerSpec {
 
   //could be configurable
-  protected static final String SCRIPT_FORMAT = "org.camunda.bpm.test.caseexecutionlistener.ABC";
+  protected static final String SCRIPT_FORMAT = "org.cadenzaflow.bpm.test.caseexecutionlistener.ABC";
 
   public ScriptExecutionListenerSpec(String eventName) {
     super(eventName);

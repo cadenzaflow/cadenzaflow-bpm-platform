@@ -42,8 +42,8 @@ import org.junit.rules.RuleChain;
 
 public class JobExceptionLoggingTest {
 
-  private static final String JOBEXECUTOR_LOGGER = "org.camunda.bpm.engine.jobexecutor";
-  private static final String CONTEXT_LOGGER = "org.camunda.bpm.engine.context";
+  private static final String JOBEXECUTOR_LOGGER = "org.cadenzaflow.bpm.engine.jobexecutor";
+  private static final String CONTEXT_LOGGER = "org.cadenzaflow.bpm.engine.context";
 
   public ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().watch(CONTEXT_LOGGER, JOBEXECUTOR_LOGGER).level(Level.DEBUG);
@@ -123,7 +123,7 @@ public class JobExceptionLoggingTest {
     BpmnModelInstance modelInstance = Bpmn.createExecutableProcess("failingDelegate")
         .startEvent()
         .serviceTask()
-          .camundaClass("org.camunda.bpm.engine.test.jobexecutor.FailingDelegate")
+          .camundaClass("org.cadenzaflow.bpm.engine.test.jobexecutor.FailingDelegate")
           .camundaAsyncBefore()
         .done();
     testRule.deploy(modelInstance);
@@ -157,7 +157,7 @@ public class JobExceptionLoggingTest {
     BpmnModelInstance modelInstance = Bpmn.createExecutableProcess("failingDelegate")
         .startEvent()
         .serviceTask()
-          .camundaClass("org.camunda.bpm.engine.test.jobexecutor.FailingDelegate")
+          .camundaClass("org.cadenzaflow.bpm.engine.test.jobexecutor.FailingDelegate")
         .done();
     testRule.deploy(modelInstance);
 

@@ -36,8 +36,8 @@ import javax.enterprise.context.RequestScoped;
  * <p />
  * Note: BusinessProcessScoped is not capable of managing local process variables,
  * and there is currently also no respective other implementation for that. Please use
- * {@link org.camunda.bpm.engine.cdi.BusinessProcess#setVariableLocal(String, Object)}
- * and {@link org.camunda.bpm.engine.cdi.BusinessProcess#getVariableLocal(String)}
+ * {@link org.cadenzaflow.bpm.engine.cdi.BusinessProcess#setVariableLocal(String, Object)}
+ * and {@link org.cadenzaflow.bpm.engine.cdi.BusinessProcess#getVariableLocal(String)}
  * or an injected Map of local process variables instead.
  * <p />
  * If no ProcessInstance is currently managed, instances of

@@ -18,9 +18,9 @@ package org.cadenzaflow.bpm.engine.test.api.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.processDefinitionByDeployTime;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySortingAndCount;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.processDefinitionByDeployTime;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySortingAndCount;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -499,7 +499,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByIncidentId() {
     assertThat(repositoryService.createProcessDefinitionQuery()
         .processDefinitionKey("failingProcess")
@@ -533,7 +533,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByIncidentType() {
     assertThat(repositoryService.createProcessDefinitionQuery()
         .processDefinitionKey("failingProcess")
@@ -567,7 +567,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByIncidentMessage() {
     assertThat(repositoryService.createProcessDefinitionQuery()
         .processDefinitionKey("failingProcess")
@@ -601,7 +601,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByIncidentMessageLike() {
     assertThat(repositoryService.createProcessDefinitionQuery()
         .processDefinitionKey("failingProcess")
@@ -803,7 +803,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByVersionTag() {
     assertThat(repositoryService.createProcessDefinitionQuery()
       .versionTag("ver_tag_2")
@@ -811,7 +811,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByVersionTagLike() {
     assertThat(repositoryService.createProcessDefinitionQuery()
       .versionTagLike("ver\\_tag\\_%")
@@ -819,7 +819,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={"org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml"})
   public void testQueryByNoVersionTag() {
     // 4 definitions without and 1 definition with version tag are deployed
     assertThat(repositoryService.createProcessDefinitionQuery()
@@ -849,7 +849,7 @@ public class ProcessDefinitionQueryTest extends AbstractDefinitionQueryTest {
   }
 
   @Test
-  @org.camunda.bpm.engine.test.Deployment(resources={
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources={
     "org/camunda/bpm/engine/test/api/repository/failingProcessCreateOneIncident.bpmn20.xml",
     "org/camunda/bpm/engine/test/api/repository/VersionTagTest.testParsingVersionTag.bpmn20.xml"
   })

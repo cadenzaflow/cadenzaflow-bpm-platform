@@ -48,7 +48,7 @@ import org.cadenzaflow.bpm.container.impl.threading.ra.inflow.JobExecutionHandle
   )
 public class JcaExecutorServiceConnector implements ResourceAdapter, Serializable {
 
-  public static final String ORG_CAMUNDA_BPM_ENGINE_PROCESS_ENGINE = "org.camunda.bpm.engine.ProcessEngine";
+  public static final String ORG_CAMUNDA_BPM_ENGINE_PROCESS_ENGINE = "org.cadenzaflow.bpm.engine.ProcessEngine";
 
   /**
    * This class must be free of engine classes to make it possible to install
@@ -60,7 +60,7 @@ public class JcaExecutorServiceConnector implements ResourceAdapter, Serializabl
    */
   public class ExecutorServiceWrapper {
     /**
-     * will hold a org.camunda.bpm.container.ExecutorService reference
+     * will hold a org.cadenzaflow.bpm.container.ExecutorService reference
      */
     protected Object executorService;
 

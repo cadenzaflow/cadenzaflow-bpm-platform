@@ -34,7 +34,7 @@ import org.cadenzaflow.bpm.model.dmn.DmnModelInstance;
 /**
  * <p>Builder for creating new deployments.</p>
  *
- * <p>A builder instance can be obtained through {@link org.camunda.bpm.engine.RepositoryService#createDeployment()}.</p>
+ * <p>A builder instance can be obtained through {@link org.cadenzaflow.bpm.engine.RepositoryService#createDeployment()}.</p>
  *
  * <p>Multiple resources can be added to one deployment before calling the {@link #deploy()}
  * operation.</p>

@@ -29,7 +29,7 @@ import org.cadenzaflow.bpm.engine.impl.el.ExpressionManager;
 import org.cadenzaflow.bpm.engine.repository.Deployment;
 import org.cadenzaflow.bpm.model.cmmn.instance.CmmnElement;
 
-import static org.camunda.bpm.engine.impl.util.StringUtil.isCompositeExpression;
+import static org.cadenzaflow.bpm.engine.impl.util.StringUtil.isCompositeExpression;
 
 /**
  * @author Roman Smirnov

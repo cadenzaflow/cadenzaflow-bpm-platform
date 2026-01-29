@@ -66,7 +66,7 @@ import org.cadenzaflow.bpm.engine.variable.value.builder.TypedValueBuilder;
  * Users can import the methods provided by this class using a static import:</p>
  *
  * <code>
- * import static org.camunda.bpm.engine.variable.Variables.*;
+ * import static org.cadenzaflow.bpm.engine.variable.Variables.*;
  * </code>
  *
  * @author Daniel Meyer

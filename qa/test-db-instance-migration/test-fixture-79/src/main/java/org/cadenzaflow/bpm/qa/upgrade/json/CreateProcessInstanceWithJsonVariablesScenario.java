@@ -30,7 +30,7 @@ import org.cadenzaflow.bpm.qa.upgrade.json.beans.ObjectList;
 import org.cadenzaflow.bpm.qa.upgrade.json.beans.Order;
 import org.cadenzaflow.bpm.qa.upgrade.json.beans.OrderDetails;
 import org.cadenzaflow.bpm.qa.upgrade.json.beans.RegularCustomer;
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
 import static org.junit.Assert.assertEquals;
 
 public class CreateProcessInstanceWithJsonVariablesScenario {

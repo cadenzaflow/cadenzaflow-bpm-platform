@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.engine.impl.util.io;
 import java.io.InputStream;
 import org.cadenzaflow.bpm.engine.impl.util.ReflectUtil;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 
 /**

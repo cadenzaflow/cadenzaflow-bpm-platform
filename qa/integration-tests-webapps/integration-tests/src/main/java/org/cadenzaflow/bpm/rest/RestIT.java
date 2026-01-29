@@ -245,7 +245,7 @@ public class RestIT extends AbstractWebIntegrationTest {
     // check that definition is also serialized
     for (int i = 0; i < definitionStatistics.length(); i++) {
       JSONObject definitionStatistic = definitionStatistics.getJSONObject(i);
-      assertEquals("org.camunda.bpm.engine.rest.dto.repository.ProcessDefinitionStatisticsResultDto", definitionStatistic.getString("@class"));
+      assertEquals("org.cadenzaflow.bpm.engine.rest.dto.repository.ProcessDefinitionStatisticsResultDto", definitionStatistic.getString("@class"));
       assertEquals(0, definitionStatistic.getJSONArray("incidents").length());
       JSONObject definition = definitionStatistic.getJSONObject("definition");
       assertTrue(definition.getString("name").toLowerCase().contains("invoice"));

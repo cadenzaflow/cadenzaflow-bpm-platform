@@ -363,7 +363,7 @@ public class DeploymentCacheCfgTest {
         .userTask().name("User Task")
         .endEvent("endEvent")
         .done();
-    org.camunda.bpm.model.bpmn.instance.Process model = bpmnModel.getModelElementById("Process" + suffix);
+    org.cadenzaflow.bpm.model.bpmn.instance.Process model = bpmnModel.getModelElementById("Process" + suffix);
     model.setCamundaCandidateStarterUsers("demo" + suffix);
     return bpmnModel;
   }

@@ -77,7 +77,7 @@ public class SetExternalTasksRetriesTest extends AbstractAsyncOperationsTest {
   }
 
   protected void deployTestProcesses() {
-    org.camunda.bpm.engine.repository.Deployment deployment = engineRule.getRepositoryService().createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment = engineRule.getRepositoryService().createDeployment()
       .addClasspathResource("org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
       .addClasspathResource("org/camunda/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml")
       .deploy();

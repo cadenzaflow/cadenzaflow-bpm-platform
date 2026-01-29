@@ -31,7 +31,7 @@ import org.cadenzaflow.bpm.engine.runtime.Incident;
  * By default, the process engine has two default handlers:
  * <ul>
  * <li>type <code>failedJob</code>: Indicates jobs without retries left. This incident handler is active by default and must be disabled
- * via {@link org.camunda.bpm.engine.ProcessEngineConfiguration#setCreateIncidentOnFailedJobEnabled(boolean)}.
+ * via {@link org.cadenzaflow.bpm.engine.ProcessEngineConfiguration#setCreateIncidentOnFailedJobEnabled(boolean)}.
  * <li>type <code>failedExternalTask</code>: Indicates external tasks without retries left
  * </p>
  *

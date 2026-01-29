@@ -18,15 +18,15 @@ package org.cadenzaflow.bpm.engine.test.api.authorization.optimize;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.authorization.Authorization.ANY;
-import static org.camunda.bpm.engine.authorization.Permissions.ALL;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_HISTORY;
-import static org.camunda.bpm.engine.authorization.Resources.AUTHORIZATION;
-import static org.camunda.bpm.engine.authorization.Resources.DECISION_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.TENANT;
-import static org.camunda.bpm.engine.authorization.Resources.USER;
+import static org.cadenzaflow.bpm.engine.authorization.Authorization.ANY;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.ALL;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ;
+import static org.cadenzaflow.bpm.engine.authorization.Permissions.READ_HISTORY;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.AUTHORIZATION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.DECISION_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.TENANT;
+import static org.cadenzaflow.bpm.engine.authorization.Resources.USER;
 import static org.junit.Assert.fail;
 
 import java.util.Arrays;

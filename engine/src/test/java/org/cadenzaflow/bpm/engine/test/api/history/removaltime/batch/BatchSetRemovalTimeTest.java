@@ -18,11 +18,11 @@ package org.cadenzaflow.bpm.engine.test.api.history.removaltime.batch;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_END;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_NONE;
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_START;
-import static org.camunda.bpm.engine.test.api.history.removaltime.batch.helper.BatchSetRemovalTimeRule.addDays;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_FULL;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_END;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_NONE;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_START;
+import static org.cadenzaflow.bpm.engine.test.api.history.removaltime.batch.helper.BatchSetRemovalTimeRule.addDays;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -245,7 +245,7 @@ public class BatchSetRemovalTimeTest {
 
     List<String> deploymentIds = engineRule.getRepositoryService().createDeploymentQuery()
         .list().stream()
-        .map(org.camunda.bpm.engine.repository.Deployment::getId)
+        .map(org.cadenzaflow.bpm.engine.repository.Deployment::getId)
         .collect(Collectors.toList());
 
     // when
@@ -290,7 +290,7 @@ public class BatchSetRemovalTimeTest {
 
     List<String> deploymentIds = engineRule.getRepositoryService().createDeploymentQuery()
         .list().stream()
-        .map(org.camunda.bpm.engine.repository.Deployment::getId)
+        .map(org.cadenzaflow.bpm.engine.repository.Deployment::getId)
         .collect(Collectors.toList());
 
     // when

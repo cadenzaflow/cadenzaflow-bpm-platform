@@ -28,7 +28,7 @@ import org.cadenzaflow.bpm.container.impl.spi.PlatformServiceContainer;
 import org.cadenzaflow.bpm.container.impl.spi.ServiceTypes;
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 /**
  * <p>Deployment operation responsible for stopping all process engines started by the deployment.</p>

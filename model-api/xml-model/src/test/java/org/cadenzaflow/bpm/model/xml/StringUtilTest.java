@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.xml.impl.util.StringUtil.joinCommaSeparatedList;
-import static org.camunda.bpm.model.xml.impl.util.StringUtil.splitCommaSeparatedList;
+import static org.cadenzaflow.bpm.model.xml.impl.util.StringUtil.joinCommaSeparatedList;
+import static org.cadenzaflow.bpm.model.xml.impl.util.StringUtil.splitCommaSeparatedList;
 
 /**
  * @author Sebastian Menski

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.model.dmn.instance;
 
-import static org.camunda.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
+import static org.cadenzaflow.bpm.model.dmn.impl.DmnModelConstants.CAMUNDA_NS;
 
 import java.util.Arrays;
 import java.util.Collection;

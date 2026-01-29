@@ -17,8 +17,8 @@
 package org.cadenzaflow.bpm.engine.impl.cfg;
 
 
-import static org.camunda.bpm.engine.impl.cmd.HistoryCleanupCmd.MAX_THREADS_NUMBER;
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.bpm.engine.impl.cmd.HistoryCleanupCmd.MAX_THREADS_NUMBER;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.ensureNotNull;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -400,7 +400,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   public static final int HISTORYLEVEL_AUDIT = HistoryLevel.HISTORY_LEVEL_AUDIT.getId();
   public static final int HISTORYLEVEL_FULL = HistoryLevel.HISTORY_LEVEL_FULL.getId();
 
-  public static final String DEFAULT_WS_SYNC_FACTORY = "org.camunda.bpm.engine.impl.webservice.CxfWebServiceClientFactory";
+  public static final String DEFAULT_WS_SYNC_FACTORY = "org.cadenzaflow.bpm.engine.impl.webservice.CxfWebServiceClientFactory";
 
   public static final String DEFAULT_MYBATIS_MAPPING_FILE = "org/camunda/bpm/engine/impl/mapping/mappings.xml";
 
@@ -751,7 +751,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   protected DmnHistoryEventProducer dmnHistoryEventProducer;
 
   /**
-   * As an instance of {@link org.camunda.bpm.engine.impl.history.handler.CompositeHistoryEventHandler}
+   * As an instance of {@link org.cadenzaflow.bpm.engine.impl.history.handler.CompositeHistoryEventHandler}
    * it contains all the provided history event handlers that process history events.
    */
   protected HistoryEventHandler historyEventHandler;
@@ -1821,7 +1821,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
           Properties properties = new Properties();
 
           if (isUseSharedSqlSessionFactory) {
-            properties.put("prefix", "${@org.camunda.bpm.engine.impl.context.Context@getProcessEngineConfiguration().databaseTablePrefix}");
+            properties.put("prefix", "${@org.cadenzaflow.bpm.engine.impl.context.Context@getProcessEngineConfiguration().databaseTablePrefix}");
           } else {
             properties.put("prefix", databaseTablePrefix);
           }

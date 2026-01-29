@@ -17,9 +17,9 @@
 package org.cadenzaflow.bpm.cockpit.plugin.base;
 
 import static junit.framework.TestCase.fail;
-import static org.camunda.bpm.engine.rest.dto.ConditionQueryParameterDto.EQUALS_OPERATOR_NAME;
-import static org.camunda.bpm.engine.rest.dto.ConditionQueryParameterDto.LIKE_OPERATOR_NAME;
-import static org.camunda.bpm.engine.rest.dto.ConditionQueryParameterDto.NOT_EQUALS_OPERATOR_NAME;
+import static org.cadenzaflow.bpm.engine.rest.dto.ConditionQueryParameterDto.EQUALS_OPERATOR_NAME;
+import static org.cadenzaflow.bpm.engine.rest.dto.ConditionQueryParameterDto.LIKE_OPERATOR_NAME;
+import static org.cadenzaflow.bpm.engine.rest.dto.ConditionQueryParameterDto.NOT_EQUALS_OPERATOR_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation;
 
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.DELETE;
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.INSERT;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.DELETE;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.INSERT;
 
 import java.util.ArrayList;
 import java.util.Comparator;

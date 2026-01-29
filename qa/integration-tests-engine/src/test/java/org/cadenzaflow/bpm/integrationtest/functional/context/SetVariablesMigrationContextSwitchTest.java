@@ -99,7 +99,7 @@ public class SetVariablesMigrationContextSwitchTest extends AbstractFoxPlatformI
         .mapEqualActivities()
         .setVariables(Variables.putValue("foo",
             Variables.serializedObjectValue()
-                .objectTypeName("org.camunda.bpm.integrationtest.functional.context.classes.MyPojo")
+                .objectTypeName("org.cadenzaflow.bpm.integrationtest.functional.context.classes.MyPojo")
                 .serializedValue("{\"name\": \"myName\", \"prio\": 5}")
                 .serializationDataFormat("application/json")
                 .create()))
@@ -149,7 +149,7 @@ public class SetVariablesMigrationContextSwitchTest extends AbstractFoxPlatformI
         .mapEqualActivities()
         .setVariables(Variables.putValue("foo",
             Variables.serializedObjectValue()
-                .objectTypeName("org.camunda.bpm.integrationtest.functional.context.classes.MyPojo")
+                .objectTypeName("org.cadenzaflow.bpm.integrationtest.functional.context.classes.MyPojo")
                 .serializedValue("{\"name\": \"myName\", \"prio\": 5}")
                 .serializationDataFormat("application/json")
                 .create()))

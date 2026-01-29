@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.model.cmmn.impl;
 
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN10_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_10_SCHEMA_LOCATION;
-import static org.camunda.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_11_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN10_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN11_NS;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_10_SCHEMA_LOCATION;
+import static org.cadenzaflow.bpm.model.cmmn.impl.CmmnModelConstants.CMMN_11_SCHEMA_LOCATION;
 
 import java.io.InputStream;
 

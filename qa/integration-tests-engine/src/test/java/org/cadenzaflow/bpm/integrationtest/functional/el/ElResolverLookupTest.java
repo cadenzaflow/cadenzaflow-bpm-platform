@@ -39,8 +39,8 @@ public class ElResolverLookupTest extends AbstractFoxPlatformIntegrationTest {
       .addClass(NullELResolver.class)
       .addClass(ResolveExpressionBean.class)
       .addAsResource(
-          "org/camunda/bpm/integrationtest/functional/el/services/org.camunda.bpm.application.ProcessApplicationElResolver",
-          "META-INF/services/org.camunda.bpm.application.ProcessApplicationElResolver")
+          "org/camunda/bpm/integrationtest/functional/el/services/org.cadenzaflow.bpm.application.ProcessApplicationElResolver",
+          "META-INF/services/org.cadenzaflow.bpm.application.ProcessApplicationElResolver")
       .addAsResource("org/camunda/bpm/integrationtest/functional/el/elServiceTaskProcess.bpmn20.xml");
   }
 

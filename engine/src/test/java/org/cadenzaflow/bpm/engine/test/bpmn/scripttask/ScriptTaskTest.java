@@ -478,7 +478,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     Date date = (Date) runtimeService.getVariable(pi.getId(), "date");
     assertEquals(0, date.getTime());
 
-    deployProcess(JAVASCRIPT, "execution.setVariable('myVar', new org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
+    deployProcess(JAVASCRIPT, "execution.setVariable('myVar', new org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
 
     pi = runtimeService.startProcessInstanceByKey("testProcess");
 
@@ -496,7 +496,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     assertEquals(0, date.getTime());
 
     deployProcess(PYTHON, "import org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable\n" +
-      "execution.setVariable('myVar', org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
+      "execution.setVariable('myVar', org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
 
     pi = runtimeService.startProcessInstanceByKey("testProcess");
 
@@ -513,7 +513,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     Date date = (Date) runtimeService.getVariable(pi.getId(), "date");
     assertEquals(0, date.getTime());
 
-    deployProcess(RUBY, "$execution.setVariable('myVar', org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable.new('test'));");
+    deployProcess(RUBY, "$execution.setVariable('myVar', org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable.new('test'));");
 
     pi = runtimeService.startProcessInstanceByKey("testProcess");
 
@@ -530,7 +530,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     Date date = (Date) runtimeService.getVariable(pi.getId(), "date");
     assertEquals(0, date.getTime());
 
-    deployProcess(GROOVY, "execution.setVariable('myVar', new org.camunda.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
+    deployProcess(GROOVY, "execution.setVariable('myVar', new org.cadenzaflow.bpm.engine.test.bpmn.scripttask.MySerializable('test'));");
 
     pi = runtimeService.startProcessInstanceByKey("testProcess");
 
@@ -609,7 +609,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     assertFalse(processEngineConfiguration.isAutoStoreScriptVariables());
   }
 
-  @org.camunda.bpm.engine.test.Deployment
+  @org.cadenzaflow.bpm.engine.test.Deployment
   @Test
   public void testPreviousTaskShouldNotHandleException(){
     try {
@@ -625,7 +625,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     }
   }
 
-  @org.camunda.bpm.engine.test.Deployment
+  @org.cadenzaflow.bpm.engine.test.Deployment
   @Test
   public void testSetScriptResultToProcessVariable() {
     Map<String, Object> variables = new HashMap<>();
@@ -638,7 +638,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     assertEquals(pi.getId(), runtimeService.getVariable(pi.getId(), "newProcessVariableName"));
   }
 
-  @org.camunda.bpm.engine.test.Deployment
+  @org.cadenzaflow.bpm.engine.test.Deployment
   @Test
   public void testGroovyScriptExecution() {
     try {
@@ -655,7 +655,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     }
   }
 
-  @org.camunda.bpm.engine.test.Deployment
+  @org.cadenzaflow.bpm.engine.test.Deployment
   @Test
   public void testGroovySetVariableThroughExecutionInScript() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("setScriptVariableThroughExecution");
@@ -666,7 +666,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     assertEquals("test123", runtimeService.getVariable(pi.getId(), "myVar"));
   }
 
-  @org.camunda.bpm.engine.test.Deployment
+  @org.cadenzaflow.bpm.engine.test.Deployment
   @Test
   public void testScriptEvaluationException() {
     ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionKey("Process_1").singleResult();

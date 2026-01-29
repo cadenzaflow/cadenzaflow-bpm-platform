@@ -19,9 +19,9 @@ package org.cadenzaflow.spin.json.tree;
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.spin.Spin.JSON;
-import static org.camunda.spin.json.JsonTestConstants.EXAMPLE_JSON;
-import static org.camunda.spin.json.JsonTestConstants.createExampleOrder;
+import static org.cadenzaflow.spin.Spin.JSON;
+import static org.cadenzaflow.spin.json.JsonTestConstants.EXAMPLE_JSON;
+import static org.cadenzaflow.spin.json.JsonTestConstants.createExampleOrder;
 
 import java.util.ArrayList;
 import java.util.HashMap;

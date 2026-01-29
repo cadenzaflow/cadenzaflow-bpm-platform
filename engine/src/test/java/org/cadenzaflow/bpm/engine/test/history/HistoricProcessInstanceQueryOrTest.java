@@ -931,7 +931,7 @@ public class HistoricProcessInstanceQueryOrTest {
     BpmnModelInstance aProcessDefinition = Bpmn.createExecutableProcess(processKey)
             .startEvent()
             .serviceTask()
-            .camundaClass("org.camunda.bpm.engine.test.jobexecutor.FailingDelegate")
+            .camundaClass("org.cadenzaflow.bpm.engine.test.jobexecutor.FailingDelegate")
             .camundaAsyncBefore()
             .endEvent()
             .done();

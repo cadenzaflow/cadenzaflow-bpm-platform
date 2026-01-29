@@ -16,12 +16,12 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime;
 
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.executionByProcessDefinitionId;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.executionByProcessDefinitionKey;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.executionByProcessInstanceId;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.hierarchical;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
-import static org.camunda.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.executionByProcessDefinitionId;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.executionByProcessDefinitionKey;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.executionByProcessInstanceId;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.hierarchical;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.inverted;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.TestOrderingUtil.verifySorting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
@@ -87,7 +87,7 @@ public class ExecutionQueryTest extends PluggableProcessEngineTest {
 
   @After
   public void tearDown() throws Exception {
-    for (org.camunda.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
+    for (org.cadenzaflow.bpm.engine.repository.Deployment deployment : repositoryService.createDeploymentQuery().list()) {
       repositoryService.deleteDeployment(deployment.getId(), true);
     }
 

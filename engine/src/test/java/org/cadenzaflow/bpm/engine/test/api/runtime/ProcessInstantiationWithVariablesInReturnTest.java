@@ -21,8 +21,8 @@ import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
-import static org.camunda.bpm.engine.test.util.TypedValueAssert.assertObjectValueSerializedJava;
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.bpm.engine.test.util.TypedValueAssert.assertObjectValueSerializedJava;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;

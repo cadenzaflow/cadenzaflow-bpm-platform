@@ -70,7 +70,7 @@ import org.cadenzaflow.bpm.engine.repository.DeploymentBuilder;
  *  <li> {@link EjbProcessApplication}: To be used in a Java EE application server.
  *  Use the JakartaEjbProcessApplication in a Jakarta EE 9+ application server.</li>
  *  <li> {@link EmbeddedProcessApplication}: To be used when embedding the process engine is an ordinary Java SE application.</li>
- *  <li> org.camunda.bpm.engine.spring.application.SpringProcessApplication: To be used for bootstrapping the process application from a Spring Application Context.</li>
+ *  <li> org.cadenzaflow.bpm.engine.spring.application.SpringProcessApplication: To be used for bootstrapping the process application from a Spring Application Context.</li>
  * </ul>
  * </li>
  * <li>A processes.xml file to META-INF: The deployment descriptor file allows to provide a declarative

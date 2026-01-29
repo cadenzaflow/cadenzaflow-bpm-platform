@@ -16,9 +16,9 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.operation;
 
-import static org.camunda.bpm.engine.delegate.CaseExecutionListener.RE_ENABLE;
-import static org.camunda.bpm.engine.impl.cmmn.execution.CaseExecutionState.ENABLED;
-import static org.camunda.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
+import static org.cadenzaflow.bpm.engine.delegate.CaseExecutionListener.RE_ENABLE;
+import static org.cadenzaflow.bpm.engine.impl.cmmn.execution.CaseExecutionState.ENABLED;
+import static org.cadenzaflow.bpm.engine.impl.util.ActivityBehaviorUtil.getActivityBehavior;
 
 import org.cadenzaflow.bpm.engine.impl.cmmn.behavior.CmmnActivityBehavior;
 import org.cadenzaflow.bpm.engine.impl.cmmn.execution.CmmnExecution;

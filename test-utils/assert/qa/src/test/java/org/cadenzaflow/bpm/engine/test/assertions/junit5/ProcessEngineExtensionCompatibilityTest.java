@@ -17,9 +17,9 @@
 package org.cadenzaflow.bpm.engine.test.assertions.junit5;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.complete;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.task;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertThat;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.complete;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.task;
 
 import org.cadenzaflow.bpm.engine.RuntimeService;
 import org.cadenzaflow.bpm.engine.runtime.ProcessInstance;

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.qa.performance.engine.steps;
 
-import static org.camunda.bpm.qa.performance.engine.steps.PerfTestConstants.*;
+import static org.cadenzaflow.bpm.qa.performance.engine.steps.PerfTestConstants.*;
 
 import java.util.HashMap;
 import java.util.Map;

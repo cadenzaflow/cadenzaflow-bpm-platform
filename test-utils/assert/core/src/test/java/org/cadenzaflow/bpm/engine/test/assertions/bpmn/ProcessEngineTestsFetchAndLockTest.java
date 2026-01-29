@@ -17,9 +17,9 @@
 package org.cadenzaflow.bpm.engine.test.assertions.bpmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.DEFAULT_WORKER_EXTERNAL_TASK;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.fetchAndLock;
-import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.DEFAULT_WORKER_EXTERNAL_TASK;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.fetchAndLock;
+import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.runtimeService;
 
 import java.util.List;
 

@@ -26,9 +26,9 @@ import org.cadenzaflow.bpm.model.xml.type.attribute.Attribute;
 import org.cadenzaflow.bpm.model.xml.type.child.ChildElement;
 import org.cadenzaflow.bpm.model.xml.type.child.SequenceBuilder;
 
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_ATTRIBUTE_ID;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_ELEMENT_DIAGRAM_ELEMENT;
-import static org.camunda.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_ATTRIBUTE_ID;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_ELEMENT_DIAGRAM_ELEMENT;
+import static org.cadenzaflow.bpm.model.bpmn.impl.BpmnModelConstants.DI_NS;
 
 /**
  * The DI DiagramElement element

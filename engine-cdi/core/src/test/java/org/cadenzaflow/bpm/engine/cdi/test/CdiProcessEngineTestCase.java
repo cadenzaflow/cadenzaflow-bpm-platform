@@ -74,7 +74,7 @@ public abstract class CdiProcessEngineTestCase {
   public static JavaArchive createDeployment() {
 
     return ShrinkWrap.create(JavaArchive.class)
-      .addPackages(true, "org.camunda.bpm.engine.cdi")
+      .addPackages(true, "org.cadenzaflow.bpm.engine.cdi")
       .addAsManifestResource("META-INF/beans.xml", "beans.xml");
   }
 

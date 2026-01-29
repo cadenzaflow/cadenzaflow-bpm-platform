@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.spring.boot.starter.property;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-import static org.camunda.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
+import static org.cadenzaflow.bpm.spring.boot.starter.property.CamundaBpmProperties.joinOn;
 
 /**
  * Properties controlling spring eventing.

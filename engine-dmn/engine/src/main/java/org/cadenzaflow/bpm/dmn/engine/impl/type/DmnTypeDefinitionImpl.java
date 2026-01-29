@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.dmn.engine.impl.type;
 
-import static org.camunda.commons.utils.EnsureUtil.ensureNotNull;
+import static org.cadenzaflow.commons.utils.EnsureUtil.ensureNotNull;
 
 import org.cadenzaflow.bpm.dmn.engine.impl.DmnEngineLogger;
 import org.cadenzaflow.bpm.dmn.engine.impl.DmnLogger;

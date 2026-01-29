@@ -17,10 +17,10 @@
 package org.cadenzaflow.bpm.engine.test.api.mgmt;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.management.Metrics.DECISION_INSTANCES;
-import static org.camunda.bpm.engine.management.Metrics.EXECUTED_DECISION_ELEMENTS;
-import static org.camunda.bpm.engine.management.Metrics.FLOW_NODE_INSTANCES;
-import static org.camunda.bpm.engine.management.Metrics.PROCESS_INSTANCES;
+import static org.cadenzaflow.bpm.engine.management.Metrics.DECISION_INSTANCES;
+import static org.cadenzaflow.bpm.engine.management.Metrics.EXECUTED_DECISION_ELEMENTS;
+import static org.cadenzaflow.bpm.engine.management.Metrics.FLOW_NODE_INSTANCES;
+import static org.cadenzaflow.bpm.engine.management.Metrics.PROCESS_INSTANCES;
 
 import java.util.Collections;
 import java.util.Date;

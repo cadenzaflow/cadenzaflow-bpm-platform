@@ -17,9 +17,9 @@
 package org.cadenzaflow.spin.xml.dom;
 
 import static org.assertj.core.api.Assertions.fail;
-import static org.camunda.spin.Spin.XML;
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_VALIDATION_XML;
-import static org.camunda.spin.xml.XmlTestConstants.assertIsExampleOrder;
+import static org.cadenzaflow.spin.Spin.XML;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_VALIDATION_XML;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.assertIsExampleOrder;
 
 import org.cadenzaflow.spin.xml.SpinXmlDataFormatException;
 import org.cadenzaflow.spin.xml.mapping.Order;

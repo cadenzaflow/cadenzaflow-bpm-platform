@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.application.ProcessApplicationExecutionException;
 
 @ProcessApplication("app")
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class ProcessApplicationWithInvocationContext extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class ProcessApplicationWithInvocationContext extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
 
   private static InvocationContext invocationContext = null;
 

@@ -25,7 +25,7 @@ import org.junit.Test;
 import java.util.ResourceBundle;
 
 /**
- * This class must be in package 'org.camunda.bpm.container.impl.jboss.util' because of protected method test.
+ * This class must be in package 'org.cadenzaflow.bpm.container.impl.jboss.util' because of protected method test.
  */
 public class ReflectionCompatibilityTest {
 

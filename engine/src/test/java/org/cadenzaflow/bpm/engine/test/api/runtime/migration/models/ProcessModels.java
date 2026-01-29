@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration.models;
 
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
 
 import org.cadenzaflow.bpm.model.bpmn.Bpmn;
 import org.cadenzaflow.bpm.model.bpmn.BpmnModelInstance;

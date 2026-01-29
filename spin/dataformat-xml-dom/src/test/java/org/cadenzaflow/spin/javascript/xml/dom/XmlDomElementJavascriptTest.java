@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.spin.javascript.xml.dom;
 
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_XML_FILE_NAME;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_XML_FILE_NAME;
 
 import org.cadenzaflow.spin.impl.test.Script;
 import org.cadenzaflow.spin.impl.test.ScriptEngine;

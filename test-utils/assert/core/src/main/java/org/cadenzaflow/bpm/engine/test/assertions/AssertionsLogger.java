@@ -23,7 +23,7 @@ import org.cadenzaflow.commons.logging.BaseLogger;
 public class AssertionsLogger extends BaseLogger {
 
   public static final AssertionsLogger INSTANCE = BaseLogger.createLogger(
-      AssertionsLogger.class, "BPM_ASSERT", "org.camunda.bpm.engine.test.assertions", "00");
+      AssertionsLogger.class, "BPM_ASSERT", "org.cadenzaflow.bpm.engine.test.assertions", "00");
 
   public void collectTransitionInstances(ActivityInstance activityInstance) {
     logDebug("001", "Collecting transition instances for activity instance '{}' at activity with ID '{}' and name '{}'",

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.impl.cmmn.behavior;
 
-import static org.camunda.bpm.engine.impl.util.CallableElementUtil.getCaseDefinitionToCall;
+import static org.cadenzaflow.bpm.engine.impl.util.CallableElementUtil.getCaseDefinitionToCall;
 
 import java.util.Map;
 

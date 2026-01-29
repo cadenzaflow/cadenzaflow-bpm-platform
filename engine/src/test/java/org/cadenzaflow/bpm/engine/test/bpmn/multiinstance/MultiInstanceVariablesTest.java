@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.test.bpmn.multiinstance;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_INSTANCES;
+import static org.cadenzaflow.bpm.engine.impl.bpmn.behavior.MultiInstanceActivityBehavior.NUMBER_OF_INSTANCES;
 
 import java.util.List;
 

@@ -55,7 +55,7 @@ import org.junit.Test;
  */
 public class BpmnDeploymentTest extends PluggableProcessEngineTest {
 
-  protected static final String CMD_LOGGER = "org.camunda.bpm.engine.cmd";
+  protected static final String CMD_LOGGER = "org.cadenzaflow.bpm.engine.cmd";
   
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule();
@@ -154,7 +154,7 @@ public class BpmnDeploymentTest extends PluggableProcessEngineTest {
         .enableDuplicateFiltering(false)
         .addClasspathResource(bpmnResourceName));
     // then
-    List<org.camunda.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
     assertThat(deploymentList.size()).isEqualTo(2);
   }
 
@@ -270,7 +270,7 @@ public class BpmnDeploymentTest extends PluggableProcessEngineTest {
       .addModelInstance("process1.bpmn20.xml", model1)
       .addModelInstance("process2.bpmn20.xml", changedModel2)
       .name("twice"));
-    List<org.camunda.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
     assertThat(deploymentList.size()).isEqualTo(2);
 
     // there should be new versions of both processes
@@ -298,7 +298,7 @@ public class BpmnDeploymentTest extends PluggableProcessEngineTest {
       .addModelInstance("process2.bpmn20.xml", changedModel2)
       .name("thrice"));
 
-    List<org.camunda.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
     assertThat(deploymentList.size()).isEqualTo(2);
 
     // there should be only one version of process 1
@@ -387,7 +387,7 @@ public class BpmnDeploymentTest extends PluggableProcessEngineTest {
         .enableDuplicateFiltering(false)
         .addClasspathResource(bpmnResourceName)
         .name("twice"));
-    List<org.camunda.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
+    List<org.cadenzaflow.bpm.engine.repository.Deployment> deploymentList = repositoryService.createDeploymentQuery().list();
     assertThat(deploymentList.size()).isEqualTo(2);
   }
 

@@ -16,7 +16,7 @@
  */
 package org.cadenzaflow.bpm.engine.test.history;
 
-import static org.camunda.bpm.engine.impl.util.StringUtil.hasText;
+import static org.cadenzaflow.bpm.engine.impl.util.StringUtil.hasText;
 
 import java.util.Objects;
 import org.cadenzaflow.bpm.engine.ProcessEngineConfiguration;

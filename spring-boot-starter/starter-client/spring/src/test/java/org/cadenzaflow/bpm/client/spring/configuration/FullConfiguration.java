@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.client.task.ExternalTaskHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription.ProcessVariable;
+import static org.cadenzaflow.bpm.client.spring.annotation.ExternalTaskSubscription.ProcessVariable;
 
 @Configuration
 @EnableExternalTaskClient(

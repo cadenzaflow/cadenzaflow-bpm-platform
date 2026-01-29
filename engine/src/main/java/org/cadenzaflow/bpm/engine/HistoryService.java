@@ -649,7 +649,7 @@ public interface HistoryService {
   CleanableHistoricBatchReport createCleanableHistoricBatchReport();
 
   /**
-   * Creates a query to search for {@link org.camunda.bpm.engine.batch.history.HistoricBatch} instances.
+   * Creates a query to search for {@link org.cadenzaflow.bpm.engine.batch.history.HistoricBatch} instances.
    *
    * @since 7.5
    */

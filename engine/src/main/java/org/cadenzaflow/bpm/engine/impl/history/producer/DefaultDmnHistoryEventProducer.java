@@ -56,7 +56,7 @@ import org.cadenzaflow.bpm.engine.variable.value.IntegerValue;
 import org.cadenzaflow.bpm.engine.variable.value.LongValue;
 import org.cadenzaflow.bpm.engine.variable.value.TypedValue;
 
-import static org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_START;
+import static org.cadenzaflow.bpm.engine.ProcessEngineConfiguration.HISTORY_REMOVAL_TIME_STRATEGY_START;
 
 /**
  * @author Philipp Ossler

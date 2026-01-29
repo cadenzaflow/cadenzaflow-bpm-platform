@@ -27,7 +27,7 @@ public class SpinPluginLogger extends BaseLogger {
 
   public static final String PROJECT_CODE = "SPIN-PLUGIN";
 
-  public static final SpinPluginLogger LOGGER = BaseLogger.createLogger(SpinPluginLogger.class, PROJECT_CODE, "org.camunda.spin.plugin", "01");
+  public static final SpinPluginLogger LOGGER = BaseLogger.createLogger(SpinPluginLogger.class, PROJECT_CODE, "org.cadenzaflow.spin.plugin", "01");
 
   public void logNoDataFormatsInitiailized(String dataFormatDescription, String reason) {
     logInfo(

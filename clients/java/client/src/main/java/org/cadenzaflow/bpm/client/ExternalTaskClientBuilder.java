@@ -193,10 +193,10 @@ public interface ExternalTaskClientBuilder {
   ExternalTaskClientBuilder disableAutoFetching();
 
   /**
-   * Adds a custom strategy to the client for defining the org.camunda.bpm.client.backoff between two requests.
+   * Adds a custom strategy to the client for defining the org.cadenzaflow.bpm.client.backoff between two requests.
    * This information is optional. By default {@link ExponentialBackoffStrategy} is applied.
    *
-   * @param backoffStrategy which realizes a custom org.camunda.bpm.client.backoff strategy
+   * @param backoffStrategy which realizes a custom org.cadenzaflow.bpm.client.backoff strategy
    * @return the builder
    */
   ExternalTaskClientBuilder backoffStrategy(BackoffStrategy backoffStrategy);

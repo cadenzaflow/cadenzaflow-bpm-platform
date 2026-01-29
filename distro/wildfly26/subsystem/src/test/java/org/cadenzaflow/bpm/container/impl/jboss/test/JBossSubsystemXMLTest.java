@@ -99,7 +99,7 @@ public class JBossSubsystemXMLTest extends AbstractSubsystemTest {
   public static final ServiceName PROCESS_ENGINE_SERVICE_BINDING_SERVICE_NAME = ContextNames.GLOBAL_CONTEXT_SERVICE_NAME
     .append("camunda-bpm-platform")
     .append("process-engine")
-    .append("ProcessEngineService!org.camunda.bpm.ProcessEngineService");
+    .append("ProcessEngineService!org.cadenzaflow.bpm.ProcessEngineService");
 
   public JBossSubsystemXMLTest() {
     super(ModelConstants.SUBSYSTEM_NAME, new BpmPlatformExtension(), getSubsystemRemoveOrderComparator());
@@ -108,25 +108,25 @@ public class JBossSubsystemXMLTest extends AbstractSubsystemTest {
   private static Map<String, String> EXPRESSION_PROPERTIES = new HashMap<>();
 
   static {
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.isDefault", "true");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.datasource", "java:jboss/datasources/ExampleDS");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.history-level", "audit");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.configuration", "org.camunda.bpm.container.impl.jboss.config.ManagedJtaProcessEngineConfiguration");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.property.job-acquisition-name", "default");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.plugin.ldap.class", "org.camunda.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.plugin.ldap.property.test", "abc");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.plugin.ldap.property.number", "123");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.process-engine.test.plugin.ldap.property.bool", "true");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.thread-pool-name", "job-executor-tp");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.core-threads", "5");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.max-threads", "15");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.queue-length", "15");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.keepalive-time", "10");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.allow-core-timeout", "false");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.job-acquisition.default.acquisition-strategy", "SEQUENTIAL");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.job-acquisition.default.property.lockTimeInMillis", "300000");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.job-acquisition.default.property.waitTimeInMillis", "5000");
-    EXPRESSION_PROPERTIES.put("org.camunda.bpm.jboss.job-executor.job-acquisition.default.property.maxJobsPerAcquisition", "3");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.isDefault", "true");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.datasource", "java:jboss/datasources/ExampleDS");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.history-level", "audit");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.configuration", "org.cadenzaflow.bpm.container.impl.jboss.config.ManagedJtaProcessEngineConfiguration");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.property.job-acquisition-name", "default");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.plugin.ldap.class", "org.cadenzaflow.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.plugin.ldap.property.test", "abc");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.plugin.ldap.property.number", "123");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.process-engine.test.plugin.ldap.property.bool", "true");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.thread-pool-name", "job-executor-tp");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.core-threads", "5");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.max-threads", "15");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.queue-length", "15");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.keepalive-time", "10");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.allow-core-timeout", "false");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.job-acquisition.default.acquisition-strategy", "SEQUENTIAL");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.job-acquisition.default.property.lockTimeInMillis", "300000");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.job-acquisition.default.property.waitTimeInMillis", "5000");
+    EXPRESSION_PROPERTIES.put("org.cadenzaflow.bpm.jboss.job-executor.job-acquisition.default.property.maxJobsPerAcquisition", "3");
   }
 
   @Test
@@ -205,14 +205,14 @@ public class JBossSubsystemXMLTest extends AbstractSubsystemTest {
     List<ProcessEnginePluginXml> pluginConfigurations = metadata.getPluginConfigurations();
 
     ProcessEnginePluginXml processEnginePluginXml = pluginConfigurations.get(0);
-    assertEquals("org.camunda.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin", processEnginePluginXml.getPluginClass());
+    assertEquals("org.cadenzaflow.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin", processEnginePluginXml.getPluginClass());
     Map<String, String> processEnginePluginXmlProperties = processEnginePluginXml.getProperties();
     assertEquals("abc", processEnginePluginXmlProperties.get("test"));
     assertEquals("123", processEnginePluginXmlProperties.get("number"));
     assertEquals("true", processEnginePluginXmlProperties.get("bool"));
 
     processEnginePluginXml = pluginConfigurations.get(1);
-    assertEquals("org.camunda.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin", processEnginePluginXml.getPluginClass());
+    assertEquals("org.cadenzaflow.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin", processEnginePluginXml.getPluginClass());
     processEnginePluginXmlProperties = processEnginePluginXml.getProperties();
     assertEquals("cba", processEnginePluginXmlProperties.get("test"));
     assertEquals("321", processEnginePluginXmlProperties.get("number"));
@@ -468,7 +468,7 @@ public class JBossSubsystemXMLTest extends AbstractSubsystemTest {
     assertEquals(5000, defaultJobExecutor.getWaitTimeInMillis());
     assertEquals(3, defaultJobExecutor.getMaxJobsPerAcquisition());
 
-    // ServiceName: 'org.camunda.bpm.platform.job-executor.job-executor-tp'
+    // ServiceName: 'org.cadenzaflow.bpm.platform.job-executor.job-executor-tp'
     ServiceController<?> managedQueueExecutorServiceController = container.getService(ServiceNames.forManagedThreadPool(SubsystemAttributeDefinitons.DEFAULT_JOB_EXECUTOR_THREADPOOL_NAME));
     assertNotNull(managedQueueExecutorServiceController);
     Object managedQueueExecutorServiceObject = managedQueueExecutorServiceController.getValue();
@@ -625,7 +625,7 @@ public class JBossSubsystemXMLTest extends AbstractSubsystemTest {
       assertEquals(1, pluginConfigurations.size());
 
       ProcessEnginePluginXml processEnginePluginXml = pluginConfigurations.get(0);
-      assertEquals("org.camunda.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin", processEnginePluginXml.getPluginClass());
+      assertEquals("org.cadenzaflow.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin", processEnginePluginXml.getPluginClass());
       Map<String, String> processEnginePluginXmlProperties = processEnginePluginXml.getProperties();
       assertEquals("abc", processEnginePluginXmlProperties.get("test"));
       assertEquals("123", processEnginePluginXmlProperties.get("number"));

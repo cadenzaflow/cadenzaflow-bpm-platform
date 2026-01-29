@@ -85,7 +85,7 @@ public class JsonDeserializationValidationTest {
     format.getMapper().validateType(type, validator);
 
     // then
-    Mockito.verify(validator).validate("org.camunda.spin.impl.json.jackson.format.JsonDeserializationValidationTest$Complex");
+    Mockito.verify(validator).validate("org.cadenzaflow.spin.impl.json.jackson.format.JsonDeserializationValidationTest$Complex");
     Mockito.verifyNoMoreInteractions(validator);
   }
 
@@ -171,7 +171,7 @@ public class JsonDeserializationValidationTest {
 
     // then
     thrown.expect(SpinRuntimeException.class);
-    thrown.expectMessage("[org.camunda.spin.impl.json.jackson.format.JsonDeserializationValidationTest$Complex]");
+    thrown.expectMessage("[org.cadenzaflow.spin.impl.json.jackson.format.JsonDeserializationValidationTest$Complex]");
 
     // when
     format.getMapper().validateType(type, validator);

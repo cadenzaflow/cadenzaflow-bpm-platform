@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.model.xml.testmodel.instance;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
+import static org.cadenzaflow.bpm.model.xml.testmodel.TestModelConstants.MODEL_NAMESPACE;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;

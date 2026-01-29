@@ -16,10 +16,10 @@
  */
 package org.cadenzaflow.bpm.engine.test.bpmn.event.compensate;
 
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ActivityInstanceAssert.describeActivityInstanceTree;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.ExecutionAssert.describeExecutionTree;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -71,13 +71,13 @@ public class CompensateEventTest extends PluggableProcessEngineTest {
     final String PROCESS_MODEL_WITH_REF_AFTER = "org/camunda/bpm/engine/test/bpmn/event/compensate/compensation_reference-after.bpmn";
 
     //when model with ref before is deployed
-    org.camunda.bpm.engine.repository.Deployment deployment1 = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment1 = repositoryService.createDeployment()
             .addClasspathResource(PROCESS_MODEL_WITH_REF_BEFORE)
             .deploy();
     //then no problem will occure
 
     //when model with ref after is deployed
-    org.camunda.bpm.engine.repository.Deployment deployment2 = repositoryService.createDeployment()
+    org.cadenzaflow.bpm.engine.repository.Deployment deployment2 = repositoryService.createDeployment()
             .addClasspathResource(PROCESS_MODEL_WITH_REF_AFTER)
             .deploy();
     //then also no problem should occure

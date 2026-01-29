@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.engine.test.api.runtime.migration;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
-import static org.camunda.bpm.engine.test.util.MigrationPlanAssert.assertThat;
-import static org.camunda.bpm.engine.test.util.MigrationPlanAssert.migrate;
-import static org.camunda.bpm.engine.test.util.MigrationPlanAssert.variable;
-import static org.camunda.bpm.engine.test.util.MigrationPlanValidationReportAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.api.runtime.migration.ModifiableBpmnModelInstance.modify;
+import static org.cadenzaflow.bpm.engine.test.util.MigrationPlanAssert.assertThat;
+import static org.cadenzaflow.bpm.engine.test.util.MigrationPlanAssert.migrate;
+import static org.cadenzaflow.bpm.engine.test.util.MigrationPlanAssert.variable;
+import static org.cadenzaflow.bpm.engine.test.util.MigrationPlanValidationReportAssert.assertThat;
 import static org.junit.Assert.fail;
 
 import org.cadenzaflow.bpm.engine.BadUserRequestException;

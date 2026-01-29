@@ -34,7 +34,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
 
 /**
  * @author Thorben Lindhauer

@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.engine.impl.interceptor.CommandContext;
 import org.cadenzaflow.bpm.engine.impl.util.EnsureUtil;
 import org.cadenzaflow.bpm.engine.task.Comment;
 
-import static org.camunda.bpm.engine.impl.util.EnsureUtil.*;
+import static org.cadenzaflow.bpm.engine.impl.util.EnsureUtil.*;
 
 
 /**

@@ -16,8 +16,8 @@
  */
 package org.cadenzaflow.bpm.client.rule;
 
-import static org.camunda.bpm.client.util.PropertyUtil.*;
-import static org.camunda.bpm.client.util.TestUtil.waitUntil;
+import static org.cadenzaflow.bpm.client.util.PropertyUtil.*;
+import static org.cadenzaflow.bpm.client.util.TestUtil.waitUntil;
 
 import java.util.Properties;
 import java.util.function.BooleanSupplier;

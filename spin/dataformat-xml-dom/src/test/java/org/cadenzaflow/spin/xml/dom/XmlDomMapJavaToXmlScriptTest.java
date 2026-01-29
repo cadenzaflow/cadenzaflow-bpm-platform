@@ -17,8 +17,8 @@
 package org.cadenzaflow.spin.xml.dom;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.spin.xml.XmlTestConstants.EXAMPLE_VALIDATION_XML;
-import static org.camunda.spin.xml.XmlTestConstants.createExampleOrder;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.EXAMPLE_VALIDATION_XML;
+import static org.cadenzaflow.spin.xml.XmlTestConstants.createExampleOrder;
 
 import org.cadenzaflow.spin.impl.test.Script;
 import org.cadenzaflow.spin.impl.test.ScriptTest;

@@ -27,7 +27,7 @@ import org.cadenzaflow.bpm.engine.repository.DeploymentBuilder;
  */
 @ProcessApplication(name = "InvoiceProcessApplication")
 // Using fully-qualified class name instead of import statement to allow for automatic Jakarta transformation
-public class InvoiceProcessApplication extends org.camunda.bpm.application.impl.ServletProcessApplication {
+public class InvoiceProcessApplication extends org.cadenzaflow.bpm.application.impl.ServletProcessApplication {
 
   /**
    * In a @PostDeploy Hook you can interact with the process engine and access

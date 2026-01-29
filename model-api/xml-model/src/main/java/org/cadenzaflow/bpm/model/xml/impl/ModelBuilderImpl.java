@@ -28,7 +28,7 @@ import org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.camunda.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
+import static org.cadenzaflow.bpm.model.xml.type.ModelElementTypeBuilder.ModelTypeInstanceProvider;
 
 /**
  * This builder is used to define and create a new model.

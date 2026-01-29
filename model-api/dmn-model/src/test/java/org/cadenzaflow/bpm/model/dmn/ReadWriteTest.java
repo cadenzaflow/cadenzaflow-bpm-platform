@@ -17,16 +17,16 @@
 package org.cadenzaflow.bpm.model.dmn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.camunda.bpm.model.dmn.DecisionTableOrientation.CrossTable;
-import static org.camunda.bpm.model.dmn.DecisionTableOrientation.Rule_as_Column;
-import static org.camunda.bpm.model.dmn.DecisionTableOrientation.Rule_as_Row;
-import static org.camunda.bpm.model.dmn.HitPolicy.ANY;
-import static org.camunda.bpm.model.dmn.HitPolicy.COLLECT;
-import static org.camunda.bpm.model.dmn.HitPolicy.FIRST;
-import static org.camunda.bpm.model.dmn.HitPolicy.OUTPUT_ORDER;
-import static org.camunda.bpm.model.dmn.HitPolicy.PRIORITY;
-import static org.camunda.bpm.model.dmn.HitPolicy.RULE_ORDER;
-import static org.camunda.bpm.model.dmn.HitPolicy.UNIQUE;
+import static org.cadenzaflow.bpm.model.dmn.DecisionTableOrientation.CrossTable;
+import static org.cadenzaflow.bpm.model.dmn.DecisionTableOrientation.Rule_as_Column;
+import static org.cadenzaflow.bpm.model.dmn.DecisionTableOrientation.Rule_as_Row;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.ANY;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.COLLECT;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.FIRST;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.OUTPUT_ORDER;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.PRIORITY;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.RULE_ORDER;
+import static org.cadenzaflow.bpm.model.dmn.HitPolicy.UNIQUE;
 
 import org.cadenzaflow.bpm.model.dmn.impl.instance.InputDataImpl;
 import org.cadenzaflow.bpm.model.dmn.instance.*;

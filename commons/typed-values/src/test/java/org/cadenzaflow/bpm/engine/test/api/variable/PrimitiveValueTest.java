@@ -16,23 +16,23 @@
  */
 package org.cadenzaflow.bpm.engine.test.api.variable;
 
-import static org.camunda.bpm.engine.variable.Variables.booleanValue;
-import static org.camunda.bpm.engine.variable.Variables.byteArrayValue;
-import static org.camunda.bpm.engine.variable.Variables.createVariables;
-import static org.camunda.bpm.engine.variable.Variables.dateValue;
-import static org.camunda.bpm.engine.variable.Variables.doubleValue;
-import static org.camunda.bpm.engine.variable.Variables.integerValue;
-import static org.camunda.bpm.engine.variable.Variables.shortValue;
-import static org.camunda.bpm.engine.variable.Variables.stringValue;
-import static org.camunda.bpm.engine.variable.Variables.untypedNullValue;
-import static org.camunda.bpm.engine.variable.type.ValueType.BOOLEAN;
-import static org.camunda.bpm.engine.variable.type.ValueType.BYTES;
-import static org.camunda.bpm.engine.variable.type.ValueType.DATE;
-import static org.camunda.bpm.engine.variable.type.ValueType.DOUBLE;
-import static org.camunda.bpm.engine.variable.type.ValueType.INTEGER;
-import static org.camunda.bpm.engine.variable.type.ValueType.NULL;
-import static org.camunda.bpm.engine.variable.type.ValueType.SHORT;
-import static org.camunda.bpm.engine.variable.type.ValueType.STRING;
+import static org.cadenzaflow.bpm.engine.variable.Variables.booleanValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.byteArrayValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.createVariables;
+import static org.cadenzaflow.bpm.engine.variable.Variables.dateValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.doubleValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.integerValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.shortValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.stringValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.untypedNullValue;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.BOOLEAN;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.BYTES;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.DATE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.DOUBLE;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.INTEGER;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.NULL;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.SHORT;
+import static org.cadenzaflow.bpm.engine.variable.type.ValueType.STRING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 

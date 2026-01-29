@@ -16,17 +16,17 @@
  */
 package org.cadenzaflow.bpm.engine.impl.db.entitymanager;
 
-import static org.camunda.bpm.engine.impl.db.entitymanager.cache.DbEntityState.DELETED_MERGED;
-import static org.camunda.bpm.engine.impl.db.entitymanager.cache.DbEntityState.DELETED_PERSISTENT;
-import static org.camunda.bpm.engine.impl.db.entitymanager.cache.DbEntityState.DELETED_TRANSIENT;
-import static org.camunda.bpm.engine.impl.db.entitymanager.cache.DbEntityState.MERGED;
-import static org.camunda.bpm.engine.impl.db.entitymanager.cache.DbEntityState.PERSISTENT;
-import static org.camunda.bpm.engine.impl.db.entitymanager.cache.DbEntityState.TRANSIENT;
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.DELETE;
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.DELETE_BULK;
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.INSERT;
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.UPDATE;
-import static org.camunda.bpm.engine.impl.db.entitymanager.operation.DbOperationType.UPDATE_BULK;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.cache.DbEntityState.DELETED_MERGED;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.cache.DbEntityState.DELETED_PERSISTENT;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.cache.DbEntityState.DELETED_TRANSIENT;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.cache.DbEntityState.MERGED;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.cache.DbEntityState.PERSISTENT;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.cache.DbEntityState.TRANSIENT;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.DELETE;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.DELETE_BULK;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.INSERT;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.UPDATE;
+import static org.cadenzaflow.bpm.engine.impl.db.entitymanager.operation.DbOperationType.UPDATE_BULK;
 
 import java.util.ArrayList;
 import java.util.Collections;

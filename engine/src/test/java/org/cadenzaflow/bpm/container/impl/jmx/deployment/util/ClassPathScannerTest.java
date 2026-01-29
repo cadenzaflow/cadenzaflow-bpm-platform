@@ -70,7 +70,7 @@ public class ClassPathScannerTest {
   }
   
   /**
-   * Test method for {@link org.camunda.bpm.container.impl.deployment.scanning.ClassPathProcessApplicationScanner#scanClassPath(java.lang.ClassLoader)}.
+   * Test method for {@link org.cadenzaflow.bpm.container.impl.deployment.scanning.ClassPathProcessApplicationScanner#scanClassPath(java.lang.ClassLoader)}.
    * @throws MalformedURLException 
    */
   @Test

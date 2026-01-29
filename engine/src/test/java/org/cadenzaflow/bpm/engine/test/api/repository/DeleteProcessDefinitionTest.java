@@ -22,7 +22,7 @@ import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.camunda.bpm.engine.test.api.repository.RedeploymentTest.DEPLOYMENT_NAME;
+import static org.cadenzaflow.bpm.engine.test.api.repository.RedeploymentTest.DEPLOYMENT_NAME;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;

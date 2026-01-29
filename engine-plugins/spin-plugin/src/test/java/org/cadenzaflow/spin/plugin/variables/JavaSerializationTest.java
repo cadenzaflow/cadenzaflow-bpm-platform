@@ -25,8 +25,8 @@ import org.cadenzaflow.bpm.engine.variable.Variables;
 import org.cadenzaflow.bpm.engine.variable.type.ValueType;
 import org.cadenzaflow.bpm.engine.variable.value.ObjectValue;
 import org.json.JSONException;
-import static org.camunda.bpm.engine.variable.Variables.objectValue;
-import static org.camunda.bpm.engine.variable.Variables.serializedObjectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.objectValue;
+import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValue;
 
 /**
  * Here we test how the engine behaves, when more than one object serializers are available.

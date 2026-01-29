@@ -28,9 +28,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-import org.cadenzaflow.feel.syntaxtree.Val;
-import org.cadenzaflow.feel.syntaxtree.ValString;
-import org.cadenzaflow.feel.valuemapper.JavaCustomValueMapper;
+import org.camunda.feel.syntaxtree.Val;
+import org.camunda.feel.syntaxtree.ValString;
+import org.camunda.feel.valuemapper.JavaCustomValueMapper;
 import org.cadenzaflow.spin.json.SpinJsonNode;
 import org.cadenzaflow.spin.xml.SpinXmlAttribute;
 import org.cadenzaflow.spin.xml.SpinXmlElement;

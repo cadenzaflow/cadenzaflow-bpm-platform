@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.engine.delegate.VariableScope;
 /**
  * @author Frederik Heremans
  */
-public interface Expression extends org.camunda.bpm.engine.delegate.Expression {
+public interface Expression extends org.cadenzaflow.bpm.engine.delegate.Expression {
 
   Object getValue(VariableScope variableScope, BaseDelegateExecution contextExecution);
 

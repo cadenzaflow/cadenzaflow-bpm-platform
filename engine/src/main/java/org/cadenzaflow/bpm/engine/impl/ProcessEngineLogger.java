@@ -55,85 +55,85 @@ public class ProcessEngineLogger extends BaseLogger {
   public static final String PROJECT_CODE = "ENGINE";
 
   public static final ProcessEngineLogger INSTANCE = BaseLogger.createLogger(
-      ProcessEngineLogger.class, PROJECT_CODE, "org.camunda.bpm.engine", "00");
+      ProcessEngineLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine", "00");
 
   public static final BpmnParseLogger BPMN_PARSE_LOGGER = BaseLogger.createLogger(
-      BpmnParseLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.bpmn.parser", "01");
+      BpmnParseLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.bpmn.parser", "01");
 
   public static final BpmnBehaviorLogger BPMN_BEHAVIOR_LOGGER = BaseLogger.createLogger(
-      BpmnBehaviorLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.bpmn.behavior", "02");
+      BpmnBehaviorLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.bpmn.behavior", "02");
 
   public static final EnginePersistenceLogger PERSISTENCE_LOGGER = BaseLogger.createLogger(
-      EnginePersistenceLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.persistence", "03");
+      EnginePersistenceLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.persistence", "03");
 
   public static final CmmnTransformerLogger CMMN_TRANSFORMER_LOGGER = BaseLogger.createLogger(
-      CmmnTransformerLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.cmmn.transformer", "04");
+      CmmnTransformerLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.cmmn.transformer", "04");
 
   public static final CmmnBehaviorLogger CMNN_BEHAVIOR_LOGGER = BaseLogger.createLogger(
-      CmmnBehaviorLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.cmmn.behavior", "05");
+      CmmnBehaviorLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.cmmn.behavior", "05");
 
   public static final CmmnOperationLogger CMMN_OPERATION_LOGGER = BaseLogger.createLogger(
-      CmmnOperationLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.cmmn.operation", "06");
+      CmmnOperationLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.cmmn.operation", "06");
 
   public static final ProcessApplicationLogger PROCESS_APPLICATION_LOGGER = BaseLogger.createLogger(
-      ProcessApplicationLogger.class, PROJECT_CODE, "org.camunda.bpm.application", "07");
+      ProcessApplicationLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.application", "07");
 
   public static final ContainerIntegrationLogger CONTAINER_INTEGRATION_LOGGER = BaseLogger.createLogger(
-      ContainerIntegrationLogger.class, PROJECT_CODE, "org.camunda.bpm.container", "08");
+      ContainerIntegrationLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.container", "08");
 
   public static final EngineUtilLogger UTIL_LOGGER = BaseLogger.createLogger(
-      EngineUtilLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.util", "09");
+      EngineUtilLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.util", "09");
 
   public static final TransactionLogger TX_LOGGER = BaseLogger.createLogger(
-      TransactionLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.tx", "11");
+      TransactionLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.tx", "11");
 
   public static final ConfigurationLogger CONFIG_LOGGER = BaseLogger.createLogger(
-      ConfigurationLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.cfg", "12");
+      ConfigurationLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.cfg", "12");
 
   public static final CommandLogger CMD_LOGGER = BaseLogger.createLogger(
-      CommandLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.cmd", "13");
+      CommandLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.cmd", "13");
 
   public static final JobExecutorLogger JOB_EXECUTOR_LOGGER = BaseLogger.createLogger(
-      JobExecutorLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.jobexecutor", "14");
+      JobExecutorLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.jobexecutor", "14");
 
   public static final TestLogger TEST_LOGGER = BaseLogger.createLogger(
-      TestLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.test", "15");
+      TestLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.test", "15");
 
   public static final ContextLogger CONTEXT_LOGGER = BaseLogger.createLogger(
-      ContextLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.context", "16");
+      ContextLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.context", "16");
 
   public static final CoreLogger CORE_LOGGER = BaseLogger.createLogger(
-      CoreLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.core", "17");
+      CoreLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.core", "17");
 
   public static final MetricsLogger METRICS_LOGGER = BaseLogger.createLogger(
-      MetricsLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.metrics", "18");
+      MetricsLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.metrics", "18");
 
   public static final AdministratorAuthorizationPluginLogger ADMIN_PLUGIN_LOGGER = BaseLogger.createLogger(
-      AdministratorAuthorizationPluginLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.plugin.admin", "19");
+      AdministratorAuthorizationPluginLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.plugin.admin", "19");
 
   public static final PvmLogger PVM_LOGGER = BaseLogger.createLogger(
-      PvmLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.pvm", "20");
+      PvmLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.pvm", "20");
 
   public static final ScriptLogger SCRIPT_LOGGER = BaseLogger.createLogger(
-      ScriptLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.script", "21");
+      ScriptLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.script", "21");
 
   public static final DecisionLogger DECISION_LOGGER = BaseLogger.createLogger(
-      DecisionLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.dmn", "22");
+      DecisionLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.dmn", "22");
 
   public static final MigrationLogger MIGRATION_LOGGER = BaseLogger.createLogger(
-      MigrationLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.migration", "23");
+      MigrationLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.migration", "23");
 
   public static final ExternalTaskLogger EXTERNAL_TASK_LOGGER = BaseLogger.createLogger(
-      ExternalTaskLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.externaltask", "24");
+      ExternalTaskLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.externaltask", "24");
 
   public static final SecurityLogger SECURITY_LOGGER = BaseLogger.createLogger(
-      SecurityLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.security", "25");
+      SecurityLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.security", "25");
 
   public static final IncidentLogger INCIDENT_LOGGER = BaseLogger.createLogger(
-      IncidentLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.incident", "26");
+      IncidentLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.incident", "26");
 
   public static final IndentityLogger INDENTITY_LOGGER = BaseLogger.createLogger(
-      IndentityLogger.class, PROJECT_CODE, "org.camunda.bpm.engine.identity", "27");
+      IndentityLogger.class, PROJECT_CODE, "org.cadenzaflow.bpm.engine.identity", "27");
   // Use code 29 for the next logger. Skip 28 as it's previously used for telemetry feature that is removed from the code base now
 
   public static boolean shouldLogJobException(ProcessEngineConfiguration processEngineConfiguration, JobEntity currentJob) {
