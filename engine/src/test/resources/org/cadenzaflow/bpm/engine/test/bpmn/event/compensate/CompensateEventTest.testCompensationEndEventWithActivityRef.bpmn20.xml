@@ -43,7 +43,7 @@
 			</boundaryEvent>		
 			
 			<serviceTask id="undoBookFlight" isForCompensation="true"
-				camunda:class="org.camunda.bpm.engine.test.bpmn.event.compensate.helper.UndoService">
+				camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.event.compensate.helper.UndoService">
 				<extensionElements>
 					<camunda:field name="counterName" stringValue="undoBookFlight" />
 				</extensionElements>
