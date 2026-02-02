@@ -85,7 +85,7 @@
           <configuration>
             <instructions>
               <Export-Package>
-                org.camunda.connect*
+                org.cadenzaflow.connect*
               </Export-Package>
             </instructions>
           </configuration>

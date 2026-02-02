@@ -1,0 +1,2 @@
+org.cadenzaflow.connect.dummy.DummyConnectorProvider
+org.cadenzaflow.connect.dummy.MyHttpConnectorProvider

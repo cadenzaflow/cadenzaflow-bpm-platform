@@ -77,7 +77,7 @@
               <comparisonVersion>${connect.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/connect/impl/**</exclude>
+                <exclude>org.cadenzaflow/connect/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>

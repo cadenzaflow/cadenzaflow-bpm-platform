@@ -90,7 +90,7 @@
               <comparisonVersion>${connect.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/connect/httpclient/impl/**</exclude>
+                <exclude>org.cadenzaflow/connect/httpclient/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>
