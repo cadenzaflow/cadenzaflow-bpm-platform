@@ -88,7 +88,7 @@ public class JobAcquisitionBackoffTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   public void testBackoffOnOptimisticLocking() {
     // when starting a number of process instances process instance
     for (int i = 0; i < 9; i++) {
@@ -164,7 +164,7 @@ public class JobAcquisitionBackoffTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   public void testBackoffDecrease() {
     // when starting a number of process instances process instance
     for (int i = 0; i < 15; i++) {

@@ -52,7 +52,7 @@ public class FeelEnableLegacyBehaviorConfigTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/legacy/literal-expression.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/legacy/literal-expression.dmn"})
   public void shouldEvaluateLiteralExpression() {
     // given
 
@@ -65,7 +65,7 @@ public class FeelEnableLegacyBehaviorConfigTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/legacy/input-expression.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/legacy/input-expression.dmn"})
   public void shouldEvaluateInputExpression() {
     // given
 
@@ -78,7 +78,7 @@ public class FeelEnableLegacyBehaviorConfigTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/legacy/input-rule.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/legacy/input-rule.dmn"})
   public void shouldEvaluateInputRule() {
     // given
 
@@ -91,7 +91,7 @@ public class FeelEnableLegacyBehaviorConfigTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/legacy/output-rule.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/legacy/output-rule.dmn"})
   public void shouldEvaluateOutputRule() {
     // given
 

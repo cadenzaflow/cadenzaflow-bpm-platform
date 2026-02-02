@@ -41,11 +41,11 @@ import org.junit.Test;
 
 public class DecisionInstanceHistoryTest {
 
-  public static final String DECISION_SINGLE_OUTPUT_DMN = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+  public static final String DECISION_SINGLE_OUTPUT_DMN = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/history/decisionInstanceHistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/decisionInstanceHistory.camunda.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

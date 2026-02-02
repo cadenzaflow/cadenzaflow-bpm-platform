@@ -11,8 +11,8 @@
 
         <intermediateThrowEvent  id="noneEvent">
           <extensionElements>
-            <camunda:executionListener class="org.camunda.bpm.engine.test.bpmn.event.IntermediateNoneEventTest$MyExecutionListener" event="start" />
-          </extensionElements>        
+            <camunda:executionListener class="org.cadenzaflow.bpm.engine.test.bpmn.event.IntermediateNoneEventTest$MyExecutionListener" event="start" />
+          </extensionElements>
         </intermediateThrowEvent>
 
         <sequenceFlow id="flow2" sourceRef="noneEvent" targetRef="theEnd"/>

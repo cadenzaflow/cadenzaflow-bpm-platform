@@ -43,8 +43,8 @@ public class ExecutionAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     testRule.deploy(
-        "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/messageBoundaryEventProcess.bpmn20.xml");
+        "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/messageBoundaryEventProcess.bpmn20.xml");
     super.setUp();
   }
 

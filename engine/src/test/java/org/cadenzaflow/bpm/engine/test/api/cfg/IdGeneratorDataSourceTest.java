@@ -33,7 +33,7 @@ public class IdGeneratorDataSourceTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/api/cfg/IdGeneratorDataSourceTest.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/api/cfg/IdGeneratorDataSourceTest.camunda.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

@@ -64,7 +64,7 @@ public class JobExecutorMetricsTest extends AbstractMetricsTest {
     processEngineConfiguration.setJobExecutor(defaultJobExecutor);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
   @Test
   public void testJobAcquisitionMetricReporting() {
 
@@ -86,7 +86,7 @@ public class JobExecutorMetricsTest extends AbstractMetricsTest {
     assertEquals(3, acquiredJobs);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
   @Test
   public void testCompetingJobAcquisitionMetricReporting() {
     // given
@@ -139,7 +139,7 @@ public class JobExecutorMetricsTest extends AbstractMetricsTest {
     processEngineConfiguration.getDbMetricsReporter().reportNow();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
   @Test
   public void testJobExecutionMetricReporting() {
     // given
@@ -194,7 +194,7 @@ public class JobExecutorMetricsTest extends AbstractMetricsTest {
     assertEquals(3, exclusiveFollowupJobs);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
   @Test
   public void testJobRejectedExecutionMetricReporting() {
     // replace job executor with one that rejects all jobs

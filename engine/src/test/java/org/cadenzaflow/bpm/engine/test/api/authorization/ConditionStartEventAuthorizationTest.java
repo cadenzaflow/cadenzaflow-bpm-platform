@@ -36,8 +36,8 @@ import org.junit.Test;
 
 public class ConditionStartEventAuthorizationTest extends AuthorizationTest {
 
-  private static final String SINGLE_CONDITIONAL_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testSingleConditionalStartEvent1.bpmn20.xml";
-  private static final String TRUE_CONDITIONAL_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testStartInstanceWithTrueConditionalStartEvent.bpmn20.xml";
+  private static final String SINGLE_CONDITIONAL_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testSingleConditionalStartEvent1.bpmn20.xml";
+  private static final String TRUE_CONDITIONAL_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testStartInstanceWithTrueConditionalStartEvent.bpmn20.xml";
   protected static final String PROCESS_KEY = "conditionalEventProcess";
   protected static final String PROCESS_KEY_TWO = "trueConditionProcess";
 

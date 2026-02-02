@@ -363,7 +363,7 @@
     <skip-third-party-bom>false</skip-third-party-bom>
 
     <camunda.artifact>
-      org.camunda.bpm
+      org.cadenzaflow.bpm
     </camunda.artifact>
     <camunda.osgi.export.pkg>
       !${camunda.artifact}.engine.variable.*,
@@ -403,7 +403,7 @@
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
         <includes>
-          <include>org/camunda/bpm/engine/product-info.properties</include>
+          <include>org/cadenzaflow/bpm/engine/product-info.properties</include>
         </includes>
       </resource>
     </resources>
@@ -440,7 +440,7 @@
             <exclude>%regex[.*(${test.excludes}).*Test.*.class]</exclude>
           </excludes>
           <dependenciesToScan>
-            <dependency>org.camunda.bpm:camunda-bpm-archunit</dependency>
+            <dependency>org.cadenzaflow.bpm:camunda-bpm-archunit</dependency>
           </dependenciesToScan>
         </configuration>
       </plugin>
@@ -528,9 +528,9 @@
               <target>
 
                 <!-- copy all upgrade scripts after 7.15 -->
-                <mkdir dir="target/classes/org/camunda/bpm/engine/db/liquibase/upgrade" />
-                <copy todir="target/classes/org/camunda/bpm/engine/db/liquibase/upgrade">
-                  <fileset dir="target/classes/org/camunda/bpm/engine/db/upgrade" excludes="*_6.*_*,*_7.0_*,*_7.1_*,*_7.2_*,*_7.3_*,*_7.4_*,*_7.5_*,*_7.6_*,*_7.7_*, *_7.8_*,*_7.9_*,*_7.10_*,*_7.11_*,*_7.12_*,*_7.13_*,*_7.14_*,*_7.15_*" />
+                <mkdir dir="target/classes/org/cadenzaflow/bpm/engine/db/liquibase/upgrade" />
+                <copy todir="target/classes/org/cadenzaflow/bpm/engine/db/liquibase/upgrade">
+                  <fileset dir="target/classes/org/cadenzaflow/bpm/engine/db/upgrade" excludes="*_6.*_*,*_7.0_*,*_7.1_*,*_7.2_*,*_7.3_*,*_7.4_*,*_7.5_*,*_7.6_*,*_7.7_*, *_7.8_*,*_7.9_*,*_7.10_*,*_7.11_*,*_7.12_*,*_7.13_*,*_7.14_*,*_7.15_*" />
                 </copy>
 
               </target>
@@ -622,7 +622,7 @@
               </execution>
             </executions>
             <configuration>
-              <mainClass>org.camunda.bpm.engine.impl.db.DbSchemaDrop</mainClass>
+              <mainClass>org.cadenzaflow.bpm.engine.impl.db.DbSchemaDrop</mainClass>
               <classpathScope>test</classpathScope>
               <cleanupDaemonThreads>false</cleanupDaemonThreads>
             </configuration>
@@ -723,8 +723,8 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/*/impl/**</exclude>
-                <exclude>org/camunda/bpm/engine/test/ProcessEngineRule</exclude>
+                <exclude>org/cadenzaflow/bpm/*/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/engine/test/ProcessEngineRule</exclude>
                 <exclude>cadenzaflowjar/**/*</exclude>
               </excludes>
             </configuration>

@@ -55,8 +55,8 @@ import org.junit.Test;
  */
 public class DeploymentAuthorizationTest extends AuthorizationTest {
 
-  protected static final String FIRST_RESOURCE = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
-  protected static final String SECOND_RESOURCE = "org/camunda/bpm/engine/test/api/authorization/messageBoundaryEventProcess.bpmn20.xml";
+  protected static final String FIRST_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected static final String SECOND_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/authorization/messageBoundaryEventProcess.bpmn20.xml";
 
   // query ////////////////////////////////////////////////////////////
 

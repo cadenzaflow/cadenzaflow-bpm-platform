@@ -72,7 +72,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   @Test
   public void testProcessingOfJobsWithMatchingDeployment() {
     String deploymentId = repositoryService.createDeploymentQuery().singleResult().getId();
@@ -86,7 +86,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
 
     String otherDeploymentId =
         deployAndInstantiateWithNewEngineConfiguration(
-            "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcessVersion2.bpmn20.xml");
+            "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcessVersion2.bpmn20.xml");
 
     // assert that two jobs have been created, one for each deployment
     List<Job> jobs = managementService.createJobQuery().list();
@@ -106,14 +106,14 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     repositoryService.deleteDeployment(otherDeploymentId, true);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   @Test
   public void testExplicitDeploymentRegistration() {
     runtimeService.startProcessInstanceByKey("simpleAsyncProcess");
 
     String otherDeploymentId =
         deployAndInstantiateWithNewEngineConfiguration(
-            "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcessVersion2.bpmn20.xml");
+            "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcessVersion2.bpmn20.xml");
 
     processEngine.getManagementService().registerDeploymentForJobExecutor(otherDeploymentId);
 
@@ -141,7 +141,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   @Test
   public void testDeploymentUnregistrationOnUndeployment() {
     String deploymentId = repositoryService.createDeploymentQuery().singleResult().getId();
@@ -152,7 +152,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     Assert.assertEquals(0, managementService.getRegisteredDeployments().size());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   @Test
   public void testNoUnregistrationOnFailingUndeployment() {
     String deploymentId = repositoryService.createDeploymentQuery().singleResult().getId();
@@ -167,7 +167,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   @Test
   public void testExplicitDeploymentUnregistration() {
     String deploymentId = repositoryService.createDeploymentQuery().singleResult().getId();
@@ -232,7 +232,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     return deploymentId;
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/jobexecutor/processWithTimerCatch.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/jobexecutor/processWithTimerCatch.bpmn20.xml")
   @Test
   public void testIntermediateTimerEvent() {
 
@@ -258,7 +258,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     assertEquals(0, acquirableJobs.size());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/jobexecutor/processWithTimerStart.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/jobexecutor/processWithTimerStart.bpmn20.xml")
   @Test
   public void testTimerStartEvent() {
 

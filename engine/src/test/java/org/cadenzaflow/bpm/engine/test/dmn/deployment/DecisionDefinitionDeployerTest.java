@@ -59,15 +59,15 @@ import org.junit.rules.RuleChain;
 
 public class DecisionDefinitionDeployerTest {
 
-  protected static final String DMN_CHECK_ORDER_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDmnDeployment.dmn11.xml";
-  protected static final String DMN_CHECK_ORDER_RESOURCE_DMN_SUFFIX = "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDmnDeployment.dmn";
-  protected static final String DMN_SCORE_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/dmnScore.dmn11.xml";
+  protected static final String DMN_CHECK_ORDER_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDmnDeployment.dmn11.xml";
+  protected static final String DMN_CHECK_ORDER_RESOURCE_DMN_SUFFIX = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDmnDeployment.dmn";
+  protected static final String DMN_SCORE_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/dmnScore.dmn11.xml";
 
-  protected static final String DMN_DECISION_LITERAL_EXPRESSION = "org/camunda/bpm/engine/test/dmn/deployment/DecisionWithLiteralExpression.dmn";
+  protected static final String DMN_DECISION_LITERAL_EXPRESSION = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionWithLiteralExpression.dmn";
 
-  protected static final String DRD_SCORE_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
-  protected static final String DRD_SCORE_V2_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/drdScore_v2.dmn11.xml";
-  protected static final String DRD_DISH_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DRD_SCORE_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
+  protected static final String DRD_SCORE_V2_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdScore_v2.dmn11.xml";
+  protected static final String DRD_DISH_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);
@@ -167,8 +167,8 @@ public class DecisionDefinitionDeployerTest {
 
   @Test
   public void duplicateIdInDeployment() {
-    String resourceName1 = "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDuplicateIdInDeployment.dmn11.xml";
-    String resourceName2 = "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDuplicateIdInDeployment2.dmn11.xml";
+    String resourceName1 = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDuplicateIdInDeployment.dmn11.xml";
+    String resourceName2 = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDuplicateIdInDeployment2.dmn11.xml";
 
     // when/then
     assertThatThrownBy(() -> repositoryService.createDeployment()
@@ -181,12 +181,12 @@ public class DecisionDefinitionDeployerTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDiagramResource.dmn11.xml",
-    "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDiagramResource.png"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDiagramResource.dmn11.xml",
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDiagramResource.png"
   })
   @Test
   public void getDecisionDiagramResource() {
-    String resourcePrefix = "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDiagramResource";
+    String resourcePrefix = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDiagramResource";
 
     DecisionDefinition decisionDefinition = repositoryService.createDecisionDefinitionQuery().singleResult();
 
@@ -202,14 +202,14 @@ public class DecisionDefinitionDeployerTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.dmn11.xml",
-    "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.decision1.png",
-    "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.decision2.png",
-    "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.decision3.png"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.dmn11.xml",
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.decision1.png",
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.decision2.png",
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.decision3.png"
   })
   @Test
   public void multipleDiagramResourcesProvided() {
-    String resourcePrefix = "org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.";
+    String resourcePrefix = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testMultipleDecisionDiagramResource.";
 
     DecisionDefinitionQuery decisionDefinitionQuery = repositoryService.createDecisionDefinitionQuery();
     assertEquals(3, decisionDefinitionQuery.count());
@@ -506,7 +506,7 @@ public class DecisionDefinitionDeployerTest {
   @Test
   public void testDeployDecisionDefinitionWithIntegerHistoryTimeToLive() {
     // when
-    DeploymentWithDefinitions deployment = testRule.deploy("org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithIntegerHistoryTimeToLive.dmn11.xml");
+    DeploymentWithDefinitions deployment = testRule.deploy("org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithIntegerHistoryTimeToLive.dmn11.xml");
 
     // then
     List<DecisionDefinition> deployedDecisionDefinitions = deployment.getDeployedDecisionDefinitions();
@@ -519,7 +519,7 @@ public class DecisionDefinitionDeployerTest {
   @Test
   public void testDeployDecisionDefinitionWithStringHistoryTimeToLive() {
     // when
-    DeploymentWithDefinitions deployment = testRule.deploy("org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithStringHistoryTimeToLive.dmn11.xml");
+    DeploymentWithDefinitions deployment = testRule.deploy("org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithStringHistoryTimeToLive.dmn11.xml");
 
     // then
     List<DecisionDefinition> deployedDecisionDefinitions = deployment.getDeployedDecisionDefinitions();
@@ -532,7 +532,7 @@ public class DecisionDefinitionDeployerTest {
   @Test
   public void testDeployDecisionDefinitionWithMalformedStringHistoryTimeToLive() {
     try {
-      testRule.deploy("org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithMalformedHistoryTimeToLive.dmn11.xml");
+      testRule.deploy("org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithMalformedHistoryTimeToLive.dmn11.xml");
       fail("Exception expected");
     } catch (ProcessEngineException e) {
       assertTrue(e.getCause().getMessage().contains("Cannot parse historyTimeToLive"));
@@ -541,7 +541,7 @@ public class DecisionDefinitionDeployerTest {
 
   @Test
   public void testDeployDecisionDefinitionWithEmptyHistoryTimeToLive() {
-      DeploymentWithDefinitions deployment = testRule.deploy("org/camunda/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithEmptyHistoryTimeToLive.dmn11.xml");
+      DeploymentWithDefinitions deployment = testRule.deploy("org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionDefinitionDeployerTest.testDecisionDefinitionWithEmptyHistoryTimeToLive.dmn11.xml");
 
       // then
       List<DecisionDefinition> deployedDecisionDefinitions = deployment.getDeployedDecisionDefinitions();

@@ -39,7 +39,7 @@ public class ExecutionQueryVariableIgnoreCaseTest extends AbstractVariableIgnore
     repositoryService = engineRule.getRepositoryService();
     runtimeService = engineRule.getRuntimeService();
 
-    repositoryService.createDeployment().addClasspathResource("org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml").deploy();
+    repositoryService.createDeployment().addClasspathResource("org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml").deploy();
     instance = runtimeService.startProcessInstanceByKey("oneTaskProcess", VARIABLES);
   }
 

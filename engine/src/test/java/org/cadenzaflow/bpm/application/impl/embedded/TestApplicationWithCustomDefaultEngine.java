@@ -24,7 +24,7 @@ import org.cadenzaflow.bpm.application.impl.EmbeddedProcessApplication;
  */
 @ProcessApplication(
     name="test-app",
-    deploymentDescriptors={"org/camunda/bpm/application/impl/embedded/deployment-to-custom-default-engine.xml"}
+    deploymentDescriptors={"org/cadenzaflow/bpm/application/impl/embedded/deployment-to-custom-default-engine.xml"}
 )
 public class TestApplicationWithCustomDefaultEngine extends EmbeddedProcessApplication {
 

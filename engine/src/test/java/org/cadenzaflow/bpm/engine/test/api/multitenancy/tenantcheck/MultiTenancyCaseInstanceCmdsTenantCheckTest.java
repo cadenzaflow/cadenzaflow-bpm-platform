@@ -54,7 +54,7 @@ public class MultiTenancyCaseInstanceCmdsTenantCheckTest {
 
   protected static final String TENANT_ONE = "tenant1";
 
-  protected static final String CMMN_MODEL = "org/camunda/bpm/engine/test/api/cmmn/twoTaskCase.cmmn";
+  protected static final String CMMN_MODEL = "org/cadenzaflow/bpm/engine/test/api/cmmn/twoTaskCase.cmmn";
 
   protected static final String ACTIVITY_ID = "PI_HumanTask_1";
 

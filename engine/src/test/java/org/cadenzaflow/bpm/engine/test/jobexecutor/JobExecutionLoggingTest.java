@@ -60,7 +60,7 @@ public class JobExecutionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/jobexecutor/SimpleAsyncDelayProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/jobexecutor/SimpleAsyncDelayProcess.bpmn20.xml" })
   public void shouldLogJobsQueuedForExecution() {
     // Replace job executor with one that has custom threadpool executor settings
     JobExecutionLoggingTest.TestJobExecutor testJobExecutor = new JobExecutionLoggingTest.TestJobExecutor();
@@ -88,7 +88,7 @@ public class JobExecutionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/jobexecutor/SimpleAsyncDelayProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/jobexecutor/SimpleAsyncDelayProcess.bpmn20.xml" })
   public void shouldLogJobsInExecution() {
     // Replace job executor with one that has custom threadpool executor settings
     JobExecutionLoggingTest.TestJobExecutor testJobExecutor = new JobExecutionLoggingTest.TestJobExecutor();
@@ -113,7 +113,7 @@ public class JobExecutionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/jobexecutor/SimpleAsyncDelayProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/jobexecutor/SimpleAsyncDelayProcess.bpmn20.xml" })
   public void shouldLogAvailableJobExecutionThreads() {
     // Replace job executor with one that has custom threadpool executor settings
     JobExecutionLoggingTest.TestJobExecutor testJobExecutor = new JobExecutionLoggingTest.TestJobExecutor();
@@ -138,7 +138,7 @@ public class JobExecutionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/jobexecutor/delegateThrowsException.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/jobexecutor/delegateThrowsException.bpmn20.xml" })
   public void shouldLogJobExecutionRejections() {
     // Given three jobs
     for (int i = 0; i < 3; i++) {

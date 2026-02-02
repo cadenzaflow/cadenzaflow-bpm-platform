@@ -31,16 +31,16 @@ public class MultiTenancyDecisionTaskTest extends PluggableProcessEngineTest {
   protected static final String TENANT_ONE = "tenant1";
   protected static final String TENANT_TWO = "tenant2";
 
-  protected static final String CMMN_LATEST = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTask.cmmn";
-  protected static final String CMMN_DEPLOYMENT = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskDeploymentBinding.cmmn";
-  protected static final String CMMN_VERSION = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskVersionBinding.cmmn";
-  protected static final String CMMN_VERSION_2 = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskVersionBinding_v2.cmmn";
-  protected static final String CMMN_CONST = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskTenantIdConst.cmmn";
-  protected static final String CMMN_WITHOUT_TENANT = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskWithoutTenantId.cmmn";
-  protected static final String CMMN_EXPR = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskTenantIdExpr.cmmn";
+  protected static final String CMMN_LATEST = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTask.cmmn";
+  protected static final String CMMN_DEPLOYMENT = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskDeploymentBinding.cmmn";
+  protected static final String CMMN_VERSION = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskVersionBinding.cmmn";
+  protected static final String CMMN_VERSION_2 = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskVersionBinding_v2.cmmn";
+  protected static final String CMMN_CONST = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskTenantIdConst.cmmn";
+  protected static final String CMMN_WITHOUT_TENANT = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskWithoutTenantId.cmmn";
+  protected static final String CMMN_EXPR = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithDecisionTaskTenantIdExpr.cmmn";
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
-  protected static final String DMN_FILE_VERSION_TWO = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable_v2.dmn";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN_FILE_VERSION_TWO = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable_v2.dmn";
 
   protected static final String CASE_DEFINITION_KEY = "caseDecisionTask";
   protected static final String DECISION_TASK_ID = "PI_DecisionTask_1";

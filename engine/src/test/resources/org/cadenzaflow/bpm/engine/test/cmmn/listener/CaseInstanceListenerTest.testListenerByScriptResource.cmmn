@@ -11,13 +11,13 @@
       <extensionElements>
 
         <camunda:caseExecutionListener event="create">
-          <camunda:script scriptFormat="groovy" resource="org/camunda/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="org/cadenzaflow/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
         </camunda:caseExecutionListener>
         <camunda:caseExecutionListener event="terminate">
-          <camunda:script scriptFormat="groovy" resource="classpath://org/camunda/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="classpath://org/cadenzaflow/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
         </camunda:caseExecutionListener>
         <camunda:caseExecutionListener event="complete">
-          <camunda:script scriptFormat="groovy" resource="deployment://org/camunda/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="deployment://org/cadenzaflow/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
         </camunda:caseExecutionListener>
 
       </extensionElements>

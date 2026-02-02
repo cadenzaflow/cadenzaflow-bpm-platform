@@ -43,7 +43,7 @@ public class CustomHistoryTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/history/customhistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/customhistory.camunda.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 
@@ -56,7 +56,7 @@ public class CustomHistoryTest {
     historyService = engineRule.getHistoryService();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testReceivesVariableUpdates() {
     // given

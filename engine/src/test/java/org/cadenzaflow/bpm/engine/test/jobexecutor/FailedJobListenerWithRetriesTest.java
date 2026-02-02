@@ -90,7 +90,7 @@ public class FailedJobListenerWithRetriesTest {
   }
 
   @Test
-  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn"})
+  @org.cadenzaflow.bpm.engine.test.Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn"})
   public void testFailedJobListenerRetries() {
     //given
     runtimeService.startProcessInstanceByKey("failingProcess");

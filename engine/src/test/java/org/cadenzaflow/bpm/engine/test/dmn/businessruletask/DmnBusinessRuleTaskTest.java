@@ -38,23 +38,23 @@ import org.junit.rules.RuleChain;
 
 public class DmnBusinessRuleTaskTest {
 
-  public static final String DECISION_PROCESS = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRef.bpmn20.xml";
-  public static final String DECISION_PROCESS_EXPRESSION = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefExpression.bpmn20.xml";
-  public static final String DECISION_PROCESS_COMPOSITEEXPRESSION = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefCompositeExpression.bpmn20.xml";
-  public static final String DECISION_PROCESS_LATEST = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefLatestBinding.bpmn20.xml";
-  public static final String DECISION_PROCESS_DEPLOYMENT = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefDeploymentBinding.bpmn20.xml";
-  public static final String DECISION_PROCESS_VERSION = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefVersionBinding.bpmn20.xml";
-  public static final String DECISION_OKAY_DMN = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionOkay.dmn11.xml";
-  public static final String DECISION_NOT_OKAY_DMN = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionNotOkay.dmn11.xml";
-  public static final String DECISION_VERSION_TAG_OKAY_DMN = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionVersionTagOkay.dmn11.xml";
-  public static final String DECISION_POJO_DMN = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testPojo.dmn11.xml";
+  public static final String DECISION_PROCESS = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRef.bpmn20.xml";
+  public static final String DECISION_PROCESS_EXPRESSION = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefExpression.bpmn20.xml";
+  public static final String DECISION_PROCESS_COMPOSITEEXPRESSION = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefCompositeExpression.bpmn20.xml";
+  public static final String DECISION_PROCESS_LATEST = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefLatestBinding.bpmn20.xml";
+  public static final String DECISION_PROCESS_DEPLOYMENT = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefDeploymentBinding.bpmn20.xml";
+  public static final String DECISION_PROCESS_VERSION = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRefVersionBinding.bpmn20.xml";
+  public static final String DECISION_OKAY_DMN = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionOkay.dmn11.xml";
+  public static final String DECISION_NOT_OKAY_DMN = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionNotOkay.dmn11.xml";
+  public static final String DECISION_VERSION_TAG_OKAY_DMN = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionVersionTagOkay.dmn11.xml";
+  public static final String DECISION_POJO_DMN = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testPojo.dmn11.xml";
 
-  public static final String DECISION_LITERAL_EXPRESSION_DMN = "org/camunda/bpm/engine/test/dmn/deployment/DecisionWithLiteralExpression.dmn";
-  public static final String DRD_DISH_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  public static final String DECISION_LITERAL_EXPRESSION_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/DecisionWithLiteralExpression.dmn";
+  public static final String DRD_DISH_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
-  public static final String DECISION_OKAY_DMN12 = "org/camunda/bpm/engine/test/dmn/businessruletask/dmn12/DmnBusinessRuleTaskTest.testDecisionOkay.dmn";
+  public static final String DECISION_OKAY_DMN12 = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/dmn12/DmnBusinessRuleTaskTest.testDecisionOkay.dmn";
 
-  public static final String DECISION_OKAY_DMN13 = "org/camunda/bpm/engine/test/dmn/businessruletask/dmn13/DmnBusinessRuleTaskTest.testDecisionOkay.dmn";
+  public static final String DECISION_OKAY_DMN13 = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/dmn13/DmnBusinessRuleTaskTest.testDecisionOkay.dmn";
 
   public static final BpmnModelInstance BPMN_VERSION_TAG_BINDING = Bpmn.createExecutableProcess("process")
               .startEvent()

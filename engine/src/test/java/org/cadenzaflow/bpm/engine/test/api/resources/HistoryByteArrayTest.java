@@ -71,8 +71,8 @@ import org.junit.rules.RuleChain;
 
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class HistoryByteArrayTest {
-  protected static final String DECISION_PROCESS = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
-  protected static final String DECISION_SINGLE_OUTPUT_DMN = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+  protected static final String DECISION_PROCESS = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
+  protected static final String DECISION_SINGLE_OUTPUT_DMN = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
   protected static final String WORKER_ID = "aWorkerId";
   protected static final long LOCK_TIME = 10000L;
   protected static final String TOPIC_NAME = "externalTaskTopic";
@@ -274,7 +274,7 @@ public class HistoryByteArrayTest {
   @Test
   public void testHistoricExternalTaskJobLogStacktraceBinary() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
     runtimeService.startProcessInstanceByKey("oneExternalTaskProcess");
 
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)

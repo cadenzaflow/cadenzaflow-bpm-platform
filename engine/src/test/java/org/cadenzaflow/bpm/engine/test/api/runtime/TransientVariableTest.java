@@ -115,7 +115,7 @@ public class TransientVariableTest {
             .putValueTyped("j", Variables.untypedValue(null, true))
             .putValueTyped("k", Variables.untypedValue(Variables.booleanValue(true), true))
             .putValueTyped("l", Variables.fileValue(new File(this.getClass().getClassLoader()
-                .getResource("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt").toURI()), true)));
+                .getResource("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt").toURI()), true)));
 
     // then
     List<HistoricVariableInstance> historicVariableInstances = historyService.createHistoricVariableInstanceQuery().list();
@@ -151,7 +151,7 @@ public class TransientVariableTest {
         .putValue("j", Variables.untypedValue(null, true))
         .putValue("k", Variables.untypedValue(Variables.booleanValue(true), true))
         .putValue("l", Variables.fileValue(new File(this.getClass().getClassLoader()
-            .getResource("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt").toURI()), true)));
+            .getResource("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt").toURI()), true)));
 
     // then
     List<HistoricVariableInstance> historicVariableInstances = historyService.createHistoricVariableInstanceQuery().list();
@@ -299,7 +299,7 @@ public class TransientVariableTest {
   @Test
   public void setVariableTransientForCase() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
 
     // when
     engineRule.getCaseService().withCaseDefinitionByKey("oneTaskCase")
@@ -339,7 +339,7 @@ public class TransientVariableTest {
   @Test
   public void testFormFieldsWithCustomTransientFlags() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/form/TransientVariableTest.taskFormFieldsWithTransientFlags.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/form/TransientVariableTest.taskFormFieldsWithTransientFlags.bpmn20.xml");
     runtimeService.startProcessInstanceByKey("testProcess");
     Task task = taskService.createTaskQuery().singleResult();
 
@@ -358,7 +358,7 @@ public class TransientVariableTest {
   @Test
   public void testStartProcessInstanceWithFormsUsingTransientVariables() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/form/TransientVariableTest.startFormFieldsWithTransientFlags.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/form/TransientVariableTest.startFormFieldsWithTransientFlags.bpmn20.xml");
     ProcessDefinition processDefinition = engineRule.getRepositoryService().createProcessDefinitionQuery().singleResult();
 
     // when
@@ -497,7 +497,7 @@ public class TransientVariableTest {
   @Test
   public void testExclusiveGateway() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/bpmn/gateway/ExclusiveGatewayTest.testDivergingExclusiveGateway.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/bpmn/gateway/ExclusiveGatewayTest.testDivergingExclusiveGateway.bpmn20.xml");
 
     // when
     runtimeService.startProcessInstanceByKey("exclusiveGwDiverging",

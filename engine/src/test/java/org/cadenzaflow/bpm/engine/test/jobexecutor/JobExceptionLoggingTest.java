@@ -75,7 +75,7 @@ public class JobExceptionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/delegateThrowsException.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/delegateThrowsException.bpmn20.xml")
   public void shouldLogFailingJobOnlyOnceReducedLogging() {
     // given a job that always throws an Exception
     processEngineConfiguration.setEnableCmdExceptionLogging(false);
@@ -96,7 +96,7 @@ public class JobExceptionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/delegateThrowsException.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/delegateThrowsException.bpmn20.xml")
   public void shouldLogFailingJobTwiceDefaultLogging() {
     // given a job that always throws an Exception
     processEngineConfiguration.setEnableCmdExceptionLogging(true);

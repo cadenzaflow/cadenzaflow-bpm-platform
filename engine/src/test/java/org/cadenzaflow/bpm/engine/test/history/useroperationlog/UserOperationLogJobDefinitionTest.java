@@ -36,7 +36,7 @@ import org.junit.Test;
  */
 public class UserOperationLogJobDefinitionTest extends AbstractUserOperationLogTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetOverridingPriority() {
     // For a given deployment
@@ -71,7 +71,7 @@ public class UserOperationLogJobDefinitionTest extends AbstractUserOperationLogT
     assertEquals(deploymentId, userOperationLogEntry.getDeploymentId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testOverwriteOverridingPriority() {
     // given a job definition
@@ -103,7 +103,7 @@ public class UserOperationLogJobDefinitionTest extends AbstractUserOperationLogT
     assertEquals("42", userOperationLogEntry.getOrgValue());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testClearOverridingPriority() {
     // for a given deployment
@@ -144,7 +144,7 @@ public class UserOperationLogJobDefinitionTest extends AbstractUserOperationLogT
     assertEquals(deploymentId, userOperationLogEntry.getDeploymentId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetOverridingPriorityCascadeToJobs() {
     // given a job definition and job

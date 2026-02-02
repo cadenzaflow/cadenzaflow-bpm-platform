@@ -938,7 +938,7 @@ public class DelegationAuthorizationTest extends AuthorizationTest {
     assertEquals(Long.valueOf(5), MyDelegationService.INSTANCES_COUNT);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testCustomStartFormHandlerExecutesQuery.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testCustomStartFormHandlerExecutesQuery.bpmn20.xml"})
   @Test
   public void testSubmitCustomStartFormHandlerExecutesQuery() {
     // given
@@ -958,7 +958,7 @@ public class DelegationAuthorizationTest extends AuthorizationTest {
     assertEquals(Long.valueOf(5), MyDelegationService.INSTANCES_COUNT);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testCustomTaskFormHandlerExecutesQuery.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testCustomTaskFormHandlerExecutesQuery.bpmn20.xml"})
   @Test
   public void testSubmitCustomTaskFormHandlerExecutesQuery() {
     // given
@@ -1017,7 +1017,7 @@ public class DelegationAuthorizationTest extends AuthorizationTest {
     assertEquals(Long.valueOf(5), MyDelegationService.INSTANCES_COUNT);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testJavaDelegateExecutesQueryAfterUserCompletesTask.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testJavaDelegateExecutesQueryAfterUserCompletesTask.bpmn20.xml"})
   @Test
   public void testPerformAuthorizationCheckByExecutingQuery() {
     // given
@@ -1037,7 +1037,7 @@ public class DelegationAuthorizationTest extends AuthorizationTest {
     assertEquals(Long.valueOf(0), MyDelegationService.INSTANCES_COUNT);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testJavaDelegateExecutesCommandAfterUserCompletesTask.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/authorization/DelegationAuthorizationTest.testJavaDelegateExecutesCommandAfterUserCompletesTask.bpmn20.xml"})
   @Test
   public void testPerformAuthorizationCheckByExecutingCommand() {
     // given

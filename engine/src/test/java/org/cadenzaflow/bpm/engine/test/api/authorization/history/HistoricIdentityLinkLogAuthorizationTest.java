@@ -47,8 +47,8 @@ public class HistoricIdentityLinkLogAuthorizationTest extends AuthorizationTest 
   @Override
   @Before
   public void setUp() throws Exception {
-    testRule.deploy( "org/camunda/bpm/engine/test/api/authorization/oneTaskProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn");
+    testRule.deploy( "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn");
     super.setUp();
   }
 

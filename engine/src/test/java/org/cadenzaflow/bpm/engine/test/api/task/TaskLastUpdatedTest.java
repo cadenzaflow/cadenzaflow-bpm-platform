@@ -40,7 +40,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-@Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+@Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
 public class TaskLastUpdatedTest {
 
   @Rule
@@ -384,8 +384,8 @@ public class TaskLastUpdatedTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/form/DeployedCamundaFormSingleTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/form/task.html"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/form/DeployedCamundaFormSingleTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/form/task.html"})
   public void shouldSetLastUpdatedOnSubmitTaskForm() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("FormsProcess");

@@ -37,7 +37,7 @@ public class ConnectionPoolTest {
   @Test
   public void testMyBatisConnectionPoolProperlyConfigured() {
     ProcessEngineConfigurationImpl config = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/api/cfg/connection-pool.camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/cfg/connection-pool.camunda.cfg.xml");
 
     ProcessEngine engine = config.buildProcessEngine();
 

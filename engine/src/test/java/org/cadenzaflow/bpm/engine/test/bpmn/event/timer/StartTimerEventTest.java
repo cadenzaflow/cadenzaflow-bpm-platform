@@ -279,7 +279,7 @@ public class StartTimerEventTest extends PluggableProcessEngineTest {
     assertEquals(0, jobQuery.count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/timer/StartTimerEventTest.testRecalculateExpressionStartTimerEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/StartTimerEventTest.testRecalculateExpressionStartTimerEvent.bpmn20.xml")
   @Test
   public void testRecalculateUnchangedExpressionStartTimerEventCreationDateBased() throws Exception {
     // given
@@ -684,8 +684,8 @@ public class StartTimerEventTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/simpleProcessWithCallActivity.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/timer/StartTimerEventTest.testStartTimerEventWithTwoEventSubProcesses.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/simpleProcessWithCallActivity.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/StartTimerEventTest.testStartTimerEventWithTwoEventSubProcesses.bpmn20.xml" })
   @Test
   public void testStartTimerEventSubProcessCalledFromCallActivity() {
     Map<String, Object> variables = new HashMap<String, Object>();
@@ -724,8 +724,8 @@ public class StartTimerEventTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/simpleProcessWithCallActivity.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/timer/StartTimerEventTest.testNonInterruptingStartTimerEventWithTwoEventSubProcesses.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/simpleProcessWithCallActivity.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/StartTimerEventTest.testNonInterruptingStartTimerEventWithTwoEventSubProcesses.bpmn20.xml" })
   @Test
   public void testNonInterruptingStartTimerEventSubProcessesCalledFromCallActivity() {
     DummyServiceTask.wasExecuted = false;

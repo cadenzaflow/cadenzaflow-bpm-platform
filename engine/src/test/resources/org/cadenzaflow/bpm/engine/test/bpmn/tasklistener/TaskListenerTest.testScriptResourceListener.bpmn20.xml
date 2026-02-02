@@ -8,20 +8,20 @@
     <userTask id="task1">
       <extensionElements>
         <camunda:taskListener event="create">
-          <camunda:script scriptFormat="groovy" resource="org/camunda/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
         </camunda:taskListener>
         <camunda:taskListener event="assignment">
-          <camunda:script scriptFormat="groovy" resource="classpath://org/camunda/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="classpath://org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
         </camunda:taskListener>
         <camunda:taskListener event="complete">
-          <camunda:script scriptFormat="groovy" resource="deployment://org/camunda/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="deployment://org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
         </camunda:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="task2">
       <extensionElements>
         <camunda:taskListener event="delete">
-          <camunda:script scriptFormat="groovy" resource="org/camunda/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
+          <camunda:script scriptFormat="groovy" resource="org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/taskListener.groovy" />
         </camunda:taskListener>
       </extensionElements>
     </userTask>

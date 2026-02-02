@@ -32,7 +32,7 @@ import org.junit.Test;
  */
 public class SentryVariableOnPartExitCriteriaTest extends CmmnTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTaskWithVariableOnPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTaskWithVariableOnPart.cmmn"})
   @Test
   public void testExitTaskWithVariableOnPartSatisfied() {
     // given
@@ -60,7 +60,7 @@ public class SentryVariableOnPartExitCriteriaTest extends CmmnTest {
     assertNull(secondHumanTask);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTaskWithVariableOnPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTaskWithVariableOnPart.cmmn"})
   @Test
   public void testExitTaskWithVariableOnPartNotSatisfied() {
     // given
@@ -89,7 +89,7 @@ public class SentryVariableOnPartExitCriteriaTest extends CmmnTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTaskWithMultipleOnPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTaskWithMultipleOnPart.cmmn"})
   @Test
   public void testExitTaskWithMultipleOnPartSatisfied() {
     // given
@@ -120,7 +120,7 @@ public class SentryVariableOnPartExitCriteriaTest extends CmmnTest {
     assertNull(stageExecution);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTasksOfDifferentScopes.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryVariableOnPartExitCriteriaTest.testExitTasksOfDifferentScopes.cmmn"})
   @Test
   public void testExitMultipleTasksOfDifferentScopes() {
     // given

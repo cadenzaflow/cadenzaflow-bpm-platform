@@ -84,7 +84,7 @@ public class IncidentMultipleProcessingTest {
     assertThat(incidentHandler).isInstanceOf(CompositeIncidentHandler.class);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn" })
   @Test
   public void shouldCreateOneIncident() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("failingProcess");
@@ -100,7 +100,7 @@ public class IncidentMultipleProcessingTest {
     assertThat(JOB_HANDLER.getDeleteEvents()).isEmpty();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn" })
   @Test
   public void shouldResolveIncidentAfterJobRetriesRefresh() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("failingProcess");
@@ -124,7 +124,7 @@ public class IncidentMultipleProcessingTest {
     assertThat(JOB_HANDLER.getDeleteEvents()).isEmpty();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn" })
   @Test
   public void shouldDeleteIncidentAfterJobHasBeenDeleted() {
     // start failing process

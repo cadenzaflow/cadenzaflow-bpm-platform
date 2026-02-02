@@ -45,13 +45,13 @@ import org.junit.rules.RuleChain;
  */
 public class DecisionServiceTest {
 
-  protected static final String DMN_DECISION_TABLE = "org/camunda/bpm/engine/test/api/dmn/Example.dmn";
-  protected static final String DMN_DECISION_TABLE_V2 = "org/camunda/bpm/engine/test/api/dmn/Example_v2.dmn";
+  protected static final String DMN_DECISION_TABLE = "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn";
+  protected static final String DMN_DECISION_TABLE_V2 = "org/cadenzaflow/bpm/engine/test/api/dmn/Example_v2.dmn";
 
-  protected static final String DMN_DECISION_LITERAL_EXPRESSION = "org/camunda/bpm/engine/test/api/dmn/DecisionWithLiteralExpression.dmn";
-  protected static final String DMN_DECISION_LITERAL_EXPRESSION_V2 = "org/camunda/bpm/engine/test/api/dmn/DecisionWithLiteralExpression_v2.dmn";
+  protected static final String DMN_DECISION_LITERAL_EXPRESSION = "org/cadenzaflow/bpm/engine/test/api/dmn/DecisionWithLiteralExpression.dmn";
+  protected static final String DMN_DECISION_LITERAL_EXPRESSION_V2 = "org/cadenzaflow/bpm/engine/test/api/dmn/DecisionWithLiteralExpression_v2.dmn";
 
-  protected static final String DRD_DISH_DECISION_TABLE = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DRD_DISH_DECISION_TABLE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
   protected static final String DECISION_DEFINITION_KEY = "decision";
 

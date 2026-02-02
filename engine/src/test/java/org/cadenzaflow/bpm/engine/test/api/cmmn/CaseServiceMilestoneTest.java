@@ -38,7 +38,7 @@ public class CaseServiceMilestoneTest extends PluggableProcessEngineTest {
   protected final String MILESTONE_KEY = "PI_Milestone_1";
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
       })
   @Test
   public void testManualStart() {
@@ -57,7 +57,7 @@ public class CaseServiceMilestoneTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
       })
   @Test
   public void testDisable() {
@@ -76,7 +76,7 @@ public class CaseServiceMilestoneTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
       })
   @Test
   public void testReenable() {
@@ -95,7 +95,7 @@ public class CaseServiceMilestoneTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
       })
   @Test
   public void testComplete() {
@@ -114,7 +114,7 @@ public class CaseServiceMilestoneTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
       })
   @Test
   public void testTerminate() {
@@ -132,7 +132,7 @@ public class CaseServiceMilestoneTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"
       })
   @Test
   public void testTerminateNonFluent() {

@@ -49,8 +49,8 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class DecisionRequirementsDefinitionQueryAuthorizationTest {
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
-  protected static final String ANOTHER_DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
+  protected static final String ANOTHER_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
   protected static final String DEFINITION_KEY = "score";
   protected static final String ANOTHER_DEFINITION_KEY = "dish";

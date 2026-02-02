@@ -275,7 +275,7 @@ public class FormDataTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/form/FormDataTest.testDoubleQuotesAreEscapedInGeneratedTaskForms.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/form/FormDataTest.testDoubleQuotesAreEscapedInGeneratedTaskForms.bpmn20.xml")
   @Test
   public void testDoubleQuotesAreEscapedInGeneratedTaskForms() {
 

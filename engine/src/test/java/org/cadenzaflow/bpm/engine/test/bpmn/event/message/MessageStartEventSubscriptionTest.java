@@ -49,8 +49,8 @@ import junit.framework.AssertionFailedError;
 
 public class MessageStartEventSubscriptionTest {
 
-  private static final String SINGLE_MESSAGE_START_EVENT_XML = "org/camunda/bpm/engine/test/bpmn/event/message/MessageStartEventTest.testSingleMessageStartEvent.bpmn20.xml";
-  private static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  private static final String SINGLE_MESSAGE_START_EVENT_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageStartEventTest.testSingleMessageStartEvent.bpmn20.xml";
+  private static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
   private static final String MESSAGE_EVENT_PROCESS = "singleMessageStartEvent";
 
   private static final BpmnModelInstance MODEL_WITHOUT_MESSAGE = Bpmn.createExecutableProcess(MESSAGE_EVENT_PROCESS)

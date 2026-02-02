@@ -44,7 +44,7 @@ public class DisabledJobPrioritizationBpmnTest extends PluggableProcessEngineTes
     processEngineConfiguration.setProducePrioritizedJobs(true);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioProcess.bpmn20.xml")
   @Test
   public void testJobPriority() {
     // when

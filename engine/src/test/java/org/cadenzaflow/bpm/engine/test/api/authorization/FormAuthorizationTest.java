@@ -62,11 +62,11 @@ public class FormAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     deploymentId = testRule.deploy(
-        "org/camunda/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/form/start.html",
-        "org/camunda/bpm/engine/test/api/form/task.html",
-        "org/camunda/bpm/engine/test/api/authorization/renderedFormProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn").getId();
+        "org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+        "org/cadenzaflow/bpm/engine/test/api/form/task.html",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/renderedFormProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn").getId();
     ensureSpecificVariablePermission = processEngineConfiguration.isEnforceSpecificVariablePermission();
     super.setUp();
   }
@@ -109,7 +109,7 @@ public class FormAuthorizationTest extends AuthorizationTest {
 
     // then
     assertNotNull(startFormData);
-    assertEquals("deployment:org/camunda/bpm/engine/test/api/form/start.html", startFormData.getFormKey());
+    assertEquals("deployment:org/cadenzaflow/bpm/engine/test/api/form/start.html", startFormData.getFormKey());
   }
 
   // get rendered start form /////////////////////////////////////
@@ -1039,7 +1039,7 @@ public class FormAuthorizationTest extends AuthorizationTest {
     String formKey = formService.getStartFormKey(processDefinitionId);
 
     // then
-    assertEquals("deployment:org/camunda/bpm/engine/test/api/form/start.html", formKey);
+    assertEquals("deployment:org/cadenzaflow/bpm/engine/test/api/form/start.html", formKey);
   }
 
   // get task form key ////////////////////////////////////////
@@ -1073,7 +1073,7 @@ public class FormAuthorizationTest extends AuthorizationTest {
     String formKey = formService.getTaskFormKey(processDefinitionId, "task");
 
     // then
-    assertEquals("deployment:org/camunda/bpm/engine/test/api/form/task.html", formKey);
+    assertEquals("deployment:org/cadenzaflow/bpm/engine/test/api/form/task.html", formKey);
   }
 
   // get deployed start form////////////////////////////////////////

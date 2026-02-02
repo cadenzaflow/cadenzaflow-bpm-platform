@@ -17,10 +17,10 @@
     limitations under the License.
 
 -->
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-  
-<mapper namespace="org.camunda.bpm.engine.impl.persistence.entity.TenantMembershipEntity">
-  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.cadenzaflow.bpm.engine.impl.persistence.entity.TenantMembershipEntity">
+
   <!-- INSERT -->
 
   <insert id="insertTenantMembership" parameterType="map">
@@ -36,7 +36,7 @@
   <!-- DELETE -->
 
   <delete id="deleteTenantMembership" parameterType="map">
-    delete from ${prefix}ACT_ID_TENANT_MEMBER 
+    delete from ${prefix}ACT_ID_TENANT_MEMBER
     where TENANT_ID_ = #{tenantId}
       <if test="userId != null">
         and USER_ID_ = #{userId}
@@ -47,17 +47,17 @@
   </delete>
   
   <delete id="deleteTenantMembershipsOfUser" parameterType="string">
-    delete from ${prefix}ACT_ID_TENANT_MEMBER 
+    delete from ${prefix}ACT_ID_TENANT_MEMBER
     where USER_ID_ = #{parameter}
   </delete>
   
   <delete id="deleteTenantMembershipsOfGroup" parameterType="string">
-    delete from ${prefix}ACT_ID_TENANT_MEMBER 
+    delete from ${prefix}ACT_ID_TENANT_MEMBER
     where GROUP_ID_ = #{parameter}
   </delete>
   
   <delete id="deleteTenantMembershipsOfTenant" parameterType="string">
-    delete from ${prefix}ACT_ID_TENANT_MEMBER 
+    delete from ${prefix}ACT_ID_TENANT_MEMBER
     where TENANT_ID_ = #{parameter}
   </delete>
   
@@ -67,10 +67,10 @@
     from ${prefix}ACT_ID_TENANT_MEMBER
     where TENANT_ID_ = #{tenantId}
     <if test="groupId != null">
-      and GROUP_ID_ = #{groupId} 
+      and GROUP_ID_ = #{groupId}
     </if>
     <if test="userId != null">
-      and USER_ID_ = #{userId} 
+      and USER_ID_ = #{userId}
     </if>
   </select>
   

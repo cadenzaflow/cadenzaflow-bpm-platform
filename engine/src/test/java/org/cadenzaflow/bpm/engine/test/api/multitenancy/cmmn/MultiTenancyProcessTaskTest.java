@@ -33,14 +33,14 @@ public class MultiTenancyProcessTaskTest extends PluggableProcessEngineTest {
   protected static final String TENANT_ONE = "tenant1";
   protected static final String TENANT_TWO = "tenant2";
 
-  protected static final String CMMN_LATEST = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn";
-  protected static final String CMMN_LATEST_WITH_MANUAL_ACTIVATION = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTaskWithManualActivation.cmmn";
-  protected static final String CMMN_DEPLOYMENT = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTaskDeploymentBinding.cmmn";
-  protected static final String CMMN_VERSION = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTaskVersionBinding.cmmn";
-  protected static final String CMMN_VERSION_2 = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTaskVersionBinding_v2.cmmn";
+  protected static final String CMMN_LATEST = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn";
+  protected static final String CMMN_LATEST_WITH_MANUAL_ACTIVATION = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTaskWithManualActivation.cmmn";
+  protected static final String CMMN_DEPLOYMENT = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTaskDeploymentBinding.cmmn";
+  protected static final String CMMN_VERSION = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTaskVersionBinding.cmmn";
+  protected static final String CMMN_VERSION_2 = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTaskVersionBinding_v2.cmmn";
 
-  protected static final String CMMN_TENANT_CONST = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTaskTenantIdConst.cmmn";
-  protected static final String CMMN_TENANT_EXPR = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTaskTenantIdExpr.cmmn";
+  protected static final String CMMN_TENANT_CONST = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTaskTenantIdConst.cmmn";
+  protected static final String CMMN_TENANT_EXPR = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTaskTenantIdExpr.cmmn";
 
   protected static final String PROCESS_TASK_ID = "PI_ProcessTask_1";
 

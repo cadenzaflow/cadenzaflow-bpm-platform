@@ -127,7 +127,7 @@ public class InputOutputEventTest extends PluggableProcessEngineTest {
     try {
       repositoryService
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputEventTest.testMessageStartEvent.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputEventTest.testMessageStartEvent.bpmn20.xml")
         .deploy();
       fail("expected exception");
     } catch (ParseException e) {
@@ -141,7 +141,7 @@ public class InputOutputEventTest extends PluggableProcessEngineTest {
     try {
       repositoryService
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputEventTest.testNoneEndEvent.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputEventTest.testNoneEndEvent.bpmn20.xml")
         .deploy();
       fail("expected exception");
     } catch (ParseException e) {
@@ -257,7 +257,7 @@ public class InputOutputEventTest extends PluggableProcessEngineTest {
     try {
       repositoryService
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputEventTest.testMessageBoundaryEvent.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputEventTest.testMessageBoundaryEvent.bpmn20.xml")
         .deploy();
       fail("expected exception");
     } catch (ParseException e) {

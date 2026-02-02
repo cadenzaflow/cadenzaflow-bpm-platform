@@ -79,7 +79,7 @@ public class JobAcquisitionTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   public void testJobLockingFailure() {
     int numberOfInstances = 3;
 

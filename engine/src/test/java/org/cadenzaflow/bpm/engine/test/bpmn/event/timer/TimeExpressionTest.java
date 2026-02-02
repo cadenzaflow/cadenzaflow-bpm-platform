@@ -54,7 +54,7 @@ public class TimeExpressionTest extends PluggableProcessEngineTest {
 		    return jobs.get(0).getDuedate();
 	  }
 	  
-	  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
+	  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
   @Test
 	  public void testTimeExpressionComplete() throws Exception {
 		    Date dt = new Date();
@@ -63,7 +63,7 @@ public class TimeExpressionTest extends PluggableProcessEngineTest {
 		    assertEquals(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(dt),new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(dueDate));		    	  
 	  }
 	  
-	  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
+	  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
   @Test
 	  public void testTimeExpressionWithoutSeconds() throws Exception {
 		    Date dt = new Date();
@@ -72,7 +72,7 @@ public class TimeExpressionTest extends PluggableProcessEngineTest {
 		    assertEquals(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(dt),new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(dueDate));
 	  }
 	  
-	  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	 
+	  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	 
   @Test
 	  public void testTimeExpressionWithoutMinutes() throws Exception {
 		    Date dt = new Date();
@@ -81,7 +81,7 @@ public class TimeExpressionTest extends PluggableProcessEngineTest {
 		    assertEquals(new SimpleDateFormat("yyyy-MM-dd'T'HH").format(dt),new SimpleDateFormat("yyyy-MM-dd'T'HH").format(dueDate));
 	  }
 	  
-	  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
+	  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
   @Test
 	  public void testTimeExpressionWithoutTime() throws Exception {
 		    Date dt = new Date();
@@ -90,7 +90,7 @@ public class TimeExpressionTest extends PluggableProcessEngineTest {
 		    assertEquals(new SimpleDateFormat("yyyy-MM-dd").format(dt),new SimpleDateFormat("yyyy-MM-dd").format(dueDate));
 	  }
 	
-	  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
+	  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
   @Test
 	  public void testTimeExpressionWithoutDay() throws Exception {
 		    Date dt = new Date();
@@ -99,7 +99,7 @@ public class TimeExpressionTest extends PluggableProcessEngineTest {
 		    assertEquals(new SimpleDateFormat("yyyy-MM").format(dt),new SimpleDateFormat("yyyy-MM").format(dueDate));
 	  }
 	  
-	  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
+	  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpression.bpmn20.xml"})	  
   @Test
 	  public void testTimeExpressionWithoutMonth() throws Exception {
 		    Date dt = new Date();

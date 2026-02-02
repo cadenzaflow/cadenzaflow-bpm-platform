@@ -163,7 +163,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testOneMatchinProcessInstanceUsingFluentCorrelateAll() {
     Map<String, Object> variables = new HashMap<>();
@@ -199,7 +199,7 @@ public class MessageCorrelationTest {
     assertEquals(1, correlatedExecutions);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testTwoMatchingProcessInstancesCorrelation() {
     Map<String, Object> variables = new HashMap<>();
@@ -232,7 +232,7 @@ public class MessageCorrelationTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testTwoMatchingProcessInstancesUsingFluentCorrelateAll() {
     Map<String, Object> variables = new HashMap<>();
@@ -269,7 +269,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testExecutionCorrelationByBusinessKey() {
     String businessKey = "aBusinessKey";
@@ -296,7 +296,7 @@ public class MessageCorrelationTest {
     runtimeService.deleteProcessInstance(processInstance.getId(), null);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testExecutionCorrelationByBusinessKeyUsingFluentCorrelateAll() {
     String businessKey = "aBusinessKey";
@@ -314,7 +314,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageCorrelateAllResultListWithResultTypeExecution() {
     //given
@@ -339,7 +339,7 @@ public class MessageCorrelationTest {
   }
 
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageCorrelateAllResultListWithResultTypeProcessDefinition() {
     //when correlated all with result
@@ -354,7 +354,7 @@ public class MessageCorrelationTest {
   }
 
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testExecutionCorrelationByBusinessKeyWithVariables() {
     String businessKey = "aBusinessKey";
@@ -388,7 +388,7 @@ public class MessageCorrelationTest {
     runtimeService.deleteProcessInstance(processInstance.getId(), null);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testExecutionCorrelationByBusinessKeyWithVariablesUsingFluentCorrelateAll() {
     String businessKey = "aBusinessKey";
@@ -410,7 +410,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testExecutionCorrelationSetSerializedVariableValue() throws IOException, ClassNotFoundException {
 
@@ -451,7 +451,7 @@ public class MessageCorrelationTest {
     assertEquals(SerializationDataFormats.JAVA.getName(), variableTyped.getSerializationDataFormat());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testExecutionCorrelationSetSerializedVariableValues() throws IOException, ClassNotFoundException {
 
@@ -506,7 +506,7 @@ public class MessageCorrelationTest {
     assertEquals(1, instances);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationUsingFluentCorrelateStartMessage() {
 
@@ -519,7 +519,7 @@ public class MessageCorrelationTest {
     assertEquals(1, instances);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationUsingFluentCorrelateSingle() {
 
@@ -532,7 +532,7 @@ public class MessageCorrelationTest {
     assertEquals(1, instances);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationUsingFluentCorrelateAll() {
 
@@ -548,7 +548,7 @@ public class MessageCorrelationTest {
     assertEquals(1, instances);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
   @Test
   public void testMessageStartEventCorrelationWithBusinessKey() {
     final String businessKey = "aBusinessKey";
@@ -560,7 +560,7 @@ public class MessageCorrelationTest {
     assertEquals(businessKey, processInstance.getBusinessKey());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
   @Test
   public void testMessageStartEventCorrelationWithBusinessKeyUsingFluentCorrelateStartMessage() {
     final String businessKey = "aBusinessKey";
@@ -574,7 +574,7 @@ public class MessageCorrelationTest {
     assertEquals(businessKey, processInstance.getBusinessKey());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
   @Test
   public void testMessageStartEventCorrelationWithBusinessKeyUsingFluentCorrelateSingle() {
     final String businessKey = "aBusinessKey";
@@ -588,7 +588,7 @@ public class MessageCorrelationTest {
     assertEquals(businessKey, processInstance.getBusinessKey());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml"})
   @Test
   public void testMessageStartEventCorrelationWithBusinessKeyUsingFluentCorrelateAll() {
     final String businessKey = "aBusinessKey";
@@ -602,7 +602,7 @@ public class MessageCorrelationTest {
     assertEquals(businessKey, processInstance.getBusinessKey());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationSetSerializedVariableValue() throws IOException, ClassNotFoundException {
 
@@ -643,7 +643,7 @@ public class MessageCorrelationTest {
     assertEquals(SerializationDataFormats.JAVA.getName(), variableTyped.getSerializationDataFormat());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationSetSerializedVariableValues() throws IOException, ClassNotFoundException {
 
@@ -685,7 +685,7 @@ public class MessageCorrelationTest {
     assertEquals(SerializationDataFormats.JAVA.getName(), variableTyped.getSerializationDataFormat());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationWithVariablesUsingFluentCorrelateStartMessage() {
 
@@ -701,7 +701,7 @@ public class MessageCorrelationTest {
     assertEquals(1, query.count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationWithVariablesUsingFluentCorrelateSingleMessage() {
 
@@ -717,7 +717,7 @@ public class MessageCorrelationTest {
     assertEquals(1, query.count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testMessageStartEventCorrelationWithVariablesUsingFluentCorrelateAll() {
 
@@ -755,7 +755,7 @@ public class MessageCorrelationTest {
     taskService.complete(task.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMultipleMessageStartEventsCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMultipleMessageStartEventsCorrelation.bpmn20.xml"})
   @Test
   public void testMultipleMessageStartEventsCorrelationUsingFluentCorrelateStartMessage() {
 
@@ -774,7 +774,7 @@ public class MessageCorrelationTest {
     taskService.complete(task.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMultipleMessageStartEventsCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMultipleMessageStartEventsCorrelation.bpmn20.xml"})
   @Test
   public void testMultipleMessageStartEventsCorrelationUsingFluentCorrelateSingle() {
 
@@ -796,7 +796,7 @@ public class MessageCorrelationTest {
   /**
    * this test assures the right start event is selected
    */
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMultipleMessageStartEventsCorrelation.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMultipleMessageStartEventsCorrelation.bpmn20.xml"})
   @Test
   public void testMultipleMessageStartEventsCorrelationUsingFluentCorrelateAll() {
 
@@ -841,7 +841,7 @@ public class MessageCorrelationTest {
   }
 
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
   @Test
   public void testMessageCorrelationResultWithResultTypeProcessDefinition() {
     //given
@@ -864,7 +864,7 @@ public class MessageCorrelationTest {
   }
 
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
   @Test
   public void testMessageCorrelationResultWithResultTypeExecution() {
     //given
@@ -890,7 +890,7 @@ public class MessageCorrelationTest {
   }
 
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
   @Test
   public void testMatchingStartEventAndExecutionUsingFluentCorrelateAll() {
     runtimeService.startProcessInstanceByKey("process");
@@ -905,7 +905,7 @@ public class MessageCorrelationTest {
   }
 
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMatchingStartEventAndExecution.bpmn20.xml"})
   @Test
   public void testMatchingStartEventAndExecutionCorrelateAllWithResult() {
     //given
@@ -963,7 +963,7 @@ public class MessageCorrelationTest {
     runtimeService.createMessageCorrelation("aMessageName").correlateAll();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByBusinessKeyAndVariables() {
     Map<String, Object> variables = new HashMap<>();
@@ -1022,7 +1022,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByBusinessKeyAndVariablesUsingFluentCorrelateAll() {
     Map<String, Object> variables = new HashMap<>();
@@ -1064,7 +1064,7 @@ public class MessageCorrelationTest {
     assertEquals("aBusinessKey", correlatedProcessInstance.getBusinessKey());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByProcessInstanceId() {
 
@@ -1100,7 +1100,7 @@ public class MessageCorrelationTest {
     runtimeService.deleteProcessInstance(processInstance1.getId(), null);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByProcessInstanceIdUsingFluentCorrelateAll() {
     // correlate by name
@@ -1141,7 +1141,7 @@ public class MessageCorrelationTest {
     assertNull(uncorrelatedExecution);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByBusinessKeyAndNullVariableUsingFluentCorrelateAll() {
     runtimeService.startProcessInstanceByKey("process", "aBusinessKey");
@@ -1162,7 +1162,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByBusinessKeyAndNullVariableEqualsUsingFluentCorrelateAll() {
     Map<String, Object> variables = new HashMap<>();
@@ -1185,7 +1185,7 @@ public class MessageCorrelationTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByBusinessKeyAndNullVariablesUsingFluentCorrelateAll() {
     runtimeService.startProcessInstanceByKey("process", "aBusinessKey");
@@ -1207,7 +1207,7 @@ public class MessageCorrelationTest {
     assertFalse(correlatedExecutions.isEmpty());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByVariablesOnly() {
     Map<String, Object> variables = new HashMap<>();
@@ -1228,7 +1228,7 @@ public class MessageCorrelationTest {
     assertEquals(instance.getId(), correlatedExecutions.get(0).getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByBusinessKey() {
     runtimeService.startProcessInstanceByKey("process", "businessKey1");
@@ -1245,7 +1245,7 @@ public class MessageCorrelationTest {
     assertEquals(instance.getId(), correlatedExecutions.get(0).getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationByProcessInstanceIdOnly() {
     runtimeService.startProcessInstanceByKey("process");
@@ -1265,7 +1265,7 @@ public class MessageCorrelationTest {
     assertEquals(instance.getId(), correlatedExecutions.get(0).getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationWithoutMessageNameFluent() {
     Map<String, Object> variables = new HashMap<>();
@@ -1288,8 +1288,8 @@ public class MessageCorrelationTest {
     assertEquals(instance.getId(), correlatedExecutions.get(0).getId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCorrelateAllWithoutMessage.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCorrelateAllWithoutMessage.bpmn20.xml"})
   @Test
   public void testCorrelateAllWithoutMessage() {
     Map<String, Object> variables = new HashMap<>();
@@ -1317,7 +1317,7 @@ public class MessageCorrelationTest {
     assertEquals(instance2.getId(), correlatedExecutions.get(1).getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationWithoutMessageDoesNotMatchStartEvent() {
     try {
@@ -1337,7 +1337,7 @@ public class MessageCorrelationTest {
     assertTrue(correlatedExecutions.isEmpty());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelationWithoutCorrelationPropertiesFails() {
 
@@ -1359,7 +1359,7 @@ public class MessageCorrelationTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/twoBoundaryEventSubscriptions.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/twoBoundaryEventSubscriptions.bpmn20.xml")
   @Test
   public void testCorrelationToExecutionWithMultipleSubscriptionsFails() {
 
@@ -1380,7 +1380,7 @@ public class MessageCorrelationTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testSuspendedProcessInstance() {
     Map<String, Object> variables = new HashMap<>();
@@ -1402,7 +1402,7 @@ public class MessageCorrelationTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testOneMatchingAndOneSuspendedProcessInstance() {
     Map<String, Object> variables = new HashMap<>();
@@ -1445,7 +1445,7 @@ public class MessageCorrelationTest {
     assertEquals(1, correlatedExecutions);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testSuspendedProcessDefinition() {
     String processDefinitionId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -1734,8 +1734,8 @@ public class MessageCorrelationTest {
     assertThat(numHistoricVariables).isEqualTo(0);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.waitForMessageProcess.bpmn20.xml",
-  "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.sendMessageProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.waitForMessageProcess.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.sendMessageProcess.bpmn20.xml" })
   @Test
   public void testCorrelateWithResultTwoTimesInSameTransaction() {
     // start process that waits for message
@@ -1758,8 +1758,8 @@ public class MessageCorrelationTest {
     Assert.assertNotNull(waitingProcess);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.waitForMessageProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.sendMessageProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.waitForMessageProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.sendMessageProcess.bpmn20.xml" })
   @Test
   public void testCorrelateAllWithResultTwoTimesInSameTransaction() {
     // start process that waits for message
@@ -1831,7 +1831,7 @@ public class MessageCorrelationTest {
     assertEquals("bar", result.getVariables().getValue("foo", String.class));
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testCatchingMessageEventCorrelation.bpmn20.xml")
   @Test
   public void testCorrelateAllWithResultVariables() {
     //given
@@ -2069,7 +2069,7 @@ public class MessageCorrelationTest {
     assertTwoInstancesAreStarted(firstProcessDefinition, secondProcessDefinition);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testStartMessageOnlyFlagWithResult() {
     MessageCorrelationResult result = runtimeService.createMessageCorrelation("newInvoiceMessage")
@@ -2083,7 +2083,7 @@ public class MessageCorrelationTest {
     assertThat(result.getProcessInstance().getId()).isEqualTo(processInstanceQuery.singleResult().getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testStartMessageOnlyFlagWithVariablesInResult() {
 
@@ -2099,7 +2099,7 @@ public class MessageCorrelationTest {
     assertThat(result.getVariables().getValueTyped("aKey").getValue()).isEqualTo("aValue");
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testStartMessageOnlyFlagAllWithResult() {
     List<MessageCorrelationResult> result = runtimeService.createMessageCorrelation("newInvoiceMessage")
@@ -2113,7 +2113,7 @@ public class MessageCorrelationTest {
     assertThat(result.get(0).getProcessInstance().getId()).isEqualTo(processInstanceQuery.singleResult().getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/message/MessageCorrelationTest.testMessageStartEventCorrelation.bpmn20.xml")
   @Test
   public void testStartMessageOnlyFlagAllWithVariablesInResult() {
 

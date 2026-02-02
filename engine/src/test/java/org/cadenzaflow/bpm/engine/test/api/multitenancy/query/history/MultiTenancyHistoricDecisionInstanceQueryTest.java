@@ -47,7 +47,7 @@ import org.junit.rules.RuleChain;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class MultiTenancyHistoricDecisionInstanceQueryTest {
 
-  protected static final String DMN = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
 
   protected final static String TENANT_NULL = null;
   protected final static String TENANT_ONE = "tenant1";

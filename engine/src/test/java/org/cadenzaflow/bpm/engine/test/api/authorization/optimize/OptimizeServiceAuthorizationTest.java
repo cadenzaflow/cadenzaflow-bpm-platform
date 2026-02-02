@@ -85,7 +85,7 @@ public class OptimizeServiceAuthorizationTest {
   protected String userId = "test";
 
   public static final String DECISION_INPUT_EQUALS_OUTPUT =
-    "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+    "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);

@@ -9,7 +9,7 @@
       <bpmn:incoming>Flow_1bn9cei</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1bn9cei" sourceRef="Activity_16evqjj" targetRef="Event_0w4am6k" />
-    <bpmn:userTask id="Activity_16evqjj" name="myUserTask" camunda:formKey="deployment:org/camunda/bpm/engine/test/api/form/task.form">
+    <bpmn:userTask id="Activity_16evqjj" name="myUserTask" camunda:formKey="deployment:org/cadenzaflow/bpm/engine/test/api/form/task.form">
       <bpmn:incoming>Flow_1czt0l9</bpmn:incoming>
       <bpmn:outgoing>Flow_1bn9cei</bpmn:outgoing>
     </bpmn:userTask>

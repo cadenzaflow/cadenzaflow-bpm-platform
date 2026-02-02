@@ -35,7 +35,7 @@ public class ScriptBeanAccessTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/scripting/camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/scripting/camunda.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

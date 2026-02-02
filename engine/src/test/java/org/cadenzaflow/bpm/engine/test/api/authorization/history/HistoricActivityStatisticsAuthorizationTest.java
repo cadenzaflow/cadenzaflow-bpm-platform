@@ -45,7 +45,7 @@ public class HistoricActivityStatisticsAuthorizationTest extends AuthorizationTe
   @Before
   public void setUp() throws Exception {
     testRule.deploy(
-        "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+        "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
     super.setUp();
   }
 

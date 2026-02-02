@@ -103,8 +103,8 @@ public class UnhandledBpmnErrorTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/bpmn/event/error/UnhandledBpmnErrorTest.testUncaughtErrorOnCallActivity.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/error/UnhandledBpmnErrorTest.subprocess.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/UnhandledBpmnErrorTest.testUncaughtErrorOnCallActivity.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/UnhandledBpmnErrorTest.subprocess.bpmn20.xml" })
   public void testUncaughtErrorOnCallActivity() {
     // given
     runtimeService.startProcessInstanceByKey("uncaughtErrorOnCallActivity");

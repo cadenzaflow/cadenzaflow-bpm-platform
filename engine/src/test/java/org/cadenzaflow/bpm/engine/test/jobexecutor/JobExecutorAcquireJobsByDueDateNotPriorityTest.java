@@ -35,7 +35,7 @@ public class JobExecutorAcquireJobsByDueDateNotPriorityTest extends AbstractJobE
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml")
   public void testJobPriorityIsNotConsidered() {
     // prio 5
     String instance1 = startProcess("jobPrioProcess", "task2");

@@ -48,22 +48,22 @@ import org.junit.Test;
 public class ProcessInstanceModificationMultiInstanceTest extends PluggableProcessEngineTest {
 
   public static final String PARALLEL_MULTI_INSTANCE_TASK_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelTasks.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelTasks.bpmn20.xml";
   public static final String PARALLEL_MULTI_INSTANCE_SUBPROCESS_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelSubprocess.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelSubprocess.bpmn20.xml";
 
   public static final String SEQUENTIAL_MULTI_INSTANCE_TASK_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.sequentialTasks.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.sequentialTasks.bpmn20.xml";
   public static final String SEQUENTIAL_MULTI_INSTANCE_SUBPROCESS_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.sequentialSubprocess.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.sequentialSubprocess.bpmn20.xml";
 
   public static final String PARALLEL_MULTI_INSTANCE_TASK_COMPLETION_CONDITION_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelTasksCompletionCondition.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelTasksCompletionCondition.bpmn20.xml";
   public static final String PARALLEL_MULTI_INSTANCE_SUBPROCESS_COMPLETION_CONDITION_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelSubprocessCompletionCondition.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.parallelSubprocessCompletionCondition.bpmn20.xml";
 
   public static final String NESTED_PARALLEL_MULTI_INSTANCE_TASK_PROCESS =
-      "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.nestedParallelTasks.bpmn20.xml";
+      "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationMultiInstanceTest.nestedParallelTasks.bpmn20.xml";
 
   @Deployment(resources = PARALLEL_MULTI_INSTANCE_TASK_PROCESS)
   @Test

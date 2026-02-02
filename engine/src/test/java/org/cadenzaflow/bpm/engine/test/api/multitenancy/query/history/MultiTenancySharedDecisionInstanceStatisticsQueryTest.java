@@ -48,7 +48,7 @@ import org.junit.rules.RuleChain;
 public class MultiTenancySharedDecisionInstanceStatisticsQueryTest {
 
   protected static final String TENANT_ONE = "tenant1";
-  protected static final String DISH_DRG_DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DISH_DRG_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
   protected static final String DISH_DECISION = "dish-decision";
   protected static final String TEMPERATURE = "temperature";

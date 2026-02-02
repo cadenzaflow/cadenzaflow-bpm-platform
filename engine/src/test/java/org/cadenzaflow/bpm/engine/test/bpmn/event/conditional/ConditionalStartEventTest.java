@@ -55,13 +55,13 @@ import org.junit.rules.RuleChain;
 
 public class ConditionalStartEventTest {
 
-  private static final String SINGLE_CONDITIONAL_START_EVENT_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testSingleConditionalStartEvent.bpmn20.xml";
-  private static final String SINGLE_CONDITIONAL_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testSingleConditionalStartEvent1.bpmn20.xml";
-  private static final String TRUE_CONDITION_START_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testStartInstanceWithTrueConditionalStartEvent.bpmn20.xml";
-  private static final String TWO_EQUAL_CONDITIONAL_START_EVENT_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testTwoEqualConditionalStartEvent.bpmn20.xml";
-  private static final String MULTIPLE_CONDITION_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testMultipleCondition.bpmn20.xml";
-  private static final String START_INSTANCE_WITH_VARIABLE_NAME_XML = "org/camunda/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testStartInstanceWithVariableName.bpmn20.xml";
-  private static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  private static final String SINGLE_CONDITIONAL_START_EVENT_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testSingleConditionalStartEvent.bpmn20.xml";
+  private static final String SINGLE_CONDITIONAL_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testSingleConditionalStartEvent1.bpmn20.xml";
+  private static final String TRUE_CONDITION_START_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testStartInstanceWithTrueConditionalStartEvent.bpmn20.xml";
+  private static final String TWO_EQUAL_CONDITIONAL_START_EVENT_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testTwoEqualConditionalStartEvent.bpmn20.xml";
+  private static final String MULTIPLE_CONDITION_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testMultipleCondition.bpmn20.xml";
+  private static final String START_INSTANCE_WITH_VARIABLE_NAME_XML = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/ConditionalStartEventTest.testStartInstanceWithVariableName.bpmn20.xml";
+  private static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
 
   private static final String MULTIPLE_CONDITIONS = "multipleConditions";
   private static final String TRUE_CONDITION_PROCESS = "trueConditionProcess";

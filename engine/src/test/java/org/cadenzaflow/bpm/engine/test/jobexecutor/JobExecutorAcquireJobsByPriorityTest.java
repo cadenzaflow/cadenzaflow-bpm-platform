@@ -44,8 +44,8 @@ public class JobExecutorAcquireJobsByPriorityTest extends AbstractJobExecutorAcq
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/jobexecutor/timerJobPrioProcess.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/jobexecutor/timerJobPrioProcess.bpmn20.xml"
   })
   public void testAcquisitionByPriority() {
     // jobs with priority 10
@@ -83,7 +83,7 @@ public class JobExecutorAcquireJobsByPriorityTest extends AbstractJobExecutorAcq
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml")
   public void testMixedPriorityAcquisition() {
     // jobs with priority 10
     startProcess("jobPrioProcess", "task1", 5);

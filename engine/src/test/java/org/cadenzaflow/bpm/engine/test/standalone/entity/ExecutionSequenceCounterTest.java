@@ -284,7 +284,7 @@ public class ExecutionSequenceCounterTest extends PluggableProcessEngineTest {
     testRule.assertProcessEnded(processInstanceId);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/standalone/entity/ExecutionSequenceCounterTest.testForkReplaceBy.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/standalone/entity/ExecutionSequenceCounterTest.testForkReplaceBy.bpmn20.xml"})
   @Test
   public void testForkReplaceByAnotherExecutionOrder() {
     // given

@@ -50,23 +50,23 @@ import org.junit.Test;
  */
 public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTest {
 
-  private static final String TEST_PROCESS_WITH_PARALLEL_GATEWAY = "org/camunda/bpm/engine/test/bpmn/gateway/ParallelGatewayTest.testForkJoin.bpmn20.xml";
-  private static final String TEST_PROCESS = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersion.bpmn20.xml";
-  private static final String TEST_PROCESS_ACTIVITY_MISSING = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionActivityMissing.bpmn20.xml";
+  private static final String TEST_PROCESS_WITH_PARALLEL_GATEWAY = "org/cadenzaflow/bpm/engine/test/bpmn/gateway/ParallelGatewayTest.testForkJoin.bpmn20.xml";
+  private static final String TEST_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersion.bpmn20.xml";
+  private static final String TEST_PROCESS_ACTIVITY_MISSING = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionActivityMissing.bpmn20.xml";
 
-  private static final String TEST_PROCESS_CALL_ACTIVITY = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.withCallActivity.bpmn20.xml";
-  private static final String TEST_PROCESS_USER_TASK_V1 = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithTask.bpmn20.xml";
-  private static final String TEST_PROCESS_USER_TASK_V2 = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithTaskV2.bpmn20.xml";
+  private static final String TEST_PROCESS_CALL_ACTIVITY = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.withCallActivity.bpmn20.xml";
+  private static final String TEST_PROCESS_USER_TASK_V1 = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithTask.bpmn20.xml";
+  private static final String TEST_PROCESS_USER_TASK_V2 = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithTaskV2.bpmn20.xml";
 
-  private static final String TEST_PROCESS_SERVICE_TASK_V1 = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithServiceTask.bpmn20.xml";
-  private static final String TEST_PROCESS_SERVICE_TASK_V2 = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithServiceTaskV2.bpmn20.xml";
+  private static final String TEST_PROCESS_SERVICE_TASK_V1 = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithServiceTask.bpmn20.xml";
+  private static final String TEST_PROCESS_SERVICE_TASK_V2 = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithServiceTaskV2.bpmn20.xml";
 
-  private static final String TEST_PROCESS_WITH_MULTIPLE_PARENTS = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithMultipleParents.bpmn";
+  private static final String TEST_PROCESS_WITH_MULTIPLE_PARENTS = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testSetProcessDefinitionVersionWithMultipleParents.bpmn";
 
-  private static final String TEST_PROCESS_ONE_JOB = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.oneJobProcess.bpmn20.xml";
-  private static final String TEST_PROCESS_TWO_JOBS = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.twoJobsProcess.bpmn20.xml";
+  private static final String TEST_PROCESS_ONE_JOB = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.oneJobProcess.bpmn20.xml";
+  private static final String TEST_PROCESS_TWO_JOBS = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.twoJobsProcess.bpmn20.xml";
 
-  private static final String TEST_PROCESS_ATTACHED_TIMER = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testAttachedTimer.bpmn20.xml";
+  private static final String TEST_PROCESS_ATTACHED_TIMER = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.testAttachedTimer.bpmn20.xml";
 
   @Test
   public void testSetProcessDefinitionVersionEmptyArguments() {
@@ -624,7 +624,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
   @Test
   public void testHistoryOfSetProcessDefinitionVersionCmd() {
     // given
-    String resource = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.bpmn";
+    String resource = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.bpmn";
 
     // Deployments
     org.cadenzaflow.bpm.engine.repository.Deployment firstDeployment = repositoryService
@@ -679,7 +679,7 @@ public class SetProcessDefinitionVersionCmdTest extends PluggableProcessEngineTe
     // given
     try {
       identityService.setAuthenticatedUserId("demo");
-      String resource = "org/camunda/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.bpmn";
+      String resource = "org/cadenzaflow/bpm/engine/test/api/runtime/migration/SetProcessDefinitionVersionCmdTest.bpmn";
 
       // Deployments
       org.cadenzaflow.bpm.engine.repository.Deployment firstDeployment = repositoryService

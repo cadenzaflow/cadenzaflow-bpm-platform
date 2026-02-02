@@ -78,8 +78,8 @@ import org.junit.rules.RuleChain;
 public class CustomHistoryLevelUserOperationLogTest {
 
   public static final String USER_ID = "demo";
-  protected static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
-  protected static final String ONE_TASK_CASE = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_CASE = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
   static HistoryLevel customHistoryLevelUOL = new CustomHistoryLevelUserOperationLog();
 
@@ -259,7 +259,7 @@ public class CustomHistoryLevelUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/HistoricJobLogTest.testAsyncContinuation.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/HistoricJobLogTest.testAsyncContinuation.bpmn20.xml"})
   public void testQueryJobOperations() {
     // given
     process = runtimeService.startProcessInstanceByKey("process");
@@ -336,7 +336,7 @@ public class CustomHistoryLevelUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
   public void testQueryJobRetryOperationsById() {
     // given
     process = runtimeService.startProcessInstanceByKey("failedServiceTask");

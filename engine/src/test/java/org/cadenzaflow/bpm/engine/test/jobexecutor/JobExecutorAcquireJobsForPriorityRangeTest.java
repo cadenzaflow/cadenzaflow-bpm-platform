@@ -31,7 +31,7 @@ import org.junit.Test;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 
-@Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/JobExecutorAcquireJobsForPriorityRangeTest.jobPrioProcess.bpmn20.xml")
+@Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/JobExecutorAcquireJobsForPriorityRangeTest.jobPrioProcess.bpmn20.xml")
 public class JobExecutorAcquireJobsForPriorityRangeTest extends AbstractJobExecutorAcquireJobsTest {
 
   @Rule

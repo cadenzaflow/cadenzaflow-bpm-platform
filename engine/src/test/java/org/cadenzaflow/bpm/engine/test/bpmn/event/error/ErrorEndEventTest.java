@@ -54,8 +54,8 @@ public class ErrorEndEventTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/error/testPropagateOutputVariablesWhileThrowError.bpmn20.xml",
-                            "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventTest.errorParent.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/error/testPropagateOutputVariablesWhileThrowError.bpmn20.xml",
+                            "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventTest.errorParent.bpmn20.xml" })
   public void testPropagateOutputVariablesWhileThrowError() {
     // given
     Map<String,Object> variables = new HashMap<String, Object>();

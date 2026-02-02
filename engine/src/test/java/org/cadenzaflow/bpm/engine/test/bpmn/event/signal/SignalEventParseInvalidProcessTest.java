@@ -43,7 +43,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class SignalEventParseInvalidProcessTest {
 
-  private static final String PROCESS_DEFINITION_DIRECTORY = "org/camunda/bpm/engine/test/bpmn/event/signal/";
+  private static final String PROCESS_DEFINITION_DIRECTORY = "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/";
 
   @Parameters(name = "{index}: process definition = {0}, expected error message = {1}")
   public static Collection<Object[]> data() {

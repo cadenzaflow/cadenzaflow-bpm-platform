@@ -40,10 +40,10 @@ import org.junit.Test;
  */
 public class DmnDecisionResultListenerTest extends PluggableProcessEngineTest {
 
-  protected static final String TEST_PROCESS = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultTest.bpmn20.xml";
-  protected static final String TEST_DECISION = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultTest.dmn11.xml";
-  protected static final String TEST_DECISION_COLLECT_SUM = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultCollectSumHitPolicyTest.dmn11.xml";
-  protected static final String TEST_DECISION_COLLECT_COUNT = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultCollectCountHitPolicyTest.dmn11.xml";
+  protected static final String TEST_PROCESS = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultTest.bpmn20.xml";
+  protected static final String TEST_DECISION = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultTest.dmn11.xml";
+  protected static final String TEST_DECISION_COLLECT_SUM = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultCollectSumHitPolicyTest.dmn11.xml";
+  protected static final String TEST_DECISION_COLLECT_COUNT = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultCollectCountHitPolicyTest.dmn11.xml";
 
   protected DmnDecisionResult results;
 

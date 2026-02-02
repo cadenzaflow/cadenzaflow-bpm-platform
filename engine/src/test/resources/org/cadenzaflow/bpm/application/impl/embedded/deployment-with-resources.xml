@@ -7,10 +7,10 @@
   <process-archive>
     <process-engine>default</process-engine>
 
-    <resource>org/camunda/bpm/application/impl/embedded/StartToEndTest.testStartToEnd.bpmn20.xml</resource>
-    <resource>org/camunda/bpm/application/impl/embedded/hello.groovy</resource>
-    <resource>org/camunda/bpm/application/impl/embedded/hello.py</resource>
-    <resource>org/camunda/bpm/application/impl/embedded/hello.rb</resource>
+    <resource>org/cadenzaflow/bpm/application/impl/embedded/StartToEndTest.testStartToEnd.bpmn20.xml</resource>
+    <resource>org/cadenzaflow/bpm/application/impl/embedded/hello.groovy</resource>
+    <resource>org/cadenzaflow/bpm/application/impl/embedded/hello.py</resource>
+    <resource>org/cadenzaflow/bpm/application/impl/embedded/hello.rb</resource>
 
     <properties>
       <property name="isDeleteUponUndeploy">true</property>

@@ -416,7 +416,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances() {
     // given
@@ -443,7 +443,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_ModeCalculatedRemovalTime() {
     // given
@@ -470,7 +470,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_ModeAbsoluteRemovalTime() {
     // given
@@ -497,7 +497,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_RemovalTime() {
     // given
@@ -526,7 +526,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_RemovalTimeNull() {
     // given
@@ -553,7 +553,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_NrOfInstances() {
     // given
@@ -580,7 +580,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_AsyncTrue() {
     // given
@@ -607,7 +607,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_HierarchicalTrue() {
     // given
@@ -635,7 +635,7 @@ public class BatchSetRemovalTimeUserOperationLogTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldWriteUserOperationLogForDecisionInstances_HierarchicalFalse() {
     // given

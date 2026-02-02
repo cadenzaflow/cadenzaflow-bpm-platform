@@ -4,7 +4,7 @@
 	xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
 	xmlns:fox="http://www.camunda.com/fox"
 	targetNamespace="Examples">
-	
+
 	<signal id="signal" name="failedSignal" />
 
 	<process id="failedSignalEvent" isExecutable="true">
@@ -37,7 +37,7 @@
 		<sequenceFlow id="flow2a" sourceRef="catchSignal" targetRef="service" />
 
 		<serviceTask id="service"
-			camunda:class="org.camunda.bpm.engine.test.cmd.FailingDelegate"/>
+			camunda:class="org.cadenzaflow.bpm.engine.test.cmd.FailingDelegate"/>
 
 		<sequenceFlow id="flow3a" sourceRef="service" targetRef="end" />
 

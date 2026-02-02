@@ -74,7 +74,7 @@ public class ProcessEngineRuleParameterizedJunit4Test {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/standalone/testing/ProcessEngineRuleParameterizedJunit4Test.ruleUsageExample.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/standalone/testing/ProcessEngineRuleParameterizedJunit4Test.ruleUsageExample.bpmn20.xml")
   public void ruleUsageExampleWithNamedAnnotation() {
     RuntimeService runtimeService = engineRule.getRuntimeService();
     runtimeService.startProcessInstanceByKey("ruleUsage");

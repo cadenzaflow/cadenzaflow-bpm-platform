@@ -45,7 +45,7 @@ import org.junit.rules.RuleChain;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_ACTIVITY)
 public class MultiTenancyHistoricCaseActivityInstanceQueryTest {
 
-  protected final static String CMMN_FILE = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+  protected final static String CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
   protected final static String TENANT_NULL = null;
   protected final static String TENANT_ONE = "tenant1";

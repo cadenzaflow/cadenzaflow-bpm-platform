@@ -108,7 +108,7 @@ public class BulkHistoryDeleteDecisionInstancesAuthorizationTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/dmn/Example.dmn"})
+      "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn"})
   public void testCleanupHistory() {
     //given
     final List<String> ids = prepareHistoricDecisions();

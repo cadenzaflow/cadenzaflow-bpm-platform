@@ -46,13 +46,13 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
 
   protected static final String TENANT_ONE = "tenant1";
 
-  protected static final String CANDIDATE_STARTER_USER = "org/camunda/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterUser.bpmn20.xml";
-  protected static final String CANDIDATE_STARTER_USERS = "org/camunda/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterUsers.bpmn20.xml";
+  protected static final String CANDIDATE_STARTER_USER = "org/cadenzaflow/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterUser.bpmn20.xml";
+  protected static final String CANDIDATE_STARTER_USERS = "org/cadenzaflow/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterUsers.bpmn20.xml";
 
-  protected static final String CANDIDATE_STARTER_GROUP = "org/camunda/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterGroup.bpmn20.xml";
-  protected static final String CANDIDATE_STARTER_GROUPS = "org/camunda/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterGroups.bpmn20.xml";
+  protected static final String CANDIDATE_STARTER_GROUP = "org/cadenzaflow/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterGroup.bpmn20.xml";
+  protected static final String CANDIDATE_STARTER_GROUPS = "org/cadenzaflow/bpm/engine/test/api/repository/ProcessDefinitionCandidateTest.testCandidateStarterGroups.bpmn20.xml";
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateUser.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateUser.bpmn20.xml" })
   @Test
   public void testShouldAddTaskCandidateforAddIdentityLinkUsingXml() {
 
@@ -70,7 +70,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
     assertEquals(query.userId(XML_USER).count(), 1);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/OneTaskProcessWithTaskAssignee.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/OneTaskProcessWithTaskAssignee.bpmn20.xml" })
   @Test
   public void testShouldAddTaskAssigneeforAddIdentityLinkUsingXml() {
 
@@ -90,7 +90,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
 
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateGroups.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateGroups.bpmn20.xml" })
   @Test
   public void testShouldAddTaskCandidateGroupforAddIdentityLinkUsingXml() {
 
@@ -108,7 +108,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
     assertEquals(query.groupId(XML_GROUP).count(), 1);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateStarterUsers.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateStarterUsers.bpmn20.xml" })
   @Test
   public void testShouldAddProcessCandidateStarterUserforAddIdentityLinkUsingXml() {
 
@@ -131,7 +131,7 @@ public class HistoricIdentityLinkLogTestByXml extends PluggableProcessEngineTest
     HistoricIdentityLinkLogQuery query = historyService.createHistoricIdentityLinkLogQuery();
     assertEquals(query.userId(XML_USER).count(), 1);
   }
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateStarterGroups.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/OneTaskProcessWithCandidateStarterGroups.bpmn20.xml" })
   public void testShouldAddProcessCandidateStarterGroupforAddIdentityLinkUsingXml() {
 
     // Pre test - Historical identity link is added as part of deployment

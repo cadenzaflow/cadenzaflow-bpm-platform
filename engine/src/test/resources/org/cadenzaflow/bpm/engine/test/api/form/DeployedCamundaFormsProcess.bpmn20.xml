@@ -6,13 +6,13 @@
              xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
   
   <process id="FormsProcess" isExecutable="true">
-  
-    <startEvent id="start" camunda:formKey="camunda-forms:deployment:org/camunda/bpm/engine/test/api/form/start.html" />
+
+    <startEvent id="start" camunda:formKey="camunda-forms:deployment:org/cadenzaflow/bpm/engine/test/api/form/start.html" />
 
     <sequenceFlow id="flow1" sourceRef="start" targetRef="task" />
     
     <userTask id="task"
-              camunda:formKey="camunda-forms:deployment:org/camunda/bpm/engine/test/api/form/task.html"
+              camunda:formKey="camunda-forms:deployment:org/cadenzaflow/bpm/engine/test/api/form/task.html"
               camunda:assignee="kermit" />
 
     <sequenceFlow id="flow2" sourceRef="task" targetRef="wait" />

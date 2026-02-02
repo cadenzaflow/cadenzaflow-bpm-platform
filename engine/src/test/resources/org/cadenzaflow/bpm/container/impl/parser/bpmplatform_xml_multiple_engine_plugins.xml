@@ -12,10 +12,10 @@
 
     <plugins>
       <plugin>
-        <class>org.camunda.bpm.MyAwesomePlugin</class>
+        <class>org.cadenzaflow.bpm.MyAwesomePlugin</class>
       </plugin>
       <plugin>
-        <class>org.camunda.bpm.MyEvenMoreAwesomePlugin</class>
+        <class>org.cadenzaflow.bpm.MyEvenMoreAwesomePlugin</class>
       </plugin>
     </plugins>
 

@@ -41,7 +41,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
  */
 public class SchemaLogTestCase {
 
-  protected final static String BASE_PATH = "org/camunda/bpm/engine/db";
+  protected final static String BASE_PATH = "org/cadenzaflow/bpm/engine/db";
   protected final static String CREATE_SCRIPT_FOLDER = BASE_PATH + "/create";
   protected final static String UPGRADE_SCRIPT_FOLDER = BASE_PATH + "/upgrade";
   protected final static List<String> SCRIPT_FOLDERS = Arrays.asList(CREATE_SCRIPT_FOLDER, UPGRADE_SCRIPT_FOLDER);

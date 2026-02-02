@@ -52,10 +52,10 @@ public class ExternalTaskSupportTest {
   @Parameters
   public static Collection<Object[]> processResources() {
     return Arrays.asList(new Object[][] {
-      {"org/camunda/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.businessRuleTask.bpmn20.xml"},
-      {"org/camunda/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.messageEndEvent.bpmn20.xml"},
-      {"org/camunda/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.messageIntermediateEvent.bpmn20.xml"},
-      {"org/camunda/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.sendTask.bpmn20.xml"}
+      {"org/cadenzaflow/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.businessRuleTask.bpmn20.xml"},
+      {"org/cadenzaflow/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.messageEndEvent.bpmn20.xml"},
+      {"org/cadenzaflow/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.messageIntermediateEvent.bpmn20.xml"},
+      {"org/cadenzaflow/bpm/engine/test/api/externaltask/ExternalTaskSupportTest.sendTask.bpmn20.xml"}
     });
   }
 

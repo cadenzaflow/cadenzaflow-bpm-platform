@@ -56,7 +56,7 @@ public class AuthorizationRevokeModeAlwaysTest extends AuthorizationTest {
   public void shouldCreateEqualQueriesForModesAlwaysAndAutoWhenRevokeExists() {
     // given
     disableAuthorization();
-    testRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
     createGrantAuthorization(TASK, ANY, userId, READ);
     createRevokeAuthorization(TASK, ANY, userId, UPDATE);
@@ -84,7 +84,7 @@ public class AuthorizationRevokeModeAlwaysTest extends AuthorizationTest {
   public void shouldCreateUnequalQueriesForModesAlwaysAndAutoWhenNoRevokeExists() {
     // given
     disableAuthorization();
-    testRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
     createGrantAuthorization(TASK, ANY, userId, READ);
     enableAuthorization();

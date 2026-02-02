@@ -127,7 +127,7 @@ public class IntermediateTimerEventTest extends PluggableProcessEngineTest {
     testRule.assertProcessEnded(pi1.getProcessInstanceId());
   }
   
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpressionRecalculateCurrentDateBased.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testExpressionRecalculateCurrentDateBased.bpmn20.xml")
   @Test
   public void testExpressionRecalculateCreationDateBased() throws Exception {
     // Set the clock fixed
@@ -209,7 +209,7 @@ public class IntermediateTimerEventTest extends PluggableProcessEngineTest {
     testRule.assertProcessEnded(processInstanceId);
   }
   
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testRecalculateTimeCycleExpressionCurrentDateBased.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/timer/IntermediateTimerEventTest.testRecalculateTimeCycleExpressionCurrentDateBased.bpmn20.xml")
   @Test
   public void testRecalculateTimeCycleExpressionCreationDateBased() {
     // given

@@ -104,8 +104,8 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInScriptTaskInsideCallActivitiCatchInTopLevelProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInScriptTaskInsideCallActivitiCatchInTopLevelProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml" })
   @Test
   public void testThrowErrorInScriptTaskInsideCallActivitiCatchInTopLevelProcess() {
     String procId = runtimeService.startProcessInstanceByKey("testThrowErrorInScriptTaskInsideCallActivitiCatchInTopLevelProcess").getId();
@@ -113,7 +113,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownByExecuteOfAbstractBpmnActivityBehavior() {
@@ -130,7 +130,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByExecuteOfAbstractBpmnActivityBehavior() {
@@ -147,7 +147,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownBySignalOfAbstractBpmnActivityBehavior() {
@@ -173,7 +173,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownBySignalOfAbstractBpmnActivityBehavior() {
@@ -199,7 +199,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownByExecuteOfDelegateExpression() {
@@ -218,7 +218,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByExecuteOfDelegateExpression() {
@@ -237,7 +237,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownBySignalOfDelegateExpression() {
@@ -264,7 +264,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownBySignalOfDelegateExpression() {
@@ -318,8 +318,8 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ThrowErrorProcess.bpmn",
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorFromCallActivitySetsErrorVariables.bpmn"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ThrowErrorProcess.bpmn",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchErrorFromCallActivitySetsErrorVariables.bpmn"
   })
   @Test
   public void testCatchErrorFromCallActivitySetsErrorVariable(){
@@ -335,8 +335,8 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchBpmnErrorFromJavaDelegateInsideCallActivitySetsErrorVariable.bpmn",
-      "org/camunda/bpm/engine/test/bpmn/callactivity/subProcessWithThrownError.bpmn"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testCatchBpmnErrorFromJavaDelegateInsideCallActivitySetsErrorVariable.bpmn",
+      "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/subProcessWithThrownError.bpmn"
     })
   @Test
   public void testCatchBpmnErrorFromJavaDelegateInsideCallActivitySetsErrorVariable(){
@@ -355,7 +355,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoop.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoop.bpmn20.xml"
     })
   @Test
   public void testShouldNotThrowErrorInLoop(){
@@ -369,8 +369,8 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoopWithCallActivity.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/error/ThrowErrorToCallActivity.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoopWithCallActivity.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ThrowErrorToCallActivity.bpmn20.xml"
     })
   @Test
   public void testShouldNotThrowErrorInLoopWithCallActivity(){
@@ -384,7 +384,7 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoopWithMultipleSubProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoopWithMultipleSubProcess.bpmn20.xml",
     })
   @Test
   public void testShouldNotThrowErrorInLoopForMultipleSubProcess(){
@@ -398,8 +398,8 @@ public class ErrorEventSubProcessTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoopFromCallActivityToEventSubProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/error/ThrowErrorToCallActivity.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ErrorEventSubProcessTest.testThrowErrorInLoopFromCallActivityToEventSubProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ThrowErrorToCallActivity.bpmn20.xml"
     })
   public void FAILING_testShouldNotThrowErrorInLoopFromCallActivityToEventSubProcess(){
     runtimeService.startProcessInstanceByKey("Process_1");

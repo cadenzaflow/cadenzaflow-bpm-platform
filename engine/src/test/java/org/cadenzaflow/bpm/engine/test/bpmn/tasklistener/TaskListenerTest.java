@@ -77,7 +77,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   // CREATE Task Listener tests
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
   public void testTaskCreateListener() {
     runtimeService.startProcessInstanceByKey("taskListenerProcess");
     Task task = taskService.createTaskQuery().singleResult();
@@ -154,7 +154,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   // COMPLETE Task Listener tests
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
   public void testTaskCompleteListener() {
     TaskDeleteListener.clear();
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("taskListenerProcess");
@@ -177,7 +177,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   // DELETE Task Listener tests
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
   public void testTaskDeleteListenerByProcessDeletion() {
     TaskDeleteListener.clear();
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("taskListenerProcess");
@@ -196,7 +196,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
   public void testTaskDeleteListenerByBoundaryEvent() {
     TaskDeleteListener.clear();
     runtimeService.startProcessInstanceByKey("taskListenerProcess");
@@ -286,7 +286,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   // Expression & Scripts Task Listener tests
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.bpmn20.xml"})
   public void testTaskListenerWithExpression() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("taskListenerProcess");
     assertEquals(null, runtimeService.getVariable(processInstance.getId(), "greeting2"));
@@ -328,8 +328,8 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.testScriptResourceListener.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/tasklistener/taskListener.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.testScriptResourceListener.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/taskListener.groovy"
   })
   public void testScriptResourceListener() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("process");
@@ -831,7 +831,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.testTimeoutTaskListenerDuration.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.testTimeoutTaskListenerDuration.bpmn20.xml")
   public void testTimeoutTaskListenerNotCalledWhenTaskCompleted() {
     // given
     JobQuery jobQuery = managementService.createJobQuery();
@@ -895,7 +895,7 @@ public class TaskListenerTest extends AbstractTaskListenerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.testRecalculateTimeoutTaskListenerDuedateCreationDateBased.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/TaskListenerTest.testRecalculateTimeoutTaskListenerDuedateCreationDateBased.bpmn20.xml")
   public void testRecalculateTimeoutTaskListenerDuedateCurrentDateBased() {
     // given
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("process", Variables.putValue("duration", "PT1H"));

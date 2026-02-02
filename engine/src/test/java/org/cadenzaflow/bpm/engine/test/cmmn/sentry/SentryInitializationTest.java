@@ -36,7 +36,7 @@ import org.junit.Test;
  */
 public class SentryInitializationTest extends CmmnTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testOnPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testOnPart.cmmn"})
   @Test
   public void testOnPart() {
     // given
@@ -68,7 +68,7 @@ public class SentryInitializationTest extends CmmnTest {
     assertFalse(part.isSatisfied());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testVariableOnPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testVariableOnPart.cmmn"})
   @Test
   public void testVariableOnPart() {
     // given
@@ -100,7 +100,7 @@ public class SentryInitializationTest extends CmmnTest {
     assertFalse(part.isSatisfied());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testIfPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testIfPart.cmmn"})
   @Test
   public void testIfPart() {
     // given
@@ -133,7 +133,7 @@ public class SentryInitializationTest extends CmmnTest {
     assertFalse(part.isSatisfied());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testOnPartIfPartAndVariableOnPart.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testOnPartIfPartAndVariableOnPart.cmmn"})
   @Test
   public void testOnPartIfPartAndVariableOnPart() {
     // given
@@ -188,7 +188,7 @@ public class SentryInitializationTest extends CmmnTest {
     assertFalse(part.isSatisfied());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testMultipleSentries.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testMultipleSentries.cmmn"})
   @Test
   public void testMultipleSentries() {
     // given
@@ -234,7 +234,7 @@ public class SentryInitializationTest extends CmmnTest {
     assertFalse(part.isSatisfied());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testMultipleSentriesWithinStage.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryInitializationTest.testMultipleSentriesWithinStage.cmmn"})
   @Test
   public void testMultipleSentriesWithinStage() {
     // given

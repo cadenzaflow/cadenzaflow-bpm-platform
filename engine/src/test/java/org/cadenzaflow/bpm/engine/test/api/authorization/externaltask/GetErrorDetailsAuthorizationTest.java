@@ -103,7 +103,7 @@ public class GetErrorDetailsAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void testCompleteExternalTask() {
 
     // given

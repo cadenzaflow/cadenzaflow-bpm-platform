@@ -58,7 +58,7 @@ public class AsyncAfterTest extends PluggableProcessEngineTest {
     // if an outgoing sequence flow has no id, we cannot use it in asyncAfter
     try {
       repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/async/AsyncAfterTest.testTransitionIdRequired.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncAfterTest.testTransitionIdRequired.bpmn20.xml")
         .deploy();
       fail("Exception expected");
     } catch (ParseException e) {

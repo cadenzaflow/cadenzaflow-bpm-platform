@@ -10,11 +10,11 @@
     <startEvent id="start" />
 
     <sequenceFlow id="flow1" sourceRef="start" targetRef="left">
-      <conditionExpression xsi:type="tFormalExpression" language="groovy" camunda:resource="deployment://org/camunda/bpm/engine/test/bpmn/sequenceflow/condition-left.groovy" />
+      <conditionExpression xsi:type="tFormalExpression" language="groovy" camunda:resource="deployment://org/cadenzaflow/bpm/engine/test/bpmn/sequenceflow/condition-left.groovy" />
     </sequenceFlow>
 
     <sequenceFlow id="flow2" sourceRef="start" targetRef="right">
-      <conditionExpression xsi:type="tFormalExpression" language="groovy" camunda:resource="classpath://org/camunda/bpm/engine/test/bpmn/sequenceflow/condition-right.groovy" />
+      <conditionExpression xsi:type="tFormalExpression" language="groovy" camunda:resource="classpath://org/cadenzaflow/bpm/engine/test/bpmn/sequenceflow/condition-right.groovy" />
     </sequenceFlow>
 
     <userTask id="left" name="task left" />

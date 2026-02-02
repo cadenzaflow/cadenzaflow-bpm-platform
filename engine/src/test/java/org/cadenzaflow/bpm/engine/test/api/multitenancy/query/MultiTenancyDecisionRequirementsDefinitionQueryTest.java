@@ -40,7 +40,7 @@ import org.junit.rules.RuleChain;
 public class MultiTenancyDecisionRequirementsDefinitionQueryTest {
 
   protected static final String DECISION_REQUIREMENTS_DEFINITION_KEY = "score";
-  protected static final String DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
+  protected static final String DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
 
   protected static final String TENANT_ONE = "tenant1";
   protected static final String TENANT_TWO = "tenant2";

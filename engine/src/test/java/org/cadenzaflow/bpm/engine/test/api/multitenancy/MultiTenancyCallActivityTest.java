@@ -34,7 +34,7 @@ public class MultiTenancyCallActivityTest extends PluggableProcessEngineTest {
   protected static final String TENANT_ONE = "tenant1";
   protected static final String TENANT_TWO = "tenant2";
 
-  protected static final String CMMN = "org/camunda/bpm/engine/test/cmmn/deployment/CmmnDeploymentTest.testSimpleDeployment.cmmn";
+  protected static final String CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/deployment/CmmnDeploymentTest.testSimpleDeployment.cmmn";
 
   protected static final BpmnModelInstance SUB_PROCESS = Bpmn.createExecutableProcess("subProcess")
       .startEvent()
@@ -142,9 +142,9 @@ public class MultiTenancyCallActivityTest extends PluggableProcessEngineTest {
     BpmnModelInstance callingProcess = createCallingProcess("callingProcess", "ver_tag_1");
 
     testRule.deployForTenant(TENANT_ONE, callingProcess);
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/bpmn/callactivity/subProcessWithVersionTag.bpmn20.xml");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/subProcessWithVersionTag.bpmn20.xml");
     testRule.deployForTenant(TENANT_TWO, callingProcess);
-    testRule.deployForTenant(TENANT_TWO, "org/camunda/bpm/engine/test/bpmn/callactivity/subProcessWithVersionTag2.bpmn20.xml");
+    testRule.deployForTenant(TENANT_TWO, "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/subProcessWithVersionTag2.bpmn20.xml");
 
     // when
     runtimeService.createProcessInstanceByKey("callingProcess").processDefinitionTenantId(TENANT_ONE).execute();
@@ -239,7 +239,7 @@ public class MultiTenancyCallActivityTest extends PluggableProcessEngineTest {
     // given
     BpmnModelInstance callingProcess = createCallingProcess("callingProcess", "ver_tag_2");
     testRule.deployForTenant(TENANT_ONE, callingProcess);
-    testRule.deployForTenant(TENANT_TWO, "org/camunda/bpm/engine/test/bpmn/callactivity/subProcessWithVersionTag2.bpmn20.xml");
+    testRule.deployForTenant(TENANT_TWO, "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/subProcessWithVersionTag2.bpmn20.xml");
 
     try {
       // when

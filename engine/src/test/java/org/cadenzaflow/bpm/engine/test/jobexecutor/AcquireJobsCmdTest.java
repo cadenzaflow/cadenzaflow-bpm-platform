@@ -39,7 +39,7 @@ import org.junit.Test;
  */
 public class AcquireJobsCmdTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/standalone/jobexecutor/oneJobProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/standalone/jobexecutor/oneJobProcess.bpmn20.xml"})
   @Test
   public void testJobsNotVisisbleToAcquisitionIfInstanceSuspended() {
 
@@ -65,7 +65,7 @@ public class AcquireJobsCmdTest extends PluggableProcessEngineTest {
     assertEquals(0, acquiredJobs.size());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/standalone/jobexecutor/oneJobProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/standalone/jobexecutor/oneJobProcess.bpmn20.xml"})
   @Test
   public void testJobsNotVisisbleToAcquisitionIfDefinitionSuspended() {
 

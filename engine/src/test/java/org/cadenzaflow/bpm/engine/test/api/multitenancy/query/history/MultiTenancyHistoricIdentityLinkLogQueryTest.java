@@ -143,7 +143,7 @@ public class MultiTenancyHistoricIdentityLinkLogQueryTest {
   @Test
   public void shouldAddAndRemoveHistoricIdentityLinksForProcessDefinitionWithTenantId() throws Exception {
     // given
-    String resourceName = "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
+    String resourceName = "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
     testRule.deployForTenant(TENANT_1, resourceName);
     testRule.deployForTenant(TENANT_2, resourceName);
 
@@ -177,7 +177,7 @@ public class MultiTenancyHistoricIdentityLinkLogQueryTest {
   @Test
   public void shouldAddIdentityLinksForProcessDefinitionWithTenantId() throws Exception {
     // given
-    String resourceName = "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
+    String resourceName = "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
     testRule.deployForTenant(TENANT_1, resourceName);
     testRule.deployForTenant(TENANT_2, resourceName);
 

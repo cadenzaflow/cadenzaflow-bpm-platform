@@ -42,8 +42,8 @@ import org.junit.Test;
 public class EventBasedGatewayTest extends PluggableProcessEngineTest {
 
   @Deployment(resources={
-          "org/camunda/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testCatchAlertAndTimer.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.throwAlertSignal.bpmn20.xml"})
+          "org/cadenzaflow/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testCatchAlertAndTimer.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.throwAlertSignal.bpmn20.xml"})
   @Test
   public void testCatchSignalCancelsTimer() {
 
@@ -70,7 +70,7 @@ public class EventBasedGatewayTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-          "org/camunda/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testCatchAlertAndTimer.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testCatchAlertAndTimer.bpmn20.xml"
           })
   @Test
   public void testCatchTimerCancelsSignal() {
@@ -149,7 +149,7 @@ public class EventBasedGatewayTest extends PluggableProcessEngineTest {
 
     try {
       repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testConnectedToActivity.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testConnectedToActivity.bpmn20.xml")
         .deploy();
       fail("exception expected");
     } catch (ParseException e) {
@@ -164,7 +164,7 @@ public class EventBasedGatewayTest extends PluggableProcessEngineTest {
 
     try {
       repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testEventInvalidSequenceFlow.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/gateway/EventBasedGatewayTest.testEventInvalidSequenceFlow.bpmn20.xml")
         .deploy();
       fail("exception expected");
     } catch (ParseException e) {

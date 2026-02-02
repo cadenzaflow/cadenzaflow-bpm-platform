@@ -55,7 +55,7 @@ public class ResourceAuthorizationProviderTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/api/authorization/resource.authorization.provider.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/api/authorization/resource.authorization.provider.camunda.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

@@ -35,7 +35,7 @@ public class DmnModelElementInstanceCmdTest extends PluggableProcessEngineTest {
 
   private final static String DECISION_KEY = "one";
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/repository/one.dmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/repository/one.dmn")
   @Test
   public void testRepositoryService() {
     String decisionDefinitionId = repositoryService

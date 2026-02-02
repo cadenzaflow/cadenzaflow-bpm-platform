@@ -683,7 +683,7 @@ public class ProcessDataLoggingContextTest {
   @WatchLogger(loggerNames = CONTEXT_LOGGER, level = "ERROR")
   public void shouldLogFailureFromEventSubprocessInSubprocessTaskContext() {
     // given
-    testRule.deployForTenant(TENANT_ID, "org/camunda/bpm/engine/test/logging/ProcessDataLoggingContextTest.shouldLogFailureFromEventSubprocessInSubprocessTaskContext.bpmn20.xml");
+    testRule.deployForTenant(TENANT_ID, "org/cadenzaflow/bpm/engine/test/logging/ProcessDataLoggingContextTest.shouldLogFailureFromEventSubprocessInSubprocessTaskContext.bpmn20.xml");
     ProcessInstance instance = runtimeService.startProcessInstanceByKey(PROCESS);
     // when
     try {

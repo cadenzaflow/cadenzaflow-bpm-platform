@@ -878,8 +878,8 @@ public class TaskQueryOrTest {
 
   @Test
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase2.cmmn"})
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase2.cmmn"})
   public void shouldReturnTasksWithCaseDefinitionKeyCaseDefinitionName() {
     // given
     String caseDefinitionId1 = repositoryService
@@ -916,8 +916,8 @@ public class TaskQueryOrTest {
 
   @Test
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase2.cmmn"})
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase2.cmmn"})
   public void shouldReturnTasksWithCaseInstanceBusinessKeyOrCaseInstanceBusinessKeyLike() {
     // given
     String caseDefinitionId1 = repositoryService
@@ -956,8 +956,8 @@ public class TaskQueryOrTest {
 
   @Test
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase2.cmmn"})
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase2.cmmn"})
   public void shouldReturnTasksWithCaseInstanceBusinessKeyOrCaseInstanceBusinessKeyLikeOrStandaloneAssignee() {
     // given
     String caseDefinitionId1 = repositoryService
@@ -1002,7 +1002,7 @@ public class TaskQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   public void shouldReturnTasksWithCaseInstanceBusinessKeyOrProcessInstanceBusinessKey() {
     String businessKey = "aBusinessKey";
 

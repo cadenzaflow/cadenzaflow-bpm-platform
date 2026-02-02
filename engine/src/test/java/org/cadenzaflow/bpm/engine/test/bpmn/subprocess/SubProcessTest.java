@@ -497,7 +497,7 @@ public class SubProcessTest extends PluggableProcessEngineTest {
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/nestedSubProcess.bpmn20.xml", "org/camunda/bpm/engine/test/bpmn/callactivity/simpleSubProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/nestedSubProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/simpleSubProcess.bpmn20.xml"})
   @Test
   public void testInstanceSubProcessInstanceIdSet() {
     // given
@@ -560,7 +560,7 @@ public class SubProcessTest extends PluggableProcessEngineTest {
 
     org.cadenzaflow.bpm.engine.repository.Deployment deployment =
       repositoryService.createDeployment()
-                  .addClasspathResource("org/camunda/bpm/engine/test/bpmn/subprocess/SubProcessTest.fixSystemFailureProcess.bpmn20.xml")
+                  .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/subprocess/SubProcessTest.fixSystemFailureProcess.bpmn20.xml")
                   .deploy();
 
     // After staring the process, both tasks in the subprocess should be active

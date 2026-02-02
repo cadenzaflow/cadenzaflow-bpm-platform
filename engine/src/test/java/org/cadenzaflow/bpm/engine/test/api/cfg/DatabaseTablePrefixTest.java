@@ -94,7 +94,7 @@ public class DatabaseTablePrefixTest {
     try {
       engine1.getRepositoryService()
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/cfg/oneJobProcess.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/cfg/oneJobProcess.bpmn20.xml")
         .deploy();
 
       assertEquals(1, engine1.getRepositoryService().createDeploymentQuery().count());

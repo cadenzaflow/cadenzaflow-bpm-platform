@@ -50,7 +50,7 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
   @Test
   public void testDefaultExternalScriptAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py");
+    variables.put("scriptPath", "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py");
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("process", variables);
 
     String greeting = (String) runtimeService.getVariable(processInstance.getId(), "greeting");
@@ -58,7 +58,7 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
     assertEquals("Greetings Camunda Platform speaking", greeting);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testDefaultExternalScriptAsVariable.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testDefaultExternalScriptAsVariable.bpmn20.xml"})
   @Test
   public void testDefaultExternalScriptAsNonExistingVariable() {
     try {
@@ -96,7 +96,7 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
   @Test
   public void testScriptInClasspathAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "classpath://org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py");
+    variables.put("scriptPath", "classpath://org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py");
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("process", variables);
 
     String greeting = (String) runtimeService.getVariable(processInstance.getId(), "greeting");
@@ -124,13 +124,13 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
       fail("Resource does not exist in classpath");
     }
     catch (NotFoundException e) {
-      testRule.assertTextPresentIgnoreCase("unable to find resource at path classpath://org/camunda/bpm/engine/test/bpmn/scripttask/notexisting.py", e.getMessage());
+      testRule.assertTextPresentIgnoreCase("unable to find resource at path classpath://org/cadenzaflow/bpm/engine/test/bpmn/scripttask/notexisting.py", e.getMessage());
     }
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeployment.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py"
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeployment.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py"
   })
   @Test
   public void testScriptInDeployment() {
@@ -142,8 +142,8 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeployment.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py"
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeployment.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py"
   })
   @Test
   public void testScriptInDeploymentAfterCacheWasCleaned() {
@@ -157,13 +157,13 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeploymentAsVariable.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py"
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeploymentAsVariable.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py"
   })
   @Test
   public void testScriptInDeploymentAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "deployment://org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py");
+    variables.put("scriptPath", "deployment://org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py");
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("process", variables);
 
     String greeting = (String) runtimeService.getVariable(processInstance.getId(), "greeting");
@@ -172,8 +172,8 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeploymentAsBean.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py"
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/ExternalScriptTaskTest.testScriptInDeploymentAsBean.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py"
   })
   @Test
   public void testScriptInDeploymentAsBean() {
@@ -194,7 +194,7 @@ public class ExternalScriptTaskTest extends PluggableProcessEngineTest {
       fail("Resource does not exist in classpath");
     }
     catch (NotFoundException e) {
-      testRule.assertTextPresentIgnoreCase("unable to find resource at path deployment://org/camunda/bpm/engine/test/bpmn/scripttask/notexisting.py", e.getMessage());
+      testRule.assertTextPresentIgnoreCase("unable to find resource at path deployment://org/cadenzaflow/bpm/engine/test/bpmn/scripttask/notexisting.py", e.getMessage());
     }
   }
 

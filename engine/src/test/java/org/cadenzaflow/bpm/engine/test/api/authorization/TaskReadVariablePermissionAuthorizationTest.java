@@ -149,7 +149,7 @@ public class TaskReadVariablePermissionAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testSaveProcessTaskAndCheckAssigneePermissions() {
     // given
     startProcessInstanceByKey(PROCESS_KEY);
@@ -191,7 +191,7 @@ public class TaskReadVariablePermissionAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testProcessTaskSetOwnerAndCheckOwnerPermissions() {
     // given
     startProcessInstanceByKey(PROCESS_KEY);
@@ -241,7 +241,7 @@ public class TaskReadVariablePermissionAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testProcessTaskAddUserIdentityLinkWithUpdatePersmissionOnTask() {
     // given
     startProcessInstanceByKey(PROCESS_KEY);
@@ -301,7 +301,7 @@ public class TaskReadVariablePermissionAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testProcessTaskAddGroupIdentityLinkWithUpdatePersmissionOnTask() {
     // given
     startProcessInstanceByKey(PROCESS_KEY);

@@ -50,7 +50,7 @@ import org.junit.Test;
 
 public class SingleProcessInstanceModificationAsyncAuthorizationTest extends AuthorizationTest {
 
-  protected static final String PARALLEL_GATEWAY_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
+  protected static final String PARALLEL_GATEWAY_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
 
   @After
   public void tearDown() {

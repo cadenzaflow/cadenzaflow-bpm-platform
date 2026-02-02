@@ -5,16 +5,16 @@
   targetNamespace="Examples">
 
   <error id="myError" errorCode="MyError" />
-  <error id="myException" errorCode="org.camunda.bpm.engine.test.bpmn.event.error.MyBusinessException" />
+  <error id="myException" errorCode="org.cadenzaflow.bpm.engine.test.bpmn.event.error.MyBusinessException" />
 
   <process id="testProcess" isExecutable="true">
   
     <startEvent id="start" />
 
     <sequenceFlow id="flow1" sourceRef="start" targetRef="serviceTask" />
-    
-    <serviceTask id="serviceTask" camunda:class="org.camunda.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate" />
-    
+
+    <serviceTask id="serviceTask" camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.event.error.ThrowErrorDelegate" />
+
     <boundaryEvent id="catchError" attachedToRef="serviceTask">
       <errorEventDefinition errorRef="myError"/>
     </boundaryEvent>

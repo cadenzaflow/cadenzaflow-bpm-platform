@@ -9,10 +9,10 @@
     <startEvent id="theStart" />
     
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="javaService" />
-    
-    <serviceTask id="javaService" 
-                 name="Java service invocation" 
-                 camunda:class="org.camunda.bpm.engine.test.bpmn.servicetask.util.ReverseStringsFieldInjected">
+
+    <serviceTask id="javaService"
+                 name="Java service invocation"
+                 camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.servicetask.util.ReverseStringsFieldInjected">
       <extensionElements>
         <camunda:field name="text1">
           <camunda:expression>${genderBean.getGenderString(gender)}</camunda:expression>

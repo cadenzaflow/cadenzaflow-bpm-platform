@@ -30,7 +30,7 @@ public class OnePlusOneBean implements Serializable {
   }
 
   public String getResource() {
-    return "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy";
+    return "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy";
   }
 
   public String getClasspathResource() {

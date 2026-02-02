@@ -84,7 +84,7 @@ public class ExternalTaskUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void testSetRetriesLogCreationForOneExternalTaskId() {
     // given
     runtimeService.startProcessInstanceByKey(PROCESS_DEFINITION_KEY);
@@ -114,7 +114,7 @@ public class ExternalTaskUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void testSetRetriesLogCreationSync() {
     // given
     runtimeService.startProcessInstanceByKey(PROCESS_DEFINITION_KEY);
@@ -176,7 +176,7 @@ public class ExternalTaskUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void testSetRetriesLogCreationAsync() {
     // given
     runtimeService.startProcessInstanceByKey(PROCESS_DEFINITION_KEY);
@@ -231,7 +231,7 @@ public class ExternalTaskUserOperationLogTest {
   }
   
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml")
   public void testSetPriorityLogCreation() {
     // given
     runtimeService.startProcessInstanceByKey(PROCESS_DEFINITION_KEY_2, Collections.<String, Object>singletonMap("priority", 14));
@@ -261,7 +261,7 @@ public class ExternalTaskUserOperationLogTest {
   }
   
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void testUnlockLogCreation() {
     // given
     runtimeService.startProcessInstanceByKey(PROCESS_DEFINITION_KEY);

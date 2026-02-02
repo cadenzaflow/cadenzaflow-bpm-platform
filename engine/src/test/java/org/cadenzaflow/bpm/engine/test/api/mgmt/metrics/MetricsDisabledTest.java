@@ -43,7 +43,7 @@ public class MetricsDisabledTest {
 
   @ClassRule
   public final static ProcessEngineBootstrapRule bootstrapRule =
-      new ProcessEngineBootstrapRule("org/camunda/bpm/engine/test/api/mgmt/metrics/metricsDisabledTest.cfg.xml");
+      new ProcessEngineBootstrapRule("org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/metricsDisabledTest.cfg.xml");
 
   protected final ProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected final ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);

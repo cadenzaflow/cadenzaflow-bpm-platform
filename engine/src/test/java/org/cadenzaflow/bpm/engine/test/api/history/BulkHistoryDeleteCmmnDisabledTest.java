@@ -103,7 +103,7 @@ public class BulkHistoryDeleteCmmnDisabledTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml", "org/camunda/bpm/engine/test/api/dmn/Example.dmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn" })
   public void historyCleanUpWithDisabledCmmn() {
     // given
     prepareHistoricProcesses(5);

@@ -38,7 +38,7 @@ import org.junit.Test;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_AUDIT)
 public class CompensateEventHistoryTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testBoundaryCompensationHandlerHistory.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testBoundaryCompensationHandlerHistory.bpmn20.xml")
   @Test
   public void testBoundaryCompensationHandlerHistoryActivityInstance() {
     // given a process instance
@@ -68,7 +68,7 @@ public class CompensateEventHistoryTest extends PluggableProcessEngineTest {
     assertEquals(processInstance.getId(), historicCompensationHandlerInstance.getParentActivityInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testBoundaryCompensationHandlerHistory.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testBoundaryCompensationHandlerHistory.bpmn20.xml")
   @Ignore("Fix CAM-4351")
   @Test
   public void testBoundaryCompensationHandlerHistoryVariableInstance() {
@@ -98,7 +98,7 @@ public class CompensateEventHistoryTest extends PluggableProcessEngineTest {
     assertEquals(compensationHandlerActivityInstanceId, historicVariableInstance.getActivityInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testDefaultCompensationHandlerHistory.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testDefaultCompensationHandlerHistory.bpmn20.xml")
   @Test
   public void testDefaultCompensationHandlerHistoryActivityInstance() {
     // given a process instance
@@ -132,7 +132,7 @@ public class CompensateEventHistoryTest extends PluggableProcessEngineTest {
     assertEquals(subProcessActivityInstanceId, historicCompensationHandlerInstance.getParentActivityInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testDefaultCompensationHandlerHistory.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/compensate/CompensateEventHistoryTest.testDefaultCompensationHandlerHistory.bpmn20.xml")
   @Ignore("Fix CAM-4351")
   @Test
   public void testDefaultCompensationHandlerHistoryVariableInstance() {

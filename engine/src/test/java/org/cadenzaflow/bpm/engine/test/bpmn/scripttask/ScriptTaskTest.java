@@ -688,7 +688,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
       deployProcess(JAVASCRIPT,
           // WHEN
           // we load a function from an external file
-          "load(\"" + getNormalizedResourcePath("/org/camunda/bpm/engine/test/bpmn/scripttask/sum.js") + "\");"
+          "load(\"" + getNormalizedResourcePath("/org/cadenzaflow/bpm/engine/test/bpmn/scripttask/sum.js") + "\");"
           // THEN
           // we can use that function
         + "execution.setVariable('foo', sum(3, 4));"
@@ -715,7 +715,7 @@ public class ScriptTaskTest extends AbstractScriptTaskTest {
     deployProcess(JAVASCRIPT,
         // WHEN
         // we load a function from an external file
-        "load(\"" + getNormalizedResourcePath("/org/camunda/bpm/engine/test/bpmn/scripttask/sum.js") + "\");"
+        "load(\"" + getNormalizedResourcePath("/org/cadenzaflow/bpm/engine/test/bpmn/scripttask/sum.js") + "\");"
     );
 
     // WHEN

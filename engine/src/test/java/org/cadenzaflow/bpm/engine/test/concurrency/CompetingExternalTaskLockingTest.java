@@ -45,7 +45,7 @@ public class CompetingExternalTaskLockingTest extends ConcurrencyTestCase {
   protected static final String WORKER_ID_2 = "WORKER_2";
   protected static final long LOCK_DURATION = 10000L;
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml"})
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml"})
   @Test
   public void shouldThrowOleOnConcurrentLockingAttempt() throws InterruptedException {
     // given

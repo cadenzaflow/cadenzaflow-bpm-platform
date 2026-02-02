@@ -44,7 +44,7 @@ public class FeelIntegrationTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/literal-expression.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/literal-expression.dmn"})
   public void shouldEvaluateLiteralExpression() {
     // given
 
@@ -57,7 +57,7 @@ public class FeelIntegrationTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/input-expression.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/input-expression.dmn"})
   public void shouldEvaluateInputExpression() {
     // given
 
@@ -70,7 +70,7 @@ public class FeelIntegrationTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/input-rule.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/input-rule.dmn"})
   public void shouldEvaluateInputRule() {
     // given
 
@@ -83,7 +83,7 @@ public class FeelIntegrationTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/output-rule.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/output-rule.dmn"})
   public void shouldEvaluateOutputRule() {
     // given
 

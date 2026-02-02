@@ -56,7 +56,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
   private static final String IDENTITY_LINK_ADD="add";
   private static final String IDENTITY_LINK_DELETE="delete";
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddTaskCandidateforAddIdentityLink() {
 
@@ -76,7 +76,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(historicIdentityLinks.size(), 1);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddDelegateTaskCandidateforAddIdentityLink() {
 
@@ -114,7 +114,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(query.type(IdentityLinkType.OWNER).count(), 1);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddClaimTaskCandidateforAddIdentityLink() {
 
@@ -145,7 +145,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(query.type(IdentityLinkType.ASSIGNEE).count(), 1);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddMultipleDelegateTaskCandidateforAddIdentityLink() {
 
@@ -190,7 +190,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     query = historyService.createHistoricIdentityLinkLogQuery();
     assertEquals(query.type(IdentityLinkType.OWNER).count(), 1);
   }
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddTaskCandidateForAddAndDeleteIdentityLink() {
 
@@ -212,7 +212,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(historicIdentityLinks.size(), 2);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddGroupCandidateForAddAndDeleteIdentityLink() {
 
@@ -237,7 +237,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(query.groupId(A_GROUP_ID).count(), 2);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldNotAddTaskCandidateForInvalidIdentityLinkDelete() {
 
@@ -258,7 +258,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(historicIdentityLinks.size(), 0);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddTaskAssigneeForAddandDeleteIdentityLink() {
 
@@ -282,7 +282,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
   }
 
   @SuppressWarnings("deprecation")
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddAndRemoveIdentityLinksForProcessDefinition() throws Exception {
 
@@ -317,7 +317,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     assertEquals(historicIdentityLinks.size(), 4);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddTaskOwnerForAddandDeleteIdentityLink() {
 
@@ -379,7 +379,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
     taskService.deleteTask(taskEmpty.getId(), true);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldAddIdentityLinkByProcessDefinitionAndStandalone() {
 
@@ -415,7 +415,7 @@ public class HistoricIdentityLinkLogTest extends PluggableProcessEngineTest {
   }
 
   //CAM-7456
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testShouldNotDeleteIdentityLinkForTaskCompletion() {
     //given

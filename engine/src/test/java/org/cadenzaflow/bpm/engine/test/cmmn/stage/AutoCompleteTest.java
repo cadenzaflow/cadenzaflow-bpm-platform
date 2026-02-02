@@ -372,7 +372,7 @@ public class AutoCompleteTest extends CmmnTest {
     assertTrue(caseInstance.isCompleted());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/stage/AutoCompleteTest.testRequiredEnabled.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/stage/AutoCompleteTest.testRequiredEnabled.cmmn"})
   @Test
   public void testTerminate() {
     // given
@@ -399,8 +399,8 @@ public class AutoCompleteTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/cmmn/stage/AutoCompleteTest.testProcessTasksOnStage.cmmn",
-    "org/camunda/bpm/engine/test/cmmn/stage/AutoCompleteTest.testProcessTasksOnStage.bpmn"
+    "org/cadenzaflow/bpm/engine/test/cmmn/stage/AutoCompleteTest.testProcessTasksOnStage.cmmn",
+    "org/cadenzaflow/bpm/engine/test/cmmn/stage/AutoCompleteTest.testProcessTasksOnStage.bpmn"
   })
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
   @Test

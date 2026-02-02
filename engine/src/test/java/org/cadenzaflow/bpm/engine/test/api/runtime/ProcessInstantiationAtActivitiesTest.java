@@ -49,13 +49,13 @@ import org.junit.Test;
  */
 public class ProcessInstantiationAtActivitiesTest extends PluggableProcessEngineTest {
 
-  protected static final String PARALLEL_GATEWAY_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
-  protected static final String EXCLUSIVE_GATEWAY_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.exclusiveGateway.bpmn20.xml";
-  protected static final String SUBPROCESS_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.subprocess.bpmn20.xml";
-  protected static final String LISTENERS_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstantiationAtActivitiesTest.listeners.bpmn20.xml";
-  protected static final String IO_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstantiationAtActivitiesTest.ioMappings.bpmn20.xml";
-  protected static final String ASYNC_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.exclusiveGatewayAsyncTask.bpmn20.xml";
-  protected static final String SYNC_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstantiationAtActivitiesTest.synchronous.bpmn20.xml";
+  protected static final String PARALLEL_GATEWAY_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
+  protected static final String EXCLUSIVE_GATEWAY_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.exclusiveGateway.bpmn20.xml";
+  protected static final String SUBPROCESS_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.subprocess.bpmn20.xml";
+  protected static final String LISTENERS_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstantiationAtActivitiesTest.listeners.bpmn20.xml";
+  protected static final String IO_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstantiationAtActivitiesTest.ioMappings.bpmn20.xml";
+  protected static final String ASYNC_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.exclusiveGatewayAsyncTask.bpmn20.xml";
+  protected static final String SYNC_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstantiationAtActivitiesTest.synchronous.bpmn20.xml";
 
   @Deployment(resources = EXCLUSIVE_GATEWAY_PROCESS)
   @Test
@@ -557,7 +557,7 @@ public class ProcessInstantiationAtActivitiesTest extends PluggableProcessEngine
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/concurrentExecutionVariableWithSubprocess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/concurrentExecutionVariableWithSubprocess.bpmn20.xml"})
   public void shouldFinishProcessWithIoMappingAndEventSubprocess() {
     // given
     // Start process instance before the FirstTask (UserTask) with I/O mapping

@@ -122,7 +122,7 @@ public class DeleteProcessDefinitionTest {
   public void testDeleteProcessDefinition() {
     // given deployment with two process definitions in one xml model file
     deployment = repositoryService.createDeployment()
-            .addClasspathResource("org/camunda/bpm/engine/test/repository/twoProcesses.bpmn20.xml")
+            .addClasspathResource("org/cadenzaflow/bpm/engine/test/repository/twoProcesses.bpmn20.xml")
             .deploy();
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().list();
 
@@ -205,7 +205,7 @@ public class DeleteProcessDefinitionTest {
   public void testDeleteProcessDefinitionAndRefillDeploymentCache() {
     // given a deployment with two process definitions in one xml model file
     deployment = repositoryService.createDeployment()
-            .addClasspathResource("org/camunda/bpm/engine/test/repository/twoProcesses.bpmn20.xml")
+            .addClasspathResource("org/cadenzaflow/bpm/engine/test/repository/twoProcesses.bpmn20.xml")
             .deploy();
     ProcessDefinition processDefinitionOne =
         repositoryService.createProcessDefinitionQuery().processDefinitionKey("one").singleResult();
@@ -235,7 +235,7 @@ public class DeleteProcessDefinitionTest {
   public void testDeleteProcessDefinitionAndRedeploy() {
     // given a deployment with two process definitions in one xml model file
     deployment = repositoryService.createDeployment()
-            .addClasspathResource("org/camunda/bpm/engine/test/repository/twoProcesses.bpmn20.xml")
+            .addClasspathResource("org/cadenzaflow/bpm/engine/test/repository/twoProcesses.bpmn20.xml")
             .deploy();
 
     ProcessDefinition processDefinitionOne =

@@ -90,8 +90,8 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateWithCallActivity.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessNoTerminate.bpmn"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateWithCallActivity.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessNoTerminate.bpmn"
   })
   @Test
   public void testTerminateWithCallActivity() throws Exception {
@@ -168,7 +168,7 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   /**
    * CAM-4067
    */
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInSubProcess.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInSubProcess.bpmn")
   @Test
   public void testTerminateInSubProcessShouldNotEndProcessInstanceInHistory() throws Exception {
     // when process instance is started and terminate end event in subprocess executed
@@ -204,7 +204,7 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   /**
    * CAM-4067
    */
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInSubProcessConcurrent.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInSubProcessConcurrent.bpmn")
   @Test
   public void testTerminateInSubProcessConcurrentShouldNotEndProcessInstanceInHistory() throws Exception {
     // when process instance is started and terminate end event in subprocess executed
@@ -289,8 +289,8 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivity.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessTerminate.bpmn"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivity.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessTerminate.bpmn"
   })
   @Test
   public void testTerminateInCallActivity() throws Exception {
@@ -307,8 +307,8 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivityMulitInstance.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessTerminate.bpmn"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivityMulitInstance.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessTerminate.bpmn"
   })
   @Test
   public void testTerminateInCallActivityMulitInstance() throws Exception {
@@ -325,8 +325,8 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivityConcurrent.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessConcurrentTerminate.bpmn"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivityConcurrent.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessConcurrentTerminate.bpmn"
   })
   @Test
   public void testTerminateInCallActivityConcurrent() throws Exception {
@@ -343,8 +343,8 @@ public class TerminateEndEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivityConcurrentMulitInstance.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessConcurrentTerminate.bpmn"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.testTerminateInCallActivityConcurrentMulitInstance.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/end/TerminateEndEventTest.subProcessConcurrentTerminate.bpmn"
   })
   @Test
   public void testTerminateInCallActivityConcurrentMulitInstance() throws Exception {

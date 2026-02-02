@@ -53,7 +53,7 @@ public class JobAcquisitionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml" })
   public void shouldLogJobsAttemptingToAcquire() {
     // Given three jobs
     for (int i = 0; i < 3; i++) {
@@ -75,7 +75,7 @@ public class JobAcquisitionLoggingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml" })
   public void shouldLogFailedAcquisitionLocks() {
     // Given three jobs
     for (int i = 0; i < 3; i++) {

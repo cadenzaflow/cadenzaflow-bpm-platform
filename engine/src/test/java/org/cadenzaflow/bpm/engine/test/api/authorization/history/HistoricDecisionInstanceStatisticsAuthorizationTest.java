@@ -47,7 +47,7 @@ import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 public class HistoricDecisionInstanceStatisticsAuthorizationTest {
 
-  protected static final String DISH_DRG_DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DISH_DRG_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected AuthorizationTestRule authRule = new AuthorizationTestRule(engineRule);

@@ -149,7 +149,7 @@ public class MessageIntermediateEventTest {
 
     // deploy version 1
     repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testSingleIntermediateMessageEvent.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testSingleIntermediateMessageEvent.bpmn20.xml")
         .deploy();
     // now there is one process deployed
     assertEquals(1, repositoryService.createProcessDefinitionQuery().count());
@@ -163,7 +163,7 @@ public class MessageIntermediateEventTest {
 
     // deploy version 2
     repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testSingleIntermediateMessageEvent.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testSingleIntermediateMessageEvent.bpmn20.xml")
         .deploy();
 
     // now there are two versions deployed:
@@ -187,7 +187,7 @@ public class MessageIntermediateEventTest {
     try {
       repositoryService
           .createDeployment()
-          .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testEmptyMessageNameFails.bpmn20.xml")
+          .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testEmptyMessageNameFails.bpmn20.xml")
           .deploy();
       fail("exception expected");
     } catch (ParseException e) {
@@ -196,7 +196,7 @@ public class MessageIntermediateEventTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testSingleIntermediateMessageEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageIntermediateEventTest.testSingleIntermediateMessageEvent.bpmn20.xml")
   @Test
   public void testSetSerializedVariableValues() throws IOException, ClassNotFoundException {
 

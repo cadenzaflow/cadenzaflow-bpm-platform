@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions id="definitions" 
+<definitions id="definitions"
   xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
   xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
   targetNamespace="Examples">
@@ -9,10 +9,10 @@
     <startEvent id="theStart" />
     
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="javaService" />
-    
-    <serviceTask id="javaService" 
-                 name="Java service invocation" 
-                 camunda:class="org.camunda.bpm.engine.test.bpmn.servicetask.util.ToUpperCaseFieldInjected">
+
+    <serviceTask id="javaService"
+                 name="Java service invocation"
+                 camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.servicetask.util.ToUpperCaseFieldInjected">
       <extensionElements>
         <camunda:field name="text">
           <camunda:string>Hello World</camunda:string>
@@ -21,10 +21,10 @@
     </serviceTask>
     
     <sequenceFlow id="flow2" sourceRef="javaService" targetRef="javaService2" />
-    
-    <serviceTask id="javaService2" 
-                 name="Java service invocation" 
-                 camunda:class="org.camunda.bpm.engine.test.bpmn.servicetask.util.ToUpperCaseSetterInjected">
+
+    <serviceTask id="javaService2"
+                 name="Java service invocation"
+                 camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.servicetask.util.ToUpperCaseSetterInjected">
       <extensionElements>
         <camunda:field name="text">
           <camunda:string>Hello Setter</camunda:string>

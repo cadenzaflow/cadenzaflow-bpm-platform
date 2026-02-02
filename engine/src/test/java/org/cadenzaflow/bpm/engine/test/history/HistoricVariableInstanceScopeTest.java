@@ -47,7 +47,7 @@ import org.junit.Test;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_AUDIT)
 public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testSetVariableOnProcessInstanceStart() {
     Map<String, Object> variables = new HashMap<String, Object>();
@@ -67,7 +67,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testSetVariableLocalOnUserTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -94,7 +94,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testSetVariableOnProcessIntanceStartAndSetVariableLocalOnUserTask() {
     Map<String, Object> variables = new HashMap<String, Object>();
@@ -129,7 +129,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneSubProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneSubProcess.bpmn20.xml"})
   @Test
   public void testSetVariableOnUserTaskInsideSubProcess() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("startSimpleSubProcess");
@@ -211,7 +211,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/history/HistoricVariableInstanceScopeTest.testSetVariableLocalOnTaskInsideParallelBranch.bpmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceScopeTest.testSetVariableLocalOnTaskInsideParallelBranch.bpmn"})
   @Test
   public void testSetVariableOnTaskInsideParallelBranch() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("process");
@@ -268,7 +268,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testHistoricCaseVariableInstanceQuery() {
     // start case instance with variables
@@ -371,7 +371,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testCmmnActivityInstanceIdOnCaseInstance() {
 
@@ -410,7 +410,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testCmmnActivityInstanceIdOnCaseExecution() {
 
@@ -449,7 +449,7 @@ public class HistoricVariableInstanceScopeTest extends PluggableProcessEngineTes
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testCmmnActivityInstanceIdOnTask() {
 

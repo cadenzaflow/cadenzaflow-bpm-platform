@@ -25,7 +25,7 @@ import org.cadenzaflow.bpm.application.impl.EmbeddedProcessApplication;
  */
 @ProcessApplication(
     name="test-app",
-    deploymentDescriptors={"org/camunda/bpm/application/impl/embedded/deployment-with-resources.xml"}
+    deploymentDescriptors={"org/cadenzaflow/bpm/application/impl/embedded/deployment-with-resources.xml"}
 )
 public class TestApplicationWithResources extends EmbeddedProcessApplication {
 

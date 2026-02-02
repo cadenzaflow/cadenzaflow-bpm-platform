@@ -57,9 +57,9 @@ import org.junit.rules.RuleChain;
 public class GetHistoricDecisionInstancesForOptimizeTest {
 
   public static final String DECISION_PROCESS =
-    "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
+    "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
   public static final String DECISION_SINGLE_OUTPUT_DMN =
-    "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+    "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
 
   protected static final String VARIABLE_NAME = "aVariableName";
   protected static final String VARIABLE_VALUE = "aVariableValue";

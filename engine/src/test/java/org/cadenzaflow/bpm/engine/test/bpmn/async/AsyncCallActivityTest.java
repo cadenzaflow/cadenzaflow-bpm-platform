@@ -31,8 +31,8 @@ import org.junit.Test;
 public class AsyncCallActivityTest extends PluggableProcessEngineTest {
 
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/AsyncCallActivityTest.asyncStartEvent.bpmn20.xml",
-  "org/camunda/bpm/engine/test/bpmn/async/AsyncCallActivityTest.testCallSubProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncCallActivityTest.asyncStartEvent.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncCallActivityTest.testCallSubProcess.bpmn20.xml" })
   @Test
   public void testCallProcessWithAsyncOnStartEvent() {
 

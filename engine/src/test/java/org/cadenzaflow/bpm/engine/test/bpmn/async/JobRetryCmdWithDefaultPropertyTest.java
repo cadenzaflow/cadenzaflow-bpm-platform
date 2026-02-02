@@ -39,7 +39,7 @@ public class JobRetryCmdWithDefaultPropertyTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/bpmn/async/default.job.retry.property.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/bpmn/async/default.job.retry.property.camunda.cfg.xml");
 
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
@@ -55,7 +55,7 @@ public class JobRetryCmdWithDefaultPropertyTest {
   /**
    * Check if property "DefaultNumberOfRetries" will be used
    */
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedTask.bpmn20.xml" })
   @Test
   public void testDefaultNumberOfRetryProperty() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedTask");
@@ -67,7 +67,7 @@ public class JobRetryCmdWithDefaultPropertyTest {
     assertEquals(5, job.getRetries());
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
   @Test
   public void testOverwritingPropertyWithBpmnExtension() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedServiceTask");

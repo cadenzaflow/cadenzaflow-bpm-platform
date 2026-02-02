@@ -39,7 +39,7 @@ public class CaseExecutionQueryVariableIgnoreCaseTest extends AbstractVariableIg
     caseService = engineRule.getCaseService();
     repositoryService = engineRule.getRepositoryService();
 
-    repositoryService.createDeployment().addClasspathResource("org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn").deploy();
+    repositoryService.createDeployment().addClasspathResource("org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn").deploy();
     instance = caseService.withCaseDefinitionByKey("oneTaskCase").setVariables(VARIABLES).businessKey("oneTaskCase").create();
   }
 

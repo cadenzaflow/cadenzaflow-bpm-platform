@@ -1076,7 +1076,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
         .taskCreatedOn(createTime).taskCreatedBefore(oneHourAgo).count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   @Test
   public void testTaskDefinitionKey() throws Exception {
 
@@ -1095,7 +1095,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0L, count.longValue());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   @Test
   public void testTaskDefinitionKeyLike() throws Exception {
 
@@ -1130,7 +1130,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0L, count.longValue());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   @Test
   public void testTaskDefinitionKeyIn() throws Exception {
 
@@ -1169,7 +1169,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   public void testTaskDefinitionKeyNotInNoKeysProvided() {
 
     // Given
@@ -1190,7 +1190,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   public void testTaskDefinitionKeyNotInOneKeyProvided() {
 
     // Given
@@ -1211,7 +1211,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   public void testTaskDefinitionKeyNotInAllKeysProvided() {
 
     // Given
@@ -1231,7 +1231,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml")
   public void testTaskDefinitionKeyNotInInvalidKeyProvided() {
 
     // Given
@@ -1251,7 +1251,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
             .containsExactly("taskKey_1", "taskKey_123");
   }
   
-  @Deployment(resources="org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testTaskVariableNameEqualsIgnoreCase() throws Exception {
     String variableName = "someVariable";
@@ -1319,7 +1319,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().taskVariableValueNotEquals("booleanVar", false).count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
   @Test
   public void testTaskVariableValueEqualsIgnoreCase() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -1354,7 +1354,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().taskVariableValueEquals(variableName, variableValue.toLowerCase()).matchVariableValuesIgnoreCase().count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testTaskVariableValueNameEqualsIgnoreCase() throws Exception {
     String variableName = "someVariable";
@@ -1372,7 +1372,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().taskVariableValueEquals(variableName.toLowerCase(), variableValue).matchVariableNamesIgnoreCase().count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
   @Test
   public void testTaskVariableValueLike() throws Exception {
 
@@ -1402,7 +1402,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (final ProcessEngineException e) {/*OK*/}
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
   @Test
   public void testTaskVariableValueLikeIgnoreCase() throws Exception {
 
@@ -1433,7 +1433,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (final ProcessEngineException e) {/*OK*/}
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
   @Test
   public void testTaskVariableValueCompare() throws Exception {
 
@@ -1614,7 +1614,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
         .count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableNameEqualsIgnoreCase() throws Exception {
     String variableName = "someVariable";
@@ -1632,7 +1632,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().processVariableValueEquals(variableName.toLowerCase(), variableValue).matchVariableNamesIgnoreCase().count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testTaskVariableValueEquals.bpmn20.xml")
   @Test
   public void testProcessVariableValueEqualsIgnoreCase() throws Exception {
     String variableName = "someVariable";
@@ -1663,7 +1663,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().matchVariableValuesIgnoreCase().processVariableValueNotEquals(variableName, variableValue.toLowerCase()).count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
   @Test
   public void testProcessVariableValueLike() throws Exception {
 
@@ -1689,7 +1689,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (final ProcessEngineException e) {/*OK*/}
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
   @Test
   public void testProcessVariableValueLikeIgnoreCase() throws Exception {
 
@@ -1716,7 +1716,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (final ProcessEngineException e) {/*OK*/}
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
   @Test
   public void testProcessVariableValueNotLike() throws Exception {
 
@@ -1740,7 +1740,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
       .isInstanceOf(ProcessEngineException.class);
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
   @Test
   public void testProcessVariableValueNotLikeIgnoreCase() throws Exception {
 
@@ -1765,7 +1765,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
       .isInstanceOf(ProcessEngineException.class);
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessVariableValueEquals.bpmn20.xml")
   @Test
   public void testProcessVariableValueCompare() throws Exception {
 
@@ -1872,7 +1872,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().processVariableValueLessThanOrEquals("nonExisting", 123).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueEqualsNumber() throws Exception {
     // long
@@ -1914,7 +1914,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().processVariableValueEquals("var", Variables.numberValue(null)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueNumberComparison() throws Exception {
     // long
@@ -1955,7 +1955,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(4, taskService.createTaskQuery().processVariableValueLessThanOrEquals("var", Variables.numberValue(123)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testTaskVariableValueEqualsNumber() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -1986,7 +1986,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().taskVariableValueEquals("var", Variables.numberValue(null)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testVariableEqualsNumberMax() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -1998,7 +1998,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().processVariableValueEquals("var", Variables.numberValue(Long.MAX_VALUE)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testVariableEqualsNumberLongValueOverflow() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -2012,7 +2012,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().processVariableValueEquals("var", Variables.numberValue(MAX_DOUBLE_VALUE)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testVariableEqualsNumberNonIntegerDoubleShouldNotMatchInteger() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -2028,7 +2028,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().processVariableValueEquals("var", Variables.numberValue(52)).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessDefinitionId() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2041,7 +2041,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessDefinitionKey() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2054,8 +2054,8 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/api/task/taskDefinitionProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"
   })
   @Test
   public void testProcessDefinitionKeyIn() throws Exception {
@@ -2102,7 +2102,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0L, count.longValue());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessDefinitionName() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2114,7 +2114,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().processDefinitionName("unexisting").count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessDefinitionNameLike() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2127,7 +2127,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().processDefinitionNameLike("The Other Task%").count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessInstanceBusinessKey() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess", "BUSINESS-KEY-1");
@@ -2137,7 +2137,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().processInstanceBusinessKey("NON-EXISTING").count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessInstanceBusinessKeyIn() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess", "BUSINESS-KEY-1");
@@ -2174,7 +2174,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0l, count);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testProcessInstanceBusinessKeyLike() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess", "BUSINESS-KEY-1");
@@ -2185,7 +2185,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().processInstanceBusinessKeyLike("BUZINESS-KEY%").count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testTaskDueDate() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2212,7 +2212,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
         .dueBefore(otherDate.getTime()).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testTaskDueBefore() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2243,7 +2243,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().dueBefore(oneHourAgo.getTime()).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testTaskDueAfter() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2274,7 +2274,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.createTaskQuery().dueAfter(oneHourAgo.getTime()).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testTaskDueDateCombinations() throws ParseException {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2298,7 +2298,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
         .dueDate(dueDate).dueBefore(oneHourAgo).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void shouldQueryForTasksWithoutDueDate() {
     // given
@@ -2353,7 +2353,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
       .hasMessageContaining("Invalid query usage");
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testFollowUpDate() throws Exception {
     Calendar otherDate = Calendar.getInstance();
@@ -2394,7 +2394,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     taskService.complete(task.getId());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testFollowUpDateCombinations() throws ParseException {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2418,7 +2418,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
         .followUpDate(dueDate).followUpBefore(oneHourAgo).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testQueryByActivityInstanceId() throws Exception {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2429,7 +2429,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().activityInstanceIdIn(activityInstanceId).list().size());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testQueryByMultipleActivityInstanceIds() throws Exception {
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2453,7 +2453,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(2, taskService.createTaskQuery().activityInstanceIdIn(activityInstanceId1, activityInstanceId2).list().size());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml"})
   @Test
   public void testQueryByInvalidActivityInstanceId() throws Exception {
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -2652,7 +2652,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(2, taskService.createNativeTaskQuery().sql("SELECT * FROM " + managementService.getTableName(Task.class)).listPage(10, 12).size());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByCaseDefinitionId() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -2684,7 +2684,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByCaseDefinitionKey() {
     String caseDefinitionKey = repositoryService
@@ -2719,7 +2719,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByCaseDefinitionName() {
     CaseDefinition caseDefinition = repositoryService
@@ -2756,7 +2756,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn", "org/camunda/bpm/engine/test/api/repository/three_.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn", "org/cadenzaflow/bpm/engine/test/api/repository/three_.cmmn"})
   @Test
   public void testQueryByCaseDefinitionNameLike() {
     List<String> caseDefinitionIds = getCaseDefinitionIds();
@@ -2797,7 +2797,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByCaseInstanceId() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -2816,8 +2816,8 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   @Deployment(resources=
     {
-      "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testQueryByCaseInstanceIdHierarchy.cmmn",
-      "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testQueryByCaseInstanceIdHierarchy.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testQueryByCaseInstanceIdHierarchy.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testQueryByCaseInstanceIdHierarchy.bpmn20.xml"
       })
   @Test
   public void testQueryByCaseInstanceIdHierarchy() {
@@ -2870,7 +2870,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByCaseInstanceBusinessKey() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -2905,7 +2905,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByCaseInstanceBusinessKeyLike() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -2948,7 +2948,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"})
   @Test
   public void testQueryByCaseExecutionId() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -2982,7 +2982,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -2999,7 +2999,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3016,7 +3016,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn" })
   @Test
   public void testCaseInstanceVariableNameEqualsIgnoreCase() throws Exception {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3034,7 +3034,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().caseInstanceVariableValueEquals(variableName.toLowerCase(), variableValue).matchVariableNamesIgnoreCase().count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueEqualsIgnoreCase() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3070,7 +3070,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByBooleanCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3087,7 +3087,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByShortCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3104,7 +3104,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByIntegerCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3121,7 +3121,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByLongCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3138,7 +3138,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDateCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3157,7 +3157,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDoubleCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3174,7 +3174,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByByteArrayCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3194,7 +3194,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryBySerializableCaseInstanceVariableValueEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3217,7 +3217,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByFileCaseInstanceVariableValueEquals() {
     FileValue fileValue = createDefaultFileValue();
@@ -3273,7 +3273,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
       .create();
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3290,7 +3290,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByBooleanCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3307,7 +3307,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByShortCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3324,7 +3324,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByIntegerCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3341,7 +3341,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByLongCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3358,7 +3358,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDateCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3379,7 +3379,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDoubleCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3396,7 +3396,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByFileCaseInstanceVariableValueNotEquals() {
     FileValue fileValue = createDefaultFileValue();
@@ -3439,7 +3439,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     return humanTaskExecutionId;
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryBySerializableCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3462,7 +3462,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByByteArrayCaseInstanceVariableValueNotEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3482,7 +3482,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3501,7 +3501,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3519,7 +3519,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByBooleanCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3538,7 +3538,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByShortCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3556,7 +3556,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByIntegerCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3574,7 +3574,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByLongCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3592,7 +3592,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDateCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3614,7 +3614,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDoubleCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3632,7 +3632,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByByteArrayCaseInstanceVariableValueGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3652,7 +3652,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryBySerializableCaseInstanceVariableGreaterThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3675,7 +3675,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"})
   @Test
   public void testQueryByFileCaseInstanceVariableValueGreaterThan() {
     FileValue fileValue = createDefaultFileValue();
@@ -3693,7 +3693,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
       }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3712,7 +3712,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3736,7 +3736,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByBooleanCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3755,7 +3755,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByShortCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3779,7 +3779,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByIntegerCaseInstanceVariableValueGreaterThanOrEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3803,7 +3803,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByLongCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3827,7 +3827,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDateCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3855,7 +3855,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDoubleCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3879,7 +3879,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByByteArrayCaseInstanceVariableValueGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3899,7 +3899,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryBySerializableCaseInstanceVariableGreaterThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3922,7 +3922,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByFileCaseInstanceVariableValueGreaterThanOrEqual() {
     FileValue fileValue = createDefaultFileValue();
@@ -3939,7 +3939,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3958,7 +3958,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3976,7 +3976,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByBooleanCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -3995,7 +3995,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByShortCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4013,7 +4013,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByIntegerCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4031,7 +4031,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByLongCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4049,7 +4049,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDateCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4071,7 +4071,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDoubleCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4089,7 +4089,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByByteArrayCaseInstanceVariableValueLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4109,7 +4109,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryBySerializableCaseInstanceVariableLessThan() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4132,7 +4132,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByFileCaseInstanceVariableValueLessThan() {
     FileValue fileValue = createDefaultFileValue();
@@ -4148,7 +4148,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4167,7 +4167,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4191,7 +4191,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByBooleanCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4210,7 +4210,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByShortCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4234,7 +4234,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByIntegerCaseInstanceVariableValueLessThanOrEquals() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4258,7 +4258,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByLongCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4282,7 +4282,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDateCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4310,7 +4310,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByDoubleCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4334,7 +4334,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByByteArrayCaseInstanceVariableValueLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4354,7 +4354,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryBySerializableCaseInstanceVariableLessThanOrEqual() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4377,7 +4377,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByFileCaseInstanceVariableValueLessThanOrEqual() {
     FileValue fileValue = createDefaultFileValue();
@@ -4393,7 +4393,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueLike() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4412,7 +4412,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByNullCaseInstanceVariableValueNotLike() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4431,7 +4431,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueLike() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4460,7 +4460,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueLikeIgnoreCase() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4481,7 +4481,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 1);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueNotLike() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4520,7 +4520,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     verifyQueryResults(query, 0);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testQueryByStringCaseInstanceVariableValueNotLikeIgnoreCase() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -4576,7 +4576,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(2, taskService.createTaskQuery().processVariableValueEquals("var", 12345L).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByProcessVariables() {
     // given three tasks with String process instance variables
@@ -4627,7 +4627,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(3, unorderedTasks.size());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testLocalExecutionVariable.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testLocalExecutionVariable.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByExecutionVariables() {
     // given three tasks with String process instance variables
@@ -4662,7 +4662,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(instance1.getId(), tasks.get(2).getProcessInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByTaskVariables() {
     // given three tasks with String process instance variables
@@ -4697,7 +4697,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(instance1.getId(), tasks.get(2).getProcessInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   @Test
   public void testQueryResultOrderingByCaseInstanceVariables() {
     // given three tasks with String case instance variables
@@ -4722,7 +4722,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(instance1.getId(), tasks.get(2).getCaseInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn")
   @Test
   public void testQueryResultOrderingByCaseExecutionVariables() {
     // given three tasks with String case instance variables
@@ -4778,7 +4778,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(instance3.getId(), tasks.get(2).getCaseInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByVariablesWithNullValues() {
     // given three tasks with String process instance variables
@@ -4813,7 +4813,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByVariablesWithMixedTypes() {
     // given three tasks with String and Integer process instance variables
@@ -4845,7 +4845,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByStringVariableWithMixedCase() {
     // given three tasks with String and Integer process instance variables
@@ -4872,7 +4872,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(instance3.getId(), tasks.get(2).getProcessInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByVariablesOfAllPrimitiveTypes() {
     // given three tasks with String and Integer process instance variables
@@ -5009,7 +5009,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
         matches);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByVariablesWithMixedTypesAndSameColumn() {
     // given three tasks with Integer and Long process instance variables
@@ -5044,7 +5044,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByTwoVariables() {
     // given three tasks with String process instance variables
@@ -5112,7 +5112,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(bInstance1.getId(), tasks.get(5).getProcessInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryResultOrderingByVariablesWithSecondaryOrderingByProcessInstanceId() {
     // given three tasks with String process instance variables
@@ -5264,7 +5264,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/oneTaskWithFormKeyProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/oneTaskWithFormKeyProcess.bpmn20.xml"})
   @Test
   public void testInitializeFormKeys() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("testProcess");
@@ -5320,7 +5320,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     .hasMessage("ENGINE-03052 The form key / form reference is not initialized. You must call initializeFormKeys() on the task query before you can retrieve the form key or the form reference.");
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithFormKey.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithFormKey.cmmn"})
   @Test
   public void testInitializeFormKeysForCaseInstance() {
     String caseDefinitionId = getCaseDefinitionId();
@@ -5334,7 +5334,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryOrderByProcessVariableInteger() {
     ProcessInstance instance500 = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -5369,7 +5369,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(instance250.getId(), tasks.get(2).getProcessInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryOrderByTaskVariableInteger() {
     ProcessInstance instance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5650,7 +5650,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(11, query.count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryByProcessInstanceIdIn() {
     // given three process instances
@@ -5668,7 +5668,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.testProcessDefinition.bpmn20.xml")
   @Test
   public void testQueryByProcessInstanceIdInNonExisting() {
     // given
@@ -5681,7 +5681,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
     assertThat(tasks.size()).isZero();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/task/TaskQueryTest.shouldContainCamundaFormRefIfInitialized.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/task/TaskQueryTest.shouldContainCamundaFormRefIfInitialized.bpmn")
   @Test
   public void shouldContainCamundaFormRefIfInitialized() {
     // given
@@ -5711,7 +5711,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldFindTaskLastUpdatedNullUseCreateDate() {
     // given
     Date beforeStart = getBeforeCurrentTime();
@@ -5728,7 +5728,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldNotFindTaskLastUpdatedNullCreateDateBeforeQueryDate() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5743,7 +5743,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldNotFindTaskLastUpdatedBeforeQueryDate() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5767,7 +5767,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldNotFindTaskLastUpdatedEqualsQueryDate() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5786,7 +5786,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldReturnResultsOrderedByLastUpdatedAsc() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5820,7 +5820,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldReturnResultsOrderedByLastUpdatedDesc() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5894,7 +5894,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_ACTIVITY)
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldNotFindAttachmentAndCommentInfoWithoutQueryParam() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -5911,7 +5911,7 @@ public class TaskQueryTest extends PluggableProcessEngineTest {
   }
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_ACTIVITY)
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldFindAttachmentAndCommentInfoWithQueryParam() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess");

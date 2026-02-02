@@ -193,8 +193,8 @@ public class JobDefinitionDeploymentTest extends PluggableProcessEngineTest {
     assertEquals(processDefinition.getId(), jobDefinition.getProcessDefinitionId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuation.bpmn20.xml",
-      "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testMultipleProcessesWithinDeployment.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuation.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testMultipleProcessesWithinDeployment.bpmn20.xml"})
   @Test
   public void testMultipleProcessDeployment() {
     JobDefinitionQuery query = managementService.createJobDefinitionQuery();

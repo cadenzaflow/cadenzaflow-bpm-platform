@@ -103,9 +103,9 @@ public class MigrationIncidentTest {
   public RuleChain chain = RuleChain.outerRule(engineRule).around(testHelper);
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/migration/calledProcess.bpmn",
-                           "org/camunda/bpm/engine/test/api/runtime/migration/callingProcess.bpmn",
-                           "org/camunda/bpm/engine/test/api/runtime/migration/callingProcess_v2.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/migration/calledProcess.bpmn",
+                           "org/cadenzaflow/bpm/engine/test/api/runtime/migration/callingProcess.bpmn",
+                           "org/cadenzaflow/bpm/engine/test/api/runtime/migration/callingProcess_v2.bpmn"})
   public void testCallActivityExternalTaskIncidentMigration() throws Exception {
     // Given we create a new process instance
     ProcessDefinition callingProcess = engineRule.getRepositoryService()
@@ -149,8 +149,8 @@ public class MigrationIncidentTest {
 
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/migration/calledProcess.bpmn",
-                           "org/camunda/bpm/engine/test/api/runtime/migration/calledProcess_v2.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/migration/calledProcess.bpmn",
+                           "org/cadenzaflow/bpm/engine/test/api/runtime/migration/calledProcess_v2.bpmn"})
   public void testExternalTaskIncidentMigration() throws Exception {
 
     // Given we create a new process instance
@@ -347,8 +347,8 @@ public class MigrationIncidentTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/migration/calledProcess.bpmn",
-                           "org/camunda/bpm/engine/test/api/runtime/migration/calledProcess_v2.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/migration/calledProcess.bpmn",
+                           "org/cadenzaflow/bpm/engine/test/api/runtime/migration/calledProcess_v2.bpmn"})
   public void historicIncidentRemainsOpenAfterMigration() {
 
     // Given we create a new process instance

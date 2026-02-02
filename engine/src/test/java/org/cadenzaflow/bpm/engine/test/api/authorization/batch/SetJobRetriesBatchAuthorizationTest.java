@@ -54,7 +54,7 @@ import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 public class SetJobRetriesBatchAuthorizationTest extends AbstractBatchAuthorizationTest {
 
-  protected static final String DEFINITION_XML = "org/camunda/bpm/engine/test/api/mgmt/ManagementServiceTest.testGetJobExceptionStacktrace.bpmn20.xml";
+  protected static final String DEFINITION_XML = "org/cadenzaflow/bpm/engine/test/api/mgmt/ManagementServiceTest.testGetJobExceptionStacktrace.bpmn20.xml";
   protected static final long BATCH_OPERATIONS = 3;
   protected static final int RETRIES = 5;
 

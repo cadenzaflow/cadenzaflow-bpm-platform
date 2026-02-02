@@ -73,7 +73,7 @@ public class ManagementServiceAsyncOperationsTest extends AbstractAsyncOperation
   }
 
   protected void prepareData() {
-    testRule.deploy("org/camunda/bpm/engine/test/api/mgmt/ManagementServiceTest.testGetJobExceptionStacktrace.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/mgmt/ManagementServiceTest.testGetJobExceptionStacktrace.bpmn20.xml");
     if (processInstanceIds == null) {
       processInstanceIds = new ArrayList<>();
     }

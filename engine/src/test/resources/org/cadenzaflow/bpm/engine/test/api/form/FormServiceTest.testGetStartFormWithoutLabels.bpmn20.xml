@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:camunda="http://camunda.org/schema/1.0/bpmn" 
-    xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
-    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" 
-    xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" 
-    typeLanguage="http://www.w3.org/2001/XMLSchema" 
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+    xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+    xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+    typeLanguage="http://www.w3.org/2001/XMLSchema"
     expressionLanguage="http://www.w3.org/1999/XPath"
     targetNamespace="test">
 
@@ -28,7 +28,7 @@
           </camunda:formField>
           <camunda:formField id="customField" type="string">
             <camunda:validation>
-              <camunda:constraint name="validator" config="org.camunda.bpm.engine.test.api.form.CustomValidator" />
+              <camunda:constraint name="validator" config="org.cadenzaflow.bpm.engine.test.api.form.CustomValidator" />
             </camunda:validation>
           </camunda:formField>
         </camunda:formData>

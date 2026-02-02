@@ -45,10 +45,10 @@ import org.junit.rules.TemporaryFolder;
 
 public class CamundaFormDefinitionDeploymentTest {
 
-  protected static final String SIMPLE_FORM = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.simple_form.form";
-  protected static final String SIMPLE_FORM_DUPLICATE = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.simple_form_duplicate.form";
-  protected static final String COMPLEX_FORM = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.complex_form.form";
-  protected static final String SIMPLE_BPMN = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.simpleBPMN.bpmn";
+  protected static final String SIMPLE_FORM = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.simple_form.form";
+  protected static final String SIMPLE_FORM_DUPLICATE = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.simple_form_duplicate.form";
+  protected static final String COMPLEX_FORM = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.complex_form.form";
+  protected static final String SIMPLE_BPMN = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeploymentTest.simpleBPMN.bpmn";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);

@@ -36,9 +36,9 @@ public class DatabaseNamingConsistencyTest {
 
   public static String COLUMN_NAME_REGEX = "([a-zA-Z_]*(?=[a-z]+)[a-zA-Z_]+_)[,\\s]";
   public static String[] SCANNED_FOLDERS = {
-      "org/camunda/bpm/engine/impl/mapping/entity/",
-      "org/camunda/bpm/engine/db/create", "org/camunda/bpm/engine/db/drop",
-      "org/camunda/bpm/engine/db/liquibase/baseline" };
+      "org/cadenzaflow/bpm/engine/impl/mapping/entity/",
+      "org/cadenzaflow/bpm/engine/db/create", "org/cadenzaflow/bpm/engine/db/drop",
+      "org/cadenzaflow/bpm/engine/db/liquibase/baseline" };
 
   @Test
   public void shouldNotFindLowercaseDbColumnNamesInMappings() {

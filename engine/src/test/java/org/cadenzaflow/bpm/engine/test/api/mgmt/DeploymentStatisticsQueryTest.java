@@ -40,8 +40,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
     String deploymentName = "my deployment";
 
     org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
         .name(deploymentName)
         .deploy();
     runtimeService.startProcessInstanceByKey("MIExampleProcess");
@@ -76,16 +76,16 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   @Test
   public void testDeploymentStatisticsQueryCountAndPaging() {
     org.cadenzaflow.bpm.engine.repository.Deployment deployment = repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
         .deploy();
 
     runtimeService.startProcessInstanceByKey("MIExampleProcess");
     runtimeService.startProcessInstanceByKey("ParGatewayExampleProcess");
 
     org.cadenzaflow.bpm.engine.repository.Deployment anotherDeployment = repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml")
         .deploy();
 
     runtimeService.startProcessInstanceByKey("MIExampleProcess");
@@ -103,8 +103,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
-  "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
   public void testDeploymentStatisticsQueryWithFailedJobs() {
 
     Map<String, Object> parameters = new HashMap<String, Object>();
@@ -123,8 +123,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
-  "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
   public void testDeploymentStatisticsQueryWithIncidents() {
 
     Map<String, Object> parameters = new HashMap<String, Object>();
@@ -153,8 +153,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
-  "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
   public void testDeploymentStatisticsQueryWithIncidentType() {
 
     Map<String, Object> parameters = new HashMap<String, Object>();
@@ -186,8 +186,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
-  "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
   public void testDeploymentStatisticsQueryWithInvalidIncidentType() {
 
     Map<String, Object> parameters = new HashMap<String, Object>();
@@ -214,8 +214,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
-  "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testStatisticsQueryWithFailedJobs.bpmn20.xml"})
   public void testDeploymentStatisticsQueryWithIncidentsAndFailedJobs() {
 
     Map<String, Object> parameters = new HashMap<String, Object>();
@@ -250,7 +250,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testCallActivityWithIncidentsWithoutFailedJobs.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testCallActivityWithIncidentsWithoutFailedJobs.bpmn20.xml")
   public void testDeploymentStatisticsQueryWithTwoIncidentsAndOneFailedJobs() {
     runtimeService.startProcessInstanceByKey("callExampleSubProcess");
 
@@ -282,8 +282,8 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
 
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testMultiInstanceStatisticsQuery.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testParallelGatewayStatisticsQuery.bpmn20.xml"})
   public void testDeploymentStatisticsQueryWithoutRunningInstances() {
     List<DeploymentStatistics> statistics =
         managementService.createDeploymentStatisticsQuery().includeFailedJobs().list();
@@ -295,7 +295,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
     Assert.assertEquals(0, result.getFailedJobs());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
   @Test
   public void testQueryByIncidentsWithFailedTimerStartEvent() {
 
@@ -324,7 +324,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
     assertEquals(Incident.FAILED_JOB_HANDLER_TYPE, incidentStatistic.getIncidentType());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
   @Test
   public void testQueryByIncidentTypeWithFailedTimerStartEvent() {
 
@@ -353,7 +353,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
     assertEquals(Incident.FAILED_JOB_HANDLER_TYPE, incidentStatistic.getIncidentType());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
   @Test
   public void testQueryByFailedJobsWithFailedTimerStartEvent() {
 
@@ -375,7 +375,7 @@ public class DeploymentStatisticsQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, result.getFailedJobs());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/StatisticsTest.testFailedTimerStartEvent.bpmn20.xml")
   @Test
   public void testQueryByFailedJobsAndIncidentsWithFailedTimerStartEvent() {
 

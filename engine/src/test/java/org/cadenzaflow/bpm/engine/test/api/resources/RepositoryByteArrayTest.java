@@ -80,9 +80,9 @@ public class RepositoryByteArrayTest {
     Date fixedDate = new Date();
     ClockUtil.setCurrentTime(fixedDate);
 
-    String bpmnDeploymentId = testRule.deploy("org/camunda/bpm/engine/test/repository/one.bpmn20.xml").getId();
-    String dmnDeploymentId = testRule.deploy("org/camunda/bpm/engine/test/repository/one.dmn").getId();
-    String cmmnDeplymentId = testRule.deploy("org/camunda/bpm/engine/test/repository/one.cmmn").getId();
+    String bpmnDeploymentId = testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/one.bpmn20.xml").getId();
+    String dmnDeploymentId = testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/one.dmn").getId();
+    String cmmnDeplymentId = testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/one.cmmn").getId();
 
     checkResource(fixedDate, bpmnDeploymentId);
     checkResource(fixedDate, dmnDeploymentId);
@@ -94,11 +94,11 @@ public class RepositoryByteArrayTest {
     Date fixedDate = new Date();
     ClockUtil.setCurrentTime(fixedDate);
 
-    String deploymentId = testRule.deploy("org/camunda/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/form/start.html",
-        "org/camunda/bpm/engine/test/api/form/task.html",
-        "org/camunda/bpm/engine/test/api/authorization/renderedFormProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn").getId();
+    String deploymentId = testRule.deploy("org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+        "org/cadenzaflow/bpm/engine/test/api/form/task.html",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/renderedFormProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn").getId();
 
     List<Resource> deploymentResources = repositoryService.getDeploymentResources(deploymentId);
     assertEquals(5, deploymentResources.size());

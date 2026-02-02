@@ -56,26 +56,26 @@ import org.junit.Test;
 public class ProcessInstanceModificationCancellationTest extends PluggableProcessEngineTest {
 
   // the four patterns as described above
-  protected static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
-  protected static final String ONE_SCOPE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.oneScopeTaskProcess.bpmn20.xml";
-  protected static final String CONCURRENT_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
-  protected static final String CONCURRENT_SCOPE_TASKS_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGatewayScopeTasks.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_SCOPE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.oneScopeTaskProcess.bpmn20.xml";
+  protected static final String CONCURRENT_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
+  protected static final String CONCURRENT_SCOPE_TASKS_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGatewayScopeTasks.bpmn20.xml";
 
   // the four patterns nested in a subprocess and with an outer parallel task
-  protected static final String NESTED_PARALLEL_ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelOneTaskProcess.bpmn20.xml";
-  protected static final String NESTED_PARALLEL_ONE_SCOPE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelOneScopeTaskProcess.bpmn20.xml";
-  protected static final String NESTED_PARALLEL_CONCURRENT_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelGateway.bpmn20.xml";
-  protected static final String NESTED_PARALLEL_CONCURRENT_SCOPE_TASKS_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelGatewayScopeTasks.bpmn20.xml";
+  protected static final String NESTED_PARALLEL_ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelOneTaskProcess.bpmn20.xml";
+  protected static final String NESTED_PARALLEL_ONE_SCOPE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelOneScopeTaskProcess.bpmn20.xml";
+  protected static final String NESTED_PARALLEL_CONCURRENT_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelGateway.bpmn20.xml";
+  protected static final String NESTED_PARALLEL_CONCURRENT_SCOPE_TASKS_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.nestedParallelGatewayScopeTasks.bpmn20.xml";
 
-  protected static final String LISTENER_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.listenerProcess.bpmn20.xml";
-  protected static final String FAILING_OUTPUT_MAPPINGS_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.failingOutputMappingProcess.bpmn20.xml";
+  protected static final String LISTENER_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.listenerProcess.bpmn20.xml";
+  protected static final String FAILING_OUTPUT_MAPPINGS_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.failingOutputMappingProcess.bpmn20.xml";
 
-  protected static final String INTERRUPTING_EVENT_SUBPROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.interruptingEventSubProcess.bpmn20.xml";
+  protected static final String INTERRUPTING_EVENT_SUBPROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.interruptingEventSubProcess.bpmn20.xml";
 
-  protected static final String CALL_ACTIVITY_PROCESS = "org/camunda/bpm/engine/test/bpmn/callactivity/CallActivity.testCallSimpleSubProcess.bpmn20.xml";
-  protected static final String SIMPLE_SUBPROCESS = "org/camunda/bpm/engine/test/bpmn/callactivity/simpleSubProcess.bpmn20.xml";
-  protected static final String TWO_SUBPROCESSES = "org/camunda/bpm/engine/test/bpmn/callactivity/CallActivity.testTwoSubProcesses.bpmn20.xml";
-  protected static final String NESTED_CALL_ACTIVITY = "org/camunda/bpm/engine/test/bpmn/callactivity/CallActivity.testNestedCallActivity.bpmn20.xml";
+  protected static final String CALL_ACTIVITY_PROCESS = "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/CallActivity.testCallSimpleSubProcess.bpmn20.xml";
+  protected static final String SIMPLE_SUBPROCESS = "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/simpleSubProcess.bpmn20.xml";
+  protected static final String TWO_SUBPROCESSES = "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/CallActivity.testTwoSubProcesses.bpmn20.xml";
+  protected static final String NESTED_CALL_ACTIVITY = "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/CallActivity.testNestedCallActivity.bpmn20.xml";
 
 
 

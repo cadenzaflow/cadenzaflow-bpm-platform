@@ -247,7 +247,7 @@ public class ScriptTaskGraalJsTest extends AbstractScriptTaskTest {
       deployProcess(GRAALJS,
           // WHEN
           // we load a function from an external file
-          "load(\"" + getNormalizedResourcePath("/org/camunda/bpm/engine/test/bpmn/scripttask/sum.js") + "\");"
+          "load(\"" + getNormalizedResourcePath("/org/cadenzaflow/bpm/engine/test/bpmn/scripttask/sum.js") + "\");"
           // THEN
           // we can use that function
         + "execution.setVariable('foo', sum(3, 4));"

@@ -39,7 +39,7 @@ import org.junit.Test;
  */
 public class InterruptingEventSubProcessTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources="org/camunda/bpm/engine/test/bpmn/subprocess/InterruptingEventSubProcessTest.testCancelEventSubscriptions.bpmn")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/bpmn/subprocess/InterruptingEventSubProcessTest.testCancelEventSubscriptions.bpmn")
   @Test
   public void testCancelEventSubscriptionsWhenReceivingAMessage() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("process");
@@ -74,7 +74,7 @@ public class InterruptingEventSubProcessTest extends PluggableProcessEngineTest 
     testRule.assertProcessEnded(pi.getId());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/bpmn/subprocess/InterruptingEventSubProcessTest.testCancelEventSubscriptions.bpmn")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/bpmn/subprocess/InterruptingEventSubProcessTest.testCancelEventSubscriptions.bpmn")
   @Test
   public void testCancelEventSubscriptionsWhenReceivingASignal() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("process");

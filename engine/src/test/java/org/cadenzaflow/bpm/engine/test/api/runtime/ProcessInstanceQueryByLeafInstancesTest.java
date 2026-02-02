@@ -45,8 +45,8 @@ public class ProcessInstanceQueryByLeafInstancesTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/superProcessWithNestedSubProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/runtime/nestedSubProcess.bpmn20.xml", "org/camunda/bpm/engine/test/api/runtime/subProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/superProcessWithNestedSubProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/runtime/nestedSubProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/api/runtime/subProcess.bpmn20.xml" })
   public void testQueryByLeafInstancesThreeLayers() {
     /*
      * nested structure:
@@ -68,8 +68,8 @@ public class ProcessInstanceQueryByLeafInstancesTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/nestedSubProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/runtime/subProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/nestedSubProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/runtime/subProcess.bpmn20.xml" })
   public void testQueryByLeafInstancesTwoLayers() {
     /*
      * nested structure:
@@ -89,7 +89,7 @@ public class ProcessInstanceQueryByLeafInstancesTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/subProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/subProcess.bpmn20.xml" })
   public void testQueryByLeafInstancesOneLayer() {
     ProcessInstance process = runtimeService.startProcessInstanceByKey("simpleSubProcess");
     ProcessInstanceQuery simpleSubProcessQuery = runtimeService.createProcessInstanceQuery().processDefinitionKey("simpleSubProcess");

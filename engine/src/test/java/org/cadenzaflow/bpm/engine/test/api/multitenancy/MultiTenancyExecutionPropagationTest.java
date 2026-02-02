@@ -46,8 +46,8 @@ import org.junit.Test;
 
 public class MultiTenancyExecutionPropagationTest extends PluggableProcessEngineTest {
 
-  protected static final String CMMN_FILE = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
-  protected static final String SET_VARIABLE_CMMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/HumanTaskSetVariableExecutionListener.cmmn";
+  protected static final String CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+  protected static final String SET_VARIABLE_CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/HumanTaskSetVariableExecutionListener.cmmn";
 
   protected static final String PROCESS_DEFINITION_KEY = "testProcess";
   protected static final String TENANT_ID = "tenant1";
@@ -278,7 +278,7 @@ public class MultiTenancyExecutionPropagationTest extends PluggableProcessEngine
   @Test
   public void testPropagateTenantIdToCompensationEventSubscription() {
 
-    testRule.deployForTenant(TENANT_ID, "org/camunda/bpm/engine/test/api/multitenancy/compensationBoundaryEvent.bpmn");
+    testRule.deployForTenant(TENANT_ID, "org/cadenzaflow/bpm/engine/test/api/multitenancy/compensationBoundaryEvent.bpmn");
 
     startProcessInstance(PROCESS_DEFINITION_KEY);
 

@@ -56,7 +56,7 @@ public class ImplicitVariableUpdateDisabledTest {
     runtimeService = engineRule.getRuntimeService();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/variables/ImplicitVariableUpdateTest.sequence.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/variables/ImplicitVariableUpdateTest.sequence.bpmn20.xml")
   @Test
   public void testUpdate() {
     ProcessInstance instance = runtimeService.startProcessInstanceByKey("serviceTaskProcess",
@@ -76,7 +76,7 @@ public class ImplicitVariableUpdateDisabledTest {
    * the variable is also not implicitly updated when only the serialized
    * value changes (without explicit instructions to change the object)
    */
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/variables/ImplicitVariableUpdateTest.sequence.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/variables/ImplicitVariableUpdateTest.sequence.bpmn20.xml")
   @Test
   public void testSerialization() {
     ProcessInstance instance = runtimeService.startProcessInstanceByKey("serviceTaskProcess",

@@ -79,7 +79,7 @@ public class MultiTenancyExternalTaskCmdsTenantCheckTest {
     identityService = engineRule.getIdentityService();
 
     testRule.deployForTenant(TENANT_ONE,
-      "org/camunda/bpm/engine/test/api/externaltask/twoExternalTaskProcess.bpmn20.xml");
+      "org/cadenzaflow/bpm/engine/test/api/externaltask/twoExternalTaskProcess.bpmn20.xml");
 
     processInstanceId = engineRule.getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY).getId();
 
@@ -156,7 +156,7 @@ public class MultiTenancyExternalTaskCmdsTenantCheckTest {
   @Test
   public void testFetchAndLockWithTenantId() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
     engineRule.getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY_ONE).getId();
     identityService.setAuthentication("aUserId", null,  Arrays.asList(TENANT_ONE));
 
@@ -186,10 +186,10 @@ public class MultiTenancyExternalTaskCmdsTenantCheckTest {
   @Test
   public void testFetchAndLockWithTenantIdInTwoTenants() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/externaltask/twoExternalTaskWithPriorityProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/externaltask/twoExternalTaskWithPriorityProcess.bpmn20.xml");
     engineRule.getRuntimeService().startProcessInstanceByKey("twoExternalTaskWithPriorityProcess").getId();
     testRule.deployForTenant(TENANT_TWO,
-        "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
+        "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
     String instanceId = engineRule.getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY_ONE).getId();
 
     // when

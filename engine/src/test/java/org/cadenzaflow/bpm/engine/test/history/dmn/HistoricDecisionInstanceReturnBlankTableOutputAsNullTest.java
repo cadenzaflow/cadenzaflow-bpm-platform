@@ -40,7 +40,7 @@ public class HistoricDecisionInstanceReturnBlankTableOutputAsNullTest {
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 
-  public static final String RESULT_TEST_DMN = "org/camunda/bpm/engine/test/history/ReturnBlankTableOutputAsNull.dmn";
+  public static final String RESULT_TEST_DMN = "org/cadenzaflow/bpm/engine/test/history/ReturnBlankTableOutputAsNull.dmn";
 
   @Test
   @Deployment(resources = RESULT_TEST_DMN)

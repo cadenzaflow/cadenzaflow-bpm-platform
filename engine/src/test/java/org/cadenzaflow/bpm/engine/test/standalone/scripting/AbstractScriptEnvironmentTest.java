@@ -37,7 +37,7 @@ import org.junit.Before;
 
 public abstract class AbstractScriptEnvironmentTest extends PluggableProcessEngineTest {
 
-  protected final String processPath = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected final String processPath = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
 
   protected ScriptEnvResolver resolver;
   protected ScriptFactory scriptFactory;

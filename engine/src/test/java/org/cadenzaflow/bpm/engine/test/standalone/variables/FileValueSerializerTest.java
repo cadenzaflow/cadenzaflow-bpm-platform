@@ -100,7 +100,7 @@ public class FileValueSerializerTest {
   public void testWriteMimetypeFilenameAndBytesValue() throws UnsupportedEncodingException {
     String filename = "test.txt";
     String mimeType = "text/json";
-    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt");
+    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt");
     FileValue fileValue = Variables.fileValue(filename).mimeType(mimeType).file(is).create();
     ValueFields valueFields = new MockValueFields();
 
@@ -116,7 +116,7 @@ public class FileValueSerializerTest {
     String filename = "test.txt";
     String mimeType = "text/json";
     Charset encoding = Charset.forName("UTF-8");
-    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt");
+    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt");
     FileValue fileValue = Variables.fileValue(filename).mimeType(mimeType).encoding(encoding).file(is).create();
     ValueFields valueFields = new MockValueFields();
 
@@ -129,7 +129,7 @@ public class FileValueSerializerTest {
 
   @Test
   public void testWriteMimetypeFilenameAndBytesValueWithShortcutMethod() throws URISyntaxException, UnsupportedEncodingException {
-    File file = new File(this.getClass().getClassLoader().getResource("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt").toURI());
+    File file = new File(this.getClass().getClassLoader().getResource("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt").toURI());
     FileValue fileValue = Variables.fileValue(file);
     ValueFields valueFields = new MockValueFields();
 
@@ -147,7 +147,7 @@ public class FileValueSerializerTest {
 
   @Test
   public void testReadFileNameMimeTypeAndByteArray() throws IOException {
-    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt");
+    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt");
     byte[] data = new byte[is.available()];
     DataInputStream dataInputStream = new DataInputStream(is);
     dataInputStream.readFully(data);
@@ -168,7 +168,7 @@ public class FileValueSerializerTest {
 
   @Test
   public void testReadFileNameEncodingAndByteArray() throws IOException {
-    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt");
+    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt");
     byte[] data = new byte[is.available()];
     DataInputStream dataInputStream = new DataInputStream(is);
     dataInputStream.readFully(data);
@@ -190,7 +190,7 @@ public class FileValueSerializerTest {
 
   @Test
   public void testReadFullValue() throws IOException {
-    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt");
+    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt");
     byte[] data = new byte[is.available()];
     DataInputStream dataInputStream = new DataInputStream(is);
     dataInputStream.readFully(data);
@@ -214,7 +214,7 @@ public class FileValueSerializerTest {
 
   @Test
   public void testReadFilenameAndByteArrayValue() throws IOException {
-    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/camunda/bpm/engine/test/standalone/variables/simpleFile.txt");
+    InputStream is = this.getClass().getClassLoader().getResourceAsStream("org/cadenzaflow/bpm/engine/test/standalone/variables/simpleFile.txt");
     byte[] data = new byte[is.available()];
     DataInputStream dataInputStream = new DataInputStream(is);
     dataInputStream.readFully(data);

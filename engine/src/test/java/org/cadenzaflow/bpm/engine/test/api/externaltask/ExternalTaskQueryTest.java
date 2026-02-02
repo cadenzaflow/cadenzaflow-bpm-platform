@@ -65,7 +65,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     ClockUtil.reset();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testSingleResult() {
     // given
@@ -89,21 +89,21 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertFalse(externalTask.isSuspended());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testList() {
     startInstancesByKey("oneExternalTaskProcess", 5);
     assertEquals(5, externalTaskService.createExternalTaskQuery().list().size());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testCount() {
     startInstancesByKey("oneExternalTaskProcess", 5);
     assertEquals(5, externalTaskService.createExternalTaskQuery().count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByLockState() {
     // given
@@ -126,13 +126,13 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByProcessDefinitionId() {
     // given
     org.cadenzaflow.bpm.engine.repository.Deployment secondDeployment = repositoryService
       .createDeployment()
-      .addClasspathResource("org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
       .deploy();
 
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().list();
@@ -165,7 +165,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     repositoryService.deleteDeployment(secondDeployment.getId(), true);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/parallelExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/parallelExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByActivityId() {
     // given
@@ -184,7 +184,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/parallelExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/parallelExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByActivityIdIn() {
     // given
@@ -215,7 +215,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/parallelExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/parallelExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByTopicName() {
     // given
@@ -234,7 +234,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByProcessInstanceId() {
     // given
@@ -251,7 +251,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(processInstances.get(0).getId(), task.getProcessInstanceId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByLargeListOfProcessInstanceIdIn() {
     // given
@@ -274,7 +274,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByProcessInstanceIdIn() {
     // given
@@ -316,7 +316,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByExecutionId() {
     // given
@@ -340,7 +340,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(executionId, externalTask.getExecutionId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByWorkerId() {
     // given
@@ -361,7 +361,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByLockExpirationTime() {
     // given
@@ -461,8 +461,8 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/api/externaltask/twoExternalTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/api/externaltask/twoExternalTaskProcess.bpmn20.xml"})
   @Test
   public void testQuerySorting() {
 
@@ -515,7 +515,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     verifySorting(tasks, inverted(externalTaskByLockExpirationTime()));
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryBySuspensionState() {
     // given
@@ -539,7 +539,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByRetries() {
     // given
@@ -567,7 +567,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryById() {
     // given
@@ -585,7 +585,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(firstTask.getId(), resultTask.getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByIds() {
     // given
@@ -599,7 +599,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(query.count()).isEqualTo(2L);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByIdsWithNull() {
     // given
@@ -613,7 +613,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByIdsWithEmptyList() {
     // given
@@ -627,7 +627,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryByBusinessKey() {
     // given
@@ -642,7 +642,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(businessKey, externalTask.getBusinessKey());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testQueryListByBusinessKey() {
     for (int i = 0; i < 5; i++) {
@@ -675,7 +675,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(task.getProcessDefinitionVersionTag()).isEqualTo("1.2.3.4");
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessDefinitionKey() throws Exception {
     assertEquals(0, externalTaskService.createExternalTaskQuery().processDefinitionKey("oneExternalTaskProcess").count());
@@ -683,7 +683,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processDefinitionKey("oneExternalTaskProcess").count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessDefinitionKeyIn() throws Exception {
     assertEquals(0, externalTaskService.createExternalTaskQuery().processDefinitionKeyIn("oneExternalTaskProcess").count());
@@ -691,7 +691,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processDefinitionKeyIn("oneExternalTaskProcess").count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessDefinitionName() throws Exception {
     assertEquals(0, externalTaskService.createExternalTaskQuery().processDefinitionName("One external task process").count());
@@ -699,7 +699,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processDefinitionName("One external task process").count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void processDefinitionNameLike() throws Exception {
     assertEquals(0, externalTaskService.createExternalTaskQuery().processDefinitionNameLike("One external task proc%").count());
@@ -707,7 +707,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processDefinitionNameLike("One external task proc%").count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueEquals() throws Exception {
     Map<String, Object> variables = new HashMap<>();
@@ -754,7 +754,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, externalTaskService.createExternalTaskQuery().processVariableValueNotEquals("longVar", 928374L).count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableNameEqualsIgnoreCase() throws Exception {
     String variableName = "someVariable";
@@ -772,7 +772,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processVariableValueEquals(variableName.toLowerCase(), variableValue).matchVariableNamesIgnoreCase().count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueEqualsIgnoreCase() throws Exception {
     String variableName = "someVariable";
@@ -803,7 +803,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, externalTaskService.createExternalTaskQuery().matchVariableValuesIgnoreCase().processVariableValueNotEquals(variableName, variableValue.toLowerCase()).count());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueLike() throws Exception {
     Map<String, Object> variables = new HashMap<>();
@@ -828,7 +828,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     } catch (final ProcessEngineException e) {/*OK*/}
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueLikeIgnoreCase() throws Exception {
 
@@ -855,7 +855,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     } catch (final ProcessEngineException e) {/*OK*/}
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueNotLike() throws Exception {
     Map<String, Object> variables = new HashMap<>();
@@ -878,7 +878,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
             .isInstanceOf(ProcessEngineException.class);
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueNotLikeIgnoreCase() throws Exception {
     Map<String, Object> variables = new HashMap<>();
@@ -902,7 +902,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
             .isInstanceOf(ProcessEngineException.class);
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueCompare() throws Exception {
 
@@ -1009,7 +1009,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(0, externalTaskService.createExternalTaskQuery().processVariableValueLessThanOrEquals("nonExisting", 123).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueEqualsNumber() throws Exception {
     // long
@@ -1051,7 +1051,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processVariableValueEquals("var", Variables.numberValue(null)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testProcessVariableValueNumberComparison() throws Exception {
     // long
@@ -1092,7 +1092,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(4, externalTaskService.createExternalTaskQuery().processVariableValueLessThanOrEquals("var", Variables.numberValue(123)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testVariableEqualsNumberMax() throws Exception {
     runtimeService.startProcessInstanceByKey("oneExternalTaskProcess",
@@ -1104,7 +1104,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processVariableValueEquals("var", Variables.numberValue(Long.MAX_VALUE)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testVariableEqualsNumberLongValueOverflow() throws Exception {
     runtimeService.startProcessInstanceByKey("oneExternalTaskProcess",
@@ -1118,7 +1118,7 @@ public class ExternalTaskQueryTest extends PluggableProcessEngineTest {
     assertEquals(1, externalTaskService.createExternalTaskQuery().processVariableValueEquals("var", Variables.numberValue(MAX_DOUBLE_VALUE)).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   @Test
   public void testVariableEqualsNumberNonIntegerDoubleShouldNotMatchInteger() throws Exception {
     runtimeService.startProcessInstanceByKey("oneExternalTaskProcess",

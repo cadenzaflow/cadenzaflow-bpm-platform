@@ -151,7 +151,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   @Test
   public void testInputExternalScriptValueAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
+    variables.put("scriptPath", "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
     runtimeService.startProcessInstanceByKey("testProcess", variables);
     Execution execution = runtimeService.createExecutionQuery().activityId("wait").singleResult();
 
@@ -191,7 +191,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   @Test
   public void testInputExternalClasspathScriptValueAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "classpath://org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
+    variables.put("scriptPath", "classpath://org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
     runtimeService.startProcessInstanceByKey("testProcess", variables);
     Execution execution = runtimeService.createExecutionQuery().activityId("wait").singleResult();
 
@@ -216,8 +216,8 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputExternalDeploymentScriptValue.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputExternalDeploymentScriptValue.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
   })
   @Test
   public void testInputExternalDeploymentScriptValue() {
@@ -231,13 +231,13 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputExternalDeploymentScriptValueAsVariable.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputExternalDeploymentScriptValueAsVariable.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
   })
   @Test
   public void testInputExternalDeploymentScriptValueAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "deployment://org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
+    variables.put("scriptPath", "deployment://org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
     runtimeService.startProcessInstanceByKey("testProcess", variables);
     Execution execution = runtimeService.createExecutionQuery().activityId("wait").singleResult();
 
@@ -248,8 +248,8 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputExternalDeploymentScriptValueAsBean.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputExternalDeploymentScriptValueAsBean.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
   })
   @Test
   public void testInputExternalDeploymentScriptValueAsBean() {
@@ -424,7 +424,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
     assertEquals("tomato", value.get("b"));
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputMapElKey.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInputMapElKey.bpmn")
   @Test
   public void testInputMapElUndefinedKey() {
     try {
@@ -552,7 +552,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   @Test
   public void testOutputExternalScriptValueAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
+    variables.put("scriptPath", "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("testProcess", variables);
 
     VariableInstance variable = runtimeService.createVariableInstanceQuery().variableName("var1").singleResult();
@@ -589,7 +589,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   @Test
   public void testOutputExternalClasspathScriptValueAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "classpath://org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
+    variables.put("scriptPath", "classpath://org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("testProcess", variables);
 
     VariableInstance variable = runtimeService.createVariableInstanceQuery().variableName("var1").singleResult();
@@ -612,8 +612,8 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputExternalDeploymentScriptValue.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputExternalDeploymentScriptValue.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
   })
   @Test
   public void testOutputExternalDeploymentScriptValue() {
@@ -626,13 +626,13 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputExternalDeploymentScriptValueAsVariable.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputExternalDeploymentScriptValueAsVariable.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
   })
   @Test
   public void testOutputExternalDeploymentScriptValueAsVariable() {
     Map<String, Object> variables = new HashMap<String, Object>();
-    variables.put("scriptPath", "deployment://org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
+    variables.put("scriptPath", "deployment://org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy");
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("testProcess", variables);
 
     VariableInstance variable = runtimeService.createVariableInstanceQuery().variableName("var1").singleResult();
@@ -642,8 +642,8 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputExternalDeploymentScriptValueAsBean.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputExternalDeploymentScriptValueAsBean.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"
   })
   @Test
   public void testOutputExternalDeploymentScriptValueAsBean() {
@@ -816,7 +816,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
     assertEquals("tomato", value.get("b"));
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputMapElKey.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testOutputMapElKey.bpmn")
   @Test
   public void testOutputMapElUndefinedKey() {
     try {
@@ -834,7 +834,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
     try {
       repositoryService
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInterruptingEventSubprocessIoSupport.bpmn")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testInterruptingEventSubprocessIoSupport.bpmn")
         .deploy();
       fail("exception expected");
     } catch (ParseException e) {
@@ -1018,7 +1018,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
   public void testMIOutputMappingDisallowed() {
     try {
       repositoryService.createDeployment()
-      .addClasspathResource("org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testMIOutputMappingDisallowed.bpmn20.xml")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testMIOutputMappingDisallowed.bpmn20.xml")
       .deploy();
       fail("Exception expected");
     } catch (ParseException e) {
@@ -1028,7 +1028,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
   @Ignore
   @Test
   public void testBpmnErrorInScriptInputMapping() {
@@ -1041,7 +1041,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
     assertThat(task.getName()).isEqualTo("User Task");
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
   @Test
   public void testExceptionInScriptInputMapping() {
     String exceptionMessage = "myException";
@@ -1055,7 +1055,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
   @Ignore
   @Test
   public void testBpmnErrorInScriptOutputMapping() {
@@ -1068,7 +1068,7 @@ public class InputOutputTest extends PluggableProcessEngineTest {
     assertThat(task.getName()).isEqualTo("User Task");
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/iomapping/InputOutputTest.testThrowErrorInScriptInputOutputMapping.bpmn")
   @Test
   public void testExceptionInScriptOutputMapping() {
     String exceptionMessage = "myException";

@@ -109,7 +109,7 @@ public class HistoryCleanupDmnDisabledTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+      "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void historyCleanupWithDisabledDmn() {
 
     prepareHistoricProcesses("oneTaskProcess");

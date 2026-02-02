@@ -51,7 +51,7 @@ public class TaskIdentityLinksTest extends PluggableProcessEngineTest {
   @Rule
   public ProcessEngineLoggingRule loggingRule = new ProcessEngineLoggingRule().level(Level.ERROR);
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
   @Test
   public void testCandidateUserLink() {
     runtimeService.startProcessInstanceByKey("IdentityLinksProcess");
@@ -81,7 +81,7 @@ public class TaskIdentityLinksTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.getIdentityLinksForTask(taskId).size());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
   @Test
   public void testCandidateGroupLink() {
     try {
@@ -189,7 +189,7 @@ public class TaskIdentityLinksTest extends PluggableProcessEngineTest {
     throw new AssertionError("no task event found with action "+action);
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
   @Test
   public void testCustomTypeUserLink() {
     runtimeService.startProcessInstanceByKey("IdentityLinksProcess");
@@ -216,7 +216,7 @@ public class TaskIdentityLinksTest extends PluggableProcessEngineTest {
     assertEquals(0, taskService.getIdentityLinksForTask(taskId).size());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/api/task/IdentityLinksProcess.bpmn20.xml")
   @Test
   public void testCustomLinkGroupLink() {
     runtimeService.startProcessInstanceByKey("IdentityLinksProcess");

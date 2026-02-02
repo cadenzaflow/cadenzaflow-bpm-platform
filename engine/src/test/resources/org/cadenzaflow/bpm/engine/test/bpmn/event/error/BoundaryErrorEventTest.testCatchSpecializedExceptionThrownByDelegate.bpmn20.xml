@@ -3,16 +3,16 @@
   xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
   xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
   targetNamespace="Examples">
-  
-  <error id="myException" errorCode="org.camunda.bpm.engine.test.bpmn.event.error.MyBusinessException"/>
-  
+
+  <error id="myException" errorCode="org.cadenzaflow.bpm.engine.test.bpmn.event.error.MyBusinessException"/>
+
   <process id="testCatchSpecializedExceptionThrownByDelegate" isExecutable="true">
   
     <startEvent id="theStart" />
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="serviceTask" />
-    
-    <serviceTask id="serviceTask" camunda:class="org.camunda.bpm.engine.test.bpmn.event.error.ThrowSpecializedExceptionDelegate" />
-    
+
+    <serviceTask id="serviceTask" camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.event.error.ThrowSpecializedExceptionDelegate" />
+
     <boundaryEvent id="catchException" attachedToRef="serviceTask">
       <errorEventDefinition errorRef="myException"/>
     </boundaryEvent>

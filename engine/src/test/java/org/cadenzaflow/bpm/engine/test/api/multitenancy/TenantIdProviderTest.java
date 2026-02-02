@@ -66,7 +66,7 @@ import org.junit.rules.RuleChain;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class TenantIdProviderTest {
 
-  protected static final String CONFIGURATION_RESOURCE = "org/camunda/bpm/engine/test/api/multitenancy/TenantIdProviderTest.camunda.cfg.xml";
+  protected static final String CONFIGURATION_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/TenantIdProviderTest.camunda.cfg.xml";
 
   protected static final String PROCESS_DEFINITION_KEY = "testProcess";
   protected static final String DECISION_DEFINITION_KEY = "decision";
@@ -79,12 +79,12 @@ public class TenantIdProviderTest {
         .camundaAsyncBefore()
       .done();
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
 
-  protected static final String CMMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithCaseTask.cmmn";
-  protected static final String CMMN_FILE_WITH_MANUAL_ACTIVATION = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithCaseTaskWithManualActivation.cmmn";
-  protected static final String CMMN_VARIABLE_FILE = "org/camunda/bpm/engine/test/api/multitenancy/CaseWithCaseTaskVariables.cmmn";
-  protected static final String CMMN_SUBPROCESS_FILE = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+  protected static final String CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithCaseTask.cmmn";
+  protected static final String CMMN_FILE_WITH_MANUAL_ACTIVATION = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithCaseTaskWithManualActivation.cmmn";
+  protected static final String CMMN_VARIABLE_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithCaseTaskVariables.cmmn";
+  protected static final String CMMN_SUBPROCESS_FILE = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
   protected static final String TENANT_ID = "tenant1";
   protected static final String TENANT_TWO = "tenant2";
@@ -147,7 +147,7 @@ public class TenantIdProviderTest {
 
     // given a deployment without a tenant id
     testRule.deploy(Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().done(),
-                                            "org/camunda/bpm/engine/test/api/form/util/request.html");
+                                            "org/cadenzaflow/bpm/engine/test/api/form/util/request.html");
 
     // when a process instance is started with a start form
     String processDefinitionId = engineRule.getRepositoryService()
@@ -173,7 +173,7 @@ public class TenantIdProviderTest {
 
     // given a deployment with a tenant id
     testRule.deployForTenant(TENANT_ID, Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().done(),
-                                            "org/camunda/bpm/engine/test/api/form/util/request.html");
+                                            "org/cadenzaflow/bpm/engine/test/api/form/util/request.html");
 
     // when a process instance is started with a start form
     String processDefinitionId = engineRule.getRepositoryService()
@@ -199,7 +199,7 @@ public class TenantIdProviderTest {
     testRule.deploy(Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY)
                                                 .startEvent().userTask("task")
                                                 .endEvent().done(),
-                                            "org/camunda/bpm/engine/test/api/form/util/request.html");
+                                            "org/cadenzaflow/bpm/engine/test/api/form/util/request.html");
 
     // when a process instance is created and the instance is set to a starting point
     String processInstanceId = engineRule.getRuntimeService()
@@ -219,7 +219,7 @@ public class TenantIdProviderTest {
     testRule.deployForTenant(TENANT_ID, Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY)
                                                                    .startEvent().userTask("task")
                                                                    .endEvent().done(),
-                                            "org/camunda/bpm/engine/test/api/form/util/request.html");
+                                            "org/cadenzaflow/bpm/engine/test/api/form/util/request.html");
 
     // when a process instance is created and the instance is set to a starting point
     String processInstanceId = engineRule.getRuntimeService()
@@ -459,7 +459,7 @@ public class TenantIdProviderTest {
 
     testRule.deploy(
         Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().userTask().done(),
-        "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
+        "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
 
     // if the case is started
     engineRule.getCaseService().createCaseInstanceByKey("testCase");
@@ -478,7 +478,7 @@ public class TenantIdProviderTest {
 
     testRule.deployForTenant(TENANT_ID,
         Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().userTask().done(),
-        "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
+        "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
 
     // if the case is started
     engineRule.getCaseService().createCaseInstanceByKey("testCase");
@@ -496,7 +496,7 @@ public class TenantIdProviderTest {
 
     testRule.deploy(
         Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().userTask().done(),
-        "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
+        "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
 
     // if the case is started
     engineRule.getCaseService().createCaseInstanceByKey("testCase", Variables.createVariables().putValue("varName", true));
@@ -518,7 +518,7 @@ public class TenantIdProviderTest {
 
     testRule.deploy(
         Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().userTask().done(),
-        "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
+        "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
 
     // if the case is started
     engineRule.getCaseService().createCaseInstanceByKey("testCase");
@@ -537,7 +537,7 @@ public class TenantIdProviderTest {
 
     testRule.deploy(
         Bpmn.createExecutableProcess(PROCESS_DEFINITION_KEY).startEvent().userTask().done(),
-        "org/camunda/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
+        "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseWithProcessTask.cmmn");
 
     // if the case is started
     engineRule.getCaseService().createCaseInstanceByKey("testCase");

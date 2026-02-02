@@ -46,7 +46,7 @@ import org.junit.Test;
  */
 public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetJobPriority() {
     // given a job
@@ -83,7 +83,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertEquals(UserOperationLogEntry.CATEGORY_OPERATOR, userOperationLogEntry.getCategory());
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetRetries() {
     // given a job
@@ -120,7 +120,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertEquals(UserOperationLogEntry.CATEGORY_OPERATOR, userOperationLogEntry.getCategory());
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetRetriesByJobDefinitionId() {
     // given a job
@@ -157,7 +157,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertEquals(UserOperationLogEntry.CATEGORY_OPERATOR, userOperationLogEntry.getCategory());
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetRetriesAsync() {
     // given a job
@@ -239,7 +239,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     managementService.deleteBatch(batch.getId(), true);
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetRetriesAsyncProcessInstanceId() {
     // given a job
@@ -321,7 +321,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     managementService.deleteBatch(batch.getId(), true);
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testSetJobDueDate() {
     // given a job
@@ -348,7 +348,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertEquals(newDate, new Date(Long.parseLong(entry.getNewValue())));
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/timer/TimerRecalculationTest.testFinishedJob.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/timer/TimerRecalculationTest.testFinishedJob.bpmn20.xml"})
   @Test
   public void testRecalculateJobDueDate() {
     // given a job
@@ -386,7 +386,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertFalse(Boolean.parseBoolean(entry.getNewValue()));
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testDelete() {
     // given a job
@@ -423,7 +423,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertEquals(UserOperationLogEntry.CATEGORY_OPERATOR, userOperationLogEntry.getCategory());
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testExecute() {
     // given a job
@@ -460,7 +460,7 @@ public class UserOperationLogJobTest extends AbstractUserOperationLogTest {
     assertEquals(UserOperationLogEntry.CATEGORY_OPERATOR, userOperationLogEntry.getCategory());
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/asyncTaskProcess.bpmn20.xml"})
   @Test
   public void testExecuteByJobExecutor() {
     // given a job

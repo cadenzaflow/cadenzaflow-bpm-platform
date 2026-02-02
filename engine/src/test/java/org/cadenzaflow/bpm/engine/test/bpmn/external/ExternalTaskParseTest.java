@@ -39,7 +39,7 @@ public class ExternalTaskParseTest extends PluggableProcessEngineTest {
   public void testParseExternalTaskWithoutTopic() {
     DeploymentBuilder deploymentBuilder = repositoryService
       .createDeployment()
-      .addClasspathResource("org/camunda/bpm/engine/test/bpmn/external/ExternalTaskParseTest.testParseExternalTaskWithoutTopic.bpmn20.xml");
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/external/ExternalTaskParseTest.testParseExternalTaskWithoutTopic.bpmn20.xml");
 
     try {
       deploymentBuilder.deploy();

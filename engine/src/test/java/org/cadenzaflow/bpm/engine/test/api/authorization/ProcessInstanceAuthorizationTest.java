@@ -78,13 +78,13 @@ public class ProcessInstanceAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     testRule.deploy(
-        "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/messageStartEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/messageBoundaryEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/signalBoundaryEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/signalStartEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/throwWarningSignalEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/throwAlertSignalEventProcess.bpmn20.xml"
+        "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/messageStartEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/messageBoundaryEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/signalBoundaryEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/signalStartEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/throwWarningSignalEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/throwAlertSignalEventProcess.bpmn20.xml"
         );
     ensureSpecificVariablePermission = processEngineConfiguration.isEnforceSpecificVariablePermission();
     super.setUp();

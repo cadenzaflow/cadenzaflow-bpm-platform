@@ -55,7 +55,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
 
   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
   @Test
   public void testFailedServiceTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedServiceTask");
@@ -63,7 +63,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingServiceTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedUserTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedUserTask.bpmn20.xml" })
   @Test
   public void testFailedUserTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedUserTask");
@@ -71,7 +71,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingUserTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedBusinessRuleTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedBusinessRuleTask.bpmn20.xml" })
   @Test
   public void testFailedBusinessRuleTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedBusinessRuleTask");
@@ -79,7 +79,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingBusinessRuleTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedCallActivity.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedCallActivity.bpmn20.xml" })
   @Test
   public void testFailedCallActivity() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedCallActivity");
@@ -87,7 +87,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingCallActivity");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedScriptTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedScriptTask.bpmn20.xml" })
   @Test
   public void testFailedScriptTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedScriptTask");
@@ -95,7 +95,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingScriptTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedSendTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedSendTask.bpmn20.xml" })
   @Test
   public void testFailedSendTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedSendTask");
@@ -103,7 +103,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingSendTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedSubProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedSubProcess.bpmn20.xml" })
   @Test
   public void testFailedSubProcess() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedSubProcess");
@@ -111,7 +111,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingSubProcess");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedTask.bpmn20.xml" })
   @Test
   public void testFailedTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedTask");
@@ -119,7 +119,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedTransaction.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedTransaction.bpmn20.xml" })
   @Test
   public void testFailedTransaction() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedTask");
@@ -127,7 +127,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingTransaction");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedReceiveTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedReceiveTask.bpmn20.xml" })
   @Test
   public void testFailedReceiveTask() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedReceiveTask");
@@ -135,7 +135,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "failingReceiveTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedBoundaryTimerEvent.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedBoundaryTimerEvent.bpmn20.xml" })
   @Test
   public void testFailedBoundaryTimerEvent() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedBoundaryTimerEvent");
@@ -143,7 +143,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "userTask");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedIntermediateCatchingTimerEvent.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedIntermediateCatchingTimerEvent.bpmn20.xml" })
   @Test
   public void testFailedIntermediateCatchingTimerEvent() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedIntermediateCatchingTimerEvent");
@@ -169,7 +169,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertJobRetriesForActivity(pi, "task");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testBrokenFoxJobRetryValue.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testBrokenFoxJobRetryValue.bpmn20.xml" })
   @Test
   public void testBrokenFoxJobRetryValue() {
     Job job = managementService.createJobQuery().list().get(0);
@@ -182,7 +182,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertEquals(1, managementService.createJobQuery().noRetriesLeft().count());
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedStartTimerEvent.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedStartTimerEvent.bpmn20.xml" })
   @Test
   public void testFailedTimerStartEvent() {
     // After process start, there should be timer created
@@ -229,8 +229,8 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     assertEquals(1, managementService.createJobQuery().noRetriesLeft().count());
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedIntermediateThrowingSignalEvent.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.failingSignalStart.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedIntermediateThrowingSignalEvent.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.failingSignalStart.bpmn20.xml" })
   public void FAILING_testFailedIntermediateThrowingSignalEvent() {
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("failedIntermediateThrowingSignalEvent");
 
@@ -293,7 +293,7 @@ public class FoxJobRetryCmdTest extends PluggableProcessEngineTest {
     Assert.assertEquals(9, job.getRetries());
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/async/FoxJobRetryCmdTest.testFailedServiceTask.bpmn20.xml" })
   public void FAILING_testFailedRetryWithTimeShift() throws ParseException {
     // set date to hour before time shift (2015-10-25T03:00:00 CEST =>
     // 2015-10-25T02:00:00 CET)

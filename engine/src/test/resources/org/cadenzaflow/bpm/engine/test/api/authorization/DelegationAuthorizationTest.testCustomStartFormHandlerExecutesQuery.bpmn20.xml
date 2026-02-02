@@ -6,7 +6,7 @@
 
   <process id="process" isExecutable="true">
 
-    <startEvent id="theStart" camunda:formHandlerClass="org.camunda.bpm.engine.test.api.authorization.service.MyStartFormHandler"/>
+    <startEvent id="theStart" camunda:formHandlerClass="org.cadenzaflow.bpm.engine.test.api.authorization.service.MyStartFormHandler"/>
 
     <sequenceFlow sourceRef="theStart" targetRef="task" />
 

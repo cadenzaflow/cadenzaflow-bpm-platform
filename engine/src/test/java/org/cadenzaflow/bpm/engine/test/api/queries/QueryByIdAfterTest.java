@@ -75,7 +75,7 @@ public class QueryByIdAfterTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testSimple.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testSimple.bpmn20.xml" })
   public void shouldVariableInstanceApiReturnOnlyAfterGivenId() {
     // given
     startProcessInstancesByKey("myProc", 10);

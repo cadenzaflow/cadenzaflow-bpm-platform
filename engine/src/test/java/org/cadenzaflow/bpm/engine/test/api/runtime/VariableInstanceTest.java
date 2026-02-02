@@ -45,7 +45,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
     }
 
     @Test
-    @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+    @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
     public void shouldUpdateVariableStateOnVariableTypeChangeObjectToLong() {
         // given
 
@@ -84,7 +84,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
     }
 
     @Test
-    @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+    @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
     public void shouldUpdateVariableStateOnVariableTypeChangeDoubleToObject() {
         // given
         var processInstance = startProcessInstanceWithVariable("oneTaskProcess",
@@ -123,7 +123,7 @@ public class VariableInstanceTest extends PluggableProcessEngineTest {
     }
 
     @Test
-    @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+    @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
     public void shouldUpdateVariableStateOnVariableTypeChangeStringToObject() {
         // given
         var processInstance = runtimeService.startProcessInstanceByKey("oneTaskProcess",

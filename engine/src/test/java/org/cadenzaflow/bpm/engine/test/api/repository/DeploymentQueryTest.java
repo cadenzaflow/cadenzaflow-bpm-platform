@@ -49,16 +49,16 @@ public class DeploymentQueryTest extends PluggableProcessEngineTest {
   public void setUp() throws Exception {
     deploymentOneId = repositoryService
       .createDeployment()
-      .name("org/camunda/bpm/engine/test/repository/one.bpmn20.xml")
-      .addClasspathResource("org/camunda/bpm/engine/test/repository/one.bpmn20.xml")
+      .name("org/cadenzaflow/bpm/engine/test/repository/one.bpmn20.xml")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/repository/one.bpmn20.xml")
       .source(ProcessApplicationDeployment.PROCESS_APPLICATION_DEPLOYMENT_SOURCE)
       .deploy()
       .getId();
 
     deploymentTwoId = repositoryService
       .createDeployment()
-      .name("org/camunda/bpm/engine/test/repository/two_.bpmn20.xml")
-      .addClasspathResource("org/camunda/bpm/engine/test/repository/two.bpmn20.xml")
+      .name("org/cadenzaflow/bpm/engine/test/repository/two_.bpmn20.xml")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/repository/two.bpmn20.xml")
       .deploy()
       .getId();
 
@@ -107,7 +107,7 @@ public class DeploymentQueryTest extends PluggableProcessEngineTest {
 
   @Test
   public void testQueryByName() {
-    DeploymentQuery query = repositoryService.createDeploymentQuery().deploymentName("org/camunda/bpm/engine/test/repository/two_.bpmn20.xml");
+    DeploymentQuery query = repositoryService.createDeploymentQuery().deploymentName("org/cadenzaflow/bpm/engine/test/repository/two_.bpmn20.xml");
     assertNotNull(query.singleResult());
     assertEquals(1, query.list().size());
     assertEquals(1, query.count());
@@ -128,14 +128,14 @@ public class DeploymentQueryTest extends PluggableProcessEngineTest {
 
   @Test
   public void testQueryByNameLike() {
-    DeploymentQuery query = repositoryService.createDeploymentQuery().deploymentNameLike("%camunda%");
+    DeploymentQuery query = repositoryService.createDeploymentQuery().deploymentNameLike("%cadenzaflow%");
     assertEquals(2, query.list().size());
     assertEquals(2, query.count());
 
     query = repositoryService.createDeploymentQuery().deploymentNameLike("%two\\_%");
     assertEquals(1, query.list().size());
     assertEquals(1, query.count());
-    assertEquals("org/camunda/bpm/engine/test/repository/two_.bpmn20.xml", query.singleResult().getName());
+    assertEquals("org/cadenzaflow/bpm/engine/test/repository/two_.bpmn20.xml", query.singleResult().getName());
   }
 
   @Test
@@ -260,13 +260,13 @@ public class DeploymentQueryTest extends PluggableProcessEngineTest {
       .list();
 
     Deployment deploymentOne = deployments.get(0);
-    assertEquals("org/camunda/bpm/engine/test/repository/one.bpmn20.xml", deploymentOne.getName());
+    assertEquals("org/cadenzaflow/bpm/engine/test/repository/one.bpmn20.xml", deploymentOne.getName());
     assertEquals(deploymentOneId, deploymentOne.getId());
     assertEquals(ProcessApplicationDeployment.PROCESS_APPLICATION_DEPLOYMENT_SOURCE, deploymentOne.getSource());
     assertNull(deploymentOne.getTenantId());
 
     Deployment deploymentTwo = deployments.get(1);
-    assertEquals("org/camunda/bpm/engine/test/repository/two_.bpmn20.xml", deploymentTwo.getName());
+    assertEquals("org/cadenzaflow/bpm/engine/test/repository/two_.bpmn20.xml", deploymentTwo.getName());
     assertEquals(deploymentTwoId, deploymentTwo.getId());
     assertNull(deploymentTwo.getSource());
     assertNull(deploymentTwo.getTenantId());

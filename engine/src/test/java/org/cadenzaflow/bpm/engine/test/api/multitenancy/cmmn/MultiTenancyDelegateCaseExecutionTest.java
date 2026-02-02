@@ -32,9 +32,9 @@ import org.junit.Test;
  */
 public class MultiTenancyDelegateCaseExecutionTest extends PluggableProcessEngineTest {
 
-  protected static final String HUMAN_TASK_CMMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/HumanTaskCaseExecutionListener.cmmn";
-  protected static final String CASE_TASK_CMMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/CaseTaskCaseExecutionListener.cmmn";
-  protected static final String CMMN_FILE = "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCaseWithManualActivation.cmmn";
+  protected static final String HUMAN_TASK_CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/HumanTaskCaseExecutionListener.cmmn";
+  protected static final String CASE_TASK_CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/CaseTaskCaseExecutionListener.cmmn";
+  protected static final String CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCaseWithManualActivation.cmmn";
 
   protected static final String TENANT_ID = "tenant1";
 

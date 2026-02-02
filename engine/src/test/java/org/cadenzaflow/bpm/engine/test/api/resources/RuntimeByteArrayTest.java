@@ -185,7 +185,7 @@ public class RuntimeByteArrayTest {
   @Test
   public void testExternalTaskStacktraceBinary() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml");
     runtimeService.startProcessInstanceByKey("oneExternalTaskProcess");
 
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)

@@ -35,7 +35,7 @@ public class ProcessEngineInitializationTest {
   public void testNoTables() {
     try {
       ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/standalone/initialization/notables.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/notables.camunda.cfg.xml")
         .buildProcessEngine();
       fail("expected exception");
     } catch (Exception e) {
@@ -50,7 +50,7 @@ public class ProcessEngineInitializationTest {
   @Test
   public void testDefaultRetries() {
     ProcessEngineConfiguration configuration = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/standalone/initialization/defaultretries.camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/defaultretries.camunda.cfg.xml");
 
     assertEquals(JobEntity.DEFAULT_RETRIES, configuration.getDefaultNumberOfRetries());
   }
@@ -58,7 +58,7 @@ public class ProcessEngineInitializationTest {
   @Test
   public void testCustomDefaultRetries() {
     ProcessEngineConfiguration configuration = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/standalone/initialization/customdefaultretries.camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/customdefaultretries.camunda.cfg.xml");
 
     assertEquals(5, configuration.getDefaultNumberOfRetries());
   }

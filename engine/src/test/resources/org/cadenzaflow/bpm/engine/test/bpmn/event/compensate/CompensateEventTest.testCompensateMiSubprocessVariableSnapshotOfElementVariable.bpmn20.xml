@@ -18,17 +18,17 @@
 			
 			<sequenceFlow sourceRef="startInScope" targetRef="bookFlight" />
 
-			<serviceTask id="bookFlight" 
-				camunda:class="org.camunda.bpm.engine.test.bpmn.event.compensate.helper.BookFlightService" />
+			<serviceTask id="bookFlight"
+				camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.event.compensate.helper.BookFlightService" />
 
 			<boundaryEvent id="compensateBookFlightEvt" name="Boundary event"
 				attachedToRef="bookFlight">
 				<compensateEventDefinition />
 			</boundaryEvent>
-			
-			<serviceTask id="undoBookFlight" isForCompensation="true" 
-					camunda:class="org.camunda.bpm.engine.test.bpmn.event.compensate.helper.CancelFlightService" />
-			
+
+			<serviceTask id="undoBookFlight" isForCompensation="true"
+					camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.event.compensate.helper.CancelFlightService" />
+
 			<sequenceFlow sourceRef="bookFlight" targetRef="endInScope" />
 			
 			<endEvent id="endInScope" />

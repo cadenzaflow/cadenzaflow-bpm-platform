@@ -58,8 +58,8 @@ public class HistoricDecisionInstanceAuthorizationTest extends AuthorizationTest
   @Override
   @Before
   public void setUp() throws Exception {
-    testRule.deploy("org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml",
-        "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml");
 
     DefaultDmnEngineConfiguration dmnEngineConfiguration =
         processEngineConfiguration.getDmnEngineConfiguration();

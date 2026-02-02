@@ -17,10 +17,10 @@
     limitations under the License.
 
 -->
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-  
-<mapper namespace="org.camunda.bpm.engine.impl.persistence.entity.MembershipRelation">
-  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.cadenzaflow.bpm.engine.impl.persistence.entity.MembershipRelation">
+
   <!-- MEMBERSHIP INSERT -->
 
   <insert id="insertMembership" parameterType="map">
@@ -44,8 +44,8 @@
   <!-- MEMBERSHIP DELETE -->
 
   <delete id="deleteMembershipsByUserId" parameterType="string">
-    delete from ${prefix}ACT_ID_MEMBERSHIP 
-    where USER_ID_ = #{userId} 
+    delete from ${prefix}ACT_ID_MEMBERSHIP
+    where USER_ID_ = #{userId}
   </delete>
 
   <delete id="deleteMembership" parameterType="map">

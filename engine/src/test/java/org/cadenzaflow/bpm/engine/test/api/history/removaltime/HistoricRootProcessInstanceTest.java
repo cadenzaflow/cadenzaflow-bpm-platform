@@ -92,7 +92,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveHistoricDecisionInstance() {
     // given
@@ -121,7 +121,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveHistoricDecisionInputInstance() {
     // given
@@ -154,7 +154,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldNotResolveHistoricDecisionInputInstance() {
     // given
@@ -181,7 +181,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveHistoricDecisionOutputInstance() {
     // given
@@ -213,7 +213,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldNotResolveHistoricDecisionOutputInstance() {
     // given
@@ -1106,7 +1106,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldResolveByteArray_DecisionInput() {
     // given
@@ -1138,7 +1138,7 @@ public class HistoricRootProcessInstanceTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldResolveByteArray_DecisionOutput() {
     // given

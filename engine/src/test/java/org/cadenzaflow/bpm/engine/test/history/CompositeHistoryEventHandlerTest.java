@@ -36,7 +36,7 @@ import org.junit.Test;
 public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEventHandlerTest {
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerNonArgumentConstructor() {
     processEngineConfiguration.setHistoryEventHandler(new CompositeHistoryEventHandler());
 
@@ -47,7 +47,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseDefaultHistoryEventHandler() {
     // use default DbHistoryEventHandler
     processEngineConfiguration.setHistoryEventHandler(new DbHistoryEventHandler());
@@ -70,7 +70,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerNonArgumentConstructorAddNotNullEvent() {
     CompositeHistoryEventHandler compositeHistoryEventHandler = new CompositeHistoryEventHandler();
     compositeHistoryEventHandler.add(new CustomDbHistoryEventHandler());
@@ -83,7 +83,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerNonArgumentConstructorAddNotNullTwoEvents() {
     CompositeHistoryEventHandler compositeHistoryEventHandler = new CompositeHistoryEventHandler();
     compositeHistoryEventHandler.add(new CustomDbHistoryEventHandler());
@@ -118,7 +118,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerArgumentConstructorWithNotNullVarargsOneEvent() {
     CompositeHistoryEventHandler compositeHistoryEventHandler = new CompositeHistoryEventHandler(new CustomDbHistoryEventHandler());
     processEngineConfiguration.setHistoryEventHandler(compositeHistoryEventHandler);
@@ -130,7 +130,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerArgumentConstructorWithNotNullVarargsTwoEvents() {
     CompositeHistoryEventHandler compositeHistoryEventHandler = new CompositeHistoryEventHandler(new CustomDbHistoryEventHandler(), new DbHistoryEventHandler());
     processEngineConfiguration.setHistoryEventHandler(compositeHistoryEventHandler);
@@ -142,7 +142,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerArgumentConstructorWithEmptyList() {
     CompositeHistoryEventHandler compositeHistoryEventHandler = new CompositeHistoryEventHandler(new ArrayList<HistoryEventHandler>());
     processEngineConfiguration.setHistoryEventHandler(compositeHistoryEventHandler);
@@ -169,7 +169,7 @@ public class CompositeHistoryEventHandlerTest extends AbstractCompositeHistoryEv
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoryLevelTest.bpmn20.xml" })
   public void shouldUseCompositeHistoryEventHandlerArgumentConstructorWithNotEmptyListNotNullTwoEvents() {
     // prepare the list with two events
     List<HistoryEventHandler> historyEventHandlers = new ArrayList<HistoryEventHandler>();

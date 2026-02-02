@@ -41,7 +41,7 @@ import org.junit.Test;
  */
 public class JobQueryByPriorityTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testOrderByPriority() {
     // given five jobs with priorities from 1 to 5
@@ -57,7 +57,7 @@ public class JobQueryByPriorityTest extends PluggableProcessEngineTest {
     verifySortingAndCount(managementService.createJobQuery().orderByJobPriority().desc(), 5, inverted(jobByPriority()));
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testFilterByJobPriorityLowerThanOrEquals() {
     // given five jobs with priorities from 1 to 5
@@ -84,7 +84,7 @@ public class JobQueryByPriorityTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testFilterByJobPriorityLowerThanOrEqualsAndHigherThanOrEqual() {
     // given five jobs with priorities from 1 to 5
@@ -100,7 +100,7 @@ public class JobQueryByPriorityTest extends PluggableProcessEngineTest {
     assertEquals(0, managementService.createJobQuery().priorityLowerThanOrEquals(2).priorityHigherThanOrEquals(3).count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testFilterByJobPriorityHigherThanOrEquals() {
     // given five jobs with priorities from 1 to 5
@@ -127,7 +127,7 @@ public class JobQueryByPriorityTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testFilterByJobPriorityLowerAndHigher() {
     // given five jobs with priorities from 1 to 5

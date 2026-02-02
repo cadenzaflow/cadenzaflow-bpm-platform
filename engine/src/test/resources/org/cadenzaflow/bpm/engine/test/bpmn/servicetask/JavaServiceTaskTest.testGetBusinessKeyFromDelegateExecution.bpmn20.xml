@@ -12,11 +12,11 @@
     <parallelGateway id="fork" />
     <sequenceFlow sourceRef="fork" targetRef="receivePayment" />
     <sequenceFlow sourceRef="fork" targetRef="shipOrder" />
-    
-    <serviceTask id="receivePayment" name="Receive Payment" camunda:class="org.camunda.bpm.engine.test.bpmn.servicetask.util.BusinessKeyCheckJavaDelegate"/>  
+
+    <serviceTask id="receivePayment" name="Receive Payment" camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.servicetask.util.BusinessKeyCheckJavaDelegate"/>
     <sequenceFlow sourceRef="receivePayment" targetRef="join" />
-    
-    <userTask id="shipOrder" name="Ship Order" /> 
+
+    <userTask id="shipOrder" name="Ship Order" />
     <sequenceFlow sourceRef="shipOrder" targetRef="join" />
     
     <parallelGateway id="join" />

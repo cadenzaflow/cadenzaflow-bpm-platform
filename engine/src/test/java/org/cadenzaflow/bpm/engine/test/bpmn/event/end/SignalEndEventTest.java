@@ -54,8 +54,8 @@ public class SignalEndEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/end/SignalEndEventTest.catchSignalEndEvent.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/end/SignalEndEventTest.processWithSignalEndEvent.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/end/SignalEndEventTest.catchSignalEndEvent.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/end/SignalEndEventTest.processWithSignalEndEvent.bpmn20.xml"
     })
   @Test
   public void testCatchSignalEndEventInCallActivity() throws Exception {
@@ -83,8 +83,8 @@ public class SignalEndEventTest extends PluggableProcessEngineTest {
     testRule.assertProcessEnded(processInstanceCatchEvent.getId());
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/signal/testPropagateOutputVariablesWhileThrowSignal.bpmn20.xml",
-                            "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEndEventTest.parent.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/testPropagateOutputVariablesWhileThrowSignal.bpmn20.xml",
+                            "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEndEventTest.parent.bpmn20.xml" })
   @Test
   public void testPropagateOutputVariablesWhileThrowSignal() {
     // given
@@ -100,8 +100,8 @@ public class SignalEndEventTest extends PluggableProcessEngineTest {
     checkOutput(processInstanceId);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/bpmn/event/signal/testPropagateOutputVariablesWhileThrowSignal2.bpmn20.xml",
-                            "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEndEventTest.parent.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/testPropagateOutputVariablesWhileThrowSignal2.bpmn20.xml",
+                            "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEndEventTest.parent.bpmn20.xml" })
   @Test
   public void testPropagateOutputVariablesWhileThrowSignal2() {
     // given

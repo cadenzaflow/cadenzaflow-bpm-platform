@@ -416,8 +416,8 @@ public class HistoricActivityInstanceStateTest extends PluggableProcessEngineTes
 
   }
 
-  @Deployment (resources={ "org/camunda/bpm/engine/test/history/HistoricActivityInstanceStateTest.testCancelProcessInstanceInUserTask.bpmn",
-      "org/camunda/bpm/engine/test/history/HistoricActivityInstanceStateTest.testEndTerminateEventWithCallActivity.bpmn" })
+  @Deployment (resources={ "org/cadenzaflow/bpm/engine/test/history/HistoricActivityInstanceStateTest.testCancelProcessInstanceInUserTask.bpmn",
+      "org/cadenzaflow/bpm/engine/test/history/HistoricActivityInstanceStateTest.testEndTerminateEventWithCallActivity.bpmn" })
   @Test
   public void testEndTerminateEventCancelWithCallActivity() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("process1");

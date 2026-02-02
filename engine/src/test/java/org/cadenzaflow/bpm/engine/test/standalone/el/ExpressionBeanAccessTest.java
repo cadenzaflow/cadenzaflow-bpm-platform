@@ -41,7 +41,7 @@ public class ExpressionBeanAccessTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/el/camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/el/camunda.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

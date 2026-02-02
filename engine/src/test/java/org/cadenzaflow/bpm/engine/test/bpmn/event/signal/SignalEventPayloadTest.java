@@ -71,8 +71,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithPayload.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadStart.bpmn20.xml" })
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithPayload.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadStart.bpmn20.xml" })
   public void testSignalPayloadStart() {
     // given
     Map<String, Object> variables = new HashMap<>();
@@ -105,8 +105,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithPayload.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithPayload.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
   public void testSignalPayloadIntermediate() {
     // given
     Map<String, Object> variables = new HashMap<>();
@@ -138,8 +138,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithExpressionPayload.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithExpressionPayload.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
   public void testSignalSourceExpressionPayload() {
     // given
     Map<String, Object> variables = new HashMap<>();
@@ -166,8 +166,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithAllVariablesPayload.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithAllVariablesPayload.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
   public void testSignalAllSourceVariablesPayload() {
     // given
     Map<String, Object> variables = new HashMap<>();
@@ -200,8 +200,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwEndSignalEventWithAllLocalVariablesPayload.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwEndSignalEventWithAllLocalVariablesPayload.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadIntermediate.bpmn20.xml" })
   public void testSignalAllLocalSourceVariablesPayload() {
     // given
     Map<String, Object> variables = new HashMap<>();
@@ -237,8 +237,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithBusinessKeyPayload.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadStart.bpmn20.xml" })
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithBusinessKeyPayload.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadStart.bpmn20.xml" })
   public void testSignalBusinessKeyPayload() {
     // given
     String businessKey = "aBusinessKey";
@@ -256,8 +256,8 @@ public class SignalEventPayloadTest {
    */
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithAllOptions.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadStart.bpmn20.xml"})
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.throwSignalWithAllOptions.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventPayloadTests.catchSignalWithPayloadStart.bpmn20.xml"})
   public void testSignalPayloadWithAllOptions() {
     // given
     Map<String, Object> variables = new HashMap<>();

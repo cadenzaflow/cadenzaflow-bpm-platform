@@ -15,13 +15,13 @@
           <startEvent id="theSubProcessStart" />
     
           <sequenceFlow id="flow1" sourceRef="theSubProcessStart" targetRef="service1" />
-    
-          <serviceTask id="service1" camunda:class="org.camunda.bpm.engine.test.api.runtime.util.ChangeVariablePropertyDelegate"></serviceTask>
-    
+
+          <serviceTask id="service1" camunda:class="org.cadenzaflow.bpm.engine.test.api.runtime.util.ChangeVariablePropertyDelegate"></serviceTask>
+
           <sequenceFlow id="flow2" sourceRef="service1" targetRef="theSubProcessEnd" />
-    
+
           <endEvent id="theSubProcessEnd" />
-    
+
         </subProcess>
 
         <sequenceFlow sourceRef="subProcess" targetRef="theTask" />

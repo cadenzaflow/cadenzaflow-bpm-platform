@@ -137,7 +137,7 @@ public class MigrateProcessInstanceAsyncTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
   public void testMigrate() {
 
     // given
@@ -175,7 +175,7 @@ public class MigrateProcessInstanceAsyncTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
   public void testMigrateWithQuery() {
 
     // given

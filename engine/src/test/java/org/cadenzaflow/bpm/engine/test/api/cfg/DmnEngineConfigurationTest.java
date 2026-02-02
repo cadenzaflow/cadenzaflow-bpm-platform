@@ -42,7 +42,7 @@ import org.junit.Test;
  */
 public class DmnEngineConfigurationTest {
 
-  protected final static String CONFIGURATION_XML = "org/camunda/bpm/engine/test/api/cfg/custom-dmn-camunda.cfg.xml";
+  protected final static String CONFIGURATION_XML = "org/cadenzaflow/bpm/engine/test/api/cfg/custom-dmn-camunda.cfg.xml";
 
   protected ProcessEngine engine;
 

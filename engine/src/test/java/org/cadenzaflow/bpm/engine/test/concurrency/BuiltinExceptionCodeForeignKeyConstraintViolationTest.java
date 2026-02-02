@@ -75,7 +75,7 @@ public class BuiltinExceptionCodeForeignKeyConstraintViolationTest extends Concu
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void shouldReturnForeignKeyConstraintErrorCode() {
     // given

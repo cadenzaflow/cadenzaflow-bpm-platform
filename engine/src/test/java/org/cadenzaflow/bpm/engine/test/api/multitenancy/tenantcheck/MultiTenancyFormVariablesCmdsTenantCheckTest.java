@@ -60,7 +60,7 @@ public class MultiTenancyFormVariablesCmdsTenantCheckTest {
 
   protected ProcessInstance instance;
 
-  protected static final String START_FORM_RESOURCE = "org/camunda/bpm/engine/test/api/form/FormServiceTest.startFormFields.bpmn20.xml";
+  protected static final String START_FORM_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.startFormFields.bpmn20.xml";
 
   @Before
   public void init() {

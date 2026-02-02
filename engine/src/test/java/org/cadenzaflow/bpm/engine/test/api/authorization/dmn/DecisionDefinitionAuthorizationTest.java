@@ -46,8 +46,8 @@ public class DecisionDefinitionAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     testRule.deploy(
-        "org/camunda/bpm/engine/test/api/authorization/singleDecision.dmn11.xml",
-        "org/camunda/bpm/engine/test/api/authorization/anotherDecision.dmn11.xml");
+        "org/cadenzaflow/bpm/engine/test/api/authorization/singleDecision.dmn11.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/anotherDecision.dmn11.xml");
     super.setUp();
   }
 

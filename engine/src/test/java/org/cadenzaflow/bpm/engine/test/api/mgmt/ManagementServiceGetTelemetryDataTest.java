@@ -237,7 +237,7 @@ public class ManagementServiceGetTelemetryDataTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldNotResetMetricsCount() {
     // given default telemetry data and empty telemetry registry
     // create metrics data
@@ -253,7 +253,7 @@ public class ManagementServiceGetTelemetryDataTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldCollectMetrics_TelemetryDisabled() {
     // given default configuration
 
@@ -268,7 +268,7 @@ public class ManagementServiceGetTelemetryDataTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @SuppressWarnings("deprecation")
   public void shouldCollectCommands_TelemetryDisabled() {
     // given default configuration

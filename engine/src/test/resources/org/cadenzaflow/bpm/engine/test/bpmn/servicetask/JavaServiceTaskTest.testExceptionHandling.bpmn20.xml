@@ -8,15 +8,15 @@
   
     <startEvent id="theStart" />
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="javaService" />
-    
-    <serviceTask id="javaService" 
-                 name="Java service invocation" 
-                 camunda:class="org.camunda.bpm.engine.test.bpmn.servicetask.util.ThrowsExceptionBehavior">            
+
+    <serviceTask id="javaService"
+                 name="Java service invocation"
+                 camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.servicetask.util.ThrowsExceptionBehavior">
     </serviceTask>
     
     <sequenceFlow id="no-exception" sourceRef="javaService" targetRef="theEnd" />
     <sequenceFlow id="exception" sourceRef="javaService" targetRef="fixException" />
-  
+
     <userTask id="fixException" name="Fix Exception" />    
     <sequenceFlow id="flow4" sourceRef="fixException" targetRef="theEnd" />
     

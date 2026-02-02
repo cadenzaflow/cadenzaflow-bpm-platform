@@ -156,7 +156,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstWithEmptyOrQuery() {
     // given
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -173,7 +173,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstWithVarValue1OrVarValue2() {
     // given
     Map<String, Object> vars = new HashMap<>();
@@ -197,7 +197,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstWithMultipleOrCriteria() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -231,7 +231,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstFilteredByMultipleOrAndCriteria() {
     // given
     Map<String, Object> vars = new HashMap<>();
@@ -268,7 +268,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstFilteredByMultipleOrQueries() {
     // given
     Map<String, Object> vars = new HashMap<>();
@@ -333,7 +333,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstWhereSameCriterionWasAppliedThreeTimesInOneQuery() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -354,7 +354,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnProcInstWithVariableValueEqualsOrVariableValueGreaterThan() {
     // given
     Map<String, Object> vars = new HashMap<>();
@@ -528,7 +528,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnByProcessDefinitionKeyOrActivityId() {
     // given
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -562,7 +562,7 @@ public class ProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnByProcessDefinitionIdOrIncidentType() {
     // given
     String processDefinitionId = runtimeService.startProcessInstanceByKey("oneTaskProcess")

@@ -33,7 +33,7 @@ public class DisableScriptEngineCachingTest {
 
   @Rule
   public ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/scripting/disable.script.engine.caching.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/scripting/disable.script.engine.caching.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

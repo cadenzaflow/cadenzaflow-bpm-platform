@@ -9,7 +9,7 @@
 
 		<startEvent id="theStart" />
 		<sequenceFlow id="flow1" sourceRef="theStart" targetRef="failingTimerEvent" />
-		
+
 		<intermediateCatchEvent id="failingTimerEvent">
 			<extensionElements>
 	       		<fox:failedJobRetryTimeCycle>R5/PT5M</fox:failedJobRetryTimeCycle>
@@ -18,12 +18,12 @@
 				<timeDuration>PT1H</timeDuration>
 			</timerEventDefinition>
 		</intermediateCatchEvent>
-		
+
 		<sequenceFlow id="flow2" sourceRef="failingTimerEvent" targetRef="failingServiceTask" />
-		
-		<serviceTask id="failingServiceTask" camunda:class="org.camunda.bpm.engine.test.cmd.FailingDelegate"/>
+
+		<serviceTask id="failingServiceTask" camunda:class="org.cadenzaflow.bpm.engine.test.cmd.FailingDelegate"/>
 		<sequenceFlow id="flow4" sourceRef="failingServiceTask" targetRef="end" />
-        
+
 		<endEvent id="end" />
 
 	</process>

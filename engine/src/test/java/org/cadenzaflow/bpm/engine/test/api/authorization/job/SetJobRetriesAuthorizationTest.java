@@ -132,7 +132,7 @@ public class SetJobRetriesAuthorizationTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml" })
   public void shouldSetJobRetriesByJobDefinitionId() {
     // given
     String processInstanceId = engineRule.getRuntimeService()
@@ -164,7 +164,7 @@ public class SetJobRetriesAuthorizationTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml" })
   public void shouldSetJobRetries() {
     // given
     String processInstanceId = engineRule.getRuntimeService()

@@ -28,7 +28,7 @@ import org.junit.runners.Parameterized;
 public class LockExternalTaskAuthorizationTest extends HandleExternalTaskAuthorizationTest {
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void shouldLockExternalTaskWithAuthorizations() {
 
     // given

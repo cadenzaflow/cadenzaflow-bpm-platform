@@ -49,7 +49,7 @@ public class MultiTenancyCleanableHistoricCaseInstanceReportCmdTenantCheckTest {
 
   private static final String CASE_DEFINITION_KEY = "one";
 
-  protected static final String CMMN_MODEL = "org/camunda/bpm/engine/test/repository/one.cmmn";
+  protected static final String CMMN_MODEL = "org/cadenzaflow/bpm/engine/test/repository/one.cmmn";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
 

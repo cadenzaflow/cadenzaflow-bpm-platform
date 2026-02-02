@@ -192,7 +192,7 @@ public class DisabledPermissionsAuthorizationTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_AUDIT)
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testDeleteHistoricProcessInstanceIgnoreDeleteHistory() {
     // given
     processEngineConfiguration.setDisabledPermissions(Arrays.asList(Permissions.DELETE_HISTORY.name()));
@@ -207,7 +207,7 @@ public class DisabledPermissionsAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testQueryDeploymentIgnoreRead() {
     // given
     engineRule.getProcessEngineConfiguration().setDisabledPermissions(Arrays.asList(READ.name()));
@@ -221,7 +221,7 @@ public class DisabledPermissionsAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void testStartableInTasklistIgnoreRead() {
     // given
     processEngineConfiguration.setDisabledPermissions(Arrays.asList(READ.name()));
@@ -242,7 +242,7 @@ public class DisabledPermissionsAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml")
   public void testDeploymentStatisticsIgnoreReadInstance() {
     // given
     processEngineConfiguration.setDisabledPermissions(Arrays.asList(READ_INSTANCE.name()));
@@ -268,7 +268,7 @@ public class DisabledPermissionsAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml")
   public void testActivityStatisticsIgnoreRead() {
     // given
     List<String> permissions = new ArrayList<>();
@@ -292,7 +292,7 @@ public class DisabledPermissionsAuthorizationTest {
 
   @Test
   @Ignore("CAM-9888")
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml")
   public void testFetchAndLockIgnoreRead() {
     // given
     List<String> permissions = new ArrayList<>();

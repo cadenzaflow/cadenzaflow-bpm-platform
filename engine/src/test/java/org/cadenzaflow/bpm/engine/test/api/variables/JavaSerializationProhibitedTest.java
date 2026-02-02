@@ -53,7 +53,7 @@ import org.junit.rules.RuleChain;
  */
 public class JavaSerializationProhibitedTest {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/variables/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/variables/oneTaskProcess.bpmn20.xml";
 
   protected static final String JAVA_DATA_FORMAT = Variables.SerializationDataFormats.JAVA.getName();
 

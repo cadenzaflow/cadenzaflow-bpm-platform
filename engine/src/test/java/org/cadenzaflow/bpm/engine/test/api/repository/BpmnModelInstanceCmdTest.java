@@ -38,7 +38,7 @@ public class BpmnModelInstanceCmdTest extends PluggableProcessEngineTest {
 
   private final static String PROCESS_KEY = "one";
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/repository/one.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/repository/one.bpmn20.xml")
   @Test
   public void testRepositoryService() {
     String processDefinitionId = repositoryService.createProcessDefinitionQuery().processDefinitionKey(PROCESS_KEY).singleResult().getId();

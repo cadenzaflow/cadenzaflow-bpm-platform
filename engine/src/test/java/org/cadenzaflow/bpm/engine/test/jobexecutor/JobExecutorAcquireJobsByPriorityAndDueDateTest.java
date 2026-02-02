@@ -45,8 +45,8 @@ public class JobExecutorAcquireJobsByPriorityAndDueDateTest extends AbstractJobE
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/jobexecutor/timerJobPrioProcess.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/jobexecutor/jobPrioProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/jobexecutor/timerJobPrioProcess.bpmn20.xml"
   })
   public void testAcquisitionByPriorityAndDueDate() {
     // job with priority 10

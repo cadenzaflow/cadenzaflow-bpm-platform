@@ -103,7 +103,7 @@ public class CustomHistoryLevelIdentityLinkTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   public void testDeletingIdentityLinkByProcDefId() {
     // Pre test
     List<HistoricIdentityLinkLog> historicIdentityLinks = historyService.createHistoricIdentityLinkLogQuery().list();

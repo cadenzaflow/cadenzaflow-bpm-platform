@@ -70,9 +70,9 @@ public class HistoricTaskInstanceAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     deploymentId = testRule.deploy(
-        "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/messageStartEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn").getId();
+        "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/messageStartEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn").getId();
     super.setUp();
 
   }

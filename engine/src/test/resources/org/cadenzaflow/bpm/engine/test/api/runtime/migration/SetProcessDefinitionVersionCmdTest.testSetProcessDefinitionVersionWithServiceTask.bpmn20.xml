@@ -9,10 +9,10 @@
     <startEvent id="theStart" />
     
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="migratingTask" />
-    
-    <serviceTask id="migratingTask" name="Migrating Task" camunda:async="true" 
-      camunda:class="org.camunda.bpm.engine.test.api.runtime.migration.MigrateProcessInstanceDelegate"/>
-    
+
+    <serviceTask id="migratingTask" name="Migrating Task" camunda:async="true"
+      camunda:class="org.cadenzaflow.bpm.engine.test.api.runtime.migration.MigrateProcessInstanceDelegate"/>
+
     <sequenceFlow id="flow3" sourceRef="migratingTask" targetRef="theEnd" />
     
     <endEvent id="theEnd" />

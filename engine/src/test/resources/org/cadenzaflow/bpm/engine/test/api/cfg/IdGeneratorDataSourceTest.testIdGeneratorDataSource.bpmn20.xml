@@ -9,15 +9,15 @@
     <startEvent id="theStart" />
     
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="javaService" />
-    
-    <serviceTask id="javaService" 
-                 name="Java service invocation" 
-                 camunda:class="org.camunda.bpm.engine.test.db.IdGeneratorDataSourceDoNothing" />
-    
+
+    <serviceTask id="javaService"
+                 name="Java service invocation"
+                 camunda:class="org.cadenzaflow.bpm.engine.test.db.IdGeneratorDataSourceDoNothing" />
+
     <sequenceFlow id="flow2" sourceRef="javaService" targetRef="theEnd" />
-    
+
     <endEvent id="theEnd" />
-    
+
   </process>
 
 </definitions>

@@ -123,7 +123,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveHistoricDecisionInstance() {
     // given
@@ -157,7 +157,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveStandaloneHistoricDecisionInstance() {
     // given
@@ -187,7 +187,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveHistoricDecisionInputInstance() {
     // given
@@ -225,7 +225,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveStandaloneHistoricDecisionInputInstance() {
     // given
@@ -259,7 +259,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldNotResolveHistoricDecisionInputInstance() {
     // given
@@ -286,7 +286,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveHistoricDecisionOutputInstance() {
     // given
@@ -323,7 +323,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldResolveStandaloneHistoricDecisionOutputInstance() {
     // given
@@ -360,7 +360,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldNotResolveHistoricDecisionOutputInstance() {
     // given
@@ -1700,7 +1700,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldResolveByteArray_DecisionInput() {
     // given
@@ -1737,7 +1737,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldResolveByteArray_StandaloneDecisionInput() {
     // given
@@ -1771,7 +1771,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldResolveByteArray_DecisionOutput() {
     // given
@@ -1807,7 +1807,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
   }
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldResolveByteArray_StandaloneDecisionOutput() {
     // given
@@ -1841,7 +1841,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/api/history/removaltime/HistoricRootProcessInstanceTest.shouldResolveByteArray_DecisionOutputLiteralExpression.dmn"
+    "org/cadenzaflow/bpm/engine/test/api/history/removaltime/HistoricRootProcessInstanceTest.shouldResolveByteArray_DecisionOutputLiteralExpression.dmn"
   })
   public void shouldResolveByteArray_DecisionOutputLiteralExpression() {
     // given
@@ -1878,7 +1878,7 @@ public class RemovalTimeStrategyStartTest extends AbstractRemovalTimeTest {
 
   @Test
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/api/history/removaltime/HistoricRootProcessInstanceTest.shouldResolveByteArray_DecisionOutputLiteralExpression.dmn"
+    "org/cadenzaflow/bpm/engine/test/api/history/removaltime/HistoricRootProcessInstanceTest.shouldResolveByteArray_DecisionOutputLiteralExpression.dmn"
   })
   public void shouldResolveByteArray_StandaloneDecisionOutputLiteralExpression() {
     // given

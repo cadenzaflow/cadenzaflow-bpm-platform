@@ -41,7 +41,7 @@ import org.junit.Test;
  */
 public class ProcessDiagramParseTest {
 
-  private static final String resourcePath = "src/test/resources/org/camunda/bpm/engine/test/api/repository/diagram/testXxeParsingIsDisabled";
+  private static final String resourcePath = "src/test/resources/org/cadenzaflow/bpm/engine/test/api/repository/diagram/testXxeParsingIsDisabled";
 
   @Rule
   public ProcessEngineRule engineRule = new ProvidedProcessEngineRule();

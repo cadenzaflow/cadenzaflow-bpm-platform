@@ -95,7 +95,7 @@ public class LinkEventTest extends PluggableProcessEngineTest {
   @Test
   public void testInvalidEventLinkMultipleTargets() {
     try {
-      repositoryService.createDeployment().addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/link/LinkEventTest.testInvalidEventLinkMultipleTargets.bpmn20.xml").deploy();
+      repositoryService.createDeployment().addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/link/LinkEventTest.testInvalidEventLinkMultipleTargets.bpmn20.xml").deploy();
       fail("process should not deploy because it contains multiple event link targets which is invalid in the BPMN 2.0 spec");
     }
     catch (ParseException e) {
@@ -107,7 +107,7 @@ public class LinkEventTest extends PluggableProcessEngineTest {
   @Test
   public void testCatchLinkEventAfterEventBasedGatewayNotAllowed() {
     try {
-      repositoryService.createDeployment().addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/link/LinkEventTest.testCatchLinkEventAfterEventBasedGatewayNotAllowed.bpmn20.xml").deploy();
+      repositoryService.createDeployment().addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/link/LinkEventTest.testCatchLinkEventAfterEventBasedGatewayNotAllowed.bpmn20.xml").deploy();
       fail("process should not deploy because it contains multiple event link targets which is invalid in the BPMN 2.0 spec");
     }
     catch (ParseException e) {

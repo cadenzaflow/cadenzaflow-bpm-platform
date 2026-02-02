@@ -88,7 +88,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   public void testThrowErrorWithoutErrorCode() {
     try {
       repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testThrowErrorWithoutErrorCode.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testThrowErrorWithoutErrorCode.bpmn20.xml")
         .deploy();
       fail("ProcessEngineException expected");
     } catch (ParseException e) {
@@ -101,7 +101,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   public void testThrowErrorWithEmptyErrorCode() {
     try {
       repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testThrowErrorWithEmptyErrorCode.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testThrowErrorWithEmptyErrorCode.bpmn20.xml")
         .deploy();
       fail("ProcessEngineException expected");
     } catch (ParseException e) {
@@ -234,8 +234,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorOnCallActivity-parent.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorOnCallActivity-parent.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
   })
   @Test
   public void testCatchErrorOnCallActivity() {
@@ -255,8 +255,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorOnCallActivity-parent.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorOnCallActivity-parent.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
   })
   public void FAILING_testCatchErrorOnCallActivityShouldEndCalledProcessProperly() {
     // given a process instance that has instantiated (called) a sub process instance
@@ -277,7 +277,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
   })
   @Test
   public void testUncaughtError() {
@@ -296,8 +296,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
 
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testUncaughtErrorOnCallActivity-parent.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testUncaughtErrorOnCallActivity-parent.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
   })
   @Test
   public void testUncaughtErrorOnCallActivity() {
@@ -315,8 +315,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByCallActivityOnSubprocess.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByCallActivityOnSubprocess.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByCallActivityOnSubprocess() {
@@ -336,9 +336,9 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByCallActivityOnCallActivity.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess2ndLevel.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByCallActivityOnCallActivity.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess2ndLevel.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.subprocess.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByCallActivityOnCallActivity() throws InterruptedException {
@@ -455,8 +455,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-parent.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-parent.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByJavaDelegateOnCallActivity() {
@@ -470,7 +470,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml"
   })
   @Test
   public void testUncaughtErrorThrownByJavaDelegateOnServiceTask() {
@@ -482,7 +482,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownByExecuteOfAbstractBpmnActivityBehavior() {
@@ -499,7 +499,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByExecuteOfAbstractBpmnActivityBehavior() {
@@ -516,7 +516,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownBySignalMethodOfAbstractBpmnActivityBehavior() {
@@ -584,7 +584,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
 
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByAbstractBpmnActivityBehavior.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownBySignalOfAbstractBpmnActivityBehavior() {
@@ -610,7 +610,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownByExecuteOfDelegateExpression() {
@@ -629,7 +629,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownByExecuteOfDelegateExpression() {
@@ -648,7 +648,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchExceptionThrownBySignalMethodOfDelegateExpression() {
@@ -675,7 +675,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment( resources = {
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByDelegateExpression.bpmn20.xml"
   })
   @Test
   public void testCatchErrorThrownBySignalOfDelegateExpression() {
@@ -702,8 +702,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testUncaughtErrorThrownByJavaDelegateOnCallActivity-parent.bpmn20.xml",
-          "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testUncaughtErrorThrownByJavaDelegateOnCallActivity-parent.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByJavaDelegateOnCallActivity-child.bpmn20.xml"
   })
   @Test
   public void testUncaughtErrorThrownByJavaDelegateOnCallActivity() {
@@ -925,8 +925,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/ThrowErrorProcess.bpmn",
-      "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByCallActivityOnSubprocessSetsErrorCodeVariable.bpmn"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/ThrowErrorProcess.bpmn",
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByCallActivityOnSubprocessSetsErrorCodeVariable.bpmn"
   })
   @Test
   public void testCatchErrorThrownByCallActivityOnSubprocessSetsErrorVariables(){
@@ -940,7 +940,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByMultiInstanceSubProcessSetsErrorCodeVariable.bpmn"
+      "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchErrorThrownByMultiInstanceSubProcessSetsErrorCodeVariable.bpmn"
   })
   @Test
   public void testCatchErrorThrownByMultiInstanceSubProcessSetsErrorVariables(){
@@ -960,8 +960,8 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchBpmnErrorThrownByJavaDelegateInCallActivityOnSubprocessSetsErrorVariables.bpmn",
-    "org/camunda/bpm/engine/test/bpmn/callactivity/subProcessWithThrownError.bpmn"
+    "org/cadenzaflow/bpm/engine/test/bpmn/event/error/BoundaryErrorEventTest.testCatchBpmnErrorThrownByJavaDelegateInCallActivityOnSubprocessSetsErrorVariables.bpmn",
+    "org/cadenzaflow/bpm/engine/test/bpmn/callactivity/subProcessWithThrownError.bpmn"
   })
   @Test
   public void testCatchBpmnErrorThrownByJavaDelegateInCallActivityOnSubprocessSetsErrorVariables(){
@@ -976,7 +976,7 @@ public class BoundaryErrorEventTest extends PluggableProcessEngineTest {
     checkErrorVariable("errorMessageVariable", "ouch!");
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/error/reviewSalesLead.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/error/reviewSalesLead.bpmn20.xml"})
   @Test
   public void testReviewSalesLeadProcess() {
 

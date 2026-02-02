@@ -33,9 +33,9 @@ import org.junit.rules.RuleChain;
 
 public class DecisionRequirementsDefinitionQueryTest {
 
-  protected static final String DRD_SCORE_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
-  protected static final String DRD_DISH_RESOURCE = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
-  protected static final String DRD_XYZ_RESOURCE = "org/camunda/bpm/engine/test/api/repository/drdXyz_.dmn11.xml";
+  protected static final String DRD_SCORE_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
+  protected static final String DRD_DISH_RESOURCE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DRD_XYZ_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/repository/drdXyz_.dmn11.xml";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);

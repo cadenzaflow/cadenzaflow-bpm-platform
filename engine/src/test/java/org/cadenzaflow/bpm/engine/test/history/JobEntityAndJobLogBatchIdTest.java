@@ -167,7 +167,7 @@ public class JobEntityAndJobLogBatchIdTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+      "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetBatchIdOnJobAndJobLog_DecisionSetRemovalTime() {
     // given
@@ -194,7 +194,7 @@ public class JobEntityAndJobLogBatchIdTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+      "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetBatchIdOnJobAndJobLog_DeleteHistoricDecisionInstances() {
     // given

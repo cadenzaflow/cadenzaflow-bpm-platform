@@ -84,7 +84,7 @@ public class CustomHistoryEventHandlerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldReceiveMigrateEvents() {
     // given
     VariableMap variables = Variables.createVariables().putValue("foo", "bar");
@@ -124,7 +124,7 @@ public class CustomHistoryEventHandlerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldReceiveMigrateEventForIncident() {
 
     // given
@@ -147,7 +147,7 @@ public class CustomHistoryEventHandlerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldReceiveHistoricProcessInstanceEventFirstOnFormSubmit() {
     // given
     FormService formService = engineRule.getFormService();

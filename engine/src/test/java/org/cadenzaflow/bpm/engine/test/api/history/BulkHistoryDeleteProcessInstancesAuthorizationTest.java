@@ -104,7 +104,7 @@ public class BulkHistoryDeleteProcessInstancesAuthorizationTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+      "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testCleanupHistory() {
     //given
     final List<String> ids = prepareHistoricProcesses();

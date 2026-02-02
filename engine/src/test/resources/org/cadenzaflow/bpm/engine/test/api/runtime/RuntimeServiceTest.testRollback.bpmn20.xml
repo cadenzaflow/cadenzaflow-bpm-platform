@@ -7,11 +7,11 @@
   <process id="RollbackProcess" isExecutable="true">
   
     <startEvent id="start" />
-    
+
     <sequenceFlow id="flow1" sourceRef="start" targetRef="buzzz" />
-    
-    <serviceTask id="buzzz" camunda:class="org.camunda.bpm.engine.test.api.runtime.util.Buzzz" />
-    
+
+    <serviceTask id="buzzz" camunda:class="org.cadenzaflow.bpm.engine.test.api.runtime.util.Buzzz" />
+
   </process>
 
 </definitions>

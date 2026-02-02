@@ -30,7 +30,7 @@ public class ScriptResourceBean implements Serializable {
   }
 
   public String getResource() {
-    return "org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py";
+    return "org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py";
   }
 
   public String getClasspathResource() {

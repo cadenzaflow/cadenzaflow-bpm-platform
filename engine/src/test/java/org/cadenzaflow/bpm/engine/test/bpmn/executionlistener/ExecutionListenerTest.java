@@ -119,7 +119,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenersProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenersProcess.bpmn20.xml"})
   public void testExecutionListenersOnAllPossibleElements() {
 
     // Process start executionListener will have executionListener class that sets 2 variables
@@ -164,7 +164,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenersStartEndEvent.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenersStartEndEvent.bpmn20.xml"})
   public void testExecutionListenersOnStartEndEvents() {
     RecorderExecutionListener.clear();
 
@@ -201,7 +201,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenersFieldInjectionProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenersFieldInjectionProcess.bpmn20.xml"})
   public void testExecutionListenerFieldInjection() {
     Map<String, Object> variables = new HashMap<>();
     variables.put("myVar", "listening!");
@@ -217,7 +217,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenersCurrentActivity.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenersCurrentActivity.bpmn20.xml"})
   public void testExecutionListenerCurrentActivity() {
 
     CurrentActivityExecutionListener.clear();
@@ -239,7 +239,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testOnBoundaryEvents.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testOnBoundaryEvents.bpmn20.xml"})
   public void testOnBoundaryEvents() {
     RecorderExecutionListener.clear();
 
@@ -293,8 +293,8 @@ public class ExecutionListenerTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testScriptResourceListener.bpmn20.xml",
-    "org/camunda/bpm/engine/test/bpmn/executionlistener/executionListener.groovy"
+    "org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testScriptResourceListener.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/executionListener.groovy"
   })
   public void testScriptResourceListener() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("process");
@@ -335,7 +335,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testOnCancellingBoundaryEvent.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testOnCancellingBoundaryEvent.bpmn"})
   public void testOnCancellingBoundaryEvents() {
     RecorderExecutionListener.clear();
 
@@ -491,7 +491,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testMultiInstanceCancelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testMultiInstanceCancelation.bpmn20.xml")
   public void testMultiInstanceCancelationDoesNotAffectEndListener() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("MultiInstanceCancelation");
@@ -516,7 +516,7 @@ public class ExecutionListenerTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testMultiInstanceCancelation.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/executionlistener/ExecutionListenerTest.testMultiInstanceCancelation.bpmn20.xml")
   public void testProcessInstanceCancelationNoticedInEndListener() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("MultiInstanceCancelation");

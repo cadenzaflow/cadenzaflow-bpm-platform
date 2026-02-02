@@ -53,7 +53,7 @@ public class TargetVariableScopeTest {
   public ProcessEngineTestRule testHelper = new ProcessEngineTestRule(engineRule);
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/variables/scope/TargetVariableScopeTest.testExecutionWithDelegateProcess.bpmn","org/camunda/bpm/engine/test/api/variables/scope/doer.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/variables/scope/TargetVariableScopeTest.testExecutionWithDelegateProcess.bpmn","org/cadenzaflow/bpm/engine/test/api/variables/scope/doer.bpmn"})
   public void testExecutionWithDelegateProcess() {
     // Given we create a new process instance
     VariableMap variables = Variables.createVariables().putValue("orderIds", Arrays.asList(new int[]{1, 2, 3}));
@@ -65,7 +65,7 @@ public class TargetVariableScopeTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/variables/scope/TargetVariableScopeTest.testExecutionWithScriptTargetScope.bpmn","org/camunda/bpm/engine/test/api/variables/scope/doer.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/variables/scope/TargetVariableScopeTest.testExecutionWithScriptTargetScope.bpmn","org/cadenzaflow/bpm/engine/test/api/variables/scope/doer.bpmn"})
   public void testExecutionWithScriptTargetScope () {
     VariableMap variables = Variables.createVariables().putValue("orderIds", Arrays.asList(new int[]{1, 2, 3}));
     ProcessInstance processInstance = engineRule.getRuntimeService().startProcessInstanceByKey("Process_MultiInstanceCallAcitivity",variables);
@@ -76,7 +76,7 @@ public class TargetVariableScopeTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/variables/scope/TargetVariableScopeTest.testExecutionWithoutProperTargetScope.bpmn","org/camunda/bpm/engine/test/api/variables/scope/doer.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/variables/scope/TargetVariableScopeTest.testExecutionWithoutProperTargetScope.bpmn","org/cadenzaflow/bpm/engine/test/api/variables/scope/doer.bpmn"})
   public void testExecutionWithoutProperTargetScope () {
     VariableMap variables = Variables.createVariables().putValue("orderIds", Arrays.asList(new int[]{1, 2, 3}));
     ProcessDefinition processDefinition = engineRule.getRepositoryService().createProcessDefinitionQuery().processDefinitionKey("Process_MultiInstanceCallAcitivity").singleResult();
@@ -91,7 +91,7 @@ public class TargetVariableScopeTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/variables/scope/doer.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/variables/scope/doer.bpmn"})
   public void testWithDelegateVariableMapping () {
     BpmnModelInstance instance = Bpmn.createExecutableProcess("process1")
         .startEvent()
@@ -121,7 +121,7 @@ public class TargetVariableScopeTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/variables/scope/doer.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/variables/scope/doer.bpmn"})
   public void testWithDelegateVariableMappingAndChildScope () {
     BpmnModelInstance instance = Bpmn.createExecutableProcess("process1")
         .startEvent()

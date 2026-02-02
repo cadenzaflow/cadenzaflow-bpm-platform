@@ -41,7 +41,7 @@ public class VersionTagTest extends PluggableProcessEngineTest {
     assertEquals("ver_tag_1", process.getVersionTag());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/repository/processOne.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/repository/processOne.bpmn20.xml"})
   @Test
   public void testParsingNullVersionTag() {
     ProcessDefinition process = repositoryService
@@ -53,7 +53,7 @@ public class VersionTagTest extends PluggableProcessEngineTest {
     assertEquals(null, process.getVersionTag());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/repository/versionTag.dmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/repository/versionTag.dmn"})
   @Test
   public void testParsingVersionTagDecisionDefinition() {
     DecisionDefinition decision = repositoryService
@@ -65,7 +65,7 @@ public class VersionTagTest extends PluggableProcessEngineTest {
     assertEquals("1.0.0", decision.getVersionTag());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/repository/noVersionTag.dmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/repository/noVersionTag.dmn"})
   @Test
   public void testParsingNullVersionTagDecisionDefinition() {
     DecisionDefinition decision = repositoryService

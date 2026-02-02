@@ -79,7 +79,7 @@ public class HandleTaskAuthorizationTest {
   protected String deploymentId;
 
   protected static final String BPMN_BEHAVIOR_LOGGER = "org.cadenzaflow.bpm.engine.bpmn.behavior";
-  protected static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
   protected static final String PROCESS_KEY = "oneTaskProcess";
 
   @Parameters(name = "Scenario {index}")

@@ -267,7 +267,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldCleanupDecisionInstance() {
     // given
@@ -302,7 +302,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldCleanupStandaloneDecisionInstance() {
     // given
@@ -343,7 +343,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldReportMetricsForDecisionInstanceCleanup() {
     // given
@@ -375,7 +375,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldCleanupDecisionInputInstance() {
     // given
@@ -414,7 +414,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldCleanupDecisionOutputInstance() {
     // given
@@ -1292,7 +1292,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldDistributeWorkForDecisions() {
     // given
@@ -2044,7 +2044,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSeeCleanableDecisionInstancesInReport() {
     // given
@@ -2078,7 +2078,7 @@ public class HistoryCleanupRemovalTimeTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldNotSeeCleanableDecisionInstancesInReport() {
     // given

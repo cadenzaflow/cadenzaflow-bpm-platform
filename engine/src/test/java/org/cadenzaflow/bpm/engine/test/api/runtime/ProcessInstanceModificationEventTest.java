@@ -45,12 +45,12 @@ import org.junit.Test;
  */
 public class ProcessInstanceModificationEventTest extends PluggableProcessEngineTest {
 
-  protected static final String INTERMEDIATE_TIMER_CATCH_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.intermediateTimerCatch.bpmn20.xml";
-  protected static final String MESSAGE_START_EVENT_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.messageStart.bpmn20.xml";
-  protected static final String TIMER_START_EVENT_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.timerStart.bpmn20.xml";
-  protected static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
-  protected static final String TERMINATE_END_EVENT_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.terminateEnd.bpmn20.xml";
-  protected static final String CANCEL_END_EVENT_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.cancelEnd.bpmn20.xml";
+  protected static final String INTERMEDIATE_TIMER_CATCH_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.intermediateTimerCatch.bpmn20.xml";
+  protected static final String MESSAGE_START_EVENT_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.messageStart.bpmn20.xml";
+  protected static final String TIMER_START_EVENT_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.timerStart.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml";
+  protected static final String TERMINATE_END_EVENT_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.terminateEnd.bpmn20.xml";
+  protected static final String CANCEL_END_EVENT_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.cancelEnd.bpmn20.xml";
 
   @Deployment(resources = INTERMEDIATE_TIMER_CATCH_PROCESS)
   @Test

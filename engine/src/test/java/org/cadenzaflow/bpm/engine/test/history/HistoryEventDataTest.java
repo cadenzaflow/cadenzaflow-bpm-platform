@@ -62,7 +62,7 @@ public class HistoryEventDataTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/threeTasksProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/threeTasksProcess.bpmn20.xml")
   public void verify() {
     runtimeService.startProcessInstanceByKey("threeTasksProcess");
   }

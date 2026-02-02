@@ -43,8 +43,8 @@ import org.junit.rules.RuleChain;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class HistoricDecisionInstanceStatisticsQueryTest {
 
-  protected static final String DISH_DRG_DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
-  protected static final String SCORE_DRG_DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
+  protected static final String DISH_DRG_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String SCORE_DRG_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdScore.dmn11.xml";
 
   protected static final String NON_EXISTING = "fake";
   protected static final String DISH_DECISION = "dish-decision";

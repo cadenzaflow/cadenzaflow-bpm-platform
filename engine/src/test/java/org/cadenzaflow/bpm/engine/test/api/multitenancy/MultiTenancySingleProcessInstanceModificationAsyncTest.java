@@ -51,7 +51,7 @@ import junit.framework.AssertionFailedError;
 
 public class MultiTenancySingleProcessInstanceModificationAsyncTest {
 
-  protected static final String PARALLEL_GATEWAY_PROCESS = "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
+  protected static final String PARALLEL_GATEWAY_PROCESS = "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.parallelGateway.bpmn20.xml";
 
   protected static final String TENANT_ONE = "tenant1";
 

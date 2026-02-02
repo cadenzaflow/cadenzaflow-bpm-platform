@@ -56,9 +56,9 @@ public class JobAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     testRule.deploy(
-        "org/camunda/bpm/engine/test/api/authorization/timerStartEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml");
+        "org/cadenzaflow/bpm/engine/test/api/authorization/timerStartEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml");
     super.setUp();
   }
 

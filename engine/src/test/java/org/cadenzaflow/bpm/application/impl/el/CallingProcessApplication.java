@@ -30,7 +30,7 @@ import org.cadenzaflow.bpm.impl.juel.jakarta.el.ELResolver;
  */
 @ProcessApplication(
     value="calling-app",
-    deploymentDescriptors={"org/camunda/bpm/application/impl/el/calling-process-app.xml"}
+    deploymentDescriptors={"org/cadenzaflow/bpm/application/impl/el/calling-process-app.xml"}
 )
 public class CallingProcessApplication extends EmbeddedProcessApplication {
 

@@ -12,9 +12,9 @@
     <callActivity id="callactivity" calledElement="TrivialSubProcess"></callActivity>
 
 	<sequenceFlow id="flow2" sourceRef="callactivity" targetRef="buzzz"/>
-	
-	<serviceTask id="buzzz" camunda:class="org.camunda.bpm.engine.test.api.runtime.util.Buzzz" />
-	
+
+	<serviceTask id="buzzz" camunda:class="org.cadenzaflow.bpm.engine.test.api.runtime.util.Buzzz" />
+
 	<sequenceFlow id="flow3" sourceRef="buzzz" targetRef="end"/>
     
     <endEvent id="end"/>

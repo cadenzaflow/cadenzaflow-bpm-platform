@@ -50,7 +50,7 @@ public class MultiTenancyCleanableHistoricDecisionInstanceReportCmdTenantCheckTe
 
   private static final String DECISION_DEFINITION_KEY = "decision";
 
-  protected static final String DMN_MODEL = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN_MODEL = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
 

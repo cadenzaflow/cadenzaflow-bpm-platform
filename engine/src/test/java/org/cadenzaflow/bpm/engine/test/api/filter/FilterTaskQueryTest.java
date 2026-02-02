@@ -1428,7 +1428,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
       orderingProperty.getQueryProperty().getFunction());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/task/oneTaskWithFormKeyProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/task/oneTaskWithFormKeyProcess.bpmn20.xml"})
   @Test
     public void testInitializeFormKeysEnabled() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("testProcess");
@@ -1512,7 +1512,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertFalse(variables.get(2).isLocal());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testExtendTaskQueryByOrderByProcessVariable() {
     ProcessInstance instance500 = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -1556,7 +1556,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     runtimeService.deleteProcessInstance(instance1000.getId(), null);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testExtendTaskQueryByOrderByTaskVariable() {
     ProcessInstance instance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -1606,7 +1606,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     runtimeService.deleteProcessInstance(instance3.getId(), null);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testExtendTaskQueryByTaskVariableIgnoreCase() {
     String variableName = "variableName";
@@ -1691,7 +1691,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertFalse(tasks.contains(taskWithNoVariable));
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testExtendTaskQueryByCaseInstanceVariableIgnoreCase() {
     String variableName = "variableName";
@@ -1796,7 +1796,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     caseService.terminateCaseExecution(instanceWithoutVariables.getId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testExtendTaskQueryByProcessVariableIgnoreCase() {
     String variableName = "variableName";
@@ -2016,7 +2016,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testBooleanVariable() {
     // given
@@ -2036,7 +2036,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testIntVariable() {
     // given
@@ -2056,7 +2056,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testIntOutOfRangeVariable() {
     // given
@@ -2076,7 +2076,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testDoubleVariable() {
     // given
@@ -2096,7 +2096,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testStringVariable() {
     // given
@@ -2116,7 +2116,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testNullVariable() {
     // given
@@ -2136,7 +2136,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testDueDate() {
     // given
@@ -2303,7 +2303,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertNull(taskQuery.getAssigneeNotIn());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Ignore("CAM-9613")
   @Test
   public void testDateVariable() {
@@ -2325,7 +2325,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Ignore("CAM-9613")
   @Test
   public void testByteArrayVariable() {
@@ -2346,7 +2346,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Ignore("CAM-9613")
   @Test
   public void testLongVariable() {
@@ -2367,7 +2367,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Ignore("CAM-9613")
   @Test
   public void testShortVariable() {
@@ -2388,7 +2388,7 @@ public class FilterTaskQueryTest extends PluggableProcessEngineTest {
     assertThat(filterService.count(filter.getId())).isEqualTo(1L);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testExtendingTaskQueryWithProcessInstanceIn() {
     // given

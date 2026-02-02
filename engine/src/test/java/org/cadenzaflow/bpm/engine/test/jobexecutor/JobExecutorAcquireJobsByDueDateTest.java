@@ -47,7 +47,7 @@ public class JobExecutorAcquireJobsByDueDateTest extends AbstractJobExecutorAcqu
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   public void testMessageJobHasDueDateSet() {
     runtimeService.startProcessInstanceByKey("simpleAsyncProcess");
 
@@ -58,8 +58,8 @@ public class JobExecutorAcquireJobsByDueDateTest extends AbstractJobExecutorAcqu
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/jobexecutor/processWithTimerCatch.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/jobexecutor/processWithTimerCatch.bpmn20.xml"
   })
   public void testOldJobsArePreferred() {
     // first start process with timer job

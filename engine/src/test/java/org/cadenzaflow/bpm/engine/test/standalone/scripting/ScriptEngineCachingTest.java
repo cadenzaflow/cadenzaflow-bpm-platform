@@ -40,7 +40,7 @@ import org.junit.Test;
  */
 public class ScriptEngineCachingTest extends PluggableProcessEngineTest {
 
-  protected static final String PROCESS_PATH = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected static final String PROCESS_PATH = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
   protected static final String SCRIPT_LANGUAGE = "groovy";
 
   @Test

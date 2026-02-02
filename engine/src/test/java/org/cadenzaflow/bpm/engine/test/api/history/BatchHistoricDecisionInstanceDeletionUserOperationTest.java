@@ -82,7 +82,7 @@ public class BatchHistoricDecisionInstanceDeletionUserOperationTest {
 
   @Before
   public void evaluateDecisionInstances() {
-    testRule.deploy("org/camunda/bpm/engine/test/api/dmn/Example.dmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn");
 
     VariableMap variables = Variables.createVariables()
         .putValue("status", "silver")

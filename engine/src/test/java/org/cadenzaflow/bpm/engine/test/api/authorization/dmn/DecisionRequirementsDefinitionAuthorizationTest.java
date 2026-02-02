@@ -51,8 +51,8 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class DecisionRequirementsDefinitionAuthorizationTest {
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
-  protected static final String DRD_FILE = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.png";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DRD_FILE = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.png";
  
   protected static final String DEFINITION_KEY = "dish";
  

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions id="definitions" 
+<definitions id="definitions"
   xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
   xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
   targetNamespace="Examples">
@@ -16,7 +16,7 @@
 
       <sequenceFlow id="innerFlow1" sourceRef="theInnterStart" targetRef="serviceTask" />
 
-      <serviceTask id="serviceTask" camunda:async="true" camunda:class="org.camunda.bpm.engine.test.api.runtime.FailingDelegate" />
+      <serviceTask id="serviceTask" camunda:async="true" camunda:class="org.cadenzaflow.bpm.engine.test.api.runtime.FailingDelegate" />
 
       <sequenceFlow id="innerFlow2" sourceRef="serviceTask" targetRef="theInnerEnd" />
 

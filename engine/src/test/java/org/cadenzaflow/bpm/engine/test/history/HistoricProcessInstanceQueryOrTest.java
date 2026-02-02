@@ -210,7 +210,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithEmptyOrQuery() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -230,7 +230,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithVarValue1OrVarValue2() {
     // given
     Map<String, Object> vars = new HashMap<String, Object>();
@@ -254,7 +254,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldQueryByVariableValue_1() {
     // GIVEN
     String processInstanceIdOne = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -278,7 +278,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldQueryByVariableValue_2() {
     // GIVEN
     String processInstanceIdOne = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -301,7 +301,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldQueryByVariableValue_3() {
     // GIVEN
     String processInstanceIdOne = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -323,7 +323,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldQueryByVariableValue_4() {
     // GIVEN
     String processInstanceIdOne = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -346,7 +346,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldQueryByVariableValue_5() {
     // GIVEN
     String processInstanceIdOne = runtimeService.startProcessInstanceByKey("oneTaskProcess",
@@ -370,7 +370,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldQueryByVariableValue_6() {
     // GIVEN
     runtimeService.startProcessInstanceByKey("oneTaskProcess", Variables.putValue("foo", "bar"));
@@ -392,7 +392,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithMultipleOrCriteria() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -426,7 +426,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstFilteredByMultipleOrAndCriteria() {
     // given
     Map<String, Object> vars = new HashMap<String, Object>();
@@ -463,7 +463,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstFilteredByMultipleOrQueries() {
     // given
     Map<String, Object> vars = new HashMap<>();
@@ -528,7 +528,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWhereSameCriterionWasAppliedThreeTimesInOneQuery() {
     // given
     ProcessInstance processInstance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -549,7 +549,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithVariableValueEqualsOrVariableValueGreaterThan() {
     // given
     Map<String, Object> vars = new HashMap<>();
@@ -625,7 +625,7 @@ public class HistoricProcessInstanceQueryOrTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithMultipleStates() {
     // given
     setupMultipleProcessInstances();
@@ -644,7 +644,7 @@ public class HistoricProcessInstanceQueryOrTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithMatchingState() {
     // given
     setupMultipleProcessInstances();
@@ -819,7 +819,7 @@ public class HistoricProcessInstanceQueryOrTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnByProcessDefinitionKeyOrActivityId() {
     // given
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -854,7 +854,7 @@ public class HistoricProcessInstanceQueryOrTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnByProcessDefinitionIdOrIncidentType() {
     // given
     String processDefinitionId = runtimeService.startProcessInstanceByKey("oneTaskProcess")
@@ -894,7 +894,7 @@ public class HistoricProcessInstanceQueryOrTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithVarValue1OrVarValue21() {
     // given
     Map<String, Object> vars = new HashMap<String, Object>();
@@ -947,7 +947,7 @@ public class HistoricProcessInstanceQueryOrTest {
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void shouldReturnHistoricProcInstWithVarValue1OrVarValue23() {
     // given
     Map<String, Object> vars = new HashMap<String, Object>();

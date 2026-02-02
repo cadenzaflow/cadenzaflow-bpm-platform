@@ -59,7 +59,7 @@ public abstract class AbstractCompetingTransactionsOptimisticLockingTest {
     processEngineConfiguration.setEnableOptimisticLockingOnForeignKeyViolation(true);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/concurrency/AbstractCompetingTransactionsOptimisticLockingTest.shouldDetectConcurrentDeletionOfExecutionForTaskInsert.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/concurrency/AbstractCompetingTransactionsOptimisticLockingTest.shouldDetectConcurrentDeletionOfExecutionForTaskInsert.bpmn20.xml")
   @Test
   public void shouldDetectConcurrentDeletionOfExecutionForTaskInsert() {
     // given
@@ -87,7 +87,7 @@ public abstract class AbstractCompetingTransactionsOptimisticLockingTest {
     assertThat(thread1.exception).isInstanceOf(OptimisticLockingException.class);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/concurrency/AbstractCompetingTransactionsOptimisticLockingTest.shouldDetectConcurrentDeletionOfExecutionForTaskInsert.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/concurrency/AbstractCompetingTransactionsOptimisticLockingTest.shouldDetectConcurrentDeletionOfExecutionForTaskInsert.bpmn20.xml")
   @Test
   @RequiredDatabase(includes = DbSqlSessionFactory.POSTGRES)
   public void shouldTreatConcurrentDeletionOfExecutionForTaskInsertAsForeignKeyException() {

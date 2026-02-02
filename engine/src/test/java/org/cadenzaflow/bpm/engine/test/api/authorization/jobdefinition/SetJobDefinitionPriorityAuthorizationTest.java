@@ -85,7 +85,7 @@ public class SetJobDefinitionPriorityAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
   public void testSetJobDefinitionPriority() {
 
     // given
@@ -109,7 +109,7 @@ public class SetJobDefinitionPriorityAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
   public void testResetJobDefinitionPriority() {
     // given
     JobDefinition jobDefinition = engineRule.getManagementService().createJobDefinitionQuery().singleResult();

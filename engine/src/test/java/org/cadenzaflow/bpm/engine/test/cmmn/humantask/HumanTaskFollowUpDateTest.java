@@ -36,7 +36,7 @@ import org.junit.Test;
  */
 public class HumanTaskFollowUpDateTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/humantask/HumanTaskFollowUpDateTest.testHumanTaskFollowUpDate.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/humantask/HumanTaskFollowUpDateTest.testHumanTaskFollowUpDate.cmmn"})
   @Test
   public void testHumanTaskFollowUpDateExtension() throws Exception {
 
@@ -52,7 +52,7 @@ public class HumanTaskFollowUpDateTest extends PluggableProcessEngineTest {
     assertEquals(date, task.getFollowUpDate());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/humantask/HumanTaskFollowUpDateTest.testHumanTaskFollowUpDate.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/humantask/HumanTaskFollowUpDateTest.testHumanTaskFollowUpDate.cmmn"})
   @Test
   public void testHumanTaskFollowUpDateStringExtension() throws Exception {
 
@@ -68,7 +68,7 @@ public class HumanTaskFollowUpDateTest extends PluggableProcessEngineTest {
     assertEquals(date, task.getFollowUpDate());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/humantask/HumanTaskFollowUpDateTest.testHumanTaskFollowUpDate.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/humantask/HumanTaskFollowUpDateTest.testHumanTaskFollowUpDate.cmmn"})
   @Test
   public void testHumanTaskRelativeFollowUpDate() {
     Map<String, Object> variables = new HashMap<String, Object>();

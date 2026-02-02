@@ -621,7 +621,7 @@ public class MessageNonInterruptingBoundaryEventTest extends PluggableProcessEng
     testRule.assertProcessEnded(processInstanceId);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/message/MessageNonInterruptingBoundaryEventTest.testNestedEvents.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageNonInterruptingBoundaryEventTest.testNestedEvents.bpmn20.xml"})
   @Test
   public void testNestedEventsAnotherExecutionOrder() {
     // given

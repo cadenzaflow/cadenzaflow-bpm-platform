@@ -47,7 +47,7 @@ import org.junit.runners.Parameterized;
 public abstract class BatchCreationAuthorizationTest {
 
   protected static final String TEST_REASON = "test reason";
-  protected static final String JOB_EXCEPTION_DEFINITION_XML = "org/camunda/bpm/engine/test/api/mgmt/ManagementServiceTest.testGetJobExceptionStacktrace.bpmn20.xml";
+  protected static final String JOB_EXCEPTION_DEFINITION_XML = "org/cadenzaflow/bpm/engine/test/api/mgmt/ManagementServiceTest.testGetJobExceptionStacktrace.bpmn20.xml";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected AuthorizationTestRule authRule = new AuthorizationTestRule(engineRule);

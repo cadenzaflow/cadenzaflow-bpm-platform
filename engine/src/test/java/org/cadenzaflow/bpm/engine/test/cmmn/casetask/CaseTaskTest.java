@@ -50,8 +50,8 @@ public class CaseTaskTest extends CmmnTest {
   protected final String ONE_TASK_CASE = "oneTaskCase";
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseAsConstant() {
@@ -82,8 +82,8 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseAsExpressionStartsWithDollar.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseAsExpressionStartsWithDollar.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseAsExpressionStartsWithDollar() {
@@ -117,8 +117,8 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseAsExpressionStartsWithHash.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseAsExpressionStartsWithHash.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseAsExpressionStartsWithHash() {
@@ -155,13 +155,13 @@ public class CaseTaskTest extends CmmnTest {
    * assert on default behaviour - remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallLatestCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallLatestCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallLatestCase() {
     // given
-    String cmmnResourceName = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+    String cmmnResourceName = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
     String deploymentId = repositoryService.createDeployment()
         .addClasspathResource(cmmnResourceName)
@@ -209,8 +209,8 @@ public class CaseTaskTest extends CmmnTest {
    * default behaviour of manual activation changed - remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByDeployment.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByDeployment.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseByDeployment() {
@@ -221,7 +221,7 @@ public class CaseTaskTest extends CmmnTest {
       .singleResult()
       .getId();
 
-    String cmmnResourceName = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+    String cmmnResourceName = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
     String deploymentId = repositoryService.createDeployment()
             .addClasspathResource(cmmnResourceName)
             .deploy()
@@ -268,14 +268,14 @@ public class CaseTaskTest extends CmmnTest {
    * assertions on completion - take manual activation out
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByVersion.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByVersion.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseByVersion() {
     // given
 
-    String bpmnResourceName = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+    String bpmnResourceName = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
     String secondDeploymentId = repositoryService.createDeployment()
             .addClasspathResource(bpmnResourceName)
             .deploy()
@@ -325,14 +325,14 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByVersionAsExpressionStartsWithDollar.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByVersionAsExpressionStartsWithDollar.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseByVersionAsExpressionStartsWithDollar() {
     // given
 
-    String bpmnResourceName = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+    String bpmnResourceName = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
     String secondDeploymentId = repositoryService.createDeployment()
             .addClasspathResource(bpmnResourceName)
@@ -385,14 +385,14 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByVersionAsExpressionStartsWithHash.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testCallCaseByVersionAsExpressionStartsWithHash.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCallCaseByVersionAsExpressionStartsWithHash() {
     // given
 
-    String bpmnResourceName = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+    String bpmnResourceName = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
     String secondDeploymentId = repositoryService.createDeployment()
             .addClasspathResource(bpmnResourceName)
@@ -452,8 +452,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on default behaviour - remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputBusinessKey.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputBusinessKey.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputBusinessKey() {
@@ -490,8 +490,8 @@ public class CaseTaskTest extends CmmnTest {
    * variable passed in manual activation - change process definition
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputDifferentBusinessKey.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputDifferentBusinessKey.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputDifferentBusinessKey() {
@@ -534,8 +534,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on variables which are set on manual start - change process definition
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSourceWithManualActivation.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSourceWithManualActivation.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputSource() {
@@ -593,8 +593,8 @@ public class CaseTaskTest extends CmmnTest {
    * default manual activation behaviour changed - remove manual activation statement
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSourceDifferentTarget.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSourceDifferentTarget.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputSourceDifferentTarget() {
@@ -647,8 +647,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on default execution - take manual start out
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSource.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSource.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputSourceNullValue() {
@@ -698,8 +698,8 @@ public class CaseTaskTest extends CmmnTest {
    * Default manual activation changed - add variables to case instantiation, remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSourceExpression.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputSourceExpression.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputSourceExpression() {
@@ -748,8 +748,8 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputAll.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputAll.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputAll() {
@@ -802,8 +802,8 @@ public class CaseTaskTest extends CmmnTest {
    * assert on variable defined during manual start - change process definition
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputAllLocal.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testInputAllLocal.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testInputAllLocal() {
@@ -834,7 +834,7 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on manual activation operation - change process definition
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testCaseNotFound() {
@@ -863,8 +863,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on completion - remove manual start
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCompleteSimpleCase() {
@@ -898,8 +898,8 @@ public class CaseTaskTest extends CmmnTest {
    * subprocess manual start with variables - change process definition
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSource.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSource.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testOutputSource() {
@@ -963,8 +963,8 @@ public class CaseTaskTest extends CmmnTest {
    * default behaviour of manual activation changed - remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSourceDifferentTarget.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSourceDifferentTarget.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testOutputSourceDifferentTarget() {
@@ -1023,8 +1023,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on default behaviour - remove manual activations
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSource.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSource.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testOutputSourceNullValue() {
@@ -1077,8 +1077,8 @@ public class CaseTaskTest extends CmmnTest {
    * manual start on case not needed enaymore and therefore removed
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSourceExpression.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputSourceExpression.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testOutputSourceExpression() {
@@ -1142,8 +1142,8 @@ public class CaseTaskTest extends CmmnTest {
    * case task behaviour changed, so manual activation is taken out
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputAll.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputAll.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testOutputAll() {
@@ -1203,8 +1203,8 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputVariablesShouldNotExistAnymore.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testOutputVariablesShouldNotExistAnymore.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testOutputVariablesShouldNotExistAnymore() {
@@ -1263,8 +1263,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on variables - change subprocess definition
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testVariablesRoundtrip.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testVariablesRoundtrip.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testVariablesRoundtrip() {
@@ -1332,8 +1332,8 @@ public class CaseTaskTest extends CmmnTest {
    * Default behaviour changed, so manual start is taken out
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testCompleteCaseTask() {
@@ -1367,8 +1367,8 @@ public class CaseTaskTest extends CmmnTest {
    * assert on default behaviour - remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testTerminateCaseTask() {
@@ -1401,8 +1401,8 @@ public class CaseTaskTest extends CmmnTest {
    * removed manual start as it is handled by default behaviour
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testTerminateSubCaseInstance() {
@@ -1439,8 +1439,8 @@ public class CaseTaskTest extends CmmnTest {
    * assertion on completion - remove manual start
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testSuspendCaseTask() {
@@ -1475,8 +1475,8 @@ public class CaseTaskTest extends CmmnTest {
    * change definition of oneTaskCase in order to allow suspension state
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn"
     })
   @Test
   public void testSuspendSubCaseInstance() {
@@ -1510,8 +1510,8 @@ public class CaseTaskTest extends CmmnTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCase.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testResumeCaseTask() {
@@ -1551,8 +1551,8 @@ public class CaseTaskTest extends CmmnTest {
    * assert on default behaviour - remove manual activation
    */
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/cmmn/casetask/CaseTaskTest.testNotBlockingCaseTask.cmmn",
-      "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
+      "org/cadenzaflow/bpm/engine/test/cmmn/casetask/CaseTaskTest.testNotBlockingCaseTask.cmmn",
+      "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"
     })
   @Test
   public void testNotBlockingCaseTask() {
@@ -1587,7 +1587,7 @@ public class CaseTaskTest extends CmmnTest {
   /**
    * Changed process definition as we prove activity type
    */
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneCaseTaskCaseWithManualActivation.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneCaseTaskCaseWithManualActivation.cmmn"})
   @Test
   public void testActivityType() {
     // given

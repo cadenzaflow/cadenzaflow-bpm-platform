@@ -4,7 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="processEngineConfiguration" class="org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+  <bean id="processEngineConfiguration" class="org.cadenzaflow.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
 
     <property name="jdbcUrl" value="${database.url}" />
     <property name="jdbcDriver" value="${database.driver}" />
@@ -21,7 +21,7 @@
 
     <!-- job executor configurations -->
     <property name="jobExecutorActivate" value="false" />
-    
+
     <!-- turn off metrics reporter -->
     <property name="dbMetricsReporterActivate" value="false" />
     <property name="taskMetricsEnabled" value="false" />
@@ -31,19 +31,19 @@
     <property name="history" value="${history.level}" />
 
     <property name="authorizationCheckRevokes" value="${authorizationCheckRevokes}"/>
-    <property name="enforceHistoryTimeToLive" value="false" />    
+    <property name="enforceHistoryTimeToLive" value="false" />
 
     <!--<property name="idGenerator" ref="uuidGenerator" />-->
 
     <property name="processEnginePlugins">
       <list>
-        <bean class="org.camunda.spin.plugin.impl.SpinProcessEnginePlugin" />
-        <bean class="org.camunda.connect.plugin.impl.ConnectProcessEnginePlugin" />
+        <bean class="org.cadenzaflow.spin.plugin.impl.SpinProcessEnginePlugin" />
+        <bean class="org.cadenzaflow.connect.plugin.impl.ConnectProcessEnginePlugin" />
       </list>
     </property>
 
   </bean>
 
-  <!--<bean id="uuidGenerator" class="org.camunda.bpm.engine.impl.persistence.StrongUuidGenerator" />-->
+  <!--<bean id="uuidGenerator" class="org.cadenzaflow.bpm.engine.impl.persistence.StrongUuidGenerator" />-->
 
 </beans>

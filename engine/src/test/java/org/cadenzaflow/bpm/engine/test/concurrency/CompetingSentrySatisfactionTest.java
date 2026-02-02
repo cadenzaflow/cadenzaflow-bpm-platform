@@ -106,7 +106,7 @@ public class CompetingSentrySatisfactionTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testEntryCriteriaWithAndSentry.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testEntryCriteriaWithAndSentry.cmmn"})
   @Test
   public void testEntryCriteriaWithAndSentry() {
     String caseInstanceId = caseService
@@ -149,7 +149,7 @@ public class CompetingSentrySatisfactionTest {
     testRule.assertTextPresent("was updated by another transaction concurrently", message);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testExitCriteriaWithAndSentry.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testExitCriteriaWithAndSentry.cmmn"})
   @Test
   public void testExitCriteriaWithAndSentry() {
     String caseInstanceId = caseService
@@ -192,7 +192,7 @@ public class CompetingSentrySatisfactionTest {
     testRule.assertTextPresent("was updated by another transaction concurrently", message);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testEntryCriteriaWithOrSentry.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testEntryCriteriaWithOrSentry.cmmn"})
   @Test
   public void testEntryCriteriaWithOrSentry() {
     String caseInstanceId = caseService
@@ -235,8 +235,8 @@ public class CompetingSentrySatisfactionTest {
     testRule.assertTextPresent("was updated by another transaction concurrently", message);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testExitCriteriaWithOrSentry.cmmn",
-      "org/camunda/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.testExitCriteriaWithOrSentry.cmmn",
+      "org/cadenzaflow/bpm/engine/test/concurrency/CompetingSentrySatisfactionTest.oneTaskProcess.bpmn20.xml"})
   @Test
   public void testExitCriteriaWithOrSentry() {
     String caseInstanceId = caseService

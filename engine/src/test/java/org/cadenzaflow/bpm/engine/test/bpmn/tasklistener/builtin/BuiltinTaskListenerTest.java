@@ -38,7 +38,7 @@ public class BuiltinTaskListenerTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/bpmn/tasklistener/builtin/task.listener.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/bpmn/tasklistener/builtin/task.listener.camunda.cfg.xml");
 
   @Rule
   public ProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);

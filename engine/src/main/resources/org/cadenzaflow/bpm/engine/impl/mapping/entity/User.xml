@@ -18,12 +18,12 @@
 
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-  
-<mapper namespace="org.camunda.bpm.engine.impl.persistence.entity.UserEntity">
+
+<mapper namespace="org.cadenzaflow.bpm.engine.impl.persistence.entity.UserEntity">
 
   <!-- USER INSERT -->
 
-  <insert id="insertUser" parameterType="org.camunda.bpm.engine.impl.persistence.entity.UserEntity">
+  <insert id="insertUser" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.UserEntity">
     insert into ${prefix}ACT_ID_USER (ID_, FIRST_, LAST_, EMAIL_, PWD_, SALT_, REV_)
     values (
       #{id ,jdbcType=VARCHAR},
@@ -38,7 +38,7 @@
 
   <!-- USER UPDATE -->
 
-  <update id="updateUser" parameterType="org.camunda.bpm.engine.impl.persistence.entity.UserEntity">
+  <update id="updateUser" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.UserEntity">
     update ${prefix}ACT_ID_USER set
       REV_ = #{revisionNext ,jdbcType=INTEGER},
       FIRST_ = #{firstName ,jdbcType=VARCHAR},
@@ -49,8 +49,8 @@
     where ID_ = #{id}
       and REV_ = #{revision}
   </update>
-  
-  <update id="updateUserLock" parameterType="org.camunda.bpm.engine.impl.persistence.entity.UserEntity">
+
+  <update id="updateUserLock" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.UserEntity">
     update ${prefix}ACT_ID_USER set
       REV_ = #{revisionNext ,jdbcType=INTEGER},
       LOCK_EXP_TIME_ = #{lockExpirationTime ,jdbcType=TIMESTAMP},
@@ -58,16 +58,16 @@
     where ID_ = #{id}
       and REV_ = #{revision}
   </update>
-  
+
   <!-- USER DELETE -->
 
-  <delete id="deleteUser" parameterType="org.camunda.bpm.engine.impl.persistence.entity.UserEntity">
+  <delete id="deleteUser" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.UserEntity">
     delete from ${prefix}ACT_ID_USER where ID_ = #{id} and REV_ = #{revision}
   </delete>
 
   <!-- USER RESULTMAP -->
 
-  <resultMap id="userResultMap" type="org.camunda.bpm.engine.impl.persistence.entity.UserEntity">
+  <resultMap id="userResultMap" type="org.cadenzaflow.bpm.engine.impl.persistence.entity.UserEntity">
     <id property="id" column="ID_" jdbcType="VARCHAR" />
     <result property="revision" column="REV_" jdbcType="INTEGER" />
     <result property="firstName" column="FIRST_" jdbcType="VARCHAR" />
@@ -78,24 +78,24 @@
     <result property="lockExpirationTime" column="LOCK_EXP_TIME_" jdbcType="TIMESTAMP" />
     <result property="attempts" column="ATTEMPTS_" jdbcType="INTEGER" />
   </resultMap>
-  
+
   <!-- USER SELECT -->
 
   <select id="selectUser" parameterType="string" resultMap="userResultMap">
     select * from ${prefix}ACT_ID_USER where ID_ = #{id,jdbcType=VARCHAR}
   </select>
-    
-  <select id="selectUserByQueryCriteria" parameterType="org.camunda.bpm.engine.impl.UserQueryImpl" resultMap="userResultMap">
-  	<include refid="org.camunda.bpm.engine.impl.persistence.entity.Commons.bindOrderBy"/>
+
+  <select id="selectUserByQueryCriteria" parameterType="org.cadenzaflow.bpm.engine.impl.UserQueryImpl" resultMap="userResultMap">
+  	<include refid="org.cadenzaflow.bpm.engine.impl.persistence.entity.Commons.bindOrderBy"/>
     ${limitBefore}
-    select ${distinct} RES.* 
+    select ${distinct} RES.*
     ${limitBetween}
     <include refid="selectUserByQueryCriteriaSql" />
     ${orderBy}
     ${limitAfter}
   </select>
-  
-   <select id="selectUserCountByQueryCriteria" parameterType="org.camunda.bpm.engine.impl.UserQueryImpl" resultType="long">
+
+   <select id="selectUserCountByQueryCriteria" parameterType="org.cadenzaflow.bpm.engine.impl.UserQueryImpl" resultType="long">
     ${countDistinctBeforeStart} RES.ID_ ${countDistinctBeforeEnd}
     <include refid="selectUserByQueryCriteriaSql" />
     ${countDistinctAfterEnd}
@@ -103,7 +103,7 @@
   
   <sql id="selectUserByQueryCriteriaSql">
 
-    from ${prefix}ACT_ID_USER RES 
+    from ${prefix}ACT_ID_USER RES
     <if test="groupId != null">
       inner join ${prefix}ACT_ID_MEMBERSHIP M on RES.ID_ = M.USER_ID_
       inner join ${prefix}ACT_ID_GROUP G on M.GROUP_ID_ = G.ID_
@@ -111,9 +111,9 @@
     <if test="tenantId != null">
       inner join ${prefix}ACT_ID_TENANT_MEMBER TM on RES.ID_ = TM.USER_ID_
     </if>
-    
-    <include refid="org.camunda.bpm.engine.impl.persistence.entity.AuthorizationEntity.authCheckJoin" /> 
-    
+
+    <include refid="org.cadenzaflow.bpm.engine.impl.persistence.entity.AuthorizationEntity.authCheckJoin" />
+
     <where>
       <if test="id != null">
         RES.ID_ = #{id}
@@ -151,10 +151,10 @@
       </if>
       <if test="tenantId != null">
         and TM.TENANT_ID_ = #{tenantId}
-      </if>      
-      
-      <include refid="org.camunda.bpm.engine.impl.persistence.entity.AuthorizationEntity.queryAuthorizationCheck" />
-      
+      </if>
+
+      <include refid="org.cadenzaflow.bpm.engine.impl.persistence.entity.AuthorizationEntity.queryAuthorizationCheck" />
+
     </where>
   </sql>
 

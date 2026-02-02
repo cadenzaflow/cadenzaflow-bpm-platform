@@ -43,7 +43,7 @@ public class TransactionListenerThreadContextTest {
 
   @Rule
   public ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/jobexecutor/TransactionListenerThreadContextTest.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/jobexecutor/TransactionListenerThreadContextTest.cfg.xml");
   protected ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);
 

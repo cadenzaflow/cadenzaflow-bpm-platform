@@ -95,7 +95,7 @@ public class SetJobPriorityAuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml")
   public void testSetJobPriority() {
 
     // given

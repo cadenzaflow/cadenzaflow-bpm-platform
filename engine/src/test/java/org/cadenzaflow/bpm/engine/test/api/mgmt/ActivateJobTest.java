@@ -49,7 +49,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationById_shouldActivateJob() {
     // given
@@ -82,7 +82,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertFalse(activeJob.isSuspended());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByJobDefinitionId_shouldActivateJob() {
     // given
@@ -119,7 +119,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertFalse(activeJob.isSuspended());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivateByProcessInstanceId_shouldActivateJob() {
     // given
@@ -156,7 +156,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertFalse(suspendedJob.isSuspended());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByProcessDefinitionId_shouldActivateJob() {
     // given
@@ -191,7 +191,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertFalse(activeJob.isSuspended());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByProcessDefinitionKey_shouldActivateJob() {
     // given
@@ -236,7 +236,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     int nrOfProcessDefinitions = 3;
     for (int i=0; i < nrOfProcessDefinitions; i++) {
       repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn").deploy();
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn").deploy();
       Map<String, Object> params = new HashMap<String, Object>();
       params.put("fail", Boolean.TRUE);
       runtimeService.startProcessInstanceByKey(key, params);
@@ -263,7 +263,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByIdUsingBuilder() {
     // given
@@ -293,7 +293,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertEquals(0, jobQuery.suspended().count());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByJobDefinitionIdUsingBuilder() {
     // given
@@ -324,7 +324,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertEquals(0, jobQuery.suspended().count());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByProcessInstanceIdUsingBuilder() {
     // given
@@ -353,7 +353,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertEquals(0, jobQuery.suspended().count());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByProcessDefinitionIdUsingBuilder() {
     // given
@@ -384,7 +384,7 @@ public class ActivateJobTest extends PluggableProcessEngineTest {
     assertEquals(0, jobQuery.suspended().count());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/mgmt/SuspensionTest.testBase.bpmn"})
   @Test
   public void testActivationByProcessDefinitionKeyUsingBuilder() {
     // given

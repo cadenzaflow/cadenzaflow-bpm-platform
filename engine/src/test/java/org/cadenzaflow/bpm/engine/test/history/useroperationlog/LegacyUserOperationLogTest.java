@@ -58,7 +58,7 @@ public class LegacyUserOperationLogTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/history/useroperationlog/enable.legacy.user.operation.log.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/history/useroperationlog/enable.legacy.user.operation.log.camunda.cfg.xml");
   public ProcessEngineRule processEngineRule = new ProvidedProcessEngineRule(bootstrapRule);
   public ProcessEngineTestRule testHelper = new ProcessEngineTestRule(processEngineRule);
 
@@ -96,7 +96,7 @@ public class LegacyUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/useroperationlog/UserOperationLogTaskTest.testOnlyTaskCompletionIsLogged.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/useroperationlog/UserOperationLogTaskTest.testOnlyTaskCompletionIsLogged.bpmn20.xml")
   public void testLogAllOperationWithAuthentication() {
     try {
       // given
@@ -124,7 +124,7 @@ public class LegacyUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/useroperationlog/UserOperationLogTaskTest.testOnlyTaskCompletionIsLogged.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/useroperationlog/UserOperationLogTaskTest.testOnlyTaskCompletionIsLogged.bpmn20.xml")
   public void testLogOperationWithoutAuthentication() {
     // given
     String processInstanceId = runtimeService.startProcessInstanceByKey("process").getId();
@@ -152,7 +152,7 @@ public class LegacyUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/useroperationlog/UserOperationLogTaskTest.testOnlyTaskCompletionIsLogged.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/useroperationlog/UserOperationLogTaskTest.testOnlyTaskCompletionIsLogged.bpmn20.xml")
   public void testLogSetVariableWithoutAuthentication() {
     // given
     String processInstanceId = runtimeService.startProcessInstanceByKey("process").getId();

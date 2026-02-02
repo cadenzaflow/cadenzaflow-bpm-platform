@@ -4,7 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="processEngineConfiguration" class="org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+  <bean id="processEngineConfiguration" class="org.cadenzaflow.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
 
     <property name="processEngineName" value="TenantIdProviderTest" />
     <property name="jdbcUrl" value="jdbc:h2:mem:camunda-TenantIdProviderTest" />
@@ -16,7 +16,7 @@
     <property name="enforceHistoryTimeToLive" value="false" />
 
   </bean>
-  
-  <bean id="tenantIdProvider" class="org.camunda.bpm.engine.test.api.multitenancy.TenantIdProviderTest$TestTenantIdProvider"></bean>
+
+  <bean id="tenantIdProvider" class="org.cadenzaflow.bpm.engine.test.api.multitenancy.TenantIdProviderTest$TestTenantIdProvider"></bean>
 
 </beans>

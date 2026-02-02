@@ -430,7 +430,7 @@ public class IncidentQueryTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/IncidentQueryTest.testQueryByCauseIncidentId.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/IncidentQueryTest.testQueryByCauseIncidentId.bpmn"})
   public void testQueryByCauseIncidentId() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("callFailingProcess");
 
@@ -471,8 +471,8 @@ public class IncidentQueryTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/IncidentQueryTest.testQueryByRootCauseIncidentId.bpmn",
-      "org/camunda/bpm/engine/test/api/runtime/IncidentQueryTest.testQueryByCauseIncidentId.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/IncidentQueryTest.testQueryByRootCauseIncidentId.bpmn",
+      "org/cadenzaflow/bpm/engine/test/api/runtime/IncidentQueryTest.testQueryByCauseIncidentId.bpmn"})
   public void testQueryByRootCauseIncidentId() {
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("callFailingCallActivity");
 

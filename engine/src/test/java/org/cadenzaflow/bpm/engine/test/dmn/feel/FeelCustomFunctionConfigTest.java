@@ -59,7 +59,7 @@ public class FeelCustomFunctionConfigTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/dmn/feel/custom_function.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/dmn/feel/custom_function.dmn"})
   public void shouldRegisterCustomFunctions() {
     // given
     DecisionService decisionService = processEngine.getDecisionService();

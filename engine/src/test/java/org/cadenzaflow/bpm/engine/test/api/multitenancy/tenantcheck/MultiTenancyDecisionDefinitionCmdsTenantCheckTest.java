@@ -43,7 +43,7 @@ public class MultiTenancyDecisionDefinitionCmdsTenantCheckTest {
 
   protected static final String TENANT_ONE = "tenant1";
 
-  protected static final String DMN_MODEL = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN_MODEL = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
 

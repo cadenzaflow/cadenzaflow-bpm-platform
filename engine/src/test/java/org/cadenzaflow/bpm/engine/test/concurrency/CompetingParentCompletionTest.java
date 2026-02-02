@@ -124,7 +124,7 @@ public class CompetingParentCompletionTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingParentCompletionTest.testComplete.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingParentCompletionTest.testComplete.cmmn"})
   @Test
   public void testComplete() {
     String caseInstanceId = caseService
@@ -165,7 +165,7 @@ public class CompetingParentCompletionTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingParentCompletionTest.testDisable.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingParentCompletionTest.testDisable.cmmn"})
   @Test
   public void testDisable() {
     String caseInstanceId = caseService
@@ -206,7 +206,7 @@ public class CompetingParentCompletionTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingParentCompletionTest.testTerminate.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingParentCompletionTest.testTerminate.cmmn"})
   @Test
   public void testTerminate() {
     String caseInstanceId = caseService

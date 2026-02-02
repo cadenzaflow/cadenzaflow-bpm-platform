@@ -53,7 +53,7 @@ public class TaskServiceWithJdbcSimpleProcessingTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   public void testUserTaskOptimisticLocking() {
     runtimeService.startProcessInstanceByKey("oneTaskProcess");
 

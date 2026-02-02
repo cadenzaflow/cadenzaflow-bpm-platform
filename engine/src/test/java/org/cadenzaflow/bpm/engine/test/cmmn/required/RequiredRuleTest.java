@@ -38,7 +38,7 @@ import org.junit.Test;
  */
 public class RequiredRuleTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/cmmn/required/RequiredRuleTest.testVariableBasedRule.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/cmmn/required/RequiredRuleTest.testVariableBasedRule.cmmn")
   @Test
   public void testRequiredRuleEvaluatesToTrue() {
     CaseInstance caseInstance =
@@ -59,7 +59,7 @@ public class RequiredRuleTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/cmmn/required/RequiredRuleTest.testVariableBasedRule.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/cmmn/required/RequiredRuleTest.testVariableBasedRule.cmmn")
   @Test
   public void testRequiredRuleEvaluatesToFalse() {
     CaseInstance caseInstance =
@@ -77,7 +77,7 @@ public class RequiredRuleTest extends PluggableProcessEngineTest {
     caseService.completeCaseExecution(caseInstance.getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/cmmn/required/RequiredRuleTest.testDefaultVariableBasedRule.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/cmmn/required/RequiredRuleTest.testDefaultVariableBasedRule.cmmn")
   @Test
   public void testDefaultRequiredRuleEvaluatesToTrue() {
     CaseInstance caseInstance =
@@ -99,7 +99,7 @@ public class RequiredRuleTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/cmmn/required/RequiredRuleTest.testDefaultVariableBasedRule.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/cmmn/required/RequiredRuleTest.testDefaultVariableBasedRule.cmmn")
   @Test
   public void testDefaultRequiredRuleEvaluatesToFalse() {
     CaseInstance caseInstance =

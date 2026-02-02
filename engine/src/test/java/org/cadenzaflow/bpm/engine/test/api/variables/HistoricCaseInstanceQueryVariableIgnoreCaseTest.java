@@ -36,7 +36,7 @@ public class HistoricCaseInstanceQueryVariableIgnoreCaseTest extends AbstractVar
   public void init() {
     repositoryService = engineRule.getRepositoryService();
 
-    repositoryService.createDeployment().addClasspathResource("org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn").deploy();
+    repositoryService.createDeployment().addClasspathResource("org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn").deploy();
     engineRule.getCaseService().withCaseDefinitionByKey("oneTaskCase").setVariables(VARIABLES).businessKey("oneTaskCase").create();
     instance = engineRule.getHistoryService().createHistoricCaseInstanceQuery().singleResult();
   }

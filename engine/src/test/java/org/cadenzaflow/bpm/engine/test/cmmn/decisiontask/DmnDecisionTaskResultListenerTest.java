@@ -37,10 +37,10 @@ import org.junit.Test;
  */
 public class DmnDecisionTaskResultListenerTest extends CmmnTest {
 
-  protected static final String TEST_CASE = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTaskResultListenerTest.cmmn";
-  protected static final String TEST_DECISION = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultTest.dmn11.xml";
-  protected static final String TEST_DECISION_COLLECT_SUM = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultCollectSumHitPolicyTest.dmn11.xml";
-  protected static final String TEST_DECISION_COLLECT_COUNT = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultCollectCountHitPolicyTest.dmn11.xml";
+  protected static final String TEST_CASE = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTaskResultListenerTest.cmmn";
+  protected static final String TEST_DECISION = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultTest.dmn11.xml";
+  protected static final String TEST_DECISION_COLLECT_SUM = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultCollectSumHitPolicyTest.dmn11.xml";
+  protected static final String TEST_DECISION_COLLECT_COUNT = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultCollectCountHitPolicyTest.dmn11.xml";
 
   protected DmnDecisionResult results;
 

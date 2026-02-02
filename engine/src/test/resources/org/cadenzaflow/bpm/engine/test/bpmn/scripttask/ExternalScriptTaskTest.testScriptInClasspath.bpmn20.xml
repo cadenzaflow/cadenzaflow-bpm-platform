@@ -7,7 +7,7 @@
   <process id="process" isExecutable="true">
     <startEvent id="start" />
     <sequenceFlow id="flow1" sourceRef="start" targetRef="scriptClasspath" />
-    <scriptTask id="scriptClasspath" scriptFormat="python" camunda:resource="classpath://org/camunda/bpm/engine/test/bpmn/scripttask/greeting.py" />
+    <scriptTask id="scriptClasspath" scriptFormat="python" camunda:resource="classpath://org/cadenzaflow/bpm/engine/test/bpmn/scripttask/greeting.py" />
     <sequenceFlow id="flow2" sourceRef="scriptClasspath" targetRef="userTask" />
     <userTask id="userTask"/>
     <sequenceFlow id="flow3" sourceRef="userTask" targetRef="end" />

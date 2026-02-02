@@ -347,7 +347,7 @@ public class VariableListenerTest extends PluggableProcessEngineTest {
     SimpleBean.reset();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/cmmn/listener/VariableListenerTest.testListenerOnParentScope.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/cmmn/listener/VariableListenerTest.testListenerOnParentScope.cmmn")
   @Test
   public void testListenerSourceExecution() {
     CaseInstance caseInstance = caseService
@@ -758,8 +758,8 @@ public class VariableListenerTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/cmmn/listener/VariableListenerTest.testVariableListenerWithProcessTask.cmmn",
-      "org/camunda/bpm/engine/test/cmmn/listener/VariableListenerTest.testVariableListenerWithProcessTask.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/cmmn/listener/VariableListenerTest.testVariableListenerWithProcessTask.cmmn",
+      "org/cadenzaflow/bpm/engine/test/cmmn/listener/VariableListenerTest.testVariableListenerWithProcessTask.bpmn20.xml"
       })
   @Test
   public void testVariableListenerWithProcessTask() {

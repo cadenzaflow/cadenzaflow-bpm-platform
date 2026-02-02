@@ -359,7 +359,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetRemovalTime_DecisionInstance() {
     // given
@@ -397,7 +397,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetRemovalTime_DecisionInputInstance() {
     // given
@@ -443,7 +443,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetRemovalTime_DecisionOutputInstance() {
     // given
@@ -1381,7 +1381,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldSetRemovalTime_ByteArray_DecisionInputInstance() {
     // given
@@ -1422,7 +1422,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldSetRemovalTime_ByteArray_DecisionOutputInstance() {
     // given
@@ -1465,7 +1465,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetRemovalTime_DecisionInstance_Hierarchical() {
     // given
@@ -1512,7 +1512,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetRemovalTime_DecisionInputInstance_Hierarchical() {
     // given
@@ -1567,7 +1567,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldSetRemovalTime_DecisionOutputInstance_Hierarchical() {
     // given
@@ -2476,7 +2476,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldSetRemovalTime_ByteArray_DecisionInputInstance_Hierarchical() {
     // given
@@ -2526,7 +2526,7 @@ public class BatchSetRemovalTimeInChunksTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml"
   })
   public void shouldSetRemovalTime_ByteArray_DecisionOutputInstance_Hierarchical() {
     // given

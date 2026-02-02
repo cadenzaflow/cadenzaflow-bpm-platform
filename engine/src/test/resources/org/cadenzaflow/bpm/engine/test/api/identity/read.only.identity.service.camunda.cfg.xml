@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans" 
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="processEngineConfiguration" class="org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
-  
+  <bean id="processEngineConfiguration" class="org.cadenzaflow.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+
     <property name="processEngineName" value="ReadOnlyIdentityServiceTest-engine" />
   
     <property name="jdbcUrl" value="jdbc:h2:mem:ReadOnlyIdentityServiceTest;DB_CLOSE_DELAY=1000" />
@@ -28,8 +28,8 @@
     <property name="enforceHistoryTimeToLive" value="false" />
     
     <property name="identityProviderSessionFactory">
-        <bean class="org.camunda.bpm.engine.impl.persistence.GenericManagerFactory">
-            <constructor-arg value="org.camunda.bpm.engine.impl.identity.db.DbReadOnlyIdentityServiceProvider" />
+        <bean class="org.cadenzaflow.bpm.engine.impl.persistence.GenericManagerFactory">
+            <constructor-arg value="org.cadenzaflow.bpm.engine.impl.identity.db.DbReadOnlyIdentityServiceProvider" />
         </bean>
     </property>
         

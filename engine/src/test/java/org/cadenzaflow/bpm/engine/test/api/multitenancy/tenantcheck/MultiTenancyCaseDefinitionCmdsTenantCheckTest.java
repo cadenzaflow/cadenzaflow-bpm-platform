@@ -43,8 +43,8 @@ public class MultiTenancyCaseDefinitionCmdsTenantCheckTest {
 
   protected static final String TENANT_ONE = "tenant1";
 
-  protected static final String CMMN_MODEL = "org/camunda/bpm/engine/test/api/cmmn/emptyStageCase.cmmn";
-  protected static final String CMMN_DIAGRAM = "org/camunda/bpm/engine/test/api/cmmn/emptyStageCase.png";
+  protected static final String CMMN_MODEL = "org/cadenzaflow/bpm/engine/test/api/cmmn/emptyStageCase.cmmn";
+  protected static final String CMMN_DIAGRAM = "org/cadenzaflow/bpm/engine/test/api/cmmn/emptyStageCase.png";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
 

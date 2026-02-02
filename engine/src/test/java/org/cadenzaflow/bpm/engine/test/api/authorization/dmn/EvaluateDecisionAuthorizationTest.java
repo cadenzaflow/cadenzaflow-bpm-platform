@@ -50,7 +50,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class EvaluateDecisionAuthorizationTest {
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/api/dmn/Example.dmn";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn";
   protected static final String DECISION_DEFINITION_KEY = "decision";
 
   public ProcessEngineRule engineRule = new ProvidedProcessEngineRule();

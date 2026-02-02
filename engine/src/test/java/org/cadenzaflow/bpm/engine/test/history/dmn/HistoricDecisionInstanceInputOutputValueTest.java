@@ -53,8 +53,8 @@ import org.junit.runners.Parameterized.Parameters;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class HistoricDecisionInstanceInputOutputValueTest {
 
-  protected static final String DECISION_PROCESS = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
-  protected static final String DECISION_SINGLE_OUTPUT_DMN = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+  protected static final String DECISION_PROCESS = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
+  protected static final String DECISION_SINGLE_OUTPUT_DMN = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
 
   @Parameters(name = "{index}: input({0}) = {1}")
   public static Collection<Object[]> data() {

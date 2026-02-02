@@ -26,7 +26,7 @@ import org.cadenzaflow.bpm.engine.test.RequiredHistoryLevel;
 import org.junit.Before;
 
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_AUDIT)
-@Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+@Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
 public class HistoricProcessInstanceQueryVariableIgnoreCaseTest
     extends AbstractVariableIgnoreCaseTest<HistoricProcessInstanceQueryImpl, HistoricProcessInstance> {
 

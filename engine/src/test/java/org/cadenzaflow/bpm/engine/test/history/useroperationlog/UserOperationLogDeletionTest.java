@@ -48,10 +48,10 @@ import org.junit.Test;
  */
 public class UserOperationLogDeletionTest extends AbstractUserOperationLogTest {
 
-  public static final String DECISION_SINGLE_OUTPUT_DMN = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+  public static final String DECISION_SINGLE_OUTPUT_DMN = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
   public static final String DECISION_DEFINITION_KEY = "testDecision";
 
-  protected static final String PROCESS_PATH = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected static final String PROCESS_PATH = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
   protected static final String PROCESS_KEY = "oneTaskProcess";
 
   @Before
@@ -129,7 +129,7 @@ public class UserOperationLogDeletionTest extends AbstractUserOperationLogTest {
     assertEquals(5, query.count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testDeleteCaseTaskKeepUserOperationLog() {
     // given
@@ -191,7 +191,7 @@ public class UserOperationLogDeletionTest extends AbstractUserOperationLogTest {
     assertEquals(CATEGORY_OPERATOR, entry.getCategory());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testDeleteCaseInstanceKeepUserOperationLog() {
     // given

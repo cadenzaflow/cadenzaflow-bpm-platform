@@ -53,8 +53,8 @@ public class ExternalTaskQueryAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     deploymentId = testRule.deploy(
-        "org/camunda/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/externaltask/twoExternalTaskProcess.bpmn20.xml").getId();
+        "org/cadenzaflow/bpm/engine/test/api/externaltask/oneExternalTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/externaltask/twoExternalTaskProcess.bpmn20.xml").getId();
 
     instance1Id = startProcessInstanceByKey("oneExternalTaskProcess").getId();
     instance2Id = startProcessInstanceByKey("twoExternalTaskProcess").getId();

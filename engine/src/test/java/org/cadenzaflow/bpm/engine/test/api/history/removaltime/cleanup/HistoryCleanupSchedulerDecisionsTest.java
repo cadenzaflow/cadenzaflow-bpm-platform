@@ -84,7 +84,7 @@ public class HistoryCleanupSchedulerDecisionsTest extends AbstractHistoryCleanup
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldScheduleToNowByDecisionInputs() {
     // given
@@ -114,7 +114,7 @@ public class HistoryCleanupSchedulerDecisionsTest extends AbstractHistoryCleanup
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   public void shouldScheduleToLaterByDecisionInputs() {
     // given
@@ -144,7 +144,7 @@ public class HistoryCleanupSchedulerDecisionsTest extends AbstractHistoryCleanup
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/removaltime/cleanup/decisonWithThreeOutputs.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/removaltime/cleanup/decisonWithThreeOutputs.dmn11.xml"
   })
   public void shouldScheduleToNowByDecisionOutputs() {
     // given
@@ -174,7 +174,7 @@ public class HistoryCleanupSchedulerDecisionsTest extends AbstractHistoryCleanup
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/history/removaltime/cleanup/decisonWithThreeOutputs.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/api/history/removaltime/cleanup/decisonWithThreeOutputs.dmn11.xml"
   })
   public void shouldScheduleToLaterByDecisionOutputs() {
     // given

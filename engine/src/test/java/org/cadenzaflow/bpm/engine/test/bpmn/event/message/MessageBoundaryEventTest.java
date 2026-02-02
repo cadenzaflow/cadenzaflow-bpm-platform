@@ -99,7 +99,7 @@ public class MessageBoundaryEventTest extends PluggableProcessEngineTest {
     try {
       repositoryService
           .createDeployment()
-          .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/message/MessageBoundaryEventTest.testDoubleBoundaryMessageEventSameMessageId.bpmn20.xml")
+          .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/message/MessageBoundaryEventTest.testDoubleBoundaryMessageEventSameMessageId.bpmn20.xml")
           .deploy();
       fail("Deployment should fail because Activiti cannot handle two boundary message events with same messageId.");
     } catch (ParseException e) {

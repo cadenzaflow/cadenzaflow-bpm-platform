@@ -595,7 +595,7 @@ public class IdentityServiceTest {
   @Test
   public void testSaveUserWithGenericResourceId() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
       .buildProcessEngine();
 
     User user = processEngine.getIdentityService().newUser("*");
@@ -609,7 +609,7 @@ public class IdentityServiceTest {
   @Test
   public void testSaveGroupWithGenericResourceId() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
       .buildProcessEngine();
 
     Group group = processEngine.getIdentityService().newGroup("*");
@@ -983,7 +983,7 @@ public class IdentityServiceTest {
   @Test
   public void testCustomResourceWhitelist() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/api/identity/custom.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/custom.whitelist.camunda.cfg.xml")
       .buildProcessEngine();
 
     IdentityService identityService = processEngine.getIdentityService();
@@ -1022,7 +1022,7 @@ public class IdentityServiceTest {
   @Test
   public void testSeparateResourceWhitelistPatterns() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/api/identity/custom.resource.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/custom.resource.whitelist.camunda.cfg.xml")
       .buildProcessEngine();
 
     IdentityService identityService = processEngine.getIdentityService();

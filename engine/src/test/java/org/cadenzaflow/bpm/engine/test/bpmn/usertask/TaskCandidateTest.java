@@ -197,7 +197,7 @@ public class TaskCandidateTest extends PluggableProcessEngineTest {
     assertEquals(1, taskService.createTaskQuery().taskCandidateUser(KERMIT).list().size());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/usertask/groupTest.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/usertask/groupTest.bpmn")
   @Test
   public void testInvolvedUserQuery() {
 
@@ -214,7 +214,7 @@ public class TaskCandidateTest extends PluggableProcessEngineTest {
     assertThat(tasks).hasSize(1);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testInvolvedUserQueryForAssignee() {
 
@@ -233,7 +233,7 @@ public class TaskCandidateTest extends PluggableProcessEngineTest {
     assertThat(tasks).hasSize(1);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testInvolvedUserQueryForOwner() {
 
@@ -252,7 +252,7 @@ public class TaskCandidateTest extends PluggableProcessEngineTest {
     assertThat(tasks).hasSize(1);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/usertask/groupTest.bpmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/usertask/groupTest.bpmn")
   @Test
   public void testInvolvedUserQueryOr() {
 

@@ -82,7 +82,7 @@ public class StandaloneTasksDisabledTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   public void shouldAllowToUpdateProcessInstanceTask() {
 
     // given
@@ -100,7 +100,7 @@ public class StandaloneTasksDisabledTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   public void shouldAllowToUpdateCaseInstanceTask() {
 
     // given

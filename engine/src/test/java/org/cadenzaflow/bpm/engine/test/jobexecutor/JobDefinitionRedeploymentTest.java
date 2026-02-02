@@ -55,14 +55,14 @@ public class JobDefinitionRedeploymentTest {
   @Parameters(name = "{index}: process definition = {0}")
   public static Collection<Object[]> data() {
     return Arrays.asList(new Object[][] { 
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testTimerStartEvent.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testTimerBoundaryEvent.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testMultipleTimerBoundaryEvents.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testEventBasedGateway.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testTimerIntermediateEvent.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuation.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuationOfMultiInstance.bpmn20.xml" },
-        { "org/camunda/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuationOfActivityWrappedInMultiInstance.bpmn20.xml" } 
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testTimerStartEvent.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testTimerBoundaryEvent.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testMultipleTimerBoundaryEvents.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testEventBasedGateway.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testTimerIntermediateEvent.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuation.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuationOfMultiInstance.bpmn20.xml" },
+        { "org/cadenzaflow/bpm/engine/test/jobexecutor/JobDefinitionDeploymentTest.testAsyncContinuationOfActivityWrappedInMultiInstance.bpmn20.xml" } 
     });
   }
 

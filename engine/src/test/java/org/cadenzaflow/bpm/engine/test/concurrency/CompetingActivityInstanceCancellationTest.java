@@ -94,7 +94,7 @@ public class CompetingActivityInstanceCancellationTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/concurrency/CompetingForkTest.testCompetingFork.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/concurrency/CompetingForkTest.testCompetingFork.bpmn20.xml"})
   @Test
   public void testCompetingCancellation() throws Exception {
     String processInstanceId = runtimeService.startProcessInstanceByKey("process").getId();

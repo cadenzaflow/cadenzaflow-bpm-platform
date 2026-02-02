@@ -199,7 +199,7 @@ public class IntermediateConditionalEventTest extends AbstractConditionalEventTe
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/IntermediateConditionalEventTest.testParallelVariableValue.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/IntermediateConditionalEventTest.testParallelVariableValue.bpmn20.xml"})
   public void testParallelVariableSetValueOnParent() {
     //given process with intermediate conditional event and variable with wrong value
     Map<String, Object> variables = Variables.createVariables();
@@ -260,7 +260,7 @@ public class IntermediateConditionalEventTest extends AbstractConditionalEventTe
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/IntermediateConditionalEventTest.testSubProcessVariableValue.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/IntermediateConditionalEventTest.testSubProcessVariableValue.bpmn20.xml"})
   public void testSubProcessVariableSetValueOnParent() {
     //given process with intermediate conditional event and variable with wrong value
     Map<String, Object> variables = Variables.createVariables();

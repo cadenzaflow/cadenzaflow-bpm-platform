@@ -37,7 +37,7 @@ import org.junit.Test;
  */
 public class TaskFollowUpDateExtensionsTest extends PluggableProcessEngineTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/usertask/TaskFollowUpDateExtensionsTest.testUserTaskFollowUpDate.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/usertask/TaskFollowUpDateExtensionsTest.testUserTaskFollowUpDate.bpmn20.xml"})
   @Test
   public void testUserTaskFollowUpDateExtension() throws Exception {
 
@@ -54,7 +54,7 @@ public class TaskFollowUpDateExtensionsTest extends PluggableProcessEngineTest {
     assertEquals(date, task.getFollowUpDate());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/usertask/TaskFollowUpDateExtensionsTest.testUserTaskFollowUpDate.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/usertask/TaskFollowUpDateExtensionsTest.testUserTaskFollowUpDate.bpmn20.xml"})
   @Test
   public void testUserTaskFollowUpDateStringExtension() throws Exception {
 
@@ -71,7 +71,7 @@ public class TaskFollowUpDateExtensionsTest extends PluggableProcessEngineTest {
     assertEquals(date, task.getFollowUpDate());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/usertask/TaskFollowUpDateExtensionsTest.testUserTaskFollowUpDate.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/usertask/TaskFollowUpDateExtensionsTest.testUserTaskFollowUpDate.bpmn20.xml"})
   @Test
   public void testUserTaskRelativeFollowUpDate() {
     Map<String, Object> variables = new HashMap<String, Object>();

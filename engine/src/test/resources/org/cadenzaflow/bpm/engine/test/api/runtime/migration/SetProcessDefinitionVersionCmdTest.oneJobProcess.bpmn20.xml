@@ -9,10 +9,10 @@
     <startEvent id="theStart" />
     
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="asyncServiceTask" />
-    
-    <serviceTask id="asyncServiceTask" camunda:asyncBefore="true" 
-      camunda:class="org.camunda.bpm.engine.test.api.runtime.migration.ConfigurableFailureDelegate"/>
-    
+
+    <serviceTask id="asyncServiceTask" camunda:asyncBefore="true"
+      camunda:class="org.cadenzaflow.bpm.engine.test.api.runtime.migration.ConfigurableFailureDelegate"/>
+
     <sequenceFlow id="flow3" sourceRef="asyncServiceTask" targetRef="theEnd" />
     
     <endEvent id="theEnd" />

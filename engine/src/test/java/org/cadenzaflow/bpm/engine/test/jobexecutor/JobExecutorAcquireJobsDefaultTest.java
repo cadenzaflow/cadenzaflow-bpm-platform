@@ -63,7 +63,7 @@ public class JobExecutorAcquireJobsDefaultTest extends AbstractJobExecutorAcquir
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/jobexecutor/simpleAsyncProcess.bpmn20.xml")
   public void testJobDueDateValue() {
     // when
     runtimeService.startProcessInstanceByKey("simpleAsyncProcess");

@@ -34,7 +34,7 @@ import org.junit.Test;
  */
 public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest {
 
-  protected static final String PROCESS_PATH = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  protected static final String PROCESS_PATH = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
   protected static final String PROCESS_KEY = "oneTaskProcess";
 
   @Deployment(resources = PROCESS_PATH)
@@ -188,7 +188,7 @@ public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest 
     verifyNoUserOperationLogged();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
   @Test
   public void testActivateJobDefinition() {
     // given
@@ -202,7 +202,7 @@ public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest 
     verifyNoUserOperationLogged();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
   @Test
   public void testSuspendJobDefinition() {
     // given
@@ -216,7 +216,7 @@ public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest 
     verifyNoUserOperationLogged();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
   @Test
   public void testActivateJob() {
     // given
@@ -230,7 +230,7 @@ public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest 
     verifyNoUserOperationLogged();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
   @Test
   public void testSuspendJob() {
     // given
@@ -244,7 +244,7 @@ public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest 
     verifyNoUserOperationLogged();
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/runtime/oneFailingServiceProcess.bpmn20.xml")
   @Test
   public void testSetJobRetries() {
     // given
@@ -358,7 +358,7 @@ public class UserOperationLogWithoutUserTest extends PluggableProcessEngineTest 
     verifyNoUserOperationLogged();
   }
   
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
   @Test
   public void testQueryDeleteVariableHistoryOperationOnCase() {

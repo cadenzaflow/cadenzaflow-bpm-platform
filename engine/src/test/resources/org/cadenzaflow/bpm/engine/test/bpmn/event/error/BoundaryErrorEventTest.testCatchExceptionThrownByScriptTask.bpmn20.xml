@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions id="definitions" 
+<definitions id="definitions"
   xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
   xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
   targetNamespace="Examples">
-  
-  <error id="myException" errorCode="org.camunda.bpm.engine.test.bpmn.event.error.MyBusinessException"/>
-  
+
+  <error id="myException" errorCode="org.cadenzaflow.bpm.engine.test.bpmn.event.error.MyBusinessException"/>
+
   <process id="testCatchExceptionThrownByScriptTask" isExecutable="true">
   
     <startEvent id="theStart" />
@@ -13,7 +13,7 @@
     
     <scriptTask id="scriptTask" scriptFormat="groovy">
       <script>
-        throw new org.camunda.bpm.engine.test.bpmn.event.error.MyBusinessException("This is a business exception, which can be caught by a BPMN Error Event.");
+        throw new org.cadenzaflow.bpm.engine.test.bpmn.event.error.MyBusinessException("This is a business exception, which can be caught by a BPMN Error Event.");
       </script>
     </scriptTask>
     

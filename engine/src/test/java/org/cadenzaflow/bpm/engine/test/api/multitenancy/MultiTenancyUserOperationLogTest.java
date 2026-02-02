@@ -406,7 +406,7 @@ public class MultiTenancyUserOperationLogTest {
   public void shouldLogDeployOperationWithTenant() {
     // given
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
-    String deploymentId = testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml").getId();
+    String deploymentId = testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml").getId();
 
     // when
     repositoryService.deleteDeployment(deploymentId);
@@ -446,7 +446,7 @@ public class MultiTenancyUserOperationLogTest {
   @Test
   public void shouldLogExternalTaskOperationWithTenant() {
     // given
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/externaltask/externalTaskPriorityExpression.bpmn20.xml");
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
     runtimeService.startProcessInstanceByKey("twoExternalTaskWithPriorityProcess", Collections.<String, Object>singletonMap("priority", 14));
     ExternalTaskService externalTaskService = engineRule.getExternalTaskService();
@@ -466,7 +466,7 @@ public class MultiTenancyUserOperationLogTest {
   @Test
   public void shouldLogDecisionDefinitionOperationWithTenant() {
     // given
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/dmn/Example.dmn");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn");
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
     DecisionDefinition decisionDefinition = repositoryService.createDecisionDefinitionQuery().singleResult();
 
@@ -487,7 +487,7 @@ public class MultiTenancyUserOperationLogTest {
   @Test
   public void shouldLogDecisionInstanceOperationWithTenant() {
     // given
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/dmn/Example.dmn");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn");
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
     engineRule.getDecisionService().evaluateDecisionByKey("decision")
     .variables(
@@ -513,7 +513,7 @@ public class MultiTenancyUserOperationLogTest {
   @Test
   public void shouldLogDecisionInstancesOperationWithoutTenant() {
     // given
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/dmn/Example.dmn");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn");
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
     engineRule.getDecisionService().evaluateDecisionByKey("decision")
       .variables(
@@ -543,7 +543,7 @@ public class MultiTenancyUserOperationLogTest {
   @Test
   public void shouldLogCaseDefinitionOperationWithTenant() {
     // given
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
     CaseDefinition caseDefinition = repositoryService.createCaseDefinitionQuery().singleResult();
 
@@ -564,7 +564,7 @@ public class MultiTenancyUserOperationLogTest {
   @Test
   public void shouldLogCaseInstanceOperationWithTenant() {
     // given
-    testRule.deployForTenant(TENANT_ONE, "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
+    testRule.deployForTenant(TENANT_ONE, "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
     identityService.setAuthentication(USER_ID, null, Arrays.asList(TENANT_ONE));
     CaseDefinition caseDefinition = repositoryService.createCaseDefinitionQuery().singleResult();
     CaseService caseService = engineRule.getCaseService();

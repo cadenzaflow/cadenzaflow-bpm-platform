@@ -66,7 +66,7 @@ public class BPMNParseListenerTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/deploy/bpmn.parse.listener.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/deploy/bpmn.parse.listener.camunda.cfg.xml");
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected ProcessEngineTestRule engineTestRule = new ProcessEngineTestRule(engineRule);
@@ -94,7 +94,7 @@ public class BPMNParseListenerTest {
     DelegatingBpmnParseListener.DELEGATE = new TestBPMNParseListener();
 
     // when
-    engineTestRule.deploy("org/camunda/bpm/engine/test/standalone/deploy/"
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/standalone/deploy/"
         + "BPMNParseListenerTest.testAlterProcessDefinitionKeyWhenDeploying.bpmn20.xml");
 
     // then
@@ -110,7 +110,7 @@ public class BPMNParseListenerTest {
     DelegatingBpmnParseListener.DELEGATE = new TestBPMNParseListener();
 
     // when
-    engineTestRule.deploy("org/camunda/bpm/engine/test/standalone/deploy/"
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/standalone/deploy/"
         + "BPMNParseListenerTest.testAlterActivityBehaviors.bpmn20.xml");
 
     // then
@@ -271,7 +271,7 @@ public class BPMNParseListenerTest {
     };
 
     // when
-    engineTestRule.deploy("org/camunda/bpm/engine/test/standalone/deploy/"
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/standalone/deploy/"
         + "BPMNParseListenerTest.shouldInvokeParseIoMapping.bpmn20.xml");
 
     // then

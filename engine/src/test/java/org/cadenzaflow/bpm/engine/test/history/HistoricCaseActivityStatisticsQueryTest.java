@@ -76,7 +76,7 @@ public class HistoricCaseActivityStatisticsQueryTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   public void testNoCaseActivityInstances() {
     // given
     String caseDefinitionId = getCaseDefinition().getId();
@@ -90,7 +90,7 @@ public class HistoricCaseActivityStatisticsQueryTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   public void testSingleTask() {
     // given
     String caseDefinitionId = getCaseDefinition().getId();
@@ -139,7 +139,7 @@ public class HistoricCaseActivityStatisticsQueryTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/history/HistoricCaseActivityStatisticsQueryTest.testMultipleTasks.cmmn"
+    "org/cadenzaflow/bpm/engine/test/history/HistoricCaseActivityStatisticsQueryTest.testMultipleTasks.cmmn"
   })
   public void testStateCount() {
 
@@ -188,8 +188,8 @@ public class HistoricCaseActivityStatisticsQueryTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
-    "org/camunda/bpm/engine/test/history/HistoricCaseActivityStatisticsQueryTest.testMultipleTasks.cmmn"
+    "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn",
+    "org/cadenzaflow/bpm/engine/test/history/HistoricCaseActivityStatisticsQueryTest.testMultipleTasks.cmmn"
   })
   public void testMultipleCaseDefinitions() {
 
@@ -212,7 +212,7 @@ public class HistoricCaseActivityStatisticsQueryTest {
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/history/HistoricCaseActivityStatisticsQueryTest.testMultipleTasks.cmmn"
+    "org/cadenzaflow/bpm/engine/test/history/HistoricCaseActivityStatisticsQueryTest.testMultipleTasks.cmmn"
   })
   public void testPagination() {
     // given

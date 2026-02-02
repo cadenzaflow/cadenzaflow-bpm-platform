@@ -17,13 +17,13 @@
     limitations under the License.
 
 -->
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-  
-<mapper namespace="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
-  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+
   <!-- INFO INSERT -->
 
-  <insert id="insertIdentityInfo" parameterType="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+  <insert id="insertIdentityInfo" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
     insert into ${prefix}ACT_ID_INFO (ID_, USER_ID_, TYPE_, KEY_, VALUE_, PASSWORD_, PARENT_ID_, REV_)
     values (
       #{id ,jdbcType=VARCHAR},
@@ -36,8 +36,8 @@
       1
     )
   </insert>
-  
-   <insert id="insertIdentityInfo_postgres" parameterType="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+
+   <insert id="insertIdentityInfo_postgres" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
     insert into ${prefix}ACT_ID_INFO (ID_, USER_ID_, TYPE_, KEY_, VALUE_, PASSWORD_, PARENT_ID_, REV_)
     values (
       #{id ,jdbcType=VARCHAR},
@@ -50,36 +50,36 @@
       1
     )
   </insert>
-  
+
   <!-- INFO UPDATE -->
-  <update id="updateIdentityInfo" parameterType="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
-    update ${prefix}ACT_ID_INFO 
+  <update id="updateIdentityInfo" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+    update ${prefix}ACT_ID_INFO
     set REV_ = #{revisionNext ,jdbcType=INTEGER},
         VALUE_ = #{value ,jdbcType=VARCHAR},
         PASSWORD_ = #{passwordBytes ,jdbcType=BLOB}
     where ID_ = #{id}
       and REV_ = #{revision}
   </update>
-  
-  <update id="updateIdentityInfo_postgres" parameterType="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
-    update ${prefix}ACT_ID_INFO 
+
+  <update id="updateIdentityInfo_postgres" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+    update ${prefix}ACT_ID_INFO
     set REV_ = #{revisionNext ,jdbcType=INTEGER},
         VALUE_ = #{value ,jdbcType=VARCHAR},
         PASSWORD_ = #{passwordBytes ,jdbcType=BINARY}
     where ID_ = #{id}
       and REV_ = #{revision}
   </update>
-  
+
   <!-- INFO DELETE -->
 
-  <delete id="deleteIdentityInfo" parameterType="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
-    delete from ${prefix}ACT_ID_INFO 
+  <delete id="deleteIdentityInfo" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+    delete from ${prefix}ACT_ID_INFO
     where ID_ = #{id} and REV_ = #{revision}
   </delete>
 
   <!-- INFO RESULTMAP -->
 
-  <resultMap id="identityInfoResultMap" type="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+  <resultMap id="identityInfoResultMap" type="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
     <id property="id" column="ID_" jdbcType="VARCHAR" />
     <result property="revision" column="REV_" jdbcType="INTEGER" />
     <result property="userId" column="USER_ID_" jdbcType="VARCHAR" />
@@ -89,8 +89,8 @@
     <result property="passwordBytes" column="PASSWORD_" jdbcType="BLOB" />
     <result property="parentId" column="PARENT_ID_" jdbcType="VARCHAR" />
   </resultMap>
-  
-  <resultMap id="identityInfoResultMap_postgres" type="org.camunda.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
+
+  <resultMap id="identityInfoResultMap_postgres" type="org.cadenzaflow.bpm.engine.impl.persistence.entity.IdentityInfoEntity">
     <id property="id" column="ID_" jdbcType="VARCHAR" />
     <result property="revision" column="REV_" jdbcType="INTEGER" />
     <result property="userId" column="USER_ID_" jdbcType="VARCHAR" />
@@ -100,42 +100,42 @@
     <result property="passwordBytes" column="PASSWORD_" jdbcType="BINARY" />
     <result property="parentId" column="PARENT_ID_" jdbcType="VARCHAR" />
   </resultMap>
-  
+
   <!-- INFO SELECT -->
 
   <select id="selectIdentityInfoById" parameterType="string" resultMap="identityInfoResultMap">
     select * from ${prefix}ACT_ID_INFO where ID_ = #{id,jdbcType=VARCHAR}
   </select>
-  
+
   <select id="selectIdentityInfoById_postgres" parameterType="string" resultMap="identityInfoResultMap_postgres">
     select * from ${prefix}ACT_ID_INFO where ID_ = #{id,jdbcType=VARCHAR}
   </select>
-  
+
   <select id="selectIdentityInfoByUserIdAndKey" parameterType="map" resultMap="identityInfoResultMap">
-    select * from ${prefix}ACT_ID_INFO 
+    select * from ${prefix}ACT_ID_INFO
     where USER_ID_ = #{userId,jdbcType=VARCHAR}
       and KEY_ =  #{key,jdbcType=VARCHAR}
       and PARENT_ID_ is null
   </select>
-  
+
    <select id="selectIdentityInfoByUserIdAndKey_postgres" parameterType="map" resultMap="identityInfoResultMap_postgres">
-    select * from ${prefix}ACT_ID_INFO 
+    select * from ${prefix}ACT_ID_INFO
     where USER_ID_ = #{userId,jdbcType=VARCHAR}
       and KEY_ =  #{key,jdbcType=VARCHAR}
       and PARENT_ID_ is null
   </select>
-  
+
   <select id="selectIdentityInfoKeysByUserIdAndType" parameterType="map" resultType="string">
-    select KEY_ from ${prefix}ACT_ID_INFO 
+    select KEY_ from ${prefix}ACT_ID_INFO
     where USER_ID_ = #{parameter.userId,jdbcType=VARCHAR}
       and TYPE_ =  #{parameter.type,jdbcType=VARCHAR}
       and PARENT_ID_ is null
   </select>
-  
+
   <select id="selectIdentityInfoByUserId" parameterType="string" resultMap="identityInfoResultMap">
     select * from ${prefix}ACT_ID_INFO where USER_ID_ = #{parameter,jdbcType=VARCHAR}
   </select>
-  
+
   <select id="selectIdentityInfoByUserId_postgres" parameterType="string" resultMap="identityInfoResultMap_postgres">
     select * from ${prefix}ACT_ID_INFO where USER_ID_ = #{parameter,jdbcType=VARCHAR}
   </select>
@@ -147,6 +147,6 @@
   <select id="selectIdentityInfoDetails_postgres" parameterType="string" resultMap="identityInfoResultMap_postgres">
     select * from ${prefix}ACT_ID_INFO where PARENT_ID_ = #{parameter,jdbcType=VARCHAR}
   </select>
-  
-  
+
+
 </mapper>

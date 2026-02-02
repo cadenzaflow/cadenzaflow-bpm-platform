@@ -419,20 +419,20 @@ public class BpmnParseTest {
   @Test
   public void testParseWithBpmnNamespacePrefix() {
     repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseWithBpmnNamespacePrefix.bpmn20.xml").deploy();
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseWithBpmnNamespacePrefix.bpmn20.xml").deploy();
     assertEquals(1, repositoryService.createProcessDefinitionQuery().count());
   }
 
   @Test
   public void testParseWithMultipleDocumentation() {
     repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseWithMultipleDocumentation.bpmn20.xml").deploy();
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseWithMultipleDocumentation.bpmn20.xml").deploy();
     assertEquals(1, repositoryService.createProcessDefinitionQuery().count());
   }
 
   @Test
   public void testParseCollaborationPlane() {
-    repositoryService.createDeployment().addClasspathResource("org/camunda/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseCollaborationPlane.bpmn").deploy();
+    repositoryService.createDeployment().addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseCollaborationPlane.bpmn").deploy();
     assertEquals(1, repositoryService.createProcessDefinitionQuery().count());
   }
 
@@ -631,12 +631,12 @@ public class BpmnParseTest {
   @Test
   public void testParseSwitchedSourceAndTargetRefsForAssociations() {
     repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseSwitchedSourceAndTargetRefsForAssociations.bpmn20.xml").deploy();
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseSwitchedSourceAndTargetRefsForAssociations.bpmn20.xml").deploy();
 
     assertEquals(1, repositoryService.createProcessDefinitionQuery().count());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/compensate/CompensateEventTest.compensationMiActivity.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/compensate/CompensateEventTest.compensationMiActivity.bpmn20.xml")
   @Test
   public void testParseCompensationHandlerOfMiActivity() {
     ActivityImpl miActivity = findActivityInDeployedProcessDefinition("undoBookHotel");
@@ -646,7 +646,7 @@ public class BpmnParseTest {
     assertEquals("bookHotel" + BpmnParse.MULTI_INSTANCE_BODY_ID_SUFFIX, ((ActivityImpl) flowScope).getActivityId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/compensate/CompensateEventTest.compensationMiSubprocess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/compensate/CompensateEventTest.compensationMiSubprocess.bpmn20.xml")
   @Test
   public void testParseCompensationHandlerOfMiSubprocess() {
     ActivityImpl miActivity = findActivityInDeployedProcessDefinition("undoBookHotel");
@@ -1390,7 +1390,7 @@ public class BpmnParseTest {
     // given process definition with empty property (key and value = null) is deployed
     // when
     repositoryService.createDeployment()
-    .addClasspathResource("org/camunda/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseEmptyExtensionProperty.bpmn").deploy();
+    .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/parse/BpmnParseTest.testParseEmptyExtensionProperty.bpmn").deploy();
 
     // then
     assertThat(repositoryService.createProcessDefinitionQuery().count()).isEqualTo(1L);

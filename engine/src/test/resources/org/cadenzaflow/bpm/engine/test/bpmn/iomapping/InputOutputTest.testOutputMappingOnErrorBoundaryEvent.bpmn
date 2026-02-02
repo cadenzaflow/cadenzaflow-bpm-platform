@@ -17,7 +17,7 @@
         </camunda:inputOutput>
       </extensionElements>
       <script>
-        import org.camunda.bpm.engine.delegate.BpmnError;
+        import org.cadenzaflow.bpm.engine.delegate.BpmnError;
 
         execution.setVariableLocal("localNotMapped", "a")
         execution.setVariableLocal("localMapped", "b")
@@ -31,7 +31,7 @@
     <sequenceFlow sourceRef="script" targetRef="taskOk"/>
 
     <userTask id="taskOk"/>
-    
+
     <sequenceFlow sourceRef="taskOk" targetRef="endOk"/>
 
     <endEvent id="endOk"/>

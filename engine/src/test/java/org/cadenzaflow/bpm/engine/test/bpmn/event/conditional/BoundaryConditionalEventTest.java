@@ -116,7 +116,7 @@ public class BoundaryConditionalEventTest extends AbstractConditionalEventTestCa
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testVariableCondition.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testVariableCondition.bpmn20.xml"})
   public void testVariableSetOnExecutionCondition() {
     //given process with boundary conditional event
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -161,7 +161,7 @@ public class BoundaryConditionalEventTest extends AbstractConditionalEventTestCa
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testVariableCondition.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testVariableCondition.bpmn20.xml"})
   public void testWrongVariableCondition() {
     //given process with boundary conditional event
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -220,7 +220,7 @@ public class BoundaryConditionalEventTest extends AbstractConditionalEventTestCa
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testParallelVariableCondition.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testParallelVariableCondition.bpmn20.xml"})
   public void testParallelSetVariableOnTaskCondition() {
     //given process with parallel user tasks and boundary conditional event
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -245,7 +245,7 @@ public class BoundaryConditionalEventTest extends AbstractConditionalEventTestCa
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testParallelVariableCondition.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testParallelVariableCondition.bpmn20.xml"})
   public void testParallelSetVariableOnExecutionCondition() {
     //given process with parallel user tasks and boundary conditional event
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -299,7 +299,7 @@ public class BoundaryConditionalEventTest extends AbstractConditionalEventTestCa
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
   public void testSubProcessSetVariableOnTaskCondition() {
     //given process with boundary conditional event on sub process
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -318,7 +318,7 @@ public class BoundaryConditionalEventTest extends AbstractConditionalEventTestCa
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/BoundaryConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
   public void testSubProcessSetVariableOnExecutionCondition() {
     //given process with boundary conditional event on sub process
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);

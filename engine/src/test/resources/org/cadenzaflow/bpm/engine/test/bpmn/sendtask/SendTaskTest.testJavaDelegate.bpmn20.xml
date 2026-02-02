@@ -7,11 +7,11 @@
   <process id="sendTaskJavaDelegate" isExecutable="true">
   
     <startEvent id="start"/>
-    
+
     <sequenceFlow id="flow1" sourceRef="start" targetRef="sendTask" />
 
-    <sendTask id="sendTask" name="Send Task" camunda:class="org.camunda.bpm.engine.test.bpmn.sendtask.DummySendTask" />
-    
+    <sendTask id="sendTask" name="Send Task" camunda:class="org.cadenzaflow.bpm.engine.test.bpmn.sendtask.DummySendTask" />
+
     <sequenceFlow id="flow2" sourceRef="sendTask" targetRef="end" />
     
     <endEvent id="end" />

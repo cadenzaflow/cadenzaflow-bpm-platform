@@ -36,13 +36,13 @@ import org.junit.Test;
  */
 public class CmmnDecisionTaskResultMappingTest extends CmmnTest {
 
-  protected static final String TEST_DECISION = "org/camunda/bpm/engine/test/dmn/result/DmnDecisionResultTest.dmn11.xml";
-  protected static final String SINGLE_ENTRY_MAPPING_CMMN = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testSingleEntryMapping.cmmn";
-  protected static final String SINGLE_RESULT_MAPPING_CMMN = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testSingleResultMapping.cmmn";
-  protected static final String COLLECT_ENTRIES_MAPPING_CMMN = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testCollectEntriesMapping.cmmn";
-  protected static final String RESULT_LIST_MAPPING_CMMN = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testResultListMapping.cmmn";
-  protected static final String DEFAULT_MAPPING_CMMN = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testDefaultResultMapping.cmmn";
-  protected static final String OVERRIDE_DECISION_RESULT_CMMN = "org/camunda/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testFailedToOverrideDecisionResultVariable.cmmn";
+  protected static final String TEST_DECISION = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnDecisionResultTest.dmn11.xml";
+  protected static final String SINGLE_ENTRY_MAPPING_CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testSingleEntryMapping.cmmn";
+  protected static final String SINGLE_RESULT_MAPPING_CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testSingleResultMapping.cmmn";
+  protected static final String COLLECT_ENTRIES_MAPPING_CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testCollectEntriesMapping.cmmn";
+  protected static final String RESULT_LIST_MAPPING_CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testResultListMapping.cmmn";
+  protected static final String DEFAULT_MAPPING_CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testDefaultResultMapping.cmmn";
+  protected static final String OVERRIDE_DECISION_RESULT_CMMN = "org/cadenzaflow/bpm/engine/test/cmmn/decisiontask/DmnDecisionTableResultMappingTest.testFailedToOverrideDecisionResultVariable.cmmn";
 
   @Deployment(resources = { SINGLE_ENTRY_MAPPING_CMMN, TEST_DECISION })
   @Test

@@ -33,7 +33,7 @@ import org.junit.Test;
 
 public class MultiTenancyCreateCaseInstanceTest extends PluggableProcessEngineTest {
 
-  protected static final String CMMN_FILE = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
+  protected static final String CMMN_FILE = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn";
 
   protected static final String CASE_DEFINITION_KEY = "oneTaskCase";
 

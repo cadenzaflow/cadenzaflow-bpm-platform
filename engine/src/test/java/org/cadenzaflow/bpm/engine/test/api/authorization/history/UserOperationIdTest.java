@@ -84,7 +84,7 @@ public class UserOperationIdTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testResolveTaskOperationId() {
     // given
     identityService.setAuthenticatedUserId("demo");
@@ -104,7 +104,7 @@ public class UserOperationIdTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testSubmitTaskFormOperationId() {
     // given
     identityService.setAuthenticatedUserId("demo");
@@ -124,7 +124,7 @@ public class UserOperationIdTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testSetTaskVariablesOperationId() {
     // given
     identityService.setAuthenticatedUserId("demo");
@@ -144,7 +144,7 @@ public class UserOperationIdTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testWithoutAuthentication() {
     // given
     runtimeService.startProcessInstanceByKey(PROCESS_KEY);
@@ -192,7 +192,7 @@ public class UserOperationIdTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testStartProcessOperationId() {
     // given
     identityService.setAuthenticatedUserId("demo");
@@ -213,7 +213,7 @@ public class UserOperationIdTest {
   }
 
   @Test
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   public void testStartProcessAtActivityOperationId() {
     // given
     identityService.setAuthenticatedUserId("demo");

@@ -37,7 +37,7 @@ import org.junit.Test;
 public class DmnExpressionLanguageTest {
 
   private static final String JUEL_EXPRESSIONS_WITH_PROPERTIES_DMN =
-      "org/camunda/bpm/engine/test/dmn/el/DmnExpressionLanguageTest.dmn";
+      "org/cadenzaflow/bpm/engine/test/dmn/el/DmnExpressionLanguageTest.dmn";
 
   @Rule
   public ProcessEngineRule engineRule = new ProvidedProcessEngineRule();

@@ -64,7 +64,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   protected Task task;
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testCreateAndCompleteTask() {
     startTestProcess();
 
@@ -85,7 +85,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testAssignTask() {
     startTestProcess();
 
@@ -106,7 +106,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testChangeTaskOwner() {
     startTestProcess();
 
@@ -127,7 +127,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testSetPriority() {
     startTestProcess();
 
@@ -167,7 +167,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testSetName() {
     // given
     startTestProcess();
@@ -191,7 +191,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testSetDescription() {
     // given
     startTestProcess();
@@ -215,7 +215,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testSetDueDate() {
     // given
     startTestProcess();
@@ -241,7 +241,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void setFollowUpDate() {
     // given
     startTestProcess();
@@ -266,7 +266,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testClaimTask() {
     startTestProcess();
 
@@ -287,7 +287,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testDelegateTask() {
     startTestProcess();
 
@@ -309,7 +309,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testResolveTask() {
     startTestProcess();
 
@@ -329,7 +329,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testSubmitTaskForm_Complete() {
     startTestProcess();
 
@@ -349,7 +349,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   public void testSubmitTaskForm_Resolve() {
     startTestProcess();
 
@@ -399,7 +399,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
     historyService.deleteHistoricTaskInstance(task.getId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testCompleteTask() {
     // given
@@ -420,7 +420,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
     assertThat(log.getCategory()).isEqualTo(UserOperationLogEntry.CATEGORY_TASK_WORKER);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testCompleteCaseExecution() {
     // given
@@ -464,7 +464,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testKeepOpLogEntriesOnUndeployment() {
     // given
@@ -489,7 +489,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
     assertEquals(1, query.operationType(UserOperationLogEntry.OPERATION_TYPE_DELETE).count());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testDeleteOpLogEntry() {
     // given
@@ -512,7 +512,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
             .count());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testDeleteOpLogEntryWithNullArgument() {
     // given
@@ -530,7 +530,7 @@ public class UserOperationLogTaskTest extends AbstractUserOperationLogTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testDeleteOpLogNonExstingEntry() {
     // given

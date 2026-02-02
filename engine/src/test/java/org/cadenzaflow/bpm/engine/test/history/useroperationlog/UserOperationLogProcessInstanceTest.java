@@ -54,7 +54,7 @@ public class UserOperationLogProcessInstanceTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   public void shouldProduceUserOperationLogStartProcessInstanceByKey() {
     // when
     ProcessInstance instance = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -66,7 +66,7 @@ public class UserOperationLogProcessInstanceTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   public void shouldProduceUserOperationLogStartProcessInstanceById() {
     // given
     ProcessDefinition processDefinition = rule.getRepositoryService().createProcessDefinitionQuery().singleResult();
@@ -82,7 +82,7 @@ public class UserOperationLogProcessInstanceTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   public void shouldProduceUserOperationLogStartProcessInstanceAtActivity() {
     // given
     ProcessDefinition processDefinition = rule.getRepositoryService().createProcessDefinitionQuery().singleResult();
@@ -98,7 +98,7 @@ public class UserOperationLogProcessInstanceTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/runtime/oneTaskProcessWithStartForm.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcessWithStartForm.bpmn20.xml"})
   public void shouldProduceUserOperationLogStartProcessInstanceBySubmitStartForm() {
     // given
     ProcessDefinition processDefinition = rule.getRepositoryService().createProcessDefinitionQuery().singleResult();

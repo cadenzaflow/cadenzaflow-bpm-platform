@@ -65,7 +65,7 @@ public class CleanableHistoricDecisionInstanceReportTest {
     historyService = engineRule.getHistoryService();
     repositoryService = engineRule.getRepositoryService();
 
-    testRule.deploy("org/camunda/bpm/engine/test/repository/one.dmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/one.dmn");
   }
 
   @After
@@ -96,8 +96,8 @@ public class CleanableHistoricDecisionInstanceReportTest {
   @Test
   public void testReportComplex() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/repository/two.dmn", "org/camunda/bpm/engine/test/api/dmn/Another_Example.dmn",
-        "org/camunda/bpm/engine/test/api/dmn/Example.dmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/two.dmn", "org/cadenzaflow/bpm/engine/test/api/dmn/Another_Example.dmn",
+        "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn");
     prepareDecisionInstances(DECISION_DEFINITION_KEY, 0, 5, 10);
     prepareDecisionInstances(DECISION_DEFINITION_KEY, -6, 5, 10);
     prepareDecisionInstances(SECOND_DECISION_DEFINITION_KEY, -6, null, 10);
@@ -249,7 +249,7 @@ public class CleanableHistoricDecisionInstanceReportTest {
   @Test
   public void testReportOrderByFinishedAsc() {
     // give
-    testRule.deploy("org/camunda/bpm/engine/test/repository/two.dmn", "org/camunda/bpm/engine/test/api/dmn/Another_Example.dmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/two.dmn", "org/cadenzaflow/bpm/engine/test/api/dmn/Another_Example.dmn");
     prepareDecisionInstances(SECOND_DECISION_DEFINITION_KEY, -6, 5, 6);
     prepareDecisionInstances(THIRD_DECISION_DEFINITION_KEY, -6, 5, 8);
     prepareDecisionInstances(DECISION_DEFINITION_KEY, -6, 5, 4);
@@ -271,7 +271,7 @@ public class CleanableHistoricDecisionInstanceReportTest {
   @Test
   public void testReportOrderByFinishedDesc() {
     // give
-    testRule.deploy("org/camunda/bpm/engine/test/repository/two.dmn", "org/camunda/bpm/engine/test/api/dmn/Another_Example.dmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/repository/two.dmn", "org/cadenzaflow/bpm/engine/test/api/dmn/Another_Example.dmn");
     prepareDecisionInstances(SECOND_DECISION_DEFINITION_KEY, -6, 5, 6);
     prepareDecisionInstances(THIRD_DECISION_DEFINITION_KEY, -6, 5, 8);
     prepareDecisionInstances(DECISION_DEFINITION_KEY, -6, 5, 4);

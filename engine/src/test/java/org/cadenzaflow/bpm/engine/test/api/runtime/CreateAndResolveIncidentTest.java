@@ -193,7 +193,7 @@ public class CreateAndResolveIncidentTest {
   @Test
   public void resolveIncidentOfTypeFailedJob() {
     // given
-    testRule.deploy("org/camunda/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/mgmt/IncidentTest.testShouldCreateOneIncident.bpmn");
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("failingProcess");
 
     // when

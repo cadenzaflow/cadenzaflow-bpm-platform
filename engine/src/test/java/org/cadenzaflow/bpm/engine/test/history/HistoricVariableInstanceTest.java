@@ -91,8 +91,8 @@ import org.junit.Test;
 public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   @Deployment(resources={
-    "org/camunda/bpm/engine/test/history/orderProcess.bpmn20.xml",
-    "org/camunda/bpm/engine/test/history/checkCreditProcess.bpmn20.xml"
+    "org/cadenzaflow/bpm/engine/test/history/orderProcess.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/history/checkCreditProcess.bpmn20.xml"
   })
   @Test
   public void testOrderProcessWithCallActivity() {
@@ -235,8 +235,8 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-          "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml",
-          "org/camunda/bpm/engine/test/history/simpleSubProcess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/test/history/simpleSubProcess.bpmn20.xml"
   })
   @Test
   public void testHistoricVariableInstanceQuery() {
@@ -290,8 +290,8 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSubProcessSettingVariableOnStart.bpmn20.xml",
-      "org/camunda/bpm/engine/test/history/subProcessSetVariableOnStart.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSubProcessSettingVariableOnStart.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/history/subProcessSetVariableOnStart.bpmn20.xml"
   })
   @Test
   public void testCallSubProcessSettingVariableOnStart() {
@@ -304,7 +304,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources={
-          "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"
+          "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"
   })
   @Test
   public void testHistoricProcessVariableOnDeletion() {
@@ -319,7 +319,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
   }
 
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/standalone/history/FullHistoryTest.testVariableUpdatesAreLinkedToActivity.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/standalone/history/FullHistoryTest.testVariableUpdatesAreLinkedToActivity.bpmn20.xml"})
   @Test
   public void testVariableUpdatesLinkedToActivity() throws Exception {
     if (isFullHistoryEnabled()) {
@@ -408,7 +408,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testParallel.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testParallel.bpmn20.xml"})
   @Test
   public void testHistoricVariableInstanceQueryByTaskIds() {
     // given
@@ -437,7 +437,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals(1, historyService.createHistoricVariableInstanceQuery().taskIdIn(tasks.get(0).getId()).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testParallel.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testParallel.bpmn20.xml"})
   @Test
   public void testHistoricVariableInstanceQueryByProcessIdIn() {
     // given
@@ -454,7 +454,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals(2, historyService.createHistoricVariableInstanceQuery().processInstanceIdIn(notExistingSearch,processInstance2.getProcessInstanceId()).count());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testParallel.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testParallel.bpmn20.xml"})
   @Test
   public void testHistoricVariableInstanceQueryByInvalidProcessIdIn() {
     // given
@@ -473,7 +473,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) { }
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testHistoricVariableInstanceQueryByExecutionIds() {
     // given
@@ -531,7 +531,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testQueryByActivityInstanceIdIn() {
     // given
@@ -575,7 +575,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     } catch (ProcessEngineException e) {}
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testQueryByVariableTypeIn() {
     // given
@@ -593,7 +593,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals(query.list().get(0).getName(), "stringVar");
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testQueryByVariableTypeInWithCapitalLetter() {
     // given
@@ -612,7 +612,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals(query.list().get(0).getName(), "boolVar");
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testQueryByVariableTypeInWithSeveralTypes() {
     // given
@@ -700,7 +700,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     taskService.deleteTask(newTask.getId(), true);
   }
 
-  @Deployment(resources= "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources= "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml")
   @Test
   public void testDisableBinaryFetchingForFileValues() {
     // given
@@ -972,7 +972,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testImplicitVariableUpdate.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testImplicitVariableUpdate.bpmn20.xml")
   @Ignore
   @Test
   public void testImplicitVariableUpdateActivityInstanceId() {
@@ -1003,7 +1003,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
   }
 
   @SuppressWarnings("unchecked")
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testImplicitVariableUpdate.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testImplicitVariableUpdate.bpmn20.xml")
   @Ignore
   @Test
   public void testImplicitVariableUpdateAndReplacementInOneTransaction() {
@@ -1136,7 +1136,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testImplicitVariableUpdate.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testImplicitVariableUpdate.bpmn20.xml")
   @Test
   public void testImplicitVariableRemoveAndUpdateInOneTransaction() {
     // given
@@ -1175,7 +1175,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testNoImplicitUpdateOnHistoricValues.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testNoImplicitUpdateOnHistoricValues.bpmn20.xml")
   @Test
   public void testNoImplicitUpdateOnHistoricDetailValues() {
     if (!isFullHistoryEnabled()) {
@@ -1222,7 +1222,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     return processEngineConfiguration.getHistoryLevel().equals(HistoryLevel.HISTORY_LEVEL_FULL);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testHistoricVariableInstanceRevision.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testHistoricVariableInstanceRevision.bpmn20.xml"})
   @Test
   public void testVariableUpdateOrder() {
     // given:
@@ -1263,7 +1263,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testHistoricVariableInstanceRevisionAsync.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testHistoricVariableInstanceRevisionAsync.bpmn20.xml"})
   @Test
   public void testVariableUpdateOrderAsync() {
     // given:
@@ -1306,7 +1306,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testTaskVariableUpdateOrder() {
     // given:
@@ -1428,7 +1428,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testCaseVariableUpdateOrder() {
     // given:
@@ -1548,7 +1548,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testSetSameVariableUpdateOrder() {
     // given:
@@ -1594,7 +1594,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
   @Test
   public void testProcessDefinitionProperty() {
     // given
@@ -1642,7 +1642,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertNull(instance.getCaseDefinitionId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   @Test
   public void testCaseDefinitionProperty() {
     // given
@@ -1865,7 +1865,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("foo", historicVariable.getName());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   @Test
   public void testQueryByCaseActivityId() {
     // given
@@ -1888,7 +1888,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("foo", query.singleResult().getValue());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/twoTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/twoTaskCase.cmmn")
   @Test
   public void testQueryByCaseActivityIds() {
     // given
@@ -2016,7 +2016,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     repositoryService.deleteDeployment(deployment.getId(),true);
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
   @Test
   public void testAsyncStartEventHistory() {
     if(processEngineConfiguration.getHistoryLevel().getId() > ProcessEngineConfigurationImpl.HISTORYLEVEL_NONE) {
@@ -2031,7 +2031,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
   @Test
   public void testAsyncStartEventVariableHistory() {
     Map<String, Object> variables = new HashMap<>();
@@ -2074,7 +2074,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testMultipleAsyncStartEvents.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testMultipleAsyncStartEvents.bpmn20.xml"})
   @Test
   public void testMultipleAsyncStartEventsVariableHistory() {
     Map<String, Object> variables = new HashMap<>();
@@ -2193,7 +2193,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
   @Test
   public void testSubmitForm() {
 
@@ -2260,7 +2260,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEvent.bpmn20.xml")
   @Ignore("CAM-2828")
   @Test
   public void testSubmitFormHistoricUpdates() {
@@ -2296,7 +2296,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     }
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
   @Test
   public void testSetDifferentStates() {
     //given
@@ -2329,7 +2329,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     Assert.assertEquals(1, deletedCounter);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
   @Test
   public void testQueryNotIncludeDeleted() {
     //given
@@ -2348,7 +2348,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("foo", variable.getValue());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
   @Test
   public void testQueryByProcessDefinitionId() {
     // given
@@ -2365,7 +2365,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("foo", variable.getValue());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
   @Test
   public void testQueryByProcessDefinitionKey() {
     // given
@@ -2381,7 +2381,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("foo", variable.getValue());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
   @Test
   public void testQueryByProcessDefinitionKeyTwoInstances() {
     // given
@@ -2397,7 +2397,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals(4, variables.size());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml", "org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml"})
   @Test
   public void testQueryByProcessDefinitionKeyTwoDefinitions() {
     // given
@@ -2414,7 +2414,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("foo", variable.getValue());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testQueryByProcessInstanceIdAndVariableId() {
     // given
@@ -2435,7 +2435,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertEquals("bar", historyVariable.getValue());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
   @Test
   public void testVariableCreateTime() throws ParseException {
     // given
@@ -2455,7 +2455,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     ClockUtil.setCurrentTime(new Date());
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testVariableNameEqualsIgnoreCase() {
     // given
@@ -2476,7 +2476,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertThat(instanceIgnoreCaseMatchIgnoreCase).isNotNull();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testVariableValueEqualsIgnoreCase() {
     // given
@@ -2499,7 +2499,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertThat(instanceIgnoreCaseMatchIgnoreCase).isNotNull();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testVariableNameAndValueEqualsIgnoreCase() {
     // given
@@ -2529,7 +2529,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertThat(instanceIgnoreCaseMatchNameAndValueIgnoreCase).isNotNull();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testVariableNameAndValueEqualsEmptyString() {
     // given
@@ -2547,7 +2547,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertThat(instance.getValue()).isEqualTo("");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testVariableNameLikeIgnoreCase() {
     // given
@@ -2568,7 +2568,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     assertThat(instanceIgnoreCaseMatchNameIgnoreCase).isNotNull();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void shouldQueryByVariableNamesWithOneVariableName() {
     // given
@@ -2588,7 +2588,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
         .containsExactly(tuple("my-variable-name-one", "my-variable-value-one"));
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void shouldQueryByVariableNamesWithTwoVariableNames() {
     // given
@@ -2610,7 +2610,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
             tuple("my-variable-name-two", "my-variable-value-two"));
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void shouldThrowExceptionWhenQueryByVariableNamesWithNullString() {
     // given
@@ -2626,7 +2626,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
         .hasMessage("Variable names contains null value");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void shouldThrowExceptionWhenQueryByVariableNamesWithNullArrayString() {
     // given
@@ -2642,7 +2642,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
         .hasMessage("Variable names is null");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml", "org/camunda/bpm/engine/test/history/simpleSubProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/history/simpleSubProcess.bpmn20.xml" })
   @Test
   public void shouldBeCorrectlySortedWhenSortingByVariableId() {
     // given
@@ -2654,7 +2654,7 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
     verifySorting(historicVariableInstances, propertyComparator(HistoricVariableInstance::getId));
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml", "org/camunda/bpm/engine/test/history/simpleSubProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/history/simpleSubProcess.bpmn20.xml" })
   @Test
   public void shouldBeCorrectlySortedWhenSortingByVariableCreationTime() {
     // given
@@ -2674,8 +2674,8 @@ public class HistoricVariableInstanceTest extends PluggableProcessEngineTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/history/simpleSubProcess.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/history/HistoricVariableInstanceTest.testCallSimpleSubProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/history/simpleSubProcess.bpmn20.xml" })
   @Test
   public void shouldQueryByCreatedAfter() {
     // given

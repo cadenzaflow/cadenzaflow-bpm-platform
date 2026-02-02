@@ -96,9 +96,9 @@ public class MultiTenancyHistoricDataCmdsTenantCheckTest {
       .endEvent()
       .done();
 
-  protected static final String CMMN_PROCESS_WITH_MANUAL_ACTIVATION = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn";
+  protected static final String CMMN_PROCESS_WITH_MANUAL_ACTIVATION = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCaseWithManualActivation.cmmn";
 
-  protected static final String DMN = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
 
   @Before
   public void init() {

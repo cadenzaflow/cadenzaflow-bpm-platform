@@ -92,7 +92,7 @@ public class SetTaskPropertyAuthorizationTest extends AuthorizationTest {
   @Override
   @Before
   public void setUp() throws Exception {
-    testRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
     super.setUp();
   }
 

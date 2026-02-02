@@ -82,8 +82,8 @@ public class StandaloneTasksAndCmmnDisabledTest {
   @Test
   public void testTaskQueryAuthorization() {
     // given
-    engineTestRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
-    engineTestRule.deploy("org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
 
     // a process instance task with read authorization on the process
     ProcessInstance instance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
@@ -128,8 +128,8 @@ public class StandaloneTasksAndCmmnDisabledTest {
   @Test
   public void testTaskQueryAuthorizationWithProcessDefinitionFilter() {
     // given
-    engineTestRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
-    engineTestRule.deploy("org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
 
     ProcessInstance instance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
     Task instance1Task = taskService.createTaskQuery().processInstanceId(instance1.getId()).singleResult();
@@ -157,8 +157,8 @@ public class StandaloneTasksAndCmmnDisabledTest {
   @Test
   public void testTaskQueryAuthorizationWithProcessDefinitionFilterInOrQuery() {
     // given
-    engineTestRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
-    engineTestRule.deploy("org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    engineTestRule.deploy("org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
 
     ProcessInstance instance1 = runtimeService.startProcessInstanceByKey("oneTaskProcess");
     Task instance1Task = taskService.createTaskQuery().processInstanceId(instance1.getId()).singleResult();

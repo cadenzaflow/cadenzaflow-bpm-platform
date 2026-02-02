@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.application.impl.EmbeddedProcessApplication;
 
 @ProcessApplication(
     name="test-app",
-    deploymentDescriptors={"org/camunda/bpm/engine/test/logging/deployment-reusing-existing-engine.xml"}
+    deploymentDescriptors={"org/cadenzaflow/bpm/engine/test/logging/deployment-reusing-existing-engine.xml"}
 )
 public class TestApplicationReusingExistingEngine extends EmbeddedProcessApplication {
   // nothing to add here

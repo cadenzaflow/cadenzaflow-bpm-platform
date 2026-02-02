@@ -65,8 +65,8 @@ public class ProcessDefinitionAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     testRule.deploy(
-        "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
+        "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml");
     super.setUp();
   }
 
@@ -1316,8 +1316,8 @@ public class ProcessDefinitionAuthorizationTest extends AuthorizationTest {
   @Test
   public void shouldNotResolveUnauthorizedCalledProcessDefinitions() {
     Deployment deployment = createDeployment("test",
-      "org/camunda/bpm/engine/test/api/repository/call-activities-with-references.bpmn",
-      "org/camunda/bpm/engine/test/api/repository/first-process.bpmn20.xml");
+      "org/cadenzaflow/bpm/engine/test/api/repository/call-activities-with-references.bpmn",
+      "org/cadenzaflow/bpm/engine/test/api/repository/first-process.bpmn20.xml");
     try {
       //given
       String parentKey = "TestCallActivitiesWithReferences";

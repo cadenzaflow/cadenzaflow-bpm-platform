@@ -159,7 +159,7 @@ public class FallbackSerializerFactoryTest {
   protected void deployOneTaskProcess(ProcessEngine engine) {
     deployment = engine.getRepositoryService()
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml")
         .deploy()
         .getId();
   }

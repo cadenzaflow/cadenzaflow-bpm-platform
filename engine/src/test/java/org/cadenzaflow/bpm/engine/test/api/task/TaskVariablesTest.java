@@ -52,7 +52,7 @@ public class TaskVariablesTest extends PluggableProcessEngineTest {
     taskService.deleteTask(taskId, true);
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/task/TaskVariablesTest.testTaskExecutionVariables.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/task/TaskVariablesTest.testTaskExecutionVariables.bpmn20.xml"})
   @Test
   public void testTaskExecutionVariableLongValue() {
     String processInstanceId = runtimeService.startProcessInstanceByKey("oneTaskProcess").getId();

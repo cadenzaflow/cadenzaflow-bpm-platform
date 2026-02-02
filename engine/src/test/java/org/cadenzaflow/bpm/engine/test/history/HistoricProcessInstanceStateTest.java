@@ -235,7 +235,7 @@ public class HistoricProcessInstanceStateTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/HistoricProcessInstanceStateTest.testWithCallActivity.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/HistoricProcessInstanceStateTest.testWithCallActivity.bpmn"})
   public void testWithCallActivity() {
     processEngineRule.getRuntimeService().startProcessInstanceByKey("Main_Process");
     assertThat(processEngineRule.getRuntimeService().createProcessInstanceQuery().active().list().size()).isEqualTo(0);
@@ -255,7 +255,7 @@ public class HistoricProcessInstanceStateTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/CAM-9934.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/CAM-9934.bpmn"})
   public void shouldSetCorrectInstanceStateOnInterruption() {
     // given
     processEngineRule.getRuntimeService().startProcessInstanceByKey("Process_1");
@@ -274,7 +274,7 @@ public class HistoricProcessInstanceStateTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/history/CAM-9934.bpmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/history/CAM-9934.bpmn"})
   public void shouldSetRemovalTimeOnHistoricActivityInstances() {
     // given
     processEngineRule.getProcessEngineConfiguration()

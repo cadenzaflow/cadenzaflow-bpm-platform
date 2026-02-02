@@ -103,7 +103,7 @@ public class ConcurrentVariableUpdateTest {
 
   // Test is skipped when testing on DB2.
   // Please update the IF condition in #runTest, if the method name is changed.
-  @Deployment(resources="org/camunda/bpm/engine/test/concurrency/ConcurrentVariableUpdateTest.process.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/concurrency/ConcurrentVariableUpdateTest.process.bpmn20.xml")
   @Test
   @RequiredDatabase(excludes = DbSqlSessionFactory.DB2)
   public void testConcurrentVariableCreate() {
@@ -132,7 +132,7 @@ public class ConcurrentVariableUpdateTest {
     taskService.complete(taskId);
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/concurrency/ConcurrentVariableUpdateTest.process.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/concurrency/ConcurrentVariableUpdateTest.process.bpmn20.xml")
   @Test
   public void testConcurrentVariableUpdate() {
 
@@ -161,7 +161,7 @@ public class ConcurrentVariableUpdateTest {
   }
 
 
-  @Deployment(resources="org/camunda/bpm/engine/test/concurrency/ConcurrentVariableUpdateTest.process.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/concurrency/ConcurrentVariableUpdateTest.process.bpmn20.xml")
   @Test
   public void testConcurrentVariableUpdateTypeChange() {
 

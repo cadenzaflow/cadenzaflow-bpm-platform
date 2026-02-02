@@ -145,10 +145,10 @@ public class FormServiceTest {
     VariablesRecordingListener.reset();
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/util/VacationRequest_deprecated_forms.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/util/approve.html",
-      "org/camunda/bpm/engine/test/api/form/util/request.html",
-      "org/camunda/bpm/engine/test/api/form/util/adjustRequest.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/util/VacationRequest_deprecated_forms.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/util/approve.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/util/request.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/util/adjustRequest.html" })
   @Test
   public void testGetStartFormByProcessDefinitionId() {
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().list();
@@ -159,7 +159,7 @@ public class FormServiceTest {
     assertNotNull(startForm);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testGetStartFormByProcessDefinitionIdWithoutStartform() {
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().list();
@@ -223,16 +223,16 @@ public class FormServiceTest {
   @Test
   public void testTaskFormPropertyDefaultsAndFormRendering() {
 
-    final String deploymentId = testRule.deploy("org/camunda/bpm/engine/test/api/form/FormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html")
+    final String deploymentId = testRule.deploy("org/cadenzaflow/bpm/engine/test/api/form/FormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html")
       .getId();
 
     String procDefId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
     StartFormData startForm = formService.getStartFormData(procDefId);
     assertNotNull(startForm);
     assertEquals(deploymentId, startForm.getDeploymentId());
-    assertEquals("org/camunda/bpm/engine/test/api/form/start.html", startForm.getFormKey());
+    assertEquals("org/cadenzaflow/bpm/engine/test/api/form/start.html", startForm.getFormKey());
     assertEquals(new ArrayList<FormProperty>(), startForm.getFormProperties());
     assertEquals(procDefId, startForm.getProcessDefinition().getId());
 
@@ -255,7 +255,7 @@ public class FormServiceTest {
     String taskId = task.getId();
     TaskFormData taskForm = formService.getTaskFormData(taskId);
     assertEquals(deploymentId, taskForm.getDeploymentId());
-    assertEquals("org/camunda/bpm/engine/test/api/form/task.html", taskForm.getFormKey());
+    assertEquals("org/cadenzaflow/bpm/engine/test/api/form/task.html", taskForm.getFormKey());
     assertEquals(new ArrayList<FormProperty>(), taskForm.getFormProperties());
     assertEquals(taskId, taskForm.getTask().getId());
 
@@ -512,7 +512,7 @@ public class FormServiceTest {
     assertEquals(processInstance.getId(), runtimeService.createProcessInstanceQuery().processInstanceBusinessKey("123").singleResult().getId());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/form/FormsProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/form/FormsProcess.bpmn20.xml"})
   @Test
   public void testSubmitStartFormDataTypedVariables() {
     String procDefId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -537,7 +537,7 @@ public class FormServiceTest {
     assertNotNull(variables.<ObjectValue>getValueTyped("object").getValueSerialized());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/form/FormsProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/form/FormsProcess.bpmn20.xml"})
   @Test
   public void testSubmitTaskFormDataTypedVariables() {
     String procDefId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -565,7 +565,7 @@ public class FormServiceTest {
     assertNotNull(variables.<ObjectValue>getValueTyped("object").getValueSerialized());
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/form/FormsProcess.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/form/FormsProcess.bpmn20.xml"})
   @Test
   public void testSubmitFormVariablesNull() {
     String procDefId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -605,7 +605,7 @@ public class FormServiceTest {
     taskService.deleteTask(id, true);
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn"})
   @Test
   public void testSubmitTaskFormForCmmnHumanTask() {
     caseService.createCaseInstanceByKey("oneTaskCase");
@@ -780,7 +780,7 @@ public class FormServiceTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/form/FormsProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/form/FormsProcess.bpmn20.xml")
   @Test
   public void testGetStartFormKey() {
     String processDefinitionId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -820,7 +820,7 @@ public class FormServiceTest {
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/form/FormsProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/form/FormsProcess.bpmn20.xml")
   @Test
   public void testGetTaskFormKey() {
     String processDefinitionId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -841,7 +841,7 @@ public class FormServiceTest {
     assertEquals("test", formService.getTaskFormData(task.getId()).getFormKey());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/form/FormServiceTest.startFormFields.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.startFormFields.bpmn20.xml"})
   @Test
   public void testGetStartFormVariables() {
 
@@ -890,7 +890,7 @@ public class FormServiceTest {
     assertEquals(4, variables.size());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/form/FormServiceTest.startFormFieldsUnknownType.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.startFormFieldsUnknownType.bpmn20.xml"})
   @Test
   public void testGetStartFormVariablesEnumType() {
 
@@ -901,7 +901,7 @@ public class FormServiceTest {
     assertEquals(ValueType.STRING, startFormVariables.getValueTyped("enumField").getType());
   }
 
-  @Deployment(resources={"org/camunda/bpm/engine/test/api/form/FormServiceTest.taskFormFields.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.taskFormFields.bpmn20.xml"})
   @Test
   public void testGetTaskFormVariables() {
 
@@ -1042,7 +1042,7 @@ public class FormServiceTest {
     taskService.deleteTask(task.getId(), true);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml" })
   @Test
   public void testSubmitStartFormWithObjectVariables() {
     // given
@@ -1065,7 +1065,7 @@ public class FormServiceTest {
 
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml" })
   @Test
   public void testSubmitTaskFormWithObjectVariables() {
     // given
@@ -1092,7 +1092,7 @@ public class FormServiceTest {
     }
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/task/TaskServiceTest.testCompleteTaskWithVariablesInReturn.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/task/TaskServiceTest.testCompleteTaskWithVariablesInReturn.bpmn20.xml" })
   @Test
   public void testSubmitTaskFormWithVariablesInReturn() {
     String processVarName = "processVar";
@@ -1131,7 +1131,7 @@ public class FormServiceTest {
     assertEquals(taskVarValue, vars.get(taskVarName));
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/twoParallelTasksProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/twoParallelTasksProcess.bpmn20.xml" })
   @Test
   public void testSubmitTaskFormWithVariablesInReturnParallel() {
     String processVarName = "processVar";
@@ -1218,7 +1218,7 @@ public class FormServiceTest {
 
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml")
   public void testSubmitTaskFormWithVarialbesInReturnShouldDeserializeObjectValue()
   {
     // given
@@ -1239,7 +1239,7 @@ public class FormServiceTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml")
   public void testSubmitTaskFormWithVarialbesInReturnShouldNotDeserializeObjectValue()
   {
     // given
@@ -1307,7 +1307,7 @@ public class FormServiceTest {
     try {
       repositoryService
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/form/FormServiceTest.testDeployTaskFormWithoutFieldTypes.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.testDeployTaskFormWithoutFieldTypes.bpmn20.xml")
         .deploy();
     } catch (ProcessEngineException e) {
       testRule.assertTextPresent("form field must have a 'type' attribute", e.getMessage());
@@ -1344,7 +1344,7 @@ public class FormServiceTest {
     try {
       repositoryService
         .createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/form/FormServiceTest.testDeployStartFormWithoutFieldTypes.bpmn20.xml")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.testDeployStartFormWithoutFieldTypes.bpmn20.xml")
         .deploy();
     } catch (ProcessEngineException e) {
       testRule.assertTextPresent("form field must have a 'type' attribute", e.getMessage());
@@ -1352,10 +1352,10 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/api/form/util/VacationRequest_deprecated_forms.bpmn20.xml",
-    "org/camunda/bpm/engine/test/api/form/util/approve.html",
-    "org/camunda/bpm/engine/test/api/form/util/request.html",
-    "org/camunda/bpm/engine/test/api/form/util/adjustRequest.html" })
+    "org/cadenzaflow/bpm/engine/test/api/form/util/VacationRequest_deprecated_forms.bpmn20.xml",
+    "org/cadenzaflow/bpm/engine/test/api/form/util/approve.html",
+    "org/cadenzaflow/bpm/engine/test/api/form/util/request.html",
+    "org/cadenzaflow/bpm/engine/test/api/form/util/adjustRequest.html" })
   @Test
   public void testTaskFormsWithVacationRequestProcess() {
 
@@ -1366,7 +1366,7 @@ public class FormServiceTest {
 
     ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
     String processDefinitionId = processDefinition.getId();
-    assertEquals("org/camunda/bpm/engine/test/api/form/util/request.html", formService.getStartFormData(processDefinitionId).getFormKey());
+    assertEquals("org/cadenzaflow/bpm/engine/test/api/form/util/request.html", formService.getStartFormData(processDefinitionId).getFormKey());
 
     // Define variables that would be filled in through the form
     Map<String, String> formProperties = new HashMap<>();
@@ -1425,9 +1425,9 @@ public class FormServiceTest {
     assertTrue(result.get(0).getName().equals("secondParam"));
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetDeployedStartForm() {
     // given
@@ -1438,14 +1438,14 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedStartForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/start.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/start.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedStartForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/EmbeddedDeployedFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/EmbeddedDeployedFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetEmbeddedDeployedStartForm() {
     // given
@@ -1456,14 +1456,14 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedStartForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/start.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/start.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedStartForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedCamundaFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedCamundaFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetDeployedCamundaStartForm() {
     // given
@@ -1474,7 +1474,7 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedStartForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/start.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/start.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedStartForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
@@ -1489,9 +1489,9 @@ public class FormServiceTest {
     }
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetDeployedTaskForm() {
     // given
@@ -1503,13 +1503,13 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedTaskForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/task.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/task.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedTaskForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedFormsCase.cmmn11.xml",
-    "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsCase.cmmn11.xml",
+    "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetDeployedTaskForm_Case() {
     // given
@@ -1521,14 +1521,14 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedTaskForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/task.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/task.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedTaskForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/EmbeddedDeployedFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/EmbeddedDeployedFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetEmbeddedDeployedTaskForm() {
     // given
@@ -1540,14 +1540,14 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedTaskForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/task.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/task.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedTaskForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedCamundaFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedCamundaFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetDeployedCamundaTaskForm() {
     // given
@@ -1559,7 +1559,7 @@ public class FormServiceTest {
 
     // then
     assertNotNull(deployedTaskForm);
-    String fileAsString = IoUtil.fileAsString("org/camunda/bpm/engine/test/api/form/task.html");
+    String fileAsString = IoUtil.fileAsString("org/cadenzaflow/bpm/engine/test/api/form/task.html");
     String deployedStartFormAsString = IoUtil.inputStreamAsString(deployedTaskForm);
     assertEquals(deployedStartFormAsString, fileAsString);
   }
@@ -1574,8 +1574,8 @@ public class FormServiceTest {
     }
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/task.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/task.html" })
   @Test
   public void testGetDeployedStartForm_DeploymentNotFound() {
     // given
@@ -1585,11 +1585,11 @@ public class FormServiceTest {
     assertThatThrownBy(() -> {
       formService.getDeployedStartForm(procDefId);
     }).isInstanceOf(NotFoundException.class)
-    .hasMessageContaining("The form with the resource name 'org/camunda/bpm/engine/test/api/form/start.html' cannot be found in deployment");
+    .hasMessageContaining("The form with the resource name 'org/cadenzaflow/bpm/engine/test/api/form/start.html' cannot be found in deployment");
   }
 
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/form/start.html" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/form/DeployedFormsProcess.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.html" })
   @Test
   public void testGetDeployedTaskForm_DeploymentNotFound() {
     // given
@@ -1600,7 +1600,7 @@ public class FormServiceTest {
     assertThatThrownBy(() -> {
       formService.getDeployedTaskForm(taskId);
     }).isInstanceOf(NotFoundException.class)
-    .hasMessageContaining("The form with the resource name 'org/camunda/bpm/engine/test/api/form/task.html' cannot be found in deployment");
+    .hasMessageContaining("The form with the resource name 'org/cadenzaflow/bpm/engine/test/api/form/task.html' cannot be found in deployment");
   }
 
   @Test
@@ -1631,7 +1631,7 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/form/FormServiceTest.testGetDeployedStartFormWithWrongKeyFormat.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.testGetDeployedStartFormWithWrongKeyFormat.bpmn20.xml" })
   @Test
   public void testGetDeployedStartFormWithWrongKeyFormat() {
     String processDefinitionId = repositoryService.createProcessDefinitionQuery().singleResult().getId();
@@ -1645,7 +1645,7 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/form/FormServiceTest.testGetDeployedTaskFormWithWrongKeyFormat.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.testGetDeployedTaskFormWithWrongKeyFormat.bpmn20.xml" })
   @Test
   public void testGetDeployedTaskFormWithWrongKeyFormat() {
     runtimeService.startProcessInstanceByKey("FormsProcess");
@@ -1660,8 +1660,8 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/form/FormServiceTest.shouldSubmitStartFormUsingFormKeyAndCamundaFormDefinition.bpmn",
-      "org/camunda/bpm/engine/test/api/form/start.form" })
+      "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.shouldSubmitStartFormUsingFormKeyAndCamundaFormDefinition.bpmn",
+      "org/cadenzaflow/bpm/engine/test/api/form/start.form" })
   @Test
   public void shouldSubmitStartFormUsingFormKeyAndCamundaFormDefinition() {
     // given
@@ -1680,8 +1680,8 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/form/FormServiceTest.shouldSubmitTaskFormUsingFormKeyAndCamundaFormDefinition.bpmn",
-  "org/camunda/bpm/engine/test/api/form/task.form" })
+      "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.shouldSubmitTaskFormUsingFormKeyAndCamundaFormDefinition.bpmn",
+  "org/cadenzaflow/bpm/engine/test/api/form/task.form" })
   @Test
   public void shouldSubmitTaskFormUsingFormKeyAndCamundaFormDefinition() {
     // given
@@ -1700,8 +1700,8 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/form/FormServiceTest.shouldSubmitStartFormUsingFormRefAndCamundaFormDefinition.bpmn",
-  "org/camunda/bpm/engine/test/api/form/start.form" })
+      "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.shouldSubmitStartFormUsingFormRefAndCamundaFormDefinition.bpmn",
+  "org/cadenzaflow/bpm/engine/test/api/form/start.form" })
   @Test
   public void shouldSubmitStartFormUsingFormRefAndCamundaFormDefinition() {
     // given
@@ -1721,8 +1721,8 @@ public class FormServiceTest {
   }
 
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/api/form/FormServiceTest.shouldSubmitTaskFormUsingFormRefAndCamundaFormDefinition.bpmn",
-  "org/camunda/bpm/engine/test/api/form/task.form" })
+      "org/cadenzaflow/bpm/engine/test/api/form/FormServiceTest.shouldSubmitTaskFormUsingFormRefAndCamundaFormDefinition.bpmn",
+  "org/cadenzaflow/bpm/engine/test/api/form/task.form" })
   @Test
   public void shouldSubmitTaskFormUsingFormRefAndCamundaFormDefinition() {
     // given

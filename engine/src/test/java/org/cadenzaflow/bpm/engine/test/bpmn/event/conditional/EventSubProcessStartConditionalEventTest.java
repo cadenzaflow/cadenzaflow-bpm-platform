@@ -98,7 +98,7 @@ public class EventSubProcessStartConditionalEventTest extends AbstractConditiona
   }
 
   @Test
-  @Deployment(resources ={ "org/camunda/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testVariableCondition.bpmn20.xml"})
+  @Deployment(resources ={ "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testVariableCondition.bpmn20.xml"})
   public void testVariableConditionAndStartingWithVar() {
     //given process with event sub process conditional start event
     Map<String, Object> vars = Variables.createVariables();
@@ -115,7 +115,7 @@ public class EventSubProcessStartConditionalEventTest extends AbstractConditiona
   }
 
   @Test
-  @Deployment(resources ={ "org/camunda/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testVariableCondition.bpmn20.xml"})
+  @Deployment(resources ={ "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testVariableCondition.bpmn20.xml"})
   public void testWrongVariableCondition() {
     //given process with event sub process conditional start event
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -176,7 +176,7 @@ public class EventSubProcessStartConditionalEventTest extends AbstractConditiona
   }
 
   @Test
-  @Deployment(resources ={ "org/camunda/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
+  @Deployment(resources ={ "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
   public void testSubProcessSetVariableOnTaskCondition() {
     //given process with event sub process conditional start event and user task in sub process
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -195,7 +195,7 @@ public class EventSubProcessStartConditionalEventTest extends AbstractConditiona
   }
 
   @Test
-  @Deployment(resources ={ "org/camunda/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
+  @Deployment(resources ={ "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
   public void testSubProcessSetVariableOnExecutionCondition() {
     //given process with event sub process conditional start event and user task in sub process
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -1025,7 +1025,7 @@ public class EventSubProcessStartConditionalEventTest extends AbstractConditiona
   }
 
   @Test
-  @Deployment(resources ={ "org/camunda/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
+  @Deployment(resources ={ "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testSubProcessVariableCondition.bpmn20.xml"})
   public void testSubProcessSetVariableOnProcessInstanceCondition() {
     //given process with event sub process conditional start event and user task in sub process
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY);
@@ -1294,7 +1294,7 @@ public class EventSubProcessStartConditionalEventTest extends AbstractConditiona
 
   @Test
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testVariableCondition.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/event/conditional/EventSubProcessStartConditionalEventTest.testVariableCondition.bpmn20.xml")
   public void testVariableConditionWithHistory() {
     // given process with event sub process conditional start event
     ProcessInstance procInst = runtimeService.startProcessInstanceByKey(CONDITIONAL_EVENT_PROCESS_KEY,

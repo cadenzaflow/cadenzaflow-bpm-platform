@@ -48,7 +48,7 @@ import org.junit.runners.Parameterized.Parameter;
 public abstract class ProcessTaskAuthorizationTest {
 
 
-  private static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
+  private static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml";
   protected static final String userId = "userId";
   public static final String VARIABLE_NAME = "aVariableName";
   public static final String VARIABLE_VALUE = "aVariableValue";

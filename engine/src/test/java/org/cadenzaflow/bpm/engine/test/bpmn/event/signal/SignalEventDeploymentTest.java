@@ -34,8 +34,8 @@ import org.junit.Test;
  */
 public class SignalEventDeploymentTest extends PluggableProcessEngineTest {
 
-  private static final String SIGNAL_START_EVENT_PROCESS = "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent.bpmn20.xml";
-  private static final String SIGNAL_START_EVENT_PROCESS_NEW_VERSION = "org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent_v2.bpmn20.xml";
+  private static final String SIGNAL_START_EVENT_PROCESS = "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent.bpmn20.xml";
+  private static final String SIGNAL_START_EVENT_PROCESS_NEW_VERSION = "org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent_v2.bpmn20.xml";
 
   @Test
   public void testCreateEventSubscriptionOnDeployment() {
@@ -84,8 +84,8 @@ public class SignalEventDeploymentTest extends PluggableProcessEngineTest {
     // given a deployment
     org.cadenzaflow.bpm.engine.repository.Deployment deployment =
         repositoryService.createDeployment()
-          .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent.bpmn20.xml")
-          .addClasspathResource("org/camunda/bpm/engine/test/bpmn/event/signal/SignalEventTests.throwAlertSignalAsync.bpmn20.xml")
+          .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventTest.signalStartEvent.bpmn20.xml")
+          .addClasspathResource("org/cadenzaflow/bpm/engine/test/bpmn/event/signal/SignalEventTests.throwAlertSignalAsync.bpmn20.xml")
           .deploy();
 
     // and an active job for asynchronously triggering a signal start event

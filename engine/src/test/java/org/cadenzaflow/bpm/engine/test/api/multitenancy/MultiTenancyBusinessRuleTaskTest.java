@@ -31,14 +31,14 @@ public class MultiTenancyBusinessRuleTaskTest extends PluggableProcessEngineTest
   protected static final String TENANT_ONE = "tenant1";
   protected static final String TENANT_TWO = "tenant2";
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
-  protected static final String DMN_FILE_VERSION_TWO = "org/camunda/bpm/engine/test/api/multitenancy/simpleDecisionTable_v2.dmn";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable.dmn";
+  protected static final String DMN_FILE_VERSION_TWO = "org/cadenzaflow/bpm/engine/test/api/multitenancy/simpleDecisionTable_v2.dmn";
 
   protected static final String RESULT_OF_VERSION_ONE = "A";
   protected static final String RESULT_OF_VERSION_TWO = "C";
 
-  public static final String DMN_FILE_VERSION_TAG = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionVersionTagOkay.dmn11.xml";
-  public static final String DMN_FILE_VERSION_TAG_TWO = "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionVersionTagOkay_v2.dmn11.xml";
+  public static final String DMN_FILE_VERSION_TAG = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionVersionTagOkay.dmn11.xml";
+  public static final String DMN_FILE_VERSION_TAG_TWO = "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionVersionTagOkay_v2.dmn11.xml";
 
   protected static final String RESULT_OF_VERSION_TAG_ONE = "A";
   protected static final String RESULT_OF_VERSION_TAG_TWO = "C";

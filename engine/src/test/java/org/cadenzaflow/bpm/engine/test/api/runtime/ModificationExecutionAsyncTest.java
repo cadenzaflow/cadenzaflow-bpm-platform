@@ -914,7 +914,7 @@ public class ModificationExecutionAsyncTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.syncAfterOneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.syncAfterOneTaskProcess.bpmn20.xml" })
   public void testBatchExecutionWithHistoricQueryUnfinished() {
     // given
     List<String> startedInstances = helper.startInstances("oneTaskProcess", 3);
@@ -1009,7 +1009,7 @@ public class ModificationExecutionAsyncTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.syncAfterOneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.syncAfterOneTaskProcess.bpmn20.xml" })
   public void testBatchExecutionFailureWithFinishedInstanceId() {
     // given
     List<String> startedInstances = helper.startInstances("oneTaskProcess", 3);
@@ -1065,7 +1065,7 @@ public class ModificationExecutionAsyncTest {
 
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.syncAfterOneTaskProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/ProcessInstanceModificationTest.syncAfterOneTaskProcess.bpmn20.xml" })
   public void testBatchExecutionFailureWithHistoricQueryThatMatchesFinishedInstance() {
     // given
     List<String> startedInstances = helper.startInstances("oneTaskProcess", 3);

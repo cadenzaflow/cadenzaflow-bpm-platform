@@ -289,7 +289,7 @@ public class PurgeDatabaseTest {
 
     engineRule.getRepositoryService()
       .createDeployment()
-      .addClasspathResource("org/camunda/bpm/engine/test/standalone/db/entitymanager/PurgeDatabaseTest.testPurgeCmmnProcess.cmmn")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/standalone/db/entitymanager/PurgeDatabaseTest.testPurgeCmmnProcess.cmmn")
       .deploy();
     VariableMap variables = Variables.createVariables();
     variables.put("key", "value");
@@ -332,7 +332,7 @@ public class PurgeDatabaseTest {
     // given dmn process which is not managed by process engine rule
     engineRule.getRepositoryService()
       .createDeployment()
-      .addClasspathResource("org/camunda/bpm/engine/test/standalone/db/entitymanager/PurgeDatabaseTest.testPurgeDmnProcess.dmn")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/standalone/db/entitymanager/PurgeDatabaseTest.testPurgeDmnProcess.dmn")
       .deploy();
     VariableMap variables = Variables.createVariables()
       .putValue("key", "value")

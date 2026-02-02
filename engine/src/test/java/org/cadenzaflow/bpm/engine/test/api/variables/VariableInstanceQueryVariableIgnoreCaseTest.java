@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.engine.runtime.VariableInstance;
 import org.cadenzaflow.bpm.engine.test.Deployment;
 import org.junit.Before;
 
-@Deployment(resources = { "org/camunda/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
+@Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml" })
 public class VariableInstanceQueryVariableIgnoreCaseTest extends AbstractVariableIgnoreCaseTest<VariableInstanceQueryImpl, VariableInstance> {
 
   RuntimeService runtimeService;

@@ -41,7 +41,7 @@ public class BpmnBehaviorLoggerTest extends PluggableProcessEngineTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/bpmn/behavior/BpmnBehaviorLoggerTest.UnhandledBpmnError.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/bpmn/behavior/BpmnBehaviorLoggerTest.UnhandledBpmnError.bpmn20.xml" })
   public void shouldIncludeBpmnErrorMessageInUnhandledBpmnError() {
     // given
     processEngineConfiguration.setEnableExceptionsAfterUnhandledBpmnError(true);
@@ -54,7 +54,7 @@ public class BpmnBehaviorLoggerTest extends PluggableProcessEngineTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/bpmn/behavior/BpmnBehaviorLoggerTest.UnhandledBpmnError.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/test/bpmn/behavior/BpmnBehaviorLoggerTest.UnhandledBpmnError.bpmn20.xml" })
   public void shouldLogBpmnErrorMessageInUnhandledBpmnErrorWithoutException() {
     // given
     String logMessage = "Execution with id 'serviceTask' throws an error event with errorCode 'errorCode' and errorMessage 'ouch!'";

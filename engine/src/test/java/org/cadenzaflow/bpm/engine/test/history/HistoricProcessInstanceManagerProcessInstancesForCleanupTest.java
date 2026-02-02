@@ -110,7 +110,7 @@ public class HistoricProcessInstanceManagerProcessInstancesForCleanupTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml", "org/camunda/bpm/engine/test/api/twoTasksProcess.bpmn20.xml" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml", "org/cadenzaflow/bpm/engine/test/api/twoTasksProcess.bpmn20.xml" })
   public void testFindHistoricProcessInstanceIdsForCleanup() {
 
     engineRule.getProcessEngineConfiguration().getCommandExecutorTxRequired().execute(new Command<Object>() {

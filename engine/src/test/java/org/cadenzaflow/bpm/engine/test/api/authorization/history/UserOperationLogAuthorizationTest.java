@@ -79,9 +79,9 @@ public class UserOperationLogAuthorizationTest extends AuthorizationTest {
   @Before
   public void setUp() throws Exception {
     deploymentId = testRule.deploy(
-        "org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
-        "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn",
-        "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml")
+        "org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn",
+        "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml")
             .getId();
     super.setUp();
   }

@@ -107,7 +107,7 @@ public class DeleteProcessDefinitionAuthorizationTest {
 
   @Test
   public void testDeleteProcessDefinition() {
-    testHelper.deploy("org/camunda/bpm/engine/test/repository/twoProcesses.bpmn20.xml");
+    testHelper.deploy("org/cadenzaflow/bpm/engine/test/repository/twoProcesses.bpmn20.xml");
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().list();
 
     authRule.init(scenario)

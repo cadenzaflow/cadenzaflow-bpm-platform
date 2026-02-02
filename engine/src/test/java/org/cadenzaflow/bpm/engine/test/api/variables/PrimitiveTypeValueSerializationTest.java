@@ -44,7 +44,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class PrimitiveTypeValueSerializationTest {
 
-  protected static final String BPMN_FILE = "org/camunda/bpm/engine/test/api/variables/oneTaskProcess.bpmn20.xml";
+  protected static final String BPMN_FILE = "org/cadenzaflow/bpm/engine/test/api/variables/oneTaskProcess.bpmn20.xml";
   protected static final String PROCESS_DEFINITION_KEY = "oneTaskProcess";
 
   protected static final String VARIABLE_NAME = "variable";

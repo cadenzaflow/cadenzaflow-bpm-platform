@@ -81,7 +81,7 @@ public class HistoryServiceAsyncOperationsTest extends AbstractAsyncOperationsTe
   }
 
   protected void prepareData() {
-    testRule.deploy("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
+    testRule.deploy("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml");
     startTestProcesses(2);
 
     for (Task activeTask : taskService.createTaskQuery().list()) {

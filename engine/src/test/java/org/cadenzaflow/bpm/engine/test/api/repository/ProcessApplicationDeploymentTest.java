@@ -133,7 +133,7 @@ public class ProcessApplicationDeploymentTest {
     // given
     ProcessApplicationDeployment deployment = testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     // process is deployed:
     assertThatOneProcessIsDeployed();
@@ -153,7 +153,7 @@ public class ProcessApplicationDeploymentTest {
     testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
         .name("deployment")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     assertThatOneProcessIsDeployed();
 
@@ -163,7 +163,7 @@ public class ProcessApplicationDeploymentTest {
         .createDeployment(processApplication.getReference())
         .name("deployment")
         .enableDuplicateFiltering(false)
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     // no changes
     assertThatOneProcessIsDeployed();
@@ -410,7 +410,7 @@ public class ProcessApplicationDeploymentTest {
     testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
         .name("deployment")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     assertThatOneProcessIsDeployed();
 
@@ -420,7 +420,7 @@ public class ProcessApplicationDeploymentTest {
         .name("deployment")
         .enableDuplicateFiltering(false)
         .resumePreviousVersions()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version2.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version2.bpmn20.xml"));
 
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
         .orderByProcessDefinitionVersion()
@@ -443,7 +443,7 @@ public class ProcessApplicationDeploymentTest {
     testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
         .name("deployment")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     assertThatOneProcessIsDeployed();
 
@@ -452,7 +452,7 @@ public class ProcessApplicationDeploymentTest {
         .createDeployment(processApplication.getReference())
         .name("deployment")
         .resumePreviousVersions()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/oneTaskProcess.bpmn20.xml"));
 
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
         .orderByProcessDefinitionVersion()
@@ -547,7 +547,7 @@ public class ProcessApplicationDeploymentTest {
     testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
         .name("deployment")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     assertThatOneProcessIsDeployed();
 
@@ -556,7 +556,7 @@ public class ProcessApplicationDeploymentTest {
         .createDeployment(processApplication.getReference())
         .name("deployment")
         .enableDuplicateFiltering(false)
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version2.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version2.bpmn20.xml"));
 
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
         .orderByProcessDefinitionVersion()
@@ -579,7 +579,7 @@ public class ProcessApplicationDeploymentTest {
     testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
         .name("deployment")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     assertThatOneProcessIsDeployed();
 
@@ -590,7 +590,7 @@ public class ProcessApplicationDeploymentTest {
         .enableDuplicateFiltering(false)
         .resumePreviousVersions()
         .resumePreviousVersionsBy(ResumePreviousBy.RESUME_BY_DEPLOYMENT_NAME)
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version2.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version2.bpmn20.xml"));
 
     List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
         .orderByProcessDefinitionVersion()
@@ -748,7 +748,7 @@ public class ProcessApplicationDeploymentTest {
     testRule.deploy(repositoryService
         .createDeployment(processApplication.getReference())
         .name("deployment")
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version1.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version1.bpmn20.xml"));
 
     deploymentCache.discardProcessDefinitionCache();
 
@@ -758,7 +758,7 @@ public class ProcessApplicationDeploymentTest {
         .name("deployment")
         .enableDuplicateFiltering(false)
         .resumePreviousVersions()
-        .addClasspathResource("org/camunda/bpm/engine/test/api/repository/version2.bpmn20.xml"));
+        .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/repository/version2.bpmn20.xml"));
 
     // then the cache is still empty
     assertTrue(deploymentCache.getBpmnModelInstanceCache().isEmpty());

@@ -41,10 +41,10 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class CamundaFormDefinitionDeployerTest {
 
-  protected static final String BPMN_USER_TASK_FORM_REF_DEPLOYMENT = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.shouldDeployProcessWithCamundaFormDefinitionBindingDeployment.bpmn";
-  protected static final String BPMN_USER_TASK_FORM_REF_LATEST = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.shouldDeployProcessWithCamundaFormDefinitionBindingLatest.bpmn";
-  protected static final String BPMN_USER_TASK_FORM_REF_VERSION = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.shouldDeployProcessWithCamundaFormDefinitionBindingVersion.bpmn";
-  protected static final String SIMPLE_FORM = "org/camunda/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.simple_form.form";
+  protected static final String BPMN_USER_TASK_FORM_REF_DEPLOYMENT = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.shouldDeployProcessWithCamundaFormDefinitionBindingDeployment.bpmn";
+  protected static final String BPMN_USER_TASK_FORM_REF_LATEST = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.shouldDeployProcessWithCamundaFormDefinitionBindingLatest.bpmn";
+  protected static final String BPMN_USER_TASK_FORM_REF_VERSION = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.shouldDeployProcessWithCamundaFormDefinitionBindingVersion.bpmn";
+  protected static final String SIMPLE_FORM = "org/cadenzaflow/bpm/engine/test/form/deployment/CamundaFormDefinitionDeployerTest.simple_form.form";
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);

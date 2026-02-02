@@ -6,8 +6,8 @@
 
   <process-archive name="for tenant 1" tenantId="tenant1">
     <process-engine>default</process-engine>
-    <resource>org/camunda/bpm/application/impl/embedded/StartToEndTest.testStartToEnd.bpmn20.xml</resource>
-    
+    <resource>org/cadenzaflow/bpm/application/impl/embedded/StartToEndTest.testStartToEnd.bpmn20.xml</resource>
+
     <properties>
       <property name="isDeleteUponUndeploy">true</property>
       <property name="isScanForProcessDefinitions">false</property>
@@ -16,8 +16,8 @@
   
   <process-archive name="for tenant 2" tenantId="tenant2">
     <process-engine>default</process-engine>
-    <resource>org/camunda/bpm/application/impl/embedded/StartToEndTest.testStartToEnd.bpmn20.xml</resource>
-    
+    <resource>org/cadenzaflow/bpm/application/impl/embedded/StartToEndTest.testStartToEnd.bpmn20.xml</resource>
+
     <properties>
       <property name="isDeleteUponUndeploy">true</property>
       <property name="isScanForProcessDefinitions">false</property>

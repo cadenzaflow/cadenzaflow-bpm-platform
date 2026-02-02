@@ -494,7 +494,7 @@ public class RestartProcessInstanceSyncTest {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEventListeners.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testAsyncStartEventListeners.bpmn20.xml"})
   public void shouldSetInitialVersionOfVariablesAsyncBeforeStartEventExecutionListener() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("asyncStartEvent",
@@ -528,8 +528,8 @@ public class RestartProcessInstanceSyncTest {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testCallActivity-super.bpmn20.xml",
-      "org/camunda/bpm/engine/test/bpmn/async/AsyncStartEventTest.testCallActivity-sub.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testCallActivity-super.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/bpmn/async/AsyncStartEventTest.testCallActivity-sub.bpmn20.xml"
   })
   public void shouldSetInitialVersionOfVariablesAsyncBeforeCallActivity() {
     // given

@@ -65,7 +65,7 @@ public class AcquirableJobCacheTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
   public void testFetchJobEntityWhenAcquirableJobIsCached() {
     // given
     runtimeService.startProcessInstanceByKey("asyncServiceTaskProcess");
@@ -112,7 +112,7 @@ public class AcquirableJobCacheTest {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/mgmt/metrics/asyncServiceTaskProcess.bpmn20.xml")
   public void testFetchAcquirableJobWhenJobEntityIsCached() {
     // given
     ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("asyncServiceTaskProcess");

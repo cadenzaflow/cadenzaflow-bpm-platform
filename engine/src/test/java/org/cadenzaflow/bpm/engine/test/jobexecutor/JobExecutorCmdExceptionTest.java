@@ -146,7 +146,7 @@ public class JobExecutorCmdExceptionTest extends PluggableProcessEngineTest {
     assertEquals(0, job.getRetries());
   }
 
-  @Deployment(resources="org/camunda/bpm/engine/test/jobexecutor/jobFailingOnFlush.bpmn20.xml")
+  @Deployment(resources="org/cadenzaflow/bpm/engine/test/jobexecutor/jobFailingOnFlush.bpmn20.xml")
   @Test
   public void testJobRetriesDecrementedOnFailedFlush() {
 

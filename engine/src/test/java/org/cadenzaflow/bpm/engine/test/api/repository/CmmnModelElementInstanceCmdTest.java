@@ -38,7 +38,7 @@ public class CmmnModelElementInstanceCmdTest extends PluggableProcessEngineTest 
 
   private final static String CASE_KEY = "oneTaskCase";
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
   @Test
   public void testRepositoryService() {
     String caseDefinitionId = repositoryService

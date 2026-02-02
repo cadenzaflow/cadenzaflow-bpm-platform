@@ -61,7 +61,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     DefaultJobPriorityProvider.DEFAULT_PRIORITY_ON_RESOLUTION_FAILURE = originalDefaultPriorityOnFailure;
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testConstantValueExpressionPrioritization() {
     // when
@@ -76,7 +76,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     assertEquals(15, job.getPriority());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testConstantValueHashExpressionPrioritization() {
     // when
@@ -91,7 +91,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     assertEquals(16, job.getPriority());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testVariableValueExpressionPrioritization() {
     // when
@@ -110,7 +110,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
   /**
    * Can't distinguish this case from the cases we have to tolerate due to CAM-4207
    */
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Ignore("CAM-4207")
   @Test
   public void testVariableValueExpressionPrioritizationFailsWhenVariableMisses() {
@@ -129,7 +129,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testExecutionExpressionPrioritization() {
     // when
@@ -145,7 +145,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     assertEquals(25, job.getPriority());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testExpressionEvaluatesToNull() {
     // when
@@ -161,7 +161,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testExpressionEvaluatesToNonNumericalValue() {
     // when
@@ -177,7 +177,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testExpressionEvaluatesToNonIntegerValue() {
     // when
@@ -194,7 +194,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     }
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testConcurrentLocalVariablesAreAccessible() {
     // when
@@ -218,7 +218,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
    * the actual case covered by the behavior are missing beans (e.g. in the case the engine can't perform a
    * context switch)
    */
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testDefaultPriorityWhenBeanMisses() {
     // creating a job with a priority that can't be resolved does not fail entirely but uses a default priority
@@ -232,7 +232,7 @@ public class JobPrioritizationBpmnExpressionValueTest extends PluggableProcessEn
     assertEquals(EXPECTED_DEFAULT_PRIORITY_ON_RESOLUTION_FAILURE, job.getPriority());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/bpmn/job/jobPrioExpressionProcess.bpmn20.xml")
   @Test
   public void testDisableGracefulDegradation() {
     try {

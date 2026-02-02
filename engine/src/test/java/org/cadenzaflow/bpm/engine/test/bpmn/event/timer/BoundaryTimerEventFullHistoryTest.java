@@ -33,7 +33,7 @@ public class BoundaryTimerEventFullHistoryTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/camunda/bpm/engine/test/standalone/history/fullhistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/fullhistory.camunda.cfg.xml");
 
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);

@@ -18,12 +18,12 @@
 
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-  
-<mapper namespace="org.camunda.bpm.engine.impl.persistence.entity.ResourceEntity">
-  
+
+<mapper namespace="org.cadenzaflow.bpm.engine.impl.persistence.entity.ResourceEntity">
+
   <!-- RESOURCE INSERT -->
 
-  <insert id="insertResource" parameterType="org.camunda.bpm.engine.impl.persistence.entity.ResourceEntity">
+  <insert id="insertResource" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.ResourceEntity">
     insert into ${prefix}ACT_GE_BYTEARRAY(
         ID_,
         NAME_,
@@ -50,7 +50,7 @@
 
   <!-- RESOURCE DELETE -->
 
-  <delete id="deleteResource" parameterType="org.camunda.bpm.engine.impl.persistence.entity.ResourceEntity">
+  <delete id="deleteResource" parameterType="org.cadenzaflow.bpm.engine.impl.persistence.entity.ResourceEntity">
     delete from ${prefix}ACT_GE_BYTEARRAY where ID_ = #{id}
   </delete>
 
@@ -59,15 +59,15 @@
   </delete>
 
   <delete id="purgeTablePreserveLicenseKey" parameterType="string">
-    delete from ${prefix}ACT_GE_BYTEARRAY 
-    where ID_ NOT IN 
-      (select P.VALUE_ from ${prefix}ACT_GE_PROPERTY P 
+    delete from ${prefix}ACT_GE_BYTEARRAY
+    where ID_ NOT IN
+      (select P.VALUE_ from ${prefix}ACT_GE_PROPERTY P
       where P.NAME_ = #{license-id})
   </delete>
   
   <!-- RESOURCE RESULTMAP -->
 
-  <resultMap id="resourceResultMap" type="org.camunda.bpm.engine.impl.persistence.entity.ResourceEntity">
+  <resultMap id="resourceResultMap" type="org.cadenzaflow.bpm.engine.impl.persistence.entity.ResourceEntity">
     <id property="id" column="ID_" jdbcType="VARCHAR" />
     <result property="name" column="NAME_" jdbcType="VARCHAR"/>
     <result property="bytes" column="BYTES_" jdbcType="BLOB"/>
@@ -80,7 +80,7 @@
   
   <!-- RESOURCE SELECT -->
 
-  <select id="selectResourceNamesByDeploymentId" parameterType="org.camunda.bpm.engine.impl.db.ListQueryParameterObject" resultType="string">
+  <select id="selectResourceNamesByDeploymentId" parameterType="org.cadenzaflow.bpm.engine.impl.db.ListQueryParameterObject" resultType="string">
     select NAME_ from ${prefix}ACT_GE_BYTEARRAY where DEPLOYMENT_ID_ = #{parameter} order by NAME_ asc
   </select>
   
@@ -146,7 +146,7 @@
     </if>
   </select>
 
-  <select id="selectResourcesByDeploymentId" parameterType="org.camunda.bpm.engine.impl.db.ListQueryParameterObject" resultMap="resourceResultMap">
+  <select id="selectResourcesByDeploymentId" parameterType="org.cadenzaflow.bpm.engine.impl.db.ListQueryParameterObject" resultMap="resourceResultMap">
     select * from ${prefix}ACT_GE_BYTEARRAY where DEPLOYMENT_ID_ = #{parameter} order by NAME_ asc
   </select>
 
@@ -184,7 +184,7 @@
           and D.TENANT_ID_ is null
         </if>
       <if test="parameter.resourcesToFind != null &amp;&amp; parameter.resourcesToFind.size > 0">
-        and B.NAME_ in 
+        and B.NAME_ in
         <foreach item="resourceName" index="index" collection="parameter.resourcesToFind"
                  open="(" separator="," close=")">
           #{resourceName}
@@ -195,7 +195,7 @@
     on B.NAME_ = LAST_RESOURCE.NAME_
     inner join ${prefix}ACT_RE_DEPLOYMENT D
     on B.DEPLOYMENT_ID_ = D.ID_
-    and D.DEPLOY_TIME_ = LAST_RESOURCE.DEPLOY_TIME_ 
+    and D.DEPLOY_TIME_ = LAST_RESOURCE.DEPLOY_TIME_
     and D.NAME_ = #{parameter.deploymentName, jdbcType=VARCHAR}
     and
     <if test="processApplicationSource.equals(parameter.source)">
@@ -215,7 +215,7 @@
   </sql>
 
   <!-- postgresql specific -->
-  <resultMap id="resourceResultMap_postgres" type="org.camunda.bpm.engine.impl.persistence.entity.ResourceEntity">
+  <resultMap id="resourceResultMap_postgres" type="org.cadenzaflow.bpm.engine.impl.persistence.entity.ResourceEntity">
     <id property="id" column="ID_" jdbcType="VARCHAR" />
     <result property="name" column="NAME_" jdbcType="VARCHAR"/>
     <result property="bytes" column="BYTES_" jdbcType="BINARY"/>
@@ -228,7 +228,7 @@
     
   <!-- postgresql specific -->
   <select id="selectResourceByDeploymentIdAndResourceName_postgres" parameterType="map" resultMap="resourceResultMap_postgres">
-    select * from ${prefix}ACT_GE_BYTEARRAY 
+    select * from ${prefix}ACT_GE_BYTEARRAY
     where DEPLOYMENT_ID_ = #{deploymentId}
           AND NAME_ = #{resourceName}
   </select>
@@ -261,7 +261,7 @@
 
   <!-- postgresql specific -->
   <select id="selectResourceByDeploymentIdAndResourceId_postgres" parameterType="map" resultMap="resourceResultMap_postgres">
-    select * from ${prefix}ACT_GE_BYTEARRAY 
+    select * from ${prefix}ACT_GE_BYTEARRAY
     where DEPLOYMENT_ID_ = #{deploymentId}
           AND ID_ = #{resourceId}
   </select>
@@ -293,7 +293,7 @@
   </select>
 
   <!-- postgresql specific -->
-  <select id="selectResourcesByDeploymentId_postgres" parameterType="org.camunda.bpm.engine.impl.db.ListQueryParameterObject" resultMap="resourceResultMap_postgres">
+  <select id="selectResourcesByDeploymentId_postgres" parameterType="org.cadenzaflow.bpm.engine.impl.db.ListQueryParameterObject" resultMap="resourceResultMap_postgres">
     select * from ${prefix}ACT_GE_BYTEARRAY where DEPLOYMENT_ID_ = #{parameter} order by NAME_ asc
   </select>
   

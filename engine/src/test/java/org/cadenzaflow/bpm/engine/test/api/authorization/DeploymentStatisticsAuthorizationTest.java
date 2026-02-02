@@ -51,9 +51,9 @@ public class DeploymentStatisticsAuthorizationTest extends AuthorizationTest {
   @Override
   @Before
   public void setUp() throws Exception {
-    firstDeploymentId = createDeployment("first", "org/camunda/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml").getId();
-    secondDeploymentId = createDeployment("second", "org/camunda/bpm/engine/test/api/authorization/timerStartEventProcess.bpmn20.xml").getId();
-    thirdDeploymentId = createDeployment("third", "org/camunda/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml").getId();
+    firstDeploymentId = createDeployment("first", "org/cadenzaflow/bpm/engine/test/api/authorization/oneIncidentProcess.bpmn20.xml").getId();
+    secondDeploymentId = createDeployment("second", "org/cadenzaflow/bpm/engine/test/api/authorization/timerStartEventProcess.bpmn20.xml").getId();
+    thirdDeploymentId = createDeployment("third", "org/cadenzaflow/bpm/engine/test/api/authorization/timerBoundaryEventProcess.bpmn20.xml").getId();
     super.setUp();
   }
 

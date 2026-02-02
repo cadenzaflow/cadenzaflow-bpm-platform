@@ -13,7 +13,7 @@
       <bpmn2:extensionElements>
         <camunda:inputOutput>
             <camunda:outputParameter name="var1">
-              <camunda:script scriptFormat="Groovy" resource="org/camunda/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"/>
+              <camunda:script scriptFormat="Groovy" resource="org/cadenzaflow/bpm/engine/test/bpmn/iomapping/oneplusone.groovy"/>
             </camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn2:extensionElements>

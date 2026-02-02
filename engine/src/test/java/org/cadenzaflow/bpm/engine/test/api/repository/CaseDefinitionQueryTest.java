@@ -39,15 +39,15 @@ public class CaseDefinitionQueryTest extends AbstractDefinitionQueryTest {
   private String deploymentThreeId;
 
   protected String getResourceOnePath() {
-    return "org/camunda/bpm/engine/test/repository/one.cmmn";
+    return "org/cadenzaflow/bpm/engine/test/repository/one.cmmn";
   }
 
   protected String getResourceTwoPath() {
-    return "org/camunda/bpm/engine/test/repository/two.cmmn";
+    return "org/cadenzaflow/bpm/engine/test/repository/two.cmmn";
   }
 
   protected String getResourceThreePath() {
-    return "org/camunda/bpm/engine/test/api/repository/three_.cmmn";
+    return "org/cadenzaflow/bpm/engine/test/api/repository/three_.cmmn";
   }
 
   @Before
@@ -76,7 +76,7 @@ public class CaseDefinitionQueryTest extends AbstractDefinitionQueryTest {
     assertThat(caseDefinition.getId()).startsWith("one:1");
     assertThat(caseDefinition.getCategory()).isEqualTo("Examples");
     assertThat(caseDefinition.getVersion()).isEqualTo(1);
-    assertThat(caseDefinition.getResourceName()).isEqualTo("org/camunda/bpm/engine/test/repository/one.cmmn");
+    assertThat(caseDefinition.getResourceName()).isEqualTo("org/cadenzaflow/bpm/engine/test/repository/one.cmmn");
     assertThat(caseDefinition.getDeploymentId()).isEqualTo(deploymentOneId);
 
     caseDefinition = caseDefinitions.get(1);
@@ -85,7 +85,7 @@ public class CaseDefinitionQueryTest extends AbstractDefinitionQueryTest {
     assertThat(caseDefinition.getId()).startsWith("one:2");
     assertThat(caseDefinition.getCategory()).isEqualTo("Examples");
     assertThat(caseDefinition.getVersion()).isEqualTo(2);
-    assertThat(caseDefinition.getResourceName()).isEqualTo("org/camunda/bpm/engine/test/repository/one.cmmn");
+    assertThat(caseDefinition.getResourceName()).isEqualTo("org/cadenzaflow/bpm/engine/test/repository/one.cmmn");
     assertThat(caseDefinition.getDeploymentId()).isEqualTo(deploymentTwoId);
 
     caseDefinition = caseDefinitions.get(2);
@@ -94,7 +94,7 @@ public class CaseDefinitionQueryTest extends AbstractDefinitionQueryTest {
     assertThat(caseDefinition.getId()).startsWith("two:1");
     assertThat(caseDefinition.getCategory()).isEqualTo("Examples2");
     assertThat(caseDefinition.getVersion()).isEqualTo(1);
-    assertThat(caseDefinition.getResourceName()).isEqualTo("org/camunda/bpm/engine/test/repository/two.cmmn");
+    assertThat(caseDefinition.getResourceName()).isEqualTo("org/cadenzaflow/bpm/engine/test/repository/two.cmmn");
     assertThat(caseDefinition.getDeploymentId()).isEqualTo(deploymentOneId);
   }
 

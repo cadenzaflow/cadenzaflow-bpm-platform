@@ -42,15 +42,15 @@ import org.junit.Test;
  */
 public class DmnBusinessRuleTaskResultMappingTest extends PluggableProcessEngineTest {
 
-  protected static final String TEST_DECISION = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.dmn11.xml";
-  protected static final String CUSTOM_MAPPING_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testCustomOutputMapping.bpmn20.xml";
-  protected static final String SINGLE_ENTRY_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testSingleEntry.bpmn20.xml";
-  protected static final String SINGLE_RESULT_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testSingleResult.bpmn20.xml";
-  protected static final String COLLECT_ENTRIES_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testCollectEntries.bpmn20.xml";
-  protected static final String RESULT_LIST_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testResultList.bpmn20.xml";
-  protected static final String DEFAULT_MAPPING_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testDefaultMapping.bpmn20.xml";
-  protected static final String INVALID_MAPPING_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testInvalidMapping.bpmn20.xml";
-  protected static final String OVERRIDE_DECISION_RESULT_BPMN = "org/camunda/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testOverrideVariable.bpmn20.xml";
+  protected static final String TEST_DECISION = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.dmn11.xml";
+  protected static final String CUSTOM_MAPPING_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testCustomOutputMapping.bpmn20.xml";
+  protected static final String SINGLE_ENTRY_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testSingleEntry.bpmn20.xml";
+  protected static final String SINGLE_RESULT_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testSingleResult.bpmn20.xml";
+  protected static final String COLLECT_ENTRIES_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testCollectEntries.bpmn20.xml";
+  protected static final String RESULT_LIST_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testResultList.bpmn20.xml";
+  protected static final String DEFAULT_MAPPING_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testDefaultMapping.bpmn20.xml";
+  protected static final String INVALID_MAPPING_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testInvalidMapping.bpmn20.xml";
+  protected static final String OVERRIDE_DECISION_RESULT_BPMN = "org/cadenzaflow/bpm/engine/test/dmn/result/DmnBusinessRuleTaskResultMappingTest.testOverrideVariable.bpmn20.xml";
 
   @Deployment(resources = {CUSTOM_MAPPING_BPMN, TEST_DECISION })
   @Test

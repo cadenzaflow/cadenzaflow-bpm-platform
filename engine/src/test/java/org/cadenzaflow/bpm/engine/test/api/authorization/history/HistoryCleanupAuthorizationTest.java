@@ -76,8 +76,8 @@ public class HistoryCleanupAuthorizationTest extends AuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRef.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml", "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRef.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml", "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn" })
   public void testHistoryCleanupWithAuthorization() {
     // given
     prepareInstances(5, 5, 5);
@@ -95,8 +95,8 @@ public class HistoryCleanupAuthorizationTest extends AuthorizationTest {
   }
 
   @Test
-  @Deployment(resources = { "org/camunda/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRef.bpmn20.xml",
-      "org/camunda/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml", "org/camunda/bpm/engine/test/api/authorization/oneTaskCase.cmmn" })
+  @Deployment(resources = { "org/cadenzaflow/bpm/engine/test/dmn/businessruletask/DmnBusinessRuleTaskTest.testDecisionRef.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/test/api/history/testDmnWithPojo.dmn11.xml", "org/cadenzaflow/bpm/engine/test/api/authorization/oneTaskCase.cmmn" })
   public void testHistoryCleanupWithoutAuthorization() {
     // given
     prepareInstances(5, 5, 5);

@@ -56,7 +56,7 @@ public class MigrationCallActivityTest {
 
   @Before
   public void deployOneTaskCase() {
-    testHelper.deploy("org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
+    testHelper.deploy("org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn");
   }
 
   @Test

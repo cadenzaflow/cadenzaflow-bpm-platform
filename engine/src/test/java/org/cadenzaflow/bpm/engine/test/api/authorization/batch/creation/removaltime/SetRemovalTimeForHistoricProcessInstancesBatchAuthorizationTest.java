@@ -66,7 +66,7 @@ public class SetRemovalTimeForHistoricProcessInstancesBatchAuthorizationTest ext
 
   @Test
   @Deployment(resources = {
-    "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
+    "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml"
   })
   @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_AUDIT)
   public void shouldAuthorizeSetRemovalTimeForHistoricProcessInstancesBatch() {

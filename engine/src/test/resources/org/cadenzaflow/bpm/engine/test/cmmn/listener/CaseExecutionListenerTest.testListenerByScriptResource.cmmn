@@ -13,15 +13,15 @@
 
       <humanTask id="HumanTask_1" name="A HumanTask">
         <extensionElements>
-  
+
           <camunda:caseExecutionListener event="disable">
-            <camunda:script scriptFormat="groovy" resource="org/camunda/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
+            <camunda:script scriptFormat="groovy" resource="org/cadenzaflow/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
           </camunda:caseExecutionListener>
           <camunda:caseExecutionListener event="reenable">
-            <camunda:script scriptFormat="groovy" resource="classpath://org/camunda/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
+            <camunda:script scriptFormat="groovy" resource="classpath://org/cadenzaflow/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
           </camunda:caseExecutionListener>
           <camunda:caseExecutionListener event="manualStart">
-            <camunda:script scriptFormat="groovy" resource="deployment://org/camunda/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
+            <camunda:script scriptFormat="groovy" resource="deployment://org/cadenzaflow/bpm/engine/test/cmmn/listener/caseExecutionListener.groovy" />
           </camunda:caseExecutionListener>
 
         </extensionElements>

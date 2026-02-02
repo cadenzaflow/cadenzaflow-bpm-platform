@@ -54,15 +54,15 @@ import org.junit.Test;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class HistoricDecisionInstanceQueryTest extends PluggableProcessEngineTest {
 
-  protected static final String DECISION_CASE = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.caseWithDecisionTask.cmmn";
-  protected static final String DECISION_PROCESS = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
-  protected static final String DECISION_PROCESS_WITH_UNDERSCORE = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask_.bpmn20.xml";
+  protected static final String DECISION_CASE = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.caseWithDecisionTask.cmmn";
+  protected static final String DECISION_PROCESS = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask.bpmn20.xml";
+  protected static final String DECISION_PROCESS_WITH_UNDERSCORE = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.processWithBusinessRuleTask_.bpmn20.xml";
 
-  protected static final String DECISION_SINGLE_OUTPUT_DMN = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
-  protected static final String DECISION_SINGLE_OUTPUT_DMN_WITH_UNDERSCORE = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput_.dmn11.xml";
-  protected static final String DECISION_NO_INPUT_DMN = "org/camunda/bpm/engine/test/history/HistoricDecisionInstanceTest.noInput.dmn11.xml";
+  protected static final String DECISION_SINGLE_OUTPUT_DMN = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput.dmn11.xml";
+  protected static final String DECISION_SINGLE_OUTPUT_DMN_WITH_UNDERSCORE = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.decisionSingleOutput_.dmn11.xml";
+  protected static final String DECISION_NO_INPUT_DMN = "org/cadenzaflow/bpm/engine/test/history/HistoricDecisionInstanceTest.noInput.dmn11.xml";
 
-  protected static final String DRG_DMN = "org/camunda/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
+  protected static final String DRG_DMN = "org/cadenzaflow/bpm/engine/test/dmn/deployment/drdDish.dmn11.xml";
 
   protected static final String DECISION_DEFINITION_KEY = "testDecision";
   protected static final String DISH_DECISION = "dish-decision";

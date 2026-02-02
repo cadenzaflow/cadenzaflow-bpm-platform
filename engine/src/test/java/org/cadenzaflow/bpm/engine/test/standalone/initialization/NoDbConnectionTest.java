@@ -33,7 +33,7 @@ public class NoDbConnectionTest {
   public void testNoDbConnection() {
     try {
       ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("org/camunda/bpm/engine/test/standalone/initialization/nodbconnection.camunda.cfg.xml")
+        .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/nodbconnection.camunda.cfg.xml")
         .buildProcessEngine();
       fail("expected exception");
     } catch (RuntimeException e) {

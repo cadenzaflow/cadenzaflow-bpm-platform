@@ -91,7 +91,7 @@ public class ExclusiveGatewayTest extends PluggableProcessEngineTest {
             CollectionUtil.singletonMap("input", 1));
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/bpmn/gateway/ExclusiveGatewayTest.testDivergingExclusiveGateway.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/bpmn/gateway/ExclusiveGatewayTest.testDivergingExclusiveGateway.bpmn20.xml"})
   @Test
   public void testUnknownVariableInExpression() {
     // Instead of 'input' we're starting a process instance with the name 'iinput' (ie. a typo)

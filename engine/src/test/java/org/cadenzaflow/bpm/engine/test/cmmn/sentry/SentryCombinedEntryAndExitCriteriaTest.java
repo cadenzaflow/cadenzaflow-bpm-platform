@@ -34,7 +34,7 @@ import org.junit.Ignore;
 @Ignore
 public class SentryCombinedEntryAndExitCriteriaTest extends CmmnTest {
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentResumeInsideStage.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentResumeInsideStage.cmmn"})
   public void FAILING_testParentResumeInsideStage() {
     // given
     createCaseInstance();
@@ -93,7 +93,7 @@ public class SentryCombinedEntryAndExitCriteriaTest extends CmmnTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentSuspendInsideStage.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentSuspendInsideStage.cmmn"})
   public void FAILING_testParentSuspendInsideStage() {
     // given
     createCaseInstance();
@@ -137,7 +137,7 @@ public class SentryCombinedEntryAndExitCriteriaTest extends CmmnTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentResumeInsideStageDifferentPlanItemOrder.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentResumeInsideStageDifferentPlanItemOrder.cmmn"})
   public void FAILING_testParentResumeInsideStageDifferentPlanItemOrder() {
     // given
     createCaseInstance();
@@ -196,7 +196,7 @@ public class SentryCombinedEntryAndExitCriteriaTest extends CmmnTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentSuspendInsideStageDifferentPlanItemOrder.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/cmmn/sentry/SentryCombinedEntryAndExitCriteriaTest.testParentSuspendInsideStageDifferentPlanItemOrder.cmmn"})
   public void FAILING_testParentSuspendInsideStageDifferentPlanItemOrder() {
     // given
     createCaseInstance();

@@ -41,7 +41,7 @@ import org.junit.Test;
  */
 public class FileValueProcessSerializationTest extends PluggableProcessEngineTest {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/bpm/engine/test/api/variables/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/bpm/engine/test/api/variables/oneTaskProcess.bpmn20.xml";
 
   @Test
   public void testSerializeFileVariable() {

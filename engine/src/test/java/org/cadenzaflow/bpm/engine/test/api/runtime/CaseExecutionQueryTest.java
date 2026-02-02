@@ -62,8 +62,8 @@ public class CaseExecutionQueryTest extends PluggableProcessEngineTest {
   public void setUp() throws Exception {
 
     repositoryService.createDeployment()
-      .addClasspathResource("org/camunda/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
-      .addClasspathResource("org/camunda/bpm/engine/test/api/cmmn/twoTaskCase.cmmn")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/cmmn/oneTaskCase.cmmn")
+      .addClasspathResource("org/cadenzaflow/bpm/engine/test/api/cmmn/twoTaskCase.cmmn")
       .deploy();
 
     for (int i = 0; i < 4; i++) {
@@ -347,7 +347,7 @@ public class CaseExecutionQueryTest extends PluggableProcessEngineTest {
 
   }
 
-  @Deployment(resources = {"org/camunda/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/test/api/cmmn/oneMilestoneCase.cmmn"})
   @Test
   public void testQueryByAvailable() {
     caseService
@@ -2679,7 +2679,7 @@ public class CaseExecutionQueryTest extends PluggableProcessEngineTest {
     assertNotNull(task.getId());
   }
 
-  @Deployment(resources = "org/camunda/bpm/engine/test/cmmn/required/RequiredRuleTest.testVariableBasedRule.cmmn")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/cmmn/required/RequiredRuleTest.testVariableBasedRule.cmmn")
   @Test
   public void testQueryByRequired() {
     caseService.createCaseInstanceByKey("case", Collections.<String, Object>singletonMap("required", true));

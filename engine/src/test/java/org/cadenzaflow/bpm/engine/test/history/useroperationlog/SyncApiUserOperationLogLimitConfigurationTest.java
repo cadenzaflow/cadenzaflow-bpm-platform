@@ -55,7 +55,7 @@ public class SyncApiUserOperationLogLimitConfigurationTest {
     // given configuration with logEntriesPerSyncOperationLimit=-1
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
         .createProcessEngineConfigurationFromResource(
-            "/org/camunda/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldAllowToConfigureNegativeOne.cfg.xml");
+            "/org/cadenzaflow/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldAllowToConfigureNegativeOne.cfg.xml");
 
     // when engine startup
     startEngineManaged(processEngineConfiguration);
@@ -69,7 +69,7 @@ public class SyncApiUserOperationLogLimitConfigurationTest {
     // given configuration with logEntriesPerSyncOperationLimit=17000
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
         .createProcessEngineConfigurationFromResource(
-            "/org/camunda/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldAllowToConfigurePositiveValue.cfg.xml");
+            "/org/cadenzaflow/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldAllowToConfigurePositiveValue.cfg.xml");
 
     // when engine startup
     startEngineManaged(processEngineConfiguration);
@@ -83,7 +83,7 @@ public class SyncApiUserOperationLogLimitConfigurationTest {
     // given configuration with logEntriesPerSyncOperationLimit=0
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
         .createProcessEngineConfigurationFromResource(
-            "/org/camunda/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldThrowExceptionWhenConfigureZero.cfg.xml");
+            "/org/cadenzaflow/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldThrowExceptionWhenConfigureZero.cfg.xml");
 
     // when engine startup
     assertThatThrownBy(() -> startEngineManaged(processEngineConfiguration))
@@ -97,7 +97,7 @@ public class SyncApiUserOperationLogLimitConfigurationTest {
     // given configuration with logEntriesPerSyncOperationLimit=-10
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
         .createProcessEngineConfigurationFromResource(
-            "/org/camunda/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldThrowExceptionWhenConfigureLowNegativeValue.cfg.xml");
+            "/org/cadenzaflow/bpm/engine/test/history/useroperationlog/SyncApiUserOperationLogLimitConfigurationTest.shouldThrowExceptionWhenConfigureLowNegativeValue.cfg.xml");
 
     // when engine startup
     assertThatThrownBy(() -> startEngineManaged(processEngineConfiguration))

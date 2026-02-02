@@ -32,7 +32,7 @@ import org.junit.Test;
  */
 public class MultiTenancyDelegateTaskTest extends PluggableProcessEngineTest {
 
-  protected static final String BPMN = "org/camunda/bpm/engine/test/api/multitenancy/taskListener.bpmn";
+  protected static final String BPMN = "org/cadenzaflow/bpm/engine/test/api/multitenancy/taskListener.bpmn";
 
   @Test
   public void testSingleExecutionWithUserTask() {

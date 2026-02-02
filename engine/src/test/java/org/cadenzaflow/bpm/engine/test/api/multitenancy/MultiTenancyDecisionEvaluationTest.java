@@ -32,8 +32,8 @@ import org.junit.Test;
 
 public class MultiTenancyDecisionEvaluationTest extends PluggableProcessEngineTest {
 
-  protected static final String DMN_FILE = "org/camunda/bpm/engine/test/api/dmn/Example.dmn";
-  protected static final String DMN_FILE_SECOND_VERSION = "org/camunda/bpm/engine/test/api/dmn/Example_v2.dmn";
+  protected static final String DMN_FILE = "org/cadenzaflow/bpm/engine/test/api/dmn/Example.dmn";
+  protected static final String DMN_FILE_SECOND_VERSION = "org/cadenzaflow/bpm/engine/test/api/dmn/Example_v2.dmn";
 
   protected static final String DECISION_DEFINITION_KEY = "decision";
 
