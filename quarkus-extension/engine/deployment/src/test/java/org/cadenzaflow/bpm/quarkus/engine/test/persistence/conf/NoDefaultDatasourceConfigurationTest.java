@@ -32,7 +32,7 @@ public class NoDefaultDatasourceConfigurationTest {
 
   @RegisterExtension
   static QuarkusUnitTest unitTest = new ProcessEngineAwareExtension()
-      .withConfigurationResource("org/camunda/bpm/quarkus/engine/test/persistence/conf/secondary-datasource-application.properties")
+      .withConfigurationResource("org/cadenzaflow/bpm/quarkus/engine/test/persistence/conf/secondary-datasource-application.properties")
       .assertException(throwable -> assertThat(throwable)
           .hasMessage("No bean found for required type [interface io.agroal.api.AgroalDataSource] and qualifiers [[@jakarta.enterprise.inject.Default()]]")
           .isInstanceOf(UnsatisfiedResolutionException.class))

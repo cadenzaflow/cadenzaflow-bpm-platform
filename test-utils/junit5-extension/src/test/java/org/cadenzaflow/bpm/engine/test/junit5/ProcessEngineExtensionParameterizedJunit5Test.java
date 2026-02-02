@@ -56,7 +56,7 @@ public class ProcessEngineExtensionParameterizedJunit5Test {
 
   @ParameterizedTest
   @ValueSource(strings = {"A", "B"})
-  @Deployment(resources = "org/camunda/bpm/engine/test/junit5/ProcessEngineExtensionParameterizedJunit5Test.extensionUsageExample.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/test/junit5/ProcessEngineExtensionParameterizedJunit5Test.extensionUsageExample.bpmn20.xml")
   public void extensionUsageExampleWithNamedAnnotation(String value) {
     Map<String,Object> variables = new HashMap<>();
     variables.put("key", value);

@@ -28,7 +28,7 @@ public class ProcessEngineExtensionRequiredHistoryLevelAuditTest {
 
   @RegisterExtension
   ProcessEngineExtension extension = ProcessEngineExtension.builder()
-      .configurationResource("audithistory.camunda.cfg.xml")
+      .configurationResource("audithistory.cadenzaflow.cfg.xml")
       .build();
 
   @Test

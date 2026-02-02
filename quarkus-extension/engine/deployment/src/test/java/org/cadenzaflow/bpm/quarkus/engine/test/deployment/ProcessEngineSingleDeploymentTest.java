@@ -40,7 +40,7 @@ public class ProcessEngineSingleDeploymentTest {
   @RegisterExtension
   protected static final QuarkusUnitTest unitTest = new ProcessEngineAwareExtension()
       .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
-          .addAsResource("org/camunda/bpm/quarkus/engine/test/deployment/simpleServiceTaskProcess.bpmn"));
+          .addAsResource("org/cadenzaflow/bpm/quarkus/engine/test/deployment/simpleServiceTaskProcess.bpmn"));
 
   @ApplicationScoped
   static class MyConfig {
@@ -50,7 +50,7 @@ public class ProcessEngineSingleDeploymentTest {
 
     public void createDeployment(@Observes CamundaEngineStartupEvent event) {
       repositoryService.createDeployment()
-          .addClasspathResource("org/camunda/bpm/quarkus/engine/test/deployment/simpleServiceTaskProcess.bpmn")
+          .addClasspathResource("org/cadenzaflow/bpm/quarkus/engine/test/deployment/simpleServiceTaskProcess.bpmn")
           .deploy();
     }
 

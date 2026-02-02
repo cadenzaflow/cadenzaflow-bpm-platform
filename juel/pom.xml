@@ -68,7 +68,7 @@
               <relocations>
                 <relocation>
                   <pattern>jakarta.el</pattern>
-                  <shadedPattern>org.camunda.bpm.impl.juel.jakarta.el</shadedPattern>
+                  <shadedPattern>org.cadenzaflow.bpm.impl.juel.jakarta.el</shadedPattern>
                 </relocation>
               </relocations>
             </configuration>

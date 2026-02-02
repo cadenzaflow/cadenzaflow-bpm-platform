@@ -158,8 +158,8 @@ public class TransactionIntegrationTest {
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/quarkus/engine/test/persistence/TransactionIntegrationTest.shouldPropagateErrorOnException.bpmn20.xml",
-      "org/camunda/bpm/quarkus/engine/test/persistence/TransactionIntegrationTest.shouldThrowException.bpmn20.xml"
+      "org/cadenzaflow/bpm/quarkus/engine/test/persistence/TransactionIntegrationTest.shouldPropagateErrorOnException.bpmn20.xml",
+      "org/cadenzaflow/bpm/quarkus/engine/test/persistence/TransactionIntegrationTest.shouldThrowException.bpmn20.xml"
   })
   @Test
   public void shouldPropagateErrorOnException() {

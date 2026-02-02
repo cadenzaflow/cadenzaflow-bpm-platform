@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>cadenzaflow-bpm-assert-qa</artifactId>
   <packaging>jar</packaging>
-  
+
   <name>CadenzaFlow Platform - QA - Assert</name>
-  
+
   <parent>
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-bpm-assert-root</artifactId>
@@ -29,7 +29,7 @@
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- managed by camunda internal dependencies -->
+    <!-- managed by cadenzaflow internal dependencies -->
     <dependency>
       <groupId>org.cadenzaflow.bpm</groupId>
       <artifactId>cadenzaflow-engine</artifactId>

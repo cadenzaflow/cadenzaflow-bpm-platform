@@ -19,4 +19,8 @@
     <differenceType>8001</differenceType>
     <className>cadenzaflowjar/javax/activation/**/*</className>
   </difference>
+  <difference>
+    <differenceType>8001</differenceType>
+    <className>org/camunda/**/*</className>
+  </difference>
 </differences>

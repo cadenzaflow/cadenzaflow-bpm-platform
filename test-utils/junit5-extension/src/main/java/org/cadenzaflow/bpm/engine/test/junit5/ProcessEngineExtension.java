@@ -61,7 +61,7 @@ import org.slf4j.Logger;
 /**
  * Junit 5 Extension to create and inject a {@link ProcessEngine} into the test class.
  * <p>
- * If you provide a {@code camunda.cfg.xml} file on the classpath. This file is used to configure the process engine.
+ * If you provide a {@code cadenzaflow.cfg.xml} file on the classpath. This file is used to configure the process engine.
  * <br>
  * Usage:
  * </p>
@@ -77,7 +77,7 @@ import org.slf4j.Logger;
  * </pre>
  *
  * <p>
- * If you want to choose the {@code camunda.cfg.xml} file that is used in the test programmatically,
+ * If you want to choose the {@code cadenzaflow.cfg.xml} file that is used in the test programmatically,
  * you can register the extension directly and use the builder pattern to configure it.
  * <br>
  * Usage with configuration:
@@ -126,7 +126,7 @@ public class ProcessEngineExtension implements TestWatcher,
   protected ExternalTaskService externalTaskService;
   protected DecisionService decisionService;
 
-  protected String configurationResource = "camunda.cfg.xml";
+  protected String configurationResource = "cadenzaflow.cfg.xml";
   protected String deploymentId;
   protected boolean ensureCleanAfterTest = false;
   protected List<String> additionalDeployments = new ArrayList<>();

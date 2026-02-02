@@ -52,7 +52,7 @@
           </systemPropertyVariables>
 
           <dependenciesToScan>
-            <dependency>org.camunda.bpm:camunda-engine-cdi-jakarta</dependency>
+            <dependency>org.cadenzaflow.bpm:cadenzaflow-engine-cdi-jakarta</dependency>
           </dependenciesToScan>
 
           <excludes>

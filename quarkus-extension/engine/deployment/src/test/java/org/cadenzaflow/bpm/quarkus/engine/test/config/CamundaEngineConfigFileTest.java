@@ -36,7 +36,7 @@ public class CamundaEngineConfigFileTest {
 
   @RegisterExtension
   static final QuarkusUnitTest unitTest = new ProcessEngineAwareExtension()
-      .withConfigurationResource("org/camunda/bpm/quarkus/engine/test/config/mixed-application.properties")
+      .withConfigurationResource("org/cadenzaflow/bpm/quarkus/engine/test/config/mixed-application.properties")
       .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class));
 
   @Inject
@@ -70,7 +70,7 @@ public class CamundaEngineConfigFileTest {
     assertThat(config.jobExecutor().threadPool().maxPoolSize()).isEqualTo(12);
     assertThat(config.jobExecutor().threadPool().queueSize()).isEqualTo(5);
     // assert correct datasource
-    assertThat(config.datasource()).hasValue("camunda");
-    assertThat(configuration.getDataSource().getConnection()).asString().contains("h2:mem:camunda");
+    assertThat(config.datasource()).hasValue("cadenzaflow");
+    assertThat(configuration.getDataSource().getConnection()).asString().contains("h2:mem:cadenzaflow");
   }
 }

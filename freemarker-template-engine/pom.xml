@@ -59,7 +59,7 @@
         <version>${maven-bundle-plugin.version}</version>
         <configuration>
           <instructions>
-            <Export-Package>org.camunda.templateengines*</Export-Package>
+            <Export-Package>org.cadenzaflow.templateengines*</Export-Package>
           </instructions>
         </configuration>
         <executions>

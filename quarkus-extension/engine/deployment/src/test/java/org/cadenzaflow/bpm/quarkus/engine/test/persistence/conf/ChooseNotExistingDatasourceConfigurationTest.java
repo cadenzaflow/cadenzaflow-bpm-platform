@@ -30,8 +30,8 @@ public class ChooseNotExistingDatasourceConfigurationTest {
 
   @RegisterExtension
   static QuarkusUnitTest unitTest = new ProcessEngineAwareExtension()
-      .withConfigurationResource("org/camunda/bpm/quarkus/engine/test/persistence/conf/multiple-datasources-application.properties")
-      .overrideConfigKey("quarkus.camunda.datasource", "quaternary")
+      .withConfigurationResource("org/cadenzaflow/bpm/quarkus/engine/test/persistence/conf/multiple-datasources-application.properties")
+      .overrideConfigKey("quarkus.cadenzaflow.datasource", "quaternary")
       .assertException(throwable -> assertThat(throwable)
           .hasMessage("No bean found for required type [interface io.agroal.api.AgroalDataSource] and qualifiers [[@io.quarkus.agroal.DataSource(value=\"quaternary\")]]")
           .isInstanceOf(UnsatisfiedResolutionException.class))

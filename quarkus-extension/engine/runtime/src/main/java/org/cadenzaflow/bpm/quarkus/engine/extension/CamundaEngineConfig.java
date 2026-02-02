@@ -22,13 +22,13 @@ import io.smallrye.config.ConfigMapping;
 import java.util.Map;
 import java.util.Optional;
 
-@ConfigMapping(prefix = "quarkus.camunda")
+@ConfigMapping(prefix = "quarkus.cadenzaflow")
 @ConfigRoot(phase = ConfigPhase.RUN_TIME)
 public interface CamundaEngineConfig {
 
   /**
    * The Camunda ProcessEngineConfiguration properties. For more details,
-   * @see <a href="https://docs.camunda.org/manual/latest/reference/deployment-descriptors/tags/process-engine/#configuration-properties">Process Engine Configuration Properties</a>.
+   * @see <a href="https://docs.cadenzaflow.org/manual/latest/reference/deployment-descriptors/tags/process-engine/#configuration-properties">Process Engine Configuration Properties</a>.
    */
   Map<String, String> genericConfig();
 
