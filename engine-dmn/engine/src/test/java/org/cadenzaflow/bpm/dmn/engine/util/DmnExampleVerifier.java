@@ -27,7 +27,7 @@ import org.cadenzaflow.commons.utils.IoUtil;
 
 public final class DmnExampleVerifier {
 
-  public static final String EXAMPLE_DMN = "org/camunda/bpm/dmn/engine/api/Example.dmn";
+  public static final String EXAMPLE_DMN = "org/cadenzaflow/bpm/dmn/engine/api/Example.dmn";
 
   public static void assertExample(DmnEngine engine) {
     InputStream inputStream = IoUtil.fileAsStream(EXAMPLE_DMN);

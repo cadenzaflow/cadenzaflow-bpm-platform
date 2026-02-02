@@ -11,7 +11,7 @@
   <artifactId>cadenzaflow-engine-feel-api</artifactId>
   <name>CadenzaFlow DMN - engine FEEL - API</name>
   <properties>
-    <camunda.artifact>org.camunda.bpm.dmn.feel.impl</camunda.artifact>
+    <camunda.artifact>org.cadenzaflow.bpm.dmn.feel.impl</camunda.artifact>
   </properties>
   <dependencies>
     <dependency>
@@ -60,7 +60,7 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/dmn/feel/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/dmn/feel/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>

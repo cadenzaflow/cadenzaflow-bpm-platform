@@ -12,7 +12,7 @@
   <name>CadenzaFlow DMN - engine FEEL - JUEL</name>
 
   <properties>
-    <camunda.artifact>org.camunda.bpm.dmn.feel.impl.juel</camunda.artifact>
+    <camunda.artifact>org.cadenzaflow.bpm.dmn.feel.impl.juel</camunda.artifact>
   </properties>
   <dependencies>
     <dependency>
@@ -115,7 +115,7 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/dmn/feel/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/dmn/feel/impl/**</exclude>
                 <!-- exclude shaded dependencies -->
                 <exclude>camundafeel/**</exclude>
               </excludes>

@@ -11,7 +11,7 @@
   <artifactId>cadenzaflow-engine-dmn</artifactId>
   <name>CadenzaFlow DMN - engine</name>
   <properties>
-    <camunda.artifact>org.camunda.bpm.dmn.engine</camunda.artifact>
+    <camunda.artifact>org.cadenzaflow.bpm.dmn.engine</camunda.artifact>
     <camunda.osgi.import.additional>
       org.junit.*;resolution:=optional
     </camunda.osgi.import.additional>
@@ -47,11 +47,6 @@
       <artifactId>cadenzaflow-engine-feel-scala</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.camunda.feel</groupId>
-      <artifactId>feel-engine</artifactId>
-      <classifier>scala-shaded</classifier>
-    </dependency>
 
     <dependency>
       <groupId>org.cadenzaflow.bpm.juel</groupId>
@@ -121,7 +116,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <dependenciesToScan>
-            <dependency>org.camunda.bpm:camunda-bpm-archunit</dependency>
+            <dependency>org.cadenzaflow.bpm:camunda-bpm-archunit</dependency>
           </dependenciesToScan>
         </configuration>
       </plugin>
@@ -157,7 +152,7 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/dmn/engine/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/dmn/engine/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>

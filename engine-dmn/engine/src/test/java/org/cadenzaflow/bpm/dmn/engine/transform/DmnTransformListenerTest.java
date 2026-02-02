@@ -43,15 +43,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @author Deivarayan Azhagappan
  *
  */
 
 public class DmnTransformListenerTest extends DmnEngineTest {
 
-  public static final String DRG_EXAMPLE_DMN = "org/camunda/bpm/dmn/engine/transform/DrgExample.dmn";
-  public static final String DECISION_TRANSFORM_DMN = "org/camunda/bpm/dmn/engine/transform/DmnDecisionTransform.dmn";
+  public static final String DRG_EXAMPLE_DMN = "org/cadenzaflow/bpm/dmn/engine/transform/DrgExample.dmn";
+  public static final String DECISION_TRANSFORM_DMN = "org/cadenzaflow/bpm/dmn/engine/transform/DmnDecisionTransform.dmn";
 
   protected TestDmnTransformListener listener;
 
@@ -68,7 +68,7 @@ public class DmnTransformListenerTest extends DmnEngineTest {
 
   @Test
   public void shouldCallListener() {
-    dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DECISION_TRANSFORM_DMN));  
+    dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DECISION_TRANSFORM_DMN));
     assertThat(listener.getDmnDecisionRequirementsGraph()).isNotNull();
     assertThat(listener.getDmnDecision()).isNotNull();
     assertThat(listener.getDmnInput()).isNotNull();
@@ -78,7 +78,7 @@ public class DmnTransformListenerTest extends DmnEngineTest {
 
   @Test
   public void shouldVerifyDmnDecisionRequirementsGraph() {
-    dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DRG_EXAMPLE_DMN));  
+    dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DRG_EXAMPLE_DMN));
     DmnDecisionRequirementsGraph dmnDecisionRequirementsGraph = listener.getDmnDecisionRequirementsGraph();
     Definitions definitions = listener.getDefinitions();
     assertThat(dmnDecisionRequirementsGraph.getKey())
@@ -98,17 +98,17 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     InputStream inputStream =  IoUtil.fileAsStream(DECISION_TRANSFORM_DMN);
     DmnModelInstance modelInstance = Dmn.readModelFromStream(inputStream);
     dmnEngine.parseDecisionRequirementsGraph(modelInstance);
-    
+
     DmnDecision dmnDecision = listener.getDmnDecision();
     Decision decision = listener.getDecision();
 
     assertThat(dmnDecision.getKey())
       .isEqualTo(decision.getId())
       .isEqualTo("decision1");
-    
+
     assertThat(dmnDecision.getName())
       .isEqualTo(decision.getName())
-      .isEqualTo("camunda");    
+      .isEqualTo("camunda");
   }
 
   @Test
@@ -116,11 +116,11 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DRG_EXAMPLE_DMN));
     List<DmnDecision> transformedDecisions = listener.getTransformedDecisions();
     assertThat(transformedDecisions.size()).isEqualTo(3);
-    
+
     assertThat(getDmnDecision(transformedDecisions, "dish-decision")).isNotNull();
     assertThat(getDmnDecision(transformedDecisions, "season")).isNotNull();
     assertThat(getDmnDecision(transformedDecisions, "guestCount")).isNotNull();
-  
+
   }
 
   @Test
@@ -128,11 +128,11 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DECISION_TRANSFORM_DMN));
     DmnDecisionTableInputImpl dmnInput = listener.getDmnInput();
     Input input = listener.getInput();
-    
+
     assertThat(dmnInput.getId())
       .isEqualTo(input.getId())
       .isEqualTo("input1");
-    
+
   }
 
   @Test
@@ -140,11 +140,11 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     dmnEngine.parseDecisionRequirementsGraph(IoUtil.fileAsStream(DECISION_TRANSFORM_DMN));
     DmnDecisionTableOutputImpl dmnOutput = listener.getDmnOutput();
     Output output = listener.getOutput();
-    
+
     assertThat(dmnOutput.getId())
       .isEqualTo(output.getId())
       .isEqualTo("output1");
-    
+
   }
 
   @Test
@@ -156,7 +156,7 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     assertThat(dmnRule.getId())
       .isEqualTo(rule.getId())
       .isEqualTo("rule");
-    
+
   }
 
   protected DmnDecision getDmnDecision(List<DmnDecision> decisionList, String key) {
@@ -167,7 +167,7 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     }
     return null;
   }
-  
+
   public static class TestDmnTransformListenerConfiguration extends DefaultDmnEngineConfiguration {
 
     public TestDmnTransformListener testDmnTransformListener = new TestDmnTransformListener();
@@ -176,7 +176,7 @@ public class DmnTransformListenerTest extends DmnEngineTest {
       transformer.getTransformListeners().add(testDmnTransformListener);
     }
   }
-  
+
   public static class TestDmnTransformListener implements DmnTransformListener {
 
     protected Decision decision;
@@ -185,13 +185,13 @@ public class DmnTransformListenerTest extends DmnEngineTest {
 
     protected Input input;
     protected DmnDecisionTableInputImpl dmnInput;
-    
+
     protected Output output;
     protected DmnDecisionTableOutputImpl dmnOutput;
-    
+
     protected Rule rule;
     protected DmnDecisionTableRuleImpl dmnRule;
-    
+
     protected Definitions definitions;
     protected DmnDecisionRequirementsGraph dmnDecisionRequirementsGraph;
 
@@ -208,17 +208,17 @@ public class DmnTransformListenerTest extends DmnEngineTest {
     }
 
     public Input getInput() {
-      return input;  
+      return input;
     }
-    
+
     public DmnDecisionTableInputImpl getDmnInput() {
       return dmnInput;
     }
 
     public Output getOutput() {
-      return output;  
+      return output;
     }
-    
+
     public DmnDecisionTableOutputImpl getDmnOutput() {
       return dmnOutput;
     }

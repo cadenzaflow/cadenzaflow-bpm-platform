@@ -25,7 +25,7 @@ import org.cadenzaflow.bpm.dmn.engine.impl.spi.type.DmnDataTypeTransformer;
 import org.cadenzaflow.bpm.engine.variable.Variables;
 import org.cadenzaflow.bpm.engine.variable.value.DateValue;
 import org.cadenzaflow.bpm.engine.variable.value.TypedValue;
-import org.camunda.feel.syntaxtree.ZonedTime;
+import org.cadenzaflow.feel.syntaxtree.ZonedTime;
 
 import java.time.Duration;
 import java.time.Instant;

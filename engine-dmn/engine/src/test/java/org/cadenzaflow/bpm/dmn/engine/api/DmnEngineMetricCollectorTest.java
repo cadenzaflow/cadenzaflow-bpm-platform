@@ -36,9 +36,9 @@ import org.junit.Test;
 
 public class DmnEngineMetricCollectorTest extends DmnEngineTest {
 
-  public static final String EXAMPLE_DMN = "org/camunda/bpm/dmn/engine/api/Example.dmn";
-  public static final String DISH_EXAMPLE_DMN = "org/camunda/bpm/dmn/engine/api/DrdDishDecisionExample.dmn";
-  public static final String DRG_WITH_LITERAL_EXPRESSIONS = "org/camunda/bpm/dmn/engine/api/DrgWithLiteralExpressions.dmn";
+  public static final String EXAMPLE_DMN = "org/cadenzaflow/bpm/dmn/engine/api/Example.dmn";
+  public static final String DISH_EXAMPLE_DMN = "org/cadenzaflow/bpm/dmn/engine/api/DrdDishDecisionExample.dmn";
+  public static final String DRG_WITH_LITERAL_EXPRESSIONS = "org/cadenzaflow/bpm/dmn/engine/api/DrgWithLiteralExpressions.dmn";
 
   protected DmnEngineMetricCollector metricCollector;
 

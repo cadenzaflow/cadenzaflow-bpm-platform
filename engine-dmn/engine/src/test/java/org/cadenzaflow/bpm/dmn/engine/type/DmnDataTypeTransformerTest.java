@@ -24,7 +24,7 @@ import org.cadenzaflow.bpm.dmn.engine.impl.spi.type.DmnDataTypeTransformerRegist
 import org.cadenzaflow.bpm.dmn.engine.test.DmnEngineTest;
 import org.cadenzaflow.bpm.engine.variable.Variables;
 import org.cadenzaflow.bpm.engine.variable.value.TypedValue;
-import org.camunda.feel.syntaxtree.ZonedTime;
+import org.cadenzaflow.feel.syntaxtree.ZonedTime;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -306,7 +306,7 @@ public class DmnDataTypeTransformerTest extends DmnEngineTest {
 
     // then
     thrown.expect(DmnEngineException.class);
-    thrown.expectMessage("Unsupported type: 'org.camunda.feel.syntaxtree.ZonedTime' " +
+    thrown.expectMessage("Unsupported type: 'org.cadenzaflow.feel.syntaxtree.ZonedTime' " +
                            "cannot be converted to 'java.util.Date'");
 
     // when
