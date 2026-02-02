@@ -38,7 +38,7 @@ public class ModelValidationTest {
   @Before
   public void parseModel() {
     TestModelParser modelParser = new TestModelParser();
-    String testXml = "org/camunda/bpm/model/xml/testmodel/instance/UnknownAnimalTest.xml";
+    String testXml = "org/cadenzaflow/bpm/model/xml/testmodel/instance/UnknownAnimalTest.xml";
     InputStream testXmlAsStream = this.getClass().getClassLoader().getResourceAsStream(testXml);
 
     modelInstance = modelParser.parseModelFromStream(testXmlAsStream);

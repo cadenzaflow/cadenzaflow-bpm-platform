@@ -14,10 +14,10 @@
   <name>CadenzaFlow Platform - DMN Model API</name>
   <inceptionYear>2025</inceptionYear>
   <properties>
-    <camunda.artifact>org.camunda.bpm.model.dmn</camunda.artifact>
+    <camunda.artifact>org.cadenzaflow.bpm.model.dmn</camunda.artifact>
     <camunda.osgi.export>
-      !org.camunda.bpm.model.dmn.schema,
-      ${camunda.osgi.export.pkg};${camunda.osgi.version};-noimport:=true
+      !org.cadenzaflow.bpm.model.dmn.schema,
+      ${cadenzaflow.osgi.export.pkg};${cadenzaflow.osgi.version};-noimport:=true
     </camunda.osgi.export>
   </properties>
   <dependencies>
@@ -79,7 +79,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <dependenciesToScan>
-            <dependency>org.camunda.bpm:camunda-bpm-archunit</dependency>
+            <dependency>org.cadenzaflow.bpm:cadenzaflow-bpm-archunit</dependency>
           </dependenciesToScan>
         </configuration>
       </plugin>
@@ -102,9 +102,9 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/model/dmn/impl/**</exclude>
-                <exclude>org/camunda/bpm/model/dmn/instance/Binding</exclude>
-                <exclude>org/camunda/bpm/model/dmn/instance/ParameterReference</exclude>
+                <exclude>org/cadenzaflow/bpm/model/dmn/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/model/dmn/instance/Binding</exclude>
+                <exclude>org/cadenzaflow/bpm/model/dmn/instance/ParameterReference</exclude>
               </excludes>
             </configuration>
             <executions>

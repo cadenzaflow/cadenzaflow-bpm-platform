@@ -14,7 +14,7 @@
   <name>CadenzaFlow Platform - Xml Model API</name>
   <inceptionYear>2025</inceptionYear>
   <properties>
-    <camunda.artifact>org.camunda.bpm.model.xml</camunda.artifact>
+    <camunda.artifact>org.cadenzaflow.bpm.model.xml</camunda.artifact>
     <camunda.osgi.import.additional>
       org.assertj.*;resolution:=optional,
       org.junit.*;resolution:=optional
@@ -76,7 +76,7 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/model/xml/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/model/xml/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>

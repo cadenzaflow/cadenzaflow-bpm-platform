@@ -14,10 +14,10 @@
   <name>CadenzaFlow Platform - BPMN Model API</name>
   <inceptionYear>2025</inceptionYear>
   <properties>
-    <camunda.artifact>org.camunda.bpm.model.bpmn</camunda.artifact>
+    <camunda.artifact>org.cadenzaflow.bpm.model.bpmn</camunda.artifact>
     <camunda.osgi.export>
-      !org.camunda.bpm.model.bpmn.schema,
-      ${camunda.osgi.export.pkg};${camunda.osgi.version};-noimport:=true
+      !org.cadenzaflow.bpm.model.bpmn.schema,
+      ${cadenzaflow.osgi.export.pkg};${cadenzaflow.osgi.version};-noimport:=true
     </camunda.osgi.export>
   </properties>
   <dependencies>
@@ -73,7 +73,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <dependenciesToScan>
-            <dependency>org.camunda.bpm:camunda-bpm-archunit</dependency>
+            <dependency>org.cadenzaflow.bpm:cadenzaflow-bpm-archunit</dependency>
           </dependenciesToScan>
         </configuration>
       </plugin>
@@ -96,7 +96,7 @@
               <comparisonVersion>${camunda.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/model/bpmn/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/model/bpmn/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>

@@ -37,15 +37,15 @@ public final class DmnModelConstants {
   public static final String DMN13_ALTERNATIVE_NS = "https://www.omg.org/spec/DMN/20191111/DMN13.xsd";
 
   /** The location of the DMN 1.1 XML schema. */
-  public static final String DMN_11_SCHEMA_LOCATION = "org/camunda/bpm/model/dmn/schema/DMN11.xsd";
-  public static final String DMN_12_SCHEMA_LOCATION = "org/camunda/bpm/model/dmn/schema/DMN12.xsd";
-  public static final String DMN_13_SCHEMA_LOCATION = "org/camunda/bpm/model/dmn/schema/DMN13.xsd";
-  public static final String DMN_14_SCHEMA_LOCATION = "org/camunda/bpm/model/dmn/schema/DMN14.xsd";
-  public static final String DMN_15_SCHEMA_LOCATION = "org/camunda/bpm/model/dmn/schema/DMN15.xsd";
+  public static final String DMN_11_SCHEMA_LOCATION = "org/cadenzaflow/bpm/model/dmn/schema/DMN11.xsd";
+  public static final String DMN_12_SCHEMA_LOCATION = "org/cadenzaflow/bpm/model/dmn/schema/DMN12.xsd";
+  public static final String DMN_13_SCHEMA_LOCATION = "org/cadenzaflow/bpm/model/dmn/schema/DMN13.xsd";
+  public static final String DMN_14_SCHEMA_LOCATION = "org/cadenzaflow/bpm/model/dmn/schema/DMN14.xsd";
+  public static final String DMN_15_SCHEMA_LOCATION = "org/cadenzaflow/bpm/model/dmn/schema/DMN15.xsd";
   /**
    * The location of the DMN 1.1 XML schema released with Camunda 7.4.0
    */
-  public static final String DMN_11_ALTERNATIVE_SCHEMA_LOCATION = "org/camunda/bpm/model/dmn/schema/DMN11_Alternative.xsd";
+  public static final String DMN_11_ALTERNATIVE_SCHEMA_LOCATION = "org/cadenzaflow/bpm/model/dmn/schema/DMN11_Alternative.xsd";
 
   /** The FEEL namespace */
   public static final String FEEL_NS = "http://www.omg.org/spec/FEEL/20140401";

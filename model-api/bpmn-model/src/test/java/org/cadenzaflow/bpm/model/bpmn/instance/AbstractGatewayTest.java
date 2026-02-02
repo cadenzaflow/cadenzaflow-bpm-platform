@@ -54,7 +54,7 @@ public abstract class AbstractGatewayTest<G extends Gateway> extends BpmnModelEl
   @Before
   @SuppressWarnings("unchecked")
   public void getGateway() {
-    InputStream inputStream = ReflectUtil.getResourceAsStream("org/camunda/bpm/model/bpmn/GatewaysTest.xml");
+    InputStream inputStream = ReflectUtil.getResourceAsStream("org/cadenzaflow/bpm/model/bpmn/GatewaysTest.xml");
     Collection<ModelElementInstance> elementInstances = Bpmn.readModelFromStream(inputStream).getModelElementsByType(modelElementType);
     assertThat(elementInstances).hasSize(1);
     gateway = (G) elementInstances.iterator().next();
