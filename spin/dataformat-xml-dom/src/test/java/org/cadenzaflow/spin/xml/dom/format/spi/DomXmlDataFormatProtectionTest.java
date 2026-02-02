@@ -44,7 +44,7 @@ public class DomXmlDataFormatProtectionTest {
     Assume.assumeFalse(JdkUtil.runsOnIbmJDK());
 
     // given
-    String testXml = "org/camunda/spin/xml/dom/format/spi/FeatureSecureProcessing.xml";
+    String testXml = "org/cadenzaflow/spin/xml/dom/format/spi/FeatureSecureProcessing.xml";
     InputStream testXmlAsStream = this.getClass().getClassLoader().getResourceAsStream(testXml);
 
     // when
@@ -58,7 +58,7 @@ public class DomXmlDataFormatProtectionTest {
   @Test
   public void shouldThrowExceptionForDoctype() {
     // given
-    String testXml = "org/camunda/spin/xml/dom/format/spi/XxeProcessing.xml";
+    String testXml = "org/cadenzaflow/spin/xml/dom/format/spi/XxeProcessing.xml";
     InputStream testXmlAsStream = this.getClass().getClassLoader().getResourceAsStream(testXml);
 
     // when

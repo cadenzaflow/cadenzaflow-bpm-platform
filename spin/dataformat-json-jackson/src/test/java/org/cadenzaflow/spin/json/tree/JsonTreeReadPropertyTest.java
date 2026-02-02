@@ -436,7 +436,7 @@ public class JsonTreeReadPropertyTest {
   @Test
   public void shouldNotFailWithJackson146Bug() {
     // this should not fail
-    SpinJsonNode node = JSON(SpinIoUtil.fileAsString("org/camunda/spin/json/jackson146.json"));
+    SpinJsonNode node = JSON(SpinIoUtil.fileAsString("org/cadenzaflow/spin/json/jackson146.json"));
 
     // file has 4000 characters in length a
     // 20 characters per repeated JSON object

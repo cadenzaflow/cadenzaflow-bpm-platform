@@ -1,4 +1,4 @@
-package org.camunda.spin.groovy.xml.dom
+package org.cadenzaflow.spin.groovy.xml.dom
 
 child1 = S(child)
 child2 = S(child)

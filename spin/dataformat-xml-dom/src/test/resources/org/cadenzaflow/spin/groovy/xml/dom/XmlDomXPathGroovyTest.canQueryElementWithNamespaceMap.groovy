@@ -1,4 +1,4 @@
-package org.camunda.spin.groovy.xml.dom
+package org.cadenzaflow.spin.groovy.xml.dom
 def map = [
   a:"http://camunda.com"
 ]

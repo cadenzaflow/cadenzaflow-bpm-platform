@@ -31,7 +31,7 @@ import org.cadenzaflow.spin.json.mapping.RegularCustomer;
 
 public class JsonTestConstants {
 
-  public static final String EXAMPLE_JSON_FILE_NAME = "org/camunda/spin/json/example.json";
+  public static final String EXAMPLE_JSON_FILE_NAME = "org/cadenzaflow/spin/json/example.json";
 
   public static final String EXAMPLE_JSON = SpinIoUtil.fileAsString(EXAMPLE_JSON_FILE_NAME);
 
@@ -44,11 +44,11 @@ public class JsonTestConstants {
   /**
    * A json file that can only be parsed when configuring Jackson correctly.
    */
-  public static final String EXAMPLE_JACKSON_READ_CONFIGURATION_JSON_FILE_NAME = "org/camunda/spin/json/example_jackson.json";
+  public static final String EXAMPLE_JACKSON_READ_CONFIGURATION_JSON_FILE_NAME = "org/cadenzaflow/spin/json/example_jackson.json";
 
   public static final String EXAMPLE_JACKSON_READ_CONFIGURATION_JSON = SpinIoUtil.fileAsString(EXAMPLE_JACKSON_READ_CONFIGURATION_JSON_FILE_NAME);
 
-  public static final String EXAMPLE_JACKSON_TYPE_JSON_FILE_NAME = "org/camunda/spin/json/example_jackson_types.json";
+  public static final String EXAMPLE_JACKSON_TYPE_JSON_FILE_NAME = "org/cadenzaflow/spin/json/example_jackson_types.json";
 
   public static final String EXAMPLE_JACKSON_TYPE_JSON = SpinIoUtil.fileAsString(EXAMPLE_JACKSON_TYPE_JSON_FILE_NAME);
 

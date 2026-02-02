@@ -42,7 +42,7 @@ public class DomXmlDataFormatWriter implements DataFormatWriter {
 
   protected static final DomXmlLogger LOG = DomXmlLogger.XML_DOM_LOGGER;
 
-  protected static final String STRIP_SPACE_XSL = "org/camunda/spin/impl/xml/dom/format/strip-space.xsl";
+  protected static final String STRIP_SPACE_XSL = "org/cadenzaflow/spin/impl/xml/dom/format/strip-space.xsl";
 
   protected DomXmlDataFormat domXmlDataFormat;
   protected Templates formattingTemplates;

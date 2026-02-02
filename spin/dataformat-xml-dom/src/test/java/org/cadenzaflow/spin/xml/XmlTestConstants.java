@@ -46,12 +46,12 @@ public class XmlTestConstants {
 
   public static final String EXAMPLE_NAMESPACE = "http://camunda.org/example";
 
-  public static final String EXAMPLE_XML_FILE_NAME = "org/camunda/spin/xml/example.xml";
+  public static final String EXAMPLE_XML_FILE_NAME = "org/cadenzaflow/spin/xml/example.xml";
 
-  public static final String EXAMPLE_VALIDATION_XSD_FILE_NAME = "org/camunda/spin/xml/validation_schema.xsd";
-  public static final String EXAMPLE_VALIDATION_EXTENSION_XSD_FILE_NAME = "org/camunda/spin/xml/validation_schema_extension.xsd";
+  public static final String EXAMPLE_VALIDATION_XSD_FILE_NAME = "org/cadenzaflow/spin/xml/validation_schema.xsd";
+  public static final String EXAMPLE_VALIDATION_EXTENSION_XSD_FILE_NAME = "org/cadenzaflow/spin/xml/validation_schema_extension.xsd";
 
-  public static final String EXAMPLE_VALIDATION_XML_FILE_NAME = "org/camunda/spin/xml/validation_example.xml";
+  public static final String EXAMPLE_VALIDATION_XML_FILE_NAME = "org/cadenzaflow/spin/xml/validation_example.xml";
 
   public static final String EXAMPLE_XML = SpinIoUtil.fileAsString(EXAMPLE_XML_FILE_NAME);
 

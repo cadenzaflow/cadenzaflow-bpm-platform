@@ -214,7 +214,7 @@ public class DomXmlDataFormatWriterTest {
     final DataFormat<SpinXmlElement> dataFormat = new DomXmlDataFormat(DataFormats.XML_DATAFORMAT_NAME);
 
     try (final InputStream inputStream = DomXmlDataFormatWriterTest.class.getClassLoader()
-        .getResourceAsStream("org/camunda/spin/strip-space-preserve-space.xsl")) {
+        .getResourceAsStream("org/cadenzaflow/spin/strip-space-preserve-space.xsl")) {
       ((DomXmlDataFormat) dataFormat).setFormattingConfiguration(inputStream);
     }
 
