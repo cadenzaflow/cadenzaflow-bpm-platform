@@ -37,7 +37,7 @@ import static org.junit.Assert.assertThat;
 public class EventNotificationTest extends CdiProcessEngineTestCase {
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml"})
   public void testReceiveAll() {
     TestEventListener listenerBean = getBeanInstance(TestEventListener.class);
     listenerBean.reset();
@@ -55,8 +55,8 @@ public class EventNotificationTest extends CdiProcessEngineTestCase {
 
   @Test
   @Deployment(resources = {
-      "org/camunda/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml",
-      "org/camunda/bpm/engine/cdi/test/impl/event/EventNotificationTest.process2.bpmn20.xml" })
+      "org/cadenzaflow/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/cdi/test/impl/event/EventNotificationTest.process2.bpmn20.xml" })
   public void testSelectEventsPerProcessDefinition() {
     TestEventListener listenerBean = getBeanInstance(TestEventListener.class);
     listenerBean.reset();
@@ -71,7 +71,7 @@ public class EventNotificationTest extends CdiProcessEngineTestCase {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml"})
   public void testSelectEventsPerActivity() {
     TestEventListener listenerBean = getBeanInstance(TestEventListener.class);
     listenerBean.reset();
@@ -90,7 +90,7 @@ public class EventNotificationTest extends CdiProcessEngineTestCase {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/cdi/test/impl/event/EventNotificationTest.process1.bpmn20.xml"})
   public void testSelectEventsPerTask() {
     TestEventListener listenerBean = getBeanInstance(TestEventListener.class);
     listenerBean.reset();

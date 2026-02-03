@@ -86,7 +86,7 @@ public class ProcessVariableMapTest extends CdiProcessEngineTestCase {
   }
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/cdi/test/api/BusinessProcessBeanTest.test.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/cdi/test/api/BusinessProcessBeanTest.test.bpmn20.xml")
   public void testProcessVariableMapLocal() {
     BusinessProcess businessProcess = getBeanInstance(BusinessProcess.class);
     businessProcess.startProcessByKey("businessProcessBeanTest");

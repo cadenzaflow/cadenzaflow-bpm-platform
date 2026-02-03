@@ -43,7 +43,7 @@ import org.junit.runner.RunWith;
 public class StartProcessTest extends CdiProcessEngineTestCase {
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/cdi/test/api/annotation/StartProcessTest.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/cdi/test/api/annotation/StartProcessTest.bpmn20.xml")
   public void testStartProcessByKey() {
 
     assertNull(runtimeService.createProcessInstanceQuery().singleResult());

@@ -55,7 +55,7 @@ public class ProgrammaticBeanLookupTest {
     return ShrinkWrap.create(JavaArchive.class)
         .addClass(ProgrammaticBeanLookup.class)
         .addClass(ProcessEngineServicesProducer.class)
-        .addAsManifestResource("org/camunda/bpm/engine/cdi/test/impl/util/beans.xml", "beans.xml");
+        .addAsManifestResource("org/cadenzaflow/bpm/engine/cdi/test/impl/util/beans.xml", "beans.xml");
   }
 
   @Deployment(name = "withAlternative", managed = false)
@@ -64,7 +64,7 @@ public class ProgrammaticBeanLookupTest {
         .addClass(ProgrammaticBeanLookup.class)
         .addClass(ProcessEngineServicesProducer.class)
         .addClass(AlternativeTestBean.class)
-        .addAsManifestResource("org/camunda/bpm/engine/cdi/test/impl/util/beansWithAlternative.xml", "beans.xml");
+        .addAsManifestResource("org/cadenzaflow/bpm/engine/cdi/test/impl/util/beansWithAlternative.xml", "beans.xml");
   }
 
   @Deployment(name = "withSpecialization", managed = false)
@@ -73,7 +73,7 @@ public class ProgrammaticBeanLookupTest {
         .addClass(ProgrammaticBeanLookup.class)
         .addClass(ProcessEngineServicesProducer.class)
         .addClass(SpecializedTestBean.class)
-        .addAsManifestResource("org/camunda/bpm/engine/cdi/test/impl/util/beans.xml", "beans.xml");
+        .addAsManifestResource("org/cadenzaflow/bpm/engine/cdi/test/impl/util/beans.xml", "beans.xml");
   }
 
   @Deployment(name = "withProducerMethod", managed = false)
@@ -82,7 +82,7 @@ public class ProgrammaticBeanLookupTest {
         .addClass(ProgrammaticBeanLookup.class)
         .addClass(ProcessEngineServicesProducer.class)
         .addClass(BeanWithProducerMethods.class)
-        .addAsManifestResource("org/camunda/bpm/engine/cdi/test/impl/util/beans.xml", "beans.xml");
+        .addAsManifestResource("org/cadenzaflow/bpm/engine/cdi/test/impl/util/beans.xml", "beans.xml");
   }
 
   @Test

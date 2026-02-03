@@ -45,7 +45,7 @@ public class DmnJuelTest extends CdiProcessEngineTestCase {
   }
 
   @Test
-  @Deployment(resources = {"org/camunda/bpm/engine/cdi/test/dmn/JuelTest.dmn"})
+  @Deployment(resources = {"org/cadenzaflow/bpm/engine/cdi/test/dmn/JuelTest.dmn"})
   public void shouldResolveBean() {
     // given
 

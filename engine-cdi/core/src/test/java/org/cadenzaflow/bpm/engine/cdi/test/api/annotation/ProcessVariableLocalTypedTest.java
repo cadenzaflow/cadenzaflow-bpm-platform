@@ -41,7 +41,7 @@ import org.junit.runner.RunWith;
 public class ProcessVariableLocalTypedTest extends CdiProcessEngineTestCase {
 
   @Test
-  @Deployment(resources = "org/camunda/bpm/engine/cdi/test/api/annotation/CompleteTaskTest.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/bpm/engine/cdi/test/api/annotation/CompleteTaskTest.bpmn20.xml")
   public void testProcessVariableLocalTypeAnnotation() {
     BusinessProcess businessProcess = getBeanInstance(BusinessProcess.class);
 
