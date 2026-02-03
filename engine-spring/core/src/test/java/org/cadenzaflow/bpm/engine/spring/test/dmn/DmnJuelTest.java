@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-    "classpath:org/camunda/bpm/engine/spring/test/dmn/DmnJuelTest-applicationContext.xml" })
+    "classpath:org/cadenzaflow/bpm/engine/spring/test/dmn/DmnJuelTest-applicationContext.xml" })
 public class DmnJuelTest {
 
   @Autowired
@@ -45,7 +45,7 @@ public class DmnJuelTest {
   @Before
   public void deploy() {
     deploymentId = repositoryService.createDeployment()
-        .addClasspathResource("org/camunda/bpm/engine/spring/test/dmn/JuelTest.dmn")
+        .addClasspathResource("org/cadenzaflow/bpm/engine/spring/test/dmn/JuelTest.dmn")
         .deploy()
         .getId();
   }

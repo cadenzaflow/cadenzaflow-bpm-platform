@@ -25,7 +25,7 @@ import org.springframework.test.context.ContextConfiguration;
  * @author Svetlana Dorokhova
  */
 
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/transaction/SpringTransactionIntegrationDeploymentFailTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/transaction/SpringTransactionIntegrationDeploymentFailTest-context.xml")
 public class SpringTransactionIntegrationDeploymentFailTest extends SpringProcessEngineTestCase {
 
   @Override

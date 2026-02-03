@@ -167,7 +167,7 @@
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
           <dependenciesToScan>
-            <dependency>org.camunda.bpm:camunda-bpm-archunit</dependency>
+            <dependency>org.cadenzaflow.bpm:camunda-bpm-archunit</dependency>
           </dependenciesToScan>
         </configuration>
       </plugin>
@@ -187,7 +187,7 @@
               <forceCreation>true</forceCreation>
               <excludes>
                 <!-- this is re-defined in the consuming artifacts -->
-                <exclude>META-INF/services/org.camunda.bpm.engine.spring.test.SpringTestHelper</exclude>
+                <exclude>META-INF/services/org.cadenzaflow.bpm.engine.spring.test.SpringTestHelper</exclude>
               </excludes>
             </configuration>
           </execution>

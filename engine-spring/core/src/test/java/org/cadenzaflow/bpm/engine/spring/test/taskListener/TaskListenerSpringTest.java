@@ -26,7 +26,7 @@ import org.springframework.test.context.ContextConfiguration;
 /**
  * @author Joram Barrez
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/taskListener/TaskListenerDelegateExpressionTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/taskListener/TaskListenerDelegateExpressionTest-context.xml")
 public class TaskListenerSpringTest extends SpringProcessEngineTestCase {
   
   @Deployment

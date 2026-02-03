@@ -25,7 +25,7 @@ import org.springframework.test.context.ContextConfiguration;
 /**
  * @author Joram Barrez
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/servicetask/servicetaskSpringTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/servicetask/servicetaskSpringTest-context.xml")
 public class ServiceTaskSpringDelegationTest extends SpringProcessEngineTestCase {
   
   @Deployment

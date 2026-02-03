@@ -44,7 +44,7 @@ import java.util.logging.Logger;
  * @author Josh Long
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/components/ScopingTests-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/components/ScopingTests-context.xml")
 public class ScopingTest {
 
 	@Autowired
@@ -64,9 +64,9 @@ public class ScopingTest {
 		this.taskService = this.processEngine.getTaskService();
 
 		repositoryService.createDeployment()
-		  .addClasspathResource("org/camunda/bpm/engine/spring/test/autodeployment/autodeploy.b.bpmn20.xml")
-		  .addClasspathResource("org/camunda/bpm/engine/spring/test/components/waiter.bpmn20.xml")
-		  .addClasspathResource("org/camunda/bpm/engine/spring/test/components/spring-component-waiter.bpmn20.xml")
+		  .addClasspathResource("org/cadenzaflow/bpm/engine/spring/test/autodeployment/autodeploy.b.bpmn20.xml")
+		  .addClasspathResource("org/cadenzaflow/bpm/engine/spring/test/components/waiter.bpmn20.xml")
+		  .addClasspathResource("org/cadenzaflow/bpm/engine/spring/test/components/spring-component-waiter.bpmn20.xml")
 		  .deploy();
 	}
 

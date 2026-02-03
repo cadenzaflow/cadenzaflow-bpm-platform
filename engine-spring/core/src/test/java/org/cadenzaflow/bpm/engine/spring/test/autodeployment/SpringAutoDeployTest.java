@@ -39,26 +39,26 @@ import java.util.Set;
 public class SpringAutoDeployTest extends PvmTestCase {
 
   protected static final String CTX_PATH
-    = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployTest-context.xml";
+    = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployTest-context.xml";
   protected static final String CTX_CREATE_DROP_CLEAN_DB
-    = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployTest-create-drop-clean-db-context.xml";
+    = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployTest-create-drop-clean-db-context.xml";
   protected static final String CTX_DYNAMIC_DEPLOY_PATH
-  = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployTest-dynamic-deployment-context.xml";
+  = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployTest-dynamic-deployment-context.xml";
 
   protected static final String CTX_CMMN_PATH
-    = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployCmmnTest-context.xml";
+    = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployCmmnTest-context.xml";
 
   protected static final String CTX_CMMN_BPMN_TOGETHER_PATH
-      = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployCmmnBpmnTest-context.xml";
+      = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployCmmnBpmnTest-context.xml";
 
   protected static final String CTX_DEPLOY_CHANGE_ONLY_PATH
-      = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployDeployChangeOnlyTest-context.xml";
+      = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployDeployChangeOnlyTest-context.xml";
 
   protected static final String CTX_TENANT_ID_PATH
-      = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployTenantIdTest-context.xml";
+      = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployTenantIdTest-context.xml";
 
   protected static final String CTX_CUSTOM_NAME_PATH
-      = "org/camunda/bpm/engine/spring/test/autodeployment/SpringAutoDeployCustomNameTest-context.xml";
+      = "org/cadenzaflow/bpm/engine/spring/test/autodeployment/SpringAutoDeployCustomNameTest-context.xml";
 
 
   protected ClassPathXmlApplicationContext applicationContext;

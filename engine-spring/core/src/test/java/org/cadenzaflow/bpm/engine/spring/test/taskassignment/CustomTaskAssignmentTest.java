@@ -25,7 +25,7 @@ import org.springframework.test.context.ContextConfiguration;
 /**
  * @author Joram Barrez
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/taskassignment/taskassignment-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/taskassignment/taskassignment-context.xml")
 public class CustomTaskAssignmentTest extends SpringProcessEngineTestCase {
   
   @Deployment

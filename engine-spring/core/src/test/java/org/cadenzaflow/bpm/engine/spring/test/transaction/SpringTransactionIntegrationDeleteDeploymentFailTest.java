@@ -27,7 +27,7 @@ import org.springframework.test.context.ContextConfiguration;
  * @author Svetlana Dorokhova
  */
 
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/transaction/SpringTransactionIntegrationDeleteDeploymentFailTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/transaction/SpringTransactionIntegrationDeleteDeploymentFailTest-context.xml")
 public class SpringTransactionIntegrationDeleteDeploymentFailTest extends SpringProcessEngineTestCase {
 
   private String deploymentId;

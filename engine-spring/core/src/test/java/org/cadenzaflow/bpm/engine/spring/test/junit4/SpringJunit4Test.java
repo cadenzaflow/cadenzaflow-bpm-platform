@@ -37,7 +37,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author Joram Barrez
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/junit4/springTypicalUsageTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/junit4/springTypicalUsageTest-context.xml")
 public class SpringJunit4Test {
 
   @Autowired

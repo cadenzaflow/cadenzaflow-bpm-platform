@@ -25,7 +25,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="processEngineConfiguration" class="org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration">
+    <bean id="processEngineConfiguration" class="org.cadenzaflow.bpm.engine.spring.SpringProcessEngineConfiguration">
         <property name="dataSource" ref="dataSource"/>
         <property name="transactionManager" ref="transactionManager"/>
         <property name="databaseSchemaUpdate" value="true"/>
@@ -36,13 +36,13 @@
         <property name="enforceHistoryTimeToLive" value="false" />
         <property name="deploymentResources">
             <list>
-                <value>classpath:/org/camunda/bpm/engine/spring/test/autodeployment/autodeploy.*.bpmn20.xml</value>
+                <value>classpath:/org/cadenzaflow/bpm/engine/spring/test/autodeployment/autodeploy.*.bpmn20.xml</value>
                 <value>classpath:/org/activiti/spring/test/components/waiter.bpmn20.xml</value>
             </list>
         </property>
     </bean>
 
-    <bean id="processEngine" class="org.camunda.bpm.engine.spring.ProcessEngineFactoryBean">
+    <bean id="processEngine" class="org.cadenzaflow.bpm.engine.spring.ProcessEngineFactoryBean">
         <property name="processEngineConfiguration" ref="processEngineConfiguration"/>
     </bean>
 

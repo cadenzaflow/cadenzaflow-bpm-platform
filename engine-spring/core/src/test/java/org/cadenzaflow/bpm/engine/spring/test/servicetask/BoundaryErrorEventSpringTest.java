@@ -26,7 +26,7 @@ import org.springframework.test.context.ContextConfiguration;
  * @author Angel López Cima
  * @author Falko Menge
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/servicetask/serviceraskSpringTestCatchError-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/servicetask/serviceraskSpringTestCatchError-context.xml")
 public class BoundaryErrorEventSpringTest extends SpringProcessEngineTestCase {
 
   @Deployment

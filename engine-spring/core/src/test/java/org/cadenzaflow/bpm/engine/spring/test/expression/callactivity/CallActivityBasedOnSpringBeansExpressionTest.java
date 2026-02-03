@@ -30,12 +30,12 @@ import org.springframework.test.context.ContextConfiguration;
  * 
  * @author  Sang Venkatraman
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/expression/callactivity/testCallActivityByExpression-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/expression/callactivity/testCallActivityByExpression-context.xml")
 public class CallActivityBasedOnSpringBeansExpressionTest extends SpringProcessEngineTestCase {
 
 	@Deployment(resources = {
-			"org/camunda/bpm/engine/spring/test/expression/callactivity/CallActivityBasedOnSpringBeansExpressionTest.testCallActivityByExpression.bpmn20.xml",
-			"org/camunda/bpm/engine/spring/test/expression/callactivity/simpleSubProcess.bpmn20.xml" })
+			"org/cadenzaflow/bpm/engine/spring/test/expression/callactivity/CallActivityBasedOnSpringBeansExpressionTest.testCallActivityByExpression.bpmn20.xml",
+			"org/cadenzaflow/bpm/engine/spring/test/expression/callactivity/simpleSubProcess.bpmn20.xml" })
 	public void testCallActivityByExpression() throws Exception {
 		// Start process (main)
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("testCallActivityByExpression");

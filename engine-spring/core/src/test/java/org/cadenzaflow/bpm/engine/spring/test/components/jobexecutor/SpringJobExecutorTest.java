@@ -28,11 +28,11 @@ import org.springframework.test.context.ContextConfiguration;
 /**
  * @author Pablo Ganga
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/components/SpringjobExecutorTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/components/SpringjobExecutorTest-context.xml")
 public class SpringJobExecutorTest extends SpringProcessEngineTestCase {
 
-  @Deployment(resources={"org/camunda/bpm/engine/spring/test/components/SpringTimersProcess.bpmn20.xml",
-          "org/camunda/bpm/engine/spring/test/components/SpringJobExecutorRollBack.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/spring/test/components/SpringTimersProcess.bpmn20.xml",
+          "org/cadenzaflow/bpm/engine/spring/test/components/SpringJobExecutorRollBack.bpmn20.xml"})
 	public void testHappyJobExecutorPath()throws Exception {
 
 		ProcessInstance instance = runtimeService.startProcessInstanceByKey("process1");
@@ -45,8 +45,8 @@ public class SpringJobExecutorTest extends SpringProcessEngineTestCase {
 		assertTrue(activeTasks.size() == 0);
 	}
 
-  @Deployment(resources={"org/camunda/bpm/engine/spring/test/components/SpringTimersProcess.bpmn20.xml",
-  "org/camunda/bpm/engine/spring/test/components/SpringJobExecutorRollBack.bpmn20.xml"})
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/spring/test/components/SpringTimersProcess.bpmn20.xml",
+  "org/cadenzaflow/bpm/engine/spring/test/components/SpringJobExecutorRollBack.bpmn20.xml"})
   public void testRollbackJobExecutorPath()throws Exception {
 
     // shutdown job executor first, otherwise waitForJobExecutorToProcessAllJobs will not actually start it....

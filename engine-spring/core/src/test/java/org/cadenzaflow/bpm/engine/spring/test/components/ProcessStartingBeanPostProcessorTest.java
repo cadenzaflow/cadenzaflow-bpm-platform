@@ -37,7 +37,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author Josh Long
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/components/ProcessStartingBeanPostProcessorTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/components/ProcessStartingBeanPostProcessorTest-context.xml")
 public class ProcessStartingBeanPostProcessorTest {
 
 	private Logger log = Logger.getLogger(getClass().getName());
@@ -54,8 +54,8 @@ public class ProcessStartingBeanPostProcessorTest {
 	@Before
 	public void before() {
 	  repositoryService.createDeployment()
-	    .addClasspathResource("org/camunda/bpm/engine/spring/test/autodeployment/autodeploy.b.bpmn20.xml")
-	    .addClasspathResource("org/camunda/bpm/engine/spring/test/components/waiter.bpmn20.xml")
+	    .addClasspathResource("org/cadenzaflow/bpm/engine/spring/test/autodeployment/autodeploy.b.bpmn20.xml")
+	    .addClasspathResource("org/cadenzaflow/bpm/engine/spring/test/components/waiter.bpmn20.xml")
 	    .deploy();
 	}
 

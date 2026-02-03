@@ -24,7 +24,7 @@
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="dataSource"/>
     <property name="persistenceXmlLocation">
-      <value>classpath:/org/camunda/bpm/engine/spring/test/jpa/custom-persistence.xml</value>
+      <value>classpath:/org/cadenzaflow/bpm/engine/spring/test/jpa/custom-persistence.xml</value>
     </property>
     <property name="jpaVendorAdapter">
       <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -33,7 +33,7 @@
     </property>
   </bean>
   
-  <bean id="processEngineConfiguration" class="org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration">
+  <bean id="processEngineConfiguration" class="org.cadenzaflow.bpm.engine.spring.SpringProcessEngineConfiguration">
     <property name="authorizationEnabled" value="true"/>
     <property name="dataSource" ref="dataSource" />
     <property name="transactionManager" ref="transactionManager" />
@@ -45,11 +45,11 @@
     <property name="enforceHistoryTimeToLive" value="false" />
   </bean>
 
-  <bean id="processEngine" class="org.camunda.bpm.engine.spring.ProcessEngineFactoryBean">
+  <bean id="processEngine" class="org.cadenzaflow.bpm.engine.spring.ProcessEngineFactoryBean">
     <property name="processEngineConfiguration" ref="processEngineConfiguration" />
   </bean>
 
-  <bean id="processEngineRule" class="org.camunda.bpm.engine.test.ProcessEngineRule">
+  <bean id="processEngineRule" class="org.cadenzaflow.bpm.engine.test.ProcessEngineRule">
     <property name="processEngine" ref="processEngine"/>
   </bean>
 
@@ -60,7 +60,7 @@
   <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 
   <context:annotation-config />
-  <context:component-scan base-package="org.camunda.bpm.engine.spring.test.transaction.inner.rollback" />
+  <context:component-scan base-package="org.cadenzaflow.bpm.engine.spring.test.transaction.inner.rollback" />
   <tx:annotation-driven />
 
 </beans>

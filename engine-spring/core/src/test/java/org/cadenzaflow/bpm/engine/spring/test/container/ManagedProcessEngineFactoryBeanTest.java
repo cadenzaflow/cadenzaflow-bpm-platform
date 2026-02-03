@@ -39,7 +39,7 @@ public class ManagedProcessEngineFactoryBeanTest {
     Assert.assertEquals(0, BpmPlatform.getProcessEngineService().getProcessEngines().size());
     
     // start spring application context
-    AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("org/camunda/bpm/engine/spring/test/container/ManagedProcessEngineFactoryBean-context.xml");
+    AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("org/cadenzaflow/bpm/engine/spring/test/container/ManagedProcessEngineFactoryBean-context.xml");
     applicationContext.start();
     
     // assert that now the process engine is registered:

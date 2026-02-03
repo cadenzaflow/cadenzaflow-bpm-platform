@@ -36,7 +36,7 @@ import org.springframework.test.context.ContextConfiguration;
 /**
  * @author Tom Baeyens
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/transaction/SpringTransactionIntegrationTest-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/transaction/SpringTransactionIntegrationTest-context.xml")
 public class SpringTransactionIntegrationTest extends SpringProcessEngineTestCase {
 
   @Autowired
@@ -86,8 +86,8 @@ public class SpringTransactionIntegrationTest extends SpringProcessEngineTestCas
   }
 
   @Deployment(resources={
-      "org/camunda/bpm/engine/spring/test/transaction/SpringTransactionIntegrationTest.testErrorPropagationOnExceptionInTransaction.bpmn20.xml",
-      "org/camunda/bpm/engine/spring/test/transaction/SpringTransactionIntegrationTest.throwExceptionProcess.bpmn20.xml"
+      "org/cadenzaflow/bpm/engine/spring/test/transaction/SpringTransactionIntegrationTest.testErrorPropagationOnExceptionInTransaction.bpmn20.xml",
+      "org/cadenzaflow/bpm/engine/spring/test/transaction/SpringTransactionIntegrationTest.throwExceptionProcess.bpmn20.xml"
   })
   public void testErrorPropagationOnExceptionInTransaction(){
       runtimeService.startProcessInstanceByKey("process");

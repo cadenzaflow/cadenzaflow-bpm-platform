@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-    "classpath:org/camunda/bpm/engine/spring/test/scripttask/ScriptTaskTest-applicationContext.xml" })
+    "classpath:org/cadenzaflow/bpm/engine/spring/test/scripttask/ScriptTaskTest-applicationContext.xml" })
 public class ScriptTaskNashornTest extends AbstractScriptTaskTest {
 
   private static final String NASHORN = "nashorn";

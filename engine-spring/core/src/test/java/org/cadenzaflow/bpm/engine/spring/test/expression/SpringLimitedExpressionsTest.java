@@ -29,7 +29,7 @@ import org.springframework.test.context.ContextConfiguration;
  * 
  * @author Frederik Heremans
  */
-@ContextConfiguration("classpath:org/camunda/bpm/engine/spring/test/expression/expressionLimitedBeans-context.xml")
+@ContextConfiguration("classpath:org/cadenzaflow/bpm/engine/spring/test/expression/expressionLimitedBeans-context.xml")
 public class SpringLimitedExpressionsTest extends SpringProcessEngineTestCase {
 
   @Deployment

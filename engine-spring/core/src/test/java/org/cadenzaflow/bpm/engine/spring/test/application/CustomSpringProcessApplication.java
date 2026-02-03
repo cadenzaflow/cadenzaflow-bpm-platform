@@ -23,7 +23,7 @@ import org.cadenzaflow.bpm.engine.spring.application.SpringProcessApplication;
  * @author Daniel Meyer
  *
  */
-@ProcessApplication(deploymentDescriptors={"org/camunda/bpm/engine/spring/test/application/processes.xml"})
+@ProcessApplication(deploymentDescriptors={"org/cadenzaflow/bpm/engine/spring/test/application/processes.xml"})
 public class CustomSpringProcessApplication extends SpringProcessApplication {
 
 }
