@@ -48,7 +48,7 @@ import org.cadenzaflow.spin.xml.SpinXmlElement;
 
 public class XmlSerializationTest extends PluggableProcessEngineTestCase {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/spin/plugin/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/spin/plugin/oneTaskProcess.bpmn20.xml";
 
   protected static final String XML_FORMAT_NAME = DataFormats.XML_DATAFORMAT_NAME;
 
@@ -492,8 +492,8 @@ public class XmlSerializationTest extends PluggableProcessEngineTestCase {
         .endEvent()
         .done());
 
-    Reader xmlInput = SpinIoUtil.classpathResourceAsReader("org/camunda/spin/plugin/XmlSerializationTest-input.xml");
-    String expectedOutput = SpinIoUtil.fileAsString("org/camunda/spin/plugin/XmlSerializationTest-output.xml");
+    Reader xmlInput = SpinIoUtil.classpathResourceAsReader("org/cadenzaflow/spin/plugin/XmlSerializationTest-input.xml");
+    String expectedOutput = SpinIoUtil.fileAsString("org/cadenzaflow/spin/plugin/XmlSerializationTest-output.xml");
     VariableMap variables = Variables.putValue("xmlInput", Spin.XML(xmlInput));
     // when
     runtimeService.startProcessInstanceByKey("spin-xml-issue", variables);

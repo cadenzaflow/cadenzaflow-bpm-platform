@@ -59,8 +59,8 @@ import org.skyscreamer.jsonassert.JSONAssert;
 
 public class JsonSerializationTest {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/spin/plugin/oneTaskProcess.bpmn20.xml";
-  protected static final String SERVICE_TASK_PROCESS = "org/camunda/spin/plugin/serviceTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/spin/plugin/oneTaskProcess.bpmn20.xml";
+  protected static final String SERVICE_TASK_PROCESS = "org/cadenzaflow/spin/plugin/serviceTaskProcess.bpmn20.xml";
 
   protected static final String JSON_FORMAT_NAME = DataFormats.JSON_DATAFORMAT_NAME;
 

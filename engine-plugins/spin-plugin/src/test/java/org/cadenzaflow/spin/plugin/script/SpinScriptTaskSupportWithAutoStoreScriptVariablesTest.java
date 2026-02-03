@@ -116,6 +116,7 @@ public class SpinScriptTaskSupportWithAutoStoreScriptVariablesTest extends Plugg
 
   protected void checkVariables(String... expectedVariables) {
     Map<String, Object> variables = runtimeService.getVariables(processInstance.getId());
+    variables.remove("Spin");
     checkVariablesValues(expectedVariables, variables);
 
     assertEquals(expectedVariables.length, variables.size());

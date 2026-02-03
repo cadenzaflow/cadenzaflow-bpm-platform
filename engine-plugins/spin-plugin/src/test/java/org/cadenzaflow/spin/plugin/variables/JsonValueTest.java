@@ -50,7 +50,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
  */
 public class JsonValueTest extends PluggableProcessEngineTestCase {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/spin/plugin/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/spin/plugin/oneTaskProcess.bpmn20.xml";
   protected static final String JSON_FORMAT_NAME = DataFormats.JSON_DATAFORMAT_NAME;
 
   protected static final String ONE_TASK_PROCESS_KEY = "oneTaskProcess";
@@ -190,7 +190,7 @@ public class JsonValueTest extends PluggableProcessEngineTestCase {
     }
   }
 
-  @Deployment(resources = "org/camunda/spin/plugin/jsonConditionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/spin/plugin/jsonConditionProcess.bpmn20.xml")
   public void testJsonValueInCondition() {
     // given
     String jsonString = "{\"age\": 22 }";

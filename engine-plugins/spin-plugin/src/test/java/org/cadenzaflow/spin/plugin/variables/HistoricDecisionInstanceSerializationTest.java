@@ -30,7 +30,7 @@ import org.cadenzaflow.spin.DataFormats;
 
 public class HistoricDecisionInstanceSerializationTest extends PluggableProcessEngineTestCase {
 
-  @Deployment(resources = {"org/camunda/spin/plugin/DecisionSingleOutput.dmn11.xml"})
+  @Deployment(resources = {"org/cadenzaflow/spin/plugin/DecisionSingleOutput.dmn11.xml"})
   public void testListJsonProperty() {
     JsonListSerializable<String> list = new JsonListSerializable<String>();
     list.addElement("foo");

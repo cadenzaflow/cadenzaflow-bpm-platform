@@ -30,14 +30,14 @@ import org.cadenzaflow.bpm.engine.variable.Variables;
  */
 public class DmnBusinessRuleTaskResultMappingTest extends ResourceProcessEngineTestCase {
 
-  protected static final String TEST_DECISION = "org/camunda/spin/plugin/DmnBusinessRuleTaskResultMappingTest.dmn11.xml";
-  protected static final String CUSTOM_MAPPING_BPMN = "org/camunda/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testCustomOutputMapping.bpmn20.xml";
-  protected static final String SINGLE_ENTRY_BPMN = "org/camunda/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testSingleEntry.bpmn20.xml";
-  protected static final String DEFAULT_MAPPING_BPMN = "org/camunda/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testDefaultMapping.bpmn20.xml";
-  protected static final String STORE_DECISION_RESULT_BPMN = "org/camunda/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testStoreDecisionResult.bpmn20.xml";
+  protected static final String TEST_DECISION = "org/cadenzaflow/spin/plugin/DmnBusinessRuleTaskResultMappingTest.dmn11.xml";
+  protected static final String CUSTOM_MAPPING_BPMN = "org/cadenzaflow/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testCustomOutputMapping.bpmn20.xml";
+  protected static final String SINGLE_ENTRY_BPMN = "org/cadenzaflow/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testSingleEntry.bpmn20.xml";
+  protected static final String DEFAULT_MAPPING_BPMN = "org/cadenzaflow/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testDefaultMapping.bpmn20.xml";
+  protected static final String STORE_DECISION_RESULT_BPMN = "org/cadenzaflow/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testStoreDecisionResult.bpmn20.xml";
 
   public DmnBusinessRuleTaskResultMappingTest() {
-    super("org/camunda/spin/plugin/json.camunda.cfg.xml");
+    super("org/cadenzaflow/spin/plugin/json.camunda.cfg.xml");
   }
 
   @Deployment(resources = {STORE_DECISION_RESULT_BPMN, TEST_DECISION })

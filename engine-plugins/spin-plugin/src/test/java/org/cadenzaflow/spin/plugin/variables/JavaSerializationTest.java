@@ -35,7 +35,7 @@ import static org.cadenzaflow.bpm.engine.variable.Variables.serializedObjectValu
  */
 public class JavaSerializationTest extends PluggableProcessEngineTestCase {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/spin/plugin/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/spin/plugin/oneTaskProcess.bpmn20.xml";
 
   @Deployment(resources = ONE_TASK_PROCESS)
   public void testSerializationAsJava() throws JSONException {

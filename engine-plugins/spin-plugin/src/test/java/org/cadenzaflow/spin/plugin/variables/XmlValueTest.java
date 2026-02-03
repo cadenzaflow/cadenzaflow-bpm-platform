@@ -48,7 +48,7 @@ import org.cadenzaflow.spin.xml.SpinXmlElement;
  */
 public class XmlValueTest extends PluggableProcessEngineTestCase {
 
-  protected static final String ONE_TASK_PROCESS = "org/camunda/spin/plugin/oneTaskProcess.bpmn20.xml";
+  protected static final String ONE_TASK_PROCESS = "org/cadenzaflow/spin/plugin/oneTaskProcess.bpmn20.xml";
   protected static final String XML_FORMAT_NAME = DataFormats.XML_DATAFORMAT_NAME;
 
   protected static final String ONE_TASK_PROCESS_KEY = "oneTaskProcess";
@@ -177,7 +177,7 @@ public class XmlValueTest extends PluggableProcessEngineTestCase {
     }
   }
 
-  @Deployment(resources = "org/camunda/spin/plugin/xmlConditionProcess.bpmn20.xml")
+  @Deployment(resources = "org/cadenzaflow/spin/plugin/xmlConditionProcess.bpmn20.xml")
   public void testXmlValueInCondition() {
     // given
     String xmlString = "<customer age=\"22\" />";
