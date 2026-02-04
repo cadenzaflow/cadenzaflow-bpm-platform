@@ -49,8 +49,8 @@ WORKDIR /cadenzaflow
 USER root
 
 # Yardımcı scriptleri ve prometheus config dosyasını kopyala
-COPY camunda-lib.sh /cadenzaflow/
-COPY camunda-tomcat.sh /cadenzaflow/camunda.sh
+COPY cadenzaflow-lib.sh /cadenzaflow/
+COPY cadenzaflow-tomcat.sh /cadenzaflow/cadenzaflow.sh
 COPY prometheus-jmx.yml /cadenzaflow/javaagent/prometheus-jmx.yml
 
 # server.xml ve bpm-platform.xml'i build context'ten kopyala (JNDI ve fallback hatalarını önler)
@@ -74,4 +74,4 @@ EXPOSE 8080 9404
 
 # Başlangıç komutu
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["./camunda.sh"]
+CMD ["./cadenzaflow.sh"]

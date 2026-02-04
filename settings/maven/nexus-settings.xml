@@ -6,7 +6,7 @@
     <mirror>
       <id>camunda-nexus</id>
       <mirrorOf>camunda-nexus</mirrorOf>
-      <name>Camunda Nexus</name>
+      <name>CadenzaFlow Nexus</name>
       <url>https://artifacts.camunda.com/artifactory/public/</url>
     </mirror>
   </mirrors>
