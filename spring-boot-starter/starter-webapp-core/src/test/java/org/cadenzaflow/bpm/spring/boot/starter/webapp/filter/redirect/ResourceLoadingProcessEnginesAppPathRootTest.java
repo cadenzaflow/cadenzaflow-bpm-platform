@@ -36,8 +36,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = { FilterTestApp.class},
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = {
-        "camunda.bpm.webapp.application-path=/",
-        "camunda.bpm.webapp.index-redirect-enabled=false" })
+        "cadenzaflow.bpm.webapp.application-path=/",
+        "cadenzaflow.bpm.webapp.index-redirect-enabled=false" })
 @DirtiesContext
 public class ResourceLoadingProcessEnginesAppPathRootTest {
 
@@ -59,8 +59,8 @@ public class ResourceLoadingProcessEnginesAppPathRootTest {
 
     // then
     assertThat(con.getResponseCode()).isEqualTo(200);
-    // since index-redirect-enabled=false, Camunda should not redirect to Tasklist
-    assertThat(body).doesNotContain("Tasklist").doesNotContain("Camunda");
+    // since index-redirect-enabled=false, CadenzaFlow should not redirect to Tasklist
+    assertThat(body).doesNotContain("Tasklist").doesNotContain("CadenzaFlow");
     // the static index.html from /src/test/resources/static was served instead
     // this is the default Spring Boot behavior that we document for this case
     assertThat(body).contains("Hello World!");

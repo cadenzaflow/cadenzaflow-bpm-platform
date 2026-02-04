@@ -65,7 +65,7 @@ public class ManagementProperties {
     @Override
     public String toString() {
       return joinOn(this.getClass())
-        .add("camunda=" + camunda)
+        .add("CadenzaFlow=" + camunda)
         .toString();
     }
 

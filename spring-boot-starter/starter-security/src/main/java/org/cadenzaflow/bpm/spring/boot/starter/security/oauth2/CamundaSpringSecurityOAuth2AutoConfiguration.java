@@ -119,7 +119,7 @@ public class CamundaSpringSecurityOAuth2AutoConfiguration {
                                          AuthorizeTokenFilter authorizeTokenFilter,
                                          @Nullable SsoLogoutSuccessHandler ssoLogoutSuccessHandler) throws Exception {
 
-    logger.info("Enabling Camunda Spring Security oauth2 integration");
+    logger.info("Enabling CadenzaFlow Spring Security oauth2 integration");
 
     // @formatter:off
     http.authorizeHttpRequests(c -> c

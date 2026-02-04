@@ -23,8 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @TestPropertySource(properties = {
-        "camunda.bpm.rest-api.fetch-and-lock.unique-worker-request=true",
-        "camunda.bpm.rest-api.fetch-and-lock.queue-capacity=333"
+        "cadenzaflow.bpm.rest-api.fetch-and-lock.unique-worker-request=true",
+        "cadenzaflow.bpm.rest-api.fetch-and-lock.queue-capacity=333"
 })
 public class RestApiPropertyTest extends ParsePropertiesHelper {
 

@@ -23,18 +23,18 @@ import org.springframework.test.context.TestPropertySource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestPropertySource(properties = {
-    "camunda.bpm.client.base-url=base-url",
-    "camunda.bpm.client.worker-id=worker-id",
-    "camunda.bpm.client.max-tasks=111",
-    "camunda.bpm.client.use-priority=false",
-    "camunda.bpm.client.default-serialization-format=serialization-format",
-    "camunda.bpm.client.date-format=date-format",
-    "camunda.bpm.client.async-response-timeout=555",
-    "camunda.bpm.client.lock-duration=777",
-    "camunda.bpm.client.disable-auto-fetching=true",
-    "camunda.bpm.client.disable-backoff-strategy=true",
-    "camunda.bpm.client.basic-auth.username=username",
-    "camunda.bpm.client.basic-auth.password=password",
+    "cadenzaflow.bpm.client.base-url=base-url",
+    "cadenzaflow.bpm.client.worker-id=worker-id",
+    "cadenzaflow.bpm.client.max-tasks=111",
+    "cadenzaflow.bpm.client.use-priority=false",
+    "cadenzaflow.bpm.client.default-serialization-format=serialization-format",
+    "cadenzaflow.bpm.client.date-format=date-format",
+    "cadenzaflow.bpm.client.async-response-timeout=555",
+    "cadenzaflow.bpm.client.lock-duration=777",
+    "cadenzaflow.bpm.client.disable-auto-fetching=true",
+    "cadenzaflow.bpm.client.disable-backoff-strategy=true",
+    "cadenzaflow.bpm.client.basic-auth.username=username",
+    "cadenzaflow.bpm.client.basic-auth.password=password",
 })
 public class ClientConfigurationTest extends ParsePropertiesHelper {
 

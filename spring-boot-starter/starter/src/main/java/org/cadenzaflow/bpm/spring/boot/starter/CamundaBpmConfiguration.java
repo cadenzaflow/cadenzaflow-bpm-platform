@@ -91,7 +91,7 @@ public class CamundaBpmConfiguration {
 
   @Bean
   @ConditionalOnMissingBean(CamundaJobConfiguration.class)
-  @ConditionalOnProperty(prefix = "camunda.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
+  @ConditionalOnProperty(prefix = "cadenzaflow.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
   public static CamundaJobConfiguration camundaJobConfiguration() {
     return new DefaultJobConfiguration();
   }
@@ -111,7 +111,7 @@ public class CamundaBpmConfiguration {
   //TODO to be removed within CAM-8108
   @Bean(name = "historyLevelAutoConfiguration")
   @ConditionalOnMissingBean(CamundaHistoryLevelAutoHandlingConfiguration.class)
-  @ConditionalOnProperty(prefix = "camunda.bpm", name = "history-level", havingValue = "auto", matchIfMissing = false)
+  @ConditionalOnProperty(prefix = "cadenzaflow.bpm", name = "history-level", havingValue = "auto", matchIfMissing = false)
   @Conditional(NeedsHistoryAutoConfigurationCondition.class)
   public static CamundaHistoryLevelAutoHandlingConfiguration historyLevelAutoHandlingConfiguration() {
     return new DefaultHistoryLevelAutoHandlingConfiguration();
@@ -152,7 +152,7 @@ public class CamundaBpmConfiguration {
   }
 
   @Bean
-  @ConditionalOnProperty(prefix = "camunda.bpm.admin-user", name = "id")
+  @ConditionalOnProperty(prefix = "cadenzaflow.bpm.admin-user", name = "id")
   public CreateAdminUserConfiguration createAdminUserConfiguration() {
     return new CreateAdminUserConfiguration();
   }
@@ -164,7 +164,7 @@ public class CamundaBpmConfiguration {
   }
 
   @Bean
-  @ConditionalOnProperty(prefix = "camunda.bpm.filter", name = "create")
+  @ConditionalOnProperty(prefix = "cadenzaflow.bpm.filter", name = "create")
   public CreateFilterConfiguration createFilterConfiguration() {
     return new CreateFilterConfiguration();
   }

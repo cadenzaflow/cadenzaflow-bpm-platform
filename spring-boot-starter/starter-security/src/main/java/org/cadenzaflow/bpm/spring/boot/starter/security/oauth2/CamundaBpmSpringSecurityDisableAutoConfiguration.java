@@ -32,7 +32,7 @@ public class CamundaBpmSpringSecurityDisableAutoConfiguration {
 
   @Bean
   public SecurityFilterChain filterChainPermitAll(HttpSecurity http) throws Exception {
-    logger.info("Disabling Camunda Spring Security oauth2 integration");
+    logger.info("Disabling CadenzaFlow Spring Security oauth2 integration");
 
     http.authorizeHttpRequests(customizer -> customizer.anyRequest().permitAll())
         .cors(AbstractHttpConfigurer::disable)

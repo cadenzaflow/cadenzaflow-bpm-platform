@@ -78,7 +78,7 @@ public class DefaultJobConfiguration extends AbstractCamundaConfiguration implem
 
     @Bean(name = CAMUNDA_TASK_EXECUTOR_QUALIFIER)
     @ConditionalOnMissingBean(name = CAMUNDA_TASK_EXECUTOR_QUALIFIER)
-    @ConditionalOnProperty(prefix = "camunda.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "cadenzaflow.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
     public static TaskExecutor camundaTaskExecutor(CamundaBpmProperties properties) {
       int corePoolSize = properties.getJobExecution().getCorePoolSize();
       int maxPoolSize = properties.getJobExecution().getMaxPoolSize();
@@ -99,7 +99,7 @@ public class DefaultJobConfiguration extends AbstractCamundaConfiguration implem
 
     @Bean
     @ConditionalOnMissingBean(JobExecutor.class)
-    @ConditionalOnProperty(prefix = "camunda.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "cadenzaflow.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
     public static JobExecutor jobExecutor(@Qualifier(CAMUNDA_TASK_EXECUTOR_QUALIFIER) final TaskExecutor taskExecutor, CamundaBpmProperties properties) {
       final SpringJobExecutor springJobExecutor = new SpringJobExecutor();
       springJobExecutor.setTaskExecutor(taskExecutor);
@@ -119,7 +119,7 @@ public class DefaultJobConfiguration extends AbstractCamundaConfiguration implem
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "camunda.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "cadenzaflow.bpm.job-execution", name = "enabled", havingValue = "true", matchIfMissing = true)
     @ConditionalOnBean(JobExecutor.class)
     public static JobExecutorStartingEventListener jobExecutorStartingEventListener() {
       return new JobExecutorStartingEventListener();

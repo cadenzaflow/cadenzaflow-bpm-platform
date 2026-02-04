@@ -121,7 +121,7 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <version>${version.spring-boot}</version>
             <configuration>
-              <mainClass>org.camunda.bpm.qa.Application</mainClass>
+              <mainClass>org.cadenzaflow.bpm.qa.Application</mainClass>
             </configuration>
             <executions>
               <execution>
@@ -144,7 +144,7 @@
             <version>3.0.0-M3</version>
             <configuration>
               <dependenciesToScan>
-                <dependency>org.camunda.bpm.qa:camunda-qa-integration-tests-webapps</dependency>
+                <dependency>org.cadenzaflow.bpm.qa:camunda-qa-integration-tests-webapps</dependency>
               </dependenciesToScan>
               <skipTests>false</skipTests>
             </configuration>

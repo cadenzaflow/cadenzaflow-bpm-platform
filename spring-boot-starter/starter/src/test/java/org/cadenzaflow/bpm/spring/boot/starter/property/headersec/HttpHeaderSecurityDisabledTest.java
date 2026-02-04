@@ -24,9 +24,9 @@ import org.springframework.test.context.TestPropertySource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestPropertySource(properties = {
-  "camunda.bpm.webapp.headerSecurity.xssProtectionDisabled=true",
-  "camunda.bpm.webapp.headerSecurity.contentSecurityPolicyDisabled=true",
-  "camunda.bpm.webapp.headerSecurity.contentTypeOptionsDisabled=true"
+  "cadenzaflow.bpm.webapp.headerSecurity.xssProtectionDisabled=true",
+  "cadenzaflow.bpm.webapp.headerSecurity.contentSecurityPolicyDisabled=true",
+  "cadenzaflow.bpm.webapp.headerSecurity.contentTypeOptionsDisabled=true"
 })
 public class HttpHeaderSecurityDisabledTest extends ParsePropertiesHelper {
 

@@ -22,7 +22,7 @@ import static org.cadenzaflow.bpm.spring.boot.starter.property.CamundaBpmPropert
 
 public class WebappProperty {
 
-  public static final String DEFAULT_APP_PATH = "/camunda";
+  public static final String DEFAULT_APP_PATH = "/cadenzaflow";
 
   public static final String PREFIX = CamundaBpmProperties.PREFIX + ".webapp";
 

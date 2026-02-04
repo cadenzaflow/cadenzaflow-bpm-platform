@@ -32,7 +32,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(
   classes = { TestApplication.class, AdditionalCammundaBpmConfigurations.class },
   webEnvironment = WebEnvironment.NONE,
-  properties = { "camunda.bpm.admin-user.id=admin"}
+  properties = { "cadenzaflow.bpm.admin-user.id=admin"}
 )
 public class CamundaAutoConfigurationIT extends AbstractCamundaAutoConfigurationIT {
 

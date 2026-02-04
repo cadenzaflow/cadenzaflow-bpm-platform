@@ -34,7 +34,7 @@ import static org.springframework.core.io.support.ResourcePatternResolver.CLASSP
 @ConfigurationProperties(CamundaBpmProperties.PREFIX)
 public class CamundaBpmProperties {
 
-  public static final String PREFIX = "camunda.bpm";
+  public static final String PREFIX = "cadenzaflow.bpm";
   public static final String UNIQUE_ENGINE_NAME_PREFIX = "processEngine";
   public static final String UNIQUE_APPLICATION_NAME_PREFIX = "processApplication";
 

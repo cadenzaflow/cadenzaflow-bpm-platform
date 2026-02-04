@@ -33,7 +33,7 @@ import static org.cadenzaflow.bpm.spring.boot.starter.configuration.id.IdGenerat
 @SpringBootTest(
   classes = {TestApplication.class},
   properties = {
-    "camunda.bpm.id-generator=" + PREFIXED,
+    "cadenzaflow.bpm.id-generator=" + PREFIXED,
     "spring.application.name=myapp"
   })
 public class PrefixedUuidGeneratorIT {

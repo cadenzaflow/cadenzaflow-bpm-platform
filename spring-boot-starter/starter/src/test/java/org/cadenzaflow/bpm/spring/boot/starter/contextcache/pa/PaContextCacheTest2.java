@@ -42,8 +42,8 @@ import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.AbstractAssertions
 @SpringBootTest(
   classes = { TestProcessApplication.class },
   properties = {
-    "camunda.bpm.generate-unique-process-engine-name=true",
-    "camunda.bpm.generate-unique-process-application-name=true",
+    "cadenzaflow.bpm.generate-unique-process-engine-name=true",
+    "cadenzaflow.bpm.generate-unique-process-application-name=true",
     "spring.datasource.generate-unique-name=true",
     "paTest2Property=paTest2Value"
   },

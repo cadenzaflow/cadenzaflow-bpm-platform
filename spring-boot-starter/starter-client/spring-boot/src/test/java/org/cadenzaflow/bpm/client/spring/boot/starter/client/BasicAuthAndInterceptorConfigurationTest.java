@@ -42,8 +42,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @TestPropertySource(properties = {
-    "camunda.bpm.client.basic-auth.username=my-username",
-    "camunda.bpm.client.basic-auth.password=my-password",
+    "cadenzaflow.bpm.client.basic-auth.username=my-username",
+    "cadenzaflow.bpm.client.basic-auth.password=my-password",
 })
 @ContextConfiguration(classes = {
     ParsePropertiesHelper.TestConfig.class,

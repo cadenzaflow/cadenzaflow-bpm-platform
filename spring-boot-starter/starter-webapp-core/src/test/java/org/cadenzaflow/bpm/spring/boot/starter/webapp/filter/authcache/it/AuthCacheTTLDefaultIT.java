@@ -40,8 +40,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { FilterTestApp.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {
-  "camunda.bpm.admin-user.id=demo",
-  "camunda.bpm.admin-user.password=demo"
+  "cadenzaflow.bpm.admin-user.id=demo",
+  "cadenzaflow.bpm.admin-user.password=demo"
 })
 @DirtiesContext
 public class AuthCacheTTLDefaultIT {
