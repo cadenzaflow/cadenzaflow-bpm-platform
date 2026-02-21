@@ -29,7 +29,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngine;
 public final class BpmPlatform {
 
   public final static String JNDI_NAME_PREFIX = "java:global";
-  public final static String APP_JNDI_NAME = "camunda-bpm-platform";
+  public final static String APP_JNDI_NAME = "cadenzaflow-bpm-platform";
   public final static String MODULE_JNDI_NAME = "process-engine";
 
   public final static String PROCESS_ENGINE_SERVICE_NAME = "ProcessEngineService!org.cadenzaflow.bpm.ProcessEngineService";

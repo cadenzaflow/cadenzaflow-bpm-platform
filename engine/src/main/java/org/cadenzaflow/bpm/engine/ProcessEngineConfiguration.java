@@ -226,7 +226,7 @@ public abstract class ProcessEngineConfiguration {
   protected String mailServerPassword; // means no authentication for mail server
   protected int mailServerPort = 25;
   protected boolean useTLS = false;
-  protected String mailServerDefaultFrom = "camunda@localhost";
+  protected String mailServerDefaultFrom = "cadenzaflow@localhost";
 
   protected String databaseType;
   protected String databaseVendor;
@@ -314,7 +314,7 @@ public abstract class ProcessEngineConfiguration {
    *
    * <p>By default only alphanumeric values (or 'camunda-admin') will be accepted.</p>
    */
-  protected String generalResourceWhitelistPattern =  "[a-zA-Z0-9]+|camunda-admin";
+  protected String generalResourceWhitelistPattern =  "[a-zA-Z0-9]+|cadenzaflow-admin";
 
   /**
    * A parameter used for defining acceptable values for the User IDs.
@@ -322,7 +322,7 @@ public abstract class ProcessEngineConfiguration {
    * Expression syntax should be used.
    *
    * <p>If not defined, the general pattern is used. Only alphanumeric
-   * values (or 'camunda-admin') will be accepted.</p>
+   * values (or 'cadenzaflow-admin') will be accepted.</p>
    */
   protected String userResourceWhitelistPattern;
 
@@ -332,7 +332,7 @@ public abstract class ProcessEngineConfiguration {
    * Expression syntax should be used.
    *
    * <p>If not defined, the general pattern is used. Only alphanumeric
-   * values (or 'camunda-admin') will be accepted.</p>
+   * values (or 'cadenzaflow-admin') will be accepted.</p>
    */
   protected String groupResourceWhitelistPattern;
 
@@ -342,7 +342,7 @@ public abstract class ProcessEngineConfiguration {
    * Expression syntax should be used.
    *
    * <p>If not defined, the general pattern is used. Only alphanumeric
-   * values (or 'camunda-admin') will be accepted.</p>
+   * values (or 'cadenzaflow-admin') will be accepted.</p>
    */
   protected String tenantResourceWhitelistPattern;
 
