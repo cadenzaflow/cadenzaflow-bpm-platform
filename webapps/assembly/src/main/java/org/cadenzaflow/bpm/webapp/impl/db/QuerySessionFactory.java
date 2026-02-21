@@ -30,9 +30,9 @@ public class QuerySessionFactory extends StandaloneProcessEngineConfiguration {
 
   protected static final String[] DEFAULT_MAPPING_FILES = {
     // necessary to perform authorization checks
-    "org/camunda/bpm/engine/impl/mapping/entity/Commons.xml",
-    "org/camunda/bpm/engine/impl/mapping/entity/Authorization.xml",
-    "org/camunda/bpm/engine/impl/mapping/entity/Tenant.xml"
+    "org/cadenzaflow/bpm/engine/impl/mapping/entity/Commons.xml",
+    "org/cadenzaflow/bpm/engine/impl/mapping/entity/Authorization.xml",
+    "org/cadenzaflow/bpm/engine/impl/mapping/entity/Tenant.xml"
   };
 
   private List<String> mappingFiles;
