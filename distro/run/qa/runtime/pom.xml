@@ -142,7 +142,7 @@
             <configuration>
               <redirectTestOutputToFile>true</redirectTestOutputToFile>
               <dependenciesToScan>
-                <dependenciesToScan>org.camunda.bpm.run:camunda-bpm-run-qa-integration-tests</dependenciesToScan>
+                <dependenciesToScan>org.cadenzaflow.bpm.run:camunda-bpm-run-qa-integration-tests</dependenciesToScan>
               </dependenciesToScan>
               <systemPropertyVariables>
                 <camunda.run.home>${run-home}</camunda.run.home>
@@ -190,7 +190,7 @@
                 </goals>
                 <phase>generate-test-resources</phase>
                 <configuration>
-                  <artifact>org.camunda.bpm.run:camunda-bpm-run-example-plugin:${project.version}</artifact>
+                  <artifact>org.cadenzaflow.bpm.run:camunda-bpm-run-example-plugin:${project.version}</artifact>
                   <overWriteSnapshots>true</overWriteSnapshots>
                   <stripVersion>true</stripVersion>
                   <outputDirectory>${example-plugin-home}</outputDirectory>
