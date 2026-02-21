@@ -1,1 +1,1 @@
-org.camunda.bpm.container.impl.jboss.test.ExampleBpmPlatformPlugin
+org.cadenzaflow.bpm.container.impl.jboss.test.ExampleBpmPlatformPlugin

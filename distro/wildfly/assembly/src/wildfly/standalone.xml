@@ -38,7 +38,7 @@
         <extension module="org.wildfly.extension.request-controller"/>
         <extension module="org.wildfly.extension.security.manager"/>
         <extension module="org.wildfly.extension.undertow"/>
-        <extension module="org.camunda.bpm.wildfly.camunda-wildfly-subsystem"/>
+        <extension module="org.cadenzaflow.bpm.wildfly.camunda-wildfly-subsystem"/>
     </extensions>
     <management>
         <audit-log>
@@ -511,7 +511,7 @@
             <client-config name="Standard-Client-Config"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:weld:5.0"/>
-        <subsystem xmlns="urn:org.camunda.bpm.jboss:1.1">
+        <subsystem xmlns="urn:org.cadenzaflow.bpm.jboss:1.1">
             <process-engines>
                 <process-engine name="default" default="true">
                     <datasource>java:jboss/datasources/ProcessEngine</datasource>
@@ -527,7 +527,7 @@
 
                         <!-- plugin enabling Process Application event listener support -->
                         <plugin>
-                            <class>org.camunda.bpm.application.impl.event.ProcessApplicationEventListenerPlugin</class>
+                            <class>org.cadenzaflow.bpm.application.impl.event.ProcessApplicationEventListenerPlugin</class>
                         </plugin>
 
                         <!-- plugin enabling integration of camunda Spin -->
@@ -545,7 +545,7 @@
                         <!-- Adjust configuration, see ( http://docs.camunda.org/latest/guides/user-guide/#process-engine-identity-service-the-ldap-identity-service ) -->
                         <!--
                             <plugin>
-                                <class>org.camunda.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin</class>
+                                <class>org.cadenzaflow.bpm.identity.impl.ldap.plugin.LdapIdentityProviderPlugin</class>
 
                                 <properties>
                                     <property name="serverUrl">ldaps://localhost:4334/</property>
@@ -579,7 +579,7 @@
                         <!-- The following plugin allows you to grant administrator authorizations to an existing LDAP user -->
                         <!--
                             <plugin>
-                                <class>org.camunda.bpm.engine.impl.plugin.AdministratorAuthorizationPlugin</class>
+                                <class>org.cadenzaflow.bpm.engine.impl.plugin.AdministratorAuthorizationPlugin</class>
                                 <properties>
                                     <property name="administratorUserName">admin</property>
                                 </properties>

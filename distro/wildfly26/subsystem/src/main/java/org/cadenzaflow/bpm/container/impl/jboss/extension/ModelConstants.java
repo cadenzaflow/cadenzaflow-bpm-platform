@@ -55,5 +55,5 @@ public interface ModelConstants {
   String KEEPALIVE_TIME = "keepalive-time";
 
   /** The name of our subsystem within the model. */
-  String SUBSYSTEM_NAME = "camunda-bpm-platform";
+  String SUBSYSTEM_NAME = "cadenzaflow-bpm-platform";
 }
