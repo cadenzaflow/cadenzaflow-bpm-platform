@@ -206,7 +206,7 @@ public class DeploymentAwareJobExecutorTest extends PluggableProcessEngineTest {
     // 1. create another process engine
     try {
       otherProcessEngine = ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("camunda.cfg.xml")
+        .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml")
         .buildProcessEngine();
     } catch (RuntimeException ex) {
       if (ex.getCause() != null && ex.getCause() instanceof FileNotFoundException) {

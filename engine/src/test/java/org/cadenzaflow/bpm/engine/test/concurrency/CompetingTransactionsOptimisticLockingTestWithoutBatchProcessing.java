@@ -28,7 +28,7 @@ public class CompetingTransactionsOptimisticLockingTestWithoutBatchProcessing ex
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/concurrency/custombatchprocessing.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/concurrency/custombatchprocessing.cadenzaflow.cfg.xml");
   protected ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);
 

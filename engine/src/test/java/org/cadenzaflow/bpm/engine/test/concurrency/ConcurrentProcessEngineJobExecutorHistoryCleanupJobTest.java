@@ -164,7 +164,7 @@ public class ConcurrentProcessEngineJobExecutorHistoryCleanupJobTest extends Con
       bootstrapCommand = new ControllableBootstrapEngineCommand(this.monitor);
 
       ProcessEngineConfiguration processEngineConfiguration = ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/concurrency/historycleanup.camunda.cfg.xml");
+        .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/concurrency/historycleanup.cadenzaflow.cfg.xml");
 
 
       processEngineConfiguration.setProcessEngineBootstrapCommand(bootstrapCommand);

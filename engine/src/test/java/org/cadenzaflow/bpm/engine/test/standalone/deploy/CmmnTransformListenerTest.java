@@ -48,7 +48,7 @@ public class CmmnTransformListenerTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/standalone/deploy/cmmn.transform.listener.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/deploy/cmmn.transform.listener.cadenzaflow.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

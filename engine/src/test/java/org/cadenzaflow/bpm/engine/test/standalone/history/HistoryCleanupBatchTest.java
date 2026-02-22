@@ -35,7 +35,7 @@ import org.junit.Test;
 public class HistoryCleanupBatchTest {
 
   protected static final String PROCESS_ENGINE_CONFIG =
-      "org/cadenzaflow/bpm/engine/test/standalone/history/camunda.cfg.xml";
+      "org/cadenzaflow/bpm/engine/test/standalone/history/cadenzaflow.cfg.xml";
 
   protected static final String CONFIG_LOGGER = "org.cadenzaflow.bpm.engine.cfg";
 

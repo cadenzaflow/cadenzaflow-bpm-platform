@@ -55,7 +55,7 @@ public class PluggableProcessEngineTestCase extends AbstractProcessEngineTestCas
     if (cachedProcessEngine == null) {
       try {
         cachedProcessEngine = ProcessEngineConfiguration
-                .createProcessEngineConfigurationFromResource("camunda.cfg.xml")
+                .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml")
                 .buildProcessEngine();
       } catch (RuntimeException ex) {
         if (ex.getCause() != null && ex.getCause() instanceof FileNotFoundException) {

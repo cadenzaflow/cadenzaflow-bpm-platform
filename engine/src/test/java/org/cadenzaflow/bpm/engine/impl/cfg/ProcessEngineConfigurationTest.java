@@ -104,7 +104,7 @@ public class ProcessEngineConfigurationTest {
   public void validIsolationLevelPropertyFromFileIsSetCorrectly() {
     // given
     ProcessEngineConfigurationImpl engineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("camunda.cfg.skipIsolationLevelCheckEnabled.xml");
+        .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.skipIsolationLevelCheckEnabled.xml");
     // then
     assertTrue(engineConfiguration.skipIsolationLevelCheck);
   }

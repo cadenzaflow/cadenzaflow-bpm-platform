@@ -42,7 +42,7 @@ public class AuditHistoryTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/standalone/history/audithistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/audithistory.cadenzaflow.cfg.xml");
 
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);

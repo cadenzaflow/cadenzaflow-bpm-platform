@@ -58,7 +58,7 @@ public class LegacyUserOperationLogTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/history/useroperationlog/enable.legacy.user.operation.log.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/history/useroperationlog/enable.legacy.user.operation.log.cadenzaflow.cfg.xml");
   public ProcessEngineRule processEngineRule = new ProvidedProcessEngineRule(bootstrapRule);
   public ProcessEngineTestRule testHelper = new ProcessEngineTestRule(processEngineRule);
 

@@ -45,7 +45,7 @@ public class NestedExecutionAPIInvocationTest {
   public ProcessEngineRule engineRule1 = new ProvidedProcessEngineRule();
 
   @ClassRule
-  public static ProcessEngineBootstrapRule engine2BootstrapRule = new ProcessEngineBootstrapRule("camunda.cfg.prefix_extended.xml");
+  public static ProcessEngineBootstrapRule engine2BootstrapRule = new ProcessEngineBootstrapRule("cadenzaflow.cfg.prefix_extended.xml");
 
   @Rule
   public ProcessEngineRule engineRule2 = new ProvidedProcessEngineRule(engine2BootstrapRule);

@@ -58,7 +58,7 @@ public class CmmnDisabledTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/application/impl/deployment/cmmn.disabled.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/application/impl/deployment/cmmn.disabled.cadenzaflow.cfg.xml");
 
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   public ProcessEngineTestRule engineTestRule = new ProcessEngineTestRule(engineRule);

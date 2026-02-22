@@ -54,7 +54,7 @@ public class TaskQueryDisabledStoredExpressionsTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/api/task/task-query-disabled-stored-expressions-test.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/api/task/task-query-disabled-stored-expressions-test.cadenzaflow.cfg.xml");
   protected ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);
 

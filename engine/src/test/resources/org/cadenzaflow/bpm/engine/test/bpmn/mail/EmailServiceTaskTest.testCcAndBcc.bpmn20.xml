@@ -11,7 +11,7 @@
     <serviceTask id="sendMail" camunda:type="mail">
       <extensionElements>
         <camunda:field name="to">
-          <camunda:string>kermit@camunda.org</camunda:string>
+          <camunda:string>kermit@cadenzaflow.org</camunda:string>
         </camunda:field>
         <camunda:field name="subject">
           <camunda:string>Hello world</camunda:string>
@@ -20,10 +20,10 @@
           <camunda:string>This is the content</camunda:string>
         </camunda:field>
         <camunda:field name="cc">
-          <camunda:string>fozzie@camunda.org</camunda:string>
+          <camunda:string>fozzie@cadenzaflow.org</camunda:string>
         </camunda:field>
         <camunda:field name="bcc">
-          <camunda:string>mispiggy@camunda.org</camunda:string>
+          <camunda:string>mispiggy@cadenzaflow.org</camunda:string>
         </camunda:field>
       </extensionElements>
     </serviceTask>

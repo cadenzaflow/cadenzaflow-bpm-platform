@@ -26,7 +26,7 @@ public class ProvidedProcessEngineRule extends ProcessEngineRule {
 
 
   /**
-   * The one process engine created from camunda.cfg.xml.
+   * The one process engine created from cadenzaflow.cfg.xml.
    * To save the effort of building unnecessary process engines, it should 
    * be used in any test that does not require extra engine configuration.
    * It should not be reconfigured on the fly (=> violates test isolation).
@@ -68,7 +68,7 @@ public class ProvidedProcessEngineRule extends ProcessEngineRule {
   protected static ProcessEngine getOrInitializeCachedProcessEngine() {
     if (cachedProcessEngine == null) {
       cachedProcessEngine = ProcessEngineConfiguration
-          .createProcessEngineConfigurationFromResource("camunda.cfg.xml")
+          .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml")
           .buildProcessEngine();
     }
     return cachedProcessEngine;

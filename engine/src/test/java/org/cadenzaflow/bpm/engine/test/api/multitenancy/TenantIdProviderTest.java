@@ -66,7 +66,7 @@ import org.junit.rules.RuleChain;
 @RequiredHistoryLevel(ProcessEngineConfiguration.HISTORY_FULL)
 public class TenantIdProviderTest {
 
-  protected static final String CONFIGURATION_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/TenantIdProviderTest.camunda.cfg.xml";
+  protected static final String CONFIGURATION_RESOURCE = "org/cadenzaflow/bpm/engine/test/api/multitenancy/TenantIdProviderTest.cadenzaflow.cfg.xml";
 
   protected static final String PROCESS_DEFINITION_KEY = "testProcess";
   protected static final String DECISION_DEFINITION_KEY = "decision";

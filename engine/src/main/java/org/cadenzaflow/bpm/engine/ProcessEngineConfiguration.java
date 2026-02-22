@@ -312,7 +312,7 @@ public abstract class ProcessEngineConfiguration {
    * and Tenant IDs. The pattern can be defined by using the standard
    * Java Regular Expression syntax should be used.
    *
-   * <p>By default only alphanumeric values (or 'camunda-admin') will be accepted.</p>
+   * <p>By default only alphanumeric values (or 'cadenzaflow-admin') will be accepted.</p>
    */
   protected String generalResourceWhitelistPattern =  "[a-zA-Z0-9]+|cadenzaflow-admin";
 
@@ -426,7 +426,7 @@ public abstract class ProcessEngineConfiguration {
   public static ProcessEngineConfiguration createProcessEngineConfigurationFromResourceDefault() {
     ProcessEngineConfiguration processEngineConfiguration = null;
     try {
-      processEngineConfiguration = createProcessEngineConfigurationFromResource("camunda.cfg.xml", "processEngineConfiguration");
+      processEngineConfiguration = createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml", "processEngineConfiguration");
     } catch (RuntimeException ex) {
       processEngineConfiguration = createProcessEngineConfigurationFromResource("activiti.cfg.xml", "processEngineConfiguration");
     }

@@ -415,9 +415,9 @@
         <directory>src/test/resources</directory>
         <filtering>true</filtering>
         <includes>
-          <include>**/camunda.cfg.xml</include>
-          <include>**/*camunda.cfg.xml</include>
-          <include>**/camunda.cfg.*.xml</include>
+          <include>**/cadenzaflow.cfg.xml</include>
+          <include>**/*cadenzaflow.cfg.xml</include>
+          <include>**/cadenzaflow.cfg.*.xml</include>
           <include>testconfig.properties</include>
           <include>database.properties</include>
           <include>**/testcontainers.properties</include>
@@ -802,8 +802,8 @@
                 </goals>
                 <configuration>
                   <target>
-                    <echo message="Copying camunda.cfg.plugins.xml to camunda.cfg.xml" />
-                    <copy file="target/test-classes/camunda.cfg.plugins.xml" tofile="target/test-classes/camunda.cfg.xml" overwrite="true" />
+                    <echo message="Copying cadenzaflow.cfg.plugins.xml to cadenzaflow.cfg.xml" />
+                    <copy file="target/test-classes/cadenzaflow.cfg.plugins.xml" tofile="target/test-classes/cadenzaflow.cfg.xml" overwrite="true" />
                   </target>
                 </configuration>
               </execution>
@@ -836,7 +836,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <copy file="target/test-classes/camunda.cfg.prefix.xml" tofile="target/test-classes/camunda.cfg.xml" overwrite="true" />
+                    <copy file="target/test-classes/cadenzaflow.cfg.prefix.xml" tofile="target/test-classes/cadenzaflow.cfg.xml" overwrite="true" />
                   </target>
                 </configuration>
               </execution>

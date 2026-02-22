@@ -39,7 +39,7 @@ public class JobRetryCmdWithDefaultPropertyTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/bpmn/async/default.job.retry.property.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/bpmn/async/default.job.retry.property.cadenzaflow.cfg.xml");
 
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);

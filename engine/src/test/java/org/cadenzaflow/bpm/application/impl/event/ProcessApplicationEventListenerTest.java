@@ -53,7 +53,7 @@ public class ProcessApplicationEventListenerTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/application/impl/event/pa.event.listener.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/application/impl/event/pa.event.listener.cadenzaflow.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

@@ -35,7 +35,7 @@ public class ProcessEngineInitializationTest {
   public void testNoTables() {
     try {
       ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/notables.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/notables.cadenzaflow.cfg.xml")
         .buildProcessEngine();
       fail("expected exception");
     } catch (Exception e) {
@@ -43,14 +43,14 @@ public class ProcessEngineInitializationTest {
       assertThat(e.getMessage()).contains("ENGINE-03057 There are no Camunda tables in the database. " +
         "Hint: Set <property name=\"databaseSchemaUpdate\" to value=\"true\" or value=\"create-drop\" " +
         "(use create-drop for testing only!) in bean processEngineConfiguration " +
-        "in camunda.cfg.xml for automatic schema creation");
+        "in cadenzaflow.cfg.xml for automatic schema creation");
     }
   }
 
   @Test
   public void testDefaultRetries() {
     ProcessEngineConfiguration configuration = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/defaultretries.camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/defaultretries.cadenzaflow.cfg.xml");
 
     assertEquals(JobEntity.DEFAULT_RETRIES, configuration.getDefaultNumberOfRetries());
   }
@@ -58,7 +58,7 @@ public class ProcessEngineInitializationTest {
   @Test
   public void testCustomDefaultRetries() {
     ProcessEngineConfiguration configuration = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/customdefaultretries.camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/standalone/initialization/customdefaultretries.cadenzaflow.cfg.xml");
 
     assertEquals(5, configuration.getDefaultNumberOfRetries());
   }

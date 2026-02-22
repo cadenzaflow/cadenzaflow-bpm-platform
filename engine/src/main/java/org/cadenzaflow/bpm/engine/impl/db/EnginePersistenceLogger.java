@@ -50,7 +50,7 @@ public class EnginePersistenceLogger extends ProcessEngineLogger {
 
   protected static final String HINT_TEXT = "Hint: Set <property name=\"databaseSchemaUpdate\" to value=\"true\" or " +
                                             "value=\"create-drop\" (use create-drop for testing only!) in bean " +
-                                            "processEngineConfiguration in camunda.cfg.xml for automatic schema creation";
+                                            "processEngineConfiguration in cadenzaflow.cfg.xml for automatic schema creation";
 
   protected String buildStringFromList(Collection<?> list) {
     StringBuilder message = new StringBuilder();

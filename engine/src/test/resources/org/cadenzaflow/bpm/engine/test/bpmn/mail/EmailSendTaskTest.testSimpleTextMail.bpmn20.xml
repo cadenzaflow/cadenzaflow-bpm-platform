@@ -11,7 +11,7 @@
     <sendTask id="sendMail" camunda:type="mail">
       <extensionElements>
         <camunda:field name="to">
-          <camunda:string>kermit@camunda.org</camunda:string>
+          <camunda:string>kermit@cadenzaflow.org</camunda:string>
         </camunda:field>
         <camunda:field name="subject">
           <camunda:string>Hello Kermit!</camunda:string>

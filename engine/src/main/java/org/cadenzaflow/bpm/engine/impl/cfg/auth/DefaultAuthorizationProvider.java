@@ -267,7 +267,7 @@ public class DefaultAuthorizationProvider implements ResourceAuthorizationProvid
    *         ->  create a new history authorization (with READ on HISTORIC_TASK)
    *     (2b) fetched authorization != null
    *         ->  Add READ, (UPDATE/TASK_WORK) permission, and READ_VARIABLE if enabled
-   *             UPDATE or TASK_WORK permission is configurable in camunda.cfg.xml and by default,
+   *             UPDATE or TASK_WORK permission is configurable in cadenzaflow.cfg.xml and by default,
    *             UPDATE permission is provided
    *         ->  Add READ on HISTORIC_TASK
    */

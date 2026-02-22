@@ -38,7 +38,7 @@ public class VariableHistoryLevelCompatibilityTest {
 
   @Rule
   public ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/standalone/history/variablehistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/variablehistory.cadenzaflow.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

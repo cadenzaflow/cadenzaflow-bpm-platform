@@ -66,7 +66,7 @@ public class TaskQueryExpressionTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/api/task/task-query-expression-test.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/api/task/task-query-expression-test.cadenzaflow.cfg.xml");
   protected ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected ProcessEngineTestRule testRule = new ProcessEngineTestRule(engineRule);
 

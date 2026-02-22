@@ -36,7 +36,7 @@ public class ProcessEngineBootstrapRule extends TestWatcher {
   protected Consumer<ProcessEngineConfigurationImpl> processEngineConfigurator;
 
   public ProcessEngineBootstrapRule() {
-    this("camunda.cfg.xml");
+    this("cadenzaflow.cfg.xml");
   }
 
   public ProcessEngineBootstrapRule(String configurationResource) {
@@ -44,7 +44,7 @@ public class ProcessEngineBootstrapRule extends TestWatcher {
   }
 
   public ProcessEngineBootstrapRule(Consumer<ProcessEngineConfigurationImpl> processEngineConfigurator) {
-    this("camunda.cfg.xml", processEngineConfigurator);
+    this("cadenzaflow.cfg.xml", processEngineConfigurator);
   }
 
   public ProcessEngineBootstrapRule(String configurationResource, Consumer<ProcessEngineConfigurationImpl> processEngineConfigurator) {

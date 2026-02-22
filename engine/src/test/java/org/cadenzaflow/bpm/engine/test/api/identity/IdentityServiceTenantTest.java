@@ -168,7 +168,7 @@ public class IdentityServiceTenantTest {
   @Test
   public void testCustomCreateTenantWhitelistPattern() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.cadenzaflow.cfg.xml")
       .buildProcessEngine();
     processEngine.getProcessEngineConfiguration().setTenantResourceWhitelistPattern("[a-zA-Z]+");
 
@@ -186,7 +186,7 @@ public class IdentityServiceTenantTest {
   @Test
   public void testCustomTenantWhitelistPattern() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.cadenzaflow.cfg.xml")
       .buildProcessEngine();
     processEngine.getProcessEngineConfiguration().setTenantResourceWhitelistPattern("[a-zA-Z]+");
 
@@ -243,7 +243,7 @@ public class IdentityServiceTenantTest {
   @Test
   public void createTenantWithGenericResourceId() {
     processEngine = ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.camunda.cfg.xml")
+      .createProcessEngineConfigurationFromResource("org/cadenzaflow/bpm/engine/test/api/identity/generic.resource.id.whitelist.cadenzaflow.cfg.xml")
       .buildProcessEngine();
 
     Tenant tenant = processEngine.getIdentityService().newTenant("*");

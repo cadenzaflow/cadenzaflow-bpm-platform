@@ -43,7 +43,7 @@ public class CustomHistoryTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/standalone/history/customhistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/customhistory.cadenzaflow.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

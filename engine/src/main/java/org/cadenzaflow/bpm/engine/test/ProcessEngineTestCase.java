@@ -43,7 +43,7 @@ import junit.framework.TestCase;
  * <p>Usage: <code>public class YourTest extends ProcessEngineTestCase</code></p>
  *
  * <p>The ProcessEngine and the services available to subclasses through protected member fields.
- * The processEngine will be initialized by default with the camunda.cfg.xml resource
+ * The processEngine will be initialized by default with the cadenzaflow.cfg.xml resource
  * on the classpath.  To specify a different configuration file, override the
  * {@link #getConfigurationResource()} method.
  * Process engines will be cached statically.  The first time the setUp is called for a given
@@ -68,7 +68,7 @@ import junit.framework.TestCase;
  */
 public class ProcessEngineTestCase extends TestCase {
 
-  protected String configurationResource = "camunda.cfg.xml";
+  protected String configurationResource = "cadenzaflow.cfg.xml";
   protected String configurationResourceCompat = "activiti.cfg.xml";
   protected String deploymentId = null;
 
@@ -87,7 +87,7 @@ public class ProcessEngineTestCase extends TestCase {
 
   protected boolean skipTest = false;
 
-  /** uses 'camunda.cfg.xml' as it's configuration resource */
+  /** uses 'cadenzaflow.cfg.xml' as it's configuration resource */
   public ProcessEngineTestCase() {
   }
 

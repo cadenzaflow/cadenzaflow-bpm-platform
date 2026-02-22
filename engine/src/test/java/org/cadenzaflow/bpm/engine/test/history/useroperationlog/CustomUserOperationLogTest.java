@@ -40,7 +40,7 @@ public class CustomUserOperationLogTest  {
 
     @ClassRule
     public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-            "org/cadenzaflow/bpm/engine/test/history/useroperationlog/enable.legacy.user.operation.log.camunda.cfg.xml");
+            "org/cadenzaflow/bpm/engine/test/history/useroperationlog/enable.legacy.user.operation.log.cadenzaflow.cfg.xml");
 
 
     private static final String TASK_ID = UUID.randomUUID().toString();

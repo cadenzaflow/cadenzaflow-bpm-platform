@@ -54,7 +54,7 @@ import org.cadenzaflow.bpm.engine.impl.util.ReflectUtil;
  * on this class.<br>
  * <br>
  * The {@link #init()} method will try to build one {@link ProcessEngine} for
- * each camunda.cfg.xml file found on the classpath.  If you have more then one,
+ * each cadenzaflow.cfg.xml file found on the classpath.  If you have more then one,
  * make sure you specify different process.engine.name values.
  *
  * @author Tom Baeyens
@@ -77,7 +77,7 @@ public abstract class ProcessEngines {
   }
 
   /** Initializes all process engines that can be found on the classpath for
-   * resources <code>camunda.cfg.xml</code> (plain Activiti style configuration)
+   * resources <code>cadenzaflow.cfg.xml</code> (plain Activiti style configuration)
    * and for resources <code>activiti-context.xml</code> (Spring style configuration). */
   public synchronized static void init(boolean forceCreate) {
     if (!isInitialized) {
@@ -88,13 +88,13 @@ public abstract class ProcessEngines {
       ClassLoader classLoader = ReflectUtil.getClassLoader();
       Enumeration<URL> resources = null;
       try {
-        resources = classLoader.getResources("camunda.cfg.xml");
+        resources = classLoader.getResources("cadenzaflow.cfg.xml");
       } catch (IOException e) {
         try {
           resources = classLoader.getResources("activiti.cfg.xml");
         } catch(IOException ex) {
           if(forceCreate) {
-            throw new ProcessEngineException("problem retrieving camunda.cfg.xml and activiti.cfg.xml resources on the classpath: "+System.getProperty("java.class.path"), ex);
+            throw new ProcessEngineException("problem retrieving cadenzaflow.cfg.xml and activiti.cfg.xml resources on the classpath: "+System.getProperty("java.class.path"), ex);
           } else {
             return;
           }

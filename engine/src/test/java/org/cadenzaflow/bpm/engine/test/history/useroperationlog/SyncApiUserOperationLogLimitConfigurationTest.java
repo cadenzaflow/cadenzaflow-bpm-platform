@@ -41,7 +41,7 @@ public class SyncApiUserOperationLogLimitConfigurationTest {
   public void shouldConfigureDefault() {
     // given standard configuration
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("camunda.cfg.xml");
+        .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml");
 
     // when engine startup
     startEngineManaged(processEngineConfiguration);

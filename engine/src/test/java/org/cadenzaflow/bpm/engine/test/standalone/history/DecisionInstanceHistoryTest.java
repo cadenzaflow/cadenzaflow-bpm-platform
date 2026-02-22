@@ -45,7 +45,7 @@ public class DecisionInstanceHistoryTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/standalone/history/decisionInstanceHistory.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/history/decisionInstanceHistory.cadenzaflow.cfg.xml");
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
 

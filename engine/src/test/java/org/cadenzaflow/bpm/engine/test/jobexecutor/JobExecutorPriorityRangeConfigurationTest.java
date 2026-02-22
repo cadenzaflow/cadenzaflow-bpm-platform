@@ -36,7 +36,7 @@ public class JobExecutorPriorityRangeConfigurationTest {
   @Before
   public void setup() {
     config = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("camunda.cfg.xml");
+        .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml");
     defaultJobExecutorPriorityRangeMin = config.getJobExecutorPriorityRangeMin();
     defaultJobExecutorPriorityRangeMax = config.getJobExecutorPriorityRangeMax();
   }

@@ -34,7 +34,7 @@ public class WrongDbException extends ProcessEngineException {
 
   public WrongDbException(String libraryVersion, String dbVersion) {
     this("version mismatch: activiti library version is '" + libraryVersion + "', db version is " +
-        dbVersion +" Hint: Set <property name=\"databaseSchemaUpdate\" to value=\"true\" or value=\"create-drop\" (use create-drop for testing only!) in bean processEngineConfiguration in camunda.cfg.xml for automatic schema creation",
+        dbVersion +" Hint: Set <property name=\"databaseSchemaUpdate\" to value=\"true\" or value=\"create-drop\" (use create-drop for testing only!) in bean processEngineConfiguration in cadenzaflow.cfg.xml for automatic schema creation",
         libraryVersion, dbVersion);
   }
 

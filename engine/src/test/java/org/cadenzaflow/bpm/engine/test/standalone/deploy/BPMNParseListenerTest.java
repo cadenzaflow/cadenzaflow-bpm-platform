@@ -66,7 +66,7 @@ public class BPMNParseListenerTest {
 
   @ClassRule
   public static ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(
-      "org/cadenzaflow/bpm/engine/test/standalone/deploy/bpmn.parse.listener.camunda.cfg.xml");
+      "org/cadenzaflow/bpm/engine/test/standalone/deploy/bpmn.parse.listener.cadenzaflow.cfg.xml");
 
   protected ProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
   protected ProcessEngineTestRule engineTestRule = new ProcessEngineTestRule(engineRule);

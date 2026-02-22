@@ -35,7 +35,7 @@ import org.junit.Test;
 public class BatchInvocationsPerJobByBatchTypeConfigTest {
 
   protected static final String PROCESS_ENGINE_CONFIG =
-      "camunda.cfg.invocationsPerJobByBatchType.xml";
+      "cadenzaflow.cfg.invocationsPerJobByBatchType.xml";
 
   protected static final String CONFIG_LOGGER = "org.cadenzaflow.bpm.engine.cfg";
 
