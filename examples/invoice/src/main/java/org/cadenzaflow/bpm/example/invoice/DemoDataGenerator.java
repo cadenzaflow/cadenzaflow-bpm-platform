@@ -79,28 +79,28 @@ public class DemoDataGenerator {
       user.setFirstName("Demo");
       user.setLastName("Demo");
       user.setPassword("demo");
-      user.setEmail("demo@camunda.org");
+      user.setEmail("demo@cadenzaflow.org");
       identityService.saveUser(user, true);
 
       User user2 = identityService.newUser("john");
       user2.setFirstName("John");
       user2.setLastName("Doe");
       user2.setPassword("john");
-      user2.setEmail("john@camunda.org");
+      user2.setEmail("john@cadenzaflow.org");
       identityService.saveUser(user2, true);
 
       User user3 = identityService.newUser("mary");
       user3.setFirstName("Mary");
       user3.setLastName("Anne");
       user3.setPassword("mary");
-      user3.setEmail("mary@camunda.org");
+      user3.setEmail("mary@cadenzaflow.org");
       identityService.saveUser(user3, true);
 
       User user4 = identityService.newUser("peter");
       user4.setFirstName("Peter");
       user4.setLastName("Meter");
       user4.setPassword("peter");
-      user4.setEmail("peter@camunda.org");
+      user4.setEmail("peter@cadenzaflow.org");
       identityService.saveUser(user4, true);
 
       Group salesGroup = identityService.newGroup("sales");
@@ -143,7 +143,7 @@ public class DemoDataGenerator {
       identityService.createMembership("demo", "sales");
       identityService.createMembership("demo", "accounting");
       identityService.createMembership("demo", "management");
-      identityService.createMembership("demo", "camunda-admin");
+      identityService.createMembership("demo", "cadenzaflow-admin");
 
       identityService.createMembership("john", "sales");
       identityService.createMembership("mary", "accounting");
