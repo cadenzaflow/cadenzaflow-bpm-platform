@@ -46,7 +46,7 @@ public class ReflectionCompatibilityTest {
             "]" +
             "}"
     );
-    StandardResourceDescriptionResolver testStandardResourceDescriptionResolver = new StandardResourceDescriptionResolver("camunda-bpm-platform", BpmPlatformExtension.class.getPackage().getName() + ".TestLocalDescriptions", BpmPlatformExtension.class.getClassLoader());
+    StandardResourceDescriptionResolver testStandardResourceDescriptionResolver = new StandardResourceDescriptionResolver("cadenzaflow-bpm-platform", BpmPlatformExtension.class.getPackage().getName() + ".TestLocalDescriptions", BpmPlatformExtension.class.getClassLoader());
     SimpleMapAttributeDefinition simpleMapAttributeDefinition = new SimpleMapAttributeDefinition.Builder("test-map", false).build();
     FixedObjectTypeAttributeDefinition fixedObjectTypeAttributeDefinition = FixedObjectTypeAttributeDefinition.Builder.of("test-fixed-object", simpleMapAttributeDefinition).build();
     ResourceBundle resourceBundle = testStandardResourceDescriptionResolver.getResourceBundle(null);

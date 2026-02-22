@@ -97,7 +97,7 @@ public class JBossSubsystemXMLTest extends AbstractSubsystemTest {
       ServiceNames.forManagedThreadPool(SubsystemAttributeDefinitons.THREAD_POOL_NAME.getDefaultValue().asString());
 
   public static final ServiceName PROCESS_ENGINE_SERVICE_BINDING_SERVICE_NAME = ContextNames.GLOBAL_CONTEXT_SERVICE_NAME
-    .append("camunda-bpm-platform")
+    .append("cadenzaflow-bpm-platform")
     .append("process-engine")
     .append("ProcessEngineService!org.cadenzaflow.bpm.ProcessEngineService");
 
