@@ -563,7 +563,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <copy file="target/test-classes/camunda.cfg.prefix.xml" tofile="target/test-classes/camunda.cfg.xml" overwrite="true" />
+                    <copy file="target/test-classes/cadenzaflow.cfg.prefix.xml" tofile="target/test-classes/cadenzaflow.cfg.xml" overwrite="true" />
                   </target>
                 </configuration>
               </execution>
