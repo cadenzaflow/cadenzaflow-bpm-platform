@@ -27,7 +27,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(DmnEngineExtension.class)
 class DmnEngineExtensionTest {
-  public static final String DMN_MINIMAL = "org/camunda/bpm/dmn/engine/test/junit5/DecisionWithLiteralExpression.dmn";
+  public static final String DMN_MINIMAL = "org/cadenzaflow/bpm/dmn/engine/test/junit5/DecisionWithLiteralExpression.dmn";
 
   DmnEngine dmnEngineField;
 
