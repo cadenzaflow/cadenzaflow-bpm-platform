@@ -1,4 +1,4 @@
-camunda.bpm.run.ldap:
+cadenzaflow.bpm.run.ldap:
   enabled: true
   server-url: http://foo.bar
   manager-dn: managerdn

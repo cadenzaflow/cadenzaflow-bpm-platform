@@ -63,7 +63,7 @@ public class CamundaBpmRunConfiguration {
   }
 
   @Bean
-  public CamundaBpmRunDeploymentConfiguration camundaDeploymentConfiguration(@Value("${camunda.deploymentDir:#{null}}") String deploymentDir) {
+  public CamundaBpmRunDeploymentConfiguration camundaDeploymentConfiguration(@Value("${cadenzaflow.deploymentDir:#{null}}") String deploymentDir) {
     return new CamundaBpmRunDeploymentConfiguration(deploymentDir);
   }
 

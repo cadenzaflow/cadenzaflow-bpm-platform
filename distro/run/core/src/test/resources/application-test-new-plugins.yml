@@ -1,4 +1,4 @@
-camunda.bpm.run.process-engine-plugins:
+cadenzaflow.bpm.run.process-engine-plugins:
   - plugin-class: org.cadenzaflow.bpm.run.test.plugins.TestFirstPlugin
     plugin-parameters:
       parameterOne: valueOne
