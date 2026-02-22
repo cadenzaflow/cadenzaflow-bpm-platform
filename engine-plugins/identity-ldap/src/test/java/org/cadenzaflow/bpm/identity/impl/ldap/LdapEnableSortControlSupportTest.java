@@ -44,7 +44,7 @@ public class LdapEnableSortControlSupportTest {
   public static LdapTestEnvironmentRule ldapRule = new LdapTestEnvironmentRule();
 
   @Rule
-  public ProcessEngineRule engineRule = new ProcessEngineRule("camunda.ldap.enable.sort.control.support.cfg.xml");
+  public ProcessEngineRule engineRule = new ProcessEngineRule("cadenzaflow.ldap.enable.sort.control.support.cfg.xml");
 
   IdentityService identityService;
   LdapTestEnvironment ldapTestEnvironment;

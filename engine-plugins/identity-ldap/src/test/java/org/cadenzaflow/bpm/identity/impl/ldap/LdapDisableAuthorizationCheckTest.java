@@ -47,7 +47,7 @@ public class LdapDisableAuthorizationCheckTest {
   @ClassRule
   public static LdapTestEnvironmentRule ldapRule = new LdapTestEnvironmentRule();
   @Rule
-  public ProcessEngineRule engineRule = new ProcessEngineRule("camunda.ldap.disable.authorization.check.cfg.xml");
+  public ProcessEngineRule engineRule = new ProcessEngineRule("cadenzaflow.ldap.disable.authorization.check.cfg.xml");
 
   ProcessEngineConfiguration processEngineConfiguration;
   IdentityService identityService;

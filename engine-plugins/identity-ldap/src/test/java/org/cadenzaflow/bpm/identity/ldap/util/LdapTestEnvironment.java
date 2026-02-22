@@ -212,30 +212,30 @@ public class LdapTestEnvironment {
 
     createGroup("office-berlin");
 
-    String dnRoman = createUserUid("roman", "office-berlin", "Roman", "Smirnov", "roman@camunda.org");
-    String dnRobert = createUserUid("robert", "office-berlin", "Robert", "Gimbel", "robert@camunda.org");
-    String dnDaniel = createUserUid("daniel", "office-berlin", "Daniel", "Meyer", "daniel@camunda.org");
-    String dnGonzo = createUserUid("gonzo", "office-berlin", "Gonzo", "The Great", "gonzo@camunda.org");
-    String dnRowlf = createUserUid("rowlf", "office-berlin", "Rowlf", "The Dog", "rowlf@camunda.org");
-    String dnPepe = createUserUid("pepe", "office-berlin", "Pepe", "The King Prawn", "pepe@camunda.org");
-    String dnRizzo = createUserUid("rizzo", "office-berlin", "Rizzo", "The Rat", "rizzo@camunda.org");
+    String dnRoman = createUserUid("roman", "office-berlin", "Roman", "Smirnov", "roman@cadenzaflow.org");
+    String dnRobert = createUserUid("robert", "office-berlin", "Robert", "Gimbel", "robert@cadenzaflow.org");
+    String dnDaniel = createUserUid("daniel", "office-berlin", "Daniel", "Meyer", "daniel@cadenzaflow.org");
+    String dnGonzo = createUserUid("gonzo", "office-berlin", "Gonzo", "The Great", "gonzo@cadenzaflow.org");
+    String dnRowlf = createUserUid("rowlf", "office-berlin", "Rowlf", "The Dog", "rowlf@cadenzaflow.org");
+    String dnPepe = createUserUid("pepe", "office-berlin", "Pepe", "The King Prawn", "pepe@cadenzaflow.org");
+    String dnRizzo = createUserUid("rizzo", "office-berlin", "Rizzo", "The Rat", "rizzo@cadenzaflow.org");
 
     createGroup("office-london");
 
-    String dnOscar = createUserUid("oscar", "office-london", "Oscar", "The Crouch", "oscar@camunda.org");
-    String dnMonster = createUserUid("monster", "office-london", "Cookie", "Monster", "monster@camunda.org");
+    String dnOscar = createUserUid("oscar", "office-london", "Oscar", "The Crouch", "oscar@cadenzaflow.org");
+    String dnMonster = createUserUid("monster", "office-london", "Cookie", "Monster", "monster@cadenzaflow.org");
 
     createGroup("office-home");
 
     // Doesn't work using backslashes, end up with two uid attributes
     // See https://issues.apache.org/jira/browse/DIRSERVER-1442
-    String dnDavid = createUserUid("david(IT)", "office-home", "David", "Howe\\IT\\", "david@camunda.org");
+    String dnDavid = createUserUid("david(IT)", "office-home", "David", "Howe\\IT\\", "david@cadenzaflow.org");
 
-    String dnRuecker = createUserUid("ruecker", "office-home", "Bernd", "Ruecker", "ruecker@camunda.org");
+    String dnRuecker = createUserUid("ruecker", "office-home", "Bernd", "Ruecker", "ruecker@cadenzaflow.org");
 
     createGroup("office-external");
 
-    String dnFozzie = createUserCN("fozzie", "office-external", "Bear", "Fozzie", "fozzie@camunda.org");
+    String dnFozzie = createUserCN("fozzie", "office-external", "Bear", "Fozzie", "fozzie@cadenzaflow.org");
 
     createRole("management", dnRuecker, dnRobert, dnDaniel);
     createRole("development", dnRoman, dnDaniel, dnOscar);
@@ -254,7 +254,7 @@ public class LdapTestEnvironment {
               OFFICE_BERKELEY,
               "jan",
               lastName,
-              "jan.fisher" + lastName + "@camunda.org");
+              "jan.fisher" + lastName + "@cadenzaflow.org");
     }
 
     // Create a lot of groups
