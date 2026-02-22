@@ -37,7 +37,7 @@ public class DmnBusinessRuleTaskResultMappingTest extends ResourceProcessEngineT
   protected static final String STORE_DECISION_RESULT_BPMN = "org/cadenzaflow/spin/plugin/DmnBusinessRuleTaskResultMappingTest.testStoreDecisionResult.bpmn20.xml";
 
   public DmnBusinessRuleTaskResultMappingTest() {
-    super("org/cadenzaflow/spin/plugin/json.camunda.cfg.xml");
+    super("org/cadenzaflow/spin/plugin/json.cadenzaflow.cfg.xml");
   }
 
   @Deployment(resources = {STORE_DECISION_RESULT_BPMN, TEST_DECISION })

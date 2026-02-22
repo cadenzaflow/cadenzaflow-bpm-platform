@@ -42,7 +42,7 @@ public class InjectCustomProcessEngineTest extends CdiProcessEngineTestCase {
 
   @Before
   public void init() {
-    processEngine = TestHelper.getProcessEngine("org/cadenzaflow/bpm/engine/cdi/test/impl/util/camunda.cfg.xml");
+    processEngine = TestHelper.getProcessEngine("org/cadenzaflow/bpm/engine/cdi/test/impl/util/cadenzaflow.cfg.xml");
     defaultProcessEngine = BpmPlatform.getProcessEngineService().getDefaultProcessEngine();
 
     if (defaultProcessEngine != null) {

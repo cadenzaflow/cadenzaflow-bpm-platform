@@ -30,7 +30,7 @@ public class SpinProcessEnginePluginConfigurationTest {
 
   @Rule
   public ProcessEngineBootstrapRule bootstrapRule
-      = new ProcessEngineBootstrapRule("custom.camunda.cfg.xml");
+      = new ProcessEngineBootstrapRule("custom.cadenzaflow.cfg.xml");
 
   @Rule
   public ProvidedProcessEngineRule engineRule = new ProvidedProcessEngineRule(bootstrapRule);
