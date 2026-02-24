@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - 'cadenzaflow-main'
-      - 'cadenzaflow-*'
-      - 'release/prod'
-      - 'release/test'
     paths:
       - 'src/**'
       - 'pom.xml'
@@ -15,7 +12,6 @@ on:
   pull_request:
     branches:
       - 'cadenzaflow-main'
-      - 'release/*'
   workflow_dispatch:
     inputs:
       version_bump:
