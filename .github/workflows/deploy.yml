@@ -22,15 +22,126 @@ on:
 permissions:
   contents: write
 
+env:
+  APP_NAME: cadenzaflow-bpm-platform
+  IMAGE_BASE: cadenzaflow/cadenzaflow-bpm-platform
+  REGISTRY: registry.cadenzaflow.com
+  GITOPS_REPO: cadenzaflow/cadenzaflow-devops
+  SONAR_HOST_URL: http://sonarqube-sonarqube.sonarqube.svc.cluster.local:9000
+  SONAR_PROJECT_KEY: cadenzaflow-bpm-platform
+  MAIL_TO: ali.aras@pia-team.com
+  SMTP_SERVER: mail-eu.smtp2go.com
+  SMTP_PORT: "2525"
+
 jobs:
   build-deploy:
-    uses: cadenzaflow/cadenzaflow-devops/.github/workflows/java-ci-cd.yaml@main
-    with:
-      app_name: cadenzaflow-bpm-platform
-      image_base: cadenzaflow/cadenzaflow-bpm-platform
-      runner: cadenzaflow-runner
-      sonar_project_key: cadenzaflow-bpm-platform
-      mail_to: ali.aras@pia-team.com
-      version_bump: ${{ inputs.version_bump }}
-    secrets: inherit
-# pipeline test
+    runs-on: cadenzaflow-runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # --- Version ---
+      - name: Calculate version
+        id: version
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/version-calculator@main
+        with:
+          app_name: ${{ env.APP_NAME }}
+          image_base: ${{ env.IMAGE_BASE }}
+          version_bump: ${{ inputs.version_bump }}
+
+      # --- Security: Trivy Repo Scan ---
+      - name: Trivy repository scan
+        id: trivy_repo
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/trivy-scan@main
+        with:
+          scan_type: repo
+          scan_target: .
+          severity: HIGH,CRITICAL
+          output_file: trivy-repo-report.json
+
+      # --- Build ---
+      - name: Build with Maven
+        run: mvn clean package -B -DskipTests
+
+      # --- Security: Trivy FS Scan ---
+      - name: Trivy filesystem scan
+        id: trivy_fs
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/trivy-scan@main
+        with:
+          scan_type: fs
+          scan_target: .
+          severity: HIGH,CRITICAL
+          output_file: trivy-fs-report.json
+
+      # --- Quality: SonarQube ---
+      - name: SonarQube scan
+        id: sonarqube
+        if: env.SONAR_PROJECT_KEY != ''
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/sonarqube-scan@main
+        with:
+          sonar_host_url: ${{ env.SONAR_HOST_URL }}
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
+          project_key: ${{ env.SONAR_PROJECT_KEY }}
+          project_name: ${{ env.APP_NAME }}
+
+      # --- Docker Build & Push ---
+      - name: Build & Push Docker image
+        id: docker
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/docker-build-push@main
+        with:
+          registry: ${{ env.REGISTRY }}
+          image_name: ${{ steps.version.outputs.image_name }}
+          tag: ${{ steps.version.outputs.full_version }}
+          environment: ${{ steps.version.outputs.environment }}
+          nexus_username: ${{ secrets.NEXUS_USERNAME }}
+          nexus_password: ${{ secrets.NEXUS_PASSWORD }}
+
+      # --- Security: Trivy Image Scan ---
+      - name: Trivy image scan
+        id: trivy_image
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/trivy-scan@main
+        with:
+          scan_type: image
+          scan_target: ${{ env.REGISTRY }}/${{ steps.version.outputs.image_name }}:${{ steps.version.outputs.full_version }}
+          severity: HIGH,CRITICAL
+          output_file: trivy-image-report.json
+
+      # --- Git Tag ---
+      - name: Create Git tag
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/git-tag@main
+        with:
+          app_name: ${{ env.APP_NAME }}
+          version: ${{ steps.version.outputs.full_version }}
+          environment: ${{ steps.version.outputs.environment }}
+
+      # --- GitOps Update ---
+      - name: Update GitOps
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/gitops-update@main
+        with:
+          app_name: ${{ env.APP_NAME }}
+          environment: ${{ steps.version.outputs.environment }}
+          registry: ${{ env.REGISTRY }}
+          image_name: ${{ steps.version.outputs.image_name }}
+          version: ${{ steps.version.outputs.full_version }}
+          gitops_repo: ${{ env.GITOPS_REPO }}
+          gitops_token: ${{ secrets.GITOPS_TOKEN }}
+
+      # --- Security Report: PDF + Mail ---
+      - name: Generate security report and send mail
+        if: env.MAIL_TO != ''
+        uses: cadenzaflow/cadenzaflow-devops/.github/actions/security-report@main
+        with:
+          app_name: ${{ env.APP_NAME }}
+          version: ${{ steps.version.outputs.full_version }}
+          environment: ${{ steps.version.outputs.environment }}
+          trivy_repo_report: ${{ steps.trivy_repo.outputs.report_path }}
+          trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
+          trivy_image_report: ${{ steps.trivy_image.outputs.report_path }}
+          sonarqube_report: ${{ steps.sonarqube.outputs.report_path }}
+          mail_to: ${{ env.MAIL_TO }}
+          smtp_server: ${{ env.SMTP_SERVER }}
+          smtp_port: ${{ env.SMTP_PORT }}
+          smtp_username: ${{ secrets.SMTP_USERNAME }}
+          smtp_password: ${{ secrets.SMTP_PASSWORD }}
