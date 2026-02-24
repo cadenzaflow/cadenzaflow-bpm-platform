@@ -16,7 +16,7 @@
       <dependency>
         <groupId>org.cadenzaflow.bpm</groupId>
         <artifactId>cadenzaflow-bom</artifactId>
-        <version>1.0.0</version>
+        <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -73,7 +73,7 @@
                 </goals>
                 <phase>process-test-classes</phase>
                 <configuration>
-                  <mainClass>org.camunda.bpm.qa.rolling.update.CreateOldEngineMain</mainClass>
+                  <mainClass>org.cadenzaflow.bpm.qa.rolling.update.CreateOldEngineMain</mainClass>
                   <includePluginDependencies>false</includePluginDependencies>
                 </configuration>
               </execution>
