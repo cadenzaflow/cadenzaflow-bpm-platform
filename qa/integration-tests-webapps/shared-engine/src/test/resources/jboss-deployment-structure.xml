@@ -2,7 +2,7 @@
 <jboss-deployment-structure>
   <deployment>
     <dependencies>
-      <module name="org.camunda.bpm.camunda-engine" />
+      <module name="org.cadenzaflow.bpm.cadenzaflow-engine" />
     </dependencies>
   </deployment>
 </jboss-deployment-structure>
