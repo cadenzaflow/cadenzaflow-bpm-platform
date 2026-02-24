@@ -17,7 +17,7 @@
       <dependency>
         <groupId>org.cadenzaflow.bpm</groupId>
         <artifactId>cadenzaflow-bom</artifactId>
-        <version>1.0.0</version>
+        <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>

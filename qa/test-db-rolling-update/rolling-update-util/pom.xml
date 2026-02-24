@@ -16,7 +16,7 @@
     <dependency>
         <groupId>org.cadenzaflow.bpm</groupId>
         <artifactId>cadenzaflow-bom</artifactId>
-        <version>1.0.0</version>
+        <version>${project.version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -33,6 +33,11 @@
       <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
       <artifactId>cadenzaflow-qa-upgrade-scenario-util</artifactId>
       <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm.model</groupId>
+      <artifactId>cadenzaflow-bpmn-model</artifactId>
     </dependency>
   </dependencies>
 

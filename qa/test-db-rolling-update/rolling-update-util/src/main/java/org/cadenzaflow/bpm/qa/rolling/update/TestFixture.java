@@ -60,7 +60,7 @@ public class TestFixture {
     currentFixtureTag = tag;
 
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml");
     ProcessEngine processEngine = processEngineConfiguration.buildProcessEngine();
 
     // register test scenarios
@@ -89,7 +89,7 @@ public class TestFixture {
     processEngine.close();
 
     processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-        .createProcessEngineConfigurationFromResource("camunda.auth.cfg.xml");
+        .createProcessEngineConfigurationFromResource("cadenzaflow.auth.cfg.xml");
     processEngine = processEngineConfiguration.buildProcessEngine();
 
     // register test auth scenarios
