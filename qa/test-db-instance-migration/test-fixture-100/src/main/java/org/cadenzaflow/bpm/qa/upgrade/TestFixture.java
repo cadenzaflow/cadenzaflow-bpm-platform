@@ -22,14 +22,14 @@ import org.cadenzaflow.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 
 public class TestFixture {
 
-  public static final String ENGINE_VERSION = "7.23.0";
+  public static final String ENGINE_VERSION = "1.0.0";
 
   public TestFixture(ProcessEngine processEngine) {
   }
 
   public static void main(String... args) {
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-      .createProcessEngineConfigurationFromResource("camunda.cfg.xml");
+      .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml");
     ProcessEngine processEngine = processEngineConfiguration.buildProcessEngine();
 
     // register test scenarios

@@ -7,25 +7,27 @@
     <version>1.1.0</version>
   </parent>
 
-  <artifactId>cadenzaflow-qa-upgrade-test-fixture-723</artifactId>
+  <artifactId>cadenzaflow-qa-upgrade-test-fixture-110</artifactId>
   <packaging>jar</packaging>
-  <name>CadenzaFlow BPM - QA - upgrade - instance migration - test fixture - 7.23.0</name>
+
+  <name>CadenzaFlow BPM - QA - upgrade - instance migration - test fixture - 1.1.0</name>
 
   <properties>
-    <camunda.version.previous>1.0.0</camunda.version.previous>
+    <cadenzaflow.version.current>${project.version}</cadenzaflow.version.current>
+    <cadenzaflow.version.previous>1.0.0</cadenzaflow.version.previous>
   </properties>
 
-   <dependencyManagement>
-     <dependencies>
-       <dependency>
-         <groupId>org.cadenzaflow.bpm</groupId>
-         <artifactId>cadenzaflow-bom</artifactId>
-         <version>1.0.0</version>
-         <scope>import</scope>
-         <type>pom</type>
-       </dependency>
-     </dependencies>
-   </dependencyManagement>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-bom</artifactId>
+        <version>${project.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -81,7 +83,7 @@
                   <goal>update</goal>
                 </goals>
                 <configuration>
-                  <changeLogFile>camunda-changelog.xml</changeLogFile>
+                  <changeLogFile>cadenzaflow-changelog.xml</changeLogFile>
                   <changeLogDirectory>${project.build.directory}/scripts-current/sql/liquibase/</changeLogDirectory>
                 </configuration>
               </execution>
@@ -103,7 +105,7 @@
                     <artifactItem>
                       <groupId>org.cadenzaflow.bpm.distro</groupId>
                       <artifactId>cadenzaflow-sql-scripts</artifactId>
-                      <version>1.0.0</version>
+                      <version>${cadenzaflow.version.current}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/scripts-current</outputDirectory>
                       <overWrite>true</overWrite>
@@ -113,7 +115,8 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
+          <!-- uncomment when 7.24 is released -->
+          <!--<plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <configuration>
@@ -130,11 +133,11 @@
                 </goals>
                 <phase>process-test-classes</phase>
                 <configuration>
-                  <mainClass>org.camunda.bpm.qa.upgrade.TestFixture</mainClass>
+                  <mainClass>org.cadenzaflow.bpm.qa.upgrade.TestFixture</mainClass>
                 </configuration>
               </execution>
             </executions>
-          </plugin>
+          </plugin>-->
         </plugins>
       </build>
     </profile>
