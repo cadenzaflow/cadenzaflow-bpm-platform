@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - 'cadenzaflow-main'
-    paths:
-      - 'src/**'
-      - 'pom.xml'
-      - 'Dockerfile'
-      - 'docker/**'
   pull_request:
     branches:
       - 'cadenzaflow-main'
