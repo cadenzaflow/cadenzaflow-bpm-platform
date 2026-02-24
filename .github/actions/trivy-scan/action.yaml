@@ -49,6 +49,8 @@ runs:
         # JSON report for PDF generation
         trivy ${{ inputs.scan_type }} \
           --severity ${{ inputs.severity }} \
+          --scanners vuln \
+          --timeout 30m \
           --format json \
           --output "$REPORT_PATH" \
           ${{ inputs.scan_target }} || true
@@ -56,6 +58,8 @@ runs:
         # Table report for console output
         trivy ${{ inputs.scan_type }} \
           --severity ${{ inputs.severity }} \
+          --scanners vuln \
+          --timeout 30m \
           --format table \
           --output "$TABLE_PATH" \
           ${{ inputs.scan_target }} || true

@@ -71,25 +71,26 @@ jobs:
           severity: HIGH,CRITICAL
           output_file: trivy-fs-report.json
 
-      # --- Build (disabled for now) ---
-      # - name: Set up JDK 17
-      #   uses: actions/setup-java@v4
-      #   with:
-      #     java-version: '17'
-      #     distribution: 'temurin'
-      # - name: Build with Maven
-      #   run: ./mvnw clean package -B -DskipTests
+      # --- Build ---
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-      # --- Quality: SonarQube (disabled - needs Maven build first) ---
-      # - name: SonarQube scan
-      #   id: sonarqube
-      #   if: env.SONAR_PROJECT_KEY != ''
-      #   uses: ./.github/actions/sonarqube-scan
-      #   with:
-      #     sonar_host_url: ${{ env.SONAR_HOST_URL }}
-      #     sonar_token: ${{ secrets.SONAR_TOKEN }}
-      #     project_key: ${{ env.SONAR_PROJECT_KEY }}
-      #     project_name: ${{ env.APP_NAME }}
+      - name: Build with Maven
+        run: ./mvnw clean package -B -DskipTests
+
+      # --- Quality: SonarQube ---
+      - name: SonarQube scan
+        id: sonarqube
+        if: env.SONAR_PROJECT_KEY != ''
+        uses: ./.github/actions/sonarqube-scan
+        with:
+          sonar_host_url: ${{ env.SONAR_HOST_URL }}
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
+          project_key: ${{ env.SONAR_PROJECT_KEY }}
+          project_name: ${{ env.APP_NAME }}
 
       # --- Docker Build & Push (disabled for now) ---
       # - name: Build & Push Docker image
@@ -144,7 +145,7 @@ jobs:
           trivy_repo_report: ${{ steps.trivy_repo.outputs.report_path }}
           trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
           trivy_image_report: ''
-          sonarqube_report: ''
+          sonarqube_report: ${{ steps.sonarqube.outputs.report_path }}
           mail_to: ${{ env.MAIL_TO }}
           smtp_server: ${{ env.SMTP_SERVER }}
           smtp_port: ${{ env.SMTP_PORT }}
