@@ -1,0 +1,44 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - 'cadenzaflow-main'
+      - 'cadenzaflow-*'
+      - 'release/prod'
+      - 'release/test'
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+      - 'Dockerfile'
+      - 'docker/**'
+  pull_request:
+    branches:
+      - 'cadenzaflow-main'
+      - 'release/*'
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy:
+    uses: cadenzaflow/cadenzaflow-devops/.github/workflows/java-ci-cd.yaml@main
+    with:
+      app_name: cadenzaflow-bpm-platform
+      image_base: cadenzaflow/cadenzaflow-bpm-platform
+      runner: cadenzaflow-runner
+      sonar_project_key: cadenzaflow-bpm-platform
+      mail_to: ali.aras@pia-team.com
+      version_bump: ${{ inputs.version_bump }}
+    secrets: inherit
