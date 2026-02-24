@@ -68,12 +68,12 @@
               minIdle="5"
               maxIdle="20" />
               
-    <Resource name="global/camunda-bpm-platform/process-engine/ProcessEngineService!org.cadenzaflow.bpm.ProcessEngineService" auth="Container"
+    <Resource name="global/cadenzaflow-bpm-platform/process-engine/ProcessEngineService!org.cadenzaflow.bpm.ProcessEngineService" auth="Container"
               type="org.cadenzaflow.bpm.ProcessEngineService"
               description="CadenzaFlow Platform Process Engine Service"
               factory="org.cadenzaflow.bpm.container.impl.jndi.ProcessEngineServiceObjectFactory" />
               
-    <Resource name="global/camunda-bpm-platform/process-engine/ProcessApplicationService!org.cadenzaflow.bpm.ProcessApplicationService" auth="Container"
+    <Resource name="global/cadenzaflow-bpm-platform/process-engine/ProcessApplicationService!org.cadenzaflow.bpm.ProcessApplicationService" auth="Container"
               type="org.cadenzaflow.bpm.ProcessApplicationService"
               description="CadenzaFlow Platform Process Application Service"
               factory="org.cadenzaflow.bpm.container.impl.jndi.ProcessApplicationServiceObjectFactory" />

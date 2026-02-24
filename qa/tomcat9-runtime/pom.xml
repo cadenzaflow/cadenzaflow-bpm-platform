@@ -231,7 +231,7 @@
                 <phase>generate-resources</phase>
                 <configuration>
                   <target>
-                    <untar src="${project.build.directory}/camunda-qa-tomcat9.tar.gz" dest="${project.build.directory}/" compression="gzip" />
+                    <untar src="${project.build.directory}/cadenzaflow-qa-tomcat9.tar.gz" dest="${project.build.directory}/" compression="gzip" />
                   </target>
                 </configuration>
                 <goals>
