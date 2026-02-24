@@ -45,7 +45,7 @@ jobs:
       # --- Version ---
       - name: Calculate version
         id: version
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/version-calculator@main
+        uses: ./.github/actions/version-calculator
         with:
           app_name: ${{ env.APP_NAME }}
           image_base: ${{ env.IMAGE_BASE }}
@@ -54,7 +54,7 @@ jobs:
       # --- Security: Trivy Repo Scan ---
       - name: Trivy repository scan
         id: trivy_repo
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/trivy-scan@main
+        uses: ./.github/actions/trivy-scan
         with:
           scan_type: repo
           scan_target: .
@@ -68,7 +68,7 @@ jobs:
       # --- Security: Trivy FS Scan ---
       - name: Trivy filesystem scan
         id: trivy_fs
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/trivy-scan@main
+        uses: ./.github/actions/trivy-scan
         with:
           scan_type: fs
           scan_target: .
@@ -79,7 +79,7 @@ jobs:
       - name: SonarQube scan
         id: sonarqube
         if: env.SONAR_PROJECT_KEY != ''
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/sonarqube-scan@main
+        uses: ./.github/actions/sonarqube-scan
         with:
           sonar_host_url: ${{ env.SONAR_HOST_URL }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
@@ -89,7 +89,7 @@ jobs:
       # --- Docker Build & Push ---
       - name: Build & Push Docker image
         id: docker
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/docker-build-push@main
+        uses: ./.github/actions/docker-build-push
         with:
           registry: ${{ env.REGISTRY }}
           image_name: ${{ steps.version.outputs.image_name }}
@@ -101,7 +101,7 @@ jobs:
       # --- Security: Trivy Image Scan ---
       - name: Trivy image scan
         id: trivy_image
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/trivy-scan@main
+        uses: ./.github/actions/trivy-scan
         with:
           scan_type: image
           scan_target: ${{ env.REGISTRY }}/${{ steps.version.outputs.image_name }}:${{ steps.version.outputs.full_version }}
@@ -110,7 +110,7 @@ jobs:
 
       # --- Git Tag ---
       - name: Create Git tag
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/git-tag@main
+        uses: ./.github/actions/git-tag
         with:
           app_name: ${{ env.APP_NAME }}
           version: ${{ steps.version.outputs.full_version }}
@@ -118,7 +118,7 @@ jobs:
 
       # --- GitOps Update ---
       - name: Update GitOps
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/gitops-update@main
+        uses: ./.github/actions/gitops-update
         with:
           app_name: ${{ env.APP_NAME }}
           environment: ${{ steps.version.outputs.environment }}
@@ -131,7 +131,7 @@ jobs:
       # --- Security Report: PDF + Mail ---
       - name: Generate security report and send mail
         if: env.MAIL_TO != ''
-        uses: cadenzaflow/cadenzaflow-devops/.github/actions/security-report@main
+        uses: ./.github/actions/security-report
         with:
           app_name: ${{ env.APP_NAME }}
           version: ${{ steps.version.outputs.full_version }}

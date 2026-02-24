@@ -1,0 +1,70 @@
+name: 'Docker Build & Push'
+description: 'Builds and pushes Docker image to Nexus registry'
+
+inputs:
+  registry:
+    description: 'Docker registry URL'
+    required: true
+  image_name:
+    description: 'Full image name'
+    required: true
+  tag:
+    description: 'Image tag'
+    required: true
+  environment:
+    description: 'Target environment for labels'
+    required: true
+  nexus_username:
+    description: 'Nexus registry username'
+    required: true
+  nexus_password:
+    description: 'Nexus registry password'
+    required: true
+  registry_ca_cert:
+    description: 'CA certificate for self-signed registry (base64 encoded)'
+    required: false
+    default: ''
+
+outputs:
+  image_url:
+    description: 'Full image URL with tag'
+    value: ${{ steps.build.outputs.IMAGE_URL }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Configure Docker for self-signed registry
+      if: inputs.registry_ca_cert != ''
+      shell: bash
+      run: |
+        sudo mkdir -p /etc/docker/certs.d/${{ inputs.registry }}
+        echo "${{ inputs.registry_ca_cert }}" | base64 -d | sudo tee /etc/docker/certs.d/${{ inputs.registry }}/ca.crt > /dev/null
+        echo "CA certificate configured for ${{ inputs.registry }}"
+
+    - name: Build Docker image
+      id: build
+      shell: bash
+      run: |
+        IMAGE_URL="${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.tag }}"
+        echo "IMAGE_URL=$IMAGE_URL" >> $GITHUB_OUTPUT
+
+        docker build \
+          -t $IMAGE_URL \
+          --label "version=${{ inputs.tag }}" \
+          --label "environment=${{ inputs.environment }}" \
+          --label "git.commit=${{ github.sha }}" \
+          .
+
+        echo "Built: $IMAGE_URL"
+
+    - name: Login to Nexus Registry
+      shell: bash
+      run: |
+        echo "${{ inputs.nexus_password }}" | docker login ${{ inputs.registry }} -u ${{ inputs.nexus_username }} --password-stdin
+
+    - name: Push Docker image
+      shell: bash
+      run: |
+        IMAGE_URL="${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.tag }}"
+        docker push $IMAGE_URL
+        echo "Pushed: $IMAGE_URL"

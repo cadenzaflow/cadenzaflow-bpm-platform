@@ -1,0 +1,80 @@
+name: 'SonarQube Scan'
+description: 'Runs SonarQube code quality analysis and generates report'
+
+inputs:
+  sonar_host_url:
+    description: 'SonarQube server URL'
+    required: true
+  sonar_token:
+    description: 'SonarQube authentication token'
+    required: true
+  project_key:
+    description: 'SonarQube project key'
+    required: true
+  project_name:
+    description: 'SonarQube project display name'
+    required: false
+    default: ''
+  java_binaries:
+    description: 'Path to compiled Java classes'
+    required: false
+    default: 'target/classes'
+
+outputs:
+  report_path:
+    description: 'Path to the generated report'
+    value: ${{ steps.report.outputs.REPORT_PATH }}
+  quality_gate_status:
+    description: 'Quality gate status (OK/ERROR)'
+    value: ${{ steps.report.outputs.QUALITY_GATE }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run SonarQube analysis
+      shell: bash
+      run: |
+        mvn sonar:sonar \
+          -Dsonar.host.url=${{ inputs.sonar_host_url }} \
+          -Dsonar.token=${{ inputs.sonar_token }} \
+          -Dsonar.projectKey=${{ inputs.project_key }} \
+          -Dsonar.projectName="${{ inputs.project_name || inputs.project_key }}" \
+          -Dsonar.java.binaries=${{ inputs.java_binaries }} \
+          -B
+
+    - name: Wait for quality gate
+      shell: bash
+      run: |
+        echo "Waiting for SonarQube analysis to complete..."
+        sleep 10
+
+    - name: Fetch SonarQube report
+      id: report
+      shell: bash
+      run: |
+        REPORT_PATH="${{ github.workspace }}/sonarqube-report.json"
+
+        # Get quality gate status
+        QUALITY_GATE=$(curl -s -u "${{ inputs.sonar_token }}:" \
+          "${{ inputs.sonar_host_url }}/api/qualitygates/project_status?projectKey=${{ inputs.project_key }}" || echo '{}')
+
+        QG_STATUS=$(echo "$QUALITY_GATE" | jq -r '.projectStatus.status // "UNKNOWN"')
+        echo "QUALITY_GATE=$QG_STATUS" >> $GITHUB_OUTPUT
+
+        # Get measures (bugs, vulnerabilities, code smells, coverage, duplications)
+        MEASURES=$(curl -s -u "${{ inputs.sonar_token }}:" \
+          "${{ inputs.sonar_host_url }}/api/measures/component?component=${{ inputs.project_key }}&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,ncloc,sqale_rating,reliability_rating,security_rating" || echo '{}')
+
+        # Get issues summary
+        ISSUES=$(curl -s -u "${{ inputs.sonar_token }}:" \
+          "${{ inputs.sonar_host_url }}/api/issues/search?projectKeys=${{ inputs.project_key }}&ps=1&facets=severities,types" || echo '{}')
+
+        # Combine into report
+        jq -n \
+          --argjson quality_gate "$QUALITY_GATE" \
+          --argjson measures "$MEASURES" \
+          --argjson issues "$ISSUES" \
+          '{quality_gate: $quality_gate, measures: $measures, issues: $issues}' > "$REPORT_PATH"
+
+        echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_OUTPUT
+        echo "Quality Gate: $QG_STATUS"

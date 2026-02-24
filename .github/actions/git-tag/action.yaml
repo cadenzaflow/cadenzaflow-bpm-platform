@@ -1,0 +1,28 @@
+name: 'Git Tag'
+description: 'Creates and pushes a git tag for the release'
+
+inputs:
+  app_name:
+    description: 'Application name for tag prefix'
+    required: true
+  version:
+    description: 'Version for the tag'
+    required: true
+  environment:
+    description: 'Target environment'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Create Git tag
+      shell: bash
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+        TAG_NAME="${{ inputs.app_name }}-v${{ inputs.version }}"
+        git tag -a "$TAG_NAME" -m "Release ${{ inputs.version }} (${{ inputs.environment }})"
+        git push origin "$TAG_NAME"
+
+        echo "Created tag: $TAG_NAME"

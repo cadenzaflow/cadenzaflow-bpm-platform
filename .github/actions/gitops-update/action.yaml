@@ -1,0 +1,60 @@
+name: 'GitOps Update'
+description: 'Updates image version in GitOps repository kustomization.yaml'
+
+inputs:
+  app_name:
+    description: 'Application name'
+    required: true
+  environment:
+    description: 'Target environment'
+    required: true
+  registry:
+    description: 'Docker registry URL'
+    required: true
+  image_name:
+    description: 'Full image name'
+    required: true
+  version:
+    description: 'Image version'
+    required: true
+  gitops_repo:
+    description: 'GitOps repository'
+    required: true
+  gitops_token:
+    description: 'GitHub token for GitOps repo access'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout GitOps repo
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ inputs.gitops_repo }}
+        token: ${{ inputs.gitops_token }}
+        path: gitops
+
+    - name: Update image version in GitOps repo
+      shell: bash
+      run: |
+        cd gitops
+
+        ENV="${{ inputs.environment }}"
+        KUSTOMIZATION_FILE="applications/${{ inputs.app_name }}/release/${ENV}/kustomization.yaml"
+
+        if [ ! -f "$KUSTOMIZATION_FILE" ]; then
+          mkdir -p "applications/${{ inputs.app_name }}/release/${ENV}"
+          cp applications/${{ inputs.app_name }}/release/test/kustomization.yaml "$KUSTOMIZATION_FILE"
+        fi
+
+        yq -i '(.images[] | select(.name == "image")).newName = "${{ inputs.registry }}/${{ inputs.image_name }}"' $KUSTOMIZATION_FILE
+        yq -i '(.images[] | select(.name == "image")).newTag = "${{ inputs.version }}"' $KUSTOMIZATION_FILE
+        yq -i '.namespace = "'$ENV'"' $KUSTOMIZATION_FILE
+
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add .
+        git diff --staged --quiet || git commit -m "chore(${{ inputs.app_name }}): deploy v${{ inputs.version }} to $ENV"
+        git push
+
+        echo "Updated GitOps: ${{ inputs.app_name }} v${{ inputs.version }} → $ENV"

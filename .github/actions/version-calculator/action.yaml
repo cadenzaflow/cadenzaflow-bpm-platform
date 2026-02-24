@@ -1,0 +1,123 @@
+name: 'Version Calculator'
+description: 'Calculates semantic version from git tags with environment support'
+
+inputs:
+  app_name:
+    description: 'Application name for tag prefix'
+    required: true
+  image_base:
+    description: 'Base image path'
+    required: true
+  version_bump:
+    description: 'Manual version bump type'
+    required: false
+    default: ''
+
+outputs:
+  version:
+    description: 'Base semantic version'
+    value: ${{ steps.calc.outputs.VERSION }}
+  full_version:
+    description: 'Full version with prerelease'
+    value: ${{ steps.calc.outputs.FULL_VERSION }}
+  environment:
+    description: 'Target environment'
+    value: ${{ steps.calc.outputs.ENVIRONMENT }}
+  is_prod:
+    description: 'Whether this is a production build'
+    value: ${{ steps.calc.outputs.IS_PROD }}
+  image_name:
+    description: 'Full image name'
+    value: ${{ steps.calc.outputs.IMAGE_NAME }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Calculate version
+      id: calc
+      shell: bash
+      run: |
+        BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+
+        # Extract environment from branch name (release/xxx → xxx)
+        if [[ "$BRANCH_NAME" == release/* ]]; then
+          ENVIRONMENT="${BRANCH_NAME#release/}"
+        else
+          ENVIRONMENT="dev"
+        fi
+        echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_OUTPUT
+
+        # Image name with environment folder
+        IMAGE_NAME="${{ inputs.image_base }}/${ENVIRONMENT}"
+        echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_OUTPUT
+
+        # Check if this is production
+        if [ "$ENVIRONMENT" == "prod" ]; then
+          IS_PROD="true"
+        else
+          IS_PROD="false"
+        fi
+        echo "IS_PROD=$IS_PROD" >> $GITHUB_OUTPUT
+
+        # Get latest production tag for base version
+        LATEST_PROD_TAG=$(git tag -l "${{ inputs.app_name }}-v*" --sort=-v:refname | grep -E "^${{ inputs.app_name }}-v[0-9]+\.[0-9]+\.[0-9]+$" | head -n 1 || true)
+
+        if [ -z "$LATEST_PROD_TAG" ]; then
+          MAJOR=1
+          MINOR=0
+          PATCH=0
+        else
+          BASE_VERSION=${LATEST_PROD_TAG#${{ inputs.app_name }}-v}
+          MAJOR=$(echo $BASE_VERSION | cut -d. -f1)
+          MINOR=$(echo $BASE_VERSION | cut -d. -f2)
+          PATCH=$(echo $BASE_VERSION | cut -d. -f3)
+        fi
+
+        # Determine version bump (only for prod, others inherit)
+        if [ "$IS_PROD" == "true" ]; then
+          BUMP_TYPE="${{ inputs.version_bump }}"
+          if [ -z "$BUMP_TYPE" ]; then
+            COMMIT_MSG=$(git log -1 --pretty=%B)
+            if echo "$COMMIT_MSG" | grep -qiE "^(feat|feature)(\(.+\))?!:|BREAKING CHANGE"; then
+              BUMP_TYPE="major"
+            elif echo "$COMMIT_MSG" | grep -qiE "^(feat|feature)(\(.+\))?:"; then
+              BUMP_TYPE="minor"
+            else
+              BUMP_TYPE="patch"
+            fi
+          fi
+
+          case $BUMP_TYPE in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+          esac
+        fi
+
+        BASE_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+        echo "VERSION=$BASE_VERSION" >> $GITHUB_OUTPUT
+
+        # Calculate full version with prerelease suffix
+        if [ "$IS_PROD" == "true" ]; then
+          FULL_VERSION="$BASE_VERSION"
+        else
+          # Get prerelease number for this environment
+          PRERELEASE_PATTERN="${{ inputs.app_name }}-v${BASE_VERSION}-${ENVIRONMENT}.*"
+          LATEST_PRERELEASE=$(git tag -l "$PRERELEASE_PATTERN" --sort=-v:refname | head -n 1)
+
+          if [ -z "$LATEST_PRERELEASE" ]; then
+            PRERELEASE_NUM=1
+          else
+            PRERELEASE_NUM=$(echo "$LATEST_PRERELEASE" | grep -oE "\-${ENVIRONMENT}\.[0-9]+" | grep -oE "[0-9]+$" || echo "0")
+            PRERELEASE_NUM=$((PRERELEASE_NUM + 1))
+          fi
+
+          FULL_VERSION="${BASE_VERSION}-${ENVIRONMENT}.${PRERELEASE_NUM}"
+        fi
+
+        echo "FULL_VERSION=$FULL_VERSION" >> $GITHUB_OUTPUT
+
+        echo "App: ${{ inputs.app_name }}"
+        echo "Environment: $ENVIRONMENT"
+        echo "Version: $FULL_VERSION"
+        echo "Image: $IMAGE_NAME:$FULL_VERSION"

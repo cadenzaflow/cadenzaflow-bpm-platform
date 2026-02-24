@@ -1,0 +1,71 @@
+name: 'Trivy Security Scan'
+description: 'Runs Trivy vulnerability scans (repo, filesystem, image) and generates reports'
+
+inputs:
+  scan_type:
+    description: 'Scan type: repo, fs, or image'
+    required: true
+  scan_target:
+    description: 'Target to scan (path or image URL)'
+    required: true
+  severity:
+    description: 'Severity levels to report'
+    required: false
+    default: 'HIGH,CRITICAL'
+  output_file:
+    description: 'Output file name for JSON report'
+    required: false
+    default: 'trivy-report.json'
+
+outputs:
+  report_path:
+    description: 'Path to the generated report'
+    value: ${{ steps.scan.outputs.REPORT_PATH }}
+  has_vulnerabilities:
+    description: 'Whether vulnerabilities were found'
+    value: ${{ steps.scan.outputs.HAS_VULNS }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Trivy scan
+      id: scan
+      shell: bash
+      run: |
+        REPORT_PATH="${{ github.workspace }}/${{ inputs.output_file }}"
+        TABLE_PATH="${{ github.workspace }}/trivy-${{ inputs.scan_type }}-table.txt"
+
+        # JSON report for PDF generation
+        trivy ${{ inputs.scan_type }} \
+          --severity ${{ inputs.severity }} \
+          --format json \
+          --output "$REPORT_PATH" \
+          ${{ inputs.scan_target }} || true
+
+        # Table report for console output
+        trivy ${{ inputs.scan_type }} \
+          --severity ${{ inputs.severity }} \
+          --format table \
+          --output "$TABLE_PATH" \
+          ${{ inputs.scan_target }} || true
+
+        echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_OUTPUT
+
+        # Check if vulnerabilities found
+        if [ -f "$REPORT_PATH" ]; then
+          VULN_COUNT=$(cat "$REPORT_PATH" | jq '[.Results[]?.Vulnerabilities // [] | length] | add // 0')
+          if [ "$VULN_COUNT" -gt 0 ]; then
+            echo "HAS_VULNS=true" >> $GITHUB_OUTPUT
+            echo "Found $VULN_COUNT vulnerabilities"
+          else
+            echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
+            echo "No vulnerabilities found"
+          fi
+        else
+          echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
+        fi
+
+        # Print table to console
+        if [ -f "$TABLE_PATH" ]; then
+          cat "$TABLE_PATH"
+        fi

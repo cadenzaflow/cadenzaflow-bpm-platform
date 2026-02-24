@@ -1,0 +1,252 @@
+name: 'Security Report & Mail'
+description: 'Generates PDF report from SonarQube and Trivy results and sends via email'
+
+inputs:
+  app_name:
+    description: 'Application name'
+    required: true
+  version:
+    description: 'Application version'
+    required: true
+  environment:
+    description: 'Target environment'
+    required: true
+  trivy_repo_report:
+    description: 'Path to Trivy repo scan JSON report'
+    required: false
+    default: ''
+  trivy_fs_report:
+    description: 'Path to Trivy filesystem scan JSON report'
+    required: false
+    default: ''
+  trivy_image_report:
+    description: 'Path to Trivy image scan JSON report'
+    required: false
+    default: ''
+  sonarqube_report:
+    description: 'Path to SonarQube JSON report'
+    required: false
+    default: ''
+  mail_to:
+    description: 'Email recipients (comma-separated)'
+    required: true
+  smtp_server:
+    description: 'SMTP server address'
+    required: true
+  smtp_port:
+    description: 'SMTP server port'
+    required: false
+    default: '2525'
+  smtp_username:
+    description: 'SMTP username'
+    required: true
+  smtp_password:
+    description: 'SMTP password'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Generate PDF report
+      shell: bash
+      run: |
+        REPORT_DIR="${{ github.workspace }}/security-reports"
+        mkdir -p "$REPORT_DIR"
+
+        PDF_FILE="$REPORT_DIR/${{ inputs.app_name }}-v${{ inputs.version }}-security-report.pdf"
+        HTML_FILE="$REPORT_DIR/report.html"
+        TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+
+        # Build HTML report
+        cat > "$HTML_FILE" << 'HTMLEOF'
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <style>
+          body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+          h1 { color: #1a1a2e; border-bottom: 3px solid #e94560; padding-bottom: 10px; }
+          h2 { color: #16213e; margin-top: 30px; }
+          h3 { color: #0f3460; }
+          table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+          th { background-color: #16213e; color: white; padding: 10px; text-align: left; }
+          td { border: 1px solid #ddd; padding: 8px; }
+          tr:nth-child(even) { background-color: #f2f2f2; }
+          .critical { color: #dc3545; font-weight: bold; }
+          .high { color: #fd7e14; font-weight: bold; }
+          .medium { color: #ffc107; }
+          .low { color: #28a745; }
+          .passed { color: #28a745; font-weight: bold; }
+          .failed { color: #dc3545; font-weight: bold; }
+          .summary-box { background: #f8f9fa; border-left: 4px solid #16213e; padding: 15px; margin: 15px 0; }
+          .footer { margin-top: 40px; font-size: 12px; color: #888; border-top: 1px solid #ddd; padding-top: 10px; }
+        </style>
+        </head>
+        <body>
+        HTMLEOF
+
+        # Header
+        cat >> "$HTML_FILE" << EOF
+        <h1>Security & Quality Report</h1>
+        <div class="summary-box">
+          <strong>Application:</strong> ${{ inputs.app_name }}<br>
+          <strong>Version:</strong> ${{ inputs.version }}<br>
+          <strong>Environment:</strong> ${{ inputs.environment }}<br>
+          <strong>Date:</strong> ${TIMESTAMP}<br>
+          <strong>Commit:</strong> ${GITHUB_SHA:0:8}
+        </div>
+        EOF
+
+        # SonarQube Section
+        if [ -f "${{ inputs.sonarqube_report }}" ]; then
+          QG_STATUS=$(jq -r '.quality_gate.projectStatus.status // "N/A"' "${{ inputs.sonarqube_report }}")
+          if [ "$QG_STATUS" == "OK" ]; then
+            QG_CLASS="passed"
+            QG_DISPLAY="PASSED"
+          else
+            QG_CLASS="failed"
+            QG_DISPLAY="$QG_STATUS"
+          fi
+
+          cat >> "$HTML_FILE" << EOF
+          <h2>SonarQube Code Quality</h2>
+          <p>Quality Gate: <span class="$QG_CLASS">$QG_DISPLAY</span></p>
+          <table>
+            <tr><th>Metric</th><th>Value</th></tr>
+        EOF
+
+          # Extract measures
+          for METRIC in bugs vulnerabilities code_smells coverage duplicated_lines_density ncloc; do
+            VALUE=$(jq -r ".measures.component.measures[]? | select(.metric == \"$METRIC\") | .value // \"N/A\"" "${{ inputs.sonarqube_report }}")
+            LABEL=$(echo "$METRIC" | sed 's/_/ /g' | sed 's/\b\w/\U&/g')
+            echo "<tr><td>$LABEL</td><td>$VALUE</td></tr>" >> "$HTML_FILE"
+          done
+
+          echo "</table>" >> "$HTML_FILE"
+        fi
+
+        # Trivy Sections
+        for SCAN_TYPE in repo fs image; do
+          case $SCAN_TYPE in
+            repo) REPORT_FILE="${{ inputs.trivy_repo_report }}"; TITLE="Repository Scan" ;;
+            fs)   REPORT_FILE="${{ inputs.trivy_fs_report }}"; TITLE="Filesystem Scan" ;;
+            image) REPORT_FILE="${{ inputs.trivy_image_report }}"; TITLE="Image Scan" ;;
+          esac
+
+          if [ -n "$REPORT_FILE" ] && [ -f "$REPORT_FILE" ]; then
+            CRITICAL=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            HIGH=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "HIGH")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            MEDIUM=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            LOW=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "LOW")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+
+            cat >> "$HTML_FILE" << EOF
+            <h2>Trivy $TITLE</h2>
+            <table>
+              <tr><th>Severity</th><th>Count</th></tr>
+              <tr><td><span class="critical">CRITICAL</span></td><td>$CRITICAL</td></tr>
+              <tr><td><span class="high">HIGH</span></td><td>$HIGH</td></tr>
+              <tr><td><span class="medium">MEDIUM</span></td><td>$MEDIUM</td></tr>
+              <tr><td><span class="low">LOW</span></td><td>$LOW</td></tr>
+            </table>
+        EOF
+
+            # Top 10 vulnerabilities detail
+            VULN_COUNT=$(jq '[.Results[]?.Vulnerabilities[]?] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            if [ "$VULN_COUNT" -gt 0 ]; then
+              cat >> "$HTML_FILE" << 'EOF'
+              <h3>Top Vulnerabilities</h3>
+              <table>
+                <tr><th>ID</th><th>Severity</th><th>Package</th><th>Version</th><th>Fixed</th></tr>
+        EOF
+              jq -r '[.Results[]?.Vulnerabilities[]?] | sort_by(.Severity) | reverse | .[0:10][] | "<tr><td>\(.VulnerabilityID)</td><td>\(.Severity)</td><td>\(.PkgName)</td><td>\(.InstalledVersion)</td><td>\(.FixedVersion // "N/A")</td></tr>"' "$REPORT_FILE" >> "$HTML_FILE" 2>/dev/null || true
+              echo "</table>" >> "$HTML_FILE"
+            fi
+          fi
+        done
+
+        # Footer
+        cat >> "$HTML_FILE" << EOF
+        <div class="footer">
+          Generated by CadenzaFlow CI/CD Pipeline | GitHub Actions | ${TIMESTAMP}
+        </div>
+        </body></html>
+        EOF
+
+        # Convert HTML to PDF using wkhtmltopdf (or chromium)
+        if command -v wkhtmltopdf &> /dev/null; then
+          wkhtmltopdf --quiet "$HTML_FILE" "$PDF_FILE"
+        elif command -v chromium &> /dev/null; then
+          chromium --headless --disable-gpu --print-to-pdf="$PDF_FILE" "$HTML_FILE"
+        elif command -v google-chrome &> /dev/null; then
+          google-chrome --headless --disable-gpu --print-to-pdf="$PDF_FILE" "$HTML_FILE"
+        else
+          echo "No PDF converter found, using HTML as attachment"
+          cp "$HTML_FILE" "$PDF_FILE"
+        fi
+
+        echo "Report generated: $PDF_FILE"
+
+    - name: Send email with report
+      shell: bash
+      run: |
+        REPORT_DIR="${{ github.workspace }}/security-reports"
+        PDF_FILE="$REPORT_DIR/${{ inputs.app_name }}-v${{ inputs.version }}-security-report.pdf"
+        TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+
+        SUBJECT="[CadenzaFlow] Security Report - ${{ inputs.app_name }} v${{ inputs.version }} (${{ inputs.environment }})"
+
+        # Send email with attachment using Python (available on most runners)
+        python3 << PYEOF
+        import smtplib
+        import os
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        from email.mime.application import MIMEApplication
+
+        msg = MIMEMultipart()
+        msg['From'] = '${{ inputs.smtp_username }}'
+        msg['To'] = '${{ inputs.mail_to }}'
+        msg['Subject'] = '${SUBJECT}'
+
+        body = """
+        CadenzaFlow Security & Quality Report
+
+        Application: ${{ inputs.app_name }}
+        Version: ${{ inputs.version }}
+        Environment: ${{ inputs.environment }}
+        Build: ${GITHUB_SHA:0:8}
+        Date: ${TIMESTAMP}
+
+        Please find the detailed security and quality report attached as PDF.
+
+        ---
+        CadenzaFlow CI/CD Pipeline
+        """
+        msg.attach(MIMEText(body, 'plain'))
+
+        pdf_path = '${PDF_FILE}'
+        if os.path.exists(pdf_path):
+            with open(pdf_path, 'rb') as f:
+                attachment = MIMEApplication(f.read(), _subtype='pdf')
+                attachment.add_header('Content-Disposition', 'attachment',
+                    filename=os.path.basename(pdf_path))
+                msg.attach(attachment)
+
+        try:
+            server = smtplib.SMTP('${{ inputs.smtp_server }}', ${{ inputs.smtp_port }})
+            server.starttls()
+            server.login('${{ inputs.smtp_username }}', '${{ inputs.smtp_password }}')
+            server.send_message(msg)
+            server.quit()
+            print(f"Email sent to: ${{ inputs.mail_to }}")
+        except Exception as e:
+            print(f"Warning: Failed to send email: {e}")
+            print("Report is still available as build artifact")
+        PYEOF
+
+    - name: Upload report as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-report-${{ inputs.app_name }}-${{ inputs.version }}
+        path: ${{ github.workspace }}/security-reports/
+        retention-days: 30
