@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
     <artifactId>cadenzaflow-qa-db-instance-migration</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-qa-upgrade-test-fixture-110</artifactId>

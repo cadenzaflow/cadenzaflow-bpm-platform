@@ -5,12 +5,12 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <groupId>org.cadenzaflow.template-engines</groupId>
   <artifactId>cadenzaflow-template-engines-freemarker</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   
   <name>CadenzaFlow template engine jsr223 freemarker</name>
 
