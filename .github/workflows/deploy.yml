@@ -33,3 +33,4 @@ jobs:
       mail_to: ali.aras@pia-team.com
       version_bump: ${{ inputs.version_bump }}
     secrets: inherit
+# pipeline test
