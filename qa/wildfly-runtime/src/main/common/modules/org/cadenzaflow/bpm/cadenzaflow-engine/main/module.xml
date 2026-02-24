@@ -1,4 +1,4 @@
-<module xmlns="urn:jboss:module:1.0" name="org.camunda.bpm.camunda-engine">
+<module xmlns="urn:jboss:module:1.0" name="org.cadenzaflow.bpm.cadenzaflow-engine">
   <resources>
     <resource-root path="cadenzaflow-engine-@project.version@.jar" />
   </resources>
@@ -30,19 +30,19 @@
 
     <module name="sun.jdk" services="import"/>
 
-    <module name="org.camunda.bpm.model.camunda-xml-model" />
-    <module name="org.camunda.bpm.model.camunda-bpmn-model" />
-    <module name="org.camunda.bpm.model.camunda-cmmn-model" />
-    <module name="org.camunda.bpm.model.camunda-dmn-model" />
+    <module name="org.cadenzaflow.bpm.model.cadenzaflow-xml-model" />
+    <module name="org.cadenzaflow.bpm.model.cadenzaflow-bpmn-model" />
+    <module name="org.cadenzaflow.bpm.model.cadenzaflow-cmmn-model" />
+    <module name="org.cadenzaflow.bpm.model.cadenzaflow-dmn-model" />
 
-    <module name="org.camunda.commons.camunda-commons-logging" />
-    <module name="org.camunda.commons.camunda-commons-utils" />
-    <module name="org.camunda.commons.camunda-commons-typed-values" export="true" />
-    <module name="org.camunda.template-engines.camunda-template-engines-freemarker" services="import" />
-    <module name="org.camunda.spin.camunda-spin-core" services="import" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-logging" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-utils" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-typed-values" export="true" />
+    <module name="org.cadenzaflow.template-engines.cadenzaflow-template-engines-freemarker" services="import" />
+    <module name="org.cadenzaflow.spin.cadenzaflow-spin-core" services="import" />
 
-    <module name="org.camunda.bpm.dmn.camunda-engine-dmn" />
-    <module name="org.camunda.bpm.juel.camunda-juel" services="import"/>
+    <module name="org.cadenzaflow.bpm.dmn.cadenzaflow-engine-dmn" />
+    <module name="org.cadenzaflow.bpm.juel.cadenzaflow-juel" services="import"/>
 
     <module name="org.slf4j" />
 
