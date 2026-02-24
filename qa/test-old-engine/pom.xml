@@ -12,7 +12,7 @@
   <name>CadenzaFlow Platform - QA - test new schema with old engine</name>
 
   <properties>
-    <camunda.old.engine.version>1.0.0</camunda.old.engine.version>
+    <cadenzaflow.old.engine.version>1.0.0</cadenzaflow.old.engine.version>
   </properties>
 
   <build>
@@ -22,8 +22,8 @@
         <directory>${project.build.directory}/engine-test-sources</directory>
         <excludes>
           <exclude>**/*.java</exclude>
-          <exclude>camunda.cfg.xml</exclude>
-          <exclude>**/historycleanup.camunda.cfg.xml</exclude>
+          <exclude>cadenzaflow.cfg.xml</exclude>
+          <exclude>**/historycleanup.cadenzaflow.cfg.xml</exclude>
         </excludes>
       </testResource>
       <testResource>
@@ -277,7 +277,7 @@
                     <artifactItem>
                       <groupId>org.cadenzaflow.bpm</groupId>
                       <artifactId>cadenzaflow-engine</artifactId>
-                      <version>${camunda.old.engine.version}</version>
+                      <version>${cadenzaflow.old.engine.version}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/test-classes</outputDirectory>
                     </artifactItem>
