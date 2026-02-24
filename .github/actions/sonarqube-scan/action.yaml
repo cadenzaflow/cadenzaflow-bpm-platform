@@ -34,7 +34,7 @@ runs:
     - name: Run SonarQube analysis
       shell: bash
       run: |
-        mvn sonar:sonar \
+        ./mvnw sonar:sonar \
           -Dsonar.host.url=${{ inputs.sonar_host_url }} \
           -Dsonar.token=${{ inputs.sonar_token }} \
           -Dsonar.projectKey=${{ inputs.project_key }} \

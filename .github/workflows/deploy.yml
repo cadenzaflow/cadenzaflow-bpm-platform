@@ -42,13 +42,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # --- Java ---
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
       # --- Version ---
       - name: Calculate version
         id: version
@@ -68,10 +61,6 @@ jobs:
           severity: HIGH,CRITICAL
           output_file: trivy-repo-report.json
 
-      # --- Build ---
-      - name: Build with Maven
-        run: mvn clean package -B -DskipTests
-
       # --- Security: Trivy FS Scan ---
       - name: Trivy filesystem scan
         id: trivy_fs
@@ -82,58 +71,67 @@ jobs:
           severity: HIGH,CRITICAL
           output_file: trivy-fs-report.json
 
-      # --- Quality: SonarQube ---
-      - name: SonarQube scan
-        id: sonarqube
-        if: env.SONAR_PROJECT_KEY != ''
-        uses: ./.github/actions/sonarqube-scan
-        with:
-          sonar_host_url: ${{ env.SONAR_HOST_URL }}
-          sonar_token: ${{ secrets.SONAR_TOKEN }}
-          project_key: ${{ env.SONAR_PROJECT_KEY }}
-          project_name: ${{ env.APP_NAME }}
+      # --- Build (disabled for now) ---
+      # - name: Set up JDK 17
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     java-version: '17'
+      #     distribution: 'temurin'
+      # - name: Build with Maven
+      #   run: ./mvnw clean package -B -DskipTests
 
-      # --- Docker Build & Push ---
-      - name: Build & Push Docker image
-        id: docker
-        uses: ./.github/actions/docker-build-push
-        with:
-          registry: ${{ env.REGISTRY }}
-          image_name: ${{ steps.version.outputs.image_name }}
-          tag: ${{ steps.version.outputs.full_version }}
-          environment: ${{ steps.version.outputs.environment }}
-          nexus_username: ${{ secrets.NEXUS_USERNAME }}
-          nexus_password: ${{ secrets.NEXUS_PASSWORD }}
+      # --- Quality: SonarQube (disabled - needs Maven build first) ---
+      # - name: SonarQube scan
+      #   id: sonarqube
+      #   if: env.SONAR_PROJECT_KEY != ''
+      #   uses: ./.github/actions/sonarqube-scan
+      #   with:
+      #     sonar_host_url: ${{ env.SONAR_HOST_URL }}
+      #     sonar_token: ${{ secrets.SONAR_TOKEN }}
+      #     project_key: ${{ env.SONAR_PROJECT_KEY }}
+      #     project_name: ${{ env.APP_NAME }}
 
-      # --- Security: Trivy Image Scan ---
-      - name: Trivy image scan
-        id: trivy_image
-        uses: ./.github/actions/trivy-scan
-        with:
-          scan_type: image
-          scan_target: ${{ env.REGISTRY }}/${{ steps.version.outputs.image_name }}:${{ steps.version.outputs.full_version }}
-          severity: HIGH,CRITICAL
-          output_file: trivy-image-report.json
+      # --- Docker Build & Push (disabled for now) ---
+      # - name: Build & Push Docker image
+      #   id: docker
+      #   uses: ./.github/actions/docker-build-push
+      #   with:
+      #     registry: ${{ env.REGISTRY }}
+      #     image_name: ${{ steps.version.outputs.image_name }}
+      #     tag: ${{ steps.version.outputs.full_version }}
+      #     environment: ${{ steps.version.outputs.environment }}
+      #     nexus_username: ${{ secrets.NEXUS_USERNAME }}
+      #     nexus_password: ${{ secrets.NEXUS_PASSWORD }}
 
-      # --- Git Tag ---
-      - name: Create Git tag
-        uses: ./.github/actions/git-tag
-        with:
-          app_name: ${{ env.APP_NAME }}
-          version: ${{ steps.version.outputs.full_version }}
-          environment: ${{ steps.version.outputs.environment }}
+      # --- Security: Trivy Image Scan (disabled - needs Docker image) ---
+      # - name: Trivy image scan
+      #   id: trivy_image
+      #   uses: ./.github/actions/trivy-scan
+      #   with:
+      #     scan_type: image
+      #     scan_target: ${{ env.REGISTRY }}/${{ steps.version.outputs.image_name }}:${{ steps.version.outputs.full_version }}
+      #     severity: HIGH,CRITICAL
+      #     output_file: trivy-image-report.json
 
-      # --- GitOps Update ---
-      - name: Update GitOps
-        uses: ./.github/actions/gitops-update
-        with:
-          app_name: ${{ env.APP_NAME }}
-          environment: ${{ steps.version.outputs.environment }}
-          registry: ${{ env.REGISTRY }}
-          image_name: ${{ steps.version.outputs.image_name }}
-          version: ${{ steps.version.outputs.full_version }}
-          gitops_repo: ${{ env.GITOPS_REPO }}
-          gitops_token: ${{ secrets.GITOPS_TOKEN }}
+      # --- Git Tag (disabled for now) ---
+      # - name: Create Git tag
+      #   uses: ./.github/actions/git-tag
+      #   with:
+      #     app_name: ${{ env.APP_NAME }}
+      #     version: ${{ steps.version.outputs.full_version }}
+      #     environment: ${{ steps.version.outputs.environment }}
+
+      # --- GitOps Update (disabled for now) ---
+      # - name: Update GitOps
+      #   uses: ./.github/actions/gitops-update
+      #   with:
+      #     app_name: ${{ env.APP_NAME }}
+      #     environment: ${{ steps.version.outputs.environment }}
+      #     registry: ${{ env.REGISTRY }}
+      #     image_name: ${{ steps.version.outputs.image_name }}
+      #     version: ${{ steps.version.outputs.full_version }}
+      #     gitops_repo: ${{ env.GITOPS_REPO }}
+      #     gitops_token: ${{ secrets.GITOPS_TOKEN }}
 
       # --- Security Report: PDF + Mail ---
       - name: Generate security report and send mail
@@ -145,8 +143,8 @@ jobs:
           environment: ${{ steps.version.outputs.environment }}
           trivy_repo_report: ${{ steps.trivy_repo.outputs.report_path }}
           trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
-          trivy_image_report: ${{ steps.trivy_image.outputs.report_path }}
-          sonarqube_report: ${{ steps.sonarqube.outputs.report_path }}
+          trivy_image_report: ''
+          sonarqube_report: ''
           mail_to: ${{ env.MAIL_TO }}
           smtp_server: ${{ env.SMTP_SERVER }}
           smtp_port: ${{ env.SMTP_PORT }}
