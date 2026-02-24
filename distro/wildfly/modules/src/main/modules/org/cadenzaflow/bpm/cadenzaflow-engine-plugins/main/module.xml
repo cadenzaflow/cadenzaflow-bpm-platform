@@ -2,6 +2,6 @@
 
   <dependencies>
     <!-- Add custom engine plugins here -->
-    <!-- <module name="org.cadenzaflow.bpm.camunda-custom-engine-plugin" export="true" /> -->
+    <!-- <module name="org.cadenzaflow.bpm.cadenzaflow-custom-engine-plugin" export="true" /> -->
   </dependencies>
 </module>

@@ -53,16 +53,16 @@ public class ModuleDependencyProcessor implements DeploymentUnitProcessor {
 
   public static final int PRIORITY = 0x2300;
 
-  public static String MODULE_IDENTIFIER_PROCESS_ENGINE = "org.cadenzaflow.bpm.camunda-engine";
-  public static String MODULE_IDENTIFIER_XML_MODEL = "org.cadenzaflow.bpm.model.camunda-xml-model";
-  public static String MODULE_IDENTIFIER_BPMN_MODEL = "org.cadenzaflow.bpm.model.camunda-bpmn-model";
-  public static String MODULE_IDENTIFIER_CMMN_MODEL = "org.cadenzaflow.bpm.model.camunda-cmmn-model";
-  public static String MODULE_IDENTIFIER_DMN_MODEL = "org.cadenzaflow.bpm.model.camunda-dmn-model";
-  public static String MODULE_IDENTIFIER_SPIN = "org.cadenzaflow.spin.camunda-spin-core";
-  public static String MODULE_IDENTIFIER_CONNECT = "org.cadenzaflow.connect.camunda-connect-core";
-  public static String MODULE_IDENTIFIER_ENGINE_DMN = "org.cadenzaflow.bpm.dmn.camunda-engine-dmn";
+  public static String MODULE_IDENTIFIER_PROCESS_ENGINE = "org.cadenzaflow.bpm.cadenzaflow-engine";
+  public static String MODULE_IDENTIFIER_XML_MODEL = "org.cadenzaflow.bpm.model.cadenzaflow-xml-model";
+  public static String MODULE_IDENTIFIER_BPMN_MODEL = "org.cadenzaflow.bpm.model.cadenzaflow-bpmn-model";
+  public static String MODULE_IDENTIFIER_CMMN_MODEL = "org.cadenzaflow.bpm.model.cadenzaflow-cmmn-model";
+  public static String MODULE_IDENTIFIER_DMN_MODEL = "org.cadenzaflow.bpm.model.cadenzaflow-dmn-model";
+  public static String MODULE_IDENTIFIER_SPIN = "org.cadenzaflow.spin.cadenzaflow-spin-core";
+  public static String MODULE_IDENTIFIER_CONNECT = "org.cadenzaflow.connect.cadenzaflow-connect-core";
+  public static String MODULE_IDENTIFIER_ENGINE_DMN = "org.cadenzaflow.bpm.dmn.cadenzaflow-engine-dmn";
   public static String MODULE_IDENTIFIER_GRAAL_JS = "org.graalvm.js.js-scriptengine";
-  public static String MODULE_IDENTIFIER_JUEL = "org.cadenzaflow.bpm.juel.camunda-juel";
+  public static String MODULE_IDENTIFIER_JUEL = "org.cadenzaflow.bpm.juel.cadenzaflow-juel";
 
   @Override
   public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
