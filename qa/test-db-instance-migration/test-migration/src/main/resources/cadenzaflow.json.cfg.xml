@@ -4,7 +4,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="processEngineConfiguration" class="org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+  <bean id="processEngineConfiguration" class="org.cadenzaflow.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
   
     <property name="jdbcUrl" value="${database.url}" />
     <property name="jdbcDriver" value="${database.driver}" />
@@ -13,7 +13,7 @@
     
     <!-- Database configurations -->
     <property name="databaseSchemaUpdate" value="true" />
-
+    
     <!-- job executor configurations -->
     <property name="jobExecutorActivate" value="false" />
 
@@ -27,6 +27,14 @@
 
     <property name="jdbcBatchProcessing" value="false"/>
     <property name="enforceHistoryTimeToLive" value="false" />
+
+    <property name="defaultSerializationFormat" value="application/json"/>
+
+    <property name="processEnginePlugins">
+      <list>
+        <bean class="org.cadenzaflow.spin.plugin.impl.SpinProcessEnginePlugin" />
+      </list>
+    </property>
 
   </bean>
   
