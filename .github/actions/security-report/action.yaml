@@ -369,9 +369,7 @@ runs:
           <div class="cover-divider"></div>
           <div class="cover-meta">
             <strong>Application:</strong> ${{ inputs.app_name }}<br>
-            <strong>Version:</strong> ${{ inputs.version }}<br>
-            <strong>Environment:</strong> ${{ inputs.environment }}<br>
-            <strong>Commit:</strong> ${GITHUB_SHA:0:8}
+            <strong>Version:</strong> ${{ inputs.version }}
           </div>
           <div class="confidential" style="margin-top: 60px;">CONFIDENTIAL</div>
         </div>
@@ -383,7 +381,7 @@ runs:
           <div class="page-header">
             <div class="page-header-logo">Cadenza<span>Flow</span> Security Report</div>
             <div class="page-header-info">
-              v${{ inputs.version }} | ${{ inputs.environment }} | ${TIMESTAMP}
+              v${{ inputs.version }} | ${TIMESTAMP}
             </div>
           </div>
 
@@ -392,8 +390,8 @@ runs:
             <div class="exec-title">Executive Summary</div>
             <p style="margin-bottom: 20px; color: #475569;">
               This report presents the security assessment results for <strong>${{ inputs.app_name }}</strong>
-              version <strong>${{ inputs.version }}</strong>. The analysis includes vulnerability scanning
-              of application dependencies and source code.
+              version <strong>${{ inputs.version }}</strong>. The analysis includes automated vulnerability
+              scanning of application dependencies and source code using Trivy.
             </p>
             <div class="risk-cards">
               <div class="risk-card" style="background: #fef2f2; border: 1px solid #fecaca;">

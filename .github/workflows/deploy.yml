@@ -24,6 +24,7 @@ permissions:
 
 env:
   APP_NAME: cadenzaflow-bpm-platform
+  APP_VERSION: "1.1.0"
   IMAGE_BASE: cadenzaflow/cadenzaflow-bpm-platform
   REGISTRY: registry.cadenzaflow.com
   GITOPS_REPO: cadenzaflow/cadenzaflow-devops
@@ -130,7 +131,7 @@ jobs:
         uses: ./.github/actions/security-report
         with:
           app_name: ${{ env.APP_NAME }}
-          version: ${{ steps.version.outputs.full_version }}
+          version: ${{ env.APP_VERSION }}
           environment: ${{ steps.version.outputs.environment }}
           trivy_repo_report: ''
           trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
