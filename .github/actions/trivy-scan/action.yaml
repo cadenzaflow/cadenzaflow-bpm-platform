@@ -41,9 +41,6 @@ runs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           export PATH="$HOME/.local/bin:$PATH"
         fi
-        # Use persistent cache dir if available
-        mkdir -p $HOME/.cache/trivy
-        export TRIVY_CACHE_DIR=$HOME/.cache/trivy
         trivy --version
 
     - name: Run Trivy scan
@@ -54,7 +51,6 @@ runs:
       run: |
         mkdir -p "$TRIVY_CACHE_DIR"
         REPORT_PATH="${{ github.workspace }}/${{ inputs.output_file }}"
-        TABLE_PATH="${{ github.workspace }}/trivy-${{ inputs.scan_type }}-table.txt"
 
         # Build skip-dirs flag
         SKIP_DIRS_FLAG=""
@@ -62,7 +58,7 @@ runs:
           SKIP_DIRS_FLAG="--skip-dirs ${{ inputs.skip_dirs }}"
         fi
 
-        # JSON report for PDF generation
+        # JSON report (single scan - used for PDF and console summary)
         trivy ${{ inputs.scan_type }} \
           --severity ${{ inputs.severity }} \
           --scanners vuln \
@@ -73,34 +69,20 @@ runs:
           --output "$REPORT_PATH" \
           ${{ inputs.scan_target }} || true
 
-        # Table report for console output
-        trivy ${{ inputs.scan_type }} \
-          --severity ${{ inputs.severity }} \
-          --scanners vuln \
-          --timeout 30m \
-          --cache-dir "$TRIVY_CACHE_DIR" \
-          $SKIP_DIRS_FLAG \
-          --format table \
-          --output "$TABLE_PATH" \
-          ${{ inputs.scan_target }} || true
-
         echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_OUTPUT
 
-        # Check if vulnerabilities found
+        # Print summary from JSON report
         if [ -f "$REPORT_PATH" ]; then
           VULN_COUNT=$(cat "$REPORT_PATH" | jq '[.Results[]?.Vulnerabilities // [] | length] | add // 0')
           if [ "$VULN_COUNT" -gt 0 ]; then
             echo "HAS_VULNS=true" >> $GITHUB_OUTPUT
-            echo "Found $VULN_COUNT vulnerabilities"
+            echo "::warning::Found $VULN_COUNT vulnerabilities"
+            # Print summary per target
+            cat "$REPORT_PATH" | jq -r '.Results[]? | select(.Vulnerabilities != null) | "\(.Target): \(.Vulnerabilities | length) vulnerabilities"'
           else
             echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
             echo "No vulnerabilities found"
           fi
         else
           echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
-        fi
-
-        # Print table to console
-        if [ -f "$TABLE_PATH" ]; then
-          cat "$TABLE_PATH"
         fi
