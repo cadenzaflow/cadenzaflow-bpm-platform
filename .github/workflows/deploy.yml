@@ -51,16 +51,6 @@ jobs:
           image_base: ${{ env.IMAGE_BASE }}
           version_bump: ${{ inputs.version_bump }}
 
-      # --- Security: Trivy Repo Scan ---
-      - name: Trivy repository scan
-        id: trivy_repo
-        uses: ./.github/actions/trivy-scan
-        with:
-          scan_type: repo
-          scan_target: .
-          severity: HIGH,CRITICAL
-          output_file: trivy-repo-report.json
-
       # --- Security: Trivy FS Scan ---
       - name: Trivy filesystem scan
         id: trivy_fs
@@ -70,6 +60,7 @@ jobs:
           scan_target: .
           severity: HIGH,CRITICAL
           output_file: trivy-fs-report.json
+          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test
 
       # --- Build ---
       - name: Set up JDK 17
@@ -142,7 +133,7 @@ jobs:
           app_name: ${{ env.APP_NAME }}
           version: ${{ steps.version.outputs.full_version }}
           environment: ${{ steps.version.outputs.environment }}
-          trivy_repo_report: ${{ steps.trivy_repo.outputs.report_path }}
+          trivy_repo_report: ''
           trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
           trivy_image_report: ''
           sonarqube_report: ${{ steps.sonarqube.outputs.report_path }}

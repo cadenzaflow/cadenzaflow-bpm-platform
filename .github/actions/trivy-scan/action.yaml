@@ -16,6 +16,10 @@ inputs:
     description: 'Output file name for JSON report'
     required: false
     default: 'trivy-report.json'
+  skip_dirs:
+    description: 'Comma-separated directories to skip'
+    required: false
+    default: ''
 
 outputs:
   report_path:
@@ -37,20 +41,34 @@ runs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           export PATH="$HOME/.local/bin:$PATH"
         fi
+        # Use persistent cache dir if available
+        mkdir -p $HOME/.cache/trivy
+        export TRIVY_CACHE_DIR=$HOME/.cache/trivy
         trivy --version
 
     - name: Run Trivy scan
       id: scan
       shell: bash
+      env:
+        TRIVY_CACHE_DIR: ${{ github.workspace }}/../.cache/trivy
       run: |
+        mkdir -p "$TRIVY_CACHE_DIR"
         REPORT_PATH="${{ github.workspace }}/${{ inputs.output_file }}"
         TABLE_PATH="${{ github.workspace }}/trivy-${{ inputs.scan_type }}-table.txt"
+
+        # Build skip-dirs flag
+        SKIP_DIRS_FLAG=""
+        if [ -n "${{ inputs.skip_dirs }}" ]; then
+          SKIP_DIRS_FLAG="--skip-dirs ${{ inputs.skip_dirs }}"
+        fi
 
         # JSON report for PDF generation
         trivy ${{ inputs.scan_type }} \
           --severity ${{ inputs.severity }} \
           --scanners vuln \
           --timeout 30m \
+          --cache-dir "$TRIVY_CACHE_DIR" \
+          $SKIP_DIRS_FLAG \
           --format json \
           --output "$REPORT_PATH" \
           ${{ inputs.scan_target }} || true
@@ -60,6 +78,8 @@ runs:
           --severity ${{ inputs.severity }} \
           --scanners vuln \
           --timeout 30m \
+          --cache-dir "$TRIVY_CACHE_DIR" \
+          $SKIP_DIRS_FLAG \
           --format table \
           --output "$TABLE_PATH" \
           ${{ inputs.scan_target }} || true
