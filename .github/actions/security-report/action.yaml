@@ -110,7 +110,7 @@ runs:
         <head>
         <meta charset="UTF-8">
         <style>
-          @page { margin: 0; }
+          @page { margin: 10mm; }
           * { margin: 0; padding: 0; box-sizing: border-box; }
           body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -121,15 +121,10 @@ runs:
 
           /* Cover Page */
           .cover {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
             color: white;
             text-align: center;
-            padding: 60px;
+            padding: 120px 60px 80px;
             page-break-after: always;
           }
           .cover-logo {
@@ -175,23 +170,23 @@ runs:
             padding: 50px 60px;
           }
           .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             border-bottom: 2px solid #e2e8f0;
             padding-bottom: 15px;
             margin-bottom: 30px;
+            overflow: hidden;
           }
           .page-header-logo {
             font-size: 16px;
             font-weight: 700;
             color: #0f172a;
+            float: left;
           }
           .page-header-logo span { color: #0ea5e9; }
           .page-header-info {
             font-size: 11px;
             color: #94a3b8;
             text-align: right;
+            float: right;
           }
 
           /* Executive Summary */
@@ -209,15 +204,17 @@ runs:
             margin-bottom: 20px;
           }
           .risk-cards {
-            display: flex;
-            gap: 16px;
+            width: 100%;
             margin-bottom: 20px;
           }
           .risk-card {
-            flex: 1;
+            display: inline-block;
+            width: 22%;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
+            margin-right: 2%;
+            vertical-align: top;
           }
           .risk-card-number {
             font-size: 36px;
@@ -289,17 +286,14 @@ runs:
 
           /* Summary Stats */
           .severity-summary {
-            display: flex;
-            gap: 12px;
             margin: 15px 0;
           }
           .severity-stat {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-block;
             padding: 8px 16px;
             border-radius: 8px;
             border: 1px solid #e2e8f0;
+            margin-right: 8px;
           }
           .severity-dot {
             width: 12px;
@@ -334,11 +328,12 @@ runs:
             margin-top: 50px;
             padding-top: 20px;
             border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
             font-size: 11px;
             color: #94a3b8;
+            overflow: hidden;
           }
+          .footer div:first-child { float: left; }
+          .footer div:last-child { float: right; }
 
           /* Confidential Banner */
           .confidential {
@@ -545,7 +540,7 @@ runs:
 
         # Convert HTML to PDF
         if command -v wkhtmltopdf &> /dev/null; then
-          wkhtmltopdf --quiet --page-size A4 --margin-top 0 --margin-bottom 0 --margin-left 0 --margin-right 0 --enable-local-file-access "$HTML_FILE" "$PDF_FILE"
+          wkhtmltopdf --quiet --page-size A4 --margin-top 10mm --margin-bottom 10mm --margin-left 10mm --margin-right 10mm --enable-local-file-access "$HTML_FILE" "$PDF_FILE"
         elif command -v chromium-browser &> /dev/null; then
           chromium-browser --headless --no-sandbox --disable-gpu --print-to-pdf="$PDF_FILE" "$HTML_FILE"
         elif command -v google-chrome &> /dev/null; then
