@@ -213,7 +213,7 @@ public class SqlScriptTest {
   }
 
   protected static Liquibase getLiquibase(String baseDirectory, Database database) throws URISyntaxException {
-    return new Liquibase("camunda-changelog.xml", getAccessorForChangelogDirectory(baseDirectory), database);
+    return new Liquibase("cadenzaflow-changelog.xml", getAccessorForChangelogDirectory(baseDirectory), database);
   }
 
   protected static FileSystemResourceAccessor getAccessorForChangelogDirectory(String baseDirectory) throws URISyntaxException {
