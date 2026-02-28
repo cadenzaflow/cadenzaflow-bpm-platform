@@ -2,8 +2,8 @@
 
 This project provides a Spring Boot Starter that allows you to implement an External Task Worker for CadenzaFlow. It uses the CadenzaFlow REST API to fetch, lock, and complete External Service Tasks. It is based on the [Java External Task Client](../../clients/java).
 
-* [Documentation](https://docs.camunda.org/manual/develop/user-guide/ext-client/spring-boot-starter/)
-* [Examples](https://github.com/camunda/camunda-bpm-examples/tree/master/spring-boot-starter/external-task-client)
+* [Documentation](https://docs.cadenzaflow.org/manual/develop/user-guide/ext-client/spring-boot-starter/)
+* [Examples](https://github.com/cadenzaflow/cadenzaflow-bpm-examples/tree/master/spring-boot-starter/external-task-client)
 
 ## Dependency
 
@@ -12,7 +12,7 @@ You need this dependency to get started:
 ```xml
 <dependency>
   <groupId>org.cadenzaflow.bpm.springboot</groupId>
-  <artifactId>camunda-bpm-spring-boot-starter-external-task-client</artifactId>
+  <artifactId>cadenzaflow-bpm-spring-boot-starter-external-task-client</artifactId>
   <version>...</version>
 </dependency>
 ```
@@ -54,7 +54,7 @@ You can also use the basic Spring integration without the Spring Boot Starter:
 ```xml
 <dependency>
   <groupId>org.cadenzaflow.bpm</groupId>
-  <artifactId>camunda-external-task-client-spring</artifactId>
+  <artifactId>cadenzaflow-external-task-client-spring</artifactId>
   <version>...</version>
 </dependency>
 ```

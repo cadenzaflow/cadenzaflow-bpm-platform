@@ -1,4 +1,4 @@
-camunda-xml-model
+cadenzaflow-xml-model
 ==================
 
 XML model API written in Java.

@@ -1,4 +1,4 @@
-# Camunda commons styling
+# CadenzaFlow commons styling
 
 ## Scaffolding
 
@@ -19,7 +19,7 @@ In your project, you should use a `_vars.less` file which imports the [`shared/_
 
 ```less
 // note: you may need to adapt this path depending on where your `_vars.less` is
-@import "node_modules/camunda-commons-ui/resources/less/shared/_variables.less";
+@import "node_modules/cadenzaflow-commons-ui/resources/less/shared/_variables.less";
 
 // override the default `@main-color` color defined in `shared/_variables.less`
 @main-color: #7fa;
@@ -34,5 +34,5 @@ Then, you will have a `styles.less` (which will probably be compiled as `styles.
 @import "./_vars.less";
 
 // adapt the path if / as needed
-@import "node_modules/camunda-commons-ui/resources/less/shared/base.less";
+@import "node_modules/cadenzaflow-commons-ui/resources/less/shared/base.less";
 ```

@@ -3,7 +3,7 @@ This is a distribution of
        Camunda Platform v${project.version}
 
 visit
-       http://docs.camunda.org/
+       http://docs.cadenzaflow.org/
 
 The Camunda Platform is a dual-license Java-based framework.
 This particular copy of the Camunda Platform is released either
@@ -45,7 +45,7 @@ Contents:
         After starting the server, you can access the 
         following web applications:
 
-        http://localhost:8080/camunda
+        http://localhost:8080/cadenzaflow
         http://localhost:8080/engine-rest
 
     sql/

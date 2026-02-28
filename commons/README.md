@@ -1,28 +1,28 @@
-# camunda commons
+# CadenzaFlow commons
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.camunda.commons/camunda-commons-bom/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.camunda.commons/camunda-commons-bom)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.cadenzaflow.commons/cadenzaflow-commons-bom/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.cadenzaflow.commons/cadenzaflow-commons-bom)
 
 
-camunda commons is a collection of shared libraries used by camunda open source projects.
+CadenzaFlow commons is a collection of shared libraries used by cadenzaflow open source projects.
 
 ## List of libraries
 
-* [camunda commons logging][logging]
-* [camunda commons utils][utils]
-* [camunda-bpm-platform][typed-values]
+* [cadenzaflow commons logging][logging]
+* [cadenzaflow commons utils][utils]
+* [cadenzaflow-bpm-platform][typed-values]
 
 
 ## Getting started
 
-If your project is a maven project, start by importing the `camunda-commons-bom`.
+If your project is a maven project, start by importing the `cadenzaflow-commons-bom`.
 This will ensure that your project uses all commons libraries in the same version:
 
 ```xml
 <dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-bom</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-bom</artifactId>
       <version>${version}</version>
       <type>pom</type>
       <scope>import</scope>
@@ -35,8 +35,8 @@ Now you can reference individual commons projects:
 
 ```xml
 <dependency>
-  <groupId>org.camunda.commons</groupId>
-  <artifactId>camunda-commons-logging</artifactId>
+  <groupId>org.cadenzaflow.commons</groupId>
+  <artifactId>cadenzaflow-commons-logging</artifactId>
 </dependency>
 ```
 
@@ -48,7 +48,7 @@ Java JRE 11+ is required.
 
 ## Contributing
 
-Have a look at our [contribution guide](https://github.com/camunda/camunda-bpm-platform/blob/master/CONTRIBUTING.md) for how to contribute to this repository.
+Have a look at our [contribution guide](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/blob/master/CONTRIBUTING.md) for how to contribute to this repository.
 
 
 ## License:

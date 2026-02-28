@@ -7,7 +7,7 @@
 # Best Practices for Writing Test Cases
 
 * write JUnit4-style tests, not JUnit3
-* Project `camunda-engine`: If you need a process engine object, use the JUnit rule `org.cadenzaflow.bpm.engine.test.util.ProvidedProcessEngineRule`. It ensures that the process engine object is reused across test cases and that certain integrity checks are performed after every test. For example:
+* Project `cadenzaflow-engine`: If you need a process engine object, use the JUnit rule `org.cadenzaflow.bpm.engine.test.util.ProvidedProcessEngineRule`. It ensures that the process engine object is reused across test cases and that certain integrity checks are performed after every test. For example:
   ```
   public ProcessEngineRule engineRule = new ProvidedProcessEngineRule();
 
@@ -18,12 +18,12 @@
     ...
   }
   ```
-* Project `camunda-engine`: As an alternative to the above, you can extend extend the `org.cadenzaflow.bpm.engine.test.util.PluggableProcessEngineTest` class.
+* Project `cadenzaflow-engine`: As an alternative to the above, you can extend extend the `org.cadenzaflow.bpm.engine.test.util.PluggableProcessEngineTest` class.
   The class already provides an instance of the `ProvidedProcessEngineRule`, as well as the `ProcessEngineTestRule` that
   provides some additional custom assertions and helper methods.
   * However, if you need to make modifications to the `ProcessEngineConfiguration`, then please use the `ProcessEngineBootstrapRule`
     as described below. 
-* Project `camunda-engine`: If you need a process engine with custom configuration, use the JUnit rule `org.cadenzaflow.bpm.engine.test.util.ProcessEngineBootstrapRule` and chain it with `org.cadenzaflow.bpm.engine.test.util.ProvidedProcessEngineRule` like so:
+* Project `cadenzaflow-engine`: If you need a process engine with custom configuration, use the JUnit rule `org.cadenzaflow.bpm.engine.test.util.ProcessEngineBootstrapRule` and chain it with `org.cadenzaflow.bpm.engine.test.util.ProvidedProcessEngineRule` like so:
   ```
   protected ProcessEngineBootstrapRule bootstrapRule = new ProcessEngineBootstrapRule(configuration -> {
       // apply configuration options here
@@ -75,7 +75,7 @@ There is a special profile for the WildFly Application Servers:
 
 # Testing a Given Database
 
-Camunda supports all database technologies listed on [Supported Database Products](https://docs.camunda.org/manual/latest/introduction/supported-environments/#supported-database-products), and in all environments, they are operating in as specified. Support means we guarantee the Camunda Platform integrates well with the database technology’s JDBC behavior (there are some [documented](https://docs.camunda.org/manual/latest/user-guide/process-engine/database/) limitations, e.g., isolation level `READ_COMMITTED` is required for all databases). We test a database technology with a specific database, i.e., we test it in one environment, not all possible environments that you can imagine (e.g., we test Postgres on local Docker containers, but not as hosted databases on AWS or Azure).
+Camunda supports all database technologies listed on [Supported Database Products](https://docs.cadenzaflow.org/manual/latest/introduction/supported-environments/#supported-database-products), and in all environments, they are operating in as specified. Support means we guarantee the Camunda Platform integrates well with the database technology’s JDBC behavior (there are some [documented](https://docs.cadenzaflow.org/manual/latest/user-guide/process-engine/database/) limitations, e.g., isolation level `READ_COMMITTED` is required for all databases). We test a database technology with a specific database, i.e., we test it in one environment, not all possible environments that you can imagine (e.g., we test Postgres on local Docker containers, but not as hosted databases on AWS or Azure).
 
 # No Maven? No problem!
 
@@ -133,10 +133,10 @@ Docker image can be used this way, please perform the following steps:
 1. Make sure that the `testcontainers` profile is added to your Maven `settings.xml` (you can find it [here](settings/maven/nexus-settings.xml)).
 
 At the moment, Testcontainers can be used with the Camunda-supported versions of the following databases. Please make 
-sure that the database image is configured according to [this guide](https://docs.camunda.org/manual/latest/user-guide/process-engine/database/database-configuration/#isolation-level-configuration):
+sure that the database image is configured according to [this guide](https://docs.cadenzaflow.org/manual/latest/user-guide/process-engine/database/database-configuration/#isolation-level-configuration):
 * PostgreSQL
 * MySQL
-* MS-SQL 2017/2019 ([MSSQL-specific configuraion guide](https://docs.camunda.org/manual/latest/user-guide/process-engine/database/mssql-configuration/))
+* MS-SQL 2017/2019 ([MSSQL-specific configuraion guide](https://docs.cadenzaflow.org/manual/latest/user-guide/process-engine/database/mssql-configuration/))
 
 To execute the process engine test suite with a certain database (e.g. PostgreSQL), you should call Maven in the 
 engine directory with
@@ -146,7 +146,7 @@ mvn clean test -Ppostgresql,testcontainers
 
 # Limiting the Number of Engine Unit Tests
 
-Due to the fact that the number of unit tests in the camunda engine increases daily and that you might just want to test a certain subset of tests the maven-surefire-plugin is configured in a way that you can include/exclude certain packages in your tests.
+Due to the fact that the number of unit tests in the cadenzaflow engine increases daily and that you might just want to test a certain subset of tests the maven-surefire-plugin is configured in a way that you can include/exclude certain packages in your tests.
 
 There are two properties that can be used for that: ``test.includes`` and ``test.excludes``
 
