@@ -39,9 +39,9 @@
     <module name="org.cadenzaflow.bpm.cadenzaflow-engine-plugin-connect" />
     <module name="org.cadenzaflow.bpm.qa.cadenzaflow-qa-ensure-clean-db" services="import" />
 
-    <module name="org.camunda.connect.cadenzaflow-connect-core" />
-    <module name="org.camunda.connect.cadenzaflow-connect-http-client" services="import" />
-    <module name="org.camunda.connect.cadenzaflow-connect-soap-http-client" services="import" />
+    <module name="org.cadenzaflow.connect.cadenzaflow-connect-core" />
+    <module name="org.cadenzaflow.connect.cadenzaflow-connect-http-client" services="import" />
+    <module name="org.cadenzaflow.connect.cadenzaflow-connect-soap-http-client" services="import" />
 
     <!-- for LDAP plugin only -->
     <module name="sun.jdk" />

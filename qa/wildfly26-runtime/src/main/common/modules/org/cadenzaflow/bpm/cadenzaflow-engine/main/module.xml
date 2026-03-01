@@ -30,11 +30,11 @@
     <module name="org.cadenzaflow.bpm.model.cadenzaflow-cmmn-model" />
     <module name="org.cadenzaflow.bpm.model.cadenzaflow-dmn-model" />
 
-    <module name="org.camunda.commons.cadenzaflow-commons-logging" />
-    <module name="org.camunda.commons.cadenzaflow-commons-utils" />
-    <module name="org.camunda.commons.cadenzaflow-commons-typed-values" export="true" />
-    <module name="org.camunda.template-engines.cadenzaflow-template-engines-freemarker" services="import" />
-    <module name="org.camunda.spin.cadenzaflow-spin-core" services="import" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-logging" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-utils" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-typed-values" export="true" />
+    <module name="org.cadenzaflow.template-engines.cadenzaflow-template-engines-freemarker" services="import" />
+    <module name="org.cadenzaflow.spin.cadenzaflow-spin-core" services="import" />
 
     <module name="org.cadenzaflow.bpm.dmn.cadenzaflow-engine-dmn" />
     <module name="org.cadenzaflow.bpm.juel.cadenzaflow-juel" services="import"/>
