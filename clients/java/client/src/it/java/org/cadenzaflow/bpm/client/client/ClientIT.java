@@ -288,7 +288,7 @@ public class ClientIT {
     try {
       // given
       ExternalTaskClientBuilder externalTaskClientBuilder = ExternalTaskClient.create()
-          .baseUrl("http://camunda.com/engine-rest");
+          .baseUrl("http://cadenzaflow.com/engine-rest");
       
       // then
       thrown.expect(ExternalTaskClientException.class);
@@ -339,7 +339,7 @@ public class ClientIT {
     try {
       // given
       ExternalTaskClientBuilder clientBuilder = ExternalTaskClient.create()
-          .baseUrl("http://camunda.com/engine-rest")
+          .baseUrl("http://cadenzaflow.com/engine-rest")
           .asyncResponseTimeout(0);
       
       // then
@@ -413,7 +413,7 @@ public class ClientIT {
     try {
       // given
       ExternalTaskClientBuilder externalTaskClientBuilder = ExternalTaskClient.create()
-          .baseUrl("http://camunda.com/engine-rest")
+          .baseUrl("http://cadenzaflow.com/engine-rest")
           .lockDuration(0);
       
       // then
@@ -436,7 +436,7 @@ public class ClientIT {
     try {
       // given
       ExternalTaskClientBuilder externalTaskClientBuilder = ExternalTaskClient.create()
-        .baseUrl("http://camunda.com/engine-rest")
+        .baseUrl("http://cadenzaflow.com/engine-rest")
         .addInterceptor(null);
 
       // then
