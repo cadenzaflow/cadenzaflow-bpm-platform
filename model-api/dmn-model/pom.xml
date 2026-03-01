@@ -14,11 +14,11 @@
   <name>CadenzaFlow Platform - DMN Model API</name>
   <inceptionYear>2025</inceptionYear>
   <properties>
-    <camunda.artifact>org.cadenzaflow.bpm.model.dmn</camunda.artifact>
-    <camunda.osgi.export>
+    <cadenzaflow.artifact>org.cadenzaflow.bpm.model.dmn</cadenzaflow.artifact>
+    <cadenzaflow.osgi.export>
       !org.cadenzaflow.bpm.model.dmn.schema,
       ${cadenzaflow.osgi.export.pkg};${cadenzaflow.osgi.version};-noimport:=true
-    </camunda.osgi.export>
+    </cadenzaflow.osgi.export>
   </properties>
   <dependencies>
 
@@ -99,7 +99,7 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>clirr-maven-plugin</artifactId>
             <configuration>
-              <comparisonVersion>${camunda.version.old}</comparisonVersion>
+              <comparisonVersion>${cadenzaflow.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
                 <exclude>org/cadenzaflow/bpm/model/dmn/impl/**</exclude>
