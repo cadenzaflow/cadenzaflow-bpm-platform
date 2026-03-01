@@ -1,4 +1,4 @@
-camunda.bpm:
+cadenzaflow.bpm:
   admin-user:
     id: demo
     password: demo

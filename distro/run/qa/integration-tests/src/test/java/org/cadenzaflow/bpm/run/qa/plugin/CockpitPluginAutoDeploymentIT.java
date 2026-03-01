@@ -34,7 +34,7 @@ import org.junit.Test;
 public class CockpitPluginAutoDeploymentIT {
 
   static final String EXAMPLE_PLUGIN_HOME = "example.plugin.home";
-  static final String PLUGIN_ENDPOINT = "/camunda/api/cockpit/plugin/test-cockpit-plugin/test-string";
+  static final String PLUGIN_ENDPOINT = "/cadenzaflow/api/cockpit/plugin/test-cockpit-plugin/test-string";
 
   static SpringBootManagedContainer container;
   static String baseDirectory = SpringBootManagedContainer.getRunHome();
@@ -73,7 +73,7 @@ public class CockpitPluginAutoDeploymentIT {
   @Test
   public void shouldAutoDeployCockpitPlugin() throws IOException {
     // given
-    deployPlugin("camunda-bpm-run-example-plugin.jar");
+    deployPlugin("cadenzaflow-bpm-run-example-plugin.jar");
     runStartScript();
 
     // when

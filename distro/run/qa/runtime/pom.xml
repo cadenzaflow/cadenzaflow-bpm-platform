@@ -14,7 +14,7 @@
   <packaging>jar</packaging>
   
   <properties>
-    <run-home>${project.build.directory}/run/camunda-bpm-run-distro</run-home>
+    <run-home>${project.build.directory}/run/cadenzaflow-bpm-run-distro</run-home>
     <example-plugin-home>${project.build.directory}/run/example-plugin</example-plugin-home>
   </properties>
 
@@ -132,7 +132,7 @@
 
   <profiles>
     <profile>
-      <id>integration-test-camunda-run</id>
+      <id>integration-test-cadenzaflow-run</id>
       <build>
         <plugins>
           <plugin>
@@ -142,10 +142,10 @@
             <configuration>
               <redirectTestOutputToFile>true</redirectTestOutputToFile>
               <dependenciesToScan>
-                <dependenciesToScan>org.cadenzaflow.bpm.run:camunda-bpm-run-qa-integration-tests</dependenciesToScan>
+                <dependenciesToScan>org.cadenzaflow.bpm.run:cadenzaflow-bpm-run-qa-integration-tests</dependenciesToScan>
               </dependenciesToScan>
               <systemPropertyVariables>
-                <camunda.run.home>${run-home}</camunda.run.home>
+                <cadenzaflow.run.home>${run-home}</cadenzaflow.run.home>
                 <example.plugin.home>${example-plugin-home}</example.plugin.home>
                 <selenium.screenshot.directory>${project.build.directory}/selenium-screenshots</selenium.screenshot.directory>
               </systemPropertyVariables>
@@ -170,7 +170,7 @@
                 </goals>
                 <phase>generate-test-resources</phase>
                 <configuration>
-                  <includeArtifactIds>camunda-bpm-run</includeArtifactIds>
+                  <includeArtifactIds>cadenzaflow-bpm-run</includeArtifactIds>
                   <overWriteSnapshots>true</overWriteSnapshots>
                   <excludeTransitive>true</excludeTransitive>
                   <outputDirectory>${run-home}</outputDirectory>
@@ -190,7 +190,7 @@
                 </goals>
                 <phase>generate-test-resources</phase>
                 <configuration>
-                  <artifact>org.cadenzaflow.bpm.run:camunda-bpm-run-example-plugin:${project.version}</artifact>
+                  <artifact>org.cadenzaflow.bpm.run:cadenzaflow-bpm-run-example-plugin:${project.version}</artifact>
                   <overWriteSnapshots>true</overWriteSnapshots>
                   <stripVersion>true</stripVersion>
                   <outputDirectory>${example-plugin-home}</outputDirectory>
