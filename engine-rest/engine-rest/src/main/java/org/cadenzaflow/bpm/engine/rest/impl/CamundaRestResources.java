@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -31,7 +31,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <p>Class providing static methods returning all the resource classes provided by Camunda Platform.</p>
+ * <p>Class providing static methods returning all the resource classes provided by CadenzaFlow Platform.</p>
  *
  * @author Daniel Meyer
  *
@@ -58,7 +58,7 @@ public class CamundaRestResources {
   }
 
   /**
-   * Returns a set containing all resource classes provided by Camunda Platform.
+   * Returns a set containing all resource classes provided by CadenzaFlow Platform.
    * @return a set of resource classes.
    */
   public static Set<Class<?>> getResourceClasses() {
