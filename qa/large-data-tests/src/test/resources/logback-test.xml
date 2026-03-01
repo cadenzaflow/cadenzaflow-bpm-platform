@@ -9,8 +9,8 @@
     </encoder>
   </appender>
 
-  <!-- camunda -->
-  <logger name="org.camunda" level="info" />
+  <!-- cadenzaflow -->
+  <logger name="org.cadenzaflow" level="info" />
 
   <!-- common dependencies -->
   <logger name="org.apache.ibatis" level="info" />
