@@ -227,7 +227,7 @@ public class MscManagedProcessEngineController extends MscManagedProcessEngine {
       return configurationClass.newInstance();
 
     } catch (Exception e) {
-      throw new ProcessEngineException("Could not load '"+configurationClassName+"': the class must be visible from the camunda-wildfly-subsystem module.", e);
+      throw new ProcessEngineException("Could not load '"+configurationClassName+"': the class must be visible from the cadenzaflow-wildfly-subsystem module.", e);
     }
   }
 

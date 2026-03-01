@@ -48,16 +48,16 @@ public class ModuleDependencyProcessor implements DeploymentUnitProcessor {
 
   public static final int PRIORITY = 0x2300;
 
-  public static ModuleIdentifier MODULE_IDENTIFYER_PROCESS_ENGINE = ModuleIdentifier.create("org.cadenzaflow.bpm.camunda-engine");
-  public static ModuleIdentifier MODULE_IDENTIFYER_XML_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.camunda-xml-model");
-  public static ModuleIdentifier MODULE_IDENTIFYER_BPMN_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.camunda-bpmn-model");
-  public static ModuleIdentifier MODULE_IDENTIFYER_CMMN_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.camunda-cmmn-model");
-  public static ModuleIdentifier MODULE_IDENTIFYER_DMN_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.camunda-dmn-model");
-  public static ModuleIdentifier MODULE_IDENTIFYER_SPIN = ModuleIdentifier.create("org.cadenzaflow.spin.camunda-spin-core");
-  public static ModuleIdentifier MODULE_IDENTIFYER_CONNECT = ModuleIdentifier.create("org.cadenzaflow.connect.camunda-connect-core");
-  public static ModuleIdentifier MODULE_IDENTIFYER_ENGINE_DMN = ModuleIdentifier.create("org.cadenzaflow.bpm.dmn.camunda-engine-dmn");
+  public static ModuleIdentifier MODULE_IDENTIFYER_PROCESS_ENGINE = ModuleIdentifier.create("org.cadenzaflow.bpm.cadenzaflow-engine");
+  public static ModuleIdentifier MODULE_IDENTIFYER_XML_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.cadenzaflow-xml-model");
+  public static ModuleIdentifier MODULE_IDENTIFYER_BPMN_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.cadenzaflow-bpmn-model");
+  public static ModuleIdentifier MODULE_IDENTIFYER_CMMN_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.cadenzaflow-cmmn-model");
+  public static ModuleIdentifier MODULE_IDENTIFYER_DMN_MODEL = ModuleIdentifier.create("org.cadenzaflow.bpm.model.cadenzaflow-dmn-model");
+  public static ModuleIdentifier MODULE_IDENTIFYER_SPIN = ModuleIdentifier.create("org.cadenzaflow.spin.cadenzaflow-spin-core");
+  public static ModuleIdentifier MODULE_IDENTIFYER_CONNECT = ModuleIdentifier.create("org.cadenzaflow.connect.cadenzaflow-connect-core");
+  public static ModuleIdentifier MODULE_IDENTIFYER_ENGINE_DMN = ModuleIdentifier.create("org.cadenzaflow.bpm.dmn.cadenzaflow-engine-dmn");
   public static ModuleIdentifier MODULE_IDENTIFYER_GRAAL_JS = ModuleIdentifier.create("org.graalvm.js.js-scriptengine");
-  public static ModuleIdentifier MODULE_IDENTIFYER_JUEL = ModuleIdentifier.create("org.cadenzaflow.bpm.juel.camunda-juel");
+  public static ModuleIdentifier MODULE_IDENTIFYER_JUEL = ModuleIdentifier.create("org.cadenzaflow.bpm.juel.cadenzaflow-juel");
 
   public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
 
