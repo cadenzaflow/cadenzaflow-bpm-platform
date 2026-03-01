@@ -29,6 +29,15 @@
     <version.joda-time>2.12.5</version.joda-time>
     <version.uuid-generator>4.3.0</version.uuid-generator>
     <version.feel-scala>1.19.3</version.feel-scala>
+
+    <!--
+      TODO [1.2.1+]: Re-enable Clirr binary compatibility checks.
+      Clirr is disabled for version 1.2.0 because the rebranding from org.camunda.* to
+      org.cadenzaflow.* is an intentional breaking change. Starting from 1.2.1, Clirr
+      should be re-enabled by setting this property to 'false' (or removing it entirely).
+      See: clirr-maven-plugin usage in parent/pom.xml, commons/pom.xml, engine/pom.xml, etc.
+    -->
+    <clirr.skip>true</clirr.skip>
   </properties>
 
   <build>
