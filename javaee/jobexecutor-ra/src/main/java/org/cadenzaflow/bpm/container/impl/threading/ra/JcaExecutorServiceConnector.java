@@ -99,10 +99,10 @@ public class JcaExecutorServiceConnector implements ResourceAdapter, Serializabl
 
   @ConfigProperty(
       type=String.class,
-      defaultValue = "wm/camunda-bpm-workmanager",
+      defaultValue = "wm/cadenzaflow-bpm-workmanager",
       description="Allows specifying the name of a CommonJ Workmanager."
   )
-  protected String commonJWorkManagerName = "wm/camunda-bpm-workmanager";
+  protected String commonJWorkManagerName = "wm/cadenzaflow-bpm-workmanager";
 
 
   // RA-Lifecycle ///////////////////////////////////////////////////
@@ -112,7 +112,7 @@ public class JcaExecutorServiceConnector implements ResourceAdapter, Serializabl
     try {
       Class.forName(ORG_CAMUNDA_BPM_ENGINE_PROCESS_ENGINE);
     } catch (Exception e) {
-      log.info("ProcessEngine classes not found in shared libraries. Not initializing camunda Platform JobExecutor Resource Adapter.");
+      log.info("ProcessEngine classes not found in shared libraries. Not initializing cadenzaflow Platform JobExecutor Resource Adapter.");
       return;
     }
 
@@ -128,7 +128,7 @@ public class JcaExecutorServiceConnector implements ResourceAdapter, Serializabl
       executorServiceWrapper.setExecutorService(new JcaWorkManagerExecutorService(this, ctx.getWorkManager()));
     }
 
-    log.log(Level.INFO, "Camunda Platform executor service started.");
+    log.log(Level.INFO, "CadenzaFlow Platform executor service started.");
   }
 
   public void stop() {
@@ -138,7 +138,7 @@ public class JcaExecutorServiceConnector implements ResourceAdapter, Serializabl
       return;
     }
 
-    log.log(Level.INFO, "Camunda Platform executor service stopped.");
+    log.log(Level.INFO, "CadenzaFlow Platform executor service stopped.");
 
   }
 
@@ -146,7 +146,7 @@ public class JcaExecutorServiceConnector implements ResourceAdapter, Serializabl
 
   public void endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec) throws ResourceException {
     if(jobHandlerActivation != null) {
-      throw new ResourceException("The Camunda Platform job executor can only service a single MessageEndpoint for job execution. " +
+      throw new ResourceException("The CadenzaFlow Platform job executor can only service a single MessageEndpoint for job execution. " +
       		"Make sure not to deploy more than one MDB implementing the '"+JobExecutionHandler.class.getName()+"' interface.");
     }
     JobExecutionHandlerActivation activation = new JobExecutionHandlerActivation(this, endpointFactory, (JobExecutionHandlerActivationSpec) spec);
