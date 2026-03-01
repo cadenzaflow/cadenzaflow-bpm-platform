@@ -48,7 +48,7 @@
               <artifactSet>
                 <excludes>
                   <exclude>org.cadenzaflow.commons:*</exclude>
-                  <exclude>org.cadenzaflow.connect:camunda-connect-core</exclude>
+                  <exclude>org.cadenzaflow.connect:cadenzaflow-connect-core</exclude>
                   <exclude>org.slf4j:*</exclude>
                 </excludes>
               </artifactSet>
