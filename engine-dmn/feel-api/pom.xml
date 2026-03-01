@@ -11,7 +11,7 @@
   <artifactId>cadenzaflow-engine-feel-api</artifactId>
   <name>CadenzaFlow DMN - engine FEEL - API</name>
   <properties>
-    <camunda.artifact>org.cadenzaflow.bpm.dmn.feel.impl</camunda.artifact>
+    <cadenzaflow.artifact>org.cadenzaflow.bpm.dmn.feel.impl</cadenzaflow.artifact>
   </properties>
   <dependencies>
     <dependency>
@@ -57,7 +57,7 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>clirr-maven-plugin</artifactId>
             <configuration>
-              <comparisonVersion>${camunda.version.old}</comparisonVersion>
+              <comparisonVersion>${cadenzaflow.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
                 <exclude>org/cadenzaflow/bpm/dmn/feel/impl/**</exclude>
