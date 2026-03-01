@@ -4,7 +4,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              targetNamespace="http://www.example.org/upgrade120">
 
-  <process id="upgrade120JsonVariable" isExecutable="true">
+  <process id="upgrade120JsonVariable" isExecutable="true" cadenzaflow:historyTimeToLive="180">
     <startEvent id="start" />
     <sequenceFlow id="flow1" sourceRef="start" targetRef="waitTask" />
     <userTask id="waitTask" name="Wait with JSON variable" />
