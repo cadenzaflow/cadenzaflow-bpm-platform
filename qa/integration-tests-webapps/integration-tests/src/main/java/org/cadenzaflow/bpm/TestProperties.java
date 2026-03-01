@@ -67,7 +67,7 @@ public class TestProperties {
   }
 
   public String getWebappCtxPath() {
-    return getStringProperty("webapp.ctx.path", "camunda/");
+    return getStringProperty("webapp.ctx.path", "cadenzaflow/");
   }
 
   public String getRestCtxPath() {

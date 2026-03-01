@@ -67,7 +67,7 @@ public class EmbeddedEngineRest_WILDFLY {
   }
 
   private static JavaArchive[] getEngineRestClasses() {
-    String coordinates = "org.cadenzaflow.bpm:camunda-engine-rest:jar:classes:" + System.getProperty("projectversion");
+    String coordinates = "org.cadenzaflow.bpm:cadenzaflow-engine-rest:jar:classes:" + System.getProperty("projectversion");
 
     JavaArchive[] resolvedArchives = Maven.configureResolver()
           .workOffline()
