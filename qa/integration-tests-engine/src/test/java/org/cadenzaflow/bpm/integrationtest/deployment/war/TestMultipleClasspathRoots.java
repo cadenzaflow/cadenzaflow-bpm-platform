@@ -83,7 +83,7 @@ public class TestMultipleClasspathRoots extends AbstractFoxPlatformIntegrationTe
         .addAsResource(processAssets[0], "directory/processes/process.bpmn");
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "test.war")
-        .addAsWebInfResource("org/camunda/bpm/integrationtest/beans.xml", "beans.xml")
+        .addAsWebInfResource("org/cadenzaflow/bpm/integrationtest/beans.xml", "beans.xml")
         .addAsLibraries(DeploymentHelper.getEngineCdi())
 
         .addAsLibraries(pa0)

@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Arquillian.class)
 public class FeelEngineTest extends AbstractFoxPlatformIntegrationTest {
 
-  protected static final String PATH = "org/camunda/bpm/integrationtest/functional/spin/feel/";
+  protected static final String PATH = "org/cadenzaflow/bpm/integrationtest/functional/spin/feel/";
 
   protected static final String DMN_JSON = "feel-spin-json-decision.dmn";
   protected static final String DMN_XML = "feel-spin-xml-decision.dmn";
@@ -125,7 +125,7 @@ public class FeelEngineTest extends AbstractFoxPlatformIntegrationTest {
 
   @Test
   public void testFeelEngineComplexContext() {
-    // Mapping complex FEEL context into Java requires the org.camunda.feel.impl.JavaValueMapper SPI to be registered
+    // Mapping complex FEEL context into Java requires the org.cadenzaflow.feel.impl.JavaValueMapper SPI to be registered
     // when
     ProcessInstance pi = runtimeService.startProcessInstanceByKey("feelComplexContextProcess");
     String result = (String) runtimeService.getVariable(pi.getId(), "result");

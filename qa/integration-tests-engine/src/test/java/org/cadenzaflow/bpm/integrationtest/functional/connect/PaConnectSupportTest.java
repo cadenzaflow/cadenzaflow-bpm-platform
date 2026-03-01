@@ -39,7 +39,7 @@ public class PaConnectSupportTest extends AbstractFoxPlatformIntegrationTest {
   @Deployment
   public static WebArchive createDeployment() {
     return initWebArchiveDeployment()
-      .addAsResource("org/camunda/bpm/integrationtest/functional/connect/PaConnectSupportTest.connectorServiceTask.bpmn20.xml")
+      .addAsResource("org/cadenzaflow/bpm/integrationtest/functional/connect/PaConnectSupportTest.connectorServiceTask.bpmn20.xml")
       .addClass(TestConnector.class)
       .addClass(TestConnectorRequest.class)
       .addClass(TestConnectorResponse.class)

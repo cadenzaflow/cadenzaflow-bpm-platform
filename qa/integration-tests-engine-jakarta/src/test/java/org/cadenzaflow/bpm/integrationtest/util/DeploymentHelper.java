@@ -22,9 +22,9 @@ import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
 public class DeploymentHelper extends AbstractDeploymentHelper {
 
-  protected static final String CAMUNDA_EJB_CLIENT = "org.cadenzaflow.bpm.javaee:camunda-ejb-client-jakarta";
-  protected static final String CAMUNDA_ENGINE_CDI = "org.cadenzaflow.bpm:camunda-engine-cdi-jakarta";
-  protected static final String CAMUNDA_ENGINE_SPRING = "org.cadenzaflow.bpm:camunda-engine-spring-6";
+  protected static final String CAMUNDA_EJB_CLIENT = "org.cadenzaflow.bpm.javaee:cadenzaflow-ejb-client-jakarta";
+  protected static final String CAMUNDA_ENGINE_CDI = "org.cadenzaflow.bpm:cadenzaflow-engine-cdi-jakarta";
+  protected static final String CAMUNDA_ENGINE_SPRING = "org.cadenzaflow.bpm:cadenzaflow-engine-spring-6";
 
   public static JavaArchive getEjbClient() {
     return getEjbClient(CAMUNDA_EJB_CLIENT);

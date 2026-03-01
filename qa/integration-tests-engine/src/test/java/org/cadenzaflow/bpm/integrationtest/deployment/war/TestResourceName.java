@@ -126,7 +126,7 @@ public class TestResourceName extends AbstractFoxPlatformIntegrationTest {
             .addAsResource(pa4ProcessesXml, "META-INF/processes.xml");
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "test.war")
-        .addAsWebInfResource("org/camunda/bpm/integrationtest/beans.xml", "beans.xml")
+        .addAsWebInfResource("org/cadenzaflow/bpm/integrationtest/beans.xml", "beans.xml")
         .addAsLibraries(DeploymentHelper.getEngineCdi())
 
         .addAsLibraries(pa1)

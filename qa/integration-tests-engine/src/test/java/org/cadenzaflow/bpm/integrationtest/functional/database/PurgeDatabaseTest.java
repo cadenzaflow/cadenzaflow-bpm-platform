@@ -52,7 +52,7 @@ public class PurgeDatabaseTest extends AbstractFoxPlatformIntegrationTest {
   @Deployment
   public static WebArchive processArchive() {
     return initWebArchiveDeployment()
-      .addAsResource("org/camunda/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml");
+      .addAsResource("org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml");
   }
 
   @Test

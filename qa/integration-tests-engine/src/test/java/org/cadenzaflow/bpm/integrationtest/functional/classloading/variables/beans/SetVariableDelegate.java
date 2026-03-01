@@ -28,7 +28,7 @@ public class SetVariableDelegate implements JavaDelegate {
   public void execute(DelegateExecution execution) throws Exception {
     
     SerializableVariable serializableVariable = new SerializableVariable();
-    serializableVariable.setValue("camunda BPM");
+    serializableVariable.setValue("cadenzaflow BPM");
     
     execution.setVariable("var1", serializableVariable);
     

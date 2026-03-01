@@ -50,7 +50,7 @@ public class TestFoxPlatformClientAsLibInWebModule extends AbstractFoxPlatformIn
    *            |-- fox-platform-client.jar
    *        |-- WEB-INF/classes
    *            |-- META-INF/processes.xml
-   *        |-- org/camunda/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml
+   *        |-- org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml
    *
    */
   @Deployment
@@ -58,7 +58,7 @@ public class TestFoxPlatformClientAsLibInWebModule extends AbstractFoxPlatformIn
 
     // this creates the process archive as a WAR file
     WebArchive processArchive = initWebArchiveDeployment()
-      .addAsResource("org/camunda/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml")
+      .addAsResource("org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml")
       .addClass(TestFoxPlatformClientAsLibInWebModule.class);
 
     // this packages the WAR file inside an EAR file

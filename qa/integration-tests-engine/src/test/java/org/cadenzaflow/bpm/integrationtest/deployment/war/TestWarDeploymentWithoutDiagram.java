@@ -37,12 +37,12 @@ public class TestWarDeploymentWithoutDiagram extends AbstractFoxPlatformIntegrat
   public static WebArchive processArchive() {    
     return initWebArchiveDeployment()
             .addClass(TestHelper.class)
-            .addAsResource("org/camunda/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml");
+            .addAsResource("org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml");
   }
   
   @Test
   public void testDeployProcessArchiveDiagramCreationDisabled() throws IOException {
-    String expectedDiagramResource = "/org/camunda/bpm/integrationtest/testDeployProcessArchive.png";
+    String expectedDiagramResource = "/org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.png";
     String processDefinitionKey = "testDeployProcessArchive";
     TestHelper.assertDiagramIsDeployed(false, getClass(), expectedDiagramResource, processDefinitionKey);
   }

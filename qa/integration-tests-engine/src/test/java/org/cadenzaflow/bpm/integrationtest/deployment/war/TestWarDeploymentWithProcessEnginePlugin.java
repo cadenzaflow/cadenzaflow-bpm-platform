@@ -46,8 +46,8 @@ public class TestWarDeploymentWithProcessEnginePlugin extends AbstractFoxPlatfor
   public static WebArchive processArchive() {
     return initWebArchiveDeployment("test.war", "singleEngineWithProcessEnginePlugin.xml")
         .addClass(GroovyProcessEnginePlugin.class)
-        .addAsResource("org/camunda/bpm/integrationtest/deployment/war/groovy.bpmn20.xml")
-        .addAsResource("org/camunda/bpm/integrationtest/deployment/war/groovyAsync.bpmn20.xml")
+        .addAsResource("org/cadenzaflow/bpm/integrationtest/deployment/war/groovy.bpmn20.xml")
+        .addAsResource("org/cadenzaflow/bpm/integrationtest/deployment/war/groovyAsync.bpmn20.xml")
         .addAsLibraries(Maven.resolver()
             .offline()
             .loadPomFromFile("pom.xml")

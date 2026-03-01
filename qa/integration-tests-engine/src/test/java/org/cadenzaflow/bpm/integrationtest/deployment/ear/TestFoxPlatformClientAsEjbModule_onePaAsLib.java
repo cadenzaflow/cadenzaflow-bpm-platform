@@ -50,7 +50,7 @@ public class TestFoxPlatformClientAsEjbModule_onePaAsLib extends AbstractFoxPlat
    *    |-- lib /
    *        |-- processes.jar
    *          |-- META-INF/processes.xml
-   *          |-- org/camunda/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml
+   *          |-- org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml
    *
    *    |-- fox-platform-client.jar  <<===============================||
    *                                                                  ||  Class-Path reference
@@ -64,13 +64,13 @@ public class TestFoxPlatformClientAsEjbModule_onePaAsLib extends AbstractFoxPlat
   public static EnterpriseArchive onePaAsLib() {
 
     JavaArchive processArchiveJar = ShrinkWrap.create(JavaArchive.class, "processes.jar")
-      .addAsResource("org/camunda/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml")
+      .addAsResource("org/cadenzaflow/bpm/integrationtest/testDeployProcessArchive.bpmn20.xml")
       .addAsResource("META-INF/processes.xml", "META-INF/processes.xml");
 
     JavaArchive foxPlatformClientJar = DeploymentHelper.getEjbClient();
 
     WebArchive testJar = ShrinkWrap.create(WebArchive.class, "test.war")
-      .addAsWebInfResource("org/camunda/bpm/integrationtest/beans.xml", "beans.xml")
+      .addAsWebInfResource("org/cadenzaflow/bpm/integrationtest/beans.xml", "beans.xml")
       .setManifest(new ByteArrayAsset(("Class-Path: " + foxPlatformClientJar.getName()+"\n").getBytes()))
       .addClass(AbstractFoxPlatformIntegrationTest.class)
       .addClass(TestFoxPlatformClientAsEjbModule_onePaAsLib.class);

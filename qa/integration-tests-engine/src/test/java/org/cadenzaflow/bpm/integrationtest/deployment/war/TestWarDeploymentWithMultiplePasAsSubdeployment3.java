@@ -81,7 +81,7 @@ public class TestWarDeploymentWithMultiplePasAsSubdeployment3 extends AbstractFo
             .addAsResource(pa2ProcessesXml, "META-INF/processes.xml");
        
     WebArchive deployment = ShrinkWrap.create(WebArchive.class, "test.war")
-            .addAsWebInfResource("org/camunda/bpm/integrationtest/beans.xml", "beans.xml")
+            .addAsWebInfResource("org/cadenzaflow/bpm/integrationtest/beans.xml", "beans.xml")
             .addAsLibraries(DeploymentHelper.getEngineCdi())
             
             .addAsLibraries(pa2)

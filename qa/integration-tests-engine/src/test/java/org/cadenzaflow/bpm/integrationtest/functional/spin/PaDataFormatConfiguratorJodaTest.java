@@ -54,7 +54,7 @@ public class PaDataFormatConfiguratorJodaTest extends AbstractFoxPlatformIntegra
         .addAsResource("META-INF/processes.xml")
         .addClass(AbstractFoxPlatformIntegrationTest.class)
         .addClass(ReferenceStoringProcessApplication.class)
-        .addAsResource("org/camunda/bpm/integrationtest/oneTaskProcess.bpmn")
+        .addAsResource("org/cadenzaflow/bpm/integrationtest/oneTaskProcess.bpmn")
         .addClass(JodaJsonSerializable.class)
         .addClass(JodaJsonDataFormatConfigurator.class)
         .addAsServiceProvider(DataFormatConfigurator.class, JodaJsonDataFormatConfigurator.class);

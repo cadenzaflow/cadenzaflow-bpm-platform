@@ -55,7 +55,7 @@ public class ClassloadingByJobPriorityTest extends AbstractFoxPlatformIntegratio
   @Deployment(name= "engineWithPriorityJobAcquisition")
   public static WebArchive processArchive() {
     WebArchive webArchive = initWebArchiveDeployment("processApp.war",
-        "org/camunda/bpm/integrationtest/functional/classloading/jobexecution/engineWithAcquireJobsByPriority.xml")
+        "org/cadenzaflow/bpm/integrationtest/functional/classloading/jobexecution/engineWithAcquireJobsByPriority.xml")
                .addClass(AbstractFoxPlatformIntegrationTest.class)
                .addAsResource(modelAsAsset(process), "ClassloadingByJobPriorityTest.testDeployProcessArchive.bpmn");
     TestContainer.addContainerSpecificResources(webArchive);

@@ -105,7 +105,7 @@ public abstract class AbstractDeploymentHelper {
           .loadPomFromFile("pom.xml")
           .addDependencies(
               MavenDependencies.createDependency(engineSpringArtifactName, ScopeType.COMPILE, false,
-                  MavenDependencies.createExclusion("org.cadenzaflow.bpm:camunda-engine")),
+                  MavenDependencies.createExclusion("org.cadenzaflow.bpm:cadenzaflow-engine")),
                   MavenDependencies.createDependency("org.springframework:spring-context", ScopeType.COMPILE, false),
                   MavenDependencies.createDependency("org.springframework:spring-jdbc", ScopeType.COMPILE, false),
                   MavenDependencies.createDependency("org.springframework:spring-tx", ScopeType.COMPILE, false),
@@ -158,11 +158,11 @@ public abstract class AbstractDeploymentHelper {
       return Maven.configureResolver()
           .workOffline()
           .loadPomFromFile("pom.xml")
-          .resolve("org.cadenzaflow.spin:camunda-spin-dataformat-json-jackson")
+          .resolve("org.cadenzaflow.spin:cadenzaflow-spin-dataformat-json-jackson")
           .using(new RejectDependenciesStrategy(false,
-              "org.cadenzaflow.spin:camunda-spin-core",
-              "org.cadenzaflow.commons:camunda-commons-logging",
-              "org.cadenzaflow.commons:camunda-commons-utils"))
+              "org.cadenzaflow.spin:cadenzaflow-spin-core",
+              "org.cadenzaflow.commons:cadenzaflow-commons-logging",
+              "org.cadenzaflow.commons:cadenzaflow-commons-utils"))
           .as(JavaArchive.class);
     } else {
       throw new RuntimeException("Unable to determine dependencies for spinJacksonJsonDataFormat: " + server);

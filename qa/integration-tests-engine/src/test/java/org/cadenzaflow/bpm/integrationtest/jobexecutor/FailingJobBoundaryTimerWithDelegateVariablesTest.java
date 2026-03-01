@@ -47,7 +47,7 @@ public class FailingJobBoundaryTimerWithDelegateVariablesTest extends AbstractFo
     return initWebArchiveDeployment()
             .addClass(DemoDelegate.class)
             .addClass(DemoVariableClass.class)
-            .addAsResource("org/camunda/bpm/integrationtest/jobexecutor/ImmediatelyFailing.bpmn20.xml");
+            .addAsResource("org/cadenzaflow/bpm/integrationtest/jobexecutor/ImmediatelyFailing.bpmn20.xml");
   }
 
   @Test

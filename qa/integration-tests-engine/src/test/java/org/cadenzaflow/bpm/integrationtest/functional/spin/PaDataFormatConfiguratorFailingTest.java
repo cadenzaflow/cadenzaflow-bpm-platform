@@ -52,7 +52,7 @@ public class PaDataFormatConfiguratorFailingTest {
         .addAsResource("META-INF/processes.xml")
         .addClass(AbstractFoxPlatformIntegrationTest.class)
         .addClass(ReferenceStoringProcessApplication.class)
-        .addAsResource("org/camunda/bpm/integrationtest/oneTaskProcess.bpmn")
+        .addAsResource("org/cadenzaflow/bpm/integrationtest/oneTaskProcess.bpmn")
         .addClass(JsonSerializable.class)
         .addClass(FailingJsonDataFormatConfigurator.class)
         .addAsServiceProvider(DataFormatConfigurator.class, FailingJsonDataFormatConfigurator.class);

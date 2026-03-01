@@ -108,7 +108,7 @@ public class TestWarDeploymentWithMultiplePasAsSubdeployment2 extends AbstractFo
             .addAsResource(processAssets[8], "alternateDirectory/process8.bpmn");
     
     WebArchive deployment = ShrinkWrap.create(WebArchive.class, "test.war")
-            .addAsWebInfResource("org/camunda/bpm/integrationtest/beans.xml", "beans.xml")
+            .addAsWebInfResource("org/cadenzaflow/bpm/integrationtest/beans.xml", "beans.xml")
             .addAsLibraries(DeploymentHelper.getEngineCdi())
             
             .addAsLibraries(pa2)

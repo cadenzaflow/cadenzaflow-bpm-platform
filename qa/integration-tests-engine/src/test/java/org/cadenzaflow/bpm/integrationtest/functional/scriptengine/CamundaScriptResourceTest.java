@@ -38,8 +38,8 @@ public class CamundaScriptResourceTest extends AbstractFoxPlatformIntegrationTes
   public static WebArchive processArchive() {
 
     return initWebArchiveDeployment()
-      .addAsResource("org/camunda/bpm/integrationtest/functional/scriptengine/CamundaScriptResourceTest.examplescript.js", "CamundaScriptResourceTest.examplescript.js")
-      .addAsResource("org/camunda/bpm/integrationtest/functional/scriptengine/CamundaScriptResourceTest.exampleprocess.bpmn", "CamundaScriptResourceTest.exampleprocess.bpmn");
+      .addAsResource("org/cadenzaflow/bpm/integrationtest/functional/scriptengine/CamundaScriptResourceTest.examplescript.js", "CamundaScriptResourceTest.examplescript.js")
+      .addAsResource("org/cadenzaflow/bpm/integrationtest/functional/scriptengine/CamundaScriptResourceTest.exampleprocess.bpmn", "CamundaScriptResourceTest.exampleprocess.bpmn");
   }
 
   @Test
