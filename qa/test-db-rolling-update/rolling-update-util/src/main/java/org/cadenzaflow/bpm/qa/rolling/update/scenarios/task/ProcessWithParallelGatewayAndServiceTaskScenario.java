@@ -37,12 +37,12 @@ public class ProcessWithParallelGatewayAndServiceTaskScenario {
 
   @Deployment
   public static String deploy() {
-    return "org/camunda/bpm/qa/rolling/update/processWithParallelGatewayAndServiceTask.bpmn20.xml";
+    return "org/cadenzaflow/bpm/qa/rolling/update/processWithParallelGatewayAndServiceTask.bpmn20.xml";
   }
 
   @Deployment
   public static String deployAsyncServiceTask() {
-    return "org/camunda/bpm/qa/rolling/update/processWithParallelGatewayAndAsyncServiceTask.bpmn20.xml";
+    return "org/cadenzaflow/bpm/qa/rolling/update/processWithParallelGatewayAndAsyncServiceTask.bpmn20.xml";
   }
 
   @DescribesScenario("init.none")

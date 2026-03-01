@@ -43,7 +43,7 @@ public class AuthorizationScenario {
 
   @Deployment
   public static String deployOneTaskProcess() {
-    return "org/camunda/bpm/qa/rolling/update/oneTaskProcess.bpmn20.xml";
+    return "org/cadenzaflow/bpm/qa/rolling/update/oneTaskProcess.bpmn20.xml";
   }
 
   @DescribesScenario("startProcessInstance")

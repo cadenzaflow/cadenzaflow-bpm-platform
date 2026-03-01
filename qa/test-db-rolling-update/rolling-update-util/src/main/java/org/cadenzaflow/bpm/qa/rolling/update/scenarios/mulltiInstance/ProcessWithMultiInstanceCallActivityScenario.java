@@ -34,12 +34,12 @@ public class ProcessWithMultiInstanceCallActivityScenario {
 
   @Deployment
   public static String deploy() {
-    return "org/camunda/bpm/qa/rolling/update/processWithMultiInstanceCallActivity.bpmn20.xml";
+    return "org/cadenzaflow/bpm/qa/rolling/update/processWithMultiInstanceCallActivity.bpmn20.xml";
   }
 
   @Deployment
   public static String deploySubProcess() {
-    return "org/camunda/bpm/qa/rolling/update/simpleSubProcess.bpmn20.xml";
+    return "org/cadenzaflow/bpm/qa/rolling/update/simpleSubProcess.bpmn20.xml";
   }
 
   @DescribesScenario("init")

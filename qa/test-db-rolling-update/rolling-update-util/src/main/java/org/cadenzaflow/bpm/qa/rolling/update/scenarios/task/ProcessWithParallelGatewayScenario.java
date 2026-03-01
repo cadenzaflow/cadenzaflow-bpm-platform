@@ -36,7 +36,7 @@ public class ProcessWithParallelGatewayScenario {
 
   @Deployment
   public static String deploy() {
-    return "org/camunda/bpm/qa/rolling/update/processWithParallelGateway.bpmn20.xml";
+    return "org/cadenzaflow/bpm/qa/rolling/update/processWithParallelGateway.bpmn20.xml";
   }
 
   @DescribesScenario("init.none")
