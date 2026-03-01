@@ -68,11 +68,11 @@
                     </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
                     <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
                       <pattern>^\Qindex.html\E</pattern>
-                      <replacement>./camunda-invoice/index.html</replacement>
+                      <replacement>./cadenzaflow-invoice/index.html</replacement>
                     </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
                     <org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
                       <pattern>^\Qassets/\E</pattern>
-                      <replacement>./camunda-invoice/assets/</replacement>
+                      <replacement>./cadenzaflow-invoice/assets/</replacement>
                     </org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
                   </fileMappers>
                 </artifactItem>
