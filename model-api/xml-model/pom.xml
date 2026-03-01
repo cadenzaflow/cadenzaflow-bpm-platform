@@ -14,11 +14,11 @@
   <name>CadenzaFlow Platform - Xml Model API</name>
   <inceptionYear>2025</inceptionYear>
   <properties>
-    <camunda.artifact>org.cadenzaflow.bpm.model.xml</camunda.artifact>
-    <camunda.osgi.import.additional>
+    <cadenzaflow.artifact>org.cadenzaflow.bpm.model.xml</cadenzaflow.artifact>
+    <cadenzaflow.osgi.import.additional>
       org.assertj.*;resolution:=optional,
       org.junit.*;resolution:=optional
-    </camunda.osgi.import.additional>
+    </cadenzaflow.osgi.import.additional>
   </properties>
   <dependencies>
 
@@ -73,7 +73,7 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>clirr-maven-plugin</artifactId>
             <configuration>
-              <comparisonVersion>${camunda.version.old}</comparisonVersion>
+              <comparisonVersion>${cadenzaflow.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
                 <exclude>org/cadenzaflow/bpm/model/xml/impl/**</exclude>
