@@ -1,2 +1,2 @@
-registry.camunda.cloud/team-cambpm/camunda-ci-sqlserver:2017
-registry.camunda.cloud/team-cambpm/camunda-ci-sqlserver:2019
+registry.cadenzaflow.cloud/team-cambpm/cadenzaflow-ci-sqlserver:2017
+registry.cadenzaflow.cloud/team-cambpm/cadenzaflow-ci-sqlserver:2019
