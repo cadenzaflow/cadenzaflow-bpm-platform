@@ -150,7 +150,7 @@ public class XmlTestConstants {
 
     details.setDate(detailsDate);
     details.setId(1234567890L);
-    details.setProduct("camunda BPM");
+    details.setProduct("cadenzaflow BPM");
 
     order.setOrder("order1");
     order.setDueUntil(dueUntilDate);

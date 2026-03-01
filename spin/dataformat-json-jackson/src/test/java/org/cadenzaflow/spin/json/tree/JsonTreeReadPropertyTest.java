@@ -169,7 +169,7 @@ public class JsonTreeReadPropertyTest {
   @Test
   public void shouldReadStringValue() {
     assertThat(order.stringValue()).isEqualTo("order1");
-    assertThat(orderDetails.prop("article").stringValue()).isEqualTo("camundaBPM");
+    assertThat(orderDetails.prop("article").stringValue()).isEqualTo("cadenzaflowBPM");
     assertThat(customers.elements().get(0).prop("name").stringValue()).isEqualTo("Kermit");
   }
 

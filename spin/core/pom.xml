@@ -192,7 +192,7 @@
               <comparisonVersion>${spin.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/spin/impl/**</exclude>
+                <exclude>org/cadenzaflow/spin/impl/**</exclude>
               </excludes>
             </configuration>
             <executions>

@@ -187,7 +187,7 @@ public abstract class JsonTreeReadPropertyScriptTest extends ScriptTest {
 
     assertThat(value1).isEqualTo("order1");
     assertThat(value2).isEqualTo("Kermit");
-    assertThat(value3).isEqualTo("camundaBPM");
+    assertThat(value3).isEqualTo("cadenzaflowBPM");
   }
 
   @Test
@@ -243,7 +243,7 @@ public abstract class JsonTreeReadPropertyScriptTest extends ScriptTest {
     String value = script.getVariable("value");
 
     assertThat(childNode).isNotNull();
-    assertThat(value).isEqualTo("camundaBPM");
+    assertThat(value).isEqualTo("cadenzaflowBPM");
   }
 
   @Test

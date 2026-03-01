@@ -14,6 +14,6 @@
   <order-details>
     <ns2:date>2015-04-04T00:00:00+02:00</ns2:date>
     <ns2:id>1234567890</ns2:id>
-    <ns2:product>camunda BPM</ns2:product>
+    <ns2:product>cadenzaflow BPM</ns2:product>
   </order-details>
 </customers>

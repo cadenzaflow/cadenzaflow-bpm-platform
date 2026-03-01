@@ -316,7 +316,7 @@ public class JsonTreeSetPropertyTest {
     SpinJsonNode childNode = orderDetails;
     String oldValue = childNode.prop("article").stringValue();
 
-    assertThat(oldValue).isEqualTo("camundaBPM");
+    assertThat(oldValue).isEqualTo("cadenzaflowBPM");
 
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("id1", "object1");

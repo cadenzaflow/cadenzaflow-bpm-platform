@@ -60,7 +60,7 @@ public class JsonTestConstants {
     order.setActive(true);
 
     OrderDetails orderDetails = new OrderDetails();
-    orderDetails.setArticle("camundaBPM");
+    orderDetails.setArticle("cadenzaflowBPM");
     orderDetails.setPrice(1234567.13d);
     orderDetails.setRoundedPrice(1234567L);
 
@@ -91,7 +91,7 @@ public class JsonTestConstants {
 
     OrderDetails orderDetails = order.getOrderDetails();
     assertThat(orderDetails).isNotNull();
-    assertThat(orderDetails.getArticle()).isEqualTo("camundaBPM");
+    assertThat(orderDetails.getArticle()).isEqualTo("cadenzaflowBPM");
     assertThat(orderDetails.getPrice()).isEqualTo(1234567.13d);
     assertThat(orderDetails.getRoundedPrice()).isEqualTo(1234567L);
     assertThat(orderDetails.getCurrencies()).containsExactly("euro", "dollar");
