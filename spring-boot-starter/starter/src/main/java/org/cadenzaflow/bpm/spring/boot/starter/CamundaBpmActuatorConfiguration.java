@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 @Configuration
-@ConditionalOnProperty(prefix = "management.health.camunda", name = "enabled", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "management.health.cadenzaflow", name = "enabled", matchIfMissing = true)
 @ConditionalOnClass(HealthIndicator.class)
 @DependsOn("runtimeService")
 public class CamundaBpmActuatorConfiguration {

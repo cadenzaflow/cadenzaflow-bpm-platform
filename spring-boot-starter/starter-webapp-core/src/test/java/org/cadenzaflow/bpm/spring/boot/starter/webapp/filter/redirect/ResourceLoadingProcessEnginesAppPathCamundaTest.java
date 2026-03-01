@@ -33,7 +33,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = { FilterTestApp.class},
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = {
-        "cadenzaflow.bpm.webapp.application-path=/camunda",
+        "cadenzaflow.bpm.webapp.application-path=/cadenzaflow",
         "cadenzaflow.bpm.webapp.index-redirect-enabled=false",
         "cadenzaflow.bpm.admin-user.id=admin" })
 @DirtiesContext
@@ -48,11 +48,11 @@ public class ResourceLoadingProcessEnginesAppPathCamundaTest {
   @Test
   public void shouldRedirectRequestToTasklist_contextRoot() {
     // when
-    // send GET request to /camunda
-    HttpURLConnection con = rule.performRequest("http://localhost:" + port + "/camunda");
+    // send GET request to /cadenzaflow
+    HttpURLConnection con = rule.performRequest("http://localhost:" + port + "/cadenzaflow");
 
     // then
     // the request should have been redirected to Tasklist
-    assertThat(con.getURL().toString()).isEqualTo("http://localhost:" + port + "/camunda/app/tasklist/default/");
+    assertThat(con.getURL().toString()).isEqualTo("http://localhost:" + port + "/cadenzaflow/app/tasklist/default/");
   }
 }
