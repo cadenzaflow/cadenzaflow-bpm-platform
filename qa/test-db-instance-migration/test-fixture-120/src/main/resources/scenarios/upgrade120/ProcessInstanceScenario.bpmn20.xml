@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:cadenzaflow="http://cadenzaflow.org/schema/1.0/bpmn"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="http://www.example.org/upgrade120">
+
+  <process id="upgrade120ProcessInstance" isExecutable="true">
+    <startEvent id="start" />
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="waitUserTask" />
+    <userTask id="waitUserTask" name="Wait for upgrade" />
+    <sequenceFlow id="flow2" sourceRef="waitUserTask" targetRef="end" />
+    <endEvent id="end" />
+  </process>
+
+</definitions>
