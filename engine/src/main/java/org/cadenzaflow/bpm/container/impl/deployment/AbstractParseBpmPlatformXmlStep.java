@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -61,7 +61,7 @@ public abstract class AbstractParseBpmPlatformXmlStep extends DeploymentOperatio
   public void performOperationStep(DeploymentOperation operationContext) {
 
     URL bpmPlatformXmlSource = getBpmPlatformXmlStream(operationContext);
-    ensureNotNull("Unable to find bpm-platform.xml. This file is necessary for deploying the Camunda Platform", "bpmPlatformXmlSource", bpmPlatformXmlSource);
+    ensureNotNull("Unable to find bpm-platform.xml. This file is necessary for deploying the CadenzaFlow Platform", "bpmPlatformXmlSource", bpmPlatformXmlSource);
 
     // parse the bpm platform xml
     BpmPlatformXml bpmPlatformXml = new BpmPlatformXmlParser().createParse()
@@ -86,7 +86,7 @@ public abstract class AbstractParseBpmPlatformXmlStep extends DeploymentOperatio
       }
     }
     catch (MalformedURLException e) {
-      throw new ProcessEngineException("'" + url + "' is not a valid Camunda Platform configuration resource location.", e);
+      throw new ProcessEngineException("'" + url + "' is not a valid CadenzaFlow Platform configuration resource location.", e);
     }
 
     return fileLocation;

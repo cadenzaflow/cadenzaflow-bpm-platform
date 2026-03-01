@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -37,7 +37,7 @@ public interface TelemetryData {
    * This method returns a String which is unique for each installation of
    * Camunda. It is stored once per database so all engines connected to the
    * same database will have the same installation ID. The ID is used to
-   * identify a single installation of Camunda Platform.
+   * identify a single installation of CadenzaFlow Platform.
    */
   public String getInstallation();
 

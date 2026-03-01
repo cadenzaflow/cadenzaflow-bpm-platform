@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -38,7 +38,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngine;
 import org.cadenzaflow.bpm.engine.impl.ProcessEngineLogger;
 
 /**
- * <p>Apache Tomcat server listener responsible for deploying the Camunda Platform.</p>
+ * <p>Apache Tomcat server listener responsible for deploying the CadenzaFlow Platform.</p>
  *
  * @author Daniel Meyer
  *
@@ -82,7 +82,7 @@ public class TomcatBpmPlatformBootstrap implements LifecycleListener {
       .addStep(new PlatformXmlStartProcessEnginesStep())
       .execute();
 
-    LOG.camundaBpmPlatformSuccessfullyStarted(server.getServerInfo());
+    LOG.cadenzaflowBpmPlatformSuccessfullyStarted(server.getServerInfo());
 
   }
 
@@ -100,7 +100,7 @@ public class TomcatBpmPlatformBootstrap implements LifecycleListener {
       .addStep(new UnregisterBpmPlatformPluginsStep())
       .execute();
 
-    LOG.camundaBpmPlatformStopped(server.getServerInfo());
+    LOG.cadenzaflowBpmPlatformStopped(server.getServerInfo());
   }
 
 }

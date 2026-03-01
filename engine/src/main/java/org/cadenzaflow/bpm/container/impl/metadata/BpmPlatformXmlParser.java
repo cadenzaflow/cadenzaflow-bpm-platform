@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -30,7 +30,7 @@ import org.cadenzaflow.bpm.engine.impl.util.xml.Parser;
 public class BpmPlatformXmlParser extends Parser {
 
   /**
-   * The Camunda Platform namespace
+   * The CadenzaFlow Platform namespace
    */
   public static final String BPM_PLATFORM_NS = "http://www.camunda.org/schema/1.0/BpmPlatform";
 

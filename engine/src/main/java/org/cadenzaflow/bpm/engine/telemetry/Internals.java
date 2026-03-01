@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -46,7 +46,7 @@ public interface Internals {
 
   /**
    * Information about the Camunda license key issued for enterprise editions of
-   * Camunda Platform. May be null when no license is used.
+   * CadenzaFlow Platform. May be null when no license is used.
    */
   public LicenseKeyData getLicenseKey();
 
@@ -99,7 +99,7 @@ public interface Internals {
   public Map<String, Metric> getMetrics();
 
   /**
-   * Used Camunda integrations (e.g, Spring boot starter, Camunda Platform Run,
+   * Used Camunda integrations (e.g, Spring boot starter, CadenzaFlow Platform Run,
    * WildFly/JBoss subsystem or Camunda EJB service).
    */
   public Set<String> getCamundaIntegration();

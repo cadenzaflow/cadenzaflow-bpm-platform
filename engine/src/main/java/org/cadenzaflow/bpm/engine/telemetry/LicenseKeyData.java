@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * This class represents the data structure used for collecting information
- * about the license key issued for enterprise versions of Camunda Platform.
+ * about the license key issued for enterprise versions of CadenzaFlow Platform.
  *
  * This information is sent to Camunda when telemetry is enabled.
  *

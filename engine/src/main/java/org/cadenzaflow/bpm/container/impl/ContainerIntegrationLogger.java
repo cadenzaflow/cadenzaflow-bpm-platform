@@ -146,19 +146,19 @@ public class ContainerIntegrationLogger extends ProcessEngineLogger {
   public void foundConfigJndi(String jndi, String string) {
     logInfo(
         "018",
-        "Found Camunda Platform configuration in JNDI [{}] at {}", jndi, string);
+        "Found CadenzaFlow Platform configuration in JNDI [{}] at {}", jndi, string);
   }
 
   public void debugExceptionWhileGettingConfigFromJndi(String jndi, NamingException e) {
     logDebug(
         "019",
-        "Failed to look up Camunda Platform configuration in JNDI [{}]: {}", jndi, e);
+        "Failed to look up CadenzaFlow Platform configuration in JNDI [{}]: {}", jndi, e);
   }
 
   public void foundConfigAtLocation(String logStatement, String string) {
     logInfo(
         "020",
-        "Found Camunda Platform configuration through {}  at {} " , logStatement, string);
+        "Found CadenzaFlow Platform configuration through {}  at {} " , logStatement, string);
   }
 
   public void notCreatingPaDeployment(String name) {
@@ -278,7 +278,7 @@ public class ContainerIntegrationLogger extends ProcessEngineLogger {
   public ProcessEngineException unknownExceptionWhileParsingDeploymentDescriptor(Exception e) {
     return new ProcessEngineException(exceptionMessage(
         "038",
-        "Unknown exception while parsing deployment camunda descriptor: {}", e.getMessage()), e);
+        "Unknown exception while parsing deployment descriptor: {}", e.getMessage()), e);
   }
 
   public ProcessEngineException cannotSetValueForProperty(String key, String canonicalName, Exception e) {
@@ -333,26 +333,26 @@ public class ContainerIntegrationLogger extends ProcessEngineLogger {
   public void foundTomcatDeploymentDescriptor(String bpmPlatformFileLocation, String fileLocation) {
     logInfo(
         "046",
-        "Found Camunda Platform configuration in CATALINA_BASE/CATALINA_HOME conf directory [{}] at '{}'", bpmPlatformFileLocation, fileLocation);
+        "Found CadenzaFlow Platform configuration in CATALINA_BASE/CATALINA_HOME conf directory [{}] at '{}'", bpmPlatformFileLocation, fileLocation);
 
   }
 
   public ProcessEngineException invalidDeploymentDescriptorLocation(String bpmPlatformFileLocation, MalformedURLException e) {
     throw new ProcessEngineException(exceptionMessage(
         "047",
-        "'{} is not a valid Camunda Platform configuration resource location.", bpmPlatformFileLocation), e);
+        "'{} is not a valid CadenzaFlow Platform configuration resource location.", bpmPlatformFileLocation), e);
   }
 
-  public void camundaBpmPlatformSuccessfullyStarted(String serverInfo) {
+  public void cadenzaflowBpmPlatformSuccessfullyStarted(String serverInfo) {
     logInfo(
         "048",
-        "Camunda Platform sucessfully started at '{}'.", serverInfo);
+        "CadenzaFlow Platform successfully started at '{}'.", serverInfo);
   }
 
-  public void camundaBpmPlatformStopped(String serverInfo) {
+  public void cadenzaflowBpmPlatformStopped(String serverInfo) {
     logInfo(
         "049",
-        "Camunda Platform stopped at '{}'", serverInfo);
+        "CadenzaFlow Platform stopped at '{}'", serverInfo);
   }
 
   public void paDeployed(String name) {

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -18,7 +18,7 @@ package org.cadenzaflow.bpm.engine.authorization;
 
 /**
  * The set of built-in {@link Permission Permissions} for
- * {@link Resources#HISTORIC_TASK Historic Task} in Camunda Platform.
+ * {@link Resources#HISTORIC_TASK Historic Task} in CadenzaFlow Platform.
  */
 public enum HistoricTaskPermissions implements Permission {
 

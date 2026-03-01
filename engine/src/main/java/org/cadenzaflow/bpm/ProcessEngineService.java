@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -38,13 +38,13 @@ public interface ProcessEngineService {
   public ProcessEngine getDefaultProcessEngine();
 
   /**
-   * @return all {@link ProcessEngine ProcessEngines} managed by the Camunda Platform.
+   * @return all {@link ProcessEngine ProcessEngines} managed by the CadenzaFlow Platform.
    */
   public List<ProcessEngine> getProcessEngines();
 
   /**
    *
-   * @return the names of all {@link ProcessEngine ProcessEngines} managed by the Camunda Platform.
+   * @return the names of all {@link ProcessEngine ProcessEngines} managed by the CadenzaFlow Platform.
    */
   public Set<String> getProcessEngineNames();
 

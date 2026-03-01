@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -62,7 +62,7 @@ import org.cadenzaflow.bpm.engine.runtime.ProcessInstance;
 import org.cadenzaflow.bpm.engine.task.Task;
 
 /**
- * <p>Provides the default authorizations for Camunda Platform.</p>
+ * <p>Provides the default authorizations for CadenzaFlow Platform.</p>
  *
  * @author Daniel Meyer
  *

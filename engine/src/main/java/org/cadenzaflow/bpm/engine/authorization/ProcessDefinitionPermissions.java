@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.authorization;
 
 /**
- * The set of built-in {@link Permission Permissions} for {@link Resources#PROCESS_DEFINITION Process definition} in Camunda Platform.
+ * The set of built-in {@link Permission Permissions} for {@link Resources#PROCESS_DEFINITION Process definition} in CadenzaFlow Platform.
  *
  * @author Yana Vasileva
  *

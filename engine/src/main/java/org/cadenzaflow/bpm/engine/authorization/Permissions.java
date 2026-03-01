@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -19,7 +19,7 @@ package org.cadenzaflow.bpm.engine.authorization;
 import java.util.EnumSet;
 
 /**
- * The set of built-in {@link Permission Permissions} for Camunda Platform.
+ * The set of built-in {@link Permission Permissions} for CadenzaFlow Platform.
  *
  * @author Daniel Meyer
  *
@@ -89,7 +89,7 @@ public enum Permissions implements Permission {
   /**
    * <p>Indicates that READ_HISTORY interactions are permitted.
    *
-   * <p>There is no built-in functionality of Camunda Platform that uses the permission together
+   * <p>There is no built-in functionality of CadenzaFlow Platform that uses the permission together
    * with the resource {@link Resources#TASK}
    * */
   READ_HISTORY("READ_HISTORY", 4096, EnumSet.of(Resources.BATCH, Resources.DECISION_DEFINITION, Resources.PROCESS_DEFINITION, Resources.TASK)),

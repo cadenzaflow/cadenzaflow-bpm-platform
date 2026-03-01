@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -21,7 +21,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngine;
 
 
 /**
- * <p>Provides access to the Camunda Platform services.</p>
+ * <p>Provides access to the CadenzaFlow Platform services.</p>
  *
  * @author Daniel Meyer
  *

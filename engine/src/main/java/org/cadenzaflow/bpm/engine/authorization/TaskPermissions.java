@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
  * under one or more contributor license agreements. See the NOTICE file
  * distributed with this work for additional information regarding copyright
@@ -17,7 +17,7 @@
 package org.cadenzaflow.bpm.engine.authorization;
 
 /**
- * The set of built-in {@link Permission Permissions} for {@link Resources#TASK Task} in Camunda Platform.
+ * The set of built-in {@link Permission Permissions} for {@link Resources#TASK Task} in CadenzaFlow Platform.
  *
  * @author Yana Vasileva
  *
@@ -56,7 +56,7 @@ public enum TaskPermissions implements Permission {
   /**
    * <p>Indicates that READ_HISTORY interactions are permitted.
    *
-   * @deprecated since the permission is not used by any built-in functionality of Camunda Platform
+   * @deprecated since the permission is not used by any built-in functionality of CadenzaFlow Platform
    */
   @Deprecated
   READ_HISTORY("READ_HISTORY", 4096),
