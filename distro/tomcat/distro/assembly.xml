@@ -50,9 +50,9 @@
 
     <dependencySet>
         <includes>
-            <include>org.cadenzaflow.bpm.example:camunda-example-invoice-jakarta:war:*</include>
+            <include>org.cadenzaflow.bpm.example:cadenzaflow-example-invoice-jakarta:war:*</include>
         </includes>
-        <outputDirectory>server/apache-tomcat-${version.tomcat}/webapps/camunda-invoice</outputDirectory>
+        <outputDirectory>server/apache-tomcat-${version.tomcat}/webapps/cadenzaflow-invoice</outputDirectory>
         <unpack>true</unpack>
     </dependencySet>
 
