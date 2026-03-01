@@ -255,7 +255,7 @@ public class BpmnParse extends Parse {
 
   public static final String PROPERTYNAME_IS_MULTI_INSTANCE = "isMultiInstance";
 
-  public static final Namespace CAMUNDA_BPMN_EXTENSIONS_NS = new Namespace(BpmnParser.CAMUNDA_BPMN_EXTENSIONS_NS, BpmnParser.ACTIVITI_BPMN_EXTENSIONS_NS);
+  public static final Namespace CAMUNDA_BPMN_EXTENSIONS_NS = new Namespace(BpmnParser.CADENZAFLOW_BPMN_EXTENSIONS_NS, BpmnParser.CAMUNDA_BPMN_EXTENSIONS_NS, BpmnParser.ACTIVITI_BPMN_EXTENSIONS_NS);
   public static final Namespace XSI_NS = new Namespace(BpmnParser.XSI_NS);
   public static final Namespace BPMN_DI_NS = new Namespace(BpmnParser.BPMN_DI_NS);
   public static final Namespace OMG_DI_NS = new Namespace(BpmnParser.OMG_DI_NS);

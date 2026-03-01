@@ -16,46 +16,81 @@
  */
 package org.cadenzaflow.bpm.engine.impl.util.xml;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
- * @author Ronny Bräunlich
+ * Represents an XML namespace with an optional list of alternative (legacy) URIs.
+ * Supports multiple alternative URIs to enable backward compatibility across engine
+ * rebrands (e.g. Activiti → Camunda → CadenzaFlow).
  *
+ * @author Ronny Bräunlich
  */
 public class Namespace {
 
   private final String namespaceUri;
-  private final String alternativeUri;
+  private final List<String> alternativeUris;
 
   public Namespace(String namespaceUri) {
-    this(namespaceUri, null);
+    this.namespaceUri = namespaceUri;
+    this.alternativeUris = Collections.emptyList();
   }
 
   /**
-   * Creates a namespace with an alternative uri.
+   * Creates a namespace with one alternative URI (backward compatibility).
    *
-   * @param namespaceUri
-   * @param alternativeUri
+   * @param namespaceUri   the primary namespace URI
+   * @param alternativeUri a single legacy/alternative namespace URI
    */
   public Namespace(String namespaceUri, String alternativeUri) {
     this.namespaceUri = namespaceUri;
-    this.alternativeUri = alternativeUri;
+    this.alternativeUris = alternativeUri != null
+        ? Collections.singletonList(alternativeUri)
+        : Collections.emptyList();
   }
 
   /**
-   * If a namespace has changed over time it could feel responsible for handling
-   * the older one.
+   * Creates a namespace with multiple alternative URIs.
+   * Allows the engine to support several legacy namespace URIs simultaneously
+   * (e.g. Activiti, Camunda, and CadenzaFlow namespaces).
    *
-   * @return
+   * @param namespaceUri    the primary namespace URI
+   * @param alternativeUris zero or more legacy/alternative namespace URIs
+   */
+  public Namespace(String namespaceUri, String... alternativeUris) {
+    this.namespaceUri = namespaceUri;
+    this.alternativeUris = alternativeUris != null && alternativeUris.length > 0
+        ? Collections.unmodifiableList(Arrays.asList(alternativeUris))
+        : Collections.emptyList();
+  }
+
+  /**
+   * Returns {@code true} if this namespace has at least one alternative URI.
    */
   public boolean hasAlternativeUri() {
-    return alternativeUri != null;
+    return !alternativeUris.isEmpty();
   }
 
   public String getNamespaceUri() {
     return namespaceUri;
   }
 
+  /**
+   * Returns the first alternative URI for single-alternative backward compatibility.
+   *
+   * @deprecated Use {@link #getAlternativeUris()} to iterate over all alternatives.
+   */
+  @Deprecated
   public String getAlternativeUri() {
-    return alternativeUri;
+    return alternativeUris.isEmpty() ? null : alternativeUris.get(0);
+  }
+
+  /**
+   * Returns an unmodifiable list of all alternative namespace URIs.
+   */
+  public List<String> getAlternativeUris() {
+    return alternativeUris;
   }
 
   @Override

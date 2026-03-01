@@ -47,13 +47,20 @@ public class BpmnParser extends Parser {
   public static final String BPMN_20_SCHEMA_LOCATION = "org/cadenzaflow/bpm/engine/impl/bpmn/parser/BPMN20.xsd";
 
   /**
-   * The namespace of the camunda custom BPMN extensions.
+   * The namespace of the CadenzaFlow custom BPMN extensions (primary, new).
+   */
+  public static final String CADENZAFLOW_BPMN_EXTENSIONS_NS = "http://cadenzaflow.org/schema/1.0/bpmn";
+
+  /**
+   * The namespace of the Camunda custom BPMN extensions.
+   * Kept for backward compatibility with existing Camunda BPMN files.
    */
   public static final String CAMUNDA_BPMN_EXTENSIONS_NS = "http://camunda.org/schema/1.0/bpmn";
 
   /**
    * The namespace of the Activiti custom BPMN extensions.
-   * @deprecated use {@link #CAMUNDA_BPMN_EXTENSIONS_NS}
+   * Kept for backward compatibility with legacy Activiti BPMN files.
+   * @deprecated use {@link #CADENZAFLOW_BPMN_EXTENSIONS_NS}
    */
   @Deprecated
   public static final String ACTIVITI_BPMN_EXTENSIONS_NS = "http://activiti.org/bpmn";

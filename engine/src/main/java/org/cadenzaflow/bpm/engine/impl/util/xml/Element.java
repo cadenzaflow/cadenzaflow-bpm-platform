@@ -76,8 +76,13 @@ public class Element {
 
   public List<Element> elementsNS(Namespace nameSpace, String tagName) {
     List<Element> elementsNS = elementsNS(nameSpace.getNamespaceUri(), tagName);
-    if(elementsNS.isEmpty() && nameSpace.hasAlternativeUri()){
-      elementsNS = elementsNS(nameSpace.getAlternativeUri(), tagName);
+    if (elementsNS.isEmpty() && nameSpace.hasAlternativeUri()) {
+      for (String altUri : nameSpace.getAlternativeUris()) {
+        elementsNS = elementsNS(altUri, tagName);
+        if (!elementsNS.isEmpty()) {
+          break;
+        }
+      }
     }
     return elementsNS;
   }
@@ -101,8 +106,13 @@ public class Element {
 
   public Element elementNS(Namespace nameSpace, String tagName) {
     List<Element> elements = elementsNS(nameSpace.getNamespaceUri(), tagName);
-    if (elements.size() == 0 && nameSpace.hasAlternativeUri()) {
-      elements = elementsNS(nameSpace.getAlternativeUri(), tagName);
+    if (elements.isEmpty() && nameSpace.hasAlternativeUri()) {
+      for (String altUri : nameSpace.getAlternativeUris()) {
+        elements = elementsNS(altUri, tagName);
+        if (!elements.isEmpty()) {
+          break;
+        }
+      }
     }
     if (elements.size() == 0) {
       return null;
@@ -130,7 +140,12 @@ public class Element {
   public String attributeNS(Namespace namespace, String name) {
     String attribute = attribute(composeMapKey(namespace.getNamespaceUri(), name));
     if (attribute == null && namespace.hasAlternativeUri()) {
-      attribute = attribute(composeMapKey(namespace.getAlternativeUri(), name));
+      for (String altUri : namespace.getAlternativeUris()) {
+        attribute = attribute(composeMapKey(altUri, name));
+        if (attribute != null) {
+          break;
+        }
+      }
     }
     return attribute;
   }
@@ -145,7 +160,12 @@ public class Element {
   public String attributeNS(Namespace namespace, String name, String defaultValue) {
     String attribute = attribute(composeMapKey(namespace.getNamespaceUri(), name));
     if (attribute == null && namespace.hasAlternativeUri()) {
-      attribute = attribute(composeMapKey(namespace.getAlternativeUri(), name));
+      for (String altUri : namespace.getAlternativeUris()) {
+        attribute = attribute(composeMapKey(altUri, name));
+        if (attribute != null) {
+          break;
+        }
+      }
     }
     if (attribute == null) {
       return defaultValue;
