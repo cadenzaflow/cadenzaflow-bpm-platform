@@ -22,7 +22,7 @@ import org.cadenzaflow.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 
 public class TestFixture {
 
-  public static final String ENGINE_VERSION = "7.24.0";
+  public static final String ENGINE_VERSION = "1.1.0";
 
   public TestFixture(ProcessEngine processEngine) {
   }
