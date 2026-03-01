@@ -21,7 +21,7 @@
     <version.chromedriver>112.0.5615.49</version.chromedriver>
 
     <http.port>58080</http.port>
-    <http.ctx-path.webapp>camunda/</http.ctx-path.webapp>
+    <http.ctx-path.webapp>cadenzaflow/</http.ctx-path.webapp>
     <http.ctx-path.rest>engine-rest/</http.ctx-path.rest>
   </properties>
 
@@ -144,7 +144,7 @@
             <version>3.0.0-M3</version>
             <configuration>
               <dependenciesToScan>
-                <dependency>org.cadenzaflow.bpm.qa:camunda-qa-integration-tests-webapps</dependency>
+                <dependency>org.cadenzaflow.bpm.qa:cadenzaflow-qa-integration-tests-webapps</dependency>
               </dependenciesToScan>
               <skipTests>false</skipTests>
             </configuration>
