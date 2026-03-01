@@ -305,7 +305,7 @@
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
           <dependenciesToScan>
-            <dependency>org.cadenzaflow.bpm:camunda-bpm-archunit</dependency>
+            <dependency>org.cadenzaflow.bpm:cadenzaflow-bpm-archunit</dependency>
           </dependenciesToScan>
         </configuration>
       </plugin>
