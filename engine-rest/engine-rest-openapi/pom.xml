@@ -186,7 +186,7 @@
             <phase>generate-test-sources</phase>
             <configuration>
               <sources>
-                <source>${project.build.directory}/camunda-openapi-client/src/main/java</source>
+                <source>${project.build.directory}/cadenzaflow-openapi-client/src/main/java</source>
               </sources>
             </configuration>
           </execution>
@@ -206,7 +206,7 @@
             </goals>
             <configuration>
               <inputSpec>${generated-directory}/${generated-file}</inputSpec>
-              <output>${project.build.directory}/camunda-openapi-client</output>
+              <output>${project.build.directory}/cadenzaflow-openapi-client</output>
               <generatorName>java</generatorName>
               <configOptions>
                 <dateLibrary>legacy</dateLibrary>
