@@ -14,7 +14,7 @@
 
   <logger name="org.springframework" level="info" />
 
-  <logger name="org.camunda" level="info" />
+  <logger name="org.cadenzaflow" level="info" />
 
   <!-- avoid many log entries from failing jobs -->
   <logger name="org.cadenzaflow.bpm.engine.jobexecutor" level="off" />

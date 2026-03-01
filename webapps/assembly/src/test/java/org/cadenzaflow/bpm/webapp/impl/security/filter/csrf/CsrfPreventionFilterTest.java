@@ -48,7 +48,7 @@ import static org.cadenzaflow.bpm.webapp.impl.security.filter.util.CookieConstan
 @RunWith(Parameterized.class)
 public class CsrfPreventionFilterTest {
 
-  protected static final String SERVICE_PATH = "/camunda";
+  protected static final String SERVICE_PATH = "/cadenzaflow";
   protected static final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
   protected static final String CSRF_HEADER_NAME = "X-XSRF-TOKEN";
   protected static final String CSRF_HEADER_REQUIRED = "Required";

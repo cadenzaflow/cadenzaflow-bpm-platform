@@ -201,7 +201,7 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
 
     Set<String> processEngineNames = runtimeDelegate.getProcessEngineNames();
     if(processEngineNames.isEmpty()) {
-      throw new IllegalWebAppConfigurationException("No process engine found. camunda Webapp cannot work without a process engine. ");
+      throw new IllegalWebAppConfigurationException("No process engine found. cadenzaflow Webapp cannot work without a process engine. ");
 
     } else {
       ProcessEngine defaultProcessEngine = runtimeDelegate.getDefaultProcessEngine();
