@@ -21,6 +21,6 @@
   </difference>
   <difference>
     <differenceType>8001</differenceType>
-    <className>org/camunda/**/*</className>
+    <className>org/cadenzaflow/**/*</className>
   </difference>
 </differences>
