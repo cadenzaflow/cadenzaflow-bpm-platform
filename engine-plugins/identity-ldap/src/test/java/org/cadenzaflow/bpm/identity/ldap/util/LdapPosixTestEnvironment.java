@@ -77,7 +77,7 @@ public class LdapPosixTestEnvironment extends LdapTestEnvironment {
   }
 
   protected void createPosixGroup(String gid, String name, String... memberUids) throws Exception {
-    Dn dn = new Dn("cn=" + name + ",ou=groups,o=camunda,c=org");
+    Dn dn = new Dn("cn=" + name + ",ou=groups,o=cadenzaflow,c=org");
     if (!service.getAdminSession().exists(dn)) {
       Entry entry = service.newEntry(dn);
       entry.add("objectClass", "top", "posixGroup");

@@ -65,7 +65,7 @@ public class LdapTestEnvironment {
 
   private final static Logger LOG = LoggerFactory.getLogger(LdapTestEnvironment.class.getName());
 
-  private static final String BASE_DN = "o=camunda,c=org";
+  private static final String BASE_DN = "o=cadenzaflow,c=org";
   public static final String OFFICE_BERKELEY = "office-berkeley";
 
   protected DirectoryService service;
@@ -175,7 +175,7 @@ public class LdapTestEnvironment {
       Dn dn = new Dn(BASE_DN);
       Entry entry = service.newEntry(dn);
       entry.add("objectClass", "top", "domain", "extensibleObject");
-      entry.add("dc", "camunda");
+      entry.add("dc", "cadenzaflow");
       service.getAdminSession().add(entry);
     }
   }
@@ -288,13 +288,13 @@ public class LdapTestEnvironment {
   }
 
   protected String createUserUid(String user, String group, String firstname, String lastname, String email) throws Exception {
-    Dn dn = new Dn("uid=" + user + ",ou=" + group + ",o=camunda,c=org");
+    Dn dn = new Dn("uid=" + user + ",ou=" + group + ",o=cadenzaflow,c=org");
     createUser(user, firstname, lastname, email, dn);
     return dn.getNormName();
   }
 
   protected String createUserCN(String user, String group, String firstname, String lastname, String email) throws Exception {
-    Dn dn = new Dn("cn=" + lastname + "\\," + firstname + ",ou=" + group + ",o=camunda,c=org");
+    Dn dn = new Dn("cn=" + lastname + "\\," + firstname + ",ou=" + group + ",o=cadenzaflow,c=org");
     createUser(user, firstname, lastname, email, dn);
     return dn.getNormName();
   }
@@ -322,7 +322,7 @@ public class LdapTestEnvironment {
    * @throws Exception in case of error
    */
   public void createGroup(String name) throws Exception {
-    Dn dn = new Dn("ou=" + name + ",o=camunda,c=org");
+    Dn dn = new Dn("ou=" + name + ",o=cadenzaflow,c=org");
     if (!service.getAdminSession().exists(dn)) {
       Entry entry = service.newEntry(dn);
       entry.add("objectClass", "top", "organizationalUnit");
@@ -341,7 +341,7 @@ public class LdapTestEnvironment {
    * @throws Exception in case of error
    */
   protected void createRole(String roleName, String... users) throws Exception {
-    Dn dn = new Dn("ou=" + roleName + ",o=camunda,c=org");
+    Dn dn = new Dn("ou=" + roleName + ",o=cadenzaflow,c=org");
     if (!service.getAdminSession().exists(dn)) {
       Entry entry = service.newEntry(dn);
       entry.add("objectClass", "top", "groupOfNames");
