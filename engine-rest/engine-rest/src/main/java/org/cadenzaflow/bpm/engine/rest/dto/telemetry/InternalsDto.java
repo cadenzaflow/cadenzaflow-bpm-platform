@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class InternalsDto {
 
   public static final String SERIALIZED_APPLICATION_SERVER = "application-server";
-  public static final String SERIALIZED_CAMUNDA_INTEGRATION = "camunda-integration";
+  public static final String SERIALIZED_CAMUNDA_INTEGRATION = "cadenzaflow-integration";
   public static final String SERIALIZED_LICENSE_KEY = "license-key";
   public static final String SERIALIZED_TELEMETRY_DATA_COLLECTION_START_DATE = "data-collection-start-date";
 

@@ -57,11 +57,11 @@ public class ResteasySpecifics implements ContainerSpecifics {
             .setContextPath("/rest-test/rest")
             .setClassLoader(ResteasyUndertowServerBootstrap.class.getClassLoader())
             .addListener(Servlets.listener(ResteasyBootstrap.class))
-            .addFilter(Servlets.filter("camunda-auth", ProcessEngineAuthenticationFilter.class)
+            .addFilter(Servlets.filter("cadenzaflow-auth", ProcessEngineAuthenticationFilter.class)
                 .addInitParam("authentication-provider",
                     "org.cadenzaflow.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider"))
-            .addFilterUrlMapping("camunda-auth", "/*", DispatcherType.REQUEST)
-            .addServlet(Servlets.servlet("camunda-app", HttpServletDispatcher.class)
+            .addFilterUrlMapping("cadenzaflow-auth", "/*", DispatcherType.REQUEST)
+            .addServlet(Servlets.servlet("cadenzaflow-app", HttpServletDispatcher.class)
                 .addMapping("/*")
                 .addInitParam("jakarta.ws.rs.Application",
                     "org.cadenzaflow.bpm.engine.rest.util.container.JaxrsApplication"))));
@@ -72,11 +72,11 @@ public class ResteasySpecifics implements ContainerSpecifics {
             .setContextPath("/rest-test/rest")
             .setClassLoader(ResteasyUndertowServerBootstrap.class.getClassLoader())
             .addListener(Servlets.listener(ResteasyBootstrap.class))
-            .addFilter(Servlets.filter("camunda-auth", ProcessEngineAuthenticationFilter.class)
+            .addFilter(Servlets.filter("cadenzaflow-auth", ProcessEngineAuthenticationFilter.class)
                 .addInitParam("authentication-provider",
                     "org.cadenzaflow.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider")
                 .addInitParam("rest-url-pattern-prefix", ""))
-            .addFilterUrlMapping("camunda-auth", "/*", DispatcherType.REQUEST)
+            .addFilterUrlMapping("cadenzaflow-auth", "/*", DispatcherType.REQUEST)
             .addFilter(Servlets.filter("Resteasy", FilterDispatcher.class)
                 .addInitParam("jakarta.ws.rs.Application",
                     "org.cadenzaflow.bpm.engine.rest.util.container.JaxrsApplication"))
@@ -91,7 +91,7 @@ public class ResteasySpecifics implements ContainerSpecifics {
             .addFilter(Servlets.filter("EmptyBodyFilter", org.cadenzaflow.bpm.engine.rest.filter.EmptyBodyFilter.class)
                 .addInitParam("rest-url-pattern-prefix", ""))
             .addFilterUrlMapping("EmptyBodyFilter", "/*", DispatcherType.REQUEST)
-            .addServlet(Servlets.servlet("camunda-app", HttpServletDispatcher.class)
+            .addServlet(Servlets.servlet("cadenzaflow-app", HttpServletDispatcher.class)
                 .addMapping("/*")
                 .addInitParam("jakarta.ws.rs.Application",
                     "org.cadenzaflow.bpm.engine.rest.util.container.JaxrsApplication"))));

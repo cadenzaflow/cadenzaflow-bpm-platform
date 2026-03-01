@@ -420,7 +420,7 @@ public abstract class MockProvider {
   public static final String EXAMPLE_DEPLOYMENT_TXT_RESOURCE_NAME = "a-txt-resource.txt";
 
   public static final String EXAMPLE_DEPLOYMENT_CAMFORM_RESOURCE_ID = "aDeploymentCamundaFormResourceId";
-  public static final String EXAMPLE_DEPLOYMENT_CAMFORM_RESOURCE_NAME = "a-camunda-form-resource.form";
+  public static final String EXAMPLE_DEPLOYMENT_CAMFORM_RESOURCE_NAME = "a-cadenzaflow-form-resource.form";
 
   public static final String EXAMPLE_DEPLOYMENT_RESOURCE_FILENAME_ID = "aDeploymentResourceFilenameId";
   public static final String EXAMPLE_DEPLOYMENT_RESOURCE_FILENAME_PATH = "my/path/to/my/bpmn/";
@@ -535,7 +535,7 @@ public abstract class MockProvider {
 
   // process applications
   public static final String EXAMPLE_PROCESS_APPLICATION_NAME = "aProcessApplication";
-  public static final String EXAMPLE_PROCESS_APPLICATION_CONTEXT_PATH = "http://camunda.org/someContext";
+  public static final String EXAMPLE_PROCESS_APPLICATION_CONTEXT_PATH = "http://cadenzaflow.org/someContext";
 
   // Historic Process Instance
   public static final String EXAMPLE_HISTORIC_PROCESS_INSTANCE_DELETE_REASON = "aDeleteReason";
@@ -1009,8 +1009,8 @@ public abstract class MockProvider {
   public static final String EXAMPLE_TELEMETRY_LICENSE_TYPE = "UNIFIED";
   public static final String EXAMPLE_TELEMETRY_LICENSE_VALID_UNTIL = "2022-09-30";
   public static final boolean EXAMPLE_TELEMETRY_LICENSE_UNLIMITED = false;
-  public static final Map<String, String> EXAMPLE_TELEMETRY_LICENSE_FEATURES = Collections.singletonMap("camundaBPM", "true");
-  public static final String EXAMPLE_TELEMETRY_LICENSE_RAW = "customer=customer name;expiryDate=2022-09-30;camundaBPM=true;optimize=false;cawemo=false";
+  public static final Map<String, String> EXAMPLE_TELEMETRY_LICENSE_FEATURES = Collections.singletonMap("cadenzaflowBPM", "true");
+  public static final String EXAMPLE_TELEMETRY_LICENSE_RAW = "customer=customer name;expiryDate=2022-09-30;cadenzaflowBPM=true;optimize=false;cawemo=false";
   public static final String EXAMPLE_TELEMETRY_JDK_VERSION = "14.0.2";
   public static final String EXAMPLE_TELEMETRY_JDK_VENDOR = "Oracle Corporation";
   public static final String EXAMPLE_TELEMETRY_DATA_COLLECTION_START_DATE = withTimezone("2022-01-01T00:00:00");
@@ -1027,7 +1027,7 @@ public abstract class MockProvider {
       EXAMPLE_TELEMETRY_SERVER, EXAMPLE_TELEMETRY_LICENSE, EXAMPLE_TELEMETRY_JDK);
   static {
     EXAMPLE_TELEMETRY_INTERNALS.setCamundaIntegration(
-        Stream.of("spring-boot-starter", "camunda-bpm-run").collect(Collectors.toCollection(HashSet::new)));
+        Stream.of("spring-boot-starter", "cadenzaflow-bpm-run").collect(Collectors.toCollection(HashSet::new)));
     EXAMPLE_TELEMETRY_INTERNALS
         .setWebapps(Stream.of("cockpit", "admin").collect(Collectors.toCollection(HashSet::new)));
     EXAMPLE_TELEMETRY_INTERNALS
