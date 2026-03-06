@@ -26,7 +26,7 @@ Found a bug in the code or have a feature that you would like to see in the futu
 
 Try to apply our best practices for creating issues:
 
-* Only Raise an issue if your request requires a code change in Camunda Platform 7
+* Only Raise an issue if your request requires a code change in CadenzaFlow Platform
   * If you want to contact the Camunda customer support, please see our [Enterprise Support Guide](https://cadenzaflow.com/services/enterprise-support-guide/).
   * If you have an understanding question or need help building your solution, check out our [user forum](https://forum.cadenzaflow.io/).
 * Create a high-quality issue:
@@ -49,16 +49,16 @@ You can contribute code that fixes bugs and/or implements features. Here is how 
 
 # Browse our issues
 
-In this repository, we manage the [issues](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues) for the following Camunda Platform 7 code repositories and projects:
+In this repository, we manage the [issues](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues) for the following CadenzaFlow Platform code repositories and projects:
 
 * https://github.com/cadenzaflow/cadenzaflow-bpm-platform
-* Camunda Platform 7 Enterprise Edition
-* Camunda Platform 7 RPA Bridge
+* CadenzaFlow Platform Enterprise Edition
+* CadenzaFlow Platform RPA Bridge
 * https://github.com/cadenzaflow/cadenzaflow-spin
 * https://github.com/cadenzaflow/cadenzaflow-connect
 * https://github.com/cadenzaflow/docker-cadenzaflow-bpm-platform
 * https://github.com/cadenzaflow/cadenzaflow-template-engines-jsr223
-* Camunda Platform 7 XSLT Script engine Extension
+* CadenzaFlow Platform XSLT Script engine Extension
 * https://github.com/cadenzaflow/cadenzaflow-commons
 * https://github.com/cadenzaflow/cadenzaflow-bpm-examples
 * https://github.com/cadenzaflow/cadenzaflow-docs-manual

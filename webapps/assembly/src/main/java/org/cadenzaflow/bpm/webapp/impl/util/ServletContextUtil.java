@@ -29,7 +29,7 @@ import java.util.Date;
 /**
  * With Camunda Platform 7.13 we introduced the application path prefix /camunda to Spring Boot.
  * The application path is set in Spring Boot's servlet context and is consumed by filters and
- * servlets of the Camunda Platform Webapp. This util class holds the methods to get and set the
+ * servlets of the CadenzaFlow Platform Webapp. This util class holds the methods to get and set the
  * application path.
  */
 public class ServletContextUtil {
@@ -44,7 +44,7 @@ public class ServletContextUtil {
     "org.cadenzaflow.bpm.webapp.auth.cache.ttl";
 
   /**
-   * Consumed by Camunda Platform CE & EE Webapp:
+   * Consumed by CadenzaFlow Platform CE & EE Webapp:
    * Retrieves the application path from Spring Boot's servlet context.
    *
    * @param servletContext that holds the application path

@@ -41,7 +41,7 @@ each server runtime we support. These projects are responsible for taking a runt
 distribution (ie. Apache Tomcat, WildFly AS ...) and configuring it for integration testing. The 
 actual integration tests are located in the `qa/integration-tests-engine` and `qa/integration-tests-webapps` modules.
  * *integration-tests-engine*: This module contains an extensive testsuite that test the integration of the process engine within a particular runtime container. For example, such tests will ensure that if you use the Job Executor Service inside a Java EE Container, you get a proper CDI request context spanning multiple EJB invocations or that EE resource injection works as expected. These integration tests are executed in-container, using [JBoss Arquillian](http://arquillian.org/).
- * *integration-tests-webapps*: This module tests the Camunda Platform webapplications inside the runtime containers. These integration tests run inside a client / server setting: the webapplication is deployed to the runtime container, the runtime container is started and the tests running inside a client VM perform requests against the deployed applications.
+ * *integration-tests-webapps*: This module tests the CadenzaFlow Platform webapplications inside the runtime containers. These integration tests run inside a client / server setting: the webapplication is deployed to the runtime container, the runtime container is started and the tests running inside a client VM perform requests against the deployed applications.
 
 In order to run the integration tests, first perform a full install build. Then navigate to the `qa` folder.
 
@@ -75,7 +75,7 @@ There is a special profile for the WildFly Application Servers:
 
 # Testing a Given Database
 
-Camunda supports all database technologies listed on [Supported Database Products](https://docs.cadenzaflow.org/manual/latest/introduction/supported-environments/#supported-database-products), and in all environments, they are operating in as specified. Support means we guarantee the Camunda Platform integrates well with the database technology’s JDBC behavior (there are some [documented](https://docs.cadenzaflow.org/manual/latest/user-guide/process-engine/database/) limitations, e.g., isolation level `READ_COMMITTED` is required for all databases). We test a database technology with a specific database, i.e., we test it in one environment, not all possible environments that you can imagine (e.g., we test Postgres on local Docker containers, but not as hosted databases on AWS or Azure).
+Camunda supports all database technologies listed on [Supported Database Products](https://docs.cadenzaflow.org/manual/latest/introduction/supported-environments/#supported-database-products), and in all environments, they are operating in as specified. Support means we guarantee the CadenzaFlow Platform integrates well with the database technology’s JDBC behavior (there are some [documented](https://docs.cadenzaflow.org/manual/latest/user-guide/process-engine/database/) limitations, e.g., isolation level `READ_COMMITTED` is required for all databases). We test a database technology with a specific database, i.e., we test it in one environment, not all possible environments that you can imagine (e.g., we test Postgres on local Docker containers, but not as hosted databases on AWS or Azure).
 
 # No Maven? No problem!
 
@@ -85,7 +85,7 @@ to install Maven at all. By executing the `mvnw` script (Unix), or `mvnw.cmd` sc
 downloaded and installed in the `$USER_HOME/.m2/wrapper/dists` folder of the system. You can check the download URL in
 the [.mvn/wrapper/maven-wrapper.properties](.mvn/wrapper/maven-wrapper.properties) file.
 
-The Maven Wrapper requires Maven commands to be executed from the root of the project. As the Camunda Platform project
+The Maven Wrapper requires Maven commands to be executed from the root of the project. As the CadenzaFlow Platform project
 is a multi-module (Maven Reactor) project, this is also a good best practice to apply.
 
 To build the whole project, or just a module, one of the following commands may be executed:
@@ -103,12 +103,12 @@ To build the whole project, or just a module, one of the following commands may 
 
 > Note: Above the `mvn -f` command line option is recommended over the `mvn -pl` option. The reason is that `-pl` will
 build only the specified module, and will ignore any sub-modules that it might contain (unless the `-amd` option is also
-added). As the Camunda Platform project has a multi-tiered module hierarchy (e.g. the [qa](qa/) module has modules of 
+added). As the CadenzaFlow Platform project has a multi-tiered module hierarchy (e.g. the [qa](qa/) module has modules of
 it's own), the `mvn -f` command option is simpler. 
 
 ## What about database technology X in environment Y?
 
-To make a statement regarding Camunda Platform support, we need to understand if technology X is one of the technologies we already support or different technology. Several databases may share the same or a similar name, but they can still be different technologies: For example, IBM DB2 z/OS behaves quite differently from IBM DB2 on Linux, Unix, Windows. Amazon Aurora Postgres is different from a standard Postgres.
+To make a statement regarding CadenzaFlow Platform support, we need to understand if technology X is one of the technologies we already support or different technology. Several databases may share the same or a similar name, but they can still be different technologies: For example, IBM DB2 z/OS behaves quite differently from IBM DB2 on Linux, Unix, Windows. Amazon Aurora Postgres is different from a standard Postgres.
 
 If you want to make sure that a given database works well with the Camunda Platform, you can run the test suite against this database.
 
