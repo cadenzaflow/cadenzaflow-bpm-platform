@@ -20,6 +20,7 @@ import java.util.concurrent.Callable;
 
 import org.cadenzaflow.bpm.engine.ProcessEngine;
 import org.cadenzaflow.bpm.engine.ProcessEngineConfiguration;
+import org.cadenzaflow.bpm.engine.ProcessEngines;
 import org.cadenzaflow.bpm.engine.test.ProcessEngineRule;
 
 public class ProvidedProcessEngineRule extends ProcessEngineRule {
@@ -66,7 +67,12 @@ public class ProvidedProcessEngineRule extends ProcessEngineRule {
   }
   
   protected static ProcessEngine getOrInitializeCachedProcessEngine() {
-    if (cachedProcessEngine == null) {
+    if (cachedProcessEngine == null
+        || !ProcessEngines.getProcessEngines().containsKey(cachedProcessEngine.getName())) {
+      // Engine was never created, or was closed/destroyed by a previous test class.
+      // Use getProcessEngines() (not getProcessEngine()) to avoid triggering
+      // initializeProcessEngines() which would spin up new engines from classpath
+      // configs and exhaust the PostgreSQL connection pool.
       cachedProcessEngine = ProcessEngineConfiguration
           .createProcessEngineConfigurationFromResource("cadenzaflow.cfg.xml")
           .buildProcessEngine();

@@ -299,6 +299,11 @@
         <jboss.datasource.filename>postgresql-ds.xml</jboss.datasource.filename>
         <hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
         <database.tc.url>campostgresql:13.2</database.tc.url>
+        <!-- Testcontainers JDBC URL — driver spins up the container automatically -->
+        <database.name>test</database.name>
+        <database.username>test</database.username>
+        <database.password>test</database.password>
+        <database.url>jdbc:tc:postgresql:13.2:///test?TC_DAEMON=true</database.url>
       </properties>
 
       <dependencies>
@@ -377,6 +382,10 @@
 
     <profile>
       <id>testcontainers</id>
+      <properties>
+        <!-- Override the driver so jdbc:tc:... URLs are handled by Testcontainers -->
+        <database.driver>org.testcontainers.jdbc.ContainerDatabaseDriver</database.driver>
+      </properties>
       <dependencyManagement>
         <dependencies>
           <dependency>
@@ -393,6 +402,20 @@
         <dependency>
           <artifactId>jackson-annotations</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <scope>test</scope>
+        </dependency>
+        <!-- Provides the jdbc:tc:... JDBC URL scheme for testcontainers-based tests -->
+        <dependency>
+          <groupId>org.testcontainers</groupId>
+          <artifactId>jdbc</artifactId>
+          <version>${version.testcontainers}</version>
+          <scope>test</scope>
+        </dependency>
+        <!-- Registers 'postgresql' as a supported database name in ContainerDatabaseDriver -->
+        <dependency>
+          <groupId>org.testcontainers</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>${version.testcontainers}</version>
           <scope>test</scope>
         </dependency>
       </dependencies>

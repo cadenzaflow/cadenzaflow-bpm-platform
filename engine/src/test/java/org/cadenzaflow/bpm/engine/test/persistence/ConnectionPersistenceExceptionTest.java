@@ -86,7 +86,20 @@ public class ConnectionPersistenceExceptionTest {
     String host = (String) properties.get("database.host");
     String port = (String) properties.get("database.port");
 
-    String jdbcUrl = resetUrl.replace(host + ":" + port, "not-existing-server:123");
+    String jdbcUrl = resetUrl.replace(host + ":" + port, "127.0.0.1:1");
+
+    if (jdbcUrl.equals(resetUrl) && resetUrl.startsWith("jdbc:tc:")) {
+      String[] parts = resetUrl.split(":");
+      if (parts.length >= 3) {
+        String dbType = parts[2];
+        if ("sqlserver".equals(dbType)) {
+          jdbcUrl = "jdbc:sqlserver://127.0.0.1:1;databaseName=test";
+        } else {
+          jdbcUrl = "jdbc:" + dbType + "://127.0.0.1:1/test";
+        }
+      }
+    }
+
     ((PooledDataSource) engineConfig.getDataSource()).setUrl(jdbcUrl);
 
     Throwable result = catchThrowable(() -> identityService.deleteUser("foo"));

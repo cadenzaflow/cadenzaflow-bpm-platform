@@ -1,4 +1,3 @@
 org.cadenzaflow.impl.test.utils.testcontainers.CamundaPostgreSQLContainerProvider
-org.cadenzaflow.impl.test.utils.testcontainers.CamundaMariaDBContainerProvider
 org.cadenzaflow.impl.test.utils.testcontainers.CamundaMySqlContainerProvider
 org.cadenzaflow.impl.test.utils.testcontainers.CamundaMSSQLContainerProvider

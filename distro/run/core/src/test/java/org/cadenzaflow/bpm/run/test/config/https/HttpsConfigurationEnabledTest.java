@@ -63,11 +63,11 @@ public class HttpsConfigurationEnabledTest extends AbstractRestTest {
   @Test
   public void shouldNotRedirect() {
     // given
-    String url = "http://localhost:" + 8080 + CONTEXT_PATH + "/task";
+    String url = "http://localhost:" + 59080 + CONTEXT_PATH + "/task";
 
     // then
     exceptionRule.expect(ResourceAccessException.class);
-    exceptionRule.expectMessage("I/O error on GET request for \"http://localhost:8080/engine-rest/task\":");
+    exceptionRule.expectMessage("I/O error on GET request for \"http://localhost:59080/engine-rest/task\":");
 
     // then
     ResponseEntity<String> response = testRestTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(null), String.class);

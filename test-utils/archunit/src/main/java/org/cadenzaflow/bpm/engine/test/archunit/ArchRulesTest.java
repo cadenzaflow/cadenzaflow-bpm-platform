@@ -38,6 +38,8 @@ public class ArchRulesTest {
   @ArchTest
   public static final ArchRule publicApiShouldNotExposeImplementation = classes().that()
       .areInterfaces().and().resideOutsideOfPackages("..impl..").and().doNotHaveSimpleName("ValueType")
+      // These model-api/xml-model interfaces are internal builders/DOM handlers and use impl classes natively
+      .and().resideOutsideOfPackages("org.cadenzaflow.bpm.model.xml.type..", "org.cadenzaflow.bpm.model.xml.instance..")
       .should().onlyDependOnClassesThat().resideOutsideOfPackages("..impl..")
       .because("Interfaces that don't reside in an `impl` package are considered public API.");
 
