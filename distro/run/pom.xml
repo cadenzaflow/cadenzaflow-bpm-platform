@@ -12,7 +12,7 @@
   <groupId>org.cadenzaflow.bpm.run</groupId>
   <artifactId>cadenzaflow-bpm-run-root</artifactId>
   <name>CadenzaFlow Platform - Run - Root</name>
-  <description>This is the root of Camunda Platform Run</description>
+  <description>This is the root of CadenzaFlow Platform Run</description>
   <packaging>pom</packaging>
 
   <dependencyManagement>

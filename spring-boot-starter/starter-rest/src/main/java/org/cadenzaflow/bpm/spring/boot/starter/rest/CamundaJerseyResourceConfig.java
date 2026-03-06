@@ -35,13 +35,13 @@ public class CamundaJerseyResourceConfig extends ResourceConfig implements Initi
   }
 
   protected void registerCamundaRestResources() {
-    log.info("Configuring camunda rest api.");
+    log.info("Configuring cadenzaflow rest api.");
 
     this.registerClasses(CamundaRestResources.getResourceClasses());
     this.registerClasses(CamundaRestResources.getConfigurationClasses());
     this.register(JacksonFeature.class);
 
-    log.info("Finished configuring camunda rest api.");
+    log.info("Finished configuring cadenzaflow rest api.");
   }
 
   protected void registerAdditionalResources() {

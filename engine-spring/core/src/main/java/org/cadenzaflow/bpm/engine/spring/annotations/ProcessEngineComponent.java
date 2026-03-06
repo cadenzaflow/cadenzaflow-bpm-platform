@@ -20,8 +20,8 @@ import java.lang.annotation.*;
 
 /**
  * Indicates that the given bean is an process engine handler. A process engine handler is a bean
- * that is so annotated to respond to events ("states") in a Camunda Platform process.
- * Generically, it is a class that has been adapted to be usable in a Camunda Platform process.
+ * that is so annotated to respond to events ("states") in a CadenzaFlow Platform process.
+ * Generically, it is a class that has been adapted to be usable in a CadenzaFlow Platform process.
  *
  * <p/>
  * For example, suppose we have registered a BPMN process that has
@@ -31,7 +31,7 @@ import java.lang.annotation.*;
  * &lt;service-task camunda:expression = "myBean" id = "confirm-receipt" /&gt;
  * </code>
  * <p/>
- * This is a state that will be entered from Camunda Platform and execution will flow through to the bean
+ * This is a state that will be entered from CadenzaFlow Platform and execution will flow through to the bean
  * registered in the context as "myBean." To subscribe to that, a POJO need only implement
  * (optionally) {@link ProcessEngineComponent} and, on a method, add
  * {@link State} to indicate that the method in particular is

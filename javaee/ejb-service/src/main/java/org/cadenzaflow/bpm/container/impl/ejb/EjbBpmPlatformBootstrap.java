@@ -45,7 +45,7 @@ import java.util.logging.Logger;
 
 
 /**
- * <p>Bootstrap for the Camunda Platform using a singleton EJB</p>
+ * <p>Bootstrap for the CadenzaFlow Platform using a singleton EJB</p>
  *
  * @author Daniel Meyer
  */
@@ -78,7 +78,7 @@ public class EjbBpmPlatformBootstrap {
     processEngineService = containerDelegate.getProcessEngineService();
     processApplicationService = containerDelegate.getProcessApplicationService();
 
-    LOGGER.log(Level.INFO, "Camunda Platform started successfully.");
+    LOGGER.log(Level.INFO, "CadenzaFlow Platform started successfully.");
   }
 
   @PreDestroy
@@ -94,7 +94,7 @@ public class EjbBpmPlatformBootstrap {
       .addStep(new UnregisterBpmPlatformPluginsStep())
       .execute();
 
-    LOGGER.log(Level.INFO, "Camunda Platform stopped.");
+    LOGGER.log(Level.INFO, "CadenzaFlow Platform stopped.");
 
   }
 

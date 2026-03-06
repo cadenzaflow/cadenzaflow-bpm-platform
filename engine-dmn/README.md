@@ -4,8 +4,8 @@
 Lightweight Execution Engine for DMN (Decision Model and Notation) written in Java.
 
 <p>
-  <a href="http://cadenzaflow.org/">Home</a> |
-  <a href="http://cadenzaflow.org/community/forum.html">Forum</a> |
+  <a href="https://cadenzaflow.org/">Home</a> |
+  <a href="https://cadenzaflow.org/community/forum.html">Forum</a> |
   <a href="https://app.cadenzaflow.com/jira/browse/CAM">Issues</a> |
 </p>
 

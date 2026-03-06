@@ -77,7 +77,7 @@ public class SpringBootManagedContainer {
   }
 
   /**
-   * @return the home directory of Camunda Platform Run based on the
+   * @return the home directory of CadenzaFlow Platform Run based on the
    *         "cadenzaflow.run.home" system property.
    */
   public static String getRunHome() {

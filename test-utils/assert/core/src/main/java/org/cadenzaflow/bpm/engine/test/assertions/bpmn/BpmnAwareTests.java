@@ -64,7 +64,7 @@ import org.cadenzaflow.bpm.model.bpmn.instance.Gateway;
  * import static org.cadenzaflow.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
  *
  * @see org.cadenzaflow.bpm.engine.test.assertions.ProcessEngineTests
- *      for full Camunda Platform Assertions functionality
+ *      for full CadenzaFlow Platform Assertions functionality
  *
  */
 public class BpmnAwareTests extends AbstractAssertions {
