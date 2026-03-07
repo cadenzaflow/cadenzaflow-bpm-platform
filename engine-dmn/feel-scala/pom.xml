@@ -10,7 +10,7 @@
   <artifactId>cadenzaflow-engine-feel-scala</artifactId>
   <name>CadenzaFlow DMN - engine FEEL - SCALA</name>
   <properties>
-    <camunda.artifact>org.cadenzaflow.bpm.dmn.feel.impl.scala</camunda.artifact>
+    <cadenzaflow.artifact>org.cadenzaflow.bpm.dmn.feel.impl.scala</cadenzaflow.artifact>
   </properties>
   <dependencies>
 
