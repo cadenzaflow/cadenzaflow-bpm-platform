@@ -52,7 +52,10 @@ module.exports = (_env, argv = {}) => {
         )
       },
       'plugin/tasklist/app/plugin': {
-        import: path.resolve(__dirname, 'ui/tasklist/plugins/tasklistPlugins.js')
+        import: path.resolve(
+          __dirname,
+          'ui/tasklist/plugins/tasklistPlugins.js'
+        )
       },
 
       /* Admin */
@@ -151,7 +154,10 @@ module.exports = (_env, argv = {}) => {
         minify: false,
         inject: false,
         appName: 'cockpit',
-        template: path.resolve(__dirname, 'ui/cockpit/client/scripts/index.html'),
+        template: path.resolve(
+          __dirname,
+          'ui/cockpit/client/scripts/index.html'
+        ),
         filename: 'app/cockpit/index.html',
         chunks: ['app/cockpit/camunda-cockpit-bootstrap'],
         favicon: path.resolve(__dirname, 'ui/common/images/favicon.ico'),
@@ -184,7 +190,10 @@ module.exports = (_env, argv = {}) => {
         minify: false,
         inject: false,
         appName: 'welcome',
-        template: path.resolve(__dirname, 'ui/welcome/client/scripts/index.html'),
+        template: path.resolve(
+          __dirname,
+          'ui/welcome/client/scripts/index.html'
+        ),
         filename: 'app/welcome/index.html',
         chunks: ['app/welcome/camunda-welcome-bootstrap'],
         favicon: path.resolve(__dirname, 'ui/common/images/favicon.ico'),

@@ -18,19 +18,21 @@
 'use strict';
 
 var angular = require('camunda-bpm-sdk-js/vendor/angular'),
-    camCommonsUi = require('../../index'),
-    testXML = require('./test.xml'),
-    drdXML = require('./drd.dmn11.xml');
+  camCommonsUi = require('../../index'),
+  testXML = require('./test.xml'),
+  drdXML = require('./drd.dmn11.xml');
 
 var testModule = angular.module('myModule', [camCommonsUi.name]);
 
-testModule.controller('testController', ['$scope', function($scope) {
-  $scope.decisionTable = testXML;
-  $scope.drdXML = drdXML;
+testModule.controller('testController', [
+  '$scope',
+  function($scope) {
+    $scope.decisionTable = testXML;
+    $scope.drdXML = drdXML;
 
-  $scope.control = {};
-}]);
-
+    $scope.control = {};
+  }
+]);
 
 angular.element(document).ready(function() {
   angular.bootstrap(document.body, [testModule.name]);
