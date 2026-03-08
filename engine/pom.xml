@@ -299,7 +299,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>28.2-jre</version>
+      <version>31.1-jre</version>
       <scope>test</scope>
     </dependency>
 
@@ -362,17 +362,17 @@
     for the license book -->
     <skip-third-party-bom>false</skip-third-party-bom>
 
-    <camunda.artifact>
+    <cadenzaflow.artifact>
       org.cadenzaflow.bpm
-    </camunda.artifact>
-    <camunda.osgi.export.pkg>
-      !${camunda.artifact}.engine.variable.*,
-      ${camunda.artifact},
-      ${camunda.artifact}.application.*,
-      ${camunda.artifact}.container.*,
-      ${camunda.artifact}.engine.*
-    </camunda.osgi.export.pkg>
-    <camunda.osgi.import.additional>
+    </cadenzaflow.artifact>
+    <cadenzaflow.osgi.export.pkg>
+      !${cadenzaflow.artifact}.engine.variable.*,
+      ${cadenzaflow.artifact},
+      ${cadenzaflow.artifact}.application.*,
+      ${cadenzaflow.artifact}.container.*,
+      ${cadenzaflow.artifact}.engine.*
+    </cadenzaflow.osgi.export.pkg>
+    <cadenzaflow.osgi.import.additional>
       !com.google.gson.*,
       junit*;resolution:=optional,
       org.junit*;resolution:=optional,
@@ -390,7 +390,7 @@
       org.springframework*;resolution:=optional,
       com.fasterxml*;resolution:=optional,
       org.jboss.vfs*;resolution:=optional
-    </camunda.osgi.import.additional>
+    </cadenzaflow.osgi.import.additional>
   </properties>
 
   <build>
