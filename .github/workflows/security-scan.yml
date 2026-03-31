@@ -1,0 +1,49 @@
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - cadenzaflow-1.0.0
+  workflow_dispatch:
+
+env:
+  APP_NAME: cadenzaflow-bpm-platform
+  APP_VERSION: "test-rs"
+  MAIL_TO: ali.aras@pia-team.com
+  SMTP_SERVER: mail-eu.smtp2go.com
+  SMTP_PORT: "2525"
+
+jobs:
+  security-scan:
+    runs-on: cadenzaflow-runner
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Trivy filesystem scan
+        id: trivy_fs
+        uses: ./.github/actions/trivy-scan
+        with:
+          scan_type: fs
+          scan_target: .
+          severity: HIGH,CRITICAL
+          output_file: trivy-fs-report.json
+          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test
+
+      - name: Generate security report and send mail
+        if: always()
+        uses: ./.github/actions/security-report
+        with:
+          app_name: ${{ env.APP_NAME }}
+          version: ${{ env.APP_VERSION }}
+          environment: production
+          trivy_repo_report: ''
+          trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
+          trivy_image_report: ''
+          sonarqube_report: ''
+          mail_to: ${{ env.MAIL_TO }}
+          smtp_server: ${{ env.SMTP_SERVER }}
+          smtp_port: ${{ env.SMTP_PORT }}
+          smtp_username: ${{ secrets.SMTP_USERNAME }}
+          smtp_password: ${{ secrets.SMTP_PASSWORD }}
