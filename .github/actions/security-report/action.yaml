@@ -1,0 +1,644 @@
+name: 'Security Report & Mail'
+description: 'Generates PDF report from SonarQube and Trivy results and sends via email'
+
+inputs:
+  app_name:
+    description: 'Application name'
+    required: true
+  version:
+    description: 'Application version'
+    required: true
+  environment:
+    description: 'Target environment'
+    required: true
+  trivy_repo_report:
+    description: 'Path to Trivy repo scan JSON report'
+    required: false
+    default: ''
+  trivy_fs_report:
+    description: 'Path to Trivy filesystem scan JSON report'
+    required: false
+    default: ''
+  trivy_image_report:
+    description: 'Path to Trivy image scan JSON report'
+    required: false
+    default: ''
+  sonarqube_report:
+    description: 'Path to SonarQube JSON report'
+    required: false
+    default: ''
+  mail_to:
+    description: 'Email recipients (comma-separated)'
+    required: true
+  smtp_server:
+    description: 'SMTP server address'
+    required: true
+  smtp_port:
+    description: 'SMTP server port'
+    required: false
+    default: '2525'
+  smtp_username:
+    description: 'SMTP username'
+    required: true
+  smtp_password:
+    description: 'SMTP password'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install wkhtmltopdf
+      shell: bash
+      run: |
+        if ! command -v wkhtmltopdf &> /dev/null; then
+          sudo apt-get update -qq && sudo apt-get install -y -qq wkhtmltopdf > /dev/null 2>&1 || true
+        fi
+
+    - name: Generate PDF report
+      shell: bash
+      run: |
+        REPORT_DIR="${{ github.workspace }}/security-reports"
+        mkdir -p "$REPORT_DIR"
+
+        PDF_FILE="$REPORT_DIR/${{ inputs.app_name }}-v${{ inputs.version }}-security-report.pdf"
+        HTML_FILE="$REPORT_DIR/report.html"
+        TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+        BUILD_DATE=$(date -u '+%B %d, %Y')
+
+        # Count total vulnerabilities across all reports
+        TOTAL_CRITICAL=0
+        TOTAL_HIGH=0
+        TOTAL_MEDIUM=0
+        TOTAL_LOW=0
+
+        for REPORT_FILE in "${{ inputs.trivy_repo_report }}" "${{ inputs.trivy_fs_report }}" "${{ inputs.trivy_image_report }}"; do
+          if [ -n "$REPORT_FILE" ] && [ -f "$REPORT_FILE" ]; then
+            C=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            H=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "HIGH")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            M=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            L=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "LOW")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            TOTAL_CRITICAL=$((TOTAL_CRITICAL + C))
+            TOTAL_HIGH=$((TOTAL_HIGH + H))
+            TOTAL_MEDIUM=$((TOTAL_MEDIUM + M))
+            TOTAL_LOW=$((TOTAL_LOW + L))
+          fi
+        done
+
+        TOTAL_VULNS=$((TOTAL_CRITICAL + TOTAL_HIGH + TOTAL_MEDIUM + TOTAL_LOW))
+
+        if [ "$TOTAL_CRITICAL" -gt 0 ]; then
+          RISK_LEVEL="CRITICAL"
+          RISK_COLOR="#dc2626"
+          RISK_BG="#fef2f2"
+        elif [ "$TOTAL_HIGH" -gt 0 ]; then
+          RISK_LEVEL="HIGH"
+          RISK_COLOR="#ea580c"
+          RISK_BG="#fff7ed"
+        elif [ "$TOTAL_MEDIUM" -gt 0 ]; then
+          RISK_LEVEL="MEDIUM"
+          RISK_COLOR="#ca8a04"
+          RISK_BG="#fefce8"
+        else
+          RISK_LEVEL="LOW"
+          RISK_COLOR="#16a34a"
+          RISK_BG="#f0fdf4"
+        fi
+
+        cat > "$HTML_FILE" << 'HTMLEOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <style>
+          @page { margin: 10mm; }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1e293b;
+            line-height: 1.6;
+            background: #ffffff;
+          }
+
+          /* Cover Page */
+          .cover {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 60px 80px;
+            page-break-after: always;
+          }
+          .cover-logo {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+          }
+          .cover-logo span { color: #38bdf8; }
+          .cover-tagline {
+            font-size: 14px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+          }
+          .cover-title {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+          }
+          .cover-subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+          }
+          .cover-divider {
+            width: 80px;
+            height: 3px;
+            background: #38bdf8;
+            margin: 30px auto;
+          }
+          .cover-meta {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 40px;
+          }
+          .cover-meta strong { color: #94a3b8; }
+
+          /* Content Pages */
+          .content {
+            padding: 50px 60px;
+          }
+          .page-header {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+          }
+          .page-header-logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            float: left;
+          }
+          .page-header-logo span { color: #0ea5e9; }
+          .page-header-info {
+            font-size: 11px;
+            color: #94a3b8;
+            text-align: right;
+            float: right;
+          }
+
+          /* Executive Summary */
+          .exec-summary {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+          }
+          .exec-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+          }
+          .risk-cards {
+            width: 100%;
+            margin-bottom: 20px;
+          }
+          .risk-card {
+            display: inline-block;
+            width: 22%;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-right: 2%;
+            vertical-align: top;
+          }
+          .risk-card-number {
+            font-size: 36px;
+            font-weight: 800;
+          }
+          .risk-card-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+          }
+
+          /* Section Headers */
+          h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 35px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0ea5e9;
+            display: inline-block;
+          }
+          h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #334155;
+            margin: 20px 0 10px;
+          }
+
+          /* Tables */
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0 25px;
+            font-size: 13px;
+          }
+          th {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          td {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 10px 16px;
+            vertical-align: top;
+          }
+          tr:nth-child(even) { background: #f8fafc; }
+          tr:hover { background: #f1f5f9; }
+
+          /* Severity Badges */
+          .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .badge-critical { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+          .badge-high { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+          .badge-medium { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
+          .badge-low { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+
+          /* Summary Stats */
+          .severity-summary {
+            margin: 15px 0;
+          }
+          .severity-stat {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-right: 8px;
+          }
+          .severity-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+          }
+
+          /* Quality Gate */
+          .qg-passed {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 2px solid #86efac;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+          }
+          .qg-failed {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 2px solid #fca5a5;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+          }
+
+          /* Footer */
+          .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 11px;
+            color: #94a3b8;
+            overflow: hidden;
+          }
+          .footer div:first-child { float: left; }
+          .footer div:last-child { float: right; }
+
+          /* Confidential Banner */
+          .confidential {
+            text-align: center;
+            font-size: 10px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+          }
+
+          .page-break { page-break-before: always; }
+          .vuln-title { font-weight: 600; color: #0f172a; }
+          .vuln-desc { font-size: 12px; color: #64748b; margin-top: 2px; }
+        </style>
+        </head>
+        <body>
+        HTMLEOF
+
+        # === COVER PAGE ===
+        cat >> "$HTML_FILE" << EOF
+        <div class="cover">
+          <div class="cover-logo">Cadenza<span>Flow</span></div>
+          <div class="cover-tagline">Enterprise BPM Platform</div>
+          <div class="cover-divider"></div>
+          <div class="cover-title">Security Assessment Report</div>
+          <div class="cover-subtitle">${BUILD_DATE}</div>
+          <div class="cover-divider"></div>
+          <div class="cover-meta">
+            <strong>Application:</strong> ${{ inputs.app_name }}<br>
+            <strong>Version:</strong> ${{ inputs.version }}
+          </div>
+          <div class="confidential" style="margin-top: 60px;">CONFIDENTIAL</div>
+        </div>
+        EOF
+
+        # === CONTENT PAGES ===
+        cat >> "$HTML_FILE" << EOF
+        <div class="content">
+          <div class="page-header">
+            <div class="page-header-logo">Cadenza<span>Flow</span> Security Report</div>
+            <div class="page-header-info">
+              v${{ inputs.version }} | ${TIMESTAMP}
+            </div>
+          </div>
+
+          <!-- Executive Summary -->
+          <div class="exec-summary">
+            <div class="exec-title">Executive Summary</div>
+            <p style="margin-bottom: 20px; color: #475569;">
+              This report presents the security assessment results for <strong>${{ inputs.app_name }}</strong>
+              version <strong>${{ inputs.version }}</strong>. The analysis includes automated vulnerability
+              scanning of application dependencies and source code using Trivy.
+            </p>
+            <div class="risk-cards">
+              <div class="risk-card" style="background: #fef2f2; border: 1px solid #fecaca;">
+                <div class="risk-card-number" style="color: #dc2626;">${TOTAL_CRITICAL}</div>
+                <div class="risk-card-label" style="color: #991b1b;">Critical</div>
+              </div>
+              <div class="risk-card" style="background: #fff7ed; border: 1px solid #fed7aa;">
+                <div class="risk-card-number" style="color: #ea580c;">${TOTAL_HIGH}</div>
+                <div class="risk-card-label" style="color: #9a3412;">High</div>
+              </div>
+              <div class="risk-card" style="background: #fefce8; border: 1px solid #fef08a;">
+                <div class="risk-card-number" style="color: #ca8a04;">${TOTAL_MEDIUM}</div>
+                <div class="risk-card-label" style="color: #854d0e;">Medium</div>
+              </div>
+              <div class="risk-card" style="background: #f0fdf4; border: 1px solid #bbf7d0;">
+                <div class="risk-card-number" style="color: #16a34a;">${TOTAL_LOW}</div>
+                <div class="risk-card-label" style="color: #166534;">Low</div>
+              </div>
+            </div>
+            <p style="color: #475569;">
+              <strong>Overall Risk Level:</strong>
+              <span class="badge" style="background: ${RISK_BG}; color: ${RISK_COLOR}; border: 1px solid ${RISK_COLOR}40;">${RISK_LEVEL}</span>
+              &mdash; Total of <strong>${TOTAL_VULNS}</strong> vulnerabilities detected across all scans.
+            </p>
+          </div>
+        EOF
+
+        # === SonarQube Section ===
+        if [ -f "${{ inputs.sonarqube_report }}" ]; then
+          QG_STATUS=$(jq -r '.quality_gate.projectStatus.status // "N/A"' "${{ inputs.sonarqube_report }}")
+          if [ "$QG_STATUS" == "OK" ]; then
+            QG_CLASS="qg-passed"
+            QG_DISPLAY="PASSED"
+          else
+            QG_CLASS="qg-failed"
+            QG_DISPLAY="$QG_STATUS"
+          fi
+
+          cat >> "$HTML_FILE" << EOF
+          <h2>Code Quality &mdash; SonarQube</h2>
+          <p style="margin-bottom: 15px;">Quality Gate: <span class="${QG_CLASS}">${QG_DISPLAY}</span></p>
+          <table>
+            <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+        EOF
+
+          for METRIC in bugs vulnerabilities code_smells coverage duplicated_lines_density ncloc; do
+            VALUE=$(jq -r ".measures.component.measures[]? | select(.metric == \"$METRIC\") | .value // \"N/A\"" "${{ inputs.sonarqube_report }}")
+            LABEL=$(echo "$METRIC" | sed 's/_/ /g' | sed 's/\b\w/\U&/g')
+            echo "<tr><td>${LABEL}</td><td><strong>${VALUE}</strong></td><td>-</td></tr>" >> "$HTML_FILE"
+          done
+
+          echo "</table>" >> "$HTML_FILE"
+        fi
+
+        # === Trivy Sections ===
+        for SCAN_TYPE in repo fs image; do
+          case $SCAN_TYPE in
+            repo) REPORT_FILE="${{ inputs.trivy_repo_report }}"; TITLE="Repository Vulnerability Scan" ;;
+            fs)   REPORT_FILE="${{ inputs.trivy_fs_report }}"; TITLE="Filesystem Dependency Scan" ;;
+            image) REPORT_FILE="${{ inputs.trivy_image_report }}"; TITLE="Container Image Scan" ;;
+          esac
+
+          if [ -n "$REPORT_FILE" ] && [ -f "$REPORT_FILE" ]; then
+            CRITICAL=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            HIGH=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "HIGH")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            MEDIUM=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            LOW=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "LOW")] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            SCAN_TOTAL=$((CRITICAL + HIGH + MEDIUM + LOW))
+
+            cat >> "$HTML_FILE" << EOF
+            <h2>Trivy &mdash; ${TITLE}</h2>
+            <div class="severity-summary">
+              <div class="severity-stat">
+                <div class="severity-dot" style="background: #dc2626;"></div>
+                <span><strong>${CRITICAL}</strong> Critical</span>
+              </div>
+              <div class="severity-stat">
+                <div class="severity-dot" style="background: #ea580c;"></div>
+                <span><strong>${HIGH}</strong> High</span>
+              </div>
+              <div class="severity-stat">
+                <div class="severity-dot" style="background: #ca8a04;"></div>
+                <span><strong>${MEDIUM}</strong> Medium</span>
+              </div>
+              <div class="severity-stat">
+                <div class="severity-dot" style="background: #16a34a;"></div>
+                <span><strong>${LOW}</strong> Low</span>
+              </div>
+            </div>
+        EOF
+
+            VULN_COUNT=$(jq '[.Results[]?.Vulnerabilities[]?] | length' "$REPORT_FILE" 2>/dev/null || echo "0")
+            if [ "$VULN_COUNT" -gt 0 ]; then
+              cat >> "$HTML_FILE" << 'EOF'
+              <h3>Vulnerability Details</h3>
+              <table>
+                <tr>
+                  <th>CVE ID</th>
+                  <th>Severity</th>
+                  <th>Package</th>
+                  <th>Installed</th>
+                  <th>Fixed Version</th>
+                  <th>Description</th>
+                </tr>
+        EOF
+              jq -r '[.Results[]?.Vulnerabilities[]?] | sort_by(if .Severity == "CRITICAL" then 0 elif .Severity == "HIGH" then 1 elif .Severity == "MEDIUM" then 2 else 3 end) | .[] | "<tr><td class=\"vuln-title\">\(.VulnerabilityID)</td><td><span class=\"badge badge-\(.Severity | ascii_downcase)\">\(.Severity)</span></td><td>\(.PkgName)</td><td>\(.InstalledVersion)</td><td>\(.FixedVersion // "<em>No fix</em>")</td><td class=\"vuln-desc\">\(.Title // "-" | .[0:80])</td></tr>"' "$REPORT_FILE" >> "$HTML_FILE" 2>/dev/null || true
+              echo "</table>" >> "$HTML_FILE"
+            fi
+          fi
+        done
+
+        # === Recommendations ===
+        cat >> "$HTML_FILE" << 'EOF'
+        <div class="page-break"></div>
+        <h2>Recommendations</h2>
+        <table>
+          <tr><th>Priority</th><th>Action</th><th>Details</th></tr>
+          <tr>
+            <td><span class="badge badge-critical">P1</span></td>
+            <td><strong>Patch Critical Vulnerabilities</strong></td>
+            <td>Update packages with critical CVEs to their fixed versions immediately.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-high">P2</span></td>
+            <td><strong>Address High Severity Issues</strong></td>
+            <td>Plan updates for high severity vulnerabilities within the next sprint.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-medium">P3</span></td>
+            <td><strong>Review Medium/Low Findings</strong></td>
+            <td>Evaluate medium and low findings and include in regular maintenance.</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-low">P4</span></td>
+            <td><strong>Continuous Monitoring</strong></td>
+            <td>Maintain automated scanning in CI/CD pipeline for ongoing security posture.</td>
+          </tr>
+        </table>
+        EOF
+
+        # === Footer ===
+        cat >> "$HTML_FILE" << EOF
+          <div class="footer">
+            <div>CadenzaFlow Security Assessment | Automated Report</div>
+            <div>${TIMESTAMP} | Pipeline Run #${GITHUB_RUN_NUMBER}</div>
+          </div>
+          <div class="confidential">This document is confidential and intended for authorized personnel only.</div>
+        </div>
+        </body></html>
+        EOF
+
+        # Convert HTML to PDF
+        if command -v wkhtmltopdf &> /dev/null; then
+          wkhtmltopdf --quiet --page-size A4 --margin-top 10mm --margin-bottom 10mm --margin-left 10mm --margin-right 10mm --enable-local-file-access "$HTML_FILE" "$PDF_FILE"
+        elif command -v chromium-browser &> /dev/null; then
+          chromium-browser --headless --no-sandbox --disable-gpu --print-to-pdf="$PDF_FILE" "$HTML_FILE"
+        elif command -v google-chrome &> /dev/null; then
+          google-chrome --headless --no-sandbox --disable-gpu --print-to-pdf="$PDF_FILE" "$HTML_FILE"
+        else
+          echo "::warning::No PDF converter found, HTML report will be used"
+          cp "$HTML_FILE" "$PDF_FILE"
+        fi
+
+        echo "Report generated: $PDF_FILE"
+
+    - name: Send email with report
+      shell: bash
+      run: |
+        REPORT_DIR="${{ github.workspace }}/security-reports"
+        PDF_FILE="$REPORT_DIR/${{ inputs.app_name }}-v${{ inputs.version }}-security-report.pdf"
+        TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+
+        python3 << 'PYEOF'
+        import smtplib
+        import os
+        import sys
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        from email.mime.application import MIMEApplication
+
+        smtp_user = os.environ.get('SMTP_USER', '')
+        smtp_pass = os.environ.get('SMTP_PASS', '')
+        mail_to = os.environ.get('MAIL_TO', '')
+        smtp_server = os.environ.get('SMTP_HOST', '')
+        smtp_port = int(os.environ.get('SMTP_PORT', '2525'))
+        app_name = os.environ.get('APP_NAME', '')
+        version = os.environ.get('VERSION', '')
+        environment = os.environ.get('ENVIRONMENT', '')
+        pdf_path = os.environ.get('PDF_FILE', '')
+
+        if not smtp_user or not smtp_pass:
+            print("::warning::SMTP credentials not configured, skipping email")
+            sys.exit(0)
+
+        msg = MIMEMultipart('mixed')
+        msg['From'] = f'CadenzaFlow CI/CD <{smtp_user}>'
+        msg['To'] = mail_to
+        msg['Subject'] = f'[CadenzaFlow] Security Report - {app_name} v{version} ({environment})'
+
+        html_body = f"""
+        <html><body style="font-family: 'Segoe UI', sans-serif; color: #1e293b;">
+        <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #0f172a;">Security Assessment Report</h2>
+          <p>A new security assessment has been completed for your application.</p>
+          <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
+            <tr><td style="padding: 8px; border-bottom: 1px solid #e2e8f0; color: #64748b;">Application</td>
+                <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: 600;">{app_name}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #e2e8f0; color: #64748b;">Version</td>
+                <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: 600;">{version}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #e2e8f0; color: #64748b;">Environment</td>
+                <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: 600;">{environment}</td></tr>
+          </table>
+          <p>Please find the detailed security report attached as PDF.</p>
+          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+          <p style="font-size: 12px; color: #94a3b8;">CadenzaFlow CI/CD Pipeline | Automated Security Assessment</p>
+        </div>
+        </body></html>
+        """
+        msg.attach(MIMEText(html_body, 'html'))
+
+        if os.path.exists(pdf_path):
+            with open(pdf_path, 'rb') as f:
+                attachment = MIMEApplication(f.read(), _subtype='pdf')
+                attachment.add_header('Content-Disposition', 'attachment',
+                    filename=os.path.basename(pdf_path))
+                msg.attach(attachment)
+
+        try:
+            server = smtplib.SMTP(smtp_server, smtp_port)
+            server.starttls()
+            server.login(smtp_user, smtp_pass)
+            server.send_message(msg)
+            server.quit()
+            print(f"Email sent successfully to: {mail_to}")
+        except Exception as e:
+            print(f"::warning::Failed to send email: {e}")
+            print("Report is available as build artifact")
+        PYEOF
+      env:
+        SMTP_USER: ${{ inputs.smtp_username }}
+        SMTP_PASS: ${{ inputs.smtp_password }}
+        MAIL_TO: ${{ inputs.mail_to }}
+        SMTP_HOST: ${{ inputs.smtp_server }}
+        SMTP_PORT: ${{ inputs.smtp_port }}
+        APP_NAME: ${{ inputs.app_name }}
+        VERSION: ${{ inputs.version }}
+        ENVIRONMENT: ${{ inputs.environment }}
+        PDF_FILE: ${{ github.workspace }}/security-reports/${{ inputs.app_name }}-v${{ inputs.version }}-security-report.pdf
+
+    - name: Upload report as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-report-${{ inputs.app_name }}-${{ inputs.version }}
+        path: ${{ github.workspace }}/security-reports/
+        retention-days: 90
