@@ -8,7 +8,7 @@ on:
 
 env:
   APP_NAME: cadenzaflow-bpm-platform
-  APP_VERSION: "test-rs"
+  APP_VERSION: "1.0.0"
   MAIL_TO: ali.aras@pia-team.com
   SMTP_SERVER: mail-eu.smtp2go.com
   SMTP_PORT: "2525"
