@@ -1,0 +1,88 @@
+name: 'Trivy Security Scan'
+description: 'Runs Trivy vulnerability scans (repo, filesystem, image) and generates reports'
+
+inputs:
+  scan_type:
+    description: 'Scan type: repo, fs, or image'
+    required: true
+  scan_target:
+    description: 'Target to scan (path or image URL)'
+    required: true
+  severity:
+    description: 'Severity levels to report'
+    required: false
+    default: 'HIGH,CRITICAL'
+  output_file:
+    description: 'Output file name for JSON report'
+    required: false
+    default: 'trivy-report.json'
+  skip_dirs:
+    description: 'Comma-separated directories to skip'
+    required: false
+    default: ''
+
+outputs:
+  report_path:
+    description: 'Path to the generated report'
+    value: ${{ steps.scan.outputs.REPORT_PATH }}
+  has_vulnerabilities:
+    description: 'Whether vulnerabilities were found'
+    value: ${{ steps.scan.outputs.HAS_VULNS }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Trivy
+      shell: bash
+      run: |
+        if ! command -v trivy &> /dev/null; then
+          mkdir -p $HOME/.local/bin
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b $HOME/.local/bin
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.local/bin:$PATH"
+        fi
+        trivy --version
+
+    - name: Run Trivy scan
+      id: scan
+      shell: bash
+      env:
+        TRIVY_CACHE_DIR: ${{ github.workspace }}/../.cache/trivy
+      run: |
+        mkdir -p "$TRIVY_CACHE_DIR"
+        REPORT_PATH="${{ github.workspace }}/${{ inputs.output_file }}"
+
+        # Build skip-dirs flag
+        SKIP_DIRS_FLAG=""
+        if [ -n "${{ inputs.skip_dirs }}" ]; then
+          SKIP_DIRS_FLAG="--skip-dirs ${{ inputs.skip_dirs }}"
+        fi
+
+        # JSON report (single scan - used for PDF and console summary)
+        trivy ${{ inputs.scan_type }} \
+          --severity ${{ inputs.severity }} \
+          --scanners vuln \
+          --timeout 30m \
+          --cache-dir "$TRIVY_CACHE_DIR" \
+          $SKIP_DIRS_FLAG \
+          --format json \
+          --output "$REPORT_PATH" \
+          ${{ inputs.scan_target }} || true
+
+        echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_OUTPUT
+
+        # Print summary from JSON report
+        if [ -f "$REPORT_PATH" ]; then
+          VULN_COUNT=$(cat "$REPORT_PATH" | jq '[.Results[]?.Vulnerabilities // [] | length] | add // 0')
+          if [ "$VULN_COUNT" -gt 0 ]; then
+            echo "HAS_VULNS=true" >> $GITHUB_OUTPUT
+            echo "::warning::Found $VULN_COUNT vulnerabilities"
+            # Print summary per target
+            cat "$REPORT_PATH" | jq -r '.Results[]? | select(.Vulnerabilities != null) | "\(.Target): \(.Vulnerabilities | length) vulnerabilities"'
+          else
+            echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
+            echo "No vulnerabilities found"
+          fi
+        else
+          echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
+        fi
