@@ -23,3 +23,18 @@ faces-config.NavData
 camunda-h2-dbs
 
 *.DS_Store
+
+# local IDE settings
+.vscode/
+
+# local analysis artifacts
+PACKAGE_STRUCTURE.md
+trivy-baseline-maven.json
+trivy-reports/
+
+# local runtime data
+cadenzaflow-h2-default/
+
+# local test/build logs
+logs/
+full-test.log
