@@ -122,14 +122,21 @@
   "overrides": {
     "compression": "^1.8.1",
     "diff": "^3.5.1",
+    "flatted": "^3.4.2",
     "form-data": "^4.0.4",
     "js-yaml": "^4.1.1",
+    "json5": "^2.2.3",
     "karma-webpack": {
       "minimatch": "^9.0.7"
     },
+    "lodash.set": "^4.17.19",
     "node-forge": "^1.4.0",
     "on-headers": "^1.1.0",
+    "path-to-regexp": "^0.1.13",
+    "picomatch": "^2.3.2",
     "qs": "^6.14.1",
+    "serialize-javascript": "^7.0.5",
+    "socket.io-parser": "^4.2.6",
     "tmp": "^0.2.5"
   }
 }
