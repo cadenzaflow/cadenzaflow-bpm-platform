@@ -9,5 +9,8 @@
     "redoc": "2.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
+  },
+  "overrides": {
+    "dompurify": "^3.4.1"
   }
 }
