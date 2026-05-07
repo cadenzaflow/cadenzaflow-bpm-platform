@@ -2,16 +2,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-parent</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>7.24.0-SNAPSHOT</version>
+    <version>1.1.0</version>
   </parent>
 
-  <groupId>org.camunda.commons</groupId>
-  <artifactId>camunda-commons-root</artifactId>
-  <name>camunda Commons - Root Pom</name>
-  <inceptionYear>2014</inceptionYear>
+  <groupId>org.cadenzaflow.commons</groupId>
+  <artifactId>cadenzaflow-commons-root</artifactId>
+  <name>CadenzaFlow Commons - Root Pom</name>
+  <inceptionYear>2025</inceptionYear>
   <packaging>pom</packaging>
 
   <modules>
@@ -132,10 +132,10 @@
   </profiles>
 
   <scm>
-    <url>https://github.com/camunda/camunda-bpm-platform</url>
-    <connection>scm:git:git@github.com:camunda/camunda-bpm-platform.git</connection>
-    <developerConnection>scm:git:git@github.com:camunda/camunda-bpm-platform.git</developerConnection>
-    <tag>HEAD</tag>
+    <url>https://github.com/cadenzaflow/cadenzaflow-bpm-platform</url>
+    <connection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</connection>
+    <developerConnection>scm:git:git@github.com:cadenzaflow/cadenzaflow-bpm-platform.git</developerConnection>
+    <tag>1.1.0</tag>
   </scm>
 
 </project>

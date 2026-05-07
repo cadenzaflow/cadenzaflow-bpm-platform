@@ -4,14 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>camunda-bpm-quarkus-parent</artifactId>
-    <groupId>org.camunda.bpm.quarkus</groupId>
-    <version>7.24.0-SNAPSHOT</version>
+    <artifactId>cadenzaflow-bpm-quarkus-parent</artifactId>
+    <groupId>org.cadenzaflow.bpm.quarkus</groupId>
+    <version>1.1.0</version>
   </parent>
 
-  <artifactId>camunda-bpm-quarkus-engine-parent</artifactId>
+  <artifactId>cadenzaflow-bpm-quarkus-engine-parent</artifactId>
 
-  <name>Camunda Platform - Quarkus Extension - Engine - Parent</name>
+  <name>CadenzaFlow Platform - Quarkus Extension - Engine - Parent</name>
 
   <packaging>pom</packaging>
 

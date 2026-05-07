@@ -1,6 +1,6 @@
 <module xmlns="urn:jboss:module:1.0" name="org.camunda.bpm.model.camunda-dmn-model">
   <resources>
-    <resource-root path="camunda-dmn-model-@project.version@.jar" />
+    <resource-root path="cadenzaflow-dmn-model-@project.version@.jar" />
   </resources>
 
   <dependencies>

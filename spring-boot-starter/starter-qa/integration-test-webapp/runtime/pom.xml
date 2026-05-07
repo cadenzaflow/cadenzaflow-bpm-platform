@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.springboot.project</groupId>
+    <groupId>org.cadenzaflow.bpm.springboot.project</groupId>
     <artifactId>qa-webapp</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <version>1.1.0</version>
   </parent>
 
   <artifactId>qa-webapp-ce-runtime</artifactId>
-  <name>Camunda Platform - Spring Boot Starter - QA - Webapps Runtime</name>
+  <name>CadenzaFlow Platform - Spring Boot Starter - QA - Webapps Runtime</name>
 
   <properties>
     <version.jersey-json>1.15</version.jersey-json>
@@ -33,27 +33,27 @@
 
         <!-- Web Applications -->
         <dependency>
-          <groupId>org.camunda.bpm.springboot</groupId>
-          <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+          <groupId>org.cadenzaflow.bpm.springboot</groupId>
+          <artifactId>cadenzaflow-bpm-spring-boot-starter-webapp</artifactId>
           <version>${project.version}</version>
         </dependency>
 
         <!-- REST API -->
         <dependency>
-          <groupId>org.camunda.bpm.springboot</groupId>
-          <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+          <groupId>org.cadenzaflow.bpm.springboot</groupId>
+          <artifactId>cadenzaflow-bpm-spring-boot-starter-rest</artifactId>
           <version>${project.version}</version>
         </dependency>
 
         <dependency>
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-integration-tests-webapps</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-integration-tests-webapps</artifactId>
           <version>${project.version}</version>
           <scope>test</scope>
         </dependency>
 
         <dependency>
-          <groupId>org.camunda.bpm.springboot.project</groupId>
+          <groupId>org.cadenzaflow.bpm.springboot.project</groupId>
           <artifactId>qa-webapp-invoice-example</artifactId>
           <version>${project.version}</version>
         </dependency>
@@ -75,15 +75,8 @@
         </dependency>
 
         <dependency>
-          <groupId>com.sun.jersey.contribs</groupId>
-          <artifactId>jersey-apache-client4</artifactId>
-          <version>${version.jersey-apache-client}</version>
-        </dependency>
-
-        <dependency>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpclient</artifactId>
-          <version>${version.httpclient}</version>
+          <groupId>org.apache.httpcomponents.client5</groupId>
+          <artifactId>httpclient5</artifactId>
           <scope>test</scope>
         </dependency>
 
@@ -91,12 +84,6 @@
           <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-java</artifactId>
           <version>${version.selenium}</version>
-        </dependency>
-
-        <dependency>
-          <groupId>com.sun.jersey</groupId>
-          <artifactId>jersey-json</artifactId>
-          <version>${version.jersey-json}</version>
         </dependency>
 
         <dependency>
@@ -118,6 +105,13 @@
           <scope>test</scope>
         </dependency>
 
+        <dependency>
+          <groupId>com.konghq</groupId>
+          <artifactId>unirest-java</artifactId>
+          <version>${version.unirest-java}</version>
+          <classifier>standalone</classifier>
+          <scope>provided</scope>
+        </dependency>
       </dependencies>
 
       <build>

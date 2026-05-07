@@ -4,16 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.webapp</groupId>
-    <artifactId>camunda-webapp-root</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.bpm.webapp</groupId>
+    <artifactId>cadenzaflow-webapp-root</artifactId>
+    <version>1.1.0</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>camunda-webapp</artifactId>
+  <artifactId>cadenzaflow-webapp</artifactId>
   <packaging>war</packaging>
-  <name>Camunda Platform - Webapp - Assembly</name>
-  <inceptionYear>2014</inceptionYear>
+  <name>CadenzaFlow Platform - Webapp - Assembly</name>
+  <inceptionYear>2025</inceptionYear>
 
   <properties>
     <java.resources.override>src/main/runtime/default/resources</java.resources.override>
@@ -28,13 +28,13 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-engine-rest-core</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-engine-rest-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-engine-rest</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-engine-rest</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -69,8 +69,8 @@
 
     <!-- rest api -->
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-rest-core</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-rest-core</artifactId>
     </dependency>
 
     <dependency>
@@ -88,8 +88,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-rest-core</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-rest-core</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
       <classifier>tests</classifier>
@@ -97,7 +97,7 @@
   </dependencies>
 
   <build>
-    <finalName>camunda-webapp</finalName>
+    <finalName>cadenzaflow-webapp</finalName>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
@@ -222,28 +222,28 @@
           <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine-plugin-spin</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine-plugin-spin</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.camunda.spin</groupId>
-          <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+          <groupId>org.cadenzaflow.spin</groupId>
+          <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.camunda.spin</groupId>
-          <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+          <groupId>org.cadenzaflow.spin</groupId>
+          <artifactId>cadenzaflow-spin-dataformat-xml-dom</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine-plugin-connect</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine-plugin-connect</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.identity</groupId>
-          <artifactId>camunda-identity-ldap</artifactId>
+          <groupId>org.cadenzaflow.bpm.identity</groupId>
+          <artifactId>cadenzaflow-identity-ldap</artifactId>
         </dependency>
         <dependency>
           <groupId>com.h2database</groupId>
@@ -282,7 +282,7 @@
                 <configuration>
                   <tasks>
                     <mkdir dir="${project.basedir}/target/webapp" />
-                    <mkdir dir="${project.basedir}/target/camunda-welcome" />
+                    <mkdir dir="${project.basedir}/target/cadenzaflow-welcome" />
                   </tasks>
                 </configuration>
               </execution>
@@ -293,7 +293,7 @@
             <artifactId>jetty-maven-plugin</artifactId>
             <configuration>
               <webAppConfig>
-                <contextPath>/camunda</contextPath>
+                <contextPath>/cadenzaflow</contextPath>
                 <defaultsDescriptor>${project.basedir}/src/main/runtime/develop/jetty/webdefault.xml</defaultsDescriptor>
                 <resourceBases>
                   <resourceBase>${project.basedir}/target/webapp</resourceBase>
@@ -302,8 +302,8 @@
               </webAppConfig>
               <contextHandlers>
                 <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
-                  <war>${project.basedir}/target/camunda-welcome/</war>
-                  <contextPath>/camunda-welcome</contextPath>
+                  <war>${project.basedir}/target/cadenzaflow-welcome/</war>
+                  <contextPath>/cadenzaflow-welcome</contextPath>
                 </contextHandler>
               </contextHandlers>
             </configuration>
@@ -380,7 +380,7 @@
                 <configuration>
                   <tasks>
                     <mkdir dir="${project.basedir}/target/webapp" />
-                    <mkdir dir="${project.basedir}/target/camunda-welcome" />
+                    <mkdir dir="${project.basedir}/target/cadenzaflow-welcome" />
                   </tasks>
                 </configuration>
               </execution>
@@ -392,7 +392,7 @@
             <version>${version.jetty}</version>
             <configuration>
               <webAppConfig>
-                <contextPath>/camunda</contextPath>
+                <contextPath>/cadenzaflow</contextPath>
                 <defaultsDescriptor>${project.basedir}/src/main/runtime/test/jetty/webdefault.xml</defaultsDescriptor>
                 <resourceBases>
                   <resourceBase>${project.basedir}/target/webapp</resourceBase>
@@ -405,20 +405,20 @@
                   <contextPath>/engine-rest</contextPath>
                 </contextHandler>
                 <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
-                  <war>${project.basedir}/target/camunda-welcome/</war>
-                  <contextPath>/camunda-welcome</contextPath>
+                  <war>${project.basedir}/target/cadenzaflow-welcome/</war>
+                  <contextPath>/cadenzaflow-welcome</contextPath>
                 </contextHandler>
               </contextHandlers>
             </configuration>
             <dependencies>
               <dependency>
-                <groupId>org.camunda.bpm</groupId>
-                <artifactId>camunda-engine</artifactId>
+                <groupId>org.cadenzaflow.bpm</groupId>
+                <artifactId>cadenzaflow-engine</artifactId>
                 <version>${project.version}</version>
               </dependency>
               <dependency>
-                <groupId>org.camunda.bpm.identity</groupId>
-                <artifactId>camunda-identity-ldap</artifactId>
+                <groupId>org.cadenzaflow.bpm.identity</groupId>
+                <artifactId>cadenzaflow-identity-ldap</artifactId>
                 <version>${project.version}</version>
               </dependency>
               <dependency>
@@ -482,8 +482,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm</groupId>
-                      <artifactId>camunda-engine-rest</artifactId>
+                      <groupId>org.cadenzaflow.bpm</groupId>
+                      <artifactId>cadenzaflow-engine-rest</artifactId>
                       <version>${project.version}</version>
                       <type>war</type>
                       <classifier>tomcat</classifier>
@@ -542,8 +542,8 @@
       <!-- imports the DbSchemaPrefixTestHelper class -->
       <dependencies>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine</artifactId>
           <version>${project.version}</version>
           <scope>test</scope>
           <classifier>tests</classifier>

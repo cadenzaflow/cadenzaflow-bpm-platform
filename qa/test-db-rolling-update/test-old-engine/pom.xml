@@ -2,22 +2,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.qa.upgrade</groupId>
-    <artifactId>camunda-qa-db-rolling-update</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
+    <artifactId>cadenzaflow-qa-db-rolling-update</artifactId>
+    <version>1.1.0</version>
   </parent>
 
 
-  <artifactId>camunda-qa-db-test-old-engine</artifactId>
+  <artifactId>cadenzaflow-qa-db-test-old-engine</artifactId>
   <packaging>jar</packaging>
-  <name>Camunda Platform - QA - upgrade - rolling update - test old engine</name>
+  <name>CadenzaFlow Platform - QA - upgrade - rolling update - test old engine</name>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-bom</artifactId>
-        <version>7.23.0</version>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-bom</artifactId>
+        <version>1.0.0</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -26,13 +26,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.qa.upgrade</groupId>
-      <artifactId>camunda-qa-db-rolling-update-util</artifactId>
+      <groupId>org.cadenzaflow.bpm.qa.upgrade</groupId>
+      <artifactId>cadenzaflow-qa-db-rolling-update-util</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
@@ -105,8 +105,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm.distro</groupId>
-                      <artifactId>camunda-sql-scripts</artifactId>
+                      <groupId>org.cadenzaflow.bpm.distro</groupId>
+                      <artifactId>cadenzaflow-sql-scripts</artifactId>
                       <version>${project.version}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/scripts-current</outputDirectory>

@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>camunda-qa-integration-tests-webapps-shared-engine</artifactId>
-  <name>Camunda Platform - QA Integration Tests - Webapps Shared Engine</name>
+  <artifactId>cadenzaflow-qa-integration-tests-webapps-shared-engine</artifactId>
+  <name>CadenzaFlow Platform - QA Integration Tests - Webapps Shared Engine</name>
 
   <parent>
-    <groupId>org.camunda.bpm.qa</groupId>
-    <artifactId>camunda-qa-integration-tests-webapps-root</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.bpm.qa</groupId>
+    <artifactId>cadenzaflow-qa-integration-tests-webapps-root</artifactId>
+    <version>1.1.0</version>
     <relativePath>../</relativePath>
   </parent>
 
   <dependencies>
     <dependency>
-      <groupId>org.camunda.bpm.qa</groupId>
-      <artifactId>camunda-qa-integration-tests-webapps</artifactId>
+      <groupId>org.cadenzaflow.bpm.qa</groupId>
+      <artifactId>cadenzaflow-qa-integration-tests-webapps</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
@@ -30,29 +30,29 @@
       <dependencies>
         <dependency>
           <!-- make sure it comes after assembly in the build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-wildfly-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-wildfly-runtime</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.webapp</groupId>
-          <artifactId>camunda-webapp-wildfly</artifactId>
+          <groupId>org.cadenzaflow.bpm.webapp</groupId>
+          <artifactId>cadenzaflow-webapp-wildfly</artifactId>
           <version>${project.version}</version>
           <type>war</type>
           <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine-rest-jakarta</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine-rest-jakarta</artifactId>
           <version>${project.version}</version>
           <classifier>wildfly</classifier>
           <scope>test</scope>
           <type>war</type>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.example</groupId>
-          <artifactId>camunda-example-invoice-jakarta</artifactId>
+          <groupId>org.cadenzaflow.bpm.example</groupId>
+          <artifactId>cadenzaflow-example-invoice-jakarta</artifactId>
           <version>${project.version}</version>
           <scope>test</scope>
           <type>war</type>
@@ -99,23 +99,23 @@
               </configuration>
               <deployables>
                 <deployable>
-                  <groupId>org.camunda.bpm.example</groupId>
-                  <artifactId>camunda-example-invoice-jakarta</artifactId>
+                  <groupId>org.cadenzaflow.bpm.example</groupId>
+                  <artifactId>cadenzaflow-example-invoice-jakarta</artifactId>
                   <type>war</type>
                   <pingURL>http://localhost:${jboss.http.port}/engine-rest/engine/default/user/demo/profile</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm</groupId>
-                  <artifactId>camunda-engine-rest-jakarta</artifactId>
+                  <groupId>org.cadenzaflow.bpm</groupId>
+                  <artifactId>cadenzaflow-engine-rest-jakarta</artifactId>
                   <classifier>wildfly</classifier>
                   <type>war</type>
                   <pingURL>http://localhost:${jboss.http.port}/engine-rest/engine/default/process-definition</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm.webapp</groupId>
-                  <artifactId>camunda-webapp-wildfly</artifactId>
+                  <groupId>org.cadenzaflow.bpm.webapp</groupId>
+                  <artifactId>cadenzaflow-webapp-wildfly</artifactId>
                   <type>war</type>
                   <pingURL>http://localhost:${jboss.http.port}/camunda</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
@@ -146,29 +146,29 @@
       <dependencies>
         <dependency>
           <!-- make sure it comes after assembly in the build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-wildfly26-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-wildfly26-runtime</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.webapp</groupId>
-          <artifactId>camunda-webapp-jboss</artifactId>
+          <groupId>org.cadenzaflow.bpm.webapp</groupId>
+          <artifactId>cadenzaflow-webapp-jboss</artifactId>
           <version>${project.version}</version>
           <type>war</type>
           <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine-rest</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine-rest</artifactId>
           <version>${project.version}</version>
           <classifier>wildfly</classifier>
           <scope>test</scope>
           <type>war</type>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine</artifactId>
           <scope>test</scope>
           <exclusions>
             <exclusion>
@@ -219,23 +219,23 @@
               </configuration>
               <deployables>
                 <deployable>
-                  <groupId>org.camunda.bpm.example</groupId>
-                  <artifactId>camunda-example-invoice</artifactId>
+                  <groupId>org.cadenzaflow.bpm.example</groupId>
+                  <artifactId>cadenzaflow-example-invoice</artifactId>
                   <type>war</type>
                   <pingURL>http://localhost:${jboss.http.port}/engine-rest/engine/default/user/demo/profile</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm</groupId>
-                  <artifactId>camunda-engine-rest</artifactId>
+                  <groupId>org.cadenzaflow.bpm</groupId>
+                  <artifactId>cadenzaflow-engine-rest</artifactId>
                   <classifier>wildfly</classifier>
                   <type>war</type>
                   <pingURL>http://localhost:${jboss.http.port}/engine-rest/engine/default/process-definition</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm.webapp</groupId>
-                  <artifactId>camunda-webapp-jboss</artifactId>
+                  <groupId>org.cadenzaflow.bpm.webapp</groupId>
+                  <artifactId>cadenzaflow-webapp-jboss</artifactId>
                   <type>war</type>
                   <pingURL>http://localhost:${jboss.http.port}/camunda</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
@@ -266,21 +266,21 @@
       <dependencies>
         <dependency>
           <!-- make sure it comes after assembly in the build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-tomcat9-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-tomcat9-runtime</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.webapp</groupId>
-          <artifactId>camunda-webapp-tomcat</artifactId>
+          <groupId>org.cadenzaflow.bpm.webapp</groupId>
+          <artifactId>cadenzaflow-webapp-tomcat</artifactId>
           <version>${project.version}</version>
           <type>war</type>
           <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine-rest</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine-rest</artifactId>
           <scope>test</scope>
           <type>war</type>
           <classifier>tomcat</classifier>
@@ -328,8 +328,8 @@
               </configuration>
               <deployables>
                 <deployable>
-                  <groupId>org.camunda.bpm</groupId>
-                  <artifactId>camunda-engine-rest</artifactId>
+                  <groupId>org.cadenzaflow.bpm</groupId>
+                  <artifactId>cadenzaflow-engine-rest</artifactId>
                   <type>war</type>
                   <classifier>tomcat</classifier>
                   <pingURL>http://localhost:${tomcat.connector.http.port}/engine-rest/engine/default/process-definition</pingURL>
@@ -339,18 +339,18 @@
                   </properties>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm.webapp</groupId>
-                  <artifactId>camunda-webapp-tomcat</artifactId>
+                  <groupId>org.cadenzaflow.bpm.webapp</groupId>
+                  <artifactId>cadenzaflow-webapp-tomcat</artifactId>
                   <type>war</type>
                   <pingURL>http://localhost:${tomcat.connector.http.port}/camunda</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                   <properties>
-                    <context>camunda</context>
+                    <context>cadenzaflow</context>
                   </properties>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm.example</groupId>
-                  <artifactId>camunda-example-invoice</artifactId>
+                  <groupId>org.cadenzaflow.bpm.example</groupId>
+                  <artifactId>cadenzaflow-example-invoice</artifactId>
                   <type>war</type>
                   <properties>
                     <context>invoice</context>
@@ -372,29 +372,29 @@
       <dependencies>
         <dependency>
           <!-- make sure it comes after assembly in the build -->
-          <groupId>org.camunda.bpm.qa</groupId>
-          <artifactId>camunda-qa-tomcat-runtime</artifactId>
+          <groupId>org.cadenzaflow.bpm.qa</groupId>
+          <artifactId>cadenzaflow-qa-tomcat-runtime</artifactId>
           <version>${project.version}</version>
           <type>pom</type>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.webapp</groupId>
-          <artifactId>camunda-webapp-tomcat-jakarta</artifactId>
+          <groupId>org.cadenzaflow.bpm.webapp</groupId>
+          <artifactId>cadenzaflow-webapp-tomcat-jakarta</artifactId>
           <version>${project.version}</version>
           <type>war</type>
           <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm</groupId>
-          <artifactId>camunda-engine-rest-jakarta</artifactId>
+          <groupId>org.cadenzaflow.bpm</groupId>
+          <artifactId>cadenzaflow-engine-rest-jakarta</artifactId>
           <version>${project.version}</version>
           <type>war</type>
           <scope>test</scope>
           <classifier>tomcat</classifier>
         </dependency>
         <dependency>
-          <groupId>org.camunda.bpm.example</groupId>
-          <artifactId>camunda-example-invoice-jakarta</artifactId>
+          <groupId>org.cadenzaflow.bpm.example</groupId>
+          <artifactId>cadenzaflow-example-invoice-jakarta</artifactId>
           <version>${project.version}</version>
           <type>war</type>
           <scope>test</scope>
@@ -441,8 +441,8 @@
               </configuration>
               <deployables>
                 <deployable>
-                  <groupId>org.camunda.bpm</groupId>
-                  <artifactId>camunda-engine-rest-jakarta</artifactId>
+                  <groupId>org.cadenzaflow.bpm</groupId>
+                  <artifactId>cadenzaflow-engine-rest-jakarta</artifactId>
                   <type>war</type>
                   <classifier>tomcat</classifier>
                   <pingURL>http://localhost:${tomcat.connector.http.port}/engine-rest/engine/default/process-definition</pingURL>
@@ -452,18 +452,18 @@
                   </properties>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm.webapp</groupId>
-                  <artifactId>camunda-webapp-tomcat-jakarta</artifactId>
+                  <groupId>org.cadenzaflow.bpm.webapp</groupId>
+                  <artifactId>cadenzaflow-webapp-tomcat-jakarta</artifactId>
                   <type>war</type>
                   <pingURL>http://localhost:${tomcat.connector.http.port}/camunda</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                   <properties>
-                    <context>camunda</context>
+                    <context>cadenzaflow</context>
                   </properties>
                 </deployable>
                 <deployable>
-                  <groupId>org.camunda.bpm.example</groupId>
-                  <artifactId>camunda-example-invoice-jakarta</artifactId>
+                  <groupId>org.cadenzaflow.bpm.example</groupId>
+                  <artifactId>cadenzaflow-example-invoice-jakarta</artifactId>
                   <type>war</type>
                   <properties>
                     <context>invoice</context>
@@ -532,8 +532,8 @@
                 <configuration>
                   <artifactItems>
                     <artifactItem>
-                      <groupId>org.camunda.bpm</groupId>
-                      <artifactId>camunda-engine</artifactId>
+                      <groupId>org.cadenzaflow.bpm</groupId>
+                      <artifactId>cadenzaflow-engine</artifactId>
                       <outputDirectory>${project.build.directory}/sql-scripts/engine</outputDirectory>
                       <overWrite>true</overWrite>
                     </artifactItem>

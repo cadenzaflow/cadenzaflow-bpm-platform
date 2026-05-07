@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-bom-root</artifactId>
+    <version>1.1.0</version>
+    <relativePath>../</relativePath>
+  </parent>
+
+  <artifactId>cadenzaflow-bom</artifactId>
+  <packaging>pom</packaging>
+  <name>CadenzaFlow Platform - Bom</name>
+  <url>http://cadenzaflow.org</url>
+
+  <description>CadenzaFlow Platform bill of material</description>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>cadenzaflow services GmbH</name>
+    <url>http://www.cadenzaflow.com</url>
+  </organization>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- external dependencies -->
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>${version.mybatis}</version>
+      </dependency>
+      <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>${version.joda-time}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.uuid</groupId>
+        <artifactId>java-uuid-generator</artifactId>
+        <version>${version.uuid-generator}</version>
+      </dependency>
+      <!-- CadenzaFlow Platform public artifacts -->
+      <dependency>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-only-bom</artifactId>
+        <version>${project.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

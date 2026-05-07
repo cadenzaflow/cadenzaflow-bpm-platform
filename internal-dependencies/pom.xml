@@ -3,17 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-parent</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>7.24.0-SNAPSHOT</version>
+    <version>1.1.0</version>
   </parent>
 
-  <artifactId>camunda-core-internal-dependencies</artifactId>
+  <artifactId>cadenzaflow-core-internal-dependencies</artifactId>
   <packaging>pom</packaging>
-  <name>Camunda Platform - Core - Internal Dependencies</name>
+  <name>CadenzaFlow Platform - Core - Internal Dependencies</name>
 
-  <description>Camunda Platform core internal bill of material for dependencies</description>
+  <description>CadenzaFlow Platform core internal bill of material for dependencies</description>
 
   <dependencyManagement>
     <dependencies>
@@ -288,8 +288,8 @@
 
       <dependency>
         <groupId>org.apache.tomcat</groupId>
-        <artifactId>catalina</artifactId>
-        <version>6.0.37</version>
+        <artifactId>tomcat-catalina</artifactId>
+        <version>${version.tomcat}</version>
       </dependency>
 
       <dependency>
@@ -301,8 +301,8 @@
           the exclusion here, please make sure to add it in the REST API projects -->
         <exclusions>
           <exclusion>
-            <artifactId>httpclient</artifactId>
-            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient5</artifactId>
+            <groupId>org.apache.httpcomponents.client5</groupId>
           </exclusion>
           <exclusion>
             <groupId>commons-httpclient</groupId>
@@ -386,6 +386,12 @@
         <groupId>com.jayway.jsonpath</groupId>
         <artifactId>json-path</artifactId>
         <version>${version.json-path}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.cronutils</groupId>
+        <artifactId>cron-utils</artifactId>
+        <version>${version.cronutils}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

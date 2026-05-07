@@ -14,7 +14,7 @@
    <dependencySet>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>org.camunda.bpm:license-book:zip</include>
+        <include>org.cadenzaflow.bpm:license-book:zip</include>
       </includes>
       <unpack>true</unpack>
     </dependencySet>
@@ -38,11 +38,11 @@
     <dependencySet>
       <outputDirectory>lib</outputDirectory>
       <includes>
-        <include>org.camunda.bpm.javaee:camunda-ejb-client-jakarta:jar:${project.version}</include>
-        <include>org.camunda.bpm:*</include>
-        <include>org.camunda.bpm.identity:*</include>
-        <include>org.camunda.bpm.model:*</include>
-        <include>org.camunda.bpm.juel:*</include>
+        <include>org.cadenzaflow.bpm.javaee:cadenzaflow-ejb-client-jakarta:jar:${project.version}</include>
+        <include>org.cadenzaflow.bpm:*</include>
+        <include>org.cadenzaflow.bpm.identity:*</include>
+        <include>org.cadenzaflow.bpm.model:*</include>
+        <include>org.cadenzaflow.bpm.juel:*</include>
         <include>org.mybatis:mybatis:jar:*</include>
         <include>com.fasterxml.uuid:java-uuid-generator:jar:*</include>
         <include>joda-time:joda-time:jar:*</include>

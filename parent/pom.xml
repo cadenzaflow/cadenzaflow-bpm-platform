@@ -2,26 +2,26 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm</groupId>
-    <artifactId>camunda-root</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-root</artifactId>
+    <version>1.1.0</version>
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>camunda-parent</artifactId>
-  <name>Camunda Platform - Parent Pom</name>
-  <inceptionYear>2013</inceptionYear>
+  <artifactId>cadenzaflow-parent</artifactId>
+  <name>CadenzaFlow Platform - Parent Pom</name>
+  <inceptionYear>2025</inceptionYear>
   <packaging>pom</packaging>
 
   <description>
-    This pom is the parent of all Camunda Platform projects
+    This pom is the parent of all CadenzaFlow Platform projects
   </description>
 
   <properties>
-    <version.quarkus>3.20.0</version.quarkus>
+    <version.quarkus>3.27.0</version.quarkus>
     <version.spring.framework>5.3.39</version.spring.framework>
-    <version.spring.framework6>6.2.4</version.spring.framework6>
-    <version.spring-boot>3.5.1</version.spring-boot>
+    <version.spring.framework6>6.2.10</version.spring.framework6>
+    <version.spring-boot>3.5.5</version.spring-boot>
     <version.resteasy>3.15.6.Final</version.resteasy>
     <version.jersey2>2.34</version.jersey2>
     <!-- use minimum version of resteasy and jersey -->
@@ -42,8 +42,9 @@
     <version.xml.jaxb-impl>2.3.6</version.xml.jaxb-impl>
     <version.xml.jaxb-impl4>4.0.5</version.xml.jaxb-impl4>
     <version.jakarta.xml.bind-api>4.0.2</version.jakarta.xml.bind-api>
-    <version.httpclient>4.5.14</version.httpclient>
     <version.httpclient5>5.4.3</version.httpclient5>
+    <version.httpcore5>5.3.4</version.httpcore5>
+    <version.cronutils>9.2.1</version.cronutils>
 
     <version.slf4j>1.7.26</version.slf4j>
     <version.logback>1.2.11</version.logback>
@@ -52,19 +53,20 @@
     <version.mockito>5.10.0</version.mockito>
     <version.wiremock>2.27.2</version.wiremock>
     <version.testcontainers>1.16.0</version.testcontainers>
+    <version.unirest-java>2.3.10</version.unirest-java>
 
     <version.commonj>1.1.0</version.commonj>
     <version.bouncycastle>1.47</version.bouncycastle>
 
     <!-- application servers -->
-    <version.wildfly>35.0.0.Final</version.wildfly>
-    <version.wildfly.core>27.0.0.Final</version.wildfly.core>
+    <version.wildfly>37.0.0.Final</version.wildfly>
+    <version.wildfly.core>29.0.0.Final</version.wildfly.core>
 
     <version.wildfly26>26.0.1.Final</version.wildfly26>
     <version.wildfly26.core>18.0.4.Final</version.wildfly26.core>
 
-    <version.tomcat9>9.0.106</version.tomcat9>
-    <version.tomcat>10.1.42</version.tomcat>
+    <version.tomcat9>9.0.107</version.tomcat9>
+    <version.tomcat>10.1.43</version.tomcat>
 
     <version.arquillian>1.1.10.Final</version.arquillian>
     <version.shrinkwrap.resolvers>2.2.2</version.shrinkwrap.resolvers>
@@ -121,8 +123,8 @@
     <dependencies>
 
       <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-bom</artifactId>
+        <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-bom</artifactId>
         <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -138,7 +140,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.5.2</version>
           <configuration>
             <runOrder>hourly</runOrder>
             <systemPropertyVariables>
@@ -221,7 +223,7 @@
              <Import-Package>${camunda.osgi.import}</Import-Package>
              <DynamicImport-Package>${camunda.osgi.dynamic}</DynamicImport-Package>
              <Private-Package>${camunda.osgi.private.pkg}</Private-Package>
-             <Implementation-Title>camunda</Implementation-Title>
+             <Implementation-Title>cadenzaflow</Implementation-Title>
              <Implementation-Version>${project.version}</Implementation-Version>
              <Include-Resource>${camunda.osgi.include.resource}</Include-Resource>
              <_versionpolicy>${camunda.osgi.import.default.version}</_versionpolicy>
@@ -242,7 +244,7 @@
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven3-plugin</artifactId>
-          <version>1.10.16</version>
+          <version>1.10.20</version>
         </plugin>
         <plugin>
           <groupId>net.kennychua</groupId>
@@ -282,8 +284,8 @@
               <additionalJOption>-Xdoclint:none</additionalJOption>
               <additionalJOption>--ignore-source-errors</additionalJOption>
             </additionalJOptions>
-            <doctitle>Camunda Platform Javadocs ${project.version}</doctitle>
-            <windowtitle>Camunda Platform Javadocs ${project.version}</windowtitle>
+            <doctitle>CadenzaFlow Platform Javadocs ${project.version}</doctitle>
+            <windowtitle>CadenzaFlow Platform Javadocs ${project.version}</windowtitle>
           </configuration>
         </plugin>
 
@@ -295,8 +297,8 @@
             <rules>
               <jakartaDefaults>true</jakartaDefaults>
               <renames>
-                <rename>jar:file:${org.camunda.bpm:camunda-engine:jar}!/META-INF/jakarta-renames.properties</rename>
-                <rename>jar:file:${org.camunda.bpm:camunda-engine:jar}!/META-INF/camunda-renames.properties</rename>
+                <rename>jar:file:${org.cadenzaflow.bpm:cadenzaflow-engine:jar}!/META-INF/jakarta-renames.properties</rename>
+                <rename>jar:file:${org.cadenzaflow.bpm:cadenzaflow-engine:jar}!/META-INF/cadenzaflow-renames.properties</rename>
               </renames>
             </rules>
             <classifier>jakarta</classifier>
@@ -355,11 +357,9 @@
   </licenses>
 
   <organization>
-    <name>camunda services GmbH</name>
-    <url>http://www.camunda.com</url>
+    <name>CadenzaFlow services GmbH</name>
+    <url>https://www.cadenzaflow.com</url>
   </organization>
 
-  <url>http://www.camunda.org</url>
+  <url>https://www.cadenzaflow.org</url>
 </project>
-
-

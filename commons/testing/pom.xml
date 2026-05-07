@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.commons</groupId>
-    <artifactId>camunda-commons-root</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.commons</groupId>
+    <artifactId>cadenzaflow-commons-root</artifactId>
+    <version>1.1.0</version>
   </parent>
 
-  <artifactId>camunda-commons-testing</artifactId>
-  <name>camunda Commons - Testing</name>
+  <artifactId>cadenzaflow-commons-testing</artifactId>
+  <name>CadenzaFlow Commons - Testing</name>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -30,8 +30,8 @@
 
     <!-- TEST -->
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-logging</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-logging</artifactId>
       <scope>test</scope>
     </dependency>
 

@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.commons</groupId>
-    <artifactId>camunda-commons-root</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.commons</groupId>
+    <artifactId>cadenzaflow-commons-root</artifactId>
+    <version>1.1.0</version>
   </parent>
 
-  <artifactId>camunda-commons-logging</artifactId>
-  <name>camunda Commons - Logging</name>
+  <artifactId>cadenzaflow-commons-logging</artifactId>
+  <name>CadenzaFlow Commons - Logging</name>
   <packaging>jar</packaging>
 
   <dependencies>

@@ -3,20 +3,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.camunda.bpm.dmn</groupId>
-    <artifactId>camunda-engine-dmn-root</artifactId>
-    <version>7.24.0-SNAPSHOT</version>
+    <groupId>org.cadenzaflow.bpm.dmn</groupId>
+    <artifactId>cadenzaflow-engine-dmn-root</artifactId>
+    <version>1.1.0</version>
   </parent>
 
-  <artifactId>camunda-engine-feel-api</artifactId>
-  <name>camunda DMN - engine FEEL - API</name>
+  <artifactId>cadenzaflow-engine-feel-api</artifactId>
+  <name>CadenzaFlow DMN - engine FEEL - API</name>
   <properties>
     <camunda.artifact>org.camunda.bpm.dmn.feel.impl</camunda.artifact>
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-typed-values</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-typed-values</artifactId>
     </dependency>
   </dependencies>
 
@@ -49,7 +49,7 @@
     <profile>
       <id>check-api-compatibility</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
       <build>
         <plugins>

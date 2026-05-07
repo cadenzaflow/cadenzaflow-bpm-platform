@@ -2,45 +2,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <artifactId>camunda-engine-plugins</artifactId>
-    <groupId>org.camunda.bpm</groupId>
-    <version>7.24.0-SNAPSHOT</version>
+    <artifactId>cadenzaflow-engine-plugins</artifactId>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <version>1.1.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>camunda-engine-plugin-spin</artifactId>
-  <name>Camunda Platform - engine plugins - spin</name>
+  <artifactId>cadenzaflow-engine-plugin-spin</artifactId>
+  <name>CadenzaFlow Platform - engine plugins - spin</name>
 
   <dependencies>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-core</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-core</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.dmn</groupId>
-      <artifactId>camunda-engine-feel-scala</artifactId>
+      <groupId>org.cadenzaflow.bpm.dmn</groupId>
+      <artifactId>cadenzaflow-engine-feel-scala</artifactId>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine</artifactId>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine</artifactId>
       <classifier>tests</classifier>
       <scope>test</scope>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-json-jackson</artifactId>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+      <groupId>org.cadenzaflow.spin</groupId>
+      <artifactId>cadenzaflow-spin-dataformat-xml-dom</artifactId>
       <scope>test</scope>
     </dependency>
 
@@ -87,8 +87,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.model</groupId>
-      <artifactId>camunda-bpmn-model</artifactId>
+      <groupId>org.cadenzaflow.bpm.model</groupId>
+      <artifactId>cadenzaflow-bpmn-model</artifactId>
       <scope>test</scope>
     </dependency>
 
@@ -123,8 +123,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.commons</groupId>
-      <artifactId>camunda-commons-testing</artifactId>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-testing</artifactId>
       <scope>test</scope>
     </dependency>
 

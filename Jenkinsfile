@@ -59,7 +59,6 @@ pipeline {
               cambpmRunMaven('.',
                   'clean source:jar deploy source:test-jar com.mycila:license-maven-plugin:check -Pdistro,distro-ce,distro-wildfly,distro-webjar,h2-in-memory -DaltStagingDirectory=${WORKSPACE}/staging -DskipRemoteStaging=true '+ skipTests,
                   withCatch: false,
-                  withNpm: true,
                   // we use JDK 17 to build the artifacts, as it is required for supporting Spring Boot 3
                   // the compiler source and target is set to JDK 11 in the release parents
                   jdkVersion: 'jdk-17-latest',
@@ -142,7 +141,6 @@ pipeline {
                 cambpmRunMaven('.',
                     'org.sonatype.plugins:nexus-staging-maven-plugin:deploy-staged -DaltStagingDirectory=${WORKSPACE}/staging -DskipStaging=true',
                     withCatch: false,
-                    withNpm: true,
                     withPodSpec: true)
               }
             }
@@ -233,7 +231,33 @@ pipeline {
             ])
           }
         }
-        stage('engine-IT-tomcat-9-postgresql-142') {
+      //stage('engine-IT-tomcat-9-postgresql-170') {
+      //  when {
+      //    expression {
+      //      cambpmWithLabels('all', 'all-as', 'tomcat')
+      //    }
+      //  }
+      //  steps {
+      //    cambpmConditionalRetry([
+      //      podSpec: [
+      //        cpu: 4,
+      //        images: ['maven:3.9.7-eclipse-temurin-11', 'postgres:17.0']
+      //      ],
+      //      runSteps: {
+      //        cambpmRunMaven('qa/',
+      //          'clean install -Ptomcat9,postgresql,engine-integration',
+      //          runtimeStash: true,
+      //          archiveStash: true,
+      //          jdkVersion: 'jdk-11-latest',
+      //          withPodSpec: true)
+      //      },
+      //      postFailure: {
+      //        cambpmPublishTestResult()
+      //      }
+      //    ])
+      //  }
+      //}
+        stage('engine-IT-tomcat-10-postgresql-170') {
           when {
             expression {
               cambpmWithLabels('all', 'all-as', 'tomcat')
@@ -241,31 +265,16 @@ pipeline {
           }
           steps {
             cambpmConditionalRetry([
-              agentLabel: 'postgresql_142',
+              podSpec: [
+                cpu: 4,
+                images: ['maven:3.9.7-eclipse-temurin-17', 'postgres:17.0']
+              ],
               runSteps: {
-                cambpmRunMaven('qa/',
-                'clean install -Ptomcat9,postgresql,engine-integration',
-                runtimeStash: true,
-                archiveStash: true,
-                jdkVersion: 'jdk-11-latest')
-              },
-              postFailure: {
-                cambpmPublishTestResult()
-              }
-            ])
-          }
-        }
-        stage('engine-IT-tomcat-10-postgresql-142') {
-          when {
-            expression {
-              cambpmWithLabels('all', 'all-as', 'tomcat')
-            }
-          }
-          steps {
-            cambpmConditionalRetry([
-              agentLabel: 'postgresql_142',
-              runSteps: {
-                cambpmRunMaven('qa/', 'clean install -Ptomcat,postgresql,engine-integration-jakarta', runtimeStash: true, archiveStash: true, jdkVersion: 'jdk-17-latest')
+                cambpmRunMaven('qa/', 'clean install -Ptomcat,postgresql,engine-integration-jakarta',
+                  runtimeStash: true,
+                  archiveStash: true,
+                  jdkVersion: 'jdk-17-latest',
+                  withPodSpec: true)
               },
               postFailure: {
                 cambpmPublishTestResult()
@@ -274,7 +283,7 @@ pipeline {
             ])
           }
         }
-        stage('engine-IT-wildfly-postgresql-142') {
+        stage('engine-IT-wildfly-postgresql-170') {
           when {
             expression {
               cambpmWithLabels('all', 'all-as', 'wildfly')
@@ -282,14 +291,18 @@ pipeline {
           }
           steps {
             cambpmConditionalRetry([
-              agentLabel: 'postgresql_142',
+              podSpec: [
+                cpu: 4,
+                images: ['maven:3.9.7-eclipse-temurin-17', 'postgres:17.0']
+              ],
               runSteps: {
                 cambpmRunMaven('qa/', 
                   'clean install -Pwildfly,postgresql,engine-integration-jakarta', 
                   runtimeStash: true, 
                   archiveStash: true,
                   // we need to use JDK 17 for Spring 6
-                  jdkVersion: 'jdk-17-latest')
+                  jdkVersion: 'jdk-17-latest',
+                  withPodSpec: true)
               },
               postFailure: {
                 cambpmPublishTestResult()
@@ -299,7 +312,7 @@ pipeline {
             ])
           }
         }
-        stage('engine-IT-XA-wildfly-postgresql-142') {
+        stage('engine-IT-XA-wildfly-postgresql-170') {
           when {
             expression {
               cambpmWithLabels('all', 'all-as', 'wildfly')
@@ -307,14 +320,18 @@ pipeline {
           }
           steps {
             cambpmConditionalRetry([
-              agentLabel: 'postgresql_142',
+              podSpec: [
+                cpu: 4,
+                images: ['maven:3.9.7-eclipse-temurin-17', 'postgres:17.0']
+              ],
               runSteps: {
                 cambpmRunMaven('qa/', 
                   'clean install -Pwildfly,postgresql,postgresql-xa,engine-integration-jakarta', 
                   runtimeStash: true, 
                   archiveStash: true,
                   // we need to use JDK 17 for Spring 6
-                  jdkVersion: 'jdk-17-latest')
+                  jdkVersion: 'jdk-17-latest',
+                  withPodSpec: true)
               },
               postFailure: {
                 cambpmPublishTestResult()
@@ -323,29 +340,29 @@ pipeline {
             ])
           }
         }
-        stage('webapp-IT-tomcat-9-h2') {
-          when {
-            expression {
-              cambpmWithLabels('all', 'webapp-integration', 'h2')
-            }
-          }
-          steps {
-            cambpmConditionalRetry([
-              agentLabel: 'chrome_112',
-              runSteps: {
-                cambpmRunMaven('qa/',
-                'clean install -Ptomcat9,h2,webapps-integration',
-                runtimeStash: true,
-                archiveStash: true,
-                jdkVersion: 'jdk-17-latest')
-              },
-              postFailure: {
-                cambpmPublishTestResult()
-                cambpmArchiveArtifacts('qa/integration-tests-webapps/shared-engine/target/selenium-screenshots/*')
-              }
-            ])
-          }
-        }
+       // stage('webapp-IT-tomcat-9-h2') {
+       //   when {
+       //     expression {
+       //       cambpmWithLabels('all', 'webapp-integration', 'h2')
+       //     }
+       //   }
+       //   steps {
+       //     cambpmConditionalRetry([
+       //       agentLabel: 'chrome_112',
+       //       runSteps: {
+       //         cambpmRunMaven('qa/',
+       //         'clean install -Ptomcat9,h2,webapps-integration',
+       //         runtimeStash: true,
+       //         archiveStash: true,
+       //         jdkVersion: 'jdk-17-latest')
+       //       },
+       //       postFailure: {
+       //         cambpmPublishTestResult()
+       //         cambpmArchiveArtifacts('qa/integration-tests-webapps/shared-engine/target/selenium-screenshots/*')
+       //       }
+       //     ])
+       //   }
+       // }
         stage('webapp-IT-tomcat-10-h2') {
           when {
             expression {
@@ -496,7 +513,7 @@ pipeline {
         stage('webapp-UNIT-database-table-prefix') {
           when {
             expression {
-              cambpmIsNotFailedStageType(failedStageTypes, 'webapp-unit') && cambpmWithLabels('all')
+              cambpmIsNotFailedStageType(failedStageTypes, 'webapp-unit') && cambpmWithLabels('all', 'h2')
             }
           }
           steps {

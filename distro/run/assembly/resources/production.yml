@@ -6,6 +6,7 @@ camunda.bpm:
 # https://docs.camunda.org/manual/latest/user-guide/security/#http-header-security-in-webapps
 # https://docs.camunda.org/manual/latest/webapps/shared-options/header-security/
   webapp:
+    application-path: /cadenzaflow
     csrf:
       enable-same-site-cookie: true
       same-site-cookie-option: STRICT
@@ -91,7 +92,7 @@ logging:
 # https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/#connect-to-a-database
 # https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/#database
 spring.datasource:
-  url: jdbc:h2:./camunda-h2-test-production/process-engine;TRACE_LEVEL_FILE=0;DB_CLOSE_ON_EXIT=FALSE
+  url: jdbc:h2:./cadenzaflow-h2-test-production/process-engine;TRACE_LEVEL_FILE=0;DB_CLOSE_ON_EXIT=FALSE
   driver-class-name: org.h2.Driver
   username: sa
   password: sa

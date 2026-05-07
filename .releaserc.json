@@ -1,0 +1,10 @@
+{
+  "branches": ["main", "master", "cadenzaflow-1.0.0"],
+  "tagFormat": "cadenzaflow-v${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/git"
+  ]
+}
