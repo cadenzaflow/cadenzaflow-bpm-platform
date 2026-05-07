@@ -6,7 +6,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-database-settings</artifactId>
@@ -28,7 +28,7 @@
     <version.liquibase>4.8.0</version.liquibase>
 
     <!-- needed for sql script and backward compatibility checks -->
-    <camunda.version.old>1.0.0</camunda.version.old>
+    <cadenzaflow.version.old>1.1.0</cadenzaflow.version.old>
 
     <!-- Testcontainers JDBC URL parameters. By default, an empty string -->
     <database.tc.params />
@@ -145,7 +145,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <database.url>jdbc:h2:mem:camunda;DB_CLOSE_DELAY=1000;LOCK_TIMEOUT=10000</database.url>
+        <database.url>jdbc:h2:mem:cadenzaflow;DB_CLOSE_DELAY=1000;LOCK_TIMEOUT=10000</database.url>
         <database.driver>org.h2.Driver</database.driver>
         <database.username>sa</database.username>
         <database.password />
@@ -299,6 +299,11 @@
         <jboss.datasource.filename>postgresql-ds.xml</jboss.datasource.filename>
         <hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
         <database.tc.url>campostgresql:13.2</database.tc.url>
+        <!-- Testcontainers JDBC URL — driver spins up the container automatically -->
+        <database.name>test</database.name>
+        <database.username>test</database.username>
+        <database.password>test</database.password>
+        <database.url>jdbc:tc:postgresql:13.2:///test?TC_DAEMON=true</database.url>
       </properties>
 
       <dependencies>
@@ -377,6 +382,10 @@
 
     <profile>
       <id>testcontainers</id>
+      <properties>
+        <!-- Override the driver so jdbc:tc:... URLs are handled by Testcontainers -->
+        <database.driver>org.testcontainers.jdbc.ContainerDatabaseDriver</database.driver>
+      </properties>
       <dependencyManagement>
         <dependencies>
           <dependency>
@@ -393,6 +402,20 @@
         <dependency>
           <artifactId>jackson-annotations</artifactId>
           <groupId>com.fasterxml.jackson.core</groupId>
+          <scope>test</scope>
+        </dependency>
+        <!-- Provides the jdbc:tc:... JDBC URL scheme for testcontainers-based tests -->
+        <dependency>
+          <groupId>org.testcontainers</groupId>
+          <artifactId>jdbc</artifactId>
+          <version>${version.testcontainers}</version>
+          <scope>test</scope>
+        </dependency>
+        <!-- Registers 'postgresql' as a supported database name in ContainerDatabaseDriver -->
+        <dependency>
+          <groupId>org.testcontainers</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>${version.testcontainers}</version>
           <scope>test</scope>
         </dependency>
       </dependencies>

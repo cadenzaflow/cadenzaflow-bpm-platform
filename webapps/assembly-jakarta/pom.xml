@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.webapp</groupId>
     <artifactId>cadenzaflow-webapp-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <relativePath>../</relativePath>
   </parent>
 
@@ -19,7 +19,7 @@
     <jakarta.runtime>${project.build.directory}/generated-resources/jakarta-runtime</jakarta.runtime>
 
     <version.resteasy>6.2.8.Final</version.resteasy>
-    <version.jetty>11.0.14</version.jetty>
+    <version.jetty>11.0.18</version.jetty>
     <version.jersey2>3.1.1</version.jersey2>
 
     <web.resources.override>${jakarta.runtime}/default/webapp</web.resources.override>
@@ -81,6 +81,11 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
     </dependency>
 
     <dependency>

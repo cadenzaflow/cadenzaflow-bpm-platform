@@ -1,0 +1,22 @@
+<module xmlns="urn:jboss:module:1.0" name="org.cadenzaflow.bpm.cadenzaflow-engine-plugin-spin">
+  <resources>
+    <resource-root path="cadenzaflow-engine-plugin-spin-@project.version@.jar" />
+  </resources>
+
+  <dependencies>
+
+    <module name="java.base" />
+    <module name="org.joda.time" slot="2.1" />
+
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-typed-values" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-logging" />
+    <module name="org.cadenzaflow.bpm.cadenzaflow-engine" />
+
+    <module name="org.cadenzaflow.spin.cadenzaflow-spin-core" />
+    <module name="org.cadenzaflow.spin.cadenzaflow-spin-dataformat-json-jackson" services="import" />
+    <module name="org.cadenzaflow.spin.cadenzaflow-spin-dataformat-xml-dom-jakarta" services="import" />
+
+    <module name="org.cadenzaflow.bpm.dmn.cadenzaflow-engine-feel-scala" />
+    <module name="org.cadenzaflow.feel.feel-engine" />
+  </dependencies>
+</module>

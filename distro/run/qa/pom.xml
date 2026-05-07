@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.run</groupId>
     <artifactId>cadenzaflow-bpm-run-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <relativePath>..</relativePath>
   </parent>
 
@@ -74,7 +74,7 @@
       </modules>
     </profile>
     <profile>
-      <id>integration-test-camunda-run</id>
+      <id>integration-test-cadenzaflow-run</id>
       <modules>
         <module>example-plugin</module>
         <module>integration-tests</module>

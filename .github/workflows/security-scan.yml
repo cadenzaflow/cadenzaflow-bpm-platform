@@ -3,12 +3,12 @@ name: Security Scan
 on:
   push:
     branches:
-      - cadenzaflow-1.1.0
+      - cadenzaflow-1.2.0
   workflow_dispatch:
 
 env:
   APP_NAME: cadenzaflow-bpm-platform
-  APP_VERSION: "1.1.0"
+  APP_VERSION: "1.2.0"
   MAIL_TO: ali.aras@pia-team.com,rahmani.saygin@pia-team.com
   SMTP_SERVER: mail-eu.smtp2go.com
   SMTP_PORT: "2525"

@@ -58,11 +58,10 @@ Header.prototype.smallScreenWarning = function() {
   return this.node.element(by.css('.small-screen-warning'));
 };
 
-function Page() { }
+function Page() {}
 
 Page.prototype.header = function(identifier) {
   return new Header(element(by.css(identifier)));
 };
-
 
 module.exports = new Page();

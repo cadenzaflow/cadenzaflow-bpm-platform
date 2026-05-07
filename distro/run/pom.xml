@@ -5,14 +5,14 @@
   <parent>
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <relativePath>../../database</relativePath>
   </parent>
 
   <groupId>org.cadenzaflow.bpm.run</groupId>
   <artifactId>cadenzaflow-bpm-run-root</artifactId>
   <name>CadenzaFlow Platform - Run - Root</name>
-  <description>This is the root of Camunda Platform Run</description>
+  <description>This is the root of CadenzaFlow Platform Run</description>
   <packaging>pom</packaging>
 
   <dependencyManagement>
@@ -112,7 +112,7 @@
       </modules>
     </profile>
     <profile>
-      <id>integration-test-camunda-run</id>
+      <id>integration-test-cadenzaflow-run</id>
       <modules>
         <module>qa</module>
       </modules>

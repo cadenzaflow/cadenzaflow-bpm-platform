@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.qa</groupId>
     <artifactId>cadenzaflow-qa-integration-tests-webapps-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <relativePath>../</relativePath>
   </parent>
 
@@ -117,7 +117,7 @@
                   <groupId>org.cadenzaflow.bpm.webapp</groupId>
                   <artifactId>cadenzaflow-webapp-wildfly</artifactId>
                   <type>war</type>
-                  <pingURL>http://localhost:${jboss.http.port}/camunda</pingURL>
+                  <pingURL>http://localhost:${jboss.http.port}/cadenzaflow</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                 </deployable>
               </deployables>
@@ -237,7 +237,7 @@
                   <groupId>org.cadenzaflow.bpm.webapp</groupId>
                   <artifactId>cadenzaflow-webapp-jboss</artifactId>
                   <type>war</type>
-                  <pingURL>http://localhost:${jboss.http.port}/camunda</pingURL>
+                  <pingURL>http://localhost:${jboss.http.port}/cadenzaflow</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                 </deployable>
               </deployables>
@@ -342,7 +342,7 @@
                   <groupId>org.cadenzaflow.bpm.webapp</groupId>
                   <artifactId>cadenzaflow-webapp-tomcat</artifactId>
                   <type>war</type>
-                  <pingURL>http://localhost:${tomcat.connector.http.port}/camunda</pingURL>
+                  <pingURL>http://localhost:${tomcat.connector.http.port}/cadenzaflow</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                   <properties>
                     <context>cadenzaflow</context>
@@ -455,7 +455,7 @@
                   <groupId>org.cadenzaflow.bpm.webapp</groupId>
                   <artifactId>cadenzaflow-webapp-tomcat-jakarta</artifactId>
                   <type>war</type>
-                  <pingURL>http://localhost:${tomcat.connector.http.port}/camunda</pingURL>
+                  <pingURL>http://localhost:${tomcat.connector.http.port}/cadenzaflow</pingURL>
                   <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
                   <properties>
                     <context>cadenzaflow</context>
@@ -503,7 +503,7 @@
             <configuration>
               <redirectTestOutputToFile>true</redirectTestOutputToFile>
               <dependenciesToScan>
-                <dependency>org.camunda.bpm.qa:camunda-qa-integration-tests-webapps</dependency>
+                <dependency>org.cadenzaflow.bpm.qa:cadenzaflow-qa-integration-tests-webapps</dependency>
               </dependenciesToScan>
               <systemPropertyVariables>
                 <selenium.screenshot.directory>${project.build.directory}/selenium-screenshots</selenium.screenshot.directory>
@@ -555,13 +555,13 @@
                 <configuration>
                   <srcFiles>
                     <!-- try dropping the DB if it exists. -->
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.decision.engine.sql</srcFile>
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.case.engine.sql</srcFile>
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.engine.sql</srcFile>
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.identity.sql</srcFile>
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.decision.history.sql</srcFile>
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.case.history.sql</srcFile>
-                    <srcFile>${project.build.directory}/sql-scripts/engine/org/camunda/bpm/engine/db/drop/activiti.${database.type}.drop.history.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.decision.engine.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.case.engine.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.engine.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.identity.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.decision.history.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.case.history.sql</srcFile>
+                    <srcFile>${project.build.directory}/sql-scripts/engine/org/cadenzaflow/bpm/engine/db/drop/activiti.${database.type}.drop.history.sql</srcFile>
                   </srcFiles>
                   <autocommit>true</autocommit>
                   <onError>continue</onError>
@@ -591,7 +591,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <dependenciesToScan>
-                <dependency>org.camunda.bpm.qa:camunda-qa-integration-tests-webapps</dependency>
+                <dependency>org.cadenzaflow.bpm.qa:cadenzaflow-qa-integration-tests-webapps</dependency>
               </dependenciesToScan>
               <skipTests>false</skipTests>
               <includes>

@@ -5,7 +5,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-parent</artifactId>
     <relativePath>../parent</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <groupId>org.cadenzaflow.commons</groupId>
@@ -80,7 +80,7 @@
           <version>${maven-bundle-plugin.version}</version>
           <configuration>
             <instructions>
-              <Export-Package>org.camunda*</Export-Package>
+              <Export-Package>org.cadenzaflow*</Export-Package>
             </instructions>
           </configuration>
           <executions>

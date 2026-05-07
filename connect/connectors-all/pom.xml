@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.connect</groupId>
     <artifactId>cadenzaflow-connect-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-connect-connectors-all</artifactId>
@@ -48,7 +48,7 @@
               <artifactSet>
                 <excludes>
                   <exclude>org.cadenzaflow.commons:*</exclude>
-                  <exclude>org.cadenzaflow.connect:camunda-connect-core</exclude>
+                  <exclude>org.cadenzaflow.connect:cadenzaflow-connect-core</exclude>
                   <exclude>org.slf4j:*</exclude>
                 </excludes>
               </artifactSet>
@@ -86,7 +86,7 @@
             <Import-Package>
               !connectjar*,
               javax.*;resolution:=optional,
-              org.camunda.commons.logging
+              org.cadenzaflow.commons.logging
             </Import-Package>
             <Bundle-ClassPath>.</Bundle-ClassPath>
             <Embed-Dependency>*;inline=true</Embed-Dependency>

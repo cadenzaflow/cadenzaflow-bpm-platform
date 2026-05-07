@@ -5,7 +5,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
   
   <groupId>org.cadenzaflow.bpm.wildfly</groupId>
@@ -45,7 +45,7 @@
                   <message>
                     *****************************************************************************************************
                     *                                                                                                   *
-                    *                You must use at least JDK 11 to compile Camunda Platform Wildfly!!!                *
+                    *                You must use at least JDK 11 to compile CadenzaFlow Platform Wildfly!!!            *
                     *                                                                                                   *
                     *****************************************************************************************************
                   </message>

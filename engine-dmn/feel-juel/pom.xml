@@ -5,14 +5,14 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.dmn</groupId>
     <artifactId>cadenzaflow-engine-dmn-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-engine-feel-juel</artifactId>
   <name>CadenzaFlow DMN - engine FEEL - JUEL</name>
 
   <properties>
-    <camunda.artifact>org.camunda.bpm.dmn.feel.impl.juel</camunda.artifact>
+    <cadenzaflow.artifact>org.cadenzaflow.bpm.dmn.feel.impl.juel</cadenzaflow.artifact>
   </properties>
   <dependencies>
     <dependency>
@@ -112,12 +112,12 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>clirr-maven-plugin</artifactId>
             <configuration>
-              <comparisonVersion>${camunda.version.old}</comparisonVersion>
+              <comparisonVersion>${cadenzaflow.version.old}</comparisonVersion>
               <logResults>true</logResults>
               <excludes>
-                <exclude>org/camunda/bpm/dmn/feel/impl/**</exclude>
+                <exclude>org/cadenzaflow/bpm/dmn/feel/impl/**</exclude>
                 <!-- exclude shaded dependencies -->
-                <exclude>camundafeel/**</exclude>
+                <exclude>cadenzaflowfeel/**</exclude>
               </excludes>
             </configuration>
             <executions>

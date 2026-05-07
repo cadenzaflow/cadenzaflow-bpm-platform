@@ -1,0 +1,17 @@
+<module xmlns="urn:jboss:module:1.0" name="org.cadenzaflow.bpm.cadenzaflow-engine-plugin-connect">
+  <resources>
+    <resource-root path="cadenzaflow-engine-plugin-connect-@project.version@.jar" />
+  </resources>
+
+  <dependencies>
+
+    <module name="javax.api" />
+
+    <module name="org.cadenzaflow.bpm.cadenzaflow-engine" />
+
+    <module name="org.cadenzaflow.connect.cadenzaflow-connect-core" />
+    <module name="org.cadenzaflow.connect.cadenzaflow-connect-http-client" services="import" />
+    <module name="org.cadenzaflow.connect.cadenzaflow-connect-soap-http-client" services="import" />
+
+  </dependencies>
+</module>

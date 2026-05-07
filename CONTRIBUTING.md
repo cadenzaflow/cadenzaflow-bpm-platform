@@ -17,57 +17,57 @@ We would love you to contribute to this project. You can do so in various ways.
 
 ## Contribute your knowledge
 
-Help others by participating in our [forum](https://forum.camunda.org/). Please read the [Forum FAQ](https://forum.camunda.org/faq) before you start.
+Help others by participating in our [forum](https://forum.cadenzaflow.org/). Please read the [Forum FAQ](https://forum.cadenzaflow.org/faq) before you start.
 
 
 ## File bugs or feature requests
 
-Found a bug in the code or have a feature that you would like to see in the future? [Search our open issues](https://github.com/camunda/camunda-bpm-platform/issues) if we have it on the radar already or [create a new issue otherwise](https://github.com/camunda/camunda-bpm-platform/issues/new/choose).
+Found a bug in the code or have a feature that you would like to see in the future? [Search our open issues](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues) if we have it on the radar already or [create a new issue otherwise](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues/new/choose).
 
 Try to apply our best practices for creating issues:
 
-* Only Raise an issue if your request requires a code change in Camunda Platform 7
-  * If you want to contact the Camunda customer support, please see our [Enterprise Support Guide](https://camunda.com/services/enterprise-support-guide/).
-  * If you have an understanding question or need help building your solution, check out our [user forum](https://forum.camunda.io/).
+* Only Raise an issue if your request requires a code change in CadenzaFlow Platform
+  * If you want to contact the Camunda customer support, please see our [Enterprise Support Guide](https://cadenzaflow.com/services/enterprise-support-guide/).
+  * If you have an understanding question or need help building your solution, check out our [user forum](https://forum.cadenzaflow.io/).
 * Create a high-quality issue:
   * Give enough context so that a person who doesn't know your project can understand your request
   * Be concise, only add what's needed to understand the core of the request
   * If you raise a bug report, describe the steps to reproduce the problem
   * Specify your environment (e.g. Camunda version, Camunda modules you use, ...)
-  * Provide code. For a bug report, create a test that reproduces the problem. For feature requests, create mockup code that shows how the feature might look like. Fork our [unit test Github template](https://github.com/camunda/camunda-engine-unittest) to get started quickly.
+  * Provide code. For a bug report, create a test that reproduces the problem. For feature requests, create mockup code that shows how the feature might look like. Fork our [unit test Github template](https://github.com/cadenzaflow/cadenzaflow-engine-unittest) to get started quickly.
 
 
 ## Write code
 
 You can contribute code that fixes bugs and/or implements features. Here is how it works:
 
-1. Select a ticket that you would like to implement. Have a look at [our backlog](https://github.com/camunda/camunda-bpm-platform/issues) if you need inspiration. Be aware that some of the issues need good knowledge of the surrounding code.
-1. Tell us in the ticket comments or in the [forum](https://forum.camunda.org/c/contributions/14) (select the *Contributions* category) that you want to work on your ticket. This is also the place where you can ask questions.
+1. Select a ticket that you would like to implement. Have a look at [our backlog](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues) if you need inspiration. Be aware that some of the issues need good knowledge of the surrounding code.
+1. Tell us in the ticket comments or in the [forum](https://forum.cadenzaflow.org/c/contributions/14) (select the *Contributions* category) that you want to work on your ticket. This is also the place where you can ask questions.
 1. Check your code changes against our [contribution checklist](#contribution-checklist)
-1. [Create a pull request](https://github.com/camunda/camunda-bpm-platform/pulls). Note that you can already do this before you have finished your implementation if you would like feedback on your work in progress.
+1. [Create a pull request](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/pulls). Note that you can already do this before you have finished your implementation if you would like feedback on your work in progress.
 
 
 # Browse our issues
 
-In this repository, we manage the [issues](https://github.com/camunda/camunda-bpm-platform/issues) for the following Camunda Platform 7 code repositories and projects:
+In this repository, we manage the [issues](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/issues) for the following CadenzaFlow Platform code repositories and projects:
 
-* https://github.com/camunda/camunda-bpm-platform
-* Camunda Platform 7 Enterprise Edition
-* Camunda Platform 7 RPA Bridge
-* https://github.com/camunda/camunda-spin
-* https://github.com/camunda/camunda-connect
-* https://github.com/camunda/docker-camunda-bpm-platform
-* https://github.com/camunda/camunda-template-engines-jsr223
-* Camunda Platform 7 XSLT Script engine Extension
-* https://github.com/camunda/camunda-commons
-* https://github.com/camunda/camunda-bpm-examples
-* https://github.com/camunda/camunda-docs-manual
-* https://github.com/camunda/camunda-archetypes
-* https://github.com/camunda/camunda-engine-dmn-unittest
-* https://github.com/camunda/camunda-engine-unittest
-* https://github.com/camunda/camunda-external-task-client-js
+* https://github.com/cadenzaflow/cadenzaflow-bpm-platform
+* CadenzaFlow Platform Enterprise Edition
+* CadenzaFlow Platform RPA Bridge
+* https://github.com/cadenzaflow/cadenzaflow-spin
+* https://github.com/cadenzaflow/cadenzaflow-connect
+* https://github.com/cadenzaflow/docker-cadenzaflow-bpm-platform
+* https://github.com/cadenzaflow/cadenzaflow-template-engines-jsr223
+* CadenzaFlow Platform XSLT Script engine Extension
+* https://github.com/cadenzaflow/cadenzaflow-commons
+* https://github.com/cadenzaflow/cadenzaflow-bpm-examples
+* https://github.com/cadenzaflow/cadenzaflow-docs-manual
+* https://github.com/cadenzaflow/cadenzaflow-archetypes
+* https://github.com/cadenzaflow/cadenzaflow-engine-dmn-unittest
+* https://github.com/cadenzaflow/cadenzaflow-engine-unittest
+* https://github.com/cadenzaflow/cadenzaflow-external-task-client-js
 
-We use [labels](https://github.com/camunda/camunda-bpm-platform/labels) to mark and group our issues for easier browsing. We define the following label prefixes:
+We use [labels](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/labels) to mark and group our issues for easier browsing. We define the following label prefixes:
 
 * `bot:` labels that control a github app, workflow, ...
 * `ci:` labels that control the CI for a pull request
@@ -86,24 +86,24 @@ In order to build our codebase from source, add the following to your Maven `set
 ```xml
 <profiles>
   <profile>
-    <id>camunda-bpm</id>
+    <id>cadenzaflow-bpm</id>
     <repositories>
       <repository>
-        <id>camunda-bpm-nexus</id>
-        <name>camunda-bpm-nexus</name>
+        <id>cadenzaflow-bpm-nexus</id>
+        <name>cadenzaflow-bpm-nexus</name>
         <releases>
           <enabled>true</enabled>
         </releases>
         <snapshots>
           <enabled>true</enabled>
         </snapshots>
-        <url>https://artifacts.camunda.com/artifactory/public/</url>
+        <url>https://artifacts.cadenzaflow.com/artifactory/public/</url>
       </repository>
     </repositories>
   </profile>
 </profiles>
 <activeProfiles>
-  <activeProfile>camunda-bpm</activeProfile>
+  <activeProfile>cadenzaflow-bpm</activeProfile>
 </activeProfiles>
 ```
 
@@ -132,11 +132,11 @@ A pull request can be submitted as follows:
 Before submitting your pull request for code review, please go through the following checklist:
 
 1. Is your code formatted according to our code style guidelines?
-    * Java: Please check our [Java Code Style Guidelines](https://github.com/camunda/camunda-bpm-platform/wiki/Coding-Style-Java). You can also import [our template and settings files](https://github.com/camunda/camunda-bpm-platform/tree/master/settings) into your IDE before you start coding.
+    * Java: Please check our [Java Code Style Guidelines](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/wiki/Coding-Style-Java). You can also import [our template and settings files](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/tree/master/settings) into your IDE before you start coding.
     * Javascript: Your code is automatically formatted whenever you commit.
 1. Is your code covered by unit tests?
     * Ask us if you are not sure where to write the tests or what kind of tests you should write.
-    * Java: Please follow our [testing best practices](https://github.com/camunda/camunda-bpm-platform/wiki/Testing-Best-Practices-Java).
+    * Java: Please follow our [testing best practices](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/wiki/Testing-Best-Practices-Java).
     * Have a look at other tests in the same module for how it works.
     * In rare cases, it is not feasible to write an automated test. Please ask us if you think that is the case for your contribution.
 1. Do your commits follow our [commit message conventions](#commit-message-conventions)?
@@ -144,7 +144,7 @@ Before submitting your pull request for code review, please go through the follo
 
 # Contributor License Agreement (CLA)
 
-Before we can merge your contribution you have to sign our [Contributor License Agreement](https://cla-assistant.io/camunda/) (CLA). The CLA contains the terms and conditions under which the contribution is submitted. You need to do this only once for your first pull request. Keep in mind that without a signed CLA we cannot merge your contribution.
+Before we can merge your contribution you have to sign our [Contributor License Agreement](https://cla-assistant.io/cadenzaflow/) (CLA). The CLA contains the terms and conditions under which the contribution is submitted. You need to do this only once for your first pull request. Keep in mind that without a signed CLA we cannot merge your contribution.
 
 # Commit message conventions
 
@@ -169,7 +169,7 @@ feat(engine): Support BPEL
 related to #123
 ```
 
-Have a look at the [commit history](https://github.com/camunda/camunda-bpm-platform/commits/master) for real-life examples.
+Have a look at the [commit history](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/commits/master) for real-life examples.
 
 
 ## \<type\>
@@ -186,7 +186,7 @@ One of the following:
  
 ## \<scope\>
 
-The scope is the module that is changed by the commit. E.g. `engine` in the case of https://github.com/camunda/camunda-bpm-platform/tree/master/engine.
+The scope is the module that is changed by the commit. E.g. `engine` in the case of https://github.com/cadenzaflow/cadenzaflow-bpm-platform/tree/master/engine.
 
 ## \<subject\>
 
@@ -225,7 +225,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-The header can be added manually (check other files). If you use our [IDE settings](https://github.com/camunda/camunda-bpm-platform/tree/master/settings), it will be generated automatically when you create new `.java` files. You can also add it by running `mvn clean install -Plicense-header-check` in the module that you have changed. This command also re-formats any incorrectly formatted license header.
+The header can be added manually (check other files). If you use our [IDE settings](https://github.com/cadenzaflow/cadenzaflow-bpm-platform/tree/master/settings), it will be generated automatically when you create new `.java` files. You can also add it by running `mvn clean install -Plicense-header-check` in the module that you have changed. This command also re-formats any incorrectly formatted license header.
 
 Contributions that do not contain valid license headers cannot be merged.
 
@@ -237,4 +237,4 @@ Note that due to other responsibilities (our own implementation tasks, releases)
 
 During review we will provide you with feedback and help to get your contribution merge-ready. However, before requesting a review, please go through our [contribution checklist](#contribution-checklist).
 
-Once your code is merged, it will be shipped in the next alpha and minor releases. We usually build alpha releases once a month and minor releases once every six months. If you are curious about the exact next minor release date, check our [release announcements](https://docs.camunda.org/enterprise/announcement/) page.
+Once your code is merged, it will be shipped in the next alpha and minor releases. We usually build alpha releases once a month and minor releases once every six months. If you are curious about the exact next minor release date, check our [release announcements](https://docs.cadenzaflow.org/enterprise/announcement/) page.

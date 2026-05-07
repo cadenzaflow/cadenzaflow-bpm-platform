@@ -9,9 +9,9 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-bpm-assert-root</artifactId>
     <relativePath>../</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
-  
+
   <dependencies>
     <!-- managed by spring-boot-dependencies -->
     <dependency>
@@ -20,7 +20,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- managed by camunda internal dependencies -->
+    <!-- managed by cadenzaflow internal dependencies -->
     <dependency>
       <groupId>org.cadenzaflow.bpm</groupId>
       <artifactId>cadenzaflow-engine</artifactId>

@@ -9,7 +9,7 @@ assignees:
 
 ### Acceptance Criteria (Required on creation)
 
-- Tasks from the [patch release guide](https://confluence.camunda.com/display/AP/Performing+a+Patch+Release) are completed
+- Tasks from the [patch release guide](https://confluence.cadenzaflow.com/display/AP/Performing+a+Patch+Release) are completed
 
 ### Hints
 
@@ -17,7 +17,7 @@ assignees:
 
 ### Links
 
-- [Release guide](https://confluence.camunda.com/display/AP/Performing+a+Patch+Release)
+- [Release guide](https://confluence.cadenzaflow.com/display/AP/Performing+a+Patch+Release)
 
 ### Breakdown
 

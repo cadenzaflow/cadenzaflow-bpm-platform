@@ -4,9 +4,9 @@
 Lightweight Execution Engine for DMN (Decision Model and Notation) written in Java.
 
 <p>
-  <a href="http://camunda.org/">Home</a> |
-  <a href="http://camunda.org/community/forum.html">Forum</a> |
-  <a href="https://app.camunda.com/jira/browse/CAM">Issues</a> |
+  <a href="https://cadenzaflow.org/">Home</a> |
+  <a href="https://cadenzaflow.org/community/forum.html">Forum</a> |
+  <a href="https://app.cadenzaflow.com/jira/browse/CAM">Issues</a> |
 </p>
 
 The Decision Engine can be used seamlessly in combination with BPMN and CMMN or standalone.
@@ -17,9 +17,9 @@ Add the following Maven Coordinates to your project:
 
 ```xml
 <dependency>
-  <groupId>org.camunda.bpm.dmn</groupId>
-  <artifactId>camunda-engine-dmn</artifactId>
-  <version>${version.camunda}</version>
+  <groupId>org.cadenzaflow.bpm.dmn</groupId>
+  <artifactId>cadenzaflow-engine-dmn</artifactId>
+  <version>${version.cadenzaflow}</version>
 </dependency>
 ```
 
@@ -53,9 +53,9 @@ public class DmnApp {
 Add the following Maven Coordinates to your project:
 ```xml
 <dependency>
-  <groupId>org.camunda.bpm</groupId>
-  <artifactId>camunda-engine</artifactId>
-  <version>${version.camunda}</versions>
+  <groupId>org.cadenzaflow.bpm</groupId>
+  <artifactId>cadenzaflow-engine</artifactId>
+  <version>${version.cadenzaflow}</versions>
 </dependency>
 <dependency>
   <groupId>com.h2database</groupId>
@@ -69,12 +69,12 @@ Next, reference a DMN decision from a BPMN Business Rule Task:
 
 ```xml
 <bpmn:businessRuleTask id="assignApprover"
-  camunda:decisionRef="invoice-assign-approver"
-  camunda:resultVariable="approverGroups"
+  cadenzaflow:decisionRef="invoice-assign-approver"
+  cadenzaflow:resultVariable="approverGroups"
   name="Assign Approver Group(s)">
 </bpmn:businessRuleTask>
 ```
-The `camunda:decisionRef` attribute references the id of the decision in the DMN file:
+The `cadenzaflow:decisionRef` attribute references the id of the decision in the DMN file:
 
 ```xml
 <dmn:decision id="invoice-assign-approver" name="Assign Approver">

@@ -5,14 +5,14 @@
   <parent>
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-bom-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <relativePath>../</relativePath>
   </parent>
 
   <artifactId>cadenzaflow-only-bom</artifactId>
   <packaging>pom</packaging>
   <name>CadenzaFlow Platform Only - Bom</name>
-  <url>http://cadenzaflow.org</url>
+  <url>https://cadenzaflow.org</url>
 
   <description>CadenzaFlow Platform Only bill of material</description>
 
@@ -25,7 +25,7 @@
 
   <organization>
     <name>cadenzaflow services GmbH</name>
-    <url>http://www.cadenzaflow.com</url>
+    <url>https://www.cadenzaflow.com</url>
   </organization>
 
   <dependencyManagement>

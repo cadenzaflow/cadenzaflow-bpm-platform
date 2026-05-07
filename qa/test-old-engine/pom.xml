@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.qa</groupId>
     <artifactId>cadenzaflow-qa</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-qa-old-engine</artifactId>
@@ -12,7 +12,7 @@
   <name>CadenzaFlow Platform - QA - test new schema with old engine</name>
 
   <properties>
-    <camunda.old.engine.version>1.0.0</camunda.old.engine.version>
+    <cadenzaflow.old.engine.version>1.1.0</cadenzaflow.old.engine.version>
   </properties>
 
   <build>
@@ -22,8 +22,8 @@
         <directory>${project.build.directory}/engine-test-sources</directory>
         <excludes>
           <exclude>**/*.java</exclude>
-          <exclude>camunda.cfg.xml</exclude>
-          <exclude>**/historycleanup.camunda.cfg.xml</exclude>
+          <exclude>cadenzaflow.cfg.xml</exclude>
+          <exclude>**/historycleanup.cadenzaflow.cfg.xml</exclude>
         </excludes>
       </testResource>
       <testResource>
@@ -80,7 +80,7 @@
             <groupId>org.cadenzaflow.bpm</groupId>
             <artifactId>cadenzaflow-bom</artifactId>
             <!-- Cannot use variables due to bug in Maven Release Plugin -->
-            <version>1.0.0</version>
+            <version>1.2.0</version>
             <scope>import</scope>
             <type>pom</type>
           </dependency>
@@ -194,7 +194,7 @@
         <dependency>
           <groupId>org.apache.commons</groupId>
           <artifactId>commons-lang3</artifactId>
-          <version>3.8.1</version>
+          <version>3.20.0</version>
           <scope>test</scope>
         </dependency>
 
@@ -277,7 +277,7 @@
                     <artifactItem>
                       <groupId>org.cadenzaflow.bpm</groupId>
                       <artifactId>cadenzaflow-engine</artifactId>
-                      <version>${camunda.old.engine.version}</version>
+                      <version>${cadenzaflow.old.engine.version}</version>
                       <type>test-jar</type>
                       <outputDirectory>${project.build.directory}/test-classes</outputDirectory>
                     </artifactItem>

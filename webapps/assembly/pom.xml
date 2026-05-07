@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.webapp</groupId>
     <artifactId>cadenzaflow-webapp-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <relativePath>../</relativePath>
   </parent>
 
@@ -59,6 +59,12 @@
           <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${version.jackson}</version>
     </dependency>
 
     <dependency>
@@ -528,7 +534,7 @@
               </execution>
             </executions>
             <configuration>
-              <mainClass>org.camunda.bpm.engine.impl.db.DbSchemaDrop</mainClass>
+              <mainClass>org.cadenzaflow.bpm.engine.impl.db.DbSchemaDrop</mainClass>
               <classpathScope>test</classpathScope>
             </configuration>
           </plugin>
@@ -563,7 +569,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <copy file="target/test-classes/camunda.cfg.prefix.xml" tofile="target/test-classes/camunda.cfg.xml" overwrite="true" />
+                    <copy file="target/test-classes/cadenzaflow.cfg.prefix.xml" tofile="target/test-classes/cadenzaflow.cfg.xml" overwrite="true" />
                   </target>
                 </configuration>
               </execution>

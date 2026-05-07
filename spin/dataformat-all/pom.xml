@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.spin</groupId>
     <artifactId>cadenzaflow-spin-root</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-spin-dataformat-all</artifactId>
@@ -47,7 +47,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -164,8 +164,8 @@
               !net.minidev.json*,
               !org.codehaus.jackson*,
               org.slf4j,
-              org.camunda.commons.utils,
-              org.camunda.commons.logging,
+              org.cadenzaflow.commons.utils,
+              org.cadenzaflow.commons.logging,
               *
             </Import-Package>
             <Bundle-ClassPath>.</Bundle-ClassPath>

@@ -1,0 +1,16 @@
+<module xmlns="urn:jboss:module:1.0" name="org.cadenzaflow.spin.cadenzaflow-spin-dataformat-xml-dom-jakarta">
+  <resources>
+    <resource-root path="cadenzaflow-spin-dataformat-xml-dom-jakarta-@project.version@.jar" />
+  </resources>
+
+  <dependencies>
+    <module name="java.base" />
+    <module name="java.desktop" />
+    <module name="jakarta.xml.bind.api"/>
+    <module name="org.cadenzaflow.spin.cadenzaflow-spin-core" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-logging" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-utils" />
+    <module name="org.cadenzaflow.commons.cadenzaflow-commons-typed-values" />
+  </dependencies>
+
+</module>

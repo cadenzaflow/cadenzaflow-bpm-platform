@@ -1,1 +1,1 @@
-org.camunda.bpm.container.impl.jboss.extension.BpmPlatformExtension
+org.cadenzaflow.bpm.container.impl.jboss.extension.BpmPlatformExtension

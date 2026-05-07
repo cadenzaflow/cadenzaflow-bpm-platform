@@ -6,7 +6,7 @@
   <parent>
     <artifactId>cadenzaflow-bpm-quarkus-parent</artifactId>
     <groupId>org.cadenzaflow.bpm.quarkus</groupId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-bpm-quarkus-engine-parent</artifactId>

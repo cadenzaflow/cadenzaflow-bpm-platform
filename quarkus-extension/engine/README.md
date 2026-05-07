@@ -1,14 +1,14 @@
-# Camunda Platform Engine Quarkus Extension
+# CadenzaFlow Platform Engine Quarkus Extension
 
-You can add the Camunda Platform Engine Quarkus Extension into your Quarkus application by adding
+You can add the CadenzaFlow Platform Engine Quarkus Extension into your Quarkus application by adding
 the following dependency into your `pom.xml` file.
 
 ```xml
 <dependency>
   <dependency>
-    <groupId>org.camunda.bpm.quarkus</groupId>
-    <artifactId>camunda-bpm-quarkus-engine</artifactId>
-    <version>${version.camunda}</version><!-- place Camunda version here -->
+    <groupId>org.CadenzaFlow.bpm.quarkus</groupId>
+    <artifactId>CadenzaFlow-bpm-quarkus-engine</artifactId>
+    <version>${version.CadenzaFlow}</version><!-- place CadenzaFlow version here -->
   </dependency>
 </dependency>
 ```

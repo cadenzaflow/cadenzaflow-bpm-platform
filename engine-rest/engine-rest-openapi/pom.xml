@@ -8,7 +8,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-engine-rest-root</artifactId>
     <relativePath>../</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <properties>
@@ -20,9 +20,9 @@
     <!-- update them during openapi.generator version update  -->
     <gson-fire-version>1.8.3</gson-fire-version>
     <swagger-core-version>1.5.22</swagger-core-version>
-    <okhttp-version>3.14.2</okhttp-version>
+    <okhttp-version>3.14.9</okhttp-version>
     <gson-version>2.8.9</gson-version>
-    <commons-lang3-version>3.18.0</commons-lang3-version>
+    <commons-lang3-version>3.20.0</commons-lang3-version>
     <maven-plugin-version>1.0.0</maven-plugin-version>
     <javax-annotation-version>1.0</javax-annotation-version>
     <junit-version>4.13.1</junit-version>
@@ -131,7 +131,7 @@
             </goals>
             <configuration>
               <classpathScope>test</classpathScope>
-              <mainClass>org.camunda.bpm.engine.rest.openapi.generator.impl.TemplateParser</mainClass>
+              <mainClass>org.cadenzaflow.bpm.engine.rest.openapi.generator.impl.TemplateParser</mainClass>
               <arguments>
                 <argument>${project.basedir}/src/main/templates</argument>
                 <argument>main.ftl</argument>
@@ -148,7 +148,7 @@
             </goals>
             <configuration>
               <classpathScope>test</classpathScope>
-              <mainClass>org.camunda.bpm.engine.rest.openapi.generator.impl.SchemaValidator</mainClass>
+              <mainClass>org.cadenzaflow.bpm.engine.rest.openapi.generator.impl.SchemaValidator</mainClass>
               <arguments>
                 <!-- The following json schema is a copy from https://github.com/OAI/OpenAPI-Specification/blob/master/schemas/v3.0/schema.json -->
                 <!-- Date: 11-Feb-2020 -->
@@ -186,7 +186,7 @@
             <phase>generate-test-sources</phase>
             <configuration>
               <sources>
-                <source>${project.build.directory}/camunda-openapi-client/src/main/java</source>
+                <source>${project.build.directory}/cadenzaflow-openapi-client/src/main/java</source>
               </sources>
             </configuration>
           </execution>
@@ -206,7 +206,7 @@
             </goals>
             <configuration>
               <inputSpec>${generated-directory}/${generated-file}</inputSpec>
-              <output>${project.build.directory}/camunda-openapi-client</output>
+              <output>${project.build.directory}/cadenzaflow-openapi-client</output>
               <generatorName>java</generatorName>
               <configOptions>
                 <dateLibrary>legacy</dateLibrary>

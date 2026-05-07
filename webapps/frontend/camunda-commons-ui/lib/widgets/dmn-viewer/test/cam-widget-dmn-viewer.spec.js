@@ -22,15 +22,17 @@
 var path = require('path');
 var projectRoot = path.resolve(__dirname, '../../../../');
 var pkg = require(path.join(projectRoot, 'package.json'));
-var pageUrl = 'http://localhost:' + pkg.gruntConfig.connectPort +
-              '/lib/widgets/dmn-viewer/test/cam-widget-dmn-viewer.spec.html';
+var pageUrl =
+  'http://localhost:' +
+  pkg.gruntConfig.connectPort +
+  '/lib/widgets/dmn-viewer/test/cam-widget-dmn-viewer.spec.html';
 
 var page = require('./cam-widget-dmn-viewer.page.js');
 
 describe('Dmn Viewer', function() {
-  beforeEach((function() {
+  beforeEach(function() {
     browser.get(pageUrl);
-  }));
+  });
 
   describe('table display', function() {
     var table;

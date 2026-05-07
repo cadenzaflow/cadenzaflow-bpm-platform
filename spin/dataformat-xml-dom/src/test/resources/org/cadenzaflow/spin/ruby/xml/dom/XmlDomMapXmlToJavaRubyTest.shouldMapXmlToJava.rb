@@ -1,0 +1,1 @@
+$order = S($input, "application/xml").mapTo("org.cadenzaflow.spin.xml.mapping.Order")

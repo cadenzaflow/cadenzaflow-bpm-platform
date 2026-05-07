@@ -5,7 +5,7 @@
     <groupId>org.cadenzaflow.bpm</groupId>
     <artifactId>cadenzaflow-database-settings</artifactId>
     <relativePath>../../database</relativePath>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <groupId>org.cadenzaflow.bpm.distro</groupId>
@@ -125,8 +125,8 @@
               <goal>parse-version</goal>
             </goals>
             <configuration>
-              <propertyPrefix>camunda.old</propertyPrefix>
-              <versionString>${camunda.version.old}</versionString>
+              <propertyPrefix>cadenzaflow.old</propertyPrefix>
+              <versionString>${cadenzaflow.version.old}</versionString>
             </configuration>
           </execution>
         </executions>
@@ -150,7 +150,7 @@
                   <version>${project.version}</version>
                   <type>jar</type>
                   <overWrite>true</overWrite>
-                  <outputDirectory>target/camunda-engine-${project.version}</outputDirectory>
+                  <outputDirectory>target/cadenzaflow-engine-${project.version}</outputDirectory>
                 </artifactItem>
               </artifactItems>
               <includes>**/create/*.sql, **/drop/*.sql, **/upgrade/*.sql, **/liquibase/**/*</includes>
@@ -177,20 +177,20 @@
                 <mkdir dir="target/sql/create" />
 
                 <concat destfile="target/sql/create/h2_engine_${project.version}.sql" fixlastline="yes">
-                  <filelist dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/create" files="activiti.h2.create.engine.sql activiti.h2.create.case.engine.sql activiti.h2.create.decision.engine.sql activiti.h2.create.history.sql activiti.h2.create.case.history.sql activiti.h2.create.decision.history.sql" />
+                  <filelist dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/create" files="activiti.h2.create.engine.sql activiti.h2.create.case.engine.sql activiti.h2.create.decision.engine.sql activiti.h2.create.history.sql activiti.h2.create.case.history.sql activiti.h2.create.decision.history.sql" />
                 </concat>
 
                 <concat destfile="target/sql/create/oracle_engine_${project.version}.sql" fixlastline="yes">
-                  <filelist dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/create" files="activiti.oracle.create.engine.sql activiti.oracle.create.case.engine.sql activiti.oracle.create.decision.engine.sql activiti.oracle.create.history.sql activiti.oracle.create.case.history.sql activiti.oracle.create.decision.history.sql" />
+                  <filelist dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/create" files="activiti.oracle.create.engine.sql activiti.oracle.create.case.engine.sql activiti.oracle.create.decision.engine.sql activiti.oracle.create.history.sql activiti.oracle.create.case.history.sql activiti.oracle.create.decision.history.sql" />
                 </concat>
 
                 <concat destfile="target/sql/create/postgres_engine_${project.version}.sql" fixlastline="yes">
-                  <filelist dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/create" files="activiti.postgres.create.engine.sql activiti.postgres.create.case.engine.sql activiti.postgres.create.decision.engine.sql activiti.postgres.create.history.sql activiti.postgres.create.case.history.sql activiti.postgres.create.decision.history.sql" />
+                  <filelist dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/create" files="activiti.postgres.create.engine.sql activiti.postgres.create.case.engine.sql activiti.postgres.create.decision.engine.sql activiti.postgres.create.history.sql activiti.postgres.create.case.history.sql activiti.postgres.create.decision.history.sql" />
                 </concat>
 
                 <!-- add identity create files -->
                 <copy todir="target/sql/create" flatten="false">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/create" />
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/create" />
                   <mapper>
                     <chainedmapper>
                       <regexpmapper from="^(activiti.)([A-Za-z0-9]*)(.create.identity.sql)" to="\2_identity_${project.version}.sql" handledirsep="yes" />
@@ -203,20 +203,20 @@
                 <mkdir dir="target/sql/drop" />
 
                 <concat destfile="target/sql/drop/h2_engine_${project.version}.sql" fixlastline="yes">
-                  <filelist dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/drop" files="activiti.h2.drop.decision.engine.sql activiti.h2.drop.case.engine.sql activiti.h2.drop.engine.sql activiti.h2.drop.decision.history.sql activiti.h2.drop.case.history.sql activiti.h2.drop.history.sql" />
+                  <filelist dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/drop" files="activiti.h2.drop.decision.engine.sql activiti.h2.drop.case.engine.sql activiti.h2.drop.engine.sql activiti.h2.drop.decision.history.sql activiti.h2.drop.case.history.sql activiti.h2.drop.history.sql" />
                 </concat>
 
                 <concat destfile="target/sql/drop/oracle_engine_${project.version}.sql" fixlastline="yes">
-                  <filelist dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/drop" files="activiti.oracle.drop.decision.engine.sql activiti.oracle.drop.case.engine.sql activiti.oracle.drop.engine.sql activiti.oracle.drop.decision.history.sql activiti.oracle.drop.case.history.sql activiti.oracle.drop.history.sql" />
+                  <filelist dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/drop" files="activiti.oracle.drop.decision.engine.sql activiti.oracle.drop.case.engine.sql activiti.oracle.drop.engine.sql activiti.oracle.drop.decision.history.sql activiti.oracle.drop.case.history.sql activiti.oracle.drop.history.sql" />
                 </concat>
 
                 <concat destfile="target/sql/drop/postgres_engine_${project.version}.sql" fixlastline="yes">
-                  <filelist dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/drop" files="activiti.postgres.drop.decision.engine.sql activiti.postgres.drop.case.engine.sql activiti.postgres.drop.engine.sql activiti.postgres.drop.decision.history.sql activiti.postgres.drop.case.history.sql activiti.postgres.drop.history.sql" />
+                  <filelist dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/drop" files="activiti.postgres.drop.decision.engine.sql activiti.postgres.drop.case.engine.sql activiti.postgres.drop.engine.sql activiti.postgres.drop.decision.history.sql activiti.postgres.drop.case.history.sql activiti.postgres.drop.history.sql" />
                 </concat>
 
                 <!-- add identity drop files -->
                 <copy todir="target/sql/drop" flatten="false">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/drop" />
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/drop" />
                   <mapper>
                     <chainedmapper>
                       <regexpmapper from="^(activiti.)([A-Za-z0-9]*)(.drop.identity.sql)" to="\2_identity_${project.version}.sql" handledirsep="yes" />
@@ -228,7 +228,7 @@
                 <mkdir dir="target/sql/upgrade" />
 
                 <copy todir="target/sql/upgrade">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade">
                     <include name="*.sql" />
                   </fileset>
                 </copy>
@@ -236,7 +236,7 @@
                 <!-- liquibase -->
 
                 <copy todir="target/sql/liquibase">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/liquibase" includes="**/*" />
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/liquibase" includes="**/*" />
                 </copy>
 
               </target>
@@ -253,61 +253,61 @@
               <target>
                 <!-- create concatenated patch scripts for easier testing -->
                 <!-- db2 patches -->
-                <concat destfile="target/upgrade-test/sql/upgrade/db2_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="db2_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/db2_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="db2_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch*.sql" />
                 </concat>
 
-                <concat destfile="target/upgrade-test/sql/upgrade/db2_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="db2_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/db2_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="db2_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch*.sql" />
                 </concat>
 
                 <!-- h2 patches -->
-                <concat destfile="target/upgrade-test/sql/upgrade/h2_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="h2_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/h2_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="h2_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch*.sql" />
                 </concat>
 
-                <concat destfile="target/upgrade-test/sql/upgrade/h2_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="h2_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/h2_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="h2_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch*.sql" />
                 </concat>
 
                 <!-- mssql patches -->
-                <concat destfile="target/upgrade-test/sql/upgrade/mssql_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="mssql_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/mssql_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="mssql_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch*.sql" />
                 </concat>
 
-                <concat destfile="target/upgrade-test/sql/upgrade/mssql_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="mssql_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/mssql_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="mssql_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch*.sql" />
                 </concat>
 
                 <!-- mysql patches -->
-                <concat destfile="target/upgrade-test/sql/upgrade/mysql_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="mysql_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/mysql_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="mysql_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch*.sql" />
                 </concat>
 
-                <concat destfile="target/upgrade-test/sql/upgrade/mysql_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="mysql_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/mysql_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="mysql_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch*.sql" />
                 </concat>
 
                 <!-- oracle patches -->
-                <concat destfile="target/upgrade-test/sql/upgrade/oracle_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="oracle_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/oracle_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="oracle_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch*.sql" />
                 </concat>
 
-                <concat destfile="target/upgrade-test/sql/upgrade/oracle_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="oracle_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/oracle_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="oracle_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch*.sql" />
                 </concat>
 
                 <!-- postgres patches -->
-                <concat destfile="target/upgrade-test/sql/upgrade/postgres_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="postgres_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/postgres_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="postgres_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch*.sql" />
                 </concat>
 
-                <concat destfile="target/upgrade-test/sql/upgrade/postgres_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" fixlastline="yes">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade" includes="postgres_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch*.sql" />
+                <concat destfile="target/upgrade-test/sql/upgrade/postgres_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" fixlastline="yes">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade" includes="postgres_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch*.sql" />
                 </concat>
 
                 <copy todir="target/upgrade-test/sql/upgrade">
-                  <fileset dir="target/camunda-engine-${project.version}/org/camunda/bpm/engine/db/upgrade">
+                  <fileset dir="target/cadenzaflow-engine-${project.version}/org/cadenzaflow/bpm/engine/db/upgrade">
                     <include name="*.sql" />
                   </fileset>
                 </copy>
@@ -396,7 +396,7 @@
                     <artifactItem>
                       <groupId>org.cadenzaflow.bpm.distro</groupId>
                       <artifactId>cadenzaflow-sql-scripts</artifactId>
-                      <version>${camunda.version.old}</version>
+                      <version>${cadenzaflow.version.old}</version>
                       <outputDirectory>${project.build.directory}/test-classes/scripts-old</outputDirectory>
                       <overWrite>true</overWrite>
                     </artifactItem>
@@ -421,8 +421,8 @@
                     <!-- create the SQL scripts so that the files exist even if they do not exist in the distribution.
                     (this can be the case if there are no db upgrades (yet) for a particular release ) -->
 
-                    <touch file="${project.build.directory}/test-classes/local-upgrade-test/sql/upgrade/${database.type}_engine_${camunda.old.majorVersion}.${camunda.old.minorVersion}_patch.sql" />
-                    <touch file="${project.build.directory}/test-classes/local-upgrade-test/sql/upgrade/${database.type}_engine_${camunda.current.majorVersion}.${camunda.current.minorVersion}_patch.sql" />
+                    <touch file="${project.build.directory}/test-classes/local-upgrade-test/sql/upgrade/${database.type}_engine_${cadenzaflow.old.majorVersion}.${cadenzaflow.old.minorVersion}_patch.sql" />
+                    <touch file="${project.build.directory}/test-classes/local-upgrade-test/sql/upgrade/${database.type}_engine_${cadenzaflow.current.majorVersion}.${cadenzaflow.current.minorVersion}_patch.sql" />
 
                   </target>
                 </configuration>

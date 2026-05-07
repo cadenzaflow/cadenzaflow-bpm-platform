@@ -1,8 +1,8 @@
 # Find more available configuration properties on the following pages of the documentation.
-# https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/#configure-camunda-bpm-run
-# https://docs.camunda.org/manual/latest/user-guide/spring-boot-integration/configuration/#camunda-engine-properties
+# https://docs.cadenzaflow.org/manual/latest/user-guide/cadenzaflow-bpm-run/#configure-cadenzaflow-bpm-run
+# https://docs.cadenzaflow.org/manual/latest/user-guide/spring-boot-integration/configuration/#cadenzaflow-engine-properties
 
-camunda.bpm:
+cadenzaflow.bpm:
   admin-user:
     id: demo
     password: demo
@@ -11,7 +11,7 @@ camunda.bpm:
   webapp:
     application-path: /cadenzaflow
   run:
-# https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/#cross-origin-resource-sharing
+# https://docs.cadenzaflow.org/manual/latest/user-guide/cadenzaflow-bpm-run/#cross-origin-resource-sharing
     cors:
       enabled: true
       allowed-origins: "*"
@@ -19,7 +19,7 @@ camunda.bpm:
       disable-wadl: false
     deployment:
       deploy-changed-only: true
-# https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/#example-application
+# https://docs.cadenzaflow.org/manual/latest/user-guide/cadenzaflow-bpm-run/#example-application
     example:
       enabled: true
 

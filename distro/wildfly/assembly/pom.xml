@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow.bpm.wildfly</groupId>
     <artifactId>cadenzaflow-wildfly</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
 
   <artifactId>cadenzaflow-wildfly-assembly</artifactId>
@@ -13,7 +13,7 @@
   <name>CadenzaFlow Platform - Wildfly Assembly</name>
 
   <description>
-    Assembles the Camunda Platform and makes it ready for qa.
+    Assembles the CadenzaFlow Platform and makes it ready for qa.
     The assembly is installed to maven later in the reactor, if the integration tests pass successfully
   </description>
   
