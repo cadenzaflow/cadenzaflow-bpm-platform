@@ -47,8 +47,8 @@ jobs:
             --batch-mode \
             --fail-at-end \
             --threads 1C \
-            -P-distro \
-            -DskipITs
+            -DskipITs \
+            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
       - name: Upload Surefire reports
         if: always()

@@ -12,10 +12,13 @@ Bu doküman push-trigger CI'da hangi testlerin koştuğunu, hangilerinin neden b
 ## Push-trigger scope
 
 ```bash
-./mvnw clean install --batch-mode --fail-at-end --threads 1C -P-distro -DskipITs
+./mvnw clean install --batch-mode --fail-at-end --threads 1C -DskipITs \
+  -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 ```
 
-`-P-distro` flag'i hem **root pom**'daki hem **`qa/pom.xml`**'deki `distro` profile'ini deaktive eder. `qa/` altında **sadece `ensure-clean-db-plugin`** profil-dışı kaldığı için aktif olarak çalışır; gerisi (aşağıdaki tablo) kapatılır.
+Heavy qa alt-modülleri `-pl '!path'` listesiyle reactor'dan çıkarılır. **`-P-distro` kullanılmaz** — root `pom.xml`'in `distro` profili (activeByDefault=true) reactor'ın kendisini tanımlar (`bom`, `parent`, `internal-dependencies`, `engine`, `model-api`, `engine-rest`, …). Aynı isim qa/`distro` profilinden ayrı bir scope; `-P` flag'i scope ayırmaz, isim eşleşmesiyle her ikisini birden deaktive eder ve reactor'ı boşaltır.
+
+`qa/ensure-clean-db-plugin` profil dışında, otomatik dahil olur.
 
 ## Push-trigger'da koşmayan modüller ve nedenler
 
