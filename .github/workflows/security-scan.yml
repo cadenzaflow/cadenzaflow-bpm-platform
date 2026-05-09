@@ -3,12 +3,12 @@ name: Security Scan
 on:
   push:
     branches:
-      - test-rs
+      - master
+      - 'cadenzaflow-*.*.*'
   workflow_dispatch:
 
 env:
   APP_NAME: cadenzaflow-bpm-platform
-  APP_VERSION: "test-rs"
   MAIL_TO: ali.aras@pia-team.com,rahmani.saygin@pia-team.com
   SMTP_SERVER: mail-eu.smtp2go.com
   SMTP_PORT: "2525"
@@ -20,6 +20,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Resolve APP_VERSION from root pom.xml
+        id: ver
+        run: |
+          VERSION=$(python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
+          root = ET.parse('pom.xml').getroot()
+          v = root.find('m:version', ns)
+          print(v.text if v is not None else '')
+          PY
+          )
+          if [ -z "$VERSION" ]; then
+            echo "::error::Unable to read project version from pom.xml" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Detected APP_VERSION: $VERSION"
 
       - name: Trivy filesystem scan
         id: trivy_fs
@@ -36,7 +54,7 @@ jobs:
         uses: ./.github/actions/security-report
         with:
           app_name: ${{ env.APP_NAME }}
-          version: ${{ env.APP_VERSION }}
+          version: ${{ steps.ver.outputs.version }}
           environment: production
           trivy_repo_report: ''
           trivy_fs_report: ${{ steps.trivy_fs.outputs.report_path }}
