@@ -51,6 +51,12 @@ Heavy qa alt-modülleri `-pl '!path'` listesiyle reactor'dan çıkarılır. **`-
 - `distro/license-book` — license SBOM
 - `qa/ensure-clean-db-plugin` — DB hijyen plugin'i
 
+## Timezone varsayımı
+
+Workflow `TZ=Europe/Berlin` env var'ı ile çalışır. Camunda upstream'inden miras pek çok test sınıfı `Calendar.getInstance()` (TZ argümansız) ve `"+0200"`-suffixed date string'leri ile assertion yapar; bu yazımlar JVM'in Berlin/CET TZ'sinde olduğunu varsayar. Tek bir test'i (`HistoryCleanupRestServiceInteractionTest.testHistoryConfigurationWithinBatchWindow`) yamamak yerine, runner'ı bu varsayıma sabitlemek 100+ benzer test'in implicit doğruluğunu da korur.
+
+Lokal koşumda Türkiye TZ (UTC+3) ↔ Berlin (UTC+2) farkı bu test'ler için kritik değil; assertion'lar genelde explicit offset (`+0200`) veya wall-clock-day düzeyinde, saatlik fark sızdırmaz.
+
 ## Database scope
 
 Push-trigger CI **H2 in-memory** kullanır (default). PostgreSQL / MySQL / Oracle / DB2 / SQLServer / Aurora matrix'i nightly job'a ayrılacak (TODO):

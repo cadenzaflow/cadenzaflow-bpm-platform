@@ -31,7 +31,6 @@ import org.cadenzaflow.bpm.engine.rest.util.container.TestContainerRule;
 import org.cadenzaflow.bpm.engine.runtime.Job;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Test;
 import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.given;
@@ -186,7 +185,6 @@ public class HistoryCleanupRestServiceInteractionTest extends AbstractRestServic
 
   }
 
-  @Ignore("flaky in CI: asserts 22:00-23:00 Europe/Berlin is the current batch window; depends on runner system clock. Re-enable after wrapping with ClockUtil.setCurrentTime(...)")
   @Test
   public void testHistoryConfigurationWithinBatchWindow() throws ParseException {
     ProcessEngineConfigurationImpl processEngineConfigurationImplMock = mock(ProcessEngineConfigurationImpl.class);

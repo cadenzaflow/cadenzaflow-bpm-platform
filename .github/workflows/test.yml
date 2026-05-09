@@ -14,6 +14,9 @@ concurrency:
 
 env:
   MAVEN_OPTS: "-Xmx3g -XX:+UseG1GC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+  # Camunda fork'undan miras testlerin yaygın varsayımı: JVM Europe/Berlin TZ.
+  # Calendar.getInstance() ve "+0200"-suffixli date assertion'ları bu varsayıma bağlı.
+  TZ: Europe/Berlin
 
 jobs:
   build-and-test:
