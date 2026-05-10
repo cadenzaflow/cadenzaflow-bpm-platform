@@ -19,14 +19,13 @@ package org.cadenzaflow.bpm.engine.rest.history;
 import javax.ws.rs.core.Response.Status;
 import org.cadenzaflow.bpm.engine.HistoryService;
 import org.cadenzaflow.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
+import org.cadenzaflow.bpm.engine.impl.jobexecutor.historycleanup.BatchWindow;
 import org.cadenzaflow.bpm.engine.impl.jobexecutor.historycleanup.BatchWindowManager;
 import org.cadenzaflow.bpm.engine.impl.jobexecutor.historycleanup.DefaultBatchWindowManager;
-import org.cadenzaflow.bpm.engine.impl.jobexecutor.historycleanup.HistoryCleanupHelper;
 import org.cadenzaflow.bpm.engine.impl.util.ClockUtil;
 import org.cadenzaflow.bpm.engine.rest.AbstractRestServiceTest;
 import org.cadenzaflow.bpm.engine.rest.helper.MockProvider;
 import org.cadenzaflow.bpm.engine.rest.mapper.JacksonConfigurator;
-import org.cadenzaflow.bpm.engine.rest.util.DateTimeUtils;
 import org.cadenzaflow.bpm.engine.rest.util.container.TestContainerRule;
 import org.cadenzaflow.bpm.engine.runtime.Job;
 import org.junit.Before;
@@ -43,7 +42,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -153,32 +151,25 @@ public class HistoryCleanupRestServiceInteractionTest extends AbstractRestServic
   @Test
   public void testHistoryConfigurationOutsideBatchWindow() throws ParseException {
     ProcessEngineConfigurationImpl processEngineConfigurationImplMock = mock(ProcessEngineConfigurationImpl.class);
-    Date startDate = HistoryCleanupHelper.parseTimeConfiguration("23:59");
-    Date endDate = HistoryCleanupHelper.parseTimeConfiguration("00:00");
+    BatchWindowManager batchWindowManager = new DefaultBatchWindowManager();
     when(processEngine.getProcessEngineConfiguration()).thenReturn(processEngineConfigurationImplMock);
     when(processEngineConfigurationImplMock.getHistoryCleanupBatchWindowStartTime()).thenReturn("23:59");
     when(processEngineConfigurationImplMock.getHistoryCleanupBatchWindowEndTime()).thenReturn("00:00");
-    when(processEngineConfigurationImplMock.getBatchWindowManager()).thenReturn(new DefaultBatchWindowManager());
+    when(processEngineConfigurationImplMock.getBatchWindowManager()).thenReturn(batchWindowManager);
     when(processEngineConfigurationImplMock.isHistoryCleanupEnabled()).thenReturn(true);
 
     SimpleDateFormat sdf = new SimpleDateFormat(JacksonConfigurator.dateFormatString);
     Date now = sdf.parse("2017-09-01T22:00:00.000+0000");
-
     ClockUtil.setCurrentTime(now);
-    Calendar today = Calendar.getInstance();
-    today.setTime(now);
-    Calendar tomorrow = Calendar.getInstance();
-    tomorrow.setTime(DateTimeUtils.addDays(now, 1));
 
-    Date dateToday = DateTimeUtils.updateTime(today.getTime(), startDate);
-    Date dateTomorrow = DateTimeUtils.updateTime(tomorrow.getTime(), endDate);
+    BatchWindow expected = batchWindowManager.getCurrentOrNextBatchWindow(now, processEngineConfigurationImplMock);
 
     given()
       .contentType(ContentType.JSON)
     .then().expect()
       .statusCode(Status.OK.getStatusCode())
-      .body("batchWindowStartTime", containsString(sdf.format(dateToday)))
-      .body("batchWindowEndTime", containsString(sdf.format(dateTomorrow)))
+      .body("batchWindowStartTime", containsString(sdf.format(expected.getStart())))
+      .body("batchWindowEndTime", containsString(sdf.format(expected.getEnd())))
       .body("enabled", equalTo(true))
     .when()
       .get(CONFIGURATION_URL);
@@ -188,33 +179,25 @@ public class HistoryCleanupRestServiceInteractionTest extends AbstractRestServic
   @Test
   public void testHistoryConfigurationWithinBatchWindow() throws ParseException {
     ProcessEngineConfigurationImpl processEngineConfigurationImplMock = mock(ProcessEngineConfigurationImpl.class);
-    Date startDate = HistoryCleanupHelper.parseTimeConfiguration("22:00+0200");
-    Date endDate = HistoryCleanupHelper.parseTimeConfiguration("23:00+0200");
+    BatchWindowManager batchWindowManager = new DefaultBatchWindowManager();
     when(processEngine.getProcessEngineConfiguration()).thenReturn(processEngineConfigurationImplMock);
     when(processEngineConfigurationImplMock.getHistoryCleanupBatchWindowStartTime()).thenReturn("22:00+0200");
     when(processEngineConfigurationImplMock.getHistoryCleanupBatchWindowEndTime()).thenReturn("23:00+0200");
-    when(processEngineConfigurationImplMock.getBatchWindowManager()).thenReturn(new DefaultBatchWindowManager());
+    when(processEngineConfigurationImplMock.getBatchWindowManager()).thenReturn(batchWindowManager);
     when(processEngineConfigurationImplMock.isHistoryCleanupEnabled()).thenReturn(true);
 
     SimpleDateFormat sdf = new SimpleDateFormat(JacksonConfigurator.dateFormatString);
     Date now = sdf.parse("2017-09-01T22:00:00.000+0200");
     ClockUtil.setCurrentTime(now);
 
-    Calendar today = Calendar.getInstance();
-    today.setTime(now);
-
-    Calendar tomorrow = Calendar.getInstance();
-    tomorrow.setTime(DateTimeUtils.addDays(now, 1));
-
-    Date dateToday = DateTimeUtils.updateTime(today.getTime(), startDate);
-    Date dateTomorrow = DateTimeUtils.updateTime(tomorrow.getTime(), endDate);
+    BatchWindow expected = batchWindowManager.getCurrentOrNextBatchWindow(now, processEngineConfigurationImplMock);
 
     given()
       .contentType(ContentType.JSON)
     .then().expect()
       .statusCode(Status.OK.getStatusCode())
-      .body("batchWindowStartTime", containsString(sdf.format(dateToday)))
-      .body("batchWindowEndTime", containsString(sdf.format(dateTomorrow)))
+      .body("batchWindowStartTime", containsString(sdf.format(expected.getStart())))
+      .body("batchWindowEndTime", containsString(sdf.format(expected.getEnd())))
       .body("enabled", equalTo(true))
     .when()
       .get(CONFIGURATION_URL);
