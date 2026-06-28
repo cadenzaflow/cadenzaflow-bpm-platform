@@ -1,6 +1,6 @@
 # Spring Boot 4 Support — Analysis & Plan
 
-**Status:** Draft — Phase A done; Phase B structure + `starter` module building; remaining modules via OpenRewrite
+**Status:** Draft — Phase A done; Phase B: non-webapp main artifacts (starter/rest/test/client) build under Spring Boot 4; security/webapp + test-source migration remain
 **Date:** 26 June 2026
 **Branch:** `feature/spring-boot-4-starter`
 **Source:** Roadmap e-mail "CadenzaFlow Change Requests in Update Roadmap for V1.3" (Hudai Asmaz), item 1
@@ -95,9 +95,15 @@ This matches CIB Seven's `engine-spring/core-7` 1:1 (same dependency set, same b
 
 SB4 source migration so far (mirroring CIB, in `starter` + `starter-test`): JUnit 4 (`junit:junit` compile); actuator health package (`o.s.b.actuate.health` → `o.s.b.health.contributor`); `HibernateJpaAutoConfiguration` (class-ref → string-name); `TestRestTemplate` (→ `o.s.b.resttestclient`) + `spring-boot-resttestclient` test dep.
 
-**Verified:** `engine-spring-7`, `spring-boot-starter-4/starter` (main + test), `starter-test`, `starter-client/spring` all compile under Spring Boot 4 (`mvn -pl … -am -DskipTests install`).
+Plus `starter-rest`: Jersey autoconfigure moves (`o.s.b.autoconfigure.jersey.*` and `…autoconfigure.web.servlet.JerseyApplicationPath` → `o.s.b.jersey.autoconfigure.*`).
 
-**Remaining (Phase B):** `starter-rest`, `starter-security`, `starter-client/spring-boot`, `starter-webapp*` still hit the broader SB4 changes — the autoconfigure split (`o.s.b.autoconfigure.{jdbc,jersey,security,web.servlet}` → `o.s.b.{tech}.autoconfigure`) and the `@MockBean` removal (→ Spring's `@MockitoBean`). **Decision: run OpenRewrite** (`UpgradeSpringBoot_4_0`, as CIB did) for this bulk migration instead of per-file manual edits.
+**Verified:** the **non-webapp main artifacts build under Spring Boot 4** — `starter`, `starter-test`, `starter-rest`, `starter-client/spring-boot` all SUCCESS, JARs installed (`mvn -pl <those> -Dmaven.test.skip=true install`, reusing the already-installed `engine-spring-7` + upstream; no `-am`). `engine-spring-7` itself builds and installs from Phase A.
+
+**OpenRewrite note.** The `rewrite-maven-plugin` (`UpgradeSpringBoot_4_0`, as CIB uses) is configured in the SB4 root pom for the bulk migration, but a clean run needs the **full reactor**: in a partial `-pl` reactor it failed — the `run` goal forks compilation (sources don't compile yet), and `runNoFork` cannot resolve unbuilt sibling modules (e.g. `…-webapp-4`). The per-module source migration above was therefore done **manually, mirroring CIB**; OpenRewrite stays available for a future full-reactor run.
+
+**Remaining (Phase B):**
+- **`starter-security`, `starter-webapp-core`, `starter-webapp`** — need their main-source SB4 migration **and** the heavy `webapps` build (`starter-security` depends `provided` on `…-webapp-4`).
+- **Test-source migration** (recurring across modules; currently skipped via `maven.test.skip`): `TestRestTemplate` → `o.s.b.resttestclient` (+ `spring-boot-resttestclient` test dep), `@MockBean` → Spring's `@MockitoBean`, `LocalServerPort` move.
 
 ## 7. POM wiring summary
 
