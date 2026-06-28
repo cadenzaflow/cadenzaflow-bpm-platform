@@ -1,6 +1,6 @@
 # Spring Boot 4 Support — Analysis & Plan
 
-**Status:** Draft — Phase A done; Phase B: all modules **except `starter-security`** compile under Spring Boot 4 (the `webapps` frontend builds in this env); only the security module remains
+**Status:** Draft — **Phase A + B complete.** All SB4 modules (`engine-spring/core-7` + the seven `spring-boot-starter-4` submodules) compile **main + test** under Spring Boot 4 (the `webapps` frontend builds in this env). Test *execution* and the OIDC roadmap items are next.
 **Date:** 26 June 2026
 **Branch:** `feature/spring-boot-4-starter`
 **Source:** Roadmap e-mail "CadenzaFlow Change Requests in Update Roadmap for V1.3" (Hudai Asmaz), item 1
@@ -103,7 +103,14 @@ Plus `starter-rest`: Jersey autoconfigure moves (`o.s.b.autoconfigure.jersey.*` 
 
 **Webapps + webapp modules — DONE.** The `webapps` frontend builds in this environment (~2.6 min, then cached). `starter-webapp-core` / `starter-webapp` compile under SB4 after: the `jdbc` autoconfigure rename (`o.s.b.autoconfigure.jdbc.*` → `o.s.b.jdbc.autoconfigure.*`), `SecurityProperties` → `SecurityFilterProperties` (`o.s.b.security.autoconfigure.web.servlet`), `TestRestTemplate` → resttestclient; plus **test deps** `spring-boot-jdbc` + `spring-boot-security` (SB4 split-out autoconfigure modules) and `spring-boot-resttestclient`. `LocalServerPort` stays unchanged (`o.s.b.test.web.server`).
 
-**Remaining (Phase B) — only `starter-security`.** The complex one: `SecurityProperties` → `SecurityFilterProperties` (class rename), oauth2 autoconfigure restructuring (e.g. `OAuth2ResourceServerProperties`, `ClientsConfiguredCondition`), `@MockBean` → `@MockitoBean`, `AutoConfigureMockMvc` move. Best done by mirroring CIB's security sources file-by-file (class-level changes, not just imports) or via OpenRewrite on the full reactor.
+**`starter-security` — DONE.** Mechanical renames (`SecurityProperties` → `SecurityFilterProperties`, `@MockBean` → `@MockitoBean`, `AutoConfigureMockMvc` → `o.s.b.webmvc.test.autoconfigure`, jdbc / oauth2 autoconfigure splits) **plus a small reimplementation**: SB4 made Spring's `ClientsConfiguredCondition` package-private, so `impl/ClientsConfiguredCondition` and `impl/ClientsNotConfiguredCondition` were reimplemented as public `SpringBootCondition`s that bind `spring.security.oauth2.client.registration` (mirroring CIB). Test deps added: `spring-boot-resttestclient`, `spring-boot-webmvc-test`.
+
+**All seven `spring-boot-starter-4` submodules now compile main + test under Spring Boot 4** — verified: `mvn -pl <all 7> -DskipTests install` → `BUILD SUCCESS` (13 s; `engine-spring-7` + webapps reused from earlier installs).
+
+**Next steps (not done here):**
+- Run the SB4 test **suite** (tests compile; execution was skipped via `-DskipTests` / `maven.test.skip`).
+- Optionally run OpenRewrite on the full reactor as a cross-check, and add SB4 integration-test (`starter-qa`) coverage.
+- The roadmap OIDC items (`webapps-oidc`, `engine-rest` OIDC) are separate.
 
 ## 7. POM wiring summary
 

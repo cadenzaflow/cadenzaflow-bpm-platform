@@ -28,23 +28,24 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
- * Condition that matches if no {@code spring.security.oauth2.client.registration} properties are defined.
- * Reimplemented for Spring Boot 4, where Spring's own {@code ClientsConfiguredCondition} is package-private.
+ * Condition that matches if {@code spring.security.oauth2.client.registration} properties are defined.
+ * A public reimplementation for Spring Boot 4, where Spring's own {@code ClientsConfiguredCondition}
+ * (in {@code org.springframework.boot.security.oauth2.client.autoconfigure}) is package-private.
  */
-public class ClientsNotConfiguredCondition extends SpringBootCondition {
+public class ClientsConfiguredCondition extends SpringBootCondition {
 
   private static final Bindable<Map<String, Object>> STRING_OBJECT_MAP = Bindable
       .mapOf(String.class, Object.class);
 
   @Override
   public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
-    ConditionMessage.Builder message = ConditionMessage.forCondition("OAuth2 Clients Not Configured Condition");
+    ConditionMessage.Builder message = ConditionMessage.forCondition("OAuth2 Clients Configured Condition");
     Map<String, Object> registrations = Binder.get(context.getEnvironment())
         .bind("spring.security.oauth2.client.registration", STRING_OBJECT_MAP)
         .orElse(Collections.emptyMap());
-    if (registrations.isEmpty()) {
-      return ConditionOutcome.match(message.notAvailable("registered clients"));
+    if (!registrations.isEmpty()) {
+      return ConditionOutcome.match(message.foundExactly("registered clients"));
     }
-    return ConditionOutcome.noMatch(message.foundExactly("registered clients"));
+    return ConditionOutcome.noMatch(message.notAvailable("registered clients"));
   }
 }

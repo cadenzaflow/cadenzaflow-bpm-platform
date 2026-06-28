@@ -47,6 +47,18 @@
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- Spring Boot 4 moved TestRestTemplate into spring-boot-resttestclient -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-resttestclient</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- Spring Boot 4 moved @AutoConfigureMockMvc into spring-boot-webmvc-test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-webmvc-test</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents.client5</groupId>
       <artifactId>httpclient5</artifactId>
