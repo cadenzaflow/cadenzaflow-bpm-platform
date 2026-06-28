@@ -1,6 +1,6 @@
 # Spring Boot 4 Support — Analysis & Plan
 
-**Status:** Draft — Phase A done; Phase B: non-webapp main artifacts (starter/rest/test/client) build under Spring Boot 4; security/webapp + test-source migration remain
+**Status:** Draft — Phase A done; Phase B: non-webapp modules (starter/rest/test/client) compile **main + test** under Spring Boot 4; security/webapp remain (need the webapps build)
 **Date:** 26 June 2026
 **Branch:** `feature/spring-boot-4-starter`
 **Source:** Roadmap e-mail "CadenzaFlow Change Requests in Update Roadmap for V1.3" (Hudai Asmaz), item 1
@@ -103,7 +103,7 @@ Plus `starter-rest`: Jersey autoconfigure moves (`o.s.b.autoconfigure.jersey.*` 
 
 **Remaining (Phase B):**
 - **`starter-security`, `starter-webapp-core`, `starter-webapp`** — need their main-source SB4 migration **and** the heavy `webapps` build (`starter-security` depends `provided` on `…-webapp-4`).
-- **Test-source migration** (recurring across modules; currently skipped via `maven.test.skip`): `TestRestTemplate` → `o.s.b.resttestclient` (+ `spring-boot-resttestclient` test dep), `@MockBean` → Spring's `@MockitoBean`, `LocalServerPort` move.
+- **Test-source migration** — **done for the non-webapp modules**: `TestRestTemplate` → `o.s.b.resttestclient` (+ `spring-boot-resttestclient` test dep), `@MockBean` → Spring's `@MockitoBean` (`answer` attr → `answers`). The non-webapp modules now compile main + test under SB4. Still needed for `starter-security` / `starter-webapp*` (plus `LocalServerPort` / `AutoConfigureMockMvc` moves there).
 
 ## 7. POM wiring summary
 
