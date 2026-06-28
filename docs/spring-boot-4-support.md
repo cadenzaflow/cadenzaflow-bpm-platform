@@ -1,6 +1,6 @@
 # Spring Boot 4 Support — Analysis & Plan
 
-**Status:** Draft — Phase A done; Phase B: non-webapp modules (starter/rest/test/client) compile **main + test** under Spring Boot 4; security/webapp remain (need the webapps build)
+**Status:** Draft — Phase A done; Phase B: all modules **except `starter-security`** compile under Spring Boot 4 (the `webapps` frontend builds in this env); only the security module remains
 **Date:** 26 June 2026
 **Branch:** `feature/spring-boot-4-starter`
 **Source:** Roadmap e-mail "CadenzaFlow Change Requests in Update Roadmap for V1.3" (Hudai Asmaz), item 1
@@ -101,9 +101,9 @@ Plus `starter-rest`: Jersey autoconfigure moves (`o.s.b.autoconfigure.jersey.*` 
 
 **OpenRewrite note.** The `rewrite-maven-plugin` (`UpgradeSpringBoot_4_0`, as CIB uses) is configured in the SB4 root pom for the bulk migration, but a clean run needs the **full reactor**: in a partial `-pl` reactor it failed — the `run` goal forks compilation (sources don't compile yet), and `runNoFork` cannot resolve unbuilt sibling modules (e.g. `…-webapp-4`). The per-module source migration above was therefore done **manually, mirroring CIB**; OpenRewrite stays available for a future full-reactor run.
 
-**Remaining (Phase B):**
-- **`starter-security`, `starter-webapp-core`, `starter-webapp`** — need their main-source SB4 migration **and** the heavy `webapps` build (`starter-security` depends `provided` on `…-webapp-4`).
-- **Test-source migration** — **done for the non-webapp modules**: `TestRestTemplate` → `o.s.b.resttestclient` (+ `spring-boot-resttestclient` test dep), `@MockBean` → Spring's `@MockitoBean` (`answer` attr → `answers`). The non-webapp modules now compile main + test under SB4. Still needed for `starter-security` / `starter-webapp*` (plus `LocalServerPort` / `AutoConfigureMockMvc` moves there).
+**Webapps + webapp modules — DONE.** The `webapps` frontend builds in this environment (~2.6 min, then cached). `starter-webapp-core` / `starter-webapp` compile under SB4 after: the `jdbc` autoconfigure rename (`o.s.b.autoconfigure.jdbc.*` → `o.s.b.jdbc.autoconfigure.*`), `SecurityProperties` → `SecurityFilterProperties` (`o.s.b.security.autoconfigure.web.servlet`), `TestRestTemplate` → resttestclient; plus **test deps** `spring-boot-jdbc` + `spring-boot-security` (SB4 split-out autoconfigure modules) and `spring-boot-resttestclient`. `LocalServerPort` stays unchanged (`o.s.b.test.web.server`).
+
+**Remaining (Phase B) — only `starter-security`.** The complex one: `SecurityProperties` → `SecurityFilterProperties` (class rename), oauth2 autoconfigure restructuring (e.g. `OAuth2ResourceServerProperties`, `ClientsConfiguredCondition`), `@MockBean` → `@MockitoBean`, `AutoConfigureMockMvc` move. Best done by mirroring CIB's security sources file-by-file (class-level changes, not just imports) or via OpenRewrite on the full reactor.
 
 ## 7. POM wiring summary
 

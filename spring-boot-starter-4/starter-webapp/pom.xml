@@ -25,6 +25,13 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Spring Boot 4 moved TestRestTemplate into spring-boot-resttestclient -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-resttestclient</artifactId>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.cadenzaflow.bpm.webapp</groupId>
       <artifactId>cadenzaflow-webapp-webjar</artifactId>
