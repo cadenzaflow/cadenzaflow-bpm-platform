@@ -67,6 +67,7 @@
           any modules that have a dependency to the webapps. See also the referenced POMs,
           they usually define which modules are covered by the distro profile -->
         <module>spring-boot-starter</module>
+        <module>spring-boot-starter-4</module>
 
         <module>quarkus-extension</module>
 
@@ -127,6 +128,7 @@
         <!-- This profile is run in the CI after the webapps were built (platform-ASSEMBLY);
           It should activate any module that has a dependency to the webapps -->
         <module>spring-boot-starter</module>
+        <module>spring-boot-starter-4</module>
 
         <module>distro/license-book</module>
         <module>distro/jboss</module>
@@ -241,6 +243,7 @@
           distro-ce is not used for building the spring boot starter -->
       <modules>
         <module>spring-boot-starter</module>
+        <module>spring-boot-starter-4</module>
       </modules>
     </profile>
 
@@ -274,6 +277,7 @@
       <id>central-sonatype-publish</id>
       <modules>
         <module>spring-boot-starter</module>
+        <module>spring-boot-starter-4</module>
         <module>quarkus-extension</module>
         <module>model-api</module>
 
