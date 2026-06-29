@@ -7,9 +7,9 @@ name: CADENZAFLOW_RELEASE
 #
 # What it does, for that version:
 #   1. Align the reactor version to the tag (versions:set).
-#   2. Build the Community (CE) distribution — Tomcat + Run — and deploy the
-#      Maven artifacts (engine, engine-spring-7, webapps, starters, ...) to the
-#      CadenzaFlow Nexus.
+#   2. Build the full platform (default 'distro' profile) — Tomcat + Run distros
+#      and deploy the Maven artifacts (engine, engine-spring-7, webapps,
+#      starters, ...) to the CadenzaFlow Nexus.
 #   3. Create a GitHub Release for the tag and attach the four distro files:
 #        cadenzaflow-bpm-tomcat-<version>.{zip,tar.gz}
 #        cadenzaflow-bpm-run-<version>.{zip,tar.gz}
@@ -30,7 +30,7 @@ name: CADENZAFLOW_RELEASE
 #                                         inputs to launch PUBLISH.yml manually.
 #
 # NOTE: this workflow has not been executed yet. On the first real run, validate
-# the Maven invocation (versions:set scope, the distro-ce profile, the qa
+# the Maven invocation (versions:set scope, the default profile, the qa
 # exclusions) and the distro output names against an actual build.
 
 on:
@@ -145,16 +145,19 @@ jobs:
 
       - name: Align reactor version to the release tag
         run: |
+          # No -P: the default activeByDefault 'distro' profile is the full reactor.
           ./mvnw -q versions:set \
             -DnewVersion="${{ steps.v.outputs.VERSION }}" \
-            -DprocessAllModules -DgenerateBackupPoms=false \
-            -Pdistro-ce
+            -DprocessAllModules -DgenerateBackupPoms=false
 
-      - name: Build CE distros (+ optional Nexus deploy)
+      - name: Build platform + distros (+ optional Nexus deploy)
         run: |
-          # push tag = full release (deploy). workflow_dispatch honours deploy_to_nexus,
-          # which is OFF by default so re-publishing an already-deployed version
-          # (e.g. 1.2.0) only rebuilds the distros without touching Nexus.
+          # Full build via the default 'distro' profile — engine, engine-spring-7,
+          # webapps, rest, the -4 starters AND the tomcat/run distros. Same default
+          # reactor as nexus-deploy.yml (no -P); -Pdistro-ce alone omits engine-spring
+          # and the BOM, so engine-spring-7's managed version can't resolve.
+          # push tag = full release (deploy); workflow_dispatch honours deploy_to_nexus
+          # (OFF by default, so republishing an existing version skips Nexus).
           GOAL="install"; ALT=""
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event.inputs.deploy_to_nexus }}" = "true" ]; then
             GOAL="deploy"
@@ -163,7 +166,7 @@ jobs:
           echo "Maven goal: clean ${GOAL}"
           ./mvnw clean "${GOAL}" \
             --batch-mode --fail-at-end --threads 1C \
-            -Pdistro-ce -DskipTests -DskipITs \
+            -DskipTests -DskipITs \
             ${ALT} \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
