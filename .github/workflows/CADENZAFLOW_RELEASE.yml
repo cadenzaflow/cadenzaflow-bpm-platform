@@ -40,8 +40,16 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version, e.g. 1.2.1'
+        description: 'Release version, e.g. 1.2.0'
         required: true
+      ref:
+        description: 'Git ref (tag/branch) to build from; defaults to the version tag (e.g. 1.2.0)'
+        required: false
+        default: ''
+      deploy_to_nexus:
+        description: 'Also deploy Maven artifacts to Nexus (leave OFF for an already-published version like 1.2.0)'
+        type: boolean
+        default: false
       notify_download:
         description: 'Trigger the downloads.cadenzaflow.com publish'
         type: boolean
@@ -77,6 +85,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # push: the pushed tag. dispatch: explicit ref, else the version tag.
+          ref: ${{ github.event.inputs.ref || github.event.inputs.version || github.ref }}
 
       - name: Resolve version & tag
         id: v
@@ -110,6 +120,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Configure Maven settings.xml (Nexus credentials)
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_to_nexus == 'true' }}
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
@@ -139,12 +150,21 @@ jobs:
             -DprocessAllModules -DgenerateBackupPoms=false \
             -Pdistro-ce
 
-      - name: Build CE distros + deploy Maven artifacts to Nexus
+      - name: Build CE distros (+ optional Nexus deploy)
         run: |
-          ./mvnw clean deploy \
+          # push tag = full release (deploy). workflow_dispatch honours deploy_to_nexus,
+          # which is OFF by default so re-publishing an already-deployed version
+          # (e.g. 1.2.0) only rebuilds the distros without touching Nexus.
+          GOAL="install"; ALT=""
+          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event.inputs.deploy_to_nexus }}" = "true" ]; then
+            GOAL="deploy"
+            ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::default::${NEXUS_URL}"
+          fi
+          echo "Maven goal: clean ${GOAL}"
+          ./mvnw clean "${GOAL}" \
             --batch-mode --fail-at-end --threads 1C \
             -Pdistro-ce -DskipTests -DskipITs \
-            -DaltDeploymentRepository="${NEXUS_REPO_ID}::default::${NEXUS_URL}" \
+            ${ALT} \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
       - name: Collect distribution assets
