@@ -1,0 +1,240 @@
+name: CADENZAFLOW_RELEASE
+
+# Release pipeline for cadenzaflow-bpm-platform.
+#
+# Trigger: push a tag `cadenzaflow-v<version>` (e.g. cadenzaflow-v1.2.1),
+#          or run manually (workflow_dispatch) with the version.
+#
+# What it does, for that version:
+#   1. Align the reactor version to the tag (versions:set).
+#   2. Build the Community (CE) distribution — Tomcat + Run — and deploy the
+#      Maven artifacts (engine, engine-spring-7, webapps, starters, ...) to the
+#      CadenzaFlow Nexus.
+#   3. Create a GitHub Release for the tag and attach the four distro files:
+#        cadenzaflow-bpm-tomcat-<version>.{zip,tar.gz}
+#        cadenzaflow-bpm-run-<version>.{zip,tar.gz}
+#   4. (Optional) Notify downloads.cadenzaflow.com: POST a repository_dispatch
+#      (event_type: cadenzaflow-release-published) to cadenzaflow-download so
+#      its PUBLISH workflow rolls the release onto the download portal.
+#
+# Relationship to the other workflows:
+#   - nexus-deploy.yml is an ad-hoc Maven deploy; THIS workflow is the
+#     tag-driven, full release (Maven artifacts + distros + GitHub Release).
+#   - cadenzaflow-download/PUBLISH.yml consumes the GitHub Release created here.
+#
+# Secrets:
+#   NEXUS_USERNAME / NEXUS_PASSWORD     - Maven deploy to Nexus (same as nexus-deploy.yml)
+#   DOWNLOAD_DISPATCH_TOKEN (optional)  - cross-repo PAT / GitHub App token used to
+#                                         trigger the download publish. If absent,
+#                                         step 4 is skipped and the run prints the
+#                                         inputs to launch PUBLISH.yml manually.
+#
+# NOTE: this workflow has not been executed yet. On the first real run, validate
+# the Maven invocation (versions:set scope, the distro-ce profile, the qa
+# exclusions) and the distro output names against an actual build.
+
+on:
+  push:
+    tags:
+      - 'cadenzaflow-v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version, e.g. 1.2.0'
+        required: true
+      ref:
+        description: 'Git ref (tag/branch) to build from; defaults to the version tag (e.g. 1.2.0)'
+        required: false
+        default: ''
+      deploy_to_nexus:
+        description: 'Also deploy Maven artifacts to Nexus (leave OFF for an already-published version like 1.2.0)'
+        type: boolean
+        default: false
+      notify_download:
+        description: 'Trigger the downloads.cadenzaflow.com publish'
+        type: boolean
+        default: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  MAVEN_OPTS: "-Xmx4g -XX:+UseG1GC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+  TZ: Europe/Berlin
+  NEXUS_REPO_ID: cadenzaflow-nexus
+  NEXUS_URL: https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus
+
+concurrency:
+  group: cadenzaflow-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build, deploy & publish GitHub Release
+    runs-on: cadenzaflow-runner
+    timeout-minutes: 240
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.v.outputs.VERSION }}
+      tag: ${{ steps.v.outputs.TAG }}
+      minor: ${{ steps.v.outputs.MINOR }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # push: the pushed tag. dispatch: explicit ref, else the version tag.
+          ref: ${{ github.event.inputs.ref || github.event.inputs.version || github.ref }}
+
+      - name: Resolve version & tag
+        id: v
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+            TAG="cadenzaflow-v${VERSION}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+            VERSION="${TAG#cadenzaflow-v}"
+          fi
+          MINOR="$(echo "$VERSION" | cut -d. -f1-2)"   # 1.2.1 -> 1.2 (config.json version key)
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "TAG=$TAG"         >> "$GITHUB_OUTPUT"
+          echo "MINOR=$MINOR"     >> "$GITHUB_OUTPUT"
+          echo "Releasing version=$VERSION tag=$TAG (config.json key $MINOR)"
+
+      - name: Set up JDK 17 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-release-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-release-
+            ${{ runner.os }}-maven-
+
+      - name: Configure Maven settings.xml (Nexus credentials)
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_to_nexus == 'true' }}
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: |
+          if [ -z "${NEXUS_USERNAME}" ] || [ -z "${NEXUS_PASSWORD}" ]; then
+            echo "::error::NEXUS_USERNAME or NEXUS_PASSWORD secret is missing."
+            exit 1
+          fi
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+            <servers>
+              <server>
+                <id>cadenzaflow-nexus</id>
+                <username>${env.NEXUS_USERNAME}</username>
+                <password>${env.NEXUS_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Align reactor version to the release tag
+        run: |
+          ./mvnw -q versions:set \
+            -DnewVersion="${{ steps.v.outputs.VERSION }}" \
+            -DprocessAllModules -DgenerateBackupPoms=false \
+            -Pdistro-ce
+
+      - name: Build CE distros (+ optional Nexus deploy)
+        run: |
+          # push tag = full release (deploy). workflow_dispatch honours deploy_to_nexus,
+          # which is OFF by default so re-publishing an already-deployed version
+          # (e.g. 1.2.0) only rebuilds the distros without touching Nexus.
+          GOAL="install"; ALT=""
+          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event.inputs.deploy_to_nexus }}" = "true" ]; then
+            GOAL="deploy"
+            ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::default::${NEXUS_URL}"
+          fi
+          echo "Maven goal: clean ${GOAL}"
+          ./mvnw clean "${GOAL}" \
+            --batch-mode --fail-at-end --threads 1C \
+            -Pdistro-ce -DskipTests -DskipITs \
+            ${ALT} \
+            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
+
+      - name: Collect distribution assets
+        run: |
+          VERSION="${{ steps.v.outputs.VERSION }}"
+          mkdir -p release-assets
+          for f in \
+            "distro/tomcat/distro/target/cadenzaflow-bpm-tomcat-${VERSION}.zip" \
+            "distro/tomcat/distro/target/cadenzaflow-bpm-tomcat-${VERSION}.tar.gz" \
+            "distro/run/distro/target/cadenzaflow-bpm-run-${VERSION}.zip" \
+            "distro/run/distro/target/cadenzaflow-bpm-run-${VERSION}.tar.gz" ; do
+            if [ -f "$f" ]; then cp "$f" release-assets/; else echo "::warning::missing $f"; fi
+          done
+          echo "Collected:"; ls -la release-assets
+          if [ -z "$(ls -A release-assets)" ]; then
+            echo "::error::No distro assets found for version ${VERSION}."
+            exit 1
+          fi
+
+      - name: Create / publish GitHub Release with assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.v.outputs.TAG }}"
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "$TAG" --generate-notes --draft
+          fi
+          gh release upload "$TAG" release-assets/* --clobber
+          gh release edit "$TAG" --draft=false
+
+      - name: Release summary
+        if: always()
+        run: |
+          {
+            echo "## CadenzaFlow Release"
+            echo ""
+            echo "- Version: \`${{ steps.v.outputs.VERSION }}\`"
+            echo "- Tag: \`${{ steps.v.outputs.TAG }}\`"
+            echo "- Nexus: \`${NEXUS_URL}\`"
+            echo "- Status: \`${{ job.status }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  notify_download:
+    name: Trigger downloads.cadenzaflow.com publish
+    needs: release
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event.inputs.notify_download == 'true' }}
+    steps:
+      # PUBLISH.yml is invoked once per package. It currently downloads ALL release
+      # assets per call, so tomcat and run files land in both package folders — a
+      # known limitation of cadenzaflow-download/PUBLISH.yml to tighten later
+      # (filter assets by package name).
+      - name: Dispatch cadenzaflow-release-published (tomcat + run)
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DOWNLOAD_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "${DISPATCH_TOKEN}" ]; then
+            echo "::warning::DOWNLOAD_DISPATCH_TOKEN not set — skipping auto-publish."
+            echo "Run cadenzaflow-download › PUBLISH manually with:"
+            echo "  source_repo=${{ github.repository }}"
+            echo "  release_tag=${{ needs.release.outputs.tag }}"
+            echo "  package=cadenzaflow-bpm-tomcat | cadenzaflow-bpm-run"
+            echo "  package_version=${{ needs.release.outputs.minor }}"
+            exit 0
+          fi
+          for PKG in cadenzaflow-bpm-tomcat cadenzaflow-bpm-run; do
+            echo "Dispatching publish for ${PKG} ..."
+            curl -sS --fail -X POST \
+              -H "Authorization: token ${DISPATCH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/cadenzaflow/cadenzaflow-download/dispatches" \
+              -d "{\"event_type\":\"cadenzaflow-release-published\",\"client_payload\":{\"source_repo\":\"${{ github.repository }}\",\"release_tag\":\"${{ needs.release.outputs.tag }}\",\"package\":\"${PKG}\",\"package_version\":\"${{ needs.release.outputs.minor }}\"}}"
+          done
