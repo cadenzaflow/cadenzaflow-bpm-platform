@@ -58,6 +58,11 @@
       </dependency>
       <dependency>
         <groupId>org.cadenzaflow.bpm</groupId>
+        <artifactId>cadenzaflow-engine-spring-7</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.cadenzaflow.bpm</groupId>
         <artifactId>cadenzaflow-engine-rest-core</artifactId>
         <version>${project.version}</version>
       </dependency>

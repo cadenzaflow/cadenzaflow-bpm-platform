@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cadenzaflow.bpm.springboot.project</groupId>
+    <artifactId>cadenzaflow-bpm-spring-boot-4-starter-root</artifactId>
+    <version>1.2.0</version>
+  </parent>
+
+  <groupId>org.cadenzaflow.bpm.springboot</groupId>
+  <artifactId>cadenzaflow-bpm-spring-boot-starter-rest-4</artifactId>
+  <name>CadenzaFlow Platform - Spring Boot Starter - Rest</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.cadenzaflow.bpm.springboot</groupId>
+      <artifactId>cadenzaflow-bpm-spring-boot-starter-4</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-rest-core-jakarta</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jersey</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <artifactId>cadenzaflow-bpm-spring-boot-starter-test-4</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Spring Boot 4 moved TestRestTemplate into spring-boot-resttestclient -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-resttestclient</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

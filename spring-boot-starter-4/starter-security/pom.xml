@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cadenzaflow.bpm.springboot.project</groupId>
+    <artifactId>cadenzaflow-bpm-spring-boot-4-starter-root</artifactId>
+    <version>1.2.0</version>
+  </parent>
+
+  <groupId>org.cadenzaflow.bpm.springboot</groupId>
+  <artifactId>cadenzaflow-bpm-spring-boot-starter-security-4</artifactId>
+  <name>CadenzaFlow Platform - Spring Boot Starter - Spring Security</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>cadenzaflow-bpm-spring-boot-starter-4</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>cadenzaflow-bpm-spring-boot-starter-webapp-4</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>cadenzaflow-bpm-spring-boot-starter-rest-4</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- spring security dependencies -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+    <dependency>
+      <artifactId>cadenzaflow-bpm-spring-boot-starter-test-4</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Spring Boot 4 moved TestRestTemplate into spring-boot-resttestclient -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-resttestclient</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- Spring Boot 4 moved @AutoConfigureMockMvc into spring-boot-webmvc-test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-webmvc-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents.client5</groupId>
+      <artifactId>httpclient5</artifactId>
+      <version>${version.httpclient5}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.cadenzaflow.commons</groupId>
+      <artifactId>cadenzaflow-commons-testing</artifactId>
+      <version>${version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

@@ -1,0 +1,87 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+      - 'cadenzaflow-*.*.*'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MAVEN_OPTS: "-Xmx3g -XX:+UseG1GC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+  # Camunda fork'undan miras testlerin yaygın varsayımı: JVM Europe/Berlin TZ.
+  # Calendar.getInstance() ve "+0200"-suffixli date assertion'ları bu varsayıma bağlı.
+  TZ: Europe/Berlin
+
+jobs:
+  build-and-test:
+    name: Build & test (push-trigger scope)
+    runs-on: cadenzaflow-runner
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build & test
+        run: |
+          ./mvnw clean install \
+            --batch-mode \
+            --fail-at-end \
+            --threads 1C \
+            -DskipITs \
+            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
+
+      - name: Upload Surefire reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports-${{ github.run_id }}
+          path: |
+            **/target/surefire-reports/**
+            **/target/failsafe-reports/**
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Test summary
+        if: always()
+        shell: bash
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          xml_count=$(find . -path '*/target/surefire-reports/TEST-*.xml' 2>/dev/null | wc -l)
+          failed_modules=0
+          if [ "$xml_count" -gt 0 ]; then
+            failed_modules=$(grep -lE '<failure|<error' \
+              $(find . -path '*/target/surefire-reports/TEST-*.xml') 2>/dev/null \
+              | xargs -I{} dirname {} | sort -u | wc -l)
+          fi
+          {
+            echo "## Test results"
+            echo ""
+            echo "- Surefire XML report files: **${xml_count}**"
+            echo "- Modules with failure/error reports: **${failed_modules}**"
+            echo ""
+            echo "_See **surefire-reports-${RUN_ID}** artifact for full XML._"
+          } >> "$GITHUB_STEP_SUMMARY"

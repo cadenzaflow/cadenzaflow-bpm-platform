@@ -1,0 +1,123 @@
+name: Nexus Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_tests:
+        description: 'Skip tests during deploy'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      maven_args:
+        description: 'Extra Maven arguments (appended)'
+        required: false
+        default: ''
+        type: string
+  push:
+    tags:
+      - 'cadenzaflow-v*'
+
+concurrency:
+  group: nexus-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  MAVEN_OPTS: "-Xmx4g -XX:+UseG1GC -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+  TZ: Europe/Berlin
+  NEXUS_REPO_ID: cadenzaflow-nexus
+  NEXUS_URL: https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus
+
+jobs:
+  deploy:
+    name: Maven deploy to CadenzaFlow Nexus
+    runs-on: cadenzaflow-runner
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up JDK 17 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-deploy-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-deploy-
+            ${{ runner.os }}-maven-
+
+      - name: Configure Maven settings.xml
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: |
+          if [ -z "${NEXUS_USERNAME}" ] || [ -z "${NEXUS_PASSWORD}" ]; then
+            echo "::error::NEXUS_USERNAME or NEXUS_PASSWORD secret is missing."
+            exit 1
+          fi
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                                        http://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>cadenzaflow-nexus</id>
+                <username>${env.NEXUS_USERNAME}</username>
+                <password>${env.NEXUS_PASSWORD}</password>
+              </server>
+              <server>
+                <id>cadenzaflow-nexus-alt</id>
+                <username>${env.NEXUS_USERNAME}</username>
+                <password>${env.NEXUS_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Show project version
+        run: ./mvnw -q -N help:evaluate -Dexpression=project.version -DforceStdout && echo
+
+      - name: Maven deploy
+        env:
+          SKIP_TESTS: ${{ inputs.skip_tests || 'true' }}
+          EXTRA_ARGS: ${{ inputs.maven_args || '' }}
+        run: |
+          SKIP_FLAG=""
+          if [ "${SKIP_TESTS}" = "true" ]; then
+            SKIP_FLAG="-DskipTests -DskipITs"
+          fi
+
+          ./mvnw deploy \
+            --batch-mode \
+            --fail-at-end \
+            --threads 1C \
+            -DaltDeploymentRepository="${NEXUS_REPO_ID}::default::${NEXUS_URL}" \
+            ${SKIP_FLAG} \
+            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime' \
+            ${EXTRA_ARGS}
+
+      - name: Deploy summary
+        if: always()
+        run: |
+          {
+            echo "## Nexus Deploy Result"
+            echo ""
+            echo "- Repository: \`${NEXUS_URL}\`"
+            echo "- Ref: \`${GITHUB_REF}\`"
+            echo "- Skip tests: \`${{ inputs.skip_tests || 'true' }}\`"
+            echo "- Status: \`${{ job.status }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
