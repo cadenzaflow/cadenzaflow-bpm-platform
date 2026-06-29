@@ -1,6 +1,6 @@
 # Spring Boot 4 Support — Analysis & Plan
 
-**Status:** Draft — **Phase A + B complete.** All SB4 modules (`engine-spring/core-7` + the seven `spring-boot-starter-4` submodules) compile **main + test** under Spring Boot 4 (the `webapps` frontend builds in this env). Test *execution* and the OIDC roadmap items are next.
+**Status:** Draft — **Phase A + B complete.** All SB4 modules (`engine-spring/core-7` + the seven `spring-boot-starter-4` submodules) compile **main + test** under Spring Boot 4 (the `webapps` frontend builds in this env). The test suite was executed: it surfaced one real migration defect (the `spring-boot-jdbc` transaction-manager regression, now fixed); the only remaining failures are an environmental embedded-Tomcat loopback limitation of this sandbox (see §6 “Test execution”). The OIDC roadmap items are next.
 **Date:** 26 June 2026
 **Branch:** `feature/spring-boot-4-starter`
 **Source:** Roadmap e-mail "CadenzaFlow Change Requests in Update Roadmap for V1.3" (Hudai Asmaz), item 1
@@ -107,9 +107,27 @@ Plus `starter-rest`: Jersey autoconfigure moves (`o.s.b.autoconfigure.jersey.*` 
 
 **All seven `spring-boot-starter-4` submodules now compile main + test under Spring Boot 4** — verified: `mvn -pl <all 7> -DskipTests install` → `BUILD SUCCESS` (13 s; `engine-spring-7` + webapps reused from earlier installs).
 
+### Test execution (run on this branch)
+
+The test suite was then executed (not just compiled). Results:
+
+| Module | Result |
+|---|---|
+| `starter-test` | ✅ pass |
+| `starter` | ✅ **182** tests pass |
+| `starter-rest` | ✅ pass |
+| `starter-client/spring-boot` | ✅ **8** tests pass |
+| `starter-webapp-core` | 🟡 29/33 — 4 fail (environmental, see below) |
+| `starter-webapp` | 🟡 `WebappTest` 2 fail (same environmental cause) |
+| `starter-security` | ✅ compiles; its `*IT` tests run only under the `integration-test-cadenzaflow-run` profile (not the default build), so none ran here — no failures |
+
+**One real migration defect was found by running the tests, and fixed** (commit *"add spring-boot-jdbc to core starter…"*): Spring Boot 4 split `DataSourceTransactionManagerAutoConfiguration` out of `spring-boot-autoconfigure` into `spring-boot-jdbc`. The core starter only pulled the JDBC auto-config via `spring-boot-starter-data-jpa`, which is `<optional>true</optional>` and so does **not** flow to downstream modules — the engine then failed to start (`No qualifying bean of type 'PlatformTransactionManager'`). This is a **runtime** regression, not only a test artifact. Fix: a non-optional `spring-boot-jdbc` dependency on the core starter (minimal footprint, no JPA/Hibernate), inherited transitively. After the fix the `PlatformTransactionManager` error is gone and `starter` still passes all 182 tests.
+
+**The remaining 6 failures are a single environmental issue, not migration defects.** Every one is `@SpringBootTest(webEnvironment=RANDOM_PORT)` failing to start embedded Tomcat with `IOException: Unable to establish loopback connection → SocketException: Invalid argument: connect` — i.e. this sandbox cannot open a loopback socket. Proof it is environmental: in the same module `CamundaBpmWebappAutoConfigurationIntegrationTest` (which also boots a web server, but not on a random bound port) passes, and the failure is identical across modules. These will pass on a normal machine / CI.
+
 **Next steps (not done here):**
-- Run the SB4 test **suite** (tests compile; execution was skipped via `-DskipTests` / `maven.test.skip`).
-- Optionally run OpenRewrite on the full reactor as a cross-check, and add SB4 integration-test (`starter-qa`) coverage.
+- Re-run the full SB4 suite on CI / a normal host to clear the 6 environmental Tomcat-loopback failures.
+- Optionally run OpenRewrite on the full reactor as a cross-check, and exercise the security `*IT` tests under the `integration-test-cadenzaflow-run` profile.
 - The roadmap OIDC items (`webapps-oidc`, `engine-rest` OIDC) are separate.
 
 ## 7. POM wiring summary
