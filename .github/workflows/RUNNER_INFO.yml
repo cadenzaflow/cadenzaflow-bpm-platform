@@ -1,0 +1,29 @@
+name: RUNNER_INFO
+# One-off: report the self-hosted cadenzaflow-runner's CPU / RAM / disk so we
+# can size it correctly. Uploads specs as an artifact (robust if job-logs fail).
+on:
+  workflow_dispatch:
+jobs:
+  info:
+    runs-on: cadenzaflow-runner
+    timeout-minutes: 10
+    steps:
+      - name: Collect runner specs
+        run: |
+          {
+            echo "=== CPU cores ==="; nproc
+            echo "=== CPU model ==="; grep -m1 'model name' /proc/cpuinfo || true
+            echo "=== MEMORY ==="; free -h 2>/dev/null || grep -E 'MemTotal|MemAvailable|SwapTotal' /proc/meminfo
+            echo "=== DISK ==="; df -h
+            echo "=== work dir disk ==="; df -h . 2>/dev/null || true
+            echo "=== OS ==="; uname -a; (cat /etc/os-release 2>/dev/null | head -2) || true
+            echo "=== load/uptime ==="; uptime || true
+            echo "=== container? (cgroup mem limit) ==="; cat /sys/fs/cgroup/memory.max 2>/dev/null || cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null || echo "n/a"
+          } | tee runner-specs.txt
+      - name: Upload specs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runner-specs
+          path: runner-specs.txt
+          if-no-files-found: warn
