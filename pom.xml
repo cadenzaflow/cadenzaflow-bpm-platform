@@ -69,8 +69,6 @@
         <module>spring-boot-starter</module>
         <module>spring-boot-starter-4</module>
 
-        <module>quarkus-extension</module>
-
         <module>qa</module>
 
         <module>javaee/ejb-service</module>
@@ -105,7 +103,6 @@
         <module>engine-plugins</module>
 
         <module>distro/license-book</module>
-        <module>distro/jboss</module>
         <module>distro/tomcat</module>
         <module>distro/sql-script</module>
         <module>distro/run</module>
@@ -131,7 +128,6 @@
         <module>spring-boot-starter-4</module>
 
         <module>distro/license-book</module>
-        <module>distro/jboss</module>
         <module>distro/tomcat</module>
         <module>distro/run</module>
       </modules>
@@ -202,17 +198,26 @@
       </modules>
     </profile>
 
+    <!-- Opt-in app-server variants. CadenzaFlow ships only Tomcat + Run, so
+         WildFly / JBoss / Quarkus are NOT built by default (they are heavy,
+         inherited from Camunda, and not part of the product). Build them
+         explicitly with -Pdistro-wildfly / -Pdistro-extras. -->
     <profile>
       <id>distro-wildfly</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <modules>
         <module>javaee/ejb-client</module>
         <module>javaee/ejb-client-jakarta</module>
         <module>distro/license-book</module>
         <module>distro/wildfly</module>
         <module>distro/wildfly26</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>distro-extras</id>
+      <modules>
+        <module>quarkus-extension</module>
+        <module>distro/jboss</module>
       </modules>
     </profile>
 
