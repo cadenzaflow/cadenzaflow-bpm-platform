@@ -16,6 +16,11 @@ on:
         required: false
         default: ''
         type: string
+      projects:
+        description: 'Deploy only these modules (-pl), e.g. engine-spring/core-7,spring-boot-starter-4/starter. Empty = whole reactor minus heavy qa ITs.'
+        required: false
+        default: ''
+        type: string
   push:
     tags:
       - 'cadenzaflow-v*'
@@ -95,11 +100,19 @@ jobs:
         env:
           SKIP_TESTS: ${{ inputs.skip_tests || 'true' }}
           EXTRA_ARGS: ${{ inputs.maven_args || '' }}
+          PROJECTS: ${{ inputs.projects || '' }}
         run: |
           SKIP_FLAG=""
           if [ "${SKIP_TESTS}" = "true" ]; then
             SKIP_FLAG="-DskipTests -DskipITs"
           fi
+
+          # Default: whole reactor minus the heavy qa ITs. If `projects` is set,
+          # deploy only those modules (e.g. a narrow library release). Note: a
+          # narrow -pl can't also carry the qa exclusions (Maven merges multiple
+          # -pl and the excluded paths aren't in the selected reactor), so the
+          # two are mutually exclusive by design.
+          PL="${PROJECTS:-!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime}"
 
           ./mvnw deploy \
             --batch-mode \
@@ -107,7 +120,7 @@ jobs:
             --threads 1C \
             -DaltDeploymentRepository="${NEXUS_REPO_ID}::default::${NEXUS_URL}" \
             ${SKIP_FLAG} \
-            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime' \
+            -pl "${PL}" \
             ${EXTRA_ARGS}
 
       - name: Deploy summary
