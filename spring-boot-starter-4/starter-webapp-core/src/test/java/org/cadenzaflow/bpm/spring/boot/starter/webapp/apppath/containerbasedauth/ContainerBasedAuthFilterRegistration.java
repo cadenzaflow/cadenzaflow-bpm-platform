@@ -17,16 +17,19 @@
 package org.cadenzaflow.bpm.spring.boot.starter.webapp.apppath.containerbasedauth;
 
 import org.cadenzaflow.bpm.webapp.impl.security.auth.ContainerBasedAuthenticationFilter;
-import org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 import java.util.Collections;
 
 @Configuration
-@Order(SecurityFilterProperties.BASIC_AUTH_ORDER - 15)
+// Same value as Spring Boot's SecurityFilterProperties.BASIC_AUTH_ORDER - 15. Referencing that
+// class would require spring-boot-security on the test classpath, which pulls in Spring Security
+// and its default login page would shadow the webapp filters under test.
+@Order(Ordered.LOWEST_PRECEDENCE - 20)
 public class ContainerBasedAuthFilterRegistration {
 
     @Bean
