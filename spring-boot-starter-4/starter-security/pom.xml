@@ -53,6 +53,13 @@
       <artifactId>spring-boot-resttestclient</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- TestRestTemplate builds on RestTemplateBuilder from spring-boot-restclient,
+      which spring-boot-resttestclient does not pull in transitively -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-restclient</artifactId>
+      <scope>test</scope>
+    </dependency>
     <!-- Spring Boot 4 moved @AutoConfigureMockMvc into spring-boot-webmvc-test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
