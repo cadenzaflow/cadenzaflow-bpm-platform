@@ -1,0 +1,10 @@
+# Line-ending policy for build correctness.
+#
+# The distro assemblies package shell scripts straight from the working tree.
+# On a Windows clone with core.autocrlf=true, .sh files were checked out with
+# CRLF and shipped that way inside the tomcat/run archives — on Linux the
+# scripts then fail (e.g. CATALINA_OPTS="-Xmx512m<CR>" -> "Invalid maximum
+# heap size"). Pin the endings so the checkout is correct on every platform:
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
