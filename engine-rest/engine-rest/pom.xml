@@ -24,6 +24,16 @@
       <groupId>com.nimbusds</groupId>
       <artifactId>nimbus-jose-jwt</artifactId>
     </dependency>
+    <dependency>
+      <!-- Keycloak container IT (KeycloakBearerTokenAuthenticationProviderContainerIT).
+           Version OVERRIDES the managed 1.17.6 for this module only: the shaded
+           docker-java 3.2.13 in 1.17.6 speaks an API version modern Docker engines
+           (25+) reject with HTTP 400 at detection time. -->
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>1.21.3</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>commons-fileupload</groupId>
