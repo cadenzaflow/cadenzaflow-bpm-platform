@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.resttestclient.TestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,7 @@ import static org.cadenzaflow.bpm.webapp.impl.security.filter.headersec.provider
 @TestPropertySource(properties = {
     "cadenzaflow.bpm.webapp.applicationPath=" + ChangedAppPathIT.MY_APP_PATH
 })
+@AutoConfigureTestRestTemplate
 public class ChangedAppPathIT {
 
   protected static final String MY_APP_PATH = "/my/application/path";

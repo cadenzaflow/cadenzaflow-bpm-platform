@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.resttestclient.TestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,6 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource(properties = {
     "cadenzaflow.bpm.webapp.applicationPath=" + EmptyAppPathIT.MY_APP_PATH
 })
+@AutoConfigureTestRestTemplate
 public class EmptyAppPathIT {
 
   protected static final String MY_APP_PATH = "";
