@@ -16,15 +16,13 @@
   <properties>
     <engine.runtime>${project.build.directory}/cadenzaflow-tomcat</engine.runtime>
     <tomcat.runtime>${engine.runtime}/server/apache-tomcat-${version.tomcat}</tomcat.runtime>
-    <http.port>${tomcat.connector.http.port}</http.port>
 
-    <tomcat.connector.http.port>50080</tomcat.connector.http.port>
-    <tomcat.connector.http.redirectPort>50443</tomcat.connector.http.redirectPort>
-    <tomcat.connector.ajp.port>50009</tomcat.connector.ajp.port>
-    <tomcat.connector.ajp.redirectPort>50443</tomcat.connector.ajp.redirectPort>
-    <tomcat.server.port>50005</tomcat.server.port>
+    <!-- it.http.port, it.ajp.port and it.rmi.port are reserved at build time by
+         build-helper:reserve-network-port so that concurrent builds on the same
+         machine cannot collide on fixed ports. They must not get default values
+         here: a value set in <properties> would be interpolated into the plugin
+         configurations when the POM is loaded, before the ports are reserved. -->
 
-    <cargo.servlet.port>59080</cargo.servlet.port>
     <cargo.timeout>240000</cargo.timeout>
     <cargo.deploy.timeout>60000</cargo.deploy.timeout>
   </properties>
@@ -176,6 +174,20 @@
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
           <execution>
+            <id>reserve-it-ports</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>reserve-network-port</goal>
+            </goals>
+            <configuration>
+              <portNames>
+                <portName>it.http.port</portName>
+                <portName>it.ajp.port</portName>
+                <portName>it.rmi.port</portName>
+              </portNames>
+            </configuration>
+          </execution>
+          <execution>
             <id>add-it-source</id>
             <phase>generate-test-sources</phase>
             <goals>
@@ -273,7 +285,9 @@
             <type>standalone</type>
             <home>${project.build.directory}/cargo-config-tomcat</home>
             <properties>
-              <cargo.tomcat.ajp.port>${tomcat.connector.ajp.port}</cargo.tomcat.ajp.port>
+              <cargo.servlet.port>${it.http.port}</cargo.servlet.port>
+              <cargo.tomcat.ajp.port>${it.ajp.port}</cargo.tomcat.ajp.port>
+              <cargo.rmi.port>${it.rmi.port}</cargo.rmi.port>
               <cargo.start.jvmargs>-Djava.security.egd=file:/dev/./urandom</cargo.start.jvmargs>
             </properties>
             <files>
@@ -292,7 +306,7 @@
               <type>war</type>
               <classifier>tomcat</classifier>
               <pingURL>
-                http://localhost:${cargo.servlet.port}/engine-rest/engine/default/process-definition
+                http://localhost:${it.http.port}/engine-rest/engine/default/process-definition
               </pingURL>
               <pingTimeout>${cargo.deploy.timeout}</pingTimeout>
               <properties>
@@ -312,8 +326,21 @@
     </plugins>
 
     <testResources>
+      <!-- integration-rules.properties must advertise the engine-rest URL on the
+           dynamically reserved it.http.port; everything else is copied verbatim
+           so that BPMN models and test files are never touched by filtering. -->
       <testResource>
         <directory>src/it/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>integration-rules.properties</include>
+        </includes>
+      </testResource>
+      <testResource>
+        <directory>src/it/resources</directory>
+        <excludes>
+          <exclude>integration-rules.properties</exclude>
+        </excludes>
       </testResource>
       <testResource>
         <directory>src/test/resources</directory>
