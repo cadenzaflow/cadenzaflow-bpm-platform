@@ -70,6 +70,46 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping> -->
 
+  <!-- Keycloak / OIDC Bearer Authentication Filter (alternative to Http Basic above).
+       Validates "Authorization: Bearer <JWT>" access tokens offline against the
+       issuer's JWKS - no call to the identity provider per request. Use
+       CompositeAuthenticationProvider to accept BOTH Bearer and Basic during a
+       migration, or KeycloakBearerTokenAuthenticationProvider for Bearer-only.
+       Only keycloak.issuer-uri and keycloak.audience are required; see
+       KeycloakProviderConfig for all parameters. Keycloak service-account tokens
+       (grant_type=client_credentials) usually carry the client id in the azp
+       claim, not aud - hence audience-mode=azp below. Prefer client_credentials
+       for machine-to-machine calls; grant_type=password (ROPC) is a legacy
+       convenience only. -->
+  <!-- <filter>
+    <filter-name>camunda-auth</filter-name>
+    <filter-class>
+      org.cadenzaflow.bpm.engine.rest.security.auth.ProcessEngineAuthenticationFilter
+    </filter-class>
+    <async-supported>true</async-supported>
+    <init-param>
+      <param-name>authentication-provider</param-name>
+      <param-value>org.cadenzaflow.bpm.engine.rest.security.auth.impl.CompositeAuthenticationProvider</param-value>
+    </init-param>
+    <init-param>
+      <param-name>keycloak.issuer-uri</param-name>
+      <param-value>https://keycloak.example.com/realms/my-realm</param-value>
+    </init-param>
+    <init-param>
+      <param-name>keycloak.audience</param-name>
+      <param-value>my-rest-client</param-value>
+    </init-param>
+    <init-param>
+      <param-name>keycloak.audience-mode</param-name>
+      <param-value>azp</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>camunda-auth</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+
   <servlet>
     <servlet-name>Resteasy</servlet-name>
     <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
