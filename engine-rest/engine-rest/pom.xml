@@ -20,6 +20,12 @@
 
   <dependencies>
     <dependency>
+      <!-- OIDC Bearer token validation (KeycloakBearerTokenAuthenticationProvider); version managed in cadenzaflow-core-internal-dependencies -->
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
       <exclusions>
