@@ -29,6 +29,12 @@
         <version>${version.gson}</version>
       </dependency>
       <dependency>
+        <!-- JWT validation for engine-rest OIDC Bearer authentication; version aligned with the pin already shipped in distro/run -->
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>9.37.4</version>
+      </dependency>
+      <dependency>
         <groupId>cglib</groupId>
         <artifactId>cglib</artifactId>
         <version>2.2.2</version>

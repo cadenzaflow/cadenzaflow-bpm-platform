@@ -1,0 +1,32 @@
+{
+  "realm": "cadenzaflow",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "cadenzaflow-rest",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "test-secret",
+      "serviceAccountsEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": false
+    }
+  ],
+  "users": [
+    {
+      "username": "kermit",
+      "enabled": true,
+      "email": "kermit@example.com",
+      "firstName": "Kermit",
+      "lastName": "Frog",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "kermit",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

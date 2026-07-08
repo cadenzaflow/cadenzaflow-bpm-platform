@@ -18,7 +18,10 @@ package org.cadenzaflow.bpm.engine.rest.security.auth;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,6 +105,19 @@ public class ProcessEngineAuthenticationFilter implements Filter {
     } catch (ClassCastException e) {
       throw new ServletException("Cannot instantiate authentication filter: authentication provider does not implement interface " +
           AuthenticationProvider.class.getName(), e);
+    }
+
+    if (authenticationProvider instanceof ConfigurableAuthenticationProvider) {
+      ConfigurableAuthenticationProvider configurableProvider = (ConfigurableAuthenticationProvider) authenticationProvider;
+      Map<String, String> providerParameters = new HashMap<String, String>();
+      Enumeration<String> parameterNames = filterConfig.getInitParameterNames();
+      while (parameterNames.hasMoreElements()) {
+        String parameterName = parameterNames.nextElement();
+        if (!AUTHENTICATION_PROVIDER_PARAM.equals(parameterName) && !SERVLET_PATH_PREFIX.equals(parameterName)) {
+          providerParameters.put(parameterName, filterConfig.getInitParameter(parameterName));
+        }
+      }
+      configurableProvider.configure(providerParameters);
     }
 
     servletPathPrefix = filterConfig.getInitParameter(SERVLET_PATH_PREFIX);

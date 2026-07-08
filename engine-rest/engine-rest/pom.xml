@@ -20,6 +20,37 @@
 
   <dependencies>
     <dependency>
+      <!-- OIDC Bearer token validation (KeycloakBearerTokenAuthenticationProvider); version managed in cadenzaflow-core-internal-dependencies -->
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+    </dependency>
+    <dependency>
+      <!-- Keycloak container IT (KeycloakBearerTokenAuthenticationProviderContainerIT).
+           Version OVERRIDES the managed 1.17.6 for this module only: the shaded
+           docker-java 3.2.13 in 1.17.6 speaks an API version modern Docker engines
+           (25+) reject with HTTP 400 at detection time. -->
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>1.21.3</version>
+      <scope>test</scope>
+      <exclusions>
+        <!-- TC declares slf4j-api 1.7.x and junit; being declared early in this
+             pom it would win dependency mediation and shadow the slf4j 2.x line
+             the existing test infra (logback 1.5, jcl/jul bridges 2.0.x,
+             ProcessEngineLoggingRule) relies on -> NoClassDefFoundError:
+             org.slf4j.spi.LoggingEventAware. The repo manages both itself. -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
       <exclusions>
