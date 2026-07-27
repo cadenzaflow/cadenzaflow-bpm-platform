@@ -101,6 +101,11 @@ jobs:
           SKIP_TESTS: ${{ inputs.skip_tests || 'true' }}
           EXTRA_ARGS: ${{ inputs.maven_args || '' }}
           PROJECTS: ${{ inputs.projects || '' }}
+          # settings.xml resolves ${env.NEXUS_*} when MAVEN runs, so the
+          # secrets must be in THIS step's env - not only in the step that
+          # wrote the file. Without them the PUT goes out anonymous (401).
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         run: |
           SKIP_FLAG=""
           if [ "${SKIP_TESTS}" = "true" ]; then
@@ -114,11 +119,28 @@ jobs:
           # two are mutually exclusive by design.
           PL="${PROJECTS:-!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime}"
 
+          # WARNING - narrow deploys publish INCONSISTENT releases.
+          # A -pl selection deploys only those modules; the parent POMs on
+          # Nexus keep whatever content they had. If a module's POM references
+          # a property that was added to the parent after the parents were
+          # published, the released artifact is unresolvable for everyone
+          # outside this repo. That is exactly what happened to the 1.2.0
+          # spring-boot-starter-4 family (${version.spring.framework7} is used
+          # by cadenzaflow-bpm-spring-boot-4-starter-root:1.2.0 but defined in
+          # no published parent). Prefer a full-reactor deploy for releases.
+          if [ -n "${PROJECTS}" ]; then
+            echo "::warning::Narrow deploy (-pl ${PROJECTS}): parent POMs are NOT redeployed. Verify the published POM chain resolves from a clean repository before announcing this release."
+          fi
+
+          # maven-deploy-plugin 3.x syntax is "id::url" (two segments). The
+          # legacy "id::default::url" form parses the server id as
+          # "id::default", so the settings.xml credentials never match and the
+          # upload goes out anonymous -> Nexus 401.
           ./mvnw deploy \
             --batch-mode \
             --fail-at-end \
             --threads 1C \
-            -DaltDeploymentRepository="${NEXUS_REPO_ID}::default::${NEXUS_URL}" \
+            -DaltDeploymentRepository="${NEXUS_REPO_ID}::${NEXUS_URL}" \
             ${SKIP_FLAG} \
             -pl "${PL}" \
             ${EXTRA_ARGS}
