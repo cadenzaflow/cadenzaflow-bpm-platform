@@ -51,6 +51,29 @@
           <excludedScopes>test</excludedScopes>
         </configuration>
       </plugin>
+      <!--
+        CadenzaFlow publishes to its own Nexus, not to Maven Central.
+
+        A release parent in our inherited chain installs Sonatype's Central
+        publishing plugin as a build EXTENSION. An extension of that plugin
+        REPLACES maven-deploy-plugin, so with the Central publish skipped the
+        deploy phase silently does nothing: the 1.2.1 release built the whole
+        platform, reported BUILD SUCCESS and published zero artifacts.
+
+        Declaring it here without the extension flag - the child declaration
+        wins over the inherited one - keeps the standard deploy in charge.
+        Publishing to Maven Central is a separate, not-yet-configured process
+        (namespace verification, signing keys); when it is set up it should be
+        enabled deliberately, in a profile, not inherited by accident.
+      -->
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <extensions>false</extensions>
+        <configuration>
+          <skipPublishing>true</skipPublishing>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
