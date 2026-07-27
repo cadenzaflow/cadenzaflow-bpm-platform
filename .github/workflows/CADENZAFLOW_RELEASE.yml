@@ -204,8 +204,15 @@ jobs:
           # parameter in the POM, and POM configuration beats a CLI property.)
           # This release goes to the CadenzaFlow Nexus; publishing to Maven
           # Central is a separate process that is not set up yet.
+          # --threads 2, not 1C: at 1C (8 threads on this runner) the release
+          # build starves the self-hosted runner and it loses contact with
+          # GitHub ("The self-hosted runner lost communication with the
+          # server") about 30 minutes in. test.yml survives 1C because it does
+          # not assemble the distributions; this build does, concurrently.
+          # The job has a 240-minute budget, so trading parallelism for
+          # survivability is the right call here.
           ./mvnw clean "${GOAL}" \
-            --batch-mode --fail-at-end --threads 1C \
+            --batch-mode --fail-at-end --threads 2 \
             -DskipTests -DskipITs \
             -Dskip.central.release=true \
             ${ALT} \
