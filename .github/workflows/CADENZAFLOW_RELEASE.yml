@@ -191,10 +191,13 @@ jobs:
           GOAL="install"; ALT=""
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event.inputs.deploy_to_nexus }}" = "true" ]; then
             GOAL="deploy"
-            # maven-deploy-plugin 3.x syntax is "id::url". The legacy
-            # "id::default::url" form parses the server id as "id::default", so
-            # the settings.xml credentials never match -> anonymous PUT -> 401.
-            ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::${NEXUS_URL}"
+            # THREE segments, because this build pins maven-deploy-plugin
+            # 2.8.2, which requires "id::layout::url" and rejects anything
+            # else with "Invalid syntax for alternative repository".
+            # (Deploy-plugin 3.x wants the two-segment "id::url" instead - as
+            # used in cadenzaflow-keycloak. Check the plugin version before
+            # copying this line between repositories.)
+            ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::default::${NEXUS_URL}"
           fi
           echo "Maven goal: clean ${GOAL}"
           # skip.central.release: belt and braces. The release parent published

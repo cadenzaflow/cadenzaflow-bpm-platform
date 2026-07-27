@@ -157,7 +157,7 @@ jobs:
             --fail-at-end \
             --threads 1C \
             -Dskip.central.release=true \
-            -DaltDeploymentRepository="${NEXUS_REPO_ID}::${NEXUS_URL}" \
+            -DaltDeploymentRepository="${NEXUS_REPO_ID}::default::${NEXUS_URL}" \
             ${SKIP_FLAG} \
             -pl "${PL}" \
             ${EXTRA_ARGS}
