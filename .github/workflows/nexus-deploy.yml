@@ -89,6 +89,14 @@ jobs:
                 <username>${env.NEXUS_USERNAME}</username>
                 <password>${env.NEXUS_PASSWORD}</password>
               </server>
+              <!-- Inert stub - see CADENZAFLOW_RELEASE.yml: the release parent
+                   injects Sonatype's central-publishing plugin, which NPEs
+                   without a `central` server even though we skip it below. -->
+              <server>
+                <id>central</id>
+                <username>not-used-we-publish-to-nexus</username>
+                <password>not-used-we-publish-to-nexus</password>
+              </server>
             </servers>
           </settings>
           EOF
@@ -140,6 +148,7 @@ jobs:
             --batch-mode \
             --fail-at-end \
             --threads 1C \
+            -DskipPublishing=true \
             -DaltDeploymentRepository="${NEXUS_REPO_ID}::${NEXUS_URL}" \
             ${SKIP_FLAG} \
             -pl "${PL}" \

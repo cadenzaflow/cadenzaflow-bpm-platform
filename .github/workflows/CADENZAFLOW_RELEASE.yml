@@ -139,6 +139,17 @@ jobs:
                 <username>${env.NEXUS_USERNAME}</username>
                 <password>${env.NEXUS_PASSWORD}</password>
               </server>
+              <!-- Inert stub. The release parent injects Sonatype's
+                   central-publishing plugin (execution id
+                   injected-central-publishing), which resolves a server with
+                   id `central` and NPEs when it is absent. We publish to the
+                   CadenzaFlow Nexus, not to Maven Central, and the plugin is
+                   skipped below - these credentials are never used. -->
+              <server>
+                <id>central</id>
+                <username>not-used-we-publish-to-nexus</username>
+                <password>not-used-we-publish-to-nexus</password>
+              </server>
             </servers>
           </settings>
           EOF
@@ -173,9 +184,14 @@ jobs:
             ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::${NEXUS_URL}"
           fi
           echo "Maven goal: clean ${GOAL}"
+          # skipPublishing: the release parent injects Sonatype's Maven Central
+          # publishing plugin into `deploy`. This release goes to the
+          # CadenzaFlow Nexus; Central publication is a separate, not-yet-set-up
+          # process (namespace verification, signing keys).
           ./mvnw clean "${GOAL}" \
             --batch-mode --fail-at-end --threads 1C \
             -DskipTests -DskipITs \
+            -DskipPublishing=true \
             ${ALT} \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
