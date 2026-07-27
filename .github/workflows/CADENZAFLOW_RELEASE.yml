@@ -215,8 +215,26 @@ jobs:
             --batch-mode --fail-at-end --threads 2 \
             -DskipTests -DskipITs \
             -Dskip.central.release=true \
+            -Dmaven.deploy.skip=false \
             ${ALT} \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
+
+      - name: Verify the artifacts really reached Nexus
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_to_nexus == 'true' }}
+        run: |
+          # A release that deploys NOTHING must not report success. That is not
+          # theoretical: the central-publishing extension in the release parent
+          # replaces maven-deploy-plugin, so skipping the Central publish left
+          # `mvn deploy` doing nothing at all - BUILD SUCCESS, empty Nexus.
+          VERSION="${{ steps.v.outputs.VERSION }}"
+          URL="${NEXUS_URL}/org/cadenzaflow/bpm/cadenzaflow-engine/${VERSION}/cadenzaflow-engine-${VERSION}.pom"
+          CODE="$(curl -s -o /dev/null -w '%{http_code}' "$URL")"
+          echo "GET $URL -> $CODE"
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Nothing was published: cadenzaflow-engine ${VERSION} is not on Nexus."
+            exit 1
+          fi
+          echo "Confirmed: cadenzaflow-engine ${VERSION} is on Nexus."
 
       - name: Collect distribution assets
         run: |
