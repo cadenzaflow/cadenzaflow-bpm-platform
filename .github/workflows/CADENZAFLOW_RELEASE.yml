@@ -282,12 +282,39 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # REST, not the gh CLI: this self-hosted runner image does not ship
+          # gh ("gh: command not found"), unlike GitHub-hosted runners. curl is
+          # present and the job token is enough for both calls.
+          set -euo pipefail
           TAG="${{ steps.v.outputs.TAG }}"
-          if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" --title "$TAG" --generate-notes --draft
+          API="https://api.github.com/repos/${GITHUB_REPOSITORY}"
+          AUTH="Authorization: Bearer ${GH_TOKEN}"
+
+          rel_id() { grep -m1 -o '"id"[[:space:]]*:[[:space:]]*[0-9]*' | grep -o '[0-9]*'; }
+
+          ID="$(curl -sS -H "$AUTH" "$API/releases/tags/$TAG" | rel_id || true)"
+          if [ -z "${ID:-}" ]; then
+            echo "Creating release $TAG"
+            ID="$(curl -sS -X POST -H "$AUTH" -H 'Content-Type: application/json' \
+              -d "{\"tag_name\":\"$TAG\",\"name\":\"$TAG\",\"generate_release_notes\":true}" \
+              "$API/releases" | rel_id)"
+          else
+            echo "Reusing release $TAG (id $ID)"
           fi
-          gh release upload "$TAG" release-assets/* --clobber
-          gh release edit "$TAG" --draft=false
+          [ -n "$ID" ] || { echo "::error::Could not create or find release $TAG"; exit 1; }
+
+          for f in release-assets/*; do
+            NAME="$(basename "$f")"
+            # delete an existing asset of the same name (re-runs must be idempotent)
+            OLD="$(curl -sS -H "$AUTH" "$API/releases/$ID/assets" \
+                   | tr ',' '\n' | grep -B2 "\"name\":\"$NAME\"" | rel_id || true)"
+            [ -n "${OLD:-}" ] && curl -sS -X DELETE -H "$AUTH" "$API/releases/assets/$OLD" >/dev/null || true
+            CODE="$(curl -sS -X POST -H "$AUTH" -H 'Content-Type: application/octet-stream' \
+              --data-binary @"$f" -o /dev/null -w '%{http_code}' \
+              "https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/$ID/assets?name=$NAME")"
+            echo "uploaded $NAME -> $CODE"
+            [ "$CODE" = "201" ] || { echo "::error::Upload of $NAME failed ($CODE)"; exit 1; }
+          done
 
       - name: Release summary
         if: always()
