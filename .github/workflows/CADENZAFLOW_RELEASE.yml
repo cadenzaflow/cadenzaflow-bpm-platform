@@ -54,6 +54,10 @@ on:
         description: 'Trigger the downloads.cadenzaflow.com publish'
         type: boolean
         default: true
+      build_distros:
+        description: 'Build the Tomcat/Run distributions (OFF publishes only the Maven artifacts - much lighter on the runner)'
+        type: boolean
+        default: true
 
 defaults:
   run:
@@ -199,6 +203,17 @@ jobs:
             # copying this line between repositories.)
             ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::default::${NEXUS_URL}"
           fi
+          # Assembling the distributions is by far the heaviest part of this
+          # build and has twice killed the self-hosted runner ("lost
+          # communication with the server"). Publishing only the Maven
+          # artifacts is a much lighter job - and it is what unblocks
+          # consumers, since the distros only feed the download portal.
+          DISTRO_EXCLUDES=""
+          if [ "${{ github.event.inputs.build_distros }}" = "false" ]; then
+            DISTRO_EXCLUDES=",!distro/tomcat,!distro/run"
+            echo "Distributions are OFF: publishing Maven artifacts only."
+          fi
+
           echo "Maven goal: clean ${GOAL}"
           # skip.central.release: belt and braces. The release parent published
           # on Nexus has the Central publishing plugin commented out, but older
@@ -220,7 +235,7 @@ jobs:
             -Dskip.central.release=true \
             -Dmaven.deploy.skip=false \
             ${ALT} \
-            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
+            -pl "!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime${DISTRO_EXCLUDES}"
 
       - name: Verify the artifacts really reached Nexus
         if: ${{ github.event_name == 'push' || github.event.inputs.deploy_to_nexus == 'true' }}
@@ -240,6 +255,7 @@ jobs:
           echo "Confirmed: cadenzaflow-engine ${VERSION} is on Nexus."
 
       - name: Collect distribution assets
+        if: ${{ github.event.inputs.build_distros != 'false' }}
         run: |
           VERSION="${{ steps.v.outputs.VERSION }}"
           mkdir -p release-assets
@@ -257,6 +273,7 @@ jobs:
           fi
 
       - name: Create / publish GitHub Release with assets
+        if: ${{ github.event.inputs.build_distros != 'false' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
