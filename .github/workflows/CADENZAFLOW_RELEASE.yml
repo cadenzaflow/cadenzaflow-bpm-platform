@@ -154,6 +154,19 @@ jobs:
           </settings>
           EOF
 
+      - name: Purge cached CadenzaFlow artifacts (stale parent POMs poison the build)
+        run: |
+          # The Maven cache is restored across runs, and Maven never re-downloads
+          # a RELEASE artifact it already has. A parent POM that changed after
+          # publication therefore sticks around forever on the runner. That is
+          # not hypothetical: the cached cadenzaflow-release-parent:1.0.0 still
+          # activates Sonatype's Central publishing plugin, while the POM
+          # actually published on Nexus has it commented out ("disabled for
+          # Nexus-only deployment"). Our own artifacts are small - always take
+          # them fresh.
+          rm -rf ~/.m2/repository/org/cadenzaflow
+          echo "Purged ~/.m2/repository/org/cadenzaflow"
+
       - name: Align reactor version to the release tag
         run: |
           # No -P: the default activeByDefault 'distro' profile is the full reactor.
@@ -184,14 +197,17 @@ jobs:
             ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::${NEXUS_URL}"
           fi
           echo "Maven goal: clean ${GOAL}"
-          # skipPublishing: the release parent injects Sonatype's Maven Central
-          # publishing plugin into `deploy`. This release goes to the
-          # CadenzaFlow Nexus; Central publication is a separate, not-yet-set-up
-          # process (namespace verification, signing keys).
+          # skip.central.release: belt and braces. The release parent published
+          # on Nexus has the Central publishing plugin commented out, but older
+          # variants of that POM bind the plugin's skip flag to this property.
+          # (Note: -DskipPublishing does NOT work - those variants configure the
+          # parameter in the POM, and POM configuration beats a CLI property.)
+          # This release goes to the CadenzaFlow Nexus; publishing to Maven
+          # Central is a separate process that is not set up yet.
           ./mvnw clean "${GOAL}" \
             --batch-mode --fail-at-end --threads 1C \
             -DskipTests -DskipITs \
-            -DskipPublishing=true \
+            -Dskip.central.release=true \
             ${ALT} \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 

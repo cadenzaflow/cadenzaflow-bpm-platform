@@ -101,6 +101,14 @@ jobs:
           </settings>
           EOF
 
+      - name: Purge cached CadenzaFlow artifacts (stale parent POMs poison the build)
+        run: |
+          # See CADENZAFLOW_RELEASE.yml: Maven never re-downloads a RELEASE it
+          # already has, so a parent POM changed after publication survives in
+          # the runner cache forever. Ours are small - always take them fresh.
+          rm -rf ~/.m2/repository/org/cadenzaflow
+          echo "Purged ~/.m2/repository/org/cadenzaflow"
+
       - name: Show project version
         run: ./mvnw -q -N help:evaluate -Dexpression=project.version -DforceStdout && echo
 
@@ -148,7 +156,7 @@ jobs:
             --batch-mode \
             --fail-at-end \
             --threads 1C \
-            -DskipPublishing=true \
+            -Dskip.central.release=true \
             -DaltDeploymentRepository="${NEXUS_REPO_ID}::${NEXUS_URL}" \
             ${SKIP_FLAG} \
             -pl "${PL}" \
