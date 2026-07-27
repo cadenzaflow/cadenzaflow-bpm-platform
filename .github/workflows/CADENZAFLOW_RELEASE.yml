@@ -214,6 +214,18 @@ jobs:
             echo "Distributions are OFF: publishing Maven artifacts only."
           fi
 
+          # Disk/memory probe. The runner has twice been killed mid-build with
+          # "lost communication with the server" and no JVM OOM anywhere in the
+          # log, which points at ephemeral-storage eviction rather than RAM.
+          # Printing to THIS step's stdout (not a file) means the last sample
+          # before the pod dies is still visible in the streamed log.
+          ( while true; do
+              echo "PROBE $(date -u +%H:%M:%S) disk=$(df -h / | awk 'NR==2{print $3"/"$2" used, "$4" free"}') mem=$(free -g | awk '/Mem:/{print $3"/"$2"Gi used"}')"
+              sleep 30
+            done ) &
+          PROBE_PID=$!
+          trap 'kill $PROBE_PID 2>/dev/null || true' EXIT
+
           echo "Maven goal: clean ${GOAL}"
           # skip.central.release: belt and braces. The release parent published
           # on Nexus has the Central publishing plugin commented out, but older
