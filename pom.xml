@@ -74,6 +74,38 @@
           <skipPublishing>true</skipPublishing>
         </configuration>
       </plugin>
+      <!--
+        ...and keep the standard deploy switched ON.
+
+        The release parent published on Nexus sets maven-deploy-plugin's
+        skip=false, but builds have been resolving an older copy of that POM
+        which sets skip=true at BOTH plugin and execution level - so `mvn
+        deploy` logged "Skipping artifact deployment" for all 142 modules and
+        published nothing while reporting success. POM configuration beats a
+        CLI property, which is why -Dmaven.deploy.skip=false had no effect.
+
+        Overriding both levels here makes the outcome independent of which
+        copy of the parent a given machine happens to resolve.
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+            <configuration>
+              <skip>false</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
