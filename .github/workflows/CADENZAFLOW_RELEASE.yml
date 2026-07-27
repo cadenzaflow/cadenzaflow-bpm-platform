@@ -151,6 +151,12 @@ jobs:
             -DprocessAllModules -DgenerateBackupPoms=false
 
       - name: Build platform + distros (+ optional Nexus deploy)
+        env:
+          # settings.xml references ${env.NEXUS_*}, which Maven resolves when IT
+          # runs - so the secrets must be on THIS step, not only on the step
+          # that wrote the file. Otherwise the deploy goes out anonymous (401).
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         run: |
           # Full build via the default 'distro' profile — engine, engine-spring-7,
           # webapps, rest, the -4 starters AND the tomcat/run distros. Same default
@@ -161,7 +167,10 @@ jobs:
           GOAL="install"; ALT=""
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event.inputs.deploy_to_nexus }}" = "true" ]; then
             GOAL="deploy"
-            ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::default::${NEXUS_URL}"
+            # maven-deploy-plugin 3.x syntax is "id::url". The legacy
+            # "id::default::url" form parses the server id as "id::default", so
+            # the settings.xml credentials never match -> anonymous PUT -> 401.
+            ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::${NEXUS_URL}"
           fi
           echo "Maven goal: clean ${GOAL}"
           ./mvnw clean "${GOAL}" \
