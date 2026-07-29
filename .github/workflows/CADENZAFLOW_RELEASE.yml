@@ -58,6 +58,10 @@ on:
         description: 'Build the Tomcat/Run distributions (OFF publishes only the Maven artifacts - much lighter on the runner)'
         type: boolean
         default: true
+      publish_to_central:
+        description: 'ALSO publish to Maven Central (irreversible - a published version can never be replaced)'
+        type: boolean
+        default: false
 
 defaults:
   run:
@@ -315,6 +319,99 @@ jobs:
             echo "uploaded $NAME -> $CODE"
             [ "$CODE" = "201" ] || { echo "::error::Upload of $NAME failed ($CODE)"; exit 1; }
           done
+
+      # ---------------------------------------------------------------------
+      # Optional second pass: Maven Central.
+      #
+      # Deliberately a SEPARATE Maven run from the Nexus deploy above, because
+      # the two need opposite settings - which is also how 1.0.0/1.1.0 were
+      # published by hand:
+      #   mvn -Psonatype-oss-release -Dskip.cadenzaflow.release=true ... deploy
+      #
+      # -Psonatype-oss-release is a profile in the published release parent and
+      # brings exactly what Central requires: sources jar, javadoc jar, GPG
+      # signatures and the central-publishing plugin. Nothing needs to be added
+      # to our own POMs.
+      #
+      # Central is APPEND-ONLY: a published version can never be replaced or
+      # removed. Hence the explicit opt-in input, off by default.
+      # ---------------------------------------------------------------------
+      - name: Import the release signing key
+        if: ${{ github.event.inputs.publish_to_central == 'true' }}
+        env:
+          GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+        run: |
+          if [ -z "${GPG_KEY}" ]; then
+            echo "::error::MAVEN_GPG_PRIVATE_KEY secret is missing."
+            exit 1
+          fi
+          printf '%s' "${GPG_KEY}" | gpg --batch --import
+          gpg --list-secret-keys --keyid-format=long | sed -n '1,6p'
+
+      - name: Add the Central Portal credentials to settings.xml
+        if: ${{ github.event.inputs.publish_to_central == 'true' }}
+        env:
+          CENTRAL_USR: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          CENTRAL_PSW: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+        run: |
+          if [ -z "${CENTRAL_USR}" ] || [ -z "${CENTRAL_PSW}" ]; then
+            echo "::error::CENTRAL_TOKEN_USERNAME or CENTRAL_TOKEN_PASSWORD secret is missing."
+            exit 1
+          fi
+          # Rewrite settings.xml for this pass: the Nexus-only run wrote an
+          # inert `central` placeholder, which must now carry the real token.
+          # The publishing plugin resolves the server id `central` (tokenAuth).
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+            <servers>
+              <server>
+                <id>cadenzaflow-nexus</id>
+                <username>${env.NEXUS_USERNAME}</username>
+                <password>${env.NEXUS_PASSWORD}</password>
+              </server>
+              <server>
+                <id>central</id>
+                <username>${env.CENTRAL_TOKEN_USERNAME}</username>
+                <password>${env.CENTRAL_TOKEN_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+          echo "settings.xml rewritten with the central server entry"
+
+      - name: Publish to Maven Central
+        if: ${{ github.event.inputs.publish_to_central == 'true' }}
+        env:
+          CENTRAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          CENTRAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: |
+          # skip.cadenzaflow.release=true: Central pass only, do not re-deploy
+          # to Nexus (that already happened above).
+          # Distro modules are excluded: Central takes libraries, not the
+          # Tomcat/Run archives - and javadoc for the whole reactor is heavy.
+          ./mvnw clean deploy \
+            --batch-mode --threads 2 \
+            -Psonatype-oss-release \
+            -Dskip.cadenzaflow.release=true \
+            -DskipTests -DskipITs \
+            -Dgpg.passphrase="${GPG_PASSPHRASE}" \
+            -Dgpg.args="--pinentry-mode=loopback --batch --yes" \
+            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime,!distro/tomcat,!distro/run'
+
+      - name: Verify the version reached Maven Central
+        if: ${{ github.event.inputs.publish_to_central == 'true' }}
+        run: |
+          # Central indexing is not instant; this is a best-effort check.
+          VERSION="${{ steps.v.outputs.VERSION }}"
+          URL="https://repo1.maven.org/maven2/org/cadenzaflow/bpm/cadenzaflow-engine/${VERSION}/cadenzaflow-engine-${VERSION}.pom"
+          CODE="$(curl -s -o /dev/null -w '%{http_code}' "$URL")"
+          echo "GET $URL -> $CODE"
+          if [ "$CODE" != "200" ]; then
+            echo "::warning::Not visible on Central yet. Publishing is asynchronous - check https://central.sonatype.com/publishing/deployments before re-running."
+          fi
 
       - name: Release summary
         if: always()
