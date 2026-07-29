@@ -38,6 +38,12 @@
       See: clirr-maven-plugin usage in parent/pom.xml, commons/pom.xml, engine/pom.xml, etc.
     -->
     <clirr.skip>true</clirr.skip>
+    <!--
+      Deploy to our own Nexus, which is what every ordinary build wants. The
+      central-publish profile switches this off: Maven Central does not take a
+      Maven deploy, it takes a signed bundle uploaded by Sonatype's plugin.
+    -->
+    <cadenzaflow.deploy.skip>false</cadenzaflow.deploy.skip>
   </properties>
 
   <build>
@@ -91,7 +97,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
         <configuration>
-          <skip>false</skip>
+          <skip>${cadenzaflow.deploy.skip}</skip>
         </configuration>
         <executions>
           <execution>
@@ -101,7 +107,7 @@
               <goal>deploy</goal>
             </goals>
             <configuration>
-              <skip>false</skip>
+              <skip>${cadenzaflow.deploy.skip}</skip>
             </configuration>
           </execution>
         </executions>
@@ -110,6 +116,49 @@
   </build>
 
   <profiles>
+    <!--
+      Publish to Maven Central, in addition to our own Nexus.
+
+      This is the deliberate opt-in the comment above asks for. It has to be a
+      profile because the two destinations need opposite plugin setups:
+
+        Nexus   - maven-deploy-plugin uploads module by module
+        Central - Sonatype's plugin collects the whole reactor into one signed
+                  bundle and uploads that; a plain Maven deploy is rejected
+
+      So the profile turns the extension back ON (it replaces the deploy) and
+      the ordinary deploy OFF. Combine it with -Psonatype-oss-release, which
+      is what attaches the sources, javadoc and GPG signatures Central
+      requires.
+
+      autoPublish stays false and waitUntil stops at "validated" on purpose:
+      the upload is checked but nothing goes public until a human presses
+      Publish in the Central portal. Publishing is irreversible - a version
+      number can never be reused - so that click should stay a human decision.
+    -->
+    <profile>
+      <id>central-publish</id>
+      <properties>
+        <cadenzaflow.deploy.skip>true</cadenzaflow.deploy.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.8.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <skipPublishing>false</skipPublishing>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>false</autoPublish>
+              <waitUntil>validated</waitUntil>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <!-- distro profile is default and builds the complete distribution.
          Does not run integration tests. -->
     <profile>
