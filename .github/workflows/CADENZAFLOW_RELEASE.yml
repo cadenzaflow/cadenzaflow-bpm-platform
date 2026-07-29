@@ -402,21 +402,29 @@ jobs:
           # to Nexus (that already happened above).
           # Distro modules are excluded: Central takes libraries, not the
           # Tomcat/Run archives - and javadoc for the whole reactor is heavy.
-          # Two profiles, two jobs:
-          #   sonatype-oss-release - attaches sources, javadoc and signatures
-          #   central-publish      - uploads the signed bundle to Central and
-          #                          switches the Nexus deploy off (see the
-          #                          profile comment in pom.xml). It also pins
-          #                          autoPublish=false / waitUntil=validated,
-          #                          so this uploads and validates but never
-          #                          makes anything public on its own.
+          # Three profiles, three jobs:
+          #   central-sonatype-publish - the module set: libraries only, no qa
+          #                              and no distro archives
+          #   sonatype-oss-release     - attaches sources, javadoc, signatures
+          #   central-publish          - uploads the signed bundle to Central
+          #                              and switches the Nexus deploy off (see
+          #                              the profile comment in pom.xml). It
+          #                              pins autoPublish=false and
+          #                              waitUntil=validated, so this uploads
+          #                              and validates but never makes anything
+          #                              public on its own.
+          #
+          # The module set has to come from a profile, not from -pl: every
+          # module in this POM lives inside a profile, and activating any
+          # profile of this POM with -P switches the activeByDefault `distro`
+          # profile off - which empties the reactor and makes -pl selectors
+          # unresolvable.
           ./mvnw clean deploy \
             --batch-mode --threads 2 \
-            -Psonatype-oss-release,central-publish \
+            -Pcentral-sonatype-publish,sonatype-oss-release,central-publish \
             -Dskip.cadenzaflow.release=true \
             -DskipTests -DskipITs \
-            -Dgpg.passphrase="${GPG_PASSPHRASE}" \
-            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime,!distro/tomcat,!distro/run'
+            -Dgpg.passphrase="${GPG_PASSPHRASE}"
 
       - name: Verify the version reached Maven Central
         if: ${{ github.event.inputs.publish_to_central == 'true' }}
