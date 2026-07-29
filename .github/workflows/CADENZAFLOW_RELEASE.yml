@@ -345,6 +345,16 @@ jobs:
             echo "::error::MAVEN_GPG_PRIVATE_KEY secret is missing."
             exit 1
           fi
+          # Tell gpg itself to take the passphrase from the command line
+          # instead of asking a terminal. The parent pins maven-gpg-plugin
+          # 1.4, which is too old to know -Dgpg.args, so configuring the
+          # plugin cannot fix "gpg: signing failed: Inappropriate ioctl for
+          # device" - gpg has to be configured directly.
+          mkdir -p ~/.gnupg && chmod 700 ~/.gnupg
+          printf 'pinentry-mode loopback\nbatch\nno-tty\n' >> ~/.gnupg/gpg.conf
+          printf 'allow-loopback-pinentry\n' >> ~/.gnupg/gpg-agent.conf
+          gpgconf --kill gpg-agent || true
+
           printf '%s' "${GPG_KEY}" | gpg --batch --import
           gpg --list-secret-keys --keyid-format=long | sed -n '1,6p'
 
