@@ -399,6 +399,8 @@ jobs:
             -DskipTests -DskipITs \
             -Dgpg.passphrase="${GPG_PASSPHRASE}" \
             -Dgpg.args="--pinentry-mode=loopback --batch --yes" \
+            -DautoPublish=false \
+            -DwaitUntil=validated \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime,!distro/tomcat,!distro/run'
 
       - name: Verify the version reached Maven Central
