@@ -37,7 +37,10 @@ import camundajar.impl.scala.util.Either;
 import camundajar.impl.scala.util.Left;
 import camundajar.impl.scala.util.Right;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 import static org.camunda.feel.context.VariableProvider.CompositeVariableProvider;
 import static camundajar.impl.scala.jdk.CollectionConverters.ListHasAsScala;
@@ -74,7 +77,7 @@ public class ScalaFeelEngine implements FeelEngine {
     if (either instanceof Right) {
       Right right = (Right) either;
 
-      return (T) right.value();
+      return (T) materializeCollections(right.value());
 
     } else {
       Left left = (Left) either;
@@ -130,6 +133,46 @@ public class ScalaFeelEngine implements FeelEngine {
 
     } else {
       return toScalaList(javaValueMapper);
+
+    }
+  }
+
+  /**
+   * The FEEL engine's {@code JavaValueMapper} unpacks FEEL lists and contexts into thin
+   * Scala-to-Java bridge wrappers ({@code JavaCollectionWrappers$SeqWrapper} and friends,
+   * shaded under {@code camundajar.impl.scala}). They implement the {@code java.util}
+   * interfaces, but their concrete class is engine-internal: once such a value is stored as
+   * a serialized process variable, its {@code objectTypeName} names a class no consumer can
+   * load, and every typed client read fails. Rebuild collection results into portable JDK
+   * collections before they leave the FEEL boundary.
+   */
+  protected Object materializeCollections(Object value) {
+    if (value instanceof java.util.List) {
+      java.util.List<?> list = (java.util.List<?>) value;
+      java.util.List<Object> materialized = new ArrayList<>(list.size());
+      for (Object element : list) {
+        materialized.add(materializeCollections(element));
+      }
+      return materialized;
+
+    } else if (value instanceof java.util.Map) {
+      java.util.Map<?, ?> map = (java.util.Map<?, ?>) value;
+      java.util.Map<Object, Object> materialized = new LinkedHashMap<>();
+      for (java.util.Map.Entry<?, ?> entry : map.entrySet()) {
+        materialized.put(entry.getKey(), materializeCollections(entry.getValue()));
+      }
+      return materialized;
+
+    } else if (value instanceof java.util.Set) {
+      java.util.Set<?> set = (java.util.Set<?>) value;
+      java.util.Set<Object> materialized = new LinkedHashSet<>();
+      for (Object element : set) {
+        materialized.add(materializeCollections(element));
+      }
+      return materialized;
+
+    } else {
+      return value;
 
     }
   }
