@@ -45,6 +45,16 @@
         <type>pom</type>
       </dependency>
       <dependency>
+        <!-- Also governs the jackson that arrives transitively through the
+             published cadenzaflow 1.2.x artifacts (they shipped with 2.21.2,
+             which carries HIGH advisories). -->
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
         <!-- Import dependency management from Spring Boot -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
