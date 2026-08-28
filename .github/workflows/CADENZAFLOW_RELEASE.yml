@@ -182,6 +182,25 @@ jobs:
             -DnewVersion="${{ steps.v.outputs.VERSION }}" \
             -DprocessAllModules -DgenerateBackupPoms=false
 
+      - name: Pre-resolve Maven dependencies for the security gate
+        run: |
+          # Trivy resolves pom parent chains itself; on a cold cache that means
+          # unauthenticated requests to Maven Central, whose 429 rate limit
+          # makes Trivy exit FATAL (this silently blinded the push-triggered
+          # scans for two months). Resolving first keeps the gate off remote
+          # repos entirely - and warms the cache for the build step below.
+          ./mvnw -B -q -DskipTests dependency:resolve
+
+      - name: Security gate - no release with known HIGH/CRITICAL findings
+        uses: ./.github/actions/trivy-scan
+        with:
+          scan_type: fs
+          scan_target: .
+          severity: HIGH,CRITICAL
+          output_file: trivy-release-gate.json
+          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test
+          fail_on_findings: 'true'
+
       - name: Build platform + distros (+ optional Nexus deploy)
         env:
           # settings.xml references ${env.NEXUS_*}, which Maven resolves when IT

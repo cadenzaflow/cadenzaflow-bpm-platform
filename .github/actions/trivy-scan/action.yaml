@@ -20,6 +20,10 @@ inputs:
     description: 'Comma-separated directories to skip'
     required: false
     default: ''
+  fail_on_findings:
+    description: 'Fail the step when vulnerabilities are found (release gate); default only warns'
+    required: false
+    default: 'false'
 
 outputs:
   report_path:
@@ -58,7 +62,13 @@ runs:
           SKIP_DIRS_FLAG="--skip-dirs ${{ inputs.skip_dirs }}"
         fi
 
-        # JSON report (single scan - used for PDF and console summary)
+        # JSON report (single scan - used for PDF and console summary).
+        # A crashed Trivy must fail this step: it exits FATAL without writing
+        # the report (seen with Maven Central 429s), and the old `|| true` +
+        # missing-file fallback turned that into the same HAS_VULNS=false a
+        # genuinely clean scan produces - a green 0-finding mail from a scan
+        # that never ran. Findings themselves still only warn, not fail.
+        set +e
         trivy ${{ inputs.scan_type }} \
           --severity ${{ inputs.severity }} \
           --scanners vuln \
@@ -67,22 +77,33 @@ runs:
           $SKIP_DIRS_FLAG \
           --format json \
           --output "$REPORT_PATH" \
-          ${{ inputs.scan_target }} || true
+          ${{ inputs.scan_target }}
+        TRIVY_EXIT=$?
+        set -e
+
+        if [ "$TRIVY_EXIT" -ne 0 ]; then
+          echo "::error::Trivy exited with code $TRIVY_EXIT - failing the scan instead of reporting it as clean"
+          exit "$TRIVY_EXIT"
+        fi
+        if [ ! -f "$REPORT_PATH" ]; then
+          echo "::error::Trivy exited 0 but produced no report at $REPORT_PATH"
+          exit 1
+        fi
 
         echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_OUTPUT
 
         # Print summary from JSON report
-        if [ -f "$REPORT_PATH" ]; then
-          VULN_COUNT=$(cat "$REPORT_PATH" | jq '[.Results[]?.Vulnerabilities // [] | length] | add // 0')
-          if [ "$VULN_COUNT" -gt 0 ]; then
-            echo "HAS_VULNS=true" >> $GITHUB_OUTPUT
-            echo "::warning::Found $VULN_COUNT vulnerabilities"
-            # Print summary per target
-            cat "$REPORT_PATH" | jq -r '.Results[]? | select(.Vulnerabilities != null) | "\(.Target): \(.Vulnerabilities | length) vulnerabilities"'
-          else
-            echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
-            echo "No vulnerabilities found"
+        VULN_COUNT=$(cat "$REPORT_PATH" | jq '[.Results[]?.Vulnerabilities // [] | length] | add // 0')
+        if [ "$VULN_COUNT" -gt 0 ]; then
+          echo "HAS_VULNS=true" >> $GITHUB_OUTPUT
+          # Print summary per target
+          cat "$REPORT_PATH" | jq -r '.Results[]? | select(.Vulnerabilities != null) | "\(.Target): \(.Vulnerabilities | length) vulnerabilities"'
+          if [ "${{ inputs.fail_on_findings }}" = "true" ]; then
+            echo "::error::Found $VULN_COUNT vulnerabilities (severity: ${{ inputs.severity }}) - blocking"
+            exit 2
           fi
+          echo "::warning::Found $VULN_COUNT vulnerabilities"
         else
           echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
+          echo "No vulnerabilities found"
         fi
