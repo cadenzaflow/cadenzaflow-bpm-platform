@@ -68,10 +68,17 @@ runs:
         # missing-file fallback turned that into the same HAS_VULNS=false a
         # genuinely clean scan produces - a green 0-finding mail from a scan
         # that never ran. Findings themselves still only warn, not fail.
+        # --offline-scan: never let Trivy contact remote Maven repos. The
+        # workflows pre-resolve dependencies into ~/.m2, but reactor-internal
+        # artifacts (e.g. cadenzaflow-only-bom) are satisfied from the reactor
+        # and never land there, so Trivy still went to Central for them - and
+        # a 429 there is FATAL. Our own artifacts carry no advisories, so
+        # skipping their remote resolution costs no findings.
         set +e
         trivy ${{ inputs.scan_type }} \
           --severity ${{ inputs.severity }} \
           --scanners vuln \
+          --offline-scan \
           --timeout 30m \
           --cache-dir "$TRIVY_CACHE_DIR" \
           $SKIP_DIRS_FLAG \
