@@ -100,7 +100,7 @@ jobs:
           # Spring 6 dual-track lives in engine-spring/core-6), and
           # webapps/frontend is the AngularJS line superseded by webapps/react.
           # None of these ships in the distros.
-          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test,qa,engine-spring/core,engine-rest/docs,engine-rest/engine-rest-openapi/target,webapps/frontend
+          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test,qa,starter-qa,engine-spring/core,engine-rest/docs,engine-rest/engine-rest-openapi/target,webapps/frontend
           skip_files: engine-spring/pom.xml
 
       - name: Generate security report and send mail
