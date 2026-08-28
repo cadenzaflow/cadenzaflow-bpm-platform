@@ -5,6 +5,10 @@ on:
     branches:
       - master
       - 'cadenzaflow-*.*.*'
+  schedule:
+    # Push-only triggers left the repo unscanned between releases, so CVEs
+    # published in quiet periods never surfaced. Weekly rescan closes that gap.
+    - cron: '0 5 * * 1'
   workflow_dispatch:
 
 env:
@@ -39,6 +43,48 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Detected APP_VERSION: $VERSION"
 
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Maven repository
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.m2/wrapper
+          key: ${{ runner.os }}-maven-scan-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-scan-
+            ${{ runner.os }}-maven-
+
+      - name: Cache Trivy vulnerability DB
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/../.cache/trivy
+          key: trivy-db-${{ github.run_id }}
+          restore-keys: |
+            trivy-db-
+
+      - name: Purge cached CadenzaFlow artifacts (stale parent POMs poison resolution)
+        run: |
+          # See CADENZAFLOW_RELEASE.yml: Maven never re-downloads a RELEASE it
+          # already has, so a parent POM changed after publication survives in
+          # the cache forever. Ours are small - always take them fresh.
+          rm -rf ~/.m2/repository/org/cadenzaflow
+          echo "Purged ~/.m2/repository/org/cadenzaflow"
+
+      - name: Pre-resolve Maven dependencies for Trivy
+        run: |
+          # Trivy resolves pom parent chains and dependency POMs itself; on a
+          # cold runner that meant unauthenticated bursts to Maven Central,
+          # which 429-rate-limits this runner's IP and makes Trivy exit FATAL
+          # before writing a report (every scan since at least 2026-06-29 died
+          # this way). With the local repo populated, Trivy never goes remote.
+          ./mvnw -B -q -DskipTests dependency:resolve
+
       - name: Trivy filesystem scan
         id: trivy_fs
         uses: ./.github/actions/trivy-scan
@@ -50,7 +96,10 @@ jobs:
           skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test
 
       - name: Generate security report and send mail
-        if: always()
+        # No `if: always()` here: when the scan step fails there is no report
+        # file, and the counting fallbacks in security-report turn that into a
+        # green "0 findings" PDF. A failed scan must stay a red workflow, not
+        # become a clean-looking mail.
         uses: ./.github/actions/security-report
         with:
           app_name: ${{ env.APP_NAME }}
