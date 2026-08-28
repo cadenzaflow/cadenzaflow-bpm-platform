@@ -198,7 +198,9 @@ jobs:
           scan_target: .
           severity: HIGH,CRITICAL
           output_file: trivy-release-gate.json
-          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test
+          # Same production-scope policy as security-scan.yml - keep in sync.
+          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test,qa,engine-spring/core,engine-rest/docs,engine-rest/engine-rest-openapi/target,webapps/frontend
+          skip_files: engine-spring/pom.xml
           fail_on_findings: 'true'
 
       - name: Build platform + distros (+ optional Nexus deploy)

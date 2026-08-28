@@ -93,7 +93,15 @@ jobs:
           scan_target: .
           severity: HIGH,CRITICAL
           output_file: trivy-fs-report.json
-          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test
+          # Production-scope policy (project_cadenzaflow_security_eol_policy.md,
+          # same list as the 2026-05 release baselines): qa/* is test
+          # infrastructure, engine-rest/docs is doc-gen npm tooling,
+          # engine-spring/core is the documented Spring 5.3 EOL track (its
+          # Spring 6 dual-track lives in engine-spring/core-6), and
+          # webapps/frontend is the AngularJS line superseded by webapps/react.
+          # None of these ships in the distros.
+          skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test,qa,engine-spring/core,engine-rest/docs,engine-rest/engine-rest-openapi/target,webapps/frontend
+          skip_files: engine-spring/pom.xml
 
       - name: Generate security report and send mail
         # No `if: always()` here: when the scan step fails there is no report
