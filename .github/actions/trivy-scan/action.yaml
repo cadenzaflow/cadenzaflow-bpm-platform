@@ -20,6 +20,10 @@ inputs:
     description: 'Comma-separated directories to skip'
     required: false
     default: ''
+  fail_on_findings:
+    description: 'Fail the step when vulnerabilities are found (release gate); default only warns'
+    required: false
+    default: 'false'
 
 outputs:
   report_path:
@@ -92,9 +96,13 @@ runs:
         VULN_COUNT=$(cat "$REPORT_PATH" | jq '[.Results[]?.Vulnerabilities // [] | length] | add // 0')
         if [ "$VULN_COUNT" -gt 0 ]; then
           echo "HAS_VULNS=true" >> $GITHUB_OUTPUT
-          echo "::warning::Found $VULN_COUNT vulnerabilities"
           # Print summary per target
           cat "$REPORT_PATH" | jq -r '.Results[]? | select(.Vulnerabilities != null) | "\(.Target): \(.Vulnerabilities | length) vulnerabilities"'
+          if [ "${{ inputs.fail_on_findings }}" = "true" ]; then
+            echo "::error::Found $VULN_COUNT vulnerabilities (severity: ${{ inputs.severity }}) - blocking"
+            exit 2
+          fi
+          echo "::warning::Found $VULN_COUNT vulnerabilities"
         else
           echo "HAS_VULNS=false" >> $GITHUB_OUTPUT
           echo "No vulnerabilities found"
