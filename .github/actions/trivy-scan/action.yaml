@@ -20,6 +20,10 @@ inputs:
     description: 'Comma-separated directories to skip'
     required: false
     default: ''
+  skip_files:
+    description: 'Comma-separated files to skip'
+    required: false
+    default: ''
   fail_on_findings:
     description: 'Fail the step when vulnerabilities are found (release gate); default only warns'
     required: false
@@ -61,6 +65,10 @@ runs:
         if [ -n "${{ inputs.skip_dirs }}" ]; then
           SKIP_DIRS_FLAG="--skip-dirs ${{ inputs.skip_dirs }}"
         fi
+        SKIP_FILES_FLAG=""
+        if [ -n "${{ inputs.skip_files }}" ]; then
+          SKIP_FILES_FLAG="--skip-files ${{ inputs.skip_files }}"
+        fi
 
         # JSON report (single scan - used for PDF and console summary).
         # A crashed Trivy must fail this step: it exits FATAL without writing
@@ -82,6 +90,7 @@ runs:
           --timeout 30m \
           --cache-dir "$TRIVY_CACHE_DIR" \
           $SKIP_DIRS_FLAG \
+          $SKIP_FILES_FLAG \
           --format json \
           --output "$REPORT_PATH" \
           ${{ inputs.scan_target }}

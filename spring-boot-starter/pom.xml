@@ -17,6 +17,43 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- spring-boot-dependencies lags Tomcat/Spring security releases; a
+           property override does not reach an imported BOM, so the embedded
+           Tomcat and the framework BOM are pinned here, ahead of the Boot
+           import, to the same versions the rest of the platform ships
+           (same pattern as distro/run and spring-boot-starter-4). -->
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${version.tomcat}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${version.tomcat}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-websocket</artifactId>
+        <version>${version.tomcat}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-framework-bom</artifactId>
+        <version>${version.spring.framework6}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <!-- Also governs the jackson that arrives transitively through the
+             published cadenzaflow 1.2.x artifacts (they shipped with 2.21.2,
+             which carries HIGH advisories). -->
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
       <dependency>
         <!-- Import dependency management from Spring Boot -->
         <groupId>org.springframework.boot</groupId>

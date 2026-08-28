@@ -42,6 +42,20 @@
         <version>${version.httpclient5}</version>
       </dependency>
 
+      <!-- httpclient5 5.4.x still pulls httpcore5 5.3.x transitively, which
+           carries HIGH advisories (CVE-2026-54399/-54428) - pin the core to
+           the fixed line explicitly. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5-h2</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
