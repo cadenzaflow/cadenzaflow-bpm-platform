@@ -175,13 +175,6 @@ jobs:
           rm -rf ~/.m2/repository/org/cadenzaflow
           echo "Purged ~/.m2/repository/org/cadenzaflow"
 
-      - name: Align reactor version to the release tag
-        run: |
-          # No -P: the default activeByDefault 'distro' profile is the full reactor.
-          ./mvnw -q versions:set \
-            -DnewVersion="${{ steps.v.outputs.VERSION }}" \
-            -DprocessAllModules -DgenerateBackupPoms=false
-
       - name: Pre-resolve Maven dependencies for the security gate
         run: |
           # Trivy resolves pom parent chains itself; on a cold cache that means
@@ -189,7 +182,21 @@ jobs:
           # makes Trivy exit FATAL (this silently blinded the push-triggered
           # scans for two months). Resolving first keeps the gate off remote
           # repos entirely - and warms the cache for the build step below.
+          #
+          # MUST run BEFORE versions:set: dependency:resolve wants the JAR of
+          # every inter-module dependency, and unbuilt reactor modules fall
+          # back to the repositories - where the new release version does not
+          # exist yet (this failed the first 1.2.3 attempt). At the still-
+          # published reactor version resolution succeeds, and the external
+          # dependency set the gate scans is identical either way.
           ./mvnw -B -q -DskipTests dependency:resolve
+
+      - name: Align reactor version to the release tag
+        run: |
+          # No -P: the default activeByDefault 'distro' profile is the full reactor.
+          ./mvnw -q versions:set \
+            -DnewVersion="${{ steps.v.outputs.VERSION }}" \
+            -DprocessAllModules -DgenerateBackupPoms=false
 
       - name: Security gate - no release with known HIGH/CRITICAL findings
         uses: ./.github/actions/trivy-scan
