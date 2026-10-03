@@ -21,6 +21,24 @@
     <third-party-bom-scopes>compile|runtime</third-party-bom-scopes>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <!-- httpclient5 5.4.x brings httpcore5 5.3.x transitively (CVE-2026-54399/
+           -54428), while module.xml names httpcore5-${version.httpcore5}.jar.
+           Pinned so the packaged jar and the module descriptor agree. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5-h2</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.cadenzaflow.bpm.wildfly</groupId>
