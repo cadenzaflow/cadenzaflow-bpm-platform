@@ -38,6 +38,7 @@ public class MybatisJoinHelper {
     mappings.put(QueryOrderingProperty.RELATION_PROCESS_DEFINITION, new ProcessDefinitionTableMapping());
     mappings.put(QueryOrderingProperty.RELATION_CASE_DEFINITION, new CaseDefinitionTableMapping());
     mappings.put(QueryOrderingProperty.RELATION_DEPLOYMENT, new DeploymentTableMapping());
+    mappings.put(QueryOrderingProperty.RELATION_HISTORIC_PROCESS_INSTANCE, new HistoricProcessInstanceTableMapping());
   }
 
   public static String tableAlias(String relation, int index) {

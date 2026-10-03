@@ -259,6 +259,11 @@
       ${JOIN_TYPE} ${prefix}ACT_RU_EXECUTION EXE on RES.ID_ = EXE.PROC_INST_ID_
     </if>
 
+    <!-- the start time lives only in the history; left join keeps instances without a history row -->
+    <if test="historicProcessInstanceJoinRequired">
+      left join ${prefix}ACT_HI_PROCINST HPI on HPI.ID_ = RES.ID_
+    </if>
+
     inner join ${prefix}ACT_RE_PROCDEF P on RES.PROC_DEF_ID_ = P.ID_
 
     <if test="authCheck.shouldPerformAuthorizatioCheck &amp;&amp; !authCheck.revokeAuthorizationCheckEnabled &amp;&amp; authCheck.authUserId != null">

@@ -41,8 +41,16 @@
     <@lib.property
         name = "tenantId"
         type = "string"
-        last = true
         desc = "The tenant id of the process instance." />
+
+    <@lib.property
+        name = "startTime"
+        type = "string"
+        format = "date-time"
+        last = true
+        desc = "The time the process instance was started.
+                Only present in the results of the process instance query when `withStartTimeInReturn` is `true`.
+                Default [format](${docsUrl}/reference/rest/overview/date-format/) `yyyy-MM-dd'T'HH:mm:ss.SSSZ`." />
 
 </@lib.dto>
 </#macro>

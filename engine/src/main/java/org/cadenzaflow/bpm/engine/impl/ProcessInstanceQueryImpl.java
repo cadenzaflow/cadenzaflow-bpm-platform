@@ -231,6 +231,29 @@ public class ProcessInstanceQueryImpl extends AbstractVariableQueryImpl<ProcessI
     return this;
   }
 
+  public ProcessInstanceQuery orderByStartTime() {
+    if (isOrQueryActive) {
+      throw new ProcessEngineException("Invalid query usage: cannot set orderByStartTime() within 'or' query");
+    }
+
+    orderBy(new QueryOrderingProperty(QueryOrderingProperty.RELATION_HISTORIC_PROCESS_INSTANCE,
+        ProcessInstanceQueryProperty.START_TIME));
+    return this;
+  }
+
+  /**
+   * True when the query is ordered by a column of the process instance history,
+   * so the mapper joins ACT_HI_PROCINST.
+   */
+  public boolean isHistoricProcessInstanceJoinRequired() {
+    for (QueryOrderingProperty orderingProperty : orderingProperties) {
+      if (QueryOrderingProperty.RELATION_HISTORIC_PROCESS_INSTANCE.equals(orderingProperty.getRelation())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public ProcessInstanceQuery active() {
     this.suspensionState = SuspensionState.ACTIVE;
     return this;

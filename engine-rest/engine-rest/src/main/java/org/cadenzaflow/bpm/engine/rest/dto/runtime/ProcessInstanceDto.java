@@ -16,8 +16,13 @@
  */
 package org.cadenzaflow.bpm.engine.rest.dto.runtime;
 
+import java.util.Date;
+
 import org.cadenzaflow.bpm.engine.rest.dto.LinkableDto;
 import org.cadenzaflow.bpm.engine.runtime.ProcessInstance;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 public class ProcessInstanceDto extends LinkableDto {
 
@@ -29,6 +34,7 @@ public class ProcessInstanceDto extends LinkableDto {
   private boolean suspended;
   private String tenantId;
   private String definitionKey;
+  private Date startTime;
 
   public ProcessInstanceDto() {
   }
@@ -74,6 +80,19 @@ public class ProcessInstanceDto extends LinkableDto {
 
   public String getTenantId() {
     return tenantId;
+  }
+
+  /**
+   * Only set when the query asked for it ({@code withStartTimeInReturn}),
+   * so the field is left out of the JSON otherwise.
+   */
+  @JsonInclude(Include.NON_NULL)
+  public Date getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(Date startTime) {
+    this.startTime = startTime;
   }
 
   public static ProcessInstanceDto fromProcessInstance(ProcessInstance instance) {
