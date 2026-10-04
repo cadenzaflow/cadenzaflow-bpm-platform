@@ -38,6 +38,51 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+      <!-- spring-boot-dependencies 4.0.x lags Tomcat/Jackson security releases
+           (4.0.8 still ships Tomcat 11.0.24 and Jackson 3.1.5); a property
+           override does not reach an imported BOM, so they are pinned here,
+           ahead of the Boot import (same pattern as spring-boot-starter). -->
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${version.tomcat11}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${version.tomcat11}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-websocket</artifactId>
+        <version>${version.tomcat11}</version>
+      </dependency>
+      <dependency>
+        <groupId>tools.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson3}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <!-- httpclient5 5.4.x and spring-boot-dependencies both still bring
+           httpcore5 5.3.x (CVE-2026-54399/-54428); same pin as clients/java. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5-h2</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
       <dependency>
         <!-- Dependency management from Spring Boot 4 -->
         <groupId>org.springframework.boot</groupId>

@@ -44,6 +44,15 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+      <dependency>
+        <!-- spring-boot-dependencies 3.5.14 manages jackson 2.21.2 (HIGH
+             advisories); same pin as spring-boot-starter. -->
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
 
       <dependency>
         <groupId>org.springframework.boot</groupId>

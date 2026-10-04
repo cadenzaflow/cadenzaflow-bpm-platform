@@ -54,6 +54,18 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+      <!-- httpclient5 5.4.x and spring-boot-dependencies both still bring
+           httpcore5 5.3.x (CVE-2026-54399/-54428); same pin as clients/java. -->
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5-h2</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
       <dependency>
         <!-- Import dependency management from Spring Boot -->
         <groupId>org.springframework.boot</groupId>
