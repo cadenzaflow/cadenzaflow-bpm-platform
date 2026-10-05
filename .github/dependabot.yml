@@ -1,0 +1,51 @@
+# Dependabot version updates for the Maven build.
+#
+# Why version updates and not only security alerts: advisory databases can lag
+# behind upstream releases. Tomcat 10.1.60 (2026-09) fixed 12 CVEs that were
+# still unreviewed in the GitHub Advisory Database weeks later, so neither the
+# Trivy release gate nor Dependabot security updates could match them to
+# tomcat-embed-core 10.1.59. A plain "a newer patch exists" PR catches that.
+#
+# Scope mirrors the trusted families of .github/renovate.json5 (inherited from
+# Camunda; Renovate is not installed in this organization), plus the families
+# the 1.2.4 security work touched: httpcomponents core5, Jackson 3, FreeMarker.
+#
+# Patch updates only. Minor and major upgrades (e.g. Jackson 2.22, Spring Boot
+# 4.1) are product decisions and are not opened automatically.
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 15
+    commit-message:
+      prefix: "chore(deps)"
+    allow:
+      - dependency-name: "org.springframework*"
+      - dependency-name: "org.apache.tomcat*"
+      - dependency-name: "commons-fileupload*"
+      - dependency-name: "org.apache.commons:commons-lang3"
+      - dependency-name: "net.minidev:json-smart"
+      - dependency-name: "com.jayway.jsonpath:json-path"
+      - dependency-name: "org.apache.httpcomponents.client5*"
+      - dependency-name: "org.apache.httpcomponents.core5*"
+      - dependency-name: "com.fasterxml.uuid*"
+      - dependency-name: "com.fasterxml.jackson*"
+      - dependency-name: "tools.jackson*"
+      - dependency-name: "org.freemarker*"
+      - dependency-name: "org.camunda.feel*"
+      - dependency-name: "io.quarkus*"
+      - dependency-name: "ch.qos.logback*"
+      - dependency-name: "org.graalvm*"
+      - dependency-name: "com.google.code.gson*"
+      - dependency-name: "org.postgresql*"
+      - dependency-name: "com.h2database*"
+      - dependency-name: "com.mysql*"
+      - dependency-name: "org.jboss.resteasy*"
+      - dependency-name: "org.apache.groovy*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
