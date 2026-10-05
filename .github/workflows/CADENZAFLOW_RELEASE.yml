@@ -94,7 +94,11 @@ jobs:
         with:
           fetch-depth: 0
           # push: the pushed tag. dispatch: explicit ref, else the version tag.
-          ref: ${{ github.event.inputs.ref || github.event.inputs.version || github.ref }}
+          # `version` is the bare number (1.2.2); the tag carries the
+          # cadenzaflow-v prefix, so it has to be formatted back on. Falling
+          # through to the bare version checked out a ref named "1.2.2", which
+          # does not exist - every dispatch had to pass `ref` by hand.
+          ref: ${{ github.event.inputs.ref || (github.event.inputs.version && format('cadenzaflow-v{0}', github.event.inputs.version)) || github.ref }}
 
       - name: Resolve version & tag
         id: v

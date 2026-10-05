@@ -21,9 +21,15 @@ on:
         required: false
         default: ''
         type: string
-  push:
-    tags:
-      - 'cadenzaflow-v*'
+
+# Deliberately NOT triggered by `push: tags: cadenzaflow-v*`.
+# CADENZAFLOW_RELEASE.yml already deploys the same reactor to the same Nexus on
+# a release tag. Wiring this workflow to the tag as well ran two full Maven
+# deploys of identical GAVs at the same moment, on two runner pods of the same
+# scale set - three with the master Test run still in flight. On 2026-08-18
+# (cadenzaflow-v1.2.2) all three pods died within 46 seconds of each other
+# ("The self-hosted runner lost communication with the server") and left 1.2.2
+# half-published on Nexus. This workflow is the ad-hoc deploy: dispatch only.
 
 concurrency:
   group: nexus-deploy-${{ github.ref }}
