@@ -60,7 +60,7 @@
     <version.cronutils>9.2.1</version.cronutils>
 
     <version.slf4j>2.0.13</version.slf4j>
-    <version.logback>1.5.32</version.logback>
+    <version.logback>1.5.38</version.logback>
     <version.junit>4.13.1</version.junit>
     <version.assertj>2.9.1</version.assertj>
     <version.mockito>5.10.0</version.mockito>
