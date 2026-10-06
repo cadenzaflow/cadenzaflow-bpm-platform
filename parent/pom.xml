@@ -79,7 +79,7 @@
     <version.wildfly26.core>18.1.2.Final</version.wildfly26.core>
 
     <version.tomcat9>9.0.121</version.tomcat9>
-    <version.tomcat>10.1.59</version.tomcat>
+    <version.tomcat>10.1.60</version.tomcat>
     <!-- Tomcat 11 for the Spring Boot 4 starters (Jakarta EE 11) -->
     <version.tomcat11>11.0.26</version.tomcat11>
 
