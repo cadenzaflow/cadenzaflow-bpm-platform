@@ -12,13 +12,34 @@
 #
 # Patch updates only. Minor and major upgrades (e.g. Jackson 2.22, Spring Boot
 # 4.1) are product decisions and are not opened automatically.
+#
+# Cadence follows common practice (e.g. Camunda 8's Renovate setup):
+# - weekly, early Monday before working hours, so CI is free during the day
+#   (all builds share one runner node);
+# - all patch updates grouped into one PR per week (one CI run);
+# - a 3-day cooldown before a new release is proposed, against supply-chain
+#   attacks through freshly published packages.
+# Security updates are a separate channel (Dependabot alerts / security
+# updates in the repository settings) and are not delayed by this schedule.
 version: 2
 updates:
   - package-ecosystem: maven
     directory: "/"
     schedule:
-      interval: daily
-    open-pull-requests-limit: 15
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: Europe/Istanbul
+    cooldown:
+      default-days: 3
+    groups:
+      patch-updates:
+        applies-to: version-updates
+        update-types:
+          - patch
+        patterns:
+          - "*"
+    open-pull-requests-limit: 5
     commit-message:
       prefix: "chore(deps)"
     allow:
