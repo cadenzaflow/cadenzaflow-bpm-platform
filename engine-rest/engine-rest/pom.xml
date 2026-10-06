@@ -13,7 +13,10 @@
 
   <properties>
     <!-- pin tomcat version for engine-rest -->
-    <version.tomcat>7.0.50</version.tomcat>
+    <!-- Tomcat 7, test scope only (embedded-container REST tests). Named apart from
+         the platform's version.tomcat (parent/pom.xml) so tooling that keys on
+         property names - Dependabot - does not treat the two as one dependency. -->
+    <version.tomcat7>7.0.50</version.tomcat7>
     <rest.http.port>38080</rest.http.port>
     <javax.activation.version>1.1.1</javax.activation.version>
   </properties>
@@ -170,7 +173,7 @@
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-jasper</artifactId>
-      <version>${version.tomcat}</version>
+      <version>${version.tomcat7}</version>
       <scope>test</scope>
     </dependency>
 
@@ -259,14 +262,14 @@
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-core</artifactId>
-      <version>${version.tomcat}</version>
+      <version>${version.tomcat7}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-logging-juli</artifactId>
-      <version>${version.tomcat}</version>
+      <version>${version.tomcat7}</version>
       <scope>test</scope>
     </dependency>
 
