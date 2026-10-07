@@ -1,0 +1,90 @@
+name: Publish spring-webmvc backport
+
+# Builds third-party/spring-webmvc-6.2.19-cadenzaflow (see its README): the official
+# spring-webmvc 6.2.19 with the CVE-2026-47884 fix backported into XsltView.
+# With `deploy`, publishes org.springframework:spring-webmvc:6.2.19-cadenzaflow.1 to the
+# CadenzaFlow Nexus. Never to Maven Central: org.springframework is not our namespace.
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Publish to the CadenzaFlow Nexus (off = build and verify only)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  VERSION: 6.2.19-cadenzaflow.1
+  NEXUS_REPO_ID: cadenzaflow-nexus
+  NEXUS_URL: https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus
+
+jobs:
+  build:
+    # GitHub-hosted on purpose: a small job that should not compete with the
+    # platform builds on the shared self-hosted node.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: third-party/spring-webmvc-6.2.19-cadenzaflow
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build, test and assemble (fails on any unexpected difference to the official jar)
+        run: bash build.sh
+
+      - name: Upload the artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-webmvc-${{ env.VERSION }}
+          path: third-party/spring-webmvc-6.2.19-cadenzaflow/target/dist/
+
+      - name: Publish to the CadenzaFlow Nexus
+        if: ${{ inputs.deploy }}
+        env:
+          # settings.xml resolves ${env.*} when Maven runs, so the secrets must be
+          # on this step (see CADENZAFLOW_RELEASE.yml).
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: |
+          if [ -z "${NEXUS_USERNAME}" ] || [ -z "${NEXUS_PASSWORD}" ]; then
+            echo "::error::NEXUS_USERNAME or NEXUS_PASSWORD secret is missing."
+            exit 1
+          fi
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'EOF'
+          <settings>
+            <servers>
+              <server>
+                <id>cadenzaflow-nexus</id>
+                <username>${env.NEXUS_USERNAME}</username>
+                <password>${env.NEXUS_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+          mvn -B org.apache.maven.plugins:maven-deploy-plugin:3.1.4:deploy-file \
+            -Dfile="target/dist/spring-webmvc-${VERSION}.jar" \
+            -DpomFile="target/dist/spring-webmvc-${VERSION}.pom" \
+            -Dsources="target/dist/spring-webmvc-${VERSION}-sources.jar" \
+            -DrepositoryId="${NEXUS_REPO_ID}" \
+            -Durl="${NEXUS_URL}"
+
+      - name: Verify the artifact reached Nexus
+        if: ${{ inputs.deploy }}
+        run: |
+          url="${NEXUS_URL}/org/springframework/spring-webmvc/${VERSION}/spring-webmvc-${VERSION}.jar"
+          code=$(curl -s -o /dev/null -w '%{http_code}' "$url")
+          echo "$url -> HTTP $code"
+          [ "$code" = 200 ]
