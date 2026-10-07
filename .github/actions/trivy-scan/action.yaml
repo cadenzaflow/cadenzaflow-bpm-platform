@@ -28,6 +28,10 @@ inputs:
     description: 'Fail the step when vulnerabilities are found (release gate); default only warns'
     required: false
     default: 'false'
+  ignore_file:
+    description: 'Trivy ignore file in YAML form (per-CVE id, paths, statement, expired_at); empty = none'
+    required: false
+    default: ''
 
 outputs:
   report_path:
@@ -69,6 +73,18 @@ runs:
         if [ -n "${{ inputs.skip_files }}" ]; then
           SKIP_FILES_FLAG="--skip-files ${{ inputs.skip_files }}"
         fi
+        # Documented exceptions only: every entry is scoped to one CVE and its
+        # paths, carries a written statement and expires (expired_at), after
+        # which the finding blocks again. A configured but missing file must
+        # fail, never silently scan without it.
+        IGNORE_FLAG=""
+        if [ -n "${{ inputs.ignore_file }}" ]; then
+          if [ ! -f "${{ inputs.ignore_file }}" ]; then
+            echo "::error::ignore_file '${{ inputs.ignore_file }}' not found"
+            exit 1
+          fi
+          IGNORE_FLAG="--ignorefile ${{ inputs.ignore_file }}"
+        fi
 
         # JSON report (single scan - used for PDF and console summary).
         # A crashed Trivy must fail this step: it exits FATAL without writing
@@ -91,6 +107,7 @@ runs:
           --cache-dir "$TRIVY_CACHE_DIR" \
           $SKIP_DIRS_FLAG \
           $SKIP_FILES_FLAG \
+          $IGNORE_FLAG \
           --format json \
           --output "$REPORT_PATH" \
           ${{ inputs.scan_target }}

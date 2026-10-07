@@ -1,0 +1,24 @@
+# Documented exceptions for the Trivy release gate and the weekly security scan.
+#
+# Rules for every entry:
+# - one CVE, scoped with `paths` to the exact pom.xml it applies to;
+# - a written statement: why it is acceptable and what we ship instead;
+# - `expired_at`: after this date the entry stops applying and the finding
+#   blocks the release again. Renew only after re-checking the statement.
+#
+# Add or change entries through a reviewed PR.
+
+vulnerabilities:
+  - id: CVE-2026-47884
+    paths:
+      - "spring-boot-starter/starter-webapp-core/pom.xml"
+    statement: >-
+      spring-webmvc XsltView stylesheet location (SSRF/RCE). CadenzaFlow does not
+      use XsltView. Spring Framework 6.2 has no open-source fix (6.2.20 is
+      Spring Enterprise only). starter-webapp-core is a library published to
+      Maven Central: applications get spring-webmvc from their own Spring Boot
+      version, so it cannot depend on our Nexus-only patched build. The Run
+      distribution ships the patched spring-webmvc 6.2.19-cadenzaflow.1
+      (third-party/spring-webmvc-6.2.19-cadenzaflow). Review together with the
+      Spring Boot 3 Community Edition phase-out (V1.3 LTS).
+    expired_at: 2026-12-31
