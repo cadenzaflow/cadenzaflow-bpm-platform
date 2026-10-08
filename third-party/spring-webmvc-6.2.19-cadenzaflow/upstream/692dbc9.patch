@@ -1,0 +1,40 @@
+From 692dbc9160de3b5de50ccedeee014716d0cedb7b Mon Sep 17 00:00:00 2001
+From: rstoyanchev <rossen.stoyanchev@broadcom.com>
+Date: Mon, 29 Jun 2026 17:07:00 +0100
+Subject: [PATCH] Apply ResourceHandlerUtils checks in XsltView
+
+Closes gh-37029
+---
+ .../springframework/web/servlet/view/xslt/XsltView.java   | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/spring-webmvc/src/main/java/org/springframework/web/servlet/view/xslt/XsltView.java b/spring-webmvc/src/main/java/org/springframework/web/servlet/view/xslt/XsltView.java
+index c40c3811313c..79e064e554f4 100644
+--- a/spring-webmvc/src/main/java/org/springframework/web/servlet/view/xslt/XsltView.java
++++ b/spring-webmvc/src/main/java/org/springframework/web/servlet/view/xslt/XsltView.java
+@@ -53,6 +53,7 @@
+ import org.springframework.util.StringUtils;
+ import org.springframework.util.xml.SimpleTransformErrorListener;
+ import org.springframework.util.xml.TransformerUtils;
++import org.springframework.web.servlet.resource.ResourceHandlerUtils;
+ import org.springframework.web.servlet.view.AbstractUrlBasedView;
+ import org.springframework.web.util.WebUtils;
+ 
+@@ -457,12 +458,15 @@ protected Transformer createTransformer(Templates templates) throws TransformerC
+ 	protected Source getStylesheetSource() {
+ 		String url = getUrl();
+ 		Assert.state(url != null, "'url' not set");
+-
+ 		if (logger.isDebugEnabled()) {
+ 			logger.debug("Applying stylesheet [" + url + "]");
+ 		}
++		String location = ResourceHandlerUtils.normalizeInputPath(url);
++		if (ResourceHandlerUtils.shouldIgnoreInputPath(location)) {
++			throw new ApplicationContextException("Invalid XSLT stylesheet location '" + url + "'");
++		}
+ 		try {
+-			Resource resource = obtainApplicationContext().getResource(url);
++			Resource resource = obtainApplicationContext().getResource(location);
+ 			return new StreamSource(resource.getInputStream(), resource.getURI().toASCIIString());
+ 		}
+ 		catch (IOException ex) {
