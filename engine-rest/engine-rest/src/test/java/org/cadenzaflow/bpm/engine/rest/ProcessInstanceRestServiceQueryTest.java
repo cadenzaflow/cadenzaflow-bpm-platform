@@ -45,7 +45,10 @@ import java.util.Set;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
+import org.cadenzaflow.bpm.engine.HistoryService;
 import org.cadenzaflow.bpm.engine.ProcessEngineException;
+import org.cadenzaflow.bpm.engine.history.HistoricProcessInstance;
+import org.cadenzaflow.bpm.engine.history.HistoricProcessInstanceQuery;
 import org.cadenzaflow.bpm.engine.impl.ProcessInstanceQueryImpl;
 import org.cadenzaflow.bpm.engine.impl.calendar.DateTimeUtil;
 import org.cadenzaflow.bpm.engine.rest.dto.runtime.ProcessInstanceQueryDto;
@@ -1121,6 +1124,106 @@ public class ProcessInstanceRestServiceQueryTest extends
     executeAndVerifySorting("businessKey", "asc", Status.OK);
     inOrder.verify(mockedQuery).orderByBusinessKey();
     inOrder.verify(mockedQuery).asc();
+
+    inOrder = Mockito.inOrder(mockedQuery);
+    executeAndVerifySorting("startTime", "desc", Status.OK);
+    inOrder.verify(mockedQuery).orderByStartTime();
+    inOrder.verify(mockedQuery).desc();
+  }
+
+  @Test
+  public void testSortingByStartTimeAsPost() {
+    InOrder inOrder = Mockito.inOrder(mockedQuery);
+    Map<String, Object> json = new HashMap<String, Object>();
+    json.put("sorting", OrderingBuilder.create()
+      .orderBy("startTime").desc()
+      .orderBy("businessKey").asc()
+      .getJson());
+    given().contentType(POST_JSON_CONTENT_TYPE).body(json)
+      .header("accept", MediaType.APPLICATION_JSON)
+      .then().expect().statusCode(Status.OK.getStatusCode())
+      .when().post(PROCESS_INSTANCE_QUERY_URL);
+
+    inOrder.verify(mockedQuery).orderByStartTime();
+    inOrder.verify(mockedQuery).desc();
+    inOrder.verify(mockedQuery).orderByBusinessKey();
+    inOrder.verify(mockedQuery).asc();
+  }
+
+  @Test
+  public void testStartTimeNotReturnedByDefault() {
+    HistoryService historyService = mockHistoryService(MockProvider.createMockHistoricProcessInstances());
+
+    String content = given()
+      .then().expect().statusCode(Status.OK.getStatusCode())
+      .when().get(PROCESS_INSTANCE_QUERY_URL).asString();
+
+    assertThat(from(content).getMap("[0]")).doesNotContainKey("startTime");
+    verifyNoMoreInteractions(historyService);
+  }
+
+  @Test
+  public void testStartTimeReturned() {
+    HistoricProcessInstanceQuery historicQuery = mockHistoryService(MockProvider.createMockHistoricProcessInstances())
+        .createHistoricProcessInstanceQuery();
+
+    String content = given().queryParam("withStartTimeInReturn", true)
+      .then().expect().statusCode(Status.OK.getStatusCode())
+      .when().get(PROCESS_INSTANCE_QUERY_URL).asString();
+
+    assertThat(from(content).getString("[0].startTime"))
+        .isEqualTo(MockProvider.EXAMPLE_HISTORIC_PROCESS_INSTANCE_START_TIME);
+    verify(historicQuery).processInstanceIds(Collections.singleton(MockProvider.EXAMPLE_PROCESS_INSTANCE_ID));
+  }
+
+  @Test
+  public void testStartTimeReturnedAsPost() {
+    mockHistoryService(MockProvider.createMockHistoricProcessInstances());
+    Map<String, Object> json = new HashMap<String, Object>();
+    json.put("withStartTimeInReturn", true);
+
+    String content = given().contentType(POST_JSON_CONTENT_TYPE).body(json)
+      .header("accept", MediaType.APPLICATION_JSON)
+      .then().expect().statusCode(Status.OK.getStatusCode())
+      .when().post(PROCESS_INSTANCE_QUERY_URL).asString();
+
+    assertThat(from(content).getString("[0].startTime"))
+        .isEqualTo(MockProvider.EXAMPLE_HISTORIC_PROCESS_INSTANCE_START_TIME);
+  }
+
+  @Test
+  public void testStartTimeLeftOutWithoutHistory() {
+    mockHistoryService(Collections.<HistoricProcessInstance>emptyList());
+
+    String content = given().queryParam("withStartTimeInReturn", true)
+      .then().expect().statusCode(Status.OK.getStatusCode())
+      .when().get(PROCESS_INSTANCE_QUERY_URL).asString();
+
+    assertThat(from(content).getList("")).hasSize(1);
+    assertThat(from(content).getMap("[0]")).doesNotContainKey("startTime");
+  }
+
+  @Test
+  public void testStartTimeSkipsHistoryForEmptyResult() {
+    setUpMockInstanceQuery(Collections.<ProcessInstance>emptyList());
+    HistoryService historyService = mockHistoryService(MockProvider.createMockHistoricProcessInstances());
+
+    given().queryParam("withStartTimeInReturn", true)
+      .then().expect().statusCode(Status.OK.getStatusCode())
+      .when().get(PROCESS_INSTANCE_QUERY_URL);
+
+    verifyNoMoreInteractions(historyService);
+  }
+
+  protected HistoryService mockHistoryService(List<HistoricProcessInstance> historicInstances) {
+    HistoricProcessInstanceQuery historicQuery = mock(HistoricProcessInstanceQuery.class);
+    when(historicQuery.processInstanceIds(anySet())).thenReturn(historicQuery);
+    when(historicQuery.list()).thenReturn(historicInstances);
+
+    HistoryService historyService = mock(HistoryService.class);
+    when(historyService.createHistoricProcessInstanceQuery()).thenReturn(historicQuery);
+    when(processEngine.getHistoryService()).thenReturn(historyService);
+    return historyService;
   }
 
   @Test

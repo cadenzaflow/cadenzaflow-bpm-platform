@@ -315,6 +315,14 @@ public interface ProcessInstanceQuery extends Query<ProcessInstanceQuery, Proces
   ProcessInstanceQuery orderByBusinessKey();
 
   /**
+   * Order by the start time (needs to be followed by {@link #asc()} or {@link #desc()}).
+   * The start time is read from the history of the process instance, so it is only
+   * available when the history level is not <code>none</code>. Instances without a
+   * history entry have no start time; their position in the result is database-specific.
+   */
+  ProcessInstanceQuery orderByStartTime();
+
+  /**
    * <p>After calling or(), a chain of several filter criteria could follow. Each filter criterion that follows or()
    * will be linked together with an OR expression until the OR query is terminated. To terminate the OR query right
    * after the last filter criterion was applied, {@link #endOr()} must be invoked.</p>

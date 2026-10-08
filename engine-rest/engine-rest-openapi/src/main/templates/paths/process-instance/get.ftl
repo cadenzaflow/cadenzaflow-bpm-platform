@@ -11,10 +11,19 @@
   "parameters" : [
 
     <#assign last = false >
-    <#assign sortByValues = ['"instanceId"', '"definitionKey"', '"definitionId"', '"tenantId"', '"businessKey"']>
+    <#assign sortByValues = ['"instanceId"', '"definitionKey"', '"definitionId"', '"tenantId"', '"businessKey"', '"startTime"']>
     <#include "/lib/commons/sort-params.ftl" >
 
     <#include "/lib/commons/pagination-params.ftl" >
+
+    <@lib.parameter name = "withStartTimeInReturn"
+        location = "query"
+        type = "boolean"
+        defaultValue = 'false'
+        desc = "If set to `true`, each process instance in the result carries its `startTime`.
+                The start time is read from the history, so it is only returned when the history level
+                is not `none` (and, with authorization enabled, when the user has `READ_HISTORY`
+                permission on the process definition)."/>
 
     <#assign last = true >
     <#include "/lib/commons/process-instance-query-params.ftl" >

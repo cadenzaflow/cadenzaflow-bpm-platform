@@ -172,6 +172,15 @@
                 If set to true variableValue and variablevalue are treated as equal." />
 
     <@lib.property
+        name = "withStartTimeInReturn"
+        type = "boolean"
+        desc = "Only applies to the list endpoint `POST /process-instance`.
+                If set to `true`, each process instance in the result carries its `startTime`.
+                The start time is read from the history, so it is only returned when the history level
+                is not `none` (and, with authorization enabled, when the user has `READ_HISTORY`
+                permission on the process definition)." />
+
+    <@lib.property
         name = "orQueries"
         type = "array"
         dto = "ProcessInstanceQueryDto"
@@ -189,7 +198,7 @@
       "items":
 
         <#assign last = true >
-        <#assign sortByValues = ['"instanceId"', '"definitionId"', '"definitionKey"', '"businessKey"', '"tenantId"']>
+        <#assign sortByValues = ['"instanceId"', '"definitionId"', '"definitionKey"', '"businessKey"', '"tenantId"', '"startTime"']>
         <#include "/lib/commons/sort-props.ftl" >
 
     }

@@ -47,6 +47,7 @@ public class ProcessInstanceQueryDto extends AbstractQueryDto<ProcessInstanceQue
   private static final String SORT_BY_DEFINITION_ID_VALUE = "definitionId";
   private static final String SORT_BY_TENANT_ID = "tenantId";
   private static final String SORT_BY_BUSINESS_KEY = "businessKey";
+  private static final String SORT_BY_START_TIME = "startTime";
 
   private static final List<String> VALID_SORT_BY_VALUES;
   static {
@@ -56,6 +57,7 @@ public class ProcessInstanceQueryDto extends AbstractQueryDto<ProcessInstanceQue
     VALID_SORT_BY_VALUES.add(SORT_BY_DEFINITION_ID_VALUE);
     VALID_SORT_BY_VALUES.add(SORT_BY_TENANT_ID);
     VALID_SORT_BY_VALUES.add(SORT_BY_BUSINESS_KEY);
+    VALID_SORT_BY_VALUES.add(SORT_BY_START_TIME);
   }
 
   private String deploymentId;
@@ -85,6 +87,9 @@ public class ProcessInstanceQueryDto extends AbstractQueryDto<ProcessInstanceQue
   private Boolean rootProcessInstances;
   private Boolean leafProcessInstances;
   private Boolean isProcessDefinitionWithoutTenantId;
+
+  // not a filter: controls whether the result carries the start time
+  private Boolean withStartTimeInReturn;
 
   protected Boolean variableNamesIgnoreCase;
   protected Boolean variableValuesIgnoreCase;
@@ -377,6 +382,15 @@ public class ProcessInstanceQueryDto extends AbstractQueryDto<ProcessInstanceQue
     this.isProcessDefinitionWithoutTenantId = isProcessDefinitionWithoutTenantId;
   }
 
+  public Boolean isWithStartTimeInReturn() {
+    return withStartTimeInReturn;
+  }
+
+  @CamundaQueryParam(value = "withStartTimeInReturn", converter = BooleanConverter.class)
+  public void setWithStartTimeInReturn(Boolean withStartTimeInReturn) {
+    this.withStartTimeInReturn = withStartTimeInReturn;
+  }
+
   @Override
   protected boolean isValidSortByValue(String value) {
     return VALID_SORT_BY_VALUES.contains(value);
@@ -527,6 +541,8 @@ public class ProcessInstanceQueryDto extends AbstractQueryDto<ProcessInstanceQue
       query.orderByTenantId();
     } else if (sortBy.equals(SORT_BY_BUSINESS_KEY)) {
       query.orderByBusinessKey();
+    } else if (sortBy.equals(SORT_BY_START_TIME)) {
+      query.orderByStartTime();
     }
   }
 

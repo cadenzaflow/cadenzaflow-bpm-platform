@@ -18,6 +18,7 @@ package org.cadenzaflow.bpm.engine.rest.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.Response.Status;
@@ -30,6 +31,7 @@ import org.cadenzaflow.bpm.engine.ProcessEngineException;
 import org.cadenzaflow.bpm.engine.RuntimeService;
 import org.cadenzaflow.bpm.engine.batch.Batch;
 import org.cadenzaflow.bpm.engine.exception.NullValueException;
+import org.cadenzaflow.bpm.engine.history.HistoricProcessInstance;
 import org.cadenzaflow.bpm.engine.history.HistoricProcessInstanceQuery;
 import org.cadenzaflow.bpm.engine.impl.util.EnsureUtil;
 import org.cadenzaflow.bpm.engine.management.SetJobRetriesByProcessAsyncBuilder;
@@ -87,7 +89,36 @@ public class ProcessInstanceRestServiceImpl extends AbstractRestProcessEngineAwa
       ProcessInstanceDto resultInstance = ProcessInstanceDto.fromProcessInstance(instance);
       instanceResults.add(resultInstance);
     }
+
+    if (Boolean.TRUE.equals(queryDto.isWithStartTimeInReturn())) {
+      addStartTimes(engine, instanceResults);
+    }
     return instanceResults;
+  }
+
+  /**
+   * The start time is kept only in the history, so it is read with one
+   * history query for the whole page. Instances without a history entry
+   * (history level none, or no READ_HISTORY permission) keep no start time.
+   */
+  protected void addStartTimes(ProcessEngine engine, List<ProcessInstanceDto> instances) {
+    if (instances.isEmpty()) {
+      return;
+    }
+
+    Map<String, ProcessInstanceDto> instancesById = new HashMap<>();
+    for (ProcessInstanceDto instance : instances) {
+      instancesById.put(instance.getId(), instance);
+    }
+
+    List<HistoricProcessInstance> historicInstances = engine.getHistoryService()
+        .createHistoricProcessInstanceQuery()
+        .processInstanceIds(instancesById.keySet())
+        .list();
+
+    for (HistoricProcessInstance historicInstance : historicInstances) {
+      instancesById.get(historicInstance.getId()).setStartTime(historicInstance.getStartTime());
+    }
   }
 
   @Override
