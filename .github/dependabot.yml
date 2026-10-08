@@ -70,3 +70,11 @@ updates:
         update-types:
           - "version-update:semver-major"
           - "version-update:semver-minor"
+      # Test-only Tomcat 7 (engine-rest embedded-container tests, version.tomcat in
+      # engine-rest/engine-rest/pom.xml). 7.0.109 changes class loading in the
+      # embedded WebappClassLoader and breaks the harness (Jersey
+      # ClassCastException in CustomJacksonDateFormatTest, #64). Not shipped.
+      # The shipped Tomcat lines (10.1.x, 11.0.x) are outside this range.
+      - dependency-name: "org.apache.tomcat.embed:*"
+        versions:
+          - ">= 7.0.51, < 8"
