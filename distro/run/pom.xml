@@ -55,6 +55,17 @@
       </dependency>
 
       <dependency>
+        <!-- CVE-2026-47884: Spring Framework 6.2 has no open-source fix (6.2.20 is
+             Spring Enterprise only). Run embeds Spring, so it ships the backported
+             spring-webmvc built from third-party/spring-webmvc-6.2.19-cadenzaflow and
+             published to the CadenzaFlow Nexus. Run is Nexus-only, so no Maven
+             Central consumer resolves this. Managed here directly, so it wins over
+             the spring-framework-bom and spring-boot-dependencies imports. -->
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>6.2.19-cadenzaflow.1</version>
+      </dependency>
+      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <version>${version.spring-boot}</version>
