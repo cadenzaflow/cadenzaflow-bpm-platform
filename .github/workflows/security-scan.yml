@@ -104,6 +104,8 @@ jobs:
           # spring-webmvc backport); it depends on the unpatched input by design.
           skip_dirs: .git,node_modules,target,.mvn,docs,test,src/test,qa,spring-boot-starter/starter-qa,spring-boot-starter-4/starter-qa,engine-spring/core,engine-rest/docs,engine-rest/engine-rest-openapi/target,webapps/frontend,third-party
           skip_files: engine-spring/pom.xml
+          # Per-CVE, path-scoped, expiring exceptions with a written statement.
+          ignore_file: .trivyignore.yaml
 
       - name: Generate security report and send mail
         # No `if: always()` here: when the scan step fails there is no report
