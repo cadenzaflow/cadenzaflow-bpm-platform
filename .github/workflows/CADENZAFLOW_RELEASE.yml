@@ -55,7 +55,7 @@ on:
         type: boolean
         default: true
       build_distros:
-        description: 'Build the Tomcat/Run distributions (OFF publishes only the Maven artifacts - much lighter on the runner)'
+        description: 'Create the GitHub Release with the Tomcat/Run distribution assets (OFF = Maven artifacts on Nexus only)'
         type: boolean
         default: true
       publish_to_central:
@@ -243,15 +243,15 @@ jobs:
             # copying this line between repositories.)
             ALT="-DaltDeploymentRepository=${NEXUS_REPO_ID}::default::${NEXUS_URL}"
           fi
-          # Assembling the distributions is by far the heaviest part of this
-          # build and has twice killed the self-hosted runner ("lost
-          # communication with the server"). Publishing only the Maven
-          # artifacts is a much lighter job - and it is what unblocks
-          # consumers, since the distros only feed the download portal.
-          DISTRO_EXCLUDES=""
+          # build_distros=false does NOT shrink the reactor. It used to add
+          # "!distro/tomcat,!distro/run" to -pl, but excluding an aggregator
+          # only drops that one POM - its modules (run-core, the assemblies,
+          # ...) still build and deploy. 1.2.4 went out that way: every run and
+          # tomcat module on Nexus, but not their parents cadenzaflow-bpm-run-root
+          # and cadenzaflow-tomcat, so nobody could resolve run-core 1.2.4.
+          # The flag now only skips the GitHub Release and its assets below.
           if [ "${{ github.event.inputs.build_distros }}" = "false" ]; then
-            DISTRO_EXCLUDES=",!distro/tomcat,!distro/run"
-            echo "Distributions are OFF: publishing Maven artifacts only."
+            echo "build_distros=false: no GitHub Release; Maven artifacts only."
           fi
 
           # Measured 2026-07-27 with a temporary probe: at peak this build used
@@ -280,7 +280,7 @@ jobs:
             -Dskip.central.release=true \
             -Dmaven.deploy.skip=false \
             ${ALT} \
-            -pl "!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime${DISTRO_EXCLUDES}"
+            -pl "!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime"
 
       - name: Verify the artifacts really reached Nexus
         if: ${{ github.event_name == 'push' || github.event.inputs.deploy_to_nexus == 'true' }}
@@ -298,6 +298,45 @@ jobs:
             exit 1
           fi
           echo "Confirmed: cadenzaflow-engine ${VERSION} is on Nexus."
+
+          # Every published POM must also find its parent there, or Maven
+          # cannot resolve the artifact at all ("Non-resolvable parent POM").
+          # 1.2.4 passed the check above with run-root and tomcat parents
+          # missing, so walk all POMs of this version and fetch each parent.
+          BASE="${NEXUS_URL%%/repository/*}"
+          REPO="${NEXUS_URL##*/}"
+          : > poms.txt; TOKEN=""
+          while :; do
+            Q="${BASE}/service/rest/v1/search/assets?repository=${REPO}&version=${VERSION}&maven.extension=pom"
+            [ -n "$TOKEN" ] && Q="${Q}&continuationToken=${TOKEN}"
+            R="$(curl -sf "$Q")"
+            echo "$R" | jq -r '.items[] | select(.path | endswith(".pom")) | .downloadUrl' >> poms.txt
+            TOKEN="$(echo "$R" | jq -r '.continuationToken // empty')"
+            [ -z "$TOKEN" ] && break
+          done
+          echo "POMs of ${VERSION} on Nexus: $(wc -l < poms.txt)"
+          tag() { sed -n "s:.*<$1>\([^<]*\)</$1>.*:\1:p"; }
+          : > parents.txt
+          while read -r U; do
+            B="$(curl -sf "$U" | tr -d '\r\n\t ' | sed -n 's:.*<parent>\(.*\)</parent>.*:\1:p' || true)"
+            [ -n "$B" ] || continue
+            echo "$(echo "$B" | tag groupId):$(echo "$B" | tag artifactId):$(echo "$B" | tag version)" >> parents.txt
+          done < poms.txt
+          # org.cadenzaflow.bpm.qa* is skipped: three qa aggregators are excluded
+          # by -pl above while their test-only modules still deploy (true since
+          # 1.2.1). Nobody consumes those; whether qa should publish at all is
+          # a separate decision.
+          MISSING=0
+          for PARENT in $(grep ":${VERSION}\$" parents.txt | grep -v '^org\.cadenzaflow\.bpm\.qa' | sort -u || true); do
+            IFS=: read -r G A V <<< "$PARENT"
+            P="${NEXUS_URL}/$(echo "$G" | tr . /)/${A}/${V}/${A}-${V}.pom"
+            if [ "$(curl -s -o /dev/null -w '%{http_code}' "$P")" != "200" ]; then
+              echo "::error::Parent POM ${PARENT} is missing on Nexus - its modules cannot be resolved."
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          [ "$MISSING" -eq 0 ] || exit 1
+          echo "Confirmed: every non-qa ${VERSION} parent POM is on Nexus."
 
       - name: Collect distribution assets
         if: ${{ github.event.inputs.build_distros != 'false' }}
