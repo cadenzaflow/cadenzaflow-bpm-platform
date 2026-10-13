@@ -354,5 +354,20 @@
   "PLUGIN_EXT_PRIORITY": "Priority",
   "PLUGIN_EXT_RETRIES": "Retries",
   "PLUGIN_EXT_TOPIC": "Topic",
-  "PLUGIN_EXT_WORKER_ID": "Worker ID"
+  "PLUGIN_EXT_WORKER_ID": "Worker ID",
+  "PLUGIN_JOB_RETRY_BULK_CLOSE": "Close",
+  "PLUGIN_JOB_RETRY_BULK_EXCEPTION": "Exception",
+  "PLUGIN_JOB_RETRY_BULK_FAILED": "Failed",
+  "PLUGIN_JOB_RETRY_BULK_ID": "ID",
+  "PLUGIN_JOB_RETRY_BULK_INCREMENT_RETRIES": "Increment Number of Retries",
+  "PLUGIN_JOB_RETRY_BULK_JOBS": "{{count}} jobs",
+  "PLUGIN_JOB_RETRY_BULK_RETRIES_FAILED_JOB": "Increment Number of Retries of Failed Jobs",
+  "PLUGIN_JOB_RETRY_BULK_RETRY": "Retry",
+  "PLUGIN_JOB_RETRY_BULK_SCOPE": "Scope",
+  "PLUGIN_JOB_RETRY_BULK_SELECT_FAILED_JOB": "Select one of the following failed jobs to increment their number of retries:",
+  "PLUGIN_JOB_RETRY_BULK_STATUS": "Status",
+  "PLUGIN_JOB_RETRY_BULK_SUCCESSFUL": "Successful",
+  "PLUGIN_JOB_RETRY_BULK_THERE_ARE_NO_FAILED_JOBS": "There are no failed jobs available to increment their retries.",
+  "PLUGIN_JOB_RETRY_ERROR_2": "Incrementing the number of retries finished with failures.",
+  "PLUGIN_JOB_RETRY_MESSAGE_2": "Incrementing the number of retries finished."
 }

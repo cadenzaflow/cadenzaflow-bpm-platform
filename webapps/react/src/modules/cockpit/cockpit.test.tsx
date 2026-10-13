@@ -153,6 +153,21 @@ function fakeBackend() {
     if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
       return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
     }
+    if (path === `${ENGINE}/job/count` && query.get('withException') === 'true') {
+      return json({ count: 2 });
+    }
+    if (path === `${ENGINE}/job` && query.get('withException') === 'true') {
+      return json([
+        { id: 'failed-1', executionId: 'pi-1', exceptionMessage: 'Bean not found' },
+        { id: 'failed-2', executionId: 'ex-2', exceptionMessage: 'Timeout' },
+      ]);
+    }
+    if (path === `${ENGINE}/job/failed-1/retries` && method === 'PUT') {
+      return new Response(null, { status: 204 });
+    }
+    if (path === `${ENGINE}/job/failed-2/retries` && method === 'PUT') {
+      return json({ message: 'job is locked' }, 500);
+    }
     if (path === `${ENGINE}/job/count` && query.get('processInstanceId') === 'pi-1') {
       return json({ count: 1 });
     }
@@ -544,5 +559,28 @@ describe('cockpit process instance jobs and external tasks', () => {
       sortBy: 'taskPriority',
       sortOrder: 'asc',
     });
+  });
+});
+
+describe('cockpit process instance bulk retry', () => {
+  it('retries the selected failed jobs and reports each one', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Increment Number of Retries of Failed Jobs' }));
+    const dialog = within(await screen.findByRole('dialog', { name: 'Increment Number of Retries' }));
+    // both fit on one page, so both start selected; the scope is the innermost activity instance of the job's execution
+    expect(await dialog.findByRole('button', { name: 'Retry (2 jobs)' })).toBeEnabled();
+    expect(dialog.getByText('Prepare Bank Transfer')).toBeInTheDocument();
+    expect(dialog.getByText('Approve Invoice')).toBeInTheDocument();
+
+    await user.click(dialog.getByRole('button', { name: 'Retry (2 jobs)' }));
+    expect(await screen.findByText('Incrementing the number of retries finished with failures.')).toBeInTheDocument();
+    const summary = within(await screen.findByRole('dialog', { name: 'Increment Number of Retries' }));
+    expect(within(summary.getByText('failed-1').closest('tr')!).getByText('Successful')).toBeInTheDocument();
+    expect(within(summary.getByText('failed-2').closest('tr')!).getByText('Failed')).toBeInTheDocument();
+    const retried = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/failed-1/retries'));
+    expect(JSON.parse(String(retried?.[1]?.body))).toEqual({ retries: 1 });
   });
 });

@@ -77,15 +77,15 @@ export function treeSelection(root: ActivityInstance, activityIds: string[], act
 }
 
 /**
- * The activity instance each execution runs in (tasks and jobs know only
- * their execution); the innermost one where executions are shared.
+ * The activity instance each execution runs in, by tree id (tasks and jobs
+ * know only their execution); the innermost one where executions are shared.
  */
 export function activityInstanceOfExecution(root: ActivityInstance): Map<string, string> {
   const map = new Map<string, string>();
   // depth first: inner instances come after outer ones and win
   for (const node of [root, ...allInstances(root)]) {
     for (const executionId of node.executionIds ?? (node.executionId ? [node.executionId] : [])) {
-      map.set(executionId, node.id);
+      map.set(executionId, treeIdOf(node));
     }
   }
   return map;

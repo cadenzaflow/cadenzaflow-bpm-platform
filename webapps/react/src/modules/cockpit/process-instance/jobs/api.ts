@@ -26,6 +26,30 @@ export function useJobActivity(engine: string, jobDefinitionId: string | null) {
   });
 }
 
+/** A failed job without retries left, as the bulk retry dialog lists it. */
+export interface FailedJob {
+  id: string;
+  executionId: string;
+  exceptionMessage: string | null;
+}
+
+/**
+ * Gives each job one more retry (optionally with a new due date); every job
+ * on its own, so the outcome is reported per job.
+ */
+export function useBulkRetry(engine: string) {
+  const invalidate = useInvalidateCockpit(engine);
+  return useMutation({
+    mutationFn: async ({ ids, dueDate }: { ids: string[]; dueDate?: string }) => {
+      const results = await Promise.allSettled(
+        ids.map((id) => request<void>(jobUrl(engine, id, '/retries'), { method: 'PUT', json: { retries: 1, dueDate } })),
+      );
+      return new Map(ids.map((id, index) => [id, results[index].status === 'fulfilled']));
+    },
+    onSettled: invalidate,
+  });
+}
+
 export function useJobSuspension(engine: string) {
   const invalidate = useInvalidateCockpit(engine);
   return useMutation({

@@ -354,5 +354,20 @@
   "PLUGIN_EXT_PRIORITY": "Priorität",
   "PLUGIN_EXT_RETRIES": "Versuchsanzahl",
   "PLUGIN_EXT_TOPIC": "Thema",
-  "PLUGIN_EXT_WORKER_ID": "Arbeiter-ID"
+  "PLUGIN_EXT_WORKER_ID": "Arbeiter-ID",
+  "PLUGIN_JOB_RETRY_BULK_CLOSE": "Schließen",
+  "PLUGIN_JOB_RETRY_BULK_EXCEPTION": "Exception",
+  "PLUGIN_JOB_RETRY_BULK_FAILED": "Fehlgeschlagen",
+  "PLUGIN_JOB_RETRY_BULK_ID": "ID",
+  "PLUGIN_JOB_RETRY_BULK_INCREMENT_RETRIES": "Erhöhung der Versuchsanzahl",
+  "PLUGIN_JOB_RETRY_BULK_JOBS": "{{count}} Jobs",
+  "PLUGIN_JOB_RETRY_BULK_RETRIES_FAILED_JOB": "Erhöhung der Versuchsanzahl von fehlgeschlagenen Jobs",
+  "PLUGIN_JOB_RETRY_BULK_RETRY": "Erneut versuchen",
+  "PLUGIN_JOB_RETRY_BULK_SCOPE": "Bereich",
+  "PLUGIN_JOB_RETRY_BULK_SELECT_FAILED_JOB": "Wählen Sie einen der folgenden fehlgeschlagenen Jobs, um die Versuchsanzahl zu erhöhen:",
+  "PLUGIN_JOB_RETRY_BULK_STATUS": "Status",
+  "PLUGIN_JOB_RETRY_BULK_SUCCESSFUL": "Erfolgreich",
+  "PLUGIN_JOB_RETRY_BULK_THERE_ARE_NO_FAILED_JOBS": "Es existieren keine fehlgeschlagenen Jobs, deren Versuchsanzahl erhöht werden kann.",
+  "PLUGIN_JOB_RETRY_ERROR_2": "Erhöhung der Versuchsanzahl mit Fehlern abgeschlossen.",
+  "PLUGIN_JOB_RETRY_MESSAGE_2": "Erhöhung der Versuchsanzahl abgeschlossen."
 }
