@@ -15,6 +15,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
+import { TimeToLive } from '../components/TimeToLive';
 import { DefinitionSuspension } from './DefinitionSuspension';
 import { selectedActivities, type ProcessDefinitionSearch } from './search';
 import { definitionTabs } from './tabs/registry';
@@ -121,7 +122,14 @@ export function ProcessDefinitionPage() {
               <dt>{t('PROCESS_DEFINITION_DEFINITION_NAME')}</dt>
               <dd>{value(definition.data.name)}</dd>
               <dt>{t('PROCESS_DEFINITION_HISTORY_TIME_TO_LIVE')}</dt>
-              <dd>{value(definition.data.historyTimeToLive)}</dd>
+              <dd>
+                <TimeToLive
+                  engine={engine}
+                  resource="process-definition"
+                  id={definition.data.id}
+                  value={definition.data.historyTimeToLive}
+                />
+              </dd>
               <dt>{t('PROCESS_DEFINITION_TENANT_ID')}</dt>
               <dd>{value(definition.data.tenantId)}</dd>
               <dt>{t('PROCESS_DEFINITION_DEPLOYMENT_ID')}</dt>

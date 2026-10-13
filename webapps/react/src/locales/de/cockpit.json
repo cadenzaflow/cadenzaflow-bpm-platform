@@ -152,5 +152,18 @@
   "PLUGIN_UPDATE_SUSPENSION_STATE_MESSAGE_2": "Die Aktualisierung des Status der Prozessdefinition wurde eingeplant.",
   "PLUGIN_UPDATE_SUSPENSION_STATE_MESSAGE_3": "Status der Prozessdefinition konnte nicht aktualisiert werden: {{message}}",
   "PLUGIN_UPDATE_SUSPENSION_STATE_MESSAGE_4": "Die Aktualisierung des Status der Prozessdefinition konnte nicht eingeplant werden: {{message}}",
-  "PLUGIN_UPDATE_SUSPENSION_STATE_STATUS_FINISHED": "Abgeschlossen"
+  "PLUGIN_UPDATE_SUSPENSION_STATE_STATUS_FINISHED": "Abgeschlossen",
+  "TIME_TO_LIVE_DAY": "{{ttl}} Tag",
+  "TIME_TO_LIVE_DAYS": "{{ttl}} Tage",
+  "TIME_TO_LIVE_MESSAGE_ERR": "Fehler beim Aktualisieren des Lebenszyklus historischer Daten.",
+  "TIME_TO_LIVE_NULL": "null",
+  "TIME_TO_LIVE_POPUP_RADIO_CLEAR": "Wert zurücksetzen",
+  "TIME_TO_LIVE_POPUP_RADIO_UPDATE": "Wert aktualisieren",
+  "TIME_TO_LIVE_POPUP_REMOVAL_TIME_NOT_UPDATED_INFO": "Das Aktualisieren des Lebenszyklus historischer Daten hat keinen Einfluss auf bereits abgeschlossene Instanzen. ",
+  "TIME_TO_LIVE_POPUP_RUN_BATCH_JOB_INFO": "Führen Sie eine Stapelverarbeitung durch, um abgeschlossene Instanzen zu aktualisieren.",
+  "TIME_TO_LIVE_POPUP_STATE_SUCCESS": "Der Lebenszyklus historischer Daten wurde aktualisiert",
+  "TIME_TO_LIVE_POPUP_STATE_SUCCESS_MESSAGE_CLEAR": "Der Lebenszyklus historischer Daten wurde auf \"null\" gesetzt.",
+  "TIME_TO_LIVE_POPUP_STATE_SUCCESS_MESSAGE_UPDATE": "Der Lebenszyklus historischer Daten wurde auf {{ttl}} Tage aktualisiert.",
+  "TIME_TO_LIVE_POPUP_SUBTITLE": "Option wählen:",
+  "TIME_TO_LIVE_POPUP_TITLE_EDIT": "Wert des Lebenszyklus historischer Daten ändern"
 }
