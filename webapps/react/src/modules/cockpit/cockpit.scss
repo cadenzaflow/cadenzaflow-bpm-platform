@@ -171,3 +171,27 @@
   @include type-style('heading-compact-02');
   margin-bottom: $spacing-04;
 }
+
+// Human tasks: assignments by type and by group, side by side
+.cz-task-dashboard {
+  display: grid;
+  gap: $spacing-07;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.cz-count-column {
+  width: 8rem;
+}
+
+.cz-total-row td {
+  font-weight: 600;
+}
+
+.cz-task-dashboard__note {
+  @include type-style('helper-text-01');
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  margin-top: $spacing-03;
+  color: $text-secondary;
+}
