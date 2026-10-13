@@ -1,6 +1,7 @@
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/theme' as *;
 @use '@carbon/react/scss/type' as *;
+@use '../../styles/brand';
 
 .cz-bpmn-diagram {
   height: 28rem;
@@ -40,7 +41,7 @@
 }
 
 .cz-diagram-badge__count {
-  background: #2a78d6;
+  background: brand.$brand-interactive;
   color: $text-on-color;
 }
 

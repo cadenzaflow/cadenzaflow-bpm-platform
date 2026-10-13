@@ -83,7 +83,10 @@ src/
   checks that every language has every key.
 - **Styles**: Carbon components and Carbon design tokens; a small SCSS file
   per module, class names prefixed with `cz-`. Fonts are bundled because the
-  CSP only allows fonts from the server itself.
+  CSP only allows fonts from the server itself. The CadenzaFlow brand (logo,
+  header line and colors of the classic webapps, buttons and links in a
+  darker shade for contrast) is in `styles/_brand.scss` and
+  `assets/cadenzaflow-logo.png`.
 - **TypeScript** runs with `strict` off but `strictNullChecks` on (TanStack
   Router requires it).
 
