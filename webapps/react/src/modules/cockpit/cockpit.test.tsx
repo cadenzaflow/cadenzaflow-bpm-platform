@@ -72,6 +72,31 @@ function fakeBackend() {
     if (path === `${ENGINE}/process-instance/count`) {
       return json({ count: query.has('processDefinitionId') ? 4 : 7 });
     }
+    if (path === `${COCKPIT}/incident/count` && method === 'POST') {
+      return json({ count: 1 });
+    }
+    if (path === `${COCKPIT}/incident` && method === 'POST') {
+      return json([
+        {
+          id: 'inc-1',
+          processDefinitionId: 'invoice:2',
+          processInstanceId: 'pi-1',
+          incidentTimestamp: '2026-10-13T08:00:00.000+0000',
+          incidentType: 'failedJob',
+          activityId: 'approveInvoice',
+          failedActivityId: 'approveInvoice',
+          incidentMessage: 'Bean not found',
+          configuration: 'job-1',
+          causeIncidentProcessInstanceId: 'pi-1',
+          rootCauseIncidentProcessInstanceId: 'pi-1',
+          rootCauseIncidentConfiguration: 'job-1',
+          annotation: null,
+        },
+      ]);
+    }
+    if ((path === `${ENGINE}/job/job-1/retries` || path === `${ENGINE}/incident/inc-1/annotation`) && method === 'PUT') {
+      return new Response(null, { status: 204 });
+    }
     if (path === `${COCKPIT}/process-instance/count` && method === 'POST') {
       return json({ count: 1 });
     }
@@ -151,5 +176,32 @@ describe('cockpit process definition', () => {
       sortBy: 'startTime',
       sortOrder: 'desc',
     });
+  });
+});
+
+describe('cockpit incidents', () => {
+  it('lists the incidents of a definition, annotates and retries them', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-definition/invoice:2?tab=pd-incidents-tab');
+    const user = await logIn();
+
+    expect(await screen.findByRole('button', { name: 'Bean not found' })).toBeInTheDocument();
+    const query = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${COCKPIT}/incident?`) && init?.method === 'POST');
+    expect(JSON.parse(String(query?.[1]?.body))).toEqual({ processDefinitionIdIn: ['invoice:2'], sortBy: 'incidentType', sortOrder: 'asc' });
+
+    await user.click(screen.getByRole('button', { name: 'Annotation' }));
+    const annotation = within(await screen.findByRole('dialog', { name: 'Annotation' }));
+    await user.type(annotation.getByRole('textbox'), 'Known problem');
+    await user.click(annotation.getByRole('button', { name: 'Save' }));
+    await waitFor(() =>
+      expect(fetchMock.mock.calls.some(([url, init]) => url.endsWith('/incident/inc-1/annotation') && init?.body === '{"annotation":"Known problem"}')).toBe(true),
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Increment Number of Retries' }));
+    const retry = within(await screen.findByRole('dialog', { name: 'Increment Number of Retries' }));
+    await user.click(retry.getByRole('button', { name: 'Retry' }));
+    expect(await screen.findByText('Incrementing the number of retries finished successfully.')).toBeInTheDocument();
+    const put = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/retries'));
+    expect(JSON.parse(String(put?.[1]?.body))).toEqual({ retries: 1 });
   });
 });

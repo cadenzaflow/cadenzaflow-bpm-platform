@@ -78,3 +78,18 @@
   color: $text-placeholder;
   font-style: italic;
 }
+
+// a button that reads like a link, e.g. an incident message that opens its stack trace
+.cz-link-button.cds--btn {
+  min-height: 0;
+  padding: 0;
+  color: $link-primary;
+  text-align: left;
+  white-space: normal;
+}
+
+.cz-annotation {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-02;
+}
