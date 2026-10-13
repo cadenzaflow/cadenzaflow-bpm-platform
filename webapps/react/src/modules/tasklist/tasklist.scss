@@ -196,3 +196,34 @@
   gap: $spacing-05;
   min-height: 20rem;
 }
+
+.cz-task__editable {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  min-height: 2rem;
+}
+
+.cz-task__actions {
+  display: flex;
+  gap: $spacing-03;
+  margin-bottom: $spacing-03;
+}
+
+.cz-groups {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+.cz-groups__add {
+  display: flex;
+  align-items: flex-end;
+  gap: $spacing-03;
+}
+
+.cz-groups__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-02;
+}
