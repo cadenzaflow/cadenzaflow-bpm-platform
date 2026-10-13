@@ -165,3 +165,9 @@
   @include type-style('heading-compact-01');
   margin-bottom: $spacing-03;
 }
+
+// heading of a page section below the diagram, e.g. "Decision Instances"
+.cz-section-title {
+  @include type-style('heading-compact-02');
+  margin-bottom: $spacing-04;
+}

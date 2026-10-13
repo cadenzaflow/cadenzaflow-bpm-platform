@@ -28,9 +28,18 @@ const ALLOWED_PACKAGES = [
   // server-side rendering only, which this app does not do.
   'isbot',
   // bpmn.io license = MIT plus: the bpmn.io watermark must stay visible.
-  // Renderers for Camunda Forms and BPMN diagrams.
+  // Renderers for Camunda Forms, BPMN diagrams and DMN decisions.
   '@bpmn-io/form-js-viewer',
   'bpmn-js',
+  'dmn-js',
+  'dmn-js-boxed-expression',
+  'dmn-js-decision-table',
+  'dmn-js-drd',
+  'dmn-js-literal-expression',
+  'dmn-js-shared',
+  // MIT according to its Readme; its package.json declares no license.
+  // Reached through dmn-js-decision-table (selection-ranges, dom-iterator).
+  'component-props',
 ];
 
 function query(selector) {
