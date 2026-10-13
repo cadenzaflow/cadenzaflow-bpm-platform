@@ -89,3 +89,10 @@ body {
   top: 3.5rem;
   right: $spacing-05;
 }
+
+.cz-notification__actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block-end: $spacing-03;
+  margin-inline-start: -$spacing-05;
+}

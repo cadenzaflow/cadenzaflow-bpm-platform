@@ -106,6 +106,11 @@ function fakeBackend() {
     if (path === '/api/engine/engine/default/process-definition/order%3A1/submit-form' && method === 'POST') {
       return json({ id: 'pi9' });
     }
+    if (path === '/api/engine/engine/default/task' && method === 'GET') {
+      // tasks assigned to demo in the process just started
+      const query = new URLSearchParams(url.split('?')[1]);
+      return json(query.get('processInstanceId') === 'pi9' && query.get('assignee') === 'demo' ? [{ id: 't2', name: 'Ship Order', taskDefinitionKey: 'ship' }] : []);
+    }
     if (path === '/api/engine/engine/default/task/create' && method === 'POST') {
       return new Response(null, { status: 204 });
     }
@@ -227,6 +232,11 @@ describe('webapp shell', () => {
     const submit = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-definition/order%3A1/submit-form'));
     expect(JSON.parse(String(submit?.[1]?.body))).toEqual({ variables: {}, businessKey: 'ORDER-1' });
     expect(history.location.search).not.toContain('processStart');
+
+    // the next task of the process is assigned to demo: the message opens it
+    expect(await screen.findByText('You are assigned to the following tasks in the same process')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Ship Order' }));
+    expect(history.location.search).toContain('task=t2');
   });
 
   it('creates a standalone task', async () => {

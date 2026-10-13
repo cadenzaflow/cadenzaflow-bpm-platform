@@ -5,6 +5,7 @@ import { useAuthentication } from '../../../shared/auth/authentication';
 import { notify } from '../../../shared/notifications';
 import { focusFirst, useShortcut } from '../../../shared/shortcuts';
 import { TASKLIST_SHORTCUTS } from '../shortcuts/shortcuts';
+import { useAssignNotification } from '../assign-notification';
 import type { TaskTabProps } from '../task-tabs/registry';
 import { useFormInfo, useSubmitForm } from './api';
 import { resolveForm } from './form-key';
@@ -17,6 +18,7 @@ export function TaskFormTab({ engine, task, onTaskCompleted }: TaskTabProps) {
   const userId = useAuthentication(engine).data?.userId;
   const target: FormTarget = { kind: 'task', taskId: task.id, processInstanceId: task.processInstanceId };
   const formInfo = useFormInfo(engine, target);
+  const notifyAssigned = useAssignNotification(engine);
   const container = useRef<HTMLDivElement>(null);
   useShortcut(TASKLIST_SHORTCUTS.focusForm.key, () =>
     focusFirst(container.current, 'input:not([type="hidden"]):not(:disabled), select:not(:disabled), textarea:not(:disabled)'),
@@ -24,6 +26,7 @@ export function TaskFormTab({ engine, task, onTaskCompleted }: TaskTabProps) {
   const submitForm = useSubmitForm(engine, target, {
     onSuccess: () => {
       notify({ kind: 'success', title: t('COMPLETE_OK') });
+      void notifyAssigned(task.assignee, task.processInstanceId);
       onTaskCompleted();
     },
     onError: (error) => notify({ kind: 'error', title: t('COMPLETE_ERROR'), subtitle: error.message }),
