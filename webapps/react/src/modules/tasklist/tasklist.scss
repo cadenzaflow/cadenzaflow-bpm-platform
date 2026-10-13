@@ -227,3 +227,36 @@
   flex-wrap: wrap;
   gap: $spacing-02;
 }
+
+.cz-tasklist__toolbar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-03 0;
+
+  // the sort field takes the room the buttons leave
+  > .cds--form-item {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .cds--select-input__wrapper,
+  .cds--select-input {
+    width: 100%;
+  }
+}
+
+.cz-tasklist__search {
+  padding: $spacing-03;
+}
+
+.cz-task-card__variables {
+  @include type-style('helper-text-01');
+  display: flex;
+  flex-direction: column;
+  color: $text-secondary;
+}
+
+.cz-task-card__label {
+  color: $text-helper;
+}
