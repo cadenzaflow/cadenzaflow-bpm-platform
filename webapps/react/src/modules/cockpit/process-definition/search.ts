@@ -9,6 +9,8 @@ export interface ProcessDefinitionSearch extends ListSearch {
   tab?: string;
   /** comma separated activity ids, as in the classic Cockpit */
   activityIds?: string;
+  /** only instances called by instances of this (calling) definition */
+  parentProcessDefinitionId?: string;
 }
 
 export function validateProcessDefinitionSearch(search: Record<string, unknown>): ProcessDefinitionSearch {
@@ -17,6 +19,7 @@ export function validateProcessDefinitionSearch(search: Record<string, unknown>)
     ...validateListSearch(search),
     tab: text(search.tab),
     activityIds: text(search.activityIds),
+    parentProcessDefinitionId: text(search.parentProcessDefinitionId),
   };
 }
 

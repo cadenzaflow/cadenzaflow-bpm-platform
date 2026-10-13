@@ -15,6 +15,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
+import { DefinitionSuspension } from './DefinitionSuspension';
 import { selectedActivities, type ProcessDefinitionSearch } from './search';
 import { definitionTabs } from './tabs/registry';
 
@@ -33,6 +34,8 @@ export function ProcessDefinitionPage() {
   const search = route.useSearch();
   const navigate = route.useNavigate();
   const definition = useProcessDefinition(engine, id);
+  // reached from a calling definition: its instances are filtered by it
+  const parent = useProcessDefinition(engine, search.parentProcessDefinitionId ?? '', !!search.parentProcessDefinitionId);
   const xml = useProcessDefinitionXml(engine, id);
   const badges = useActivityBadges(engine, id);
   const versions = useVersions(engine, definition.data);
@@ -71,8 +74,16 @@ export function ProcessDefinitionPage() {
         <Link key="processes" to="/cockpit/$engine/processes" params={{ engine }}>
           {t('COCKPIT_PROCESSES')}
         </Link>,
+        ...(parent.data
+          ? [
+              <Link key="parent" to="/cockpit/$engine/process-definition/$id" params={{ engine, id: parent.data.id }}>
+                {parent.data.name || parent.data.key}
+              </Link>,
+            ]
+          : []),
         name,
       ]}
+      actions={definition.data && <DefinitionSuspension engine={engine} definition={definition.data} />}
     >
       {definition.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={definition.error.message} />}
       <div className="cz-definition">
