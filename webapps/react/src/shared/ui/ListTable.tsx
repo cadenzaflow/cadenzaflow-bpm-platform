@@ -25,10 +25,12 @@ interface ListTableProps<T> {
   onSortingChange?: (sorting: Sorting) => void;
   /** e.g. a checkbox column */
   leading?: (item: T) => ReactNode;
+  /** header of the leading column, e.g. a "select all" checkbox */
+  leadingHeader?: ReactNode;
 }
 
 /** A list (users, process definitions, ...); a header click sorts by that column, a second click reverses. */
-export function ListTable<T>({ columns, items, rowKey, sorting, sortable = true, onSortingChange, leading }: ListTableProps<T>) {
+export function ListTable<T>({ columns, items, rowKey, sorting, sortable = true, onSortingChange, leading, leadingHeader }: ListTableProps<T>) {
   const direction = (column: Column<T>) =>
     sorting && sorting.sortBy === column.sortBy ? (sorting.sortOrder === 'asc' ? 'ASC' : 'DESC') : 'NONE';
 
@@ -36,7 +38,7 @@ export function ListTable<T>({ columns, items, rowKey, sorting, sortable = true,
     <Table size="md" className="cz-list-table">
       <TableHead>
         <TableRow>
-          {leading && <TableHeader aria-hidden="true" />}
+          {leading && (leadingHeader ? <TableHeader>{leadingHeader}</TableHeader> : <TableHeader aria-hidden="true" />)}
           {columns.map((column) =>
             column.sortBy && sortable && onSortingChange ? (
               <TableHeader

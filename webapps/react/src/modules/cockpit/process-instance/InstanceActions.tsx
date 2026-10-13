@@ -1,24 +1,27 @@
 import { useState } from 'react';
 import { Button, Checkbox, Modal, Stack } from '@carbon/react';
-import { Add, Pause, Play, TrashCan } from '@carbon/icons-react';
+import { Add, Pause, Play, Renew, TrashCan } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
 import { AddVariableModal } from '../variables/VariableDialogs';
 import { useCancelInstance, useInstanceSuspension, type ProcessInstance } from './api';
+import { BulkRetryModal } from './jobs/BulkRetryModal';
 
 interface InstanceActionsProps {
   engine: string;
   instance: ProcessInstance;
   /** after the instance was deleted, e.g. back to its definition */
   onCanceled: () => void;
+  /** the activity instance an execution runs in, by name (the scope of a failed job) */
+  scopeOf: (executionId: string) => string | undefined;
 }
 
-/** Add a variable, suspend/activate and cancel (delete) the process instance, as in the classic Cockpit. */
-export function InstanceActions({ engine, instance, onCanceled }: InstanceActionsProps) {
+/** Add a variable, retry failed jobs, suspend/activate and cancel (delete) the process instance, as in the classic Cockpit. */
+export function InstanceActions({ engine, instance, onCanceled, scopeOf }: InstanceActionsProps) {
   const { t } = useTranslation('cockpit');
   const suspension = useInstanceSuspension(engine, instance.id);
   const cancel = useCancelInstance(engine, instance.id);
-  const [dialog, setDialog] = useState<'variable' | 'suspension' | 'cancel' | null>(null);
+  const [dialog, setDialog] = useState<'variable' | 'retry' | 'suspension' | 'cancel' | null>(null);
   const [skipCustomListeners, setSkipCustomListeners] = useState(true);
   const [skipIoMappings, setSkipIoMappings] = useState(true);
   const suspend = !instance.suspended;
@@ -34,6 +37,15 @@ export function InstanceActions({ engine, instance, onCanceled }: InstanceAction
         tooltipPosition="bottom"
         onClick={() => setDialog('variable')}
       />
+      <Button
+        kind="tertiary"
+        size="md"
+        hasIconOnly
+        renderIcon={Renew}
+        iconDescription={t('PLUGIN_JOB_RETRY_BULK_RETRIES_FAILED_JOB')}
+        tooltipPosition="bottom"
+        onClick={() => setDialog('retry')}
+      />
       <Button kind="tertiary" size="md" renderIcon={suspend ? Pause : Play} onClick={() => setDialog('suspension')}>
         {t(suspend ? 'PLUGIN_UPDATE_DIALOG_SUSPEND' : 'PLUGIN_UPDATE_DIALOG_ACTIVATE')}
       </Button>
@@ -42,6 +54,9 @@ export function InstanceActions({ engine, instance, onCanceled }: InstanceAction
       </Button>
 
       {dialog === 'variable' && <AddVariableModal engine={engine} processInstanceId={instance.id} onClose={() => setDialog(null)} />}
+      {dialog === 'retry' && (
+        <BulkRetryModal engine={engine} processInstanceId={instance.id} scopeOf={scopeOf} onClose={() => setDialog(null)} />
+      )}
 
       {dialog === 'suspension' && (
         <Modal

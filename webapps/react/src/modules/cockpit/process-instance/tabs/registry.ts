@@ -13,13 +13,16 @@ export interface InstanceTabProps {
   activityInstanceIds: string[];
   /** activity id → name, from the BPMN XML */
   activityNames: Map<string, string>;
-  /** activity instance id → name of its activity (the process instance's id → the process) */
+  /**
+   * activity instance id → name of its activity (the process instance's id →
+   * the process); transition instances by their tree id ("transition:" + id)
+   */
   activityInstanceNames: Map<string, string>;
-  /** execution id → id of the activity instance it runs in */
+  /** execution id → id of the activity instance it runs in (a transition instance's tree id) */
   executionActivityInstances: Map<string, string>;
   /** selects an activity, as a click in the diagram does */
   onActivitySelect: (activityId: string) => void;
-  /** selects an activity instance, as a click in the tree does */
+  /** selects an activity instance (or a transition instance by its tree id), as a click in the tree does */
   onActivityInstanceSelect: (activityInstanceId: string) => void;
   /** search, sorting and page of the tab's list, in the URL */
   search: ListSearch;

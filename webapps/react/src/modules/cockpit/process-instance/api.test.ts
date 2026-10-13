@@ -44,6 +44,6 @@ describe('activity instance tree', () => {
     const executions = activityInstanceOfExecution(root);
     expect(executions.get('ex-2')).toBe('check:a2');
     // the async continuation waits in the process instance's own execution
-    expect(executions.get('pi-1')).toBe('pi-1');
+    expect(executions.get('pi-1')).toBe('transition:pi-1');
   });
 });

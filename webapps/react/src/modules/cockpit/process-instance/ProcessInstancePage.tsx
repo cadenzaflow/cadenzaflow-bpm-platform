@@ -23,6 +23,7 @@ import {
   activityOf,
   allInstances,
   instancesOf,
+  treeIdOf,
   treeSelection,
   useActivityInstances,
   useProcessInstance,
@@ -67,11 +68,9 @@ export function ProcessInstancePage() {
 
   const activityInstanceNames = useMemo(() => {
     const labels = new Map<string, string>();
-    // the process instance first: a transition instance may have its id
+    // by tree id: a transition instance may have the process instance's id
     for (const node of tree.data ? [tree.data, ...allInstances(tree.data)] : []) {
-      if (!labels.has(node.id)) {
-        labels.set(node.id, node.activityName || names.get(activityOf(node)) || node.activityId);
-      }
+      labels.set(treeIdOf(node), node.activityName || names.get(activityOf(node)) || node.activityId);
     }
     return labels;
   }, [tree.data, names]);
@@ -106,7 +105,7 @@ export function ProcessInstancePage() {
   };
 
   const selectInstanceById = (activityInstanceId: string) => {
-    const node = tree.data && [tree.data, ...allInstances(tree.data)].find((other) => other.id === activityInstanceId);
+    const node = tree.data && [tree.data, ...allInstances(tree.data)].find((other) => treeIdOf(other) === activityInstanceId);
     if (node) {
       selectInstance(node, false);
     }
@@ -142,6 +141,10 @@ export function ProcessInstancePage() {
             onCanceled={() =>
               navigate({ to: '/cockpit/$engine/process-definition/$id', params: { engine, id: instance.data.definitionId } })
             }
+            scopeOf={(executionId) => {
+              const activityInstanceId = executionActivityInstances.get(executionId);
+              return activityInstanceId && activityInstanceNames.get(activityInstanceId);
+            }}
           />
         )
       }
