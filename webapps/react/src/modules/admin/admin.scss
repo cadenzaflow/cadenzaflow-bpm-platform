@@ -39,16 +39,6 @@
   }
 }
 
-.cz-admin-empty {
-  @include type-style('body-01');
-  margin: $spacing-05 0;
-  color: $text-secondary;
-}
-
-.cz-list-table {
-  margin-top: $spacing-05;
-}
-
 .cz-admin-form {
   max-width: 40rem;
   padding-top: $spacing-05;

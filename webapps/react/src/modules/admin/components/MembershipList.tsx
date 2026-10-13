@@ -38,7 +38,7 @@ export function MembershipList<T extends { id: string }>({
       <h2 className="cz-admin-form__section">{title}</h2>
       {members.isPending && <SkeletonText paragraph lineCount={3} />}
       {members.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={members.error.message} />}
-      {members.data?.items.length === 0 && <p className="cz-admin-empty">{emptyText}</p>}
+      {members.data?.items.length === 0 && <p className="cz-list-empty">{emptyText}</p>}
       {!!members.data?.items.length && (
         <ListTable
           columns={

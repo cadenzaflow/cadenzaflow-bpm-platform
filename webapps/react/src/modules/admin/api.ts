@@ -1,9 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { engineUrl, request, type QueryParams } from '../../shared/api/client';
+import { DEFAULT_PAGE_SIZE, usePagedList } from '../../shared/api/paging';
 import type { Sorting } from '../../shared/ui/ListTable';
 
 /** Page size of the Admin lists, as in the classic Admin. */
-export const ADMIN_PAGE_SIZE = 50;
+export const ADMIN_PAGE_SIZE = DEFAULT_PAGE_SIZE;
 
 export type { Sorting } from '../../shared/ui/ListTable';
 
@@ -42,36 +43,9 @@ export function useResourceAccess(engine: string, path: string) {
   });
 }
 
-export interface Page<T> {
-  items: T[];
-  count: number;
-  /** false when the identity provider (e.g. LDAP) could not sort; the page is unsorted then */
-  sortable: boolean;
-}
+export type { Page } from '../../shared/api/paging';
 
-/** One page of a list resource such as /user, with the total count. */
-export async function fetchPage<T>(
-  engine: string,
-  path: string,
-  query: QueryParams,
-  page: number,
-  sorting: Sorting | undefined,
-  pageSize = ADMIN_PAGE_SIZE,
-): Promise<Page<T>> {
-  const paging = { firstResult: (page - 1) * pageSize, maxResults: pageSize };
-  const { count } = await request<{ count: number }>(engineUrl(engine, `${path}/count`), { query });
-  try {
-    const items = await request<T[]>(engineUrl(engine, path), { query: { ...query, ...paging, ...sorting } });
-    return { items, count, sortable: true };
-  } catch (error) {
-    if (!sorting) {
-      throw error;
-    }
-    const items = await request<T[]>(engineUrl(engine, path), { query: { ...query, ...paging } });
-    return { items, count, sortable: false };
-  }
-}
-
+/** One page of a list resource such as /user of the engine REST API (count at /user/count). */
 export function usePage<T>(
   engine: string,
   path: string,
@@ -80,10 +54,13 @@ export function usePage<T>(
   sorting?: Sorting,
   pageSize = ADMIN_PAGE_SIZE,
 ) {
-  return useQuery({
-    queryKey: ['admin-list', engine, path, query, page, sorting, pageSize],
-    placeholderData: (previous) => previous,
-    queryFn: () => fetchPage<T>(engine, path, query, page, sorting, pageSize),
+  return usePagedList<T>(['admin-list', engine], {
+    listUrl: engineUrl(engine, path),
+    countUrl: engineUrl(engine, `${path}/count`),
+    query,
+    page,
+    sorting,
+    pageSize,
   });
 }
 
