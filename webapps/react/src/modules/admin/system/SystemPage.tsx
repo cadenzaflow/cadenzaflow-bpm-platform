@@ -195,7 +195,7 @@ function ExecutionMetrics({ engine }: { engine: string }) {
       <h2 className="cz-admin-form__section cz-metrics__heading">{t('EXECUTION_METRICS_ANNUAL_TABLE_TITLE')}</h2>
       {annual.isPending && <SkeletonText paragraph lineCount={3} />}
       {annual.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={failed(annual.error)} />}
-      {annual.data?.length === 0 && <p className="cz-admin-empty">{t('EXECUTION_METRICS_ANNUAL_TABLE_EMPTY')}</p>}
+      {annual.data?.length === 0 && <p className="cz-list-empty">{t('EXECUTION_METRICS_ANNUAL_TABLE_EMPTY')}</p>}
       {!!annual.data?.length && (
         <Table size="sm" className="cz-metrics__table">
           <TableHead>

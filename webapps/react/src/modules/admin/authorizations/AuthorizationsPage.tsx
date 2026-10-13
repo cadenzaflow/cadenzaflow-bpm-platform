@@ -187,7 +187,7 @@ export function AuthorizationsPage() {
             </TableBody>
           </Table>
         )}
-        {list.data?.items.length === 0 && !draft && <p className="cz-admin-empty">{t('AUTHORIZATION_EMPTY')}</p>}
+        {list.data?.items.length === 0 && !draft && <p className="cz-list-empty">{t('AUTHORIZATION_EMPTY')}</p>}
         {pageCount > 1 && (
           <PaginationNav
             totalItems={pageCount}

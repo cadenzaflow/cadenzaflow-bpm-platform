@@ -123,3 +123,14 @@ body {
   display: flex;
   gap: $spacing-03;
 }
+
+// Lists (shared/ui/ListTable, SearchableList)
+.cz-list-empty {
+  @include type-style('body-01');
+  margin: $spacing-05 0;
+  color: $text-secondary;
+}
+
+.cz-list-table {
+  margin-top: $spacing-05;
+}
