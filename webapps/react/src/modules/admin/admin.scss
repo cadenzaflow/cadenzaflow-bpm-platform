@@ -219,30 +219,22 @@
   height: 0.75rem;
 }
 
-// the colors of the classic Admin's chart
-.cz-metrics-chart__bar--PI {
-  fill: hsl(230deg 70% 41%);
-  background: hsl(230deg 70% 41%);
-}
+// Categorical colors, checked for color-vision deficiencies (the classic
+// Admin's colors were not: PI/DI and FNI/EDE were too close). Fixed order
+// per metric; the table below the chart gives the same numbers.
+$metric-colors: (
+  PI: #2a78d6,
+  DI: #eb6834,
+  TU: #1baf7a,
+  FNI: #eda100,
+  EDE: #e87ba4,
+);
 
-.cz-metrics-chart__bar--DI {
-  fill: hsl(302deg 70% 41%);
-  background: hsl(302deg 70% 41%);
-}
-
-.cz-metrics-chart__bar--TU {
-  fill: hsl(14deg 70% 41%);
-  background: hsl(14deg 70% 41%);
-}
-
-.cz-metrics-chart__bar--FNI {
-  fill: hsl(86deg 70% 41%);
-  background: hsl(86deg 70% 41%);
-}
-
-.cz-metrics-chart__bar--EDE {
-  fill: hsl(158deg 70% 41%);
-  background: hsl(158deg 70% 41%);
+@each $metric, $color in $metric-colors {
+  .cz-metrics-chart__bar--#{$metric} {
+    fill: $color;
+    background: $color;
+  }
 }
 
 .cz-setup__tile {
