@@ -7,13 +7,15 @@ interface PageFrameProps {
   breadcrumbs?: ReactNode[];
   /** buttons next to the title */
   actions?: ReactNode;
+  /** use the whole width (e.g. for a diagram) */
+  wide?: boolean;
   children: ReactNode;
 }
 
 /** Frame of a page: breadcrumbs, title, actions, content. */
-export function PageFrame({ title, breadcrumbs, actions, children }: PageFrameProps) {
+export function PageFrame({ title, breadcrumbs, actions, wide, children }: PageFrameProps) {
   return (
-    <section className="cz-page">
+    <section className={wide ? 'cz-page cz-page--wide' : 'cz-page'}>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <Breadcrumb noTrailingSlash className="cz-page__breadcrumbs">
           {breadcrumbs.map((crumb, index) => (

@@ -1,4 +1,6 @@
+@use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
 
 .cz-bpmn-diagram {
   height: 28rem;
@@ -10,4 +12,39 @@
     stroke: $interactive !important;
     stroke-width: 3px !important;
   }
+
+  // selected elements, e.g. the activities that filter the Cockpit's instance list
+  .djs-element.cz-selected .djs-visual > :first-child {
+    fill: $highlight !important;
+    stroke: $interactive !important;
+    stroke-width: 2px !important;
+  }
+}
+
+.cz-bpmn-diagram--selectable .djs-element.djs-shape {
+  cursor: pointer;
+}
+
+// numbers on an element: running instances, open incidents
+.cz-diagram-badge {
+  display: flex;
+  gap: 2px;
+
+  > span {
+    @include type-style('label-01');
+    padding: 0 $spacing-02;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}
+
+.cz-diagram-badge__count {
+  background: #2a78d6;
+  color: $text-on-color;
+}
+
+.cz-diagram-badge__incidents {
+  background: $support-error;
+  color: $text-on-color;
 }

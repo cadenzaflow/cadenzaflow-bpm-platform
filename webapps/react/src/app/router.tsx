@@ -26,6 +26,8 @@ import { SetupPage } from '../modules/admin/setup/SetupPage';
 import { CockpitLayout } from '../modules/cockpit/CockpitLayout';
 import { CockpitDashboard } from '../modules/cockpit/dashboard/CockpitDashboard';
 import { ProcessesPage } from '../modules/cockpit/processes/ProcessesPage';
+import { ProcessDefinitionPage } from '../modules/cockpit/process-definition/ProcessDefinitionPage';
+import { validateProcessDefinitionSearch } from '../modules/cockpit/process-definition/search';
 import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
@@ -107,6 +109,12 @@ const cockpitRoute = createRoute({
 const cockpitRoutes = [
   createRoute({ getParentRoute: () => cockpitRoute, path: '/', component: CockpitDashboard }),
   createRoute({ getParentRoute: () => cockpitRoute, path: 'processes', validateSearch: validateCockpitListSearch, component: ProcessesPage }),
+  createRoute({
+    getParentRoute: () => cockpitRoute,
+    path: 'process-definition/$id',
+    validateSearch: validateProcessDefinitionSearch,
+    component: ProcessDefinitionPage,
+  }),
 ];
 
 // The first admin user of an engine without one: no module, so no login and no header.
