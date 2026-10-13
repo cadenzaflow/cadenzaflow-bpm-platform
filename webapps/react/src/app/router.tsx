@@ -12,6 +12,12 @@ import { validateEditSearch, validateListSearch } from '../modules/admin/search'
 import { UsersPage } from '../modules/admin/users/UsersPage';
 import { UserCreatePage } from '../modules/admin/users/UserCreatePage';
 import { UserEditPage } from '../modules/admin/users/UserEditPage';
+import { GroupsPage } from '../modules/admin/groups/GroupsPage';
+import { GroupCreatePage } from '../modules/admin/groups/GroupCreatePage';
+import { GroupEditPage } from '../modules/admin/groups/GroupEditPage';
+import { TenantsPage } from '../modules/admin/tenants/TenantsPage';
+import { TenantCreatePage } from '../modules/admin/tenants/TenantCreatePage';
+import { TenantEditPage } from '../modules/admin/tenants/TenantEditPage';
 
 declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
@@ -38,7 +44,7 @@ const tasklistRoute = createRoute({
   component: TasklistPage,
 });
 
-// Admin: one route per page; paths as in the classic Admin (#/users, #/user-create, #/users/:userId).
+// Admin: one route per page; paths as in the classic Admin (#/users, #/user-create, #/users/:userId, ...).
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: 'admin/$engine',
@@ -55,6 +61,22 @@ const adminRoutes = [
     path: 'users/$userId',
     validateSearch: validateEditSearch,
     component: UserEditPage,
+  }),
+  createRoute({ getParentRoute: () => adminRoute, path: 'groups', validateSearch: validateListSearch, component: GroupsPage }),
+  createRoute({ getParentRoute: () => adminRoute, path: 'group-create', component: GroupCreatePage }),
+  createRoute({
+    getParentRoute: () => adminRoute,
+    path: 'groups/$groupId',
+    validateSearch: validateEditSearch,
+    component: GroupEditPage,
+  }),
+  createRoute({ getParentRoute: () => adminRoute, path: 'tenants', validateSearch: validateListSearch, component: TenantsPage }),
+  createRoute({ getParentRoute: () => adminRoute, path: 'tenant-create', component: TenantCreatePage }),
+  createRoute({
+    getParentRoute: () => adminRoute,
+    path: 'tenants/$tenantId',
+    validateSearch: validateEditSearch,
+    component: TenantEditPage,
   }),
 ];
 

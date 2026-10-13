@@ -22,6 +22,8 @@ export function AdminDashboard() {
   const { engine } = route.useParams();
   const me = useAuthentication(engine).data?.userId;
   const users = useResourceAccess(engine, '/user');
+  const groups = useResourceAccess(engine, '/group');
+  const tenants = useResourceAccess(engine, '/tenant');
 
   return (
     <section className="cz-admin-page cz-admin-dashboard">
@@ -56,6 +58,50 @@ export function AdminDashboard() {
             </li>
           )}
         </Section>
+        {groups.data?.has('list') && (
+          <Section
+            title={
+              <Link to="/admin/$engine/groups" params={{ engine }}>
+                {t('GROUPS_GROUPS')}
+              </Link>
+            }
+          >
+            {groups.data.has('create') && (
+              <li>
+                <Link to="/admin/$engine/group-create" params={{ engine }}>
+                  {t('GROUPS_CREATE_NEW')}
+                </Link>
+              </li>
+            )}
+            <li>
+              <Link to="/admin/$engine/groups" params={{ engine }}>
+                {t('GROUPS_LIST_OF_GROUPS')}
+              </Link>
+            </li>
+          </Section>
+        )}
+        {tenants.data?.has('list') && (
+          <Section
+            title={
+              <Link to="/admin/$engine/tenants" params={{ engine }}>
+                {t('TENANTS_TENANTS')}
+              </Link>
+            }
+          >
+            {tenants.data.has('create') && (
+              <li>
+                <Link to="/admin/$engine/tenant-create" params={{ engine }}>
+                  {t('TENANTS_CREATE_NEW')}
+                </Link>
+              </li>
+            )}
+            <li>
+              <Link to="/admin/$engine/tenants" params={{ engine }}>
+                {t('TENANTS_LIST_TENANTS')}
+              </Link>
+            </li>
+          </Section>
+        )}
       </div>
     </section>
   );
