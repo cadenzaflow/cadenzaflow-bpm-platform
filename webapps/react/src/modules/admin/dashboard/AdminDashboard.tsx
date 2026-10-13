@@ -25,8 +25,8 @@ export function AdminDashboard() {
   const { users, groups, tenants, authorizations } = useAdminAccess(engine);
 
   return (
-    <section className="cz-admin-page cz-admin-dashboard">
-      <h1 className="cz-admin-page__title">{t('DASHBOARD_DASHBOARD')}</h1>
+    <section className="cz-page cz-admin-dashboard">
+      <h1 className="cz-page__title">{t('DASHBOARD_DASHBOARD')}</h1>
       <div className="cz-admin-dashboard__sections">
         <Section
           title={

@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import type { QueryParams } from '../../../shared/api/client';
 import { toQuery, type CriterionType, type SearchState } from '../../../shared/search/criteria';
 import { CriteriaSearch } from '../../../shared/search/CriteriaSearch';
+import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import { ADMIN_PAGE_SIZE, usePage } from '../api';
 import { sortingOf, type AdminListSearch } from '../search';
-import { ListTable, type Column } from './ListTable';
 
 interface ResourceListProps<T extends { id: string }> {
   engine: string;

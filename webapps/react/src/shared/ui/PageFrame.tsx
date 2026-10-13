@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Breadcrumb, BreadcrumbItem } from '@carbon/react';
 
-interface AdminPageProps {
+interface PageFrameProps {
   title: string;
   /** links (or text) above the title, e.g. Users › demo */
   breadcrumbs?: ReactNode[];
@@ -10,12 +10,12 @@ interface AdminPageProps {
   children: ReactNode;
 }
 
-/** Frame of an Admin page: breadcrumbs, title, actions, content. */
-export function AdminPage({ title, breadcrumbs, actions, children }: AdminPageProps) {
+/** Frame of a page: breadcrumbs, title, actions, content. */
+export function PageFrame({ title, breadcrumbs, actions, children }: PageFrameProps) {
   return (
-    <section className="cz-admin-page">
+    <section className="cz-page">
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <Breadcrumb noTrailingSlash className="cz-admin-page__breadcrumbs">
+        <Breadcrumb noTrailingSlash className="cz-page__breadcrumbs">
           {breadcrumbs.map((crumb, index) => (
             <BreadcrumbItem key={index} isCurrentPage={index === breadcrumbs.length - 1}>
               {crumb}
@@ -23,9 +23,9 @@ export function AdminPage({ title, breadcrumbs, actions, children }: AdminPagePr
           ))}
         </Breadcrumb>
       )}
-      <header className="cz-admin-page__header">
-        <h1 className="cz-admin-page__title">{title}</h1>
-        {actions && <div className="cz-admin-page__actions">{actions}</div>}
+      <header className="cz-page__header">
+        <h1 className="cz-page__title">{title}</h1>
+        {actions && <div className="cz-page__actions">{actions}</div>}
       </header>
       {children}
     </section>

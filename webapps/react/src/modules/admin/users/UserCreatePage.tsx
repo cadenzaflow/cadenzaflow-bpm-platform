@@ -3,8 +3,8 @@ import { Button, ButtonSet, Form, Stack, TextInput } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import type { User } from '../api';
-import { AdminPage } from '../components/AdminPage';
 import { PasswordFields, usePasswordCheck } from '../components/PasswordFields';
 import { useCreateUser } from './api';
 import { ProfileFields, isEmail } from './ProfileFields';
@@ -43,7 +43,7 @@ export function UserCreatePage() {
     );
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('USERS_CREATE_NEW_USER')}
       breadcrumbs={[
         <Link key="users" to="/admin/$engine/users" params={{ engine }}>
@@ -91,6 +91,6 @@ export function UserCreatePage() {
           </ButtonSet>
         </Stack>
       </Form>
-    </AdminPage>
+    </PageFrame>
   );
 }

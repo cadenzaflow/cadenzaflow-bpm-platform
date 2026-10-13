@@ -3,10 +3,10 @@ import { Button, Form, InlineNotification, SkeletonText, Stack, Tab, TabList, Ta
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
+import { PageFrame } from '../../../shared/ui/PageFrame';
+import type { Column } from '../../../shared/ui/ListTable';
 import type { Group, Tenant, User } from '../api';
-import { AdminPage } from '../components/AdminPage';
 import { DeleteSection } from '../components/DeleteSection';
-import type { Column } from '../components/ListTable';
 import { MembershipList } from '../components/MembershipList';
 import { useIdentityItem } from '../resources';
 import type { AdminEditSearch } from '../search';
@@ -59,7 +59,7 @@ export function TenantEditPage() {
   ];
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('TENANTS_TENANT_TITLE', { name })}
       breadcrumbs={[
         <Link key="tenants" to="/admin/$engine/tenants" params={{ engine }}>
@@ -172,6 +172,6 @@ export function TenantEditPage() {
           </TabPanels>
         </Tabs>
       )}
-    </AdminPage>
+    </PageFrame>
   );
 }

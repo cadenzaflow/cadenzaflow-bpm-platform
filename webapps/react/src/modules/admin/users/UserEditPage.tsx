@@ -5,7 +5,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '../../../shared/auth/authentication';
 import { displayName } from '../../../shared/format';
-import { AdminPage } from '../components/AdminPage';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import type { AdminEditSearch } from '../search';
 import { AccountTab } from './AccountTab';
 import { ProfileTab } from './ProfileTab';
@@ -29,7 +29,7 @@ export function UserEditPage() {
   const name = displayName(profile.data, userId);
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('USERS_EDIT_USER', { user: name })}
       breadcrumbs={[
         <Link key="users" to="/admin/$engine/users" params={{ engine }}>
@@ -79,6 +79,6 @@ export function UserEditPage() {
           </TabPanels>
         </Tabs>
       )}
-    </AdminPage>
+    </PageFrame>
   );
 }

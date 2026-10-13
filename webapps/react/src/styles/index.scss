@@ -96,3 +96,30 @@ body {
   margin-block-end: $spacing-03;
   margin-inline-start: -$spacing-05;
 }
+
+// Frame of a page: breadcrumbs, title and actions above the content.
+.cz-page {
+  max-width: 72rem;
+  padding: $spacing-06 $spacing-07 $spacing-09;
+}
+
+.cz-page__breadcrumbs {
+  margin-bottom: $spacing-03;
+}
+
+.cz-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-05;
+  margin-bottom: $spacing-06;
+}
+
+.cz-page__title {
+  @include type-style('heading-04');
+}
+
+.cz-page__actions {
+  display: flex;
+  gap: $spacing-03;
+}

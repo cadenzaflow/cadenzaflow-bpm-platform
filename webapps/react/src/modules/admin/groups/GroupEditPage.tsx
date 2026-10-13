@@ -17,9 +17,9 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
 import { useIds, type Group, type Tenant, type User } from '../api';
-import { AdminPage } from '../components/AdminPage';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import { DeleteSection } from '../components/DeleteSection';
-import type { Column } from '../components/ListTable';
+import type { Column } from '../../../shared/ui/ListTable';
 import { MembershipList } from '../components/MembershipList';
 import { MembershipModal } from '../components/MembershipModal';
 import { useGroupTenants, useIdentityItem } from '../resources';
@@ -75,7 +75,7 @@ export function GroupEditPage() {
   ];
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('GROUP_EDIT_EDIT_GROUP', { group: name })}
       breadcrumbs={[
         <Link key="groups" to="/admin/$engine/groups" params={{ engine }}>
@@ -241,6 +241,6 @@ export function GroupEditPage() {
           onClose={() => setAdding(false)}
         />
       )}
-    </AdminPage>
+    </PageFrame>
   );
 }

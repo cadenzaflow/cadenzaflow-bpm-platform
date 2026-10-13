@@ -3,8 +3,8 @@ import { Button, ButtonSet, Form, Stack, TextInput } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import type { Tenant } from '../api';
-import { AdminPage } from '../components/AdminPage';
 import { useIdentityItem } from '../resources';
 
 const route = getRouteApi('/admin/$engine/tenant-create');
@@ -33,7 +33,7 @@ export function TenantCreatePage() {
     );
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('TENANTS_CREATE_TENANT')}
       breadcrumbs={[
         <Link key="tenants" to="/admin/$engine/tenants" params={{ engine }}>
@@ -80,6 +80,6 @@ export function TenantCreatePage() {
           </ButtonSet>
         </Stack>
       </Form>
-    </AdminPage>
+    </PageFrame>
   );
 }

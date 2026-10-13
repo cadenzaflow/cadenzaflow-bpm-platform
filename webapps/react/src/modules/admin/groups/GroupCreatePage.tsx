@@ -3,8 +3,8 @@ import { Button, ButtonSet, Form, Stack, TextInput } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import type { Group } from '../api';
-import { AdminPage } from '../components/AdminPage';
 import { useIdentityItem } from '../resources';
 
 const route = getRouteApi('/admin/$engine/group-create');
@@ -33,7 +33,7 @@ export function GroupCreatePage() {
     );
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('GROUP_CREATE_NEW_GROUP')}
       breadcrumbs={[
         <Link key="groups" to="/admin/$engine/groups" params={{ engine }}>
@@ -86,6 +86,6 @@ export function GroupCreatePage() {
           </ButtonSet>
         </Stack>
       </Form>
-    </AdminPage>
+    </PageFrame>
   );
 }

@@ -20,7 +20,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
 import { usePage } from '../api';
-import { AdminPage } from '../components/AdminPage';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import { ConfirmModal } from '../components/ConfirmModal';
 import {
   AUTHORIZATION_PAGE_SIZE,
@@ -111,7 +111,7 @@ export function AuthorizationsPage() {
           ))}
         </ul>
       </nav>
-      <AdminPage
+      <PageFrame
         title={resourceLabel}
         breadcrumbs={[t('AUTHORIZATION_AUTHORIZATIONS'), resourceLabel]}
         actions={
@@ -198,7 +198,7 @@ export function AuthorizationsPage() {
             }
           />
         )}
-      </AdminPage>
+      </PageFrame>
       {deleting && (
         <ConfirmModal
           title={t('AUTHORIZATION_CONFIRM_DELETE_TITLE')}

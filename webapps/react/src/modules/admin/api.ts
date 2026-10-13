@@ -1,13 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { engineUrl, request, type QueryParams } from '../../shared/api/client';
+import type { Sorting } from '../../shared/ui/ListTable';
 
 /** Page size of the Admin lists, as in the classic Admin. */
 export const ADMIN_PAGE_SIZE = 50;
 
-export interface Sorting {
-  sortBy: string;
-  sortOrder: 'asc' | 'desc';
-}
+export type { Sorting } from '../../shared/ui/ListTable';
 
 export interface User {
   id: string;
