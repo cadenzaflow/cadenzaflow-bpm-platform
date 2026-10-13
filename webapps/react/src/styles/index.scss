@@ -1,0 +1,91 @@
+// Carbon first, then a thin layer of app styles that only uses Carbon tokens
+// (theme colours, spacing, type). Component styles live next to the
+// component (e.g. modules/tasklist/tasklist.scss).
+
+// Fonts come from the bundled @ibm/plex package: the webapp's CSP allows
+// fonts from 'self' only, so Carbon's CDN option must stay off.
+@use '@carbon/react/scss/config' with (
+  $font-path: '@ibm/plex'
+);
+@use '@carbon/react/scss/fonts' with (
+  $fonts: (
+    IBM-Plex-Serif: false,
+  )
+);
+@use '@carbon/react';
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: $background;
+}
+
+// Space for the fixed 48px Carbon header.
+.cz-content {
+  height: 100%;
+  padding-top: 3rem;
+}
+
+.cz-page-loading {
+  margin: $spacing-10 auto;
+}
+
+.cz-page-message {
+  max-width: 40rem;
+  margin: $spacing-10 auto;
+  padding: 0 $spacing-05;
+}
+
+.cz-page-message__title {
+  @include type-style('heading-03');
+  margin-bottom: $spacing-03;
+}
+
+.cz-page-message__text {
+  @include type-style('body-01');
+  margin-bottom: $spacing-06;
+}
+
+.cz-login {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-05;
+}
+
+.cz-login__tile {
+  width: 100%;
+  max-width: 24rem;
+}
+
+.cz-login__title {
+  @include type-style('heading-03');
+}
+
+.cz-user-menu__name {
+  @include type-style('heading-compact-01');
+  padding: $spacing-05 $spacing-05 $spacing-03;
+  color: $text-primary;
+}
+
+// Selected entry of a ContainedList used as navigation (filters, tasks).
+.cz-list-item--selected {
+  background: $layer-selected;
+  box-shadow: inset 3px 0 0 $border-interactive;
+}
+
+// Toasts in the top right corner, below the header.
+.cz-notifications {
+  position: fixed;
+  z-index: 9000;
+  top: 3.5rem;
+  right: $spacing-05;
+}

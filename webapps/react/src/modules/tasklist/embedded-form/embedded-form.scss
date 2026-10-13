@@ -1,0 +1,136 @@
+@use 'sass:math';
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+
+// Embedded forms were written for the Bootstrap 3 styles of the AngularJS
+// webapps. This maps the Bootstrap classes they use most onto Carbon tokens,
+// only inside the form.
+.cz-embedded-form {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  @include type-style('body-01');
+
+  .form-group,
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 (-$spacing-03) $spacing-05;
+  }
+
+  .form-group > :not([class*='col-']) {
+    width: 100%;
+    padding: 0 $spacing-03;
+  }
+
+  @for $i from 1 through 12 {
+    .col-xs-#{$i},
+    .col-sm-#{$i},
+    .col-md-#{$i},
+    .col-lg-#{$i} {
+      box-sizing: border-box;
+      width: percentage(math.div($i, 12));
+      padding: 0 $spacing-03;
+    }
+
+    .col-xs-offset-#{$i},
+    .col-sm-offset-#{$i},
+    .col-md-offset-#{$i},
+    .col-lg-offset-#{$i} {
+      margin-left: percentage(math.div($i, 12));
+    }
+  }
+
+  label,
+  .control-label {
+    @include type-style('label-01');
+    display: inline-block;
+    margin-bottom: $spacing-02;
+    color: $text-secondary;
+  }
+
+  .form-control {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.5rem;
+    padding: 0 $spacing-05;
+    border: 0;
+    border-bottom: 1px solid $border-strong;
+    background: $field;
+    color: $text-primary;
+    font: inherit;
+
+    &:focus {
+      outline: 2px solid $focus;
+      outline-offset: -2px;
+    }
+
+    &[readonly] {
+      border-bottom-color: $border-subtle;
+      background: transparent;
+    }
+
+    &:user-invalid {
+      outline: 2px solid $support-error;
+      outline-offset: -2px;
+    }
+  }
+
+  textarea.form-control {
+    height: auto;
+    min-height: 5rem;
+    padding: $spacing-03 $spacing-05;
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    width: auto;
+    height: auto;
+    margin: 0 $spacing-03 0 0;
+  }
+
+  .checkbox label,
+  .radio label {
+    display: inline-flex;
+    align-items: center;
+    color: $text-primary;
+    @include type-style('body-01');
+  }
+
+  .form-control-static {
+    padding-top: $spacing-03;
+  }
+
+  .help-block {
+    @include type-style('helper-text-01');
+    margin-top: $spacing-02;
+    color: $text-helper;
+  }
+
+  .has-error .control-label,
+  .has-error .help-block {
+    color: $text-error;
+  }
+
+  .btn {
+    min-height: 2.5rem;
+    padding: 0 $spacing-05;
+    border: 1px solid $border-interactive;
+    background: transparent;
+    color: $link-primary;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .btn-primary {
+    border-color: $interactive;
+    background: $interactive;
+    color: $text-on-color;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}

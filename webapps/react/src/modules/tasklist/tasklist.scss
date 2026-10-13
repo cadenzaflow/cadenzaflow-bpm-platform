@@ -1,0 +1,136 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+
+// Three columns: filters | tasks | task detail (desktop first).
+.cz-tasklist {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 16rem 22rem minmax(0, 1fr);
+}
+
+.cz-tasklist__column {
+  overflow-y: auto;
+  border-right: 1px solid $border-subtle;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.cz-tasklist__detail {
+  padding: $spacing-05 $spacing-06;
+}
+
+.cz-tasklist__empty {
+  @include type-style('body-01');
+  padding: $spacing-05;
+  color: $text-secondary;
+}
+
+.cz-tasklist__pagination {
+  padding: $spacing-03 0;
+}
+
+.cz-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-03;
+}
+
+.cz-filter__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cz-task-card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.cz-task-card__name {
+  @include type-style('heading-compact-01');
+}
+
+.cz-task-card__process {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+}
+
+.cz-task-card__meta {
+  @include type-style('helper-text-01');
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-03;
+  color: $text-helper;
+}
+
+.cz-task__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-05;
+  margin-bottom: $spacing-05;
+}
+
+.cz-task__name {
+  @include type-style('heading-04');
+}
+
+.cz-task__assignment {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-04;
+}
+
+.cz-task__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-05 $spacing-07;
+  margin-bottom: $spacing-06;
+
+  dt {
+    @include type-style('label-01');
+    color: $text-secondary;
+  }
+
+  dd {
+    @include type-style('body-compact-01');
+  }
+}
+
+.cz-task-description {
+  @include type-style('body-01');
+  padding: $spacing-05 0;
+  white-space: pre-wrap;
+}
+
+.cz-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+  padding: $spacing-05 0;
+}
+
+.cz-form-hint {
+  @include type-style('body-01');
+  color: $text-secondary;
+}
+
+.cz-generic-form__row {
+  display: grid;
+  align-items: start;
+  gap: $spacing-04;
+  grid-template-columns: minmax(0, 2fr) 9rem minmax(0, 2fr) 3rem;
+}
+
+.cz-generic-form__tools,
+.cz-form-actions {
+  display: flex;
+  gap: $spacing-03;
+}

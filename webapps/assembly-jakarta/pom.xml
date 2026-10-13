@@ -149,6 +149,10 @@
                   <directory>${basedir}/../frontend/target/webapp</directory>
                   <filtering>false</filtering>
                 </resource>
+                <resource>
+                  <directory>${basedir}/../react/target/webapp</directory>
+                  <filtering>false</filtering>
+                </resource>
               </resources>
             </configuration>
           </execution>

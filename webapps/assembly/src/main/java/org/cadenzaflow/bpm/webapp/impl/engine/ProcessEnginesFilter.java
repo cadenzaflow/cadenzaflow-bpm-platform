@@ -78,6 +78,17 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
 
   public static Pattern APP_PREFIX_PATTERN = Pattern.compile("/app/(?:([\\w-]+?)/(?:(index\\.html|[\\w-]+)?/?([^?]*)?)?)?");
 
+  /*
+   * The React webapp runs next to the AngularJS webapps under its own path,
+   * /app/react/{app}/{engine}/..., and is a single-page app: its index page
+   * answers every path below /app/react/{app}/. Its files live in
+   * /app/react/assets/.
+   */
+  protected static final String REACT_APP_NAME = "react";
+  protected static final String REACT_INDEX_PAGE = "/app/react/index.html";
+  protected static final String REACT_DEFAULT_APP = TASKLIST_APP_NAME;
+  protected static final Set<String> REACT_APPS = Set.of(COCKPIT_APP_NAME, ADMIN_APP_NAME, TASKLIST_APP_NAME, WELCOME_APP_NAME);
+
   protected final CockpitRuntimeDelegate cockpitRuntimeDelegate;
   protected final AdminRuntimeDelegate adminRuntimeDelegate;
   protected final TasklistRuntimeDelegate tasklistRuntimeDelegate;
@@ -123,6 +134,14 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
       // this happens on weblogic - /app/cockpit/index.html
       if (INDEX_PAGE.equals(engineName)) {
         engineName = null;
+      }
+
+      if (REACT_APP_NAME.equals(appName)) {
+        // here the second segment is the app: /app/react/{app}/{engine}/...
+        if (!serveReactApp(engineName, pageUri, applicationPath, contextPath, request, response)) {
+          chain.doFilter(request, response);
+        }
+        return;
       }
 
       if (pageUri == null || pageUri.isEmpty() || SETUP_PAGE.equals(pageUri)) {
@@ -194,6 +213,46 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
         }
       }
     }
+  }
+
+  /**
+   * Serves the index page of the React webapp, or redirects to the default
+   * engine (and app).
+   *
+   * @return false for paths that are files of the React webapp (assets)
+   */
+  protected boolean serveReactApp(String reactAppName,
+                                  String pageUri,
+                                  String applicationPath,
+                                  String contextPath,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
+    String reactRoot = contextPath + applicationPath + "/app/" + REACT_APP_NAME + "/";
+
+    if (reactAppName == null) {
+      response.sendRedirect(reactRoot + REACT_DEFAULT_APP + "/" + getDefaultEngineName() + "/");
+      return true;
+    }
+    if (!REACT_APPS.contains(reactAppName)) {
+      return false;
+    }
+    if (pageUri == null || pageUri.isEmpty()) {
+      response.sendRedirect(reactRoot + reactAppName + "/" + getDefaultEngineName() + "/");
+      return true;
+    }
+
+    String engineName = pageUri.split("/", 2)[0];
+    ServletContext servletContext = request.getServletContext();
+    setWebappInTelemetry(engineName, reactAppName, servletContext);
+    String cspNonce = (String) servletContext.getAttribute(ContentSecurityPolicyProvider.ATTR_CSP_FILTER_NONCE);
+    String data = getWebResourceContents(REACT_INDEX_PAGE)
+      .replace(APP_ROOT_PLACEHOLDER, contextPath + applicationPath)
+      .replace(CSP_NONCE_PLACEHOLDER, cspNonce == null ? "" : String.format("nonce=\"%s\"", cspNonce));
+
+    response.setContentLength(data.getBytes(StandardCharsets.UTF_8).length);
+    response.setContentType("text/html");
+    response.getWriter().append(data);
+    return true;
   }
 
   protected String getDefaultEngineName() {
