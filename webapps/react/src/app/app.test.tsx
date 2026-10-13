@@ -1,14 +1,8 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import { render, screen, waitFor, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider, createMemoryHistory } from '@tanstack/react-router';
+import { screen, waitFor, within } from '@testing-library/react';
 import { initI18n } from '../shared/i18n';
 import { useNotifications } from '../shared/notifications';
-import { createQueryClient } from './query-client';
-import { createAppRouter } from './router';
-
-const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
+import { json, logIn, renderApp } from '../test/app';
 
 const task = {
   id: 't1',
@@ -118,25 +112,6 @@ function fakeBackend() {
   });
   vi.stubGlobal('fetch', fetchMock);
   return fetchMock;
-}
-
-function renderApp(url: string) {
-  const history = createMemoryHistory({ initialEntries: [url] });
-  const router = createAppRouter(history);
-  render(
-    <QueryClientProvider client={createQueryClient()}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
-  );
-  return history;
-}
-
-async function logIn(password = 'demo') {
-  const user = userEvent.setup();
-  await user.type(await screen.findByLabelText('Username'), 'demo');
-  await user.type(screen.getByLabelText('Password'), password);
-  await user.click(screen.getByRole('button', { name: 'Log in' }));
-  return user;
 }
 
 beforeAll(() => initI18n('en'));

@@ -58,6 +58,9 @@ export default defineConfig({
     },
   },
   server: {
+    // Vite's CORS middleware would answer every OPTIONS request itself; the
+    // engine REST API answers OPTIONS with the links the user may follow.
+    cors: false,
     proxy: {
       // Everything except this app and Vite's own files goes to the backend:
       // the REST APIs, the AngularJS webapps and the forms of process

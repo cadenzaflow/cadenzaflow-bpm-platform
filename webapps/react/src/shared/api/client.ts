@@ -17,7 +17,7 @@ export class ApiError extends Error {
 export type QueryParams = Record<string, string | number | boolean | undefined | null>;
 
 export interface RequestOptions {
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS';
   query?: QueryParams;
   /** Sent as application/json. */
   json?: unknown;

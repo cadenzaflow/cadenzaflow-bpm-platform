@@ -6,6 +6,12 @@ import { NotFound } from './NotFound';
 import { NotYetAvailable } from './NotYetAvailable';
 import { TasklistPage } from '../modules/tasklist/TasklistPage';
 import { validateTasklistSearch } from '../modules/tasklist/search';
+import { AdminLayout } from '../modules/admin/AdminLayout';
+import { AdminDashboard } from '../modules/admin/dashboard/AdminDashboard';
+import { validateEditSearch, validateListSearch } from '../modules/admin/search';
+import { UsersPage } from '../modules/admin/users/UsersPage';
+import { UserCreatePage } from '../modules/admin/users/UserCreatePage';
+import { UserEditPage } from '../modules/admin/users/UserEditPage';
 
 declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
@@ -32,6 +38,26 @@ const tasklistRoute = createRoute({
   component: TasklistPage,
 });
 
+// Admin: one route per page; paths as in the classic Admin (#/users, #/user-create, #/users/:userId).
+const adminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'admin/$engine',
+  staticData: { module: 'admin' },
+  component: AdminLayout,
+});
+
+const adminRoutes = [
+  createRoute({ getParentRoute: () => adminRoute, path: '/', component: AdminDashboard }),
+  createRoute({ getParentRoute: () => adminRoute, path: 'users', validateSearch: validateListSearch, component: UsersPage }),
+  createRoute({ getParentRoute: () => adminRoute, path: 'user-create', component: UserCreatePage }),
+  createRoute({
+    getParentRoute: () => adminRoute,
+    path: 'users/$userId',
+    validateSearch: validateEditSearch,
+    component: UserEditPage,
+  }),
+];
+
 /** Modules that are not rewritten yet point to the classic UI. */
 function notYetAvailableRoutes(module: ModuleName) {
   return [`${module}/$engine`, `${module}/$engine/$`].map((path) =>
@@ -46,8 +72,8 @@ function notYetAvailableRoutes(module: ModuleName) {
 
 const routeTree = rootRoute.addChildren([
   tasklistRoute,
+  adminRoute.addChildren(adminRoutes),
   ...notYetAvailableRoutes('cockpit'),
-  ...notYetAvailableRoutes('admin'),
   ...notYetAvailableRoutes('welcome'),
 ]);
 

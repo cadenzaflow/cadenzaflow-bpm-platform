@@ -1,0 +1,128 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+
+.cz-admin {
+  height: 100%;
+  overflow-y: auto;
+}
+
+// Section links under the header, styled like Carbon tabs.
+.cz-admin-nav {
+  display: flex;
+  gap: $spacing-02;
+  padding: 0 $spacing-05;
+  border-bottom: 1px solid $border-subtle;
+  background: $layer-01;
+}
+
+.cz-admin-nav__item {
+  @include type-style('body-compact-01');
+  padding: $spacing-04 $spacing-05;
+  border-bottom: 2px solid transparent;
+  color: $text-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &.is-active {
+    border-bottom-color: $border-interactive;
+    color: $text-primary;
+    font-weight: 600;
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+}
+
+.cz-admin-page {
+  max-width: 72rem;
+  padding: $spacing-06 $spacing-07 $spacing-09;
+}
+
+.cz-admin-page__breadcrumbs {
+  margin-bottom: $spacing-03;
+}
+
+.cz-admin-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-05;
+  margin-bottom: $spacing-06;
+}
+
+.cz-admin-page__title {
+  @include type-style('heading-04');
+}
+
+.cz-admin-page__actions {
+  display: flex;
+  gap: $spacing-03;
+}
+
+.cz-admin-empty {
+  @include type-style('body-01');
+  margin: $spacing-05 0;
+  color: $text-secondary;
+}
+
+.cz-list-table {
+  margin-top: $spacing-05;
+}
+
+.cz-admin-form {
+  max-width: 40rem;
+  padding-top: $spacing-05;
+}
+
+.cz-admin-form__section {
+  @include type-style('heading-02');
+}
+
+.cz-admin-memberships {
+  padding-top: $spacing-05;
+}
+
+.cz-password-policy {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+
+  ul {
+    margin-top: $spacing-02;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $spacing-02;
+  }
+
+  .is-valid svg {
+    fill: $support-success;
+  }
+
+  .is-invalid svg {
+    fill: $support-error;
+  }
+}
+
+.cz-admin-dashboard__sections {
+  display: grid;
+  gap: $spacing-05;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  margin-top: $spacing-06;
+}
+
+.cz-admin-dashboard__title {
+  @include type-style('heading-03');
+  margin-bottom: $spacing-04;
+}
+
+.cz-admin-dashboard__section li {
+  margin-bottom: $spacing-03;
+}
