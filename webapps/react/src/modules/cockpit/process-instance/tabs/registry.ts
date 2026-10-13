@@ -15,6 +15,8 @@ export interface InstanceTabProps {
   activityNames: Map<string, string>;
   /** activity instance id → name of its activity (the process instance's id → the process) */
   activityInstanceNames: Map<string, string>;
+  /** execution id → id of the activity instance it runs in */
+  executionActivityInstances: Map<string, string>;
   /** selects an activity, as a click in the diagram does */
   onActivitySelect: (activityId: string) => void;
   /** selects an activity instance, as a click in the tree does */

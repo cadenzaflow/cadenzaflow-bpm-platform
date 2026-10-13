@@ -13,8 +13,9 @@ interface SearchableListProps<T extends { id: string }> {
   listUrl: string;
   countUrl: string;
   /** i18n namespace of the criteria labels */
-  namespace: string;
-  criteria: CriterionType[];
+  namespace?: string;
+  /** without criteria the list has no search */
+  criteria?: CriterionType[];
   /** query parts that are always sent, e.g. latestVersion */
   fixedQuery?: Record<string, unknown>;
   /** POST for queries with lists (e.g. variables) */
@@ -32,13 +33,15 @@ interface SearchableListProps<T extends { id: string }> {
   onSearchChange: (changes: Partial<ListSearch>) => void;
 }
 
+const NO_CRITERIA: CriterionType[] = [];
+
 /** Search, sortable table and pages of a list resource; the state lives in the URL. */
 export function SearchableList<T extends { id: string }>({
   scope,
   listUrl,
   countUrl,
-  namespace,
-  criteria,
+  namespace = 'common',
+  criteria = NO_CRITERIA,
   fixedQuery,
   defaultSortBy,
   defaultSortOrder = 'asc',
@@ -74,7 +77,9 @@ export function SearchableList<T extends { id: string }>({
 
   return (
     <>
-      <CriteriaSearch namespace={namespace} types={criteria} value={draft} onChange={setDraft} allowMatchAny={false} />
+      {criteria.length > 0 && (
+        <CriteriaSearch namespace={namespace} types={criteria} value={draft} onChange={setDraft} allowMatchAny={false} />
+      )}
       {list.data && !list.data.sortable && unsortedNotice && (
         <InlineNotification kind="info" lowContrast hideCloseButton title={unsortedNotice.title} subtitle={unsortedNotice.subtitle} />
       )}

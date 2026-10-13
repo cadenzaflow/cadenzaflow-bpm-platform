@@ -22,6 +22,8 @@ export interface ActivityInstance {
   childActivityInstances?: ActivityInstance[];
   childTransitionInstances?: ActivityInstance[];
   incidents?: { id: string; activityId: string }[];
+  /** activity instances only: the executions they run in */
+  executionIds?: string[];
   /** transition instances only; their id is this execution's id (for the first one often the process instance id) */
   executionId?: string;
 }
@@ -72,6 +74,21 @@ export function treeSelection(root: ActivityInstance, activityIds: string[], act
   return allInstances(root)
     .filter((node) => activityInstanceIds.includes(node.id) && activityIds.includes(activityOf(node)))
     .map(treeIdOf);
+}
+
+/**
+ * The activity instance each execution runs in (tasks and jobs know only
+ * their execution); the innermost one where executions are shared.
+ */
+export function activityInstanceOfExecution(root: ActivityInstance): Map<string, string> {
+  const map = new Map<string, string>();
+  // depth first: inner instances come after outer ones and win
+  for (const node of [root, ...allInstances(root)]) {
+    for (const executionId of node.executionIds ?? (node.executionId ? [node.executionId] : [])) {
+      map.set(executionId, node.id);
+    }
+  }
+  return map;
 }
 
 /** All nodes below the root (the process instance itself), depth first. */
