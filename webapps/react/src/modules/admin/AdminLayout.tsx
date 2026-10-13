@@ -5,7 +5,11 @@ import './admin.scss';
 const route = getRouteApi('/admin/$engine');
 
 /** The Admin's sections, in the order of the classic Admin. */
-const SECTIONS = [{ to: '/admin/$engine/users', label: 'USERS_USERS' }] as const;
+const SECTIONS = [
+  { to: '/admin/$engine/users', label: 'USERS_USERS' },
+  { to: '/admin/$engine/groups', label: 'GROUPS_GROUPS' },
+  { to: '/admin/$engine/tenants', label: 'TENANTS_TENANTS' },
+] as const;
 
 /** Section navigation above every Admin page. */
 export function AdminLayout() {

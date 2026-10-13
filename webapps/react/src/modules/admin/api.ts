@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { engineUrl, request, type QueryParams } from '../../shared/api/client';
 
 /** Page size of the Admin lists, as in the classic Admin. */
@@ -87,4 +87,36 @@ export function useIds(engine: string, path: string, query: QueryParams) {
     queryKey: ['admin-ids', engine, path, query],
     queryFn: async () => new Set((await request<{ id: string }[]>(engineUrl(engine, path), { query })).map((item) => item.id)),
   });
+}
+
+/** After a change in the Admin: lists, memberships and profiles are reloaded. */
+export function useInvalidateAdmin(engine: string) {
+  const queryClient = useQueryClient();
+  return () =>
+    Promise.all(
+      ['admin-list', 'admin-ids', 'admin-item', 'user-profile'].map((key) =>
+        queryClient.invalidateQueries({ queryKey: [key, engine] }),
+      ),
+    );
+}
+
+/**
+ * Adds (PUT) or removes (DELETE) memberships, e.g. url = id =>
+ * /group/{id}/members/{userId}; several are added one after the other.
+ */
+export function useMemberships(engine: string, url: (id: string) => string) {
+  const invalidate = useInvalidateAdmin(engine);
+  const add = useMutation({
+    mutationFn: async (ids: string[]) => {
+      for (const id of ids) {
+        await request<void>(url(id), { method: 'PUT' });
+      }
+    },
+    onSettled: invalidate,
+  });
+  const remove = useMutation({
+    mutationFn: (id: string) => request<void>(url(id), { method: 'DELETE' }),
+    onSettled: invalidate,
+  });
+  return { add, remove };
 }

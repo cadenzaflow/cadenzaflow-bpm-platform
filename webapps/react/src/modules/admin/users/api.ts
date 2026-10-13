@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { engineUrl, request } from '../../../shared/api/client';
 import type { CriterionType } from '../../../shared/search/criteria';
-import type { User } from '../api';
+import { useInvalidateAdmin, useMemberships, type User } from '../api';
 
 /** Search criteria of the user list (user query of the engine REST API). */
 export const USER_CRITERIA: CriterionType[] = [
@@ -16,17 +16,8 @@ export const USER_CRITERIA: CriterionType[] = [
 const userUrl = (engine: string, userId: string, path = '') =>
   engineUrl(engine, `/user/${encodeURIComponent(userId)}${path}`);
 
-/** After a change: lists, memberships and profiles are reloaded. */
-function useInvalidateUsers(engine: string) {
-  const queryClient = useQueryClient();
-  return () =>
-    Promise.all(
-      ['admin-list', 'admin-ids', 'user-profile'].map((key) => queryClient.invalidateQueries({ queryKey: [key, engine] })),
-    );
-}
-
 export function useCreateUser(engine: string) {
-  const invalidate = useInvalidateUsers(engine);
+  const invalidate = useInvalidateAdmin(engine);
   return useMutation({
     mutationFn: ({ profile, password }: { profile: User; password: string }) =>
       request<void>(engineUrl(engine, '/user/create'), { method: 'POST', json: { profile, credentials: { password } } }),
@@ -35,7 +26,7 @@ export function useCreateUser(engine: string) {
 }
 
 export function useUpdateProfile(engine: string, userId: string) {
-  const invalidate = useInvalidateUsers(engine);
+  const invalidate = useInvalidateAdmin(engine);
   return useMutation({
     mutationFn: (profile: User) => request<void>(userUrl(engine, userId, '/profile'), { method: 'PUT', json: profile }),
     onSuccess: invalidate,
@@ -51,7 +42,7 @@ export function useUpdateCredentials(engine: string, userId: string) {
 }
 
 export function useDeleteUser(engine: string, userId: string) {
-  const invalidate = useInvalidateUsers(engine);
+  const invalidate = useInvalidateAdmin(engine);
   return useMutation({
     mutationFn: () => request<void>(userUrl(engine, userId), { method: 'DELETE' }),
     onSuccess: invalidate,
@@ -65,30 +56,14 @@ export function useUnlockUser(engine: string, userId: string) {
   });
 }
 
-/**
- * Adds or removes memberships of a user, e.g.
- * PUT /group/{groupId}/members/{userId}, DELETE /tenant/{tenantId}/user-members/{userId}.
- */
+/** Groups (PUT/DELETE /group/{id}/members/{userId}) or tenants (/tenant/{id}/user-members/{userId}) of a user. */
 export function useUserMemberships(engine: string, userId: string, kind: 'group' | 'tenant') {
-  const invalidate = useInvalidateUsers(engine);
-  const url = (id: string) =>
+  return useMemberships(engine, (id) =>
     engineUrl(
       engine,
       kind === 'group'
         ? `/group/${encodeURIComponent(id)}/members/${encodeURIComponent(userId)}`
         : `/tenant/${encodeURIComponent(id)}/user-members/${encodeURIComponent(userId)}`,
-    );
-  const add = useMutation({
-    mutationFn: async (ids: string[]) => {
-      for (const id of ids) {
-        await request<void>(url(id), { method: 'PUT' });
-      }
-    },
-    onSettled: invalidate,
-  });
-  const remove = useMutation({
-    mutationFn: (id: string) => request<void>(url(id), { method: 'DELETE' }),
-    onSettled: invalidate,
-  });
-  return { add, remove };
+    ),
+  );
 }
