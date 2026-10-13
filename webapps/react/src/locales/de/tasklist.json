@@ -191,5 +191,18 @@
   "FILTER_VARIABLE_NAME_PLACEHOLDER": "Machinenname der Variable",
   "FILTER_VARIABLE_LABEL": "Beschriftung",
   "FILTER_VARIABLE_LABEL_PLACEHOLDER": "Menschlich leserliche Beschriftung",
-  "ADD": "Hinzufügen"
+  "ADD": "Hinzufügen",
+  "CREATE_TASK": "Aufgabe erstellen",
+  "NEW_TASK_NAME": "Name",
+  "NEW_TASK_ASSIGNEE": "Bearbeiter",
+  "NEW_TASK_TENANT_ID": "Mandanten-ID",
+  "NEW_TASK_DESCRIPTION": "Beschreibung",
+  "TASK_SAVE_ERROR": "Beim Speichern des Aufgabe ist ein Fehler aufgetreten",
+  "SHORTCUT": "Tastenkürzel",
+  "SHORTCUT_HELP": "Tastenkürzel",
+  "SHORTCUT_CLAIM_TASK": "Übernimmt die ausgewählte Aufgabe",
+  "SHORTCUT_FOCUS_FILTER": "Setzt den Fokus auf den ersten Filter der Liste",
+  "SHORTCUT_FOCUS_LIST": "Setzt den Fokus auf die erste Aufgabe der Liste",
+  "SHORTCUT_FOCUS_FORM": "Setzt den Fokus auf das erste Feld des Aufgabenformulars",
+  "SHORTCUT_START_PROCESS": "Öffnet den Dialog zum Starten eines Prozesses"
 }

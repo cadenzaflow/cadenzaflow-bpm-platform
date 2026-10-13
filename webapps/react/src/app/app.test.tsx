@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider, createMemoryHistory } from '@tanstack/react-router';
@@ -105,6 +105,9 @@ function fakeBackend() {
     }
     if (path === '/api/engine/engine/default/process-definition/order%3A1/submit-form' && method === 'POST') {
       return json({ id: 'pi9' });
+    }
+    if (path === '/api/engine/engine/default/task/create' && method === 'POST') {
+      return new Response(null, { status: 204 });
     }
     return json({ message: `unexpected ${method} ${url}` }, 500);
   });
@@ -224,6 +227,48 @@ describe('webapp shell', () => {
     const submit = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-definition/order%3A1/submit-form'));
     expect(JSON.parse(String(submit?.[1]?.body))).toEqual({ variables: {}, businessKey: 'ORDER-1' });
     expect(history.location.search).not.toContain('processStart');
+  });
+
+  it('creates a standalone task', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/tasklist/default?filter=f1');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Create task' }));
+    const dialog = within(await screen.findByRole('dialog', { name: 'Create task' }));
+    expect(dialog.getByRole('button', { name: 'Save' })).toBeDisabled();
+    await user.type(dialog.getByLabelText('Name'), 'Call the customer');
+    await user.type(dialog.getByLabelText('Assignee'), 'demo');
+    await user.click(dialog.getByRole('button', { name: 'Save' }));
+
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Create task' })).not.toBeInTheDocument());
+    const create = fetchMock.mock.calls.find(([url]) => url.endsWith('/task/create'));
+    expect(JSON.parse(String(create?.[1]?.body))).toEqual({
+      name: 'Call the customer',
+      assignee: 'demo',
+      tenantId: null,
+      description: null,
+      priority: 50,
+    });
+  });
+
+  it('has keyboard shortcuts, and lists them', async () => {
+    fakeBackend();
+    renderApp('/app/react/tasklist/default?filter=f1');
+    const user = await logIn();
+    await screen.findByText('Approve Invoice');
+
+    await user.keyboard('{Control>}{Alt>}l{/Alt}{/Control}');
+    expect(screen.getByText('Approve Invoice').closest('button')).toHaveFocus();
+
+    await user.keyboard('{Control>}{Alt>}p{/Alt}{/Control}');
+    expect(await screen.findByText('Order')).toBeVisible();
+    await user.keyboard('{Escape}');
+
+    await user.click(screen.getByRole('button', { name: 'Keyboard Shortcuts' }));
+    const help = within(await screen.findByRole('dialog', { name: 'Keyboard Shortcuts' }));
+    expect(help.getByText('Ctrl + Alt + P')).toBeInTheDocument();
+    expect(help.getByText('Opens the start process dialog')).toBeInTheDocument();
   });
 
   it('rejects wrong credentials', async () => {
