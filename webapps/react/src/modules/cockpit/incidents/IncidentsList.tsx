@@ -7,6 +7,7 @@ import { DEFAULT_PAGE_SIZE, usePagedList } from '../../../shared/api/paging';
 import { formatDateTime } from '../../../shared/format';
 import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTable';
 import { InstanceLink } from '../process-instance/InstanceLink';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { RETRYABLE, type Incident } from './api';
 import { AnnotationModal, RetryModal, StacktraceModal } from './IncidentDialogs';
 
@@ -115,17 +116,21 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
     {
       key: 'action',
       header: t('PLUGIN_INCIDENTS_TAB_ACTION'),
-      render: (incident) =>
-        RETRYABLE.includes(incident.incidentType) && (
-          <Button
-            kind="ghost"
-            size="sm"
-            hasIconOnly
-            renderIcon={Renew}
-            iconDescription={t('PLUGIN_JOB_RETRY_LEGEND_1')}
-            onClick={() => setDialog({ kind: 'retry', incident })}
-          />
-        ),
+      render: (incident) => (
+        <span className="cz-row-actions">
+          {RETRYABLE.includes(incident.incidentType) && (
+            <Button
+              kind="ghost"
+              size="sm"
+              hasIconOnly
+              renderIcon={Renew}
+              iconDescription={t('PLUGIN_JOB_RETRY_LEGEND_1')}
+              onClick={() => setDialog({ kind: 'retry', incident })}
+            />
+          )}
+          <PluginPoint module="cockpit" point="cockpit.incident.action" engine={engine} props={{ incidentId: incident.id }} className="cz-plugin-inline" />
+        </span>
+      ),
     },
   ];
 

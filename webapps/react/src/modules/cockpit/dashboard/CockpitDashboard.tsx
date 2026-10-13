@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { InlineNotification, SkeletonText, Tile } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { useTranslation } from 'react-i18next';
 import { BarList, type BarItem } from '../../../shared/ui/BarList';
 import { incidentCount, useCount, useProcessStatistics, type ProcessStatistics } from '../api';
@@ -97,6 +98,7 @@ export function CockpitDashboard() {
         <Card title={t('DASHBOARD_DECISION_DEFINITIONS')} total={countLink(decisionDefinitions.data, '/cockpit/$engine/decisions')} />
         <Card title={t('DASHBOARD_DEPLOYMENTS')} total={countLink(deployments.data, '/cockpit/$engine/repository')} />
       </div>
+      <PluginPoint module="cockpit" point="cockpit.dashboard" engine={engine} className="cz-plugin-section" />
     </section>
   );
 }

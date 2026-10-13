@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { engineUrl, request } from '../../../shared/api/client';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 
 const route = getRouteApi('/cockpit/$engine/tasks');
@@ -148,6 +149,7 @@ export function TasksPage() {
           )}
         </section>
       </div>
+      <PluginPoint module="cockpit" point="cockpit.tasks.dashboard" engine={engine} className="cz-plugin-section" />
     </PageFrame>
   );
 }

@@ -13,6 +13,8 @@ import {
 } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
+import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
 import { TimeToLive } from '../components/TimeToLive';
@@ -47,7 +49,14 @@ export function ProcessDefinitionPage() {
     () => ({ count: t('PLUGIN_PROCESS_DEF_RUNNING_INSTANCES'), incidents: t('PLUGIN_PROCESS_DEF_INCIDENTS') }),
     [t],
   );
-  const tabIndex = Math.max(0, definitionTabs.findIndex((tab) => tab.id === search.tab));
+  const pluginTabs = usePluginPoint('cockpit', 'cockpit.processDefinition.runtime.tab');
+  const onViewer = useDiagramPlugins('cockpit', 'cockpit.processDefinition.diagram.plugin', engine, { processDefinitionId: id });
+  // the built-in tabs, then those of plugins
+  const tabs = [
+    ...definitionTabs.map((tab) => ({ id: tab.id, label: tab.label, plugin: undefined })),
+    ...pluginTabs.map((plugin) => ({ id: plugin.id, label: plugin.label ?? plugin.id, plugin })),
+  ];
+  const tabIndex = Math.max(0, tabs.findIndex((tab) => tab.id === search.tab));
   const name = definition.data ? definition.data.name || definition.data.key : id;
 
   const update = (changes: Partial<ProcessDefinitionSearch>) =>
@@ -85,7 +94,12 @@ export function ProcessDefinitionPage() {
           : []),
         name,
       ]}
-      actions={definition.data && <DefinitionSuspension engine={engine} definition={definition.data} />}
+      actions={
+        <>
+          {definition.data && <DefinitionSuspension engine={engine} definition={definition.data} />}
+          <PluginPoint module="cockpit" point="cockpit.processDefinition.runtime.action" engine={engine} props={{ processDefinitionId: id }} className="cz-plugin-inline" />
+        </>
+      }
     >
       {definition.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={definition.error.message} />}
       <div className="cz-definition">
@@ -168,6 +182,7 @@ export function ProcessDefinitionPage() {
                   badgeLabels={badgeLabels}
                   selected={activityIds}
                   onElementClick={selectActivity}
+                  onViewer={onViewer}
                 />
               </Suspense>
             )
@@ -175,27 +190,27 @@ export function ProcessDefinitionPage() {
           {definition.data && (
             <Tabs
               selectedIndex={tabIndex}
-              onChange={({ selectedIndex }) => update({ tab: definitionTabs[selectedIndex].id })}
+              onChange={({ selectedIndex }) => update({ tab: tabs[selectedIndex].id })}
             >
               <TabList aria-label={name}>
-                {definitionTabs.map((tab) => (
+                {tabs.map((tab) => (
                   <Tab key={tab.id}>{t(tab.label)}</Tab>
                 ))}
               </TabList>
               <TabPanels>
-                {definitionTabs.map((tab, index) => (
-                  <TabPanel key={tab.id}>
-                    {index === tabIndex && (
-                      <tab.component
-                        engine={engine}
-                        definition={definition.data}
-                        activityIds={activityIds}
-                        search={search}
-                        onSearchChange={update}
-                      />
-                    )}
-                  </TabPanel>
-                ))}
+                {tabs.map((tab, index) => {
+                  const BuiltIn = definitionTabs[index]?.component;
+                  return (
+                    <TabPanel key={tab.id}>
+                      {index === tabIndex &&
+                        (tab.plugin ? (
+                          <PluginView plugin={tab.plugin} engine={engine} props={{ processDefinitionId: id }} />
+                        ) : (
+                          <BuiltIn engine={engine} definition={definition.data} activityIds={activityIds} search={search} onSearchChange={update} />
+                        ))}
+                    </TabPanel>
+                  );
+                })}
               </TabPanels>
             </Tabs>
           )}

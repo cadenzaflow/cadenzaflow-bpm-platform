@@ -8,6 +8,7 @@ import { formatDateTime } from '../../../shared/format';
 import { toQuery, type CriterionType, type SearchState } from '../../../shared/search/criteria';
 import { CriteriaSearch } from '../../../shared/search/CriteriaSearch';
 import { sortingOf } from '../../../shared/search/list-search';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import type { Deployment } from './api';
 import { DeleteDeploymentModal } from './DeleteDeploymentModal';
 import type { RepositorySearch } from './search';
@@ -106,6 +107,7 @@ export function DeploymentsColumn({ engine, search, onSearchChange, onSelect }: 
         />
       </div>
       <CriteriaSearch namespace="cockpit" types={DEPLOYMENT_CRITERIA} value={draft} onChange={setDraft} allowMatchAny={false} />
+      <PluginPoint module="cockpit" point="cockpit.repository.deployments.list" engine={engine} />
       {deployments.isPending && <SkeletonText paragraph lineCount={6} />}
       {deployments.isError && (
         <InlineNotification kind="error" lowContrast hideCloseButton title={t('REPOSITORY_DEPLOYMENTS_LOADING_LEGEND')} subtitle={deployments.error.message} />
@@ -130,15 +132,23 @@ export function DeploymentsColumn({ engine, search, onSearchChange, onSelect }: 
                 <dd>{value(deployment.tenantId)}</dd>
               </dl>
             </button>
-            <Button
-              kind="ghost"
-              size="sm"
-              hasIconOnly
-              className="cz-repository__delete"
-              renderIcon={TrashCan}
-              iconDescription={t('REPOSITORY_DEPLOYMENTS_DELETE_DELETE_TOOLTIP')}
-              onClick={() => setDeleting(deployment)}
-            />
+            <span className="cz-repository__actions">
+              <PluginPoint
+                module="cockpit"
+                point="cockpit.repository.deployment.action"
+                engine={engine}
+                props={{ deploymentId: deployment.id }}
+                className="cz-plugin-inline"
+              />
+              <Button
+                kind="ghost"
+                size="sm"
+                hasIconOnly
+                renderIcon={TrashCan}
+                iconDescription={t('REPOSITORY_DEPLOYMENTS_DELETE_DELETE_TOOLTIP')}
+                onClick={() => setDeleting(deployment)}
+              />
+            </span>
           </li>
         ))}
       </ul>

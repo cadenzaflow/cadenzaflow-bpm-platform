@@ -233,16 +233,17 @@
     box-shadow: inset 3px 0 0 $border-interactive;
   }
 
-  // the delete button shows on hover and focus, as in the classic Cockpit
-  .cz-repository__delete {
+  // the actions (delete, plugins) show on hover and focus, as in the classic Cockpit
+  .cz-repository__actions {
     position: absolute;
     top: $spacing-02;
     right: $spacing-02;
+    display: inline-flex;
     opacity: 0;
   }
 
-  &:hover .cz-repository__delete,
-  .cz-repository__delete:focus {
+  &:hover .cz-repository__actions,
+  .cz-repository__actions:focus-within {
     opacity: 1;
   }
 }
@@ -358,4 +359,19 @@
 // the batch shown on the right
 .cz-batches .cz-link-button[aria-current='true'] {
   font-weight: 600;
+}
+
+// Frontend plugins: inline next to buttons, or as a section of their own
+.cz-plugin-inline {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cz-plugin-section:not(:empty) {
+  margin-top: $spacing-07;
+}
+
+.cz-section-nav__plugin {
+  display: flex;
+  align-items: stretch;
 }

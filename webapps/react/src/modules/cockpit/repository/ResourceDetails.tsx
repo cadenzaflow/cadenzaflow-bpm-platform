@@ -3,6 +3,7 @@ import { Button, InlineNotification, SkeletonPlaceholder, SkeletonText } from '@
 import { Download } from '@carbon/icons-react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import {
   resourceDataUrl,
@@ -168,12 +169,28 @@ export function ResourceDetails({ engine, resource }: { engine: string; resource
             </p>
           )}
         </div>
-        <Button kind="tertiary" size="sm" renderIcon={Download} href={resourceDataUrl(engine, resource)}>
-          {t('REPOSITORY_DEPLOYMENT_DOWNLOAD_DOWNLOAD')}
-        </Button>
+        <span className="cz-row-actions">
+          <PluginPoint
+            module="cockpit"
+            point="cockpit.repository.resource.action"
+            engine={engine}
+            props={{ deploymentId: resource.deploymentId, resourceId: resource.id }}
+            className="cz-plugin-inline"
+          />
+          <Button kind="tertiary" size="sm" renderIcon={Download} href={resourceDataUrl(engine, resource)}>
+            {t('REPOSITORY_DEPLOYMENT_DOWNLOAD_DOWNLOAD')}
+          </Button>
+        </span>
       </header>
       {content}
       {['bpmn', 'dmn', 'cmmn'].includes(type) && <Definitions engine={engine} resource={resource} type={type} />}
+      <PluginPoint
+        module="cockpit"
+        point="cockpit.repository.resource.detail"
+        engine={engine}
+        props={{ deploymentId: resource.deploymentId, resourceId: resource.id }}
+        className="cz-plugin-section"
+      />
     </section>
   );
 }

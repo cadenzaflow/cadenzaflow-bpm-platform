@@ -11,6 +11,7 @@ import { ListTable, type Column } from '../../../../shared/ui/ListTable';
 import { SuspensionModal } from '../../components/SuspensionModal';
 import { useInvalidateCockpit } from '../../incidents/api';
 import { useProcessDefinitionXml } from '../api';
+import { PluginPoint } from '../../../../shared/plugins/PluginPoint';
 import type { DefinitionTab, DefinitionTabProps } from './registry';
 
 interface JobDefinition {
@@ -76,6 +77,7 @@ function JobDefinitionsTab({ engine, definition, activityIds }: DefinitionTabPro
             iconDescription={t('PLUGIN_JOBDEFINITION_ACTION_OVERRIDE_TOOLTIP_CHANGE')}
             onClick={() => setDialog({ kind: 'priority', jobDefinition: job })}
           />
+          <PluginPoint module="cockpit" point="cockpit.jobDefinition.action" engine={engine} props={{ jobDefinitionId: job.id }} className="cz-plugin-inline" />
         </>
       ),
     },

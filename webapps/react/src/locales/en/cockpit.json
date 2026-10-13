@@ -576,5 +576,11 @@
   "PLGN_HIST_RETRIES": "Retries",
   "PLGN_HIST_STATE": "State",
   "PLGN_HIST_TIMESTAMPE": "Timestamp",
-  "PLGN_HIST_TYPE": "Type"
+  "PLGN_HIST_TYPE": "Type",
+  "COCKPIT_REPORTS": "Reports",
+  "REPORTS_TYPE_AVAILABLE_REPORTS": "Available reports",
+  "REPORTS_TYPE_NO_AVAILABLE_REPORTS": "No reports available.",
+  "REPORTS_VIEW_BREAD_CRUMB": "Reports",
+  "REPORTS_VIEW_TITLE_SET": "{{name}} report",
+  "PLUGIN_PROCESS_DEF_ACTION": "Action"
 }

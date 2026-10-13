@@ -33,12 +33,13 @@ import { validateProcessInstanceSearch } from '../modules/cockpit/process-instan
 import { DecisionsPage } from '../modules/cockpit/decisions/DecisionsPage';
 import { DecisionDefinitionPage } from '../modules/cockpit/decisions/DecisionDefinitionPage';
 import { DecisionInstancePage } from '../modules/cockpit/decisions/DecisionInstancePage';
-import { validateDecisionInstanceSearch } from '../modules/cockpit/decisions/search';
+import { validateDecisionDefinitionSearch, validateDecisionInstanceSearch } from '../modules/cockpit/decisions/search';
 import { TasksPage } from '../modules/cockpit/tasks/TasksPage';
 import { RepositoryPage } from '../modules/cockpit/repository/RepositoryPage';
 import { validateRepositorySearch } from '../modules/cockpit/repository/search';
 import { BatchesPage } from '../modules/cockpit/batches/BatchesPage';
 import { validateBatchesSearch } from '../modules/cockpit/batches/search';
+import { ReportsPage, validateReportsSearch } from '../modules/cockpit/reports/ReportsPage';
 import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
@@ -136,7 +137,7 @@ const cockpitRoutes = [
   createRoute({
     getParentRoute: () => cockpitRoute,
     path: 'decision-definition/$id',
-    validateSearch: validateCockpitListSearch,
+    validateSearch: validateDecisionDefinitionSearch,
     component: DecisionDefinitionPage,
   }),
   createRoute({
@@ -148,6 +149,7 @@ const cockpitRoutes = [
   createRoute({ getParentRoute: () => cockpitRoute, path: 'tasks', component: TasksPage }),
   createRoute({ getParentRoute: () => cockpitRoute, path: 'repository', validateSearch: validateRepositorySearch, component: RepositoryPage }),
   createRoute({ getParentRoute: () => cockpitRoute, path: 'batch', validateSearch: validateBatchesSearch, component: BatchesPage }),
+  createRoute({ getParentRoute: () => cockpitRoute, path: 'reports', validateSearch: validateReportsSearch, component: ReportsPage }),
 ];
 
 // The first admin user of an engine without one: no module, so no login and no header.

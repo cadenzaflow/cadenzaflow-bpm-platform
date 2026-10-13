@@ -45,7 +45,8 @@ function readCookie(name: string): string | null {
   return entry ? decodeURIComponent(entry.substring(prefix.length)) : null;
 }
 
-function csrfToken(): string | null {
+/** The CSRF token to send with POST, PUT and DELETE (also handed to plugins). */
+export function csrfToken(): string | null {
   return readCookie(CSRF_COOKIE) ?? csrfTokenFromHeader;
 }
 

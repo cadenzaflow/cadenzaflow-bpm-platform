@@ -6,6 +6,8 @@ import { cockpitUrl } from '../../../shared/api/client';
 import type { CriterionType } from '../../../shared/search/criteria';
 import type { ListSearch } from '../../../shared/search/list-search';
 import type { Column } from '../../../shared/ui/ListTable';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { SearchableList } from '../../../shared/ui/SearchableList';
 import { useCount } from '../api';
@@ -37,6 +39,7 @@ export function ProcessesPage() {
   const search = route.useSearch();
   const navigate = route.useNavigate();
   const deployed = useCount(engine, '/process-definition/count', { latestVersion: true });
+  const rowActions = usePluginPoint('cockpit', 'cockpit.processes.action');
 
   const columns: Column<ProcessDefinitionOverview>[] = [
     {
@@ -81,6 +84,18 @@ export function ProcessesPage() {
       ),
     },
     { key: 'tenantId', header: t('PLUGIN_PROCESS_DEF_TENANT_ID'), sortBy: 'tenantId', render: (definition) => definition.tenantId },
+    // only when plugins add actions to the processes
+    ...(rowActions.length
+      ? [
+          {
+            key: 'action',
+            header: t('PLUGIN_PROCESS_DEF_ACTION'),
+            render: (definition: ProcessDefinitionOverview) => (
+              <PluginPoint module="cockpit" point="cockpit.processes.action" engine={engine} props={{ processDefinitionId: definition.id }} className="cz-plugin-inline" />
+            ),
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -103,6 +118,7 @@ export function ProcessesPage() {
         search={search}
         onSearchChange={(changes) => navigate({ search: (previous: ListSearch) => ({ ...previous, ...changes }) })}
       />
+      <PluginPoint module="cockpit" point="cockpit.processes.dashboard" engine={engine} className="cz-plugin-section" />
     </PageFrame>
   );
 }

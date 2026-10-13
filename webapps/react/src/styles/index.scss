@@ -151,10 +151,14 @@ body {
   padding: 0 $spacing-05;
   border-bottom: 1px solid $border-subtle;
   background: $layer-01;
+  // narrow screens scroll the sections instead of the page
+  overflow-x: auto;
 }
 
 .cz-section-nav__item {
   @include type-style('body-compact-01');
+  flex-shrink: 0;
+  white-space: nowrap;
   padding: $spacing-04 $spacing-05;
   border-bottom: 2px solid transparent;
   color: $text-secondary;

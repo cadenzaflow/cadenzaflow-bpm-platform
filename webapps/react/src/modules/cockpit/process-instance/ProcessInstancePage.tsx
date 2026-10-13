@@ -14,6 +14,8 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../../shared/api/client';
 import { elementNames } from '../../../shared/diagram/bpmn-names';
+import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
+import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useProcessDefinition, useProcessDefinitionXml } from '../process-definition/api';
 import { ActivityTree } from './ActivityTree';
@@ -64,7 +66,14 @@ export function ProcessInstancePage() {
   );
   const activityIds = listOf(search.activityIds);
   const activityInstanceIds = listOf(search.activityInstanceIds);
-  const tabIndex = Math.max(0, instanceTabs.findIndex((tab) => tab.id === search.tab));
+  const pluginTabs = usePluginPoint('cockpit', 'cockpit.processInstance.runtime.tab');
+  const onViewer = useDiagramPlugins('cockpit', 'cockpit.processInstance.diagram.plugin', engine, { processInstanceId: id });
+  // the built-in tabs, then those of plugins
+  const tabs = [
+    ...instanceTabs.map((tab) => ({ id: tab.id, label: tab.label, plugin: undefined })),
+    ...pluginTabs.map((plugin) => ({ id: plugin.id, label: plugin.label ?? plugin.id, plugin })),
+  ];
+  const tabIndex = Math.max(0, tabs.findIndex((tab) => tab.id === search.tab));
   const definitionName = definition.data ? definition.data.name || definition.data.key : '';
 
   const activityInstanceNames = useMemo(() => {
@@ -136,17 +145,20 @@ export function ProcessInstancePage() {
       ]}
       actions={
         instance.data && (
-          <InstanceActions
-            engine={engine}
-            instance={instance.data}
-            onCanceled={() =>
-              navigate({ to: '/cockpit/$engine/process-definition/$id', params: { engine, id: instance.data.definitionId } })
-            }
-            scopeOf={(executionId) => {
-              const activityInstanceId = executionActivityInstances.get(executionId);
-              return activityInstanceId && activityInstanceNames.get(activityInstanceId);
-            }}
-          />
+          <>
+            <InstanceActions
+              engine={engine}
+              instance={instance.data}
+              onCanceled={() =>
+                navigate({ to: '/cockpit/$engine/process-definition/$id', params: { engine, id: instance.data.definitionId } })
+              }
+              scopeOf={(executionId) => {
+                const activityInstanceId = executionActivityInstances.get(executionId);
+                return activityInstanceId && activityInstanceNames.get(activityInstanceId);
+              }}
+            />
+            <PluginPoint module="cockpit" point="cockpit.processInstance.runtime.action" engine={engine} props={{ processInstanceId: id }} className="cz-plugin-inline" />
+          </>
         )
       }
     >
@@ -226,40 +238,47 @@ export function ProcessInstancePage() {
                     badgeLabels={badgeLabels}
                     selected={activityIds}
                     onElementClick={selectActivity}
+                    onViewer={onViewer}
                   />
                 </Suspense>
               )
             )}
             {instance.data && definition.data && (
               <Tabs selectedIndex={tabIndex} onChange={({ selectedIndex }) =>
-                  update({ tab: instanceTabs[selectedIndex].id, searchQuery: undefined, page: undefined, sortBy: undefined, sortOrder: undefined })
+                  update({ tab: tabs[selectedIndex].id, searchQuery: undefined, page: undefined, sortBy: undefined, sortOrder: undefined })
                 }>
                 <TabList aria-label={id}>
-                  {instanceTabs.map((tab) => (
+                  {tabs.map((tab) => (
                     <Tab key={tab.id}>{t(tab.label)}</Tab>
                   ))}
                 </TabList>
                 <TabPanels>
-                  {instanceTabs.map((tab, index) => (
-                    <TabPanel key={tab.id}>
-                      {index === tabIndex && (
-                        <tab.component
-                          engine={engine}
-                          instance={instance.data}
-                          definition={definition.data}
-                          activityIds={activityIds}
-                          activityInstanceIds={activityInstanceIds}
-                          activityNames={names}
-                          activityInstanceNames={activityInstanceNames}
-                          executionActivityInstances={executionActivityInstances}
-                          onActivitySelect={(activityId) => selectActivity(activityId, false)}
-                          onActivityInstanceSelect={selectInstanceById}
-                          search={search}
-                          onSearchChange={update}
-                        />
-                      )}
-                    </TabPanel>
-                  ))}
+                  {tabs.map((tab, index) => {
+                    const BuiltIn = instanceTabs[index]?.component;
+                    return (
+                      <TabPanel key={tab.id}>
+                        {index === tabIndex && tab.plugin && (
+                          <PluginView plugin={tab.plugin} engine={engine} props={{ processInstanceId: id }} />
+                        )}
+                        {index === tabIndex && !tab.plugin && (
+                          <BuiltIn
+                            engine={engine}
+                            instance={instance.data}
+                            definition={definition.data}
+                            activityIds={activityIds}
+                            activityInstanceIds={activityInstanceIds}
+                            activityNames={names}
+                            activityInstanceNames={activityInstanceNames}
+                            executionActivityInstances={executionActivityInstances}
+                            onActivitySelect={(activityId) => selectActivity(activityId, false)}
+                            onActivityInstanceSelect={selectInstanceById}
+                            search={search}
+                            onSearchChange={update}
+                          />
+                        )}
+                      </TabPanel>
+                    );
+                  })}
                 </TabPanels>
               </Tabs>
             )}
