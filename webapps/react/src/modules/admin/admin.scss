@@ -127,14 +127,14 @@
   margin-bottom: $spacing-03;
 }
 
-// Resource types | authorizations of the chosen type.
-.cz-authorizations {
+// Sections on the left (resource types, system sections) | content.
+.cz-admin-split {
   display: grid;
   grid-template-columns: 16rem minmax(0, 1fr);
   min-height: 100%;
 }
 
-.cz-authorizations__resources {
+.cz-admin-split__nav {
   padding: $spacing-05 0;
   border-right: 1px solid $border-subtle;
 
@@ -177,4 +177,96 @@
 
 .cz-authorizations__details {
   margin-top: $spacing-05;
+}
+
+.cz-metrics__start {
+  max-width: 14rem;
+  margin: $spacing-05 0;
+}
+
+.cz-metrics__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $spacing-07;
+}
+
+.cz-metrics__table {
+  margin-top: $spacing-04;
+}
+
+.cz-metrics__number {
+  text-align: right;
+}
+
+.cz-metrics__hint {
+  margin-left: $spacing-02;
+  vertical-align: middle;
+}
+
+.cz-metrics__previous-year {
+  opacity: 0.7;
+}
+
+.cz-metrics-chart {
+  margin-top: $spacing-05;
+
+  svg {
+    width: 100%;
+    height: 14rem;
+  }
+}
+
+.cz-metrics-chart__axis {
+  stroke: $border-strong-01;
+}
+
+.cz-metrics-chart__label {
+  @include type-style('label-01');
+  fill: $text-secondary;
+}
+
+.cz-metrics-chart__legend {
+  @include type-style('label-01');
+  display: flex;
+  gap: $spacing-05;
+  margin-top: $spacing-03;
+
+  > span {
+    display: flex;
+    align-items: center;
+    gap: $spacing-02;
+  }
+}
+
+.cz-metrics-chart__swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+// the colors of the classic Admin's chart
+.cz-metrics-chart__bar--PI {
+  fill: hsl(230deg 70% 41%);
+  background: hsl(230deg 70% 41%);
+}
+
+.cz-metrics-chart__bar--DI {
+  fill: hsl(302deg 70% 41%);
+  background: hsl(302deg 70% 41%);
+}
+
+.cz-metrics-chart__bar--TU {
+  fill: hsl(14deg 70% 41%);
+  background: hsl(14deg 70% 41%);
+}
+
+.cz-metrics-chart__bar--FNI {
+  fill: hsl(86deg 70% 41%);
+  background: hsl(86deg 70% 41%);
+}
+
+.cz-metrics-chart__bar--EDE {
+  fill: hsl(158deg 70% 41%);
+  background: hsl(158deg 70% 41%);
 }

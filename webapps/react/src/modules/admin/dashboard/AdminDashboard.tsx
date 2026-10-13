@@ -4,6 +4,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAuthentication } from '../../../shared/auth/authentication';
 import { useAdminAccess } from '../api';
+import { SYSTEM_SECTIONS } from '../system/search';
 
 const route = getRouteApi('/admin/$engine/');
 
@@ -115,6 +116,21 @@ export function AdminDashboard() {
             </li>
           </Section>
         )}
+        <Section
+          title={
+            <Link to="/admin/$engine/system" params={{ engine }}>
+              {t('SYSTEM_SYSTEM')}
+            </Link>
+          }
+        >
+          {SYSTEM_SECTIONS.map((section) => (
+            <li key={section.id}>
+              <Link to="/admin/$engine/system" params={{ engine }} search={{ section: section.id }}>
+                {t(section.label)}
+              </Link>
+            </li>
+          ))}
+        </Section>
       </div>
     </section>
   );

@@ -92,8 +92,8 @@ export function AuthorizationsPage() {
   );
 
   return (
-    <div className="cz-authorizations">
-      <nav className="cz-authorizations__resources" aria-label={t('AUTHORIZATION_RESOURCE')}>
+    <div className="cz-admin-split">
+      <nav className="cz-admin-split__nav" aria-label={t('AUTHORIZATION_RESOURCE')}>
         <ul>
           {RESOURCE_TYPES.map((type) => (
             <li key={type.id}>

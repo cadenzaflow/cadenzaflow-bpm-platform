@@ -79,6 +79,18 @@ function fakeBackend() {
     if (path === `${ENGINE}/authorization/a2`) {
       return new Response(null, { status: 204 });
     }
+    if (path === '/api/admin/plugin/adminPlugins/default/metrics/aggregated') {
+      return json(
+        query.get('groupBy') === 'year'
+          ? []
+          : query.get('metrics')?.includes('process-instances')
+            ? [{ subscriptionYear: new Date().getFullYear(), subscriptionMonth: 1, metric: 'process-instances', sum: 1234 }]
+            : [],
+      );
+    }
+    if (path === `${ENGINE}/telemetry/data`) {
+      return json({ installation: 'abc', product: { name: 'CadenzaFlow', internals: { database: { vendor: 'h2' }, commands: {} } } });
+    }
     if (path === `${ENGINE}/identity/password-policy`) {
       return method === 'POST'
         ? json({ valid: body.password.length >= 10, rules: [lengthRule(body.password.length >= 10)] })
@@ -314,6 +326,24 @@ describe('admin authorizations', () => {
     await user.click(dialog.getByRole('button', { name: 'Delete' }));
     expect(await screen.findByText('The authorization has been deleted successfully.')).toBeInTheDocument();
     expect(calls(fetchMock, 'DELETE', '/authorization/a2')).toHaveLength(1);
+  });
+});
+
+describe('admin system', () => {
+  it('shows execution metrics and diagnostics', async () => {
+    fakeBackend();
+    const history = renderApp('/app/react/admin/default/system?section=system-settings-metrics');
+    const user = await logIn();
+
+    expect(await screen.findByText('Usage last 12 months by month')).toBeInTheDocument();
+    expect(await screen.findByText((1234).toLocaleString())).toBeInTheDocument();
+    expect(screen.getByText('Annual usage not available yet.')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('link', { name: 'Diagnostics' }));
+    expect(history.location.search).toContain('section=diagnostics-system-settings');
+    expect(await screen.findByText(/"vendor": "h2"/)).toBeInTheDocument();
+    // internal counters are left out, as in the classic Admin
+    expect(screen.queryByText(/"commands"/)).not.toBeInTheDocument();
   });
 });
 
