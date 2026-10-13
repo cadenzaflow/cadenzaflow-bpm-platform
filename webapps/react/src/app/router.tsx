@@ -30,6 +30,10 @@ import { ProcessDefinitionPage } from '../modules/cockpit/process-definition/Pro
 import { validateProcessDefinitionSearch } from '../modules/cockpit/process-definition/search';
 import { ProcessInstancePage } from '../modules/cockpit/process-instance/ProcessInstancePage';
 import { validateProcessInstanceSearch } from '../modules/cockpit/process-instance/search';
+import { DecisionsPage } from '../modules/cockpit/decisions/DecisionsPage';
+import { DecisionDefinitionPage } from '../modules/cockpit/decisions/DecisionDefinitionPage';
+import { DecisionInstancePage } from '../modules/cockpit/decisions/DecisionInstancePage';
+import { validateDecisionInstanceSearch } from '../modules/cockpit/decisions/search';
 import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
@@ -122,6 +126,19 @@ const cockpitRoutes = [
     path: 'process-instance/$id',
     validateSearch: validateProcessInstanceSearch,
     component: ProcessInstancePage,
+  }),
+  createRoute({ getParentRoute: () => cockpitRoute, path: 'decisions', validateSearch: validateCockpitListSearch, component: DecisionsPage }),
+  createRoute({
+    getParentRoute: () => cockpitRoute,
+    path: 'decision-definition/$id',
+    validateSearch: validateCockpitListSearch,
+    component: DecisionDefinitionPage,
+  }),
+  createRoute({
+    getParentRoute: () => cockpitRoute,
+    path: 'decision-instance/$id',
+    validateSearch: validateDecisionInstanceSearch,
+    component: DecisionInstancePage,
   }),
 ];
 

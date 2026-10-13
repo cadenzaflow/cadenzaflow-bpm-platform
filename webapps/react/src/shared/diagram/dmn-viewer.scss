@@ -1,0 +1,34 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+
+.cz-dmn-viewer {
+  overflow: auto;
+  border: 1px solid $border-subtle;
+  background: $layer-01;
+
+  // a DRD needs a canvas of its own height; tables and expressions take what they need
+  .dmn-drd-container {
+    height: 28rem;
+  }
+
+  .dmn-decision-table-container {
+    padding: $spacing-04;
+  }
+
+  // the rules an evaluation fired
+  tr.cz-dmn-fired > td {
+    background: $highlight;
+  }
+}
+
+// the values of an evaluation, next to the input headers and in the output cells
+.cz-dmn-input,
+.cz-dmn-output {
+  font-weight: 600;
+}
+
+.cz-dmn-input--hidden,
+.cz-dmn-output--hidden {
+  font-style: italic;
+}

@@ -86,7 +86,18 @@ export function CockpitDashboard() {
           title={t('DASHBOARD_PROCESS_DEFINITIONS')}
           total={processDefinitions.data === undefined ? '–' : processesLink(processDefinitions.data)}
         />
-        <Card title={t('DASHBOARD_DECISION_DEFINITIONS')} total={number(decisionDefinitions.data)} />
+        <Card
+          title={t('DASHBOARD_DECISION_DEFINITIONS')}
+          total={
+            decisionDefinitions.data === undefined ? (
+              '–'
+            ) : (
+              <Link to="/cockpit/$engine/decisions" params={{ engine }}>
+                {decisionDefinitions.data.toLocaleString()}
+              </Link>
+            )
+          }
+        />
         <Card title={t('DASHBOARD_DEPLOYMENTS')} total={number(deployments.data)} />
       </div>
     </section>

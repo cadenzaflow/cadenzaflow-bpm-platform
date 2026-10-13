@@ -71,6 +71,10 @@ src/
   `camForm`, `$` and `jQuery` work; AngularJS features (`ng-*`, `$scope`,
   `inject`) do not. Bootstrap 3 classes of such forms are mapped onto Carbon
   in `embedded-form.scss`.
+- **Diagrams** (`shared/diagram`, loaded on demand): BPMN with bpmn-js, DMN
+  with dmn-js. DMN 1.1 and 1.2 definitions are migrated to DMN 1.3 in the
+  browser first (`@bpmn-io/dmn-migrate`), since dmn-js only reads DMN 1.3.
+  Their license requires the bpmn.io watermark to stay visible.
 - **Tabs of the Tasklist task detail** are registered by file: every
   `modules/tasklist/task-tabs/*.tab.tsx` exports a `tab` and appears in the
   panel, ordered by `order`.

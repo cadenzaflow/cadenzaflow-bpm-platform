@@ -16,12 +16,14 @@
     "license-check": "node scripts/license-check.mjs"
   },
   "dependencies": {
+    "@bpmn-io/dmn-migrate": "0.7.1",
     "@bpmn-io/form-js-viewer": "1.26.1",
     "@carbon/icons-react": "11.89.0",
     "@carbon/react": "1.117.0",
     "@tanstack/react-query": "5.104.0",
     "@tanstack/react-router": "1.170.40",
     "bpmn-js": "18.30.1",
+    "dmn-js": "17.12.2",
     "i18next": "26.4.2",
     "jquery": "3.7.1",
     "react": "19.3.0",
