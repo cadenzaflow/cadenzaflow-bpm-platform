@@ -24,8 +24,9 @@ export function MetricsChart({ rows, keys, title }: { rows: MetricsRow[]; keys: 
                   className={`cz-metrics-chart__bar cz-metrics-chart__bar--${key}`}
                   x={keyIndex * bar}
                   y={HEIGHT - height}
-                  width={Math.max(1, bar - 1)}
+                  width={Math.max(1, bar - 2)}
                   height={height}
+                  rx={2}
                 >
                   <title>{`${row.label} ${key}: ${row.sums[key].toLocaleString()}`}</title>
                 </rect>
