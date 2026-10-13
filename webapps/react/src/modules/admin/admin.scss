@@ -39,32 +39,6 @@
   }
 }
 
-.cz-admin-page {
-  max-width: 72rem;
-  padding: $spacing-06 $spacing-07 $spacing-09;
-}
-
-.cz-admin-page__breadcrumbs {
-  margin-bottom: $spacing-03;
-}
-
-.cz-admin-page__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $spacing-05;
-  margin-bottom: $spacing-06;
-}
-
-.cz-admin-page__title {
-  @include type-style('heading-04');
-}
-
-.cz-admin-page__actions {
-  display: flex;
-  gap: $spacing-03;
-}
-
 .cz-admin-empty {
   @include type-style('body-01');
   margin: $spacing-05 0;

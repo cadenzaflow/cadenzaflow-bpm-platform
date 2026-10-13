@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
+import type { Column } from '../../../shared/ui/ListTable';
 import { useIds, type Group, type Tenant, type User } from '../api';
-import type { Column } from '../components/ListTable';
 import { MembershipList } from '../components/MembershipList';
 import { MembershipModal } from '../components/MembershipModal';
 import { useUserMemberships } from './api';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button, InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
 import type { QueryParams } from '../../../shared/api/client';
+import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import { ADMIN_PAGE_SIZE, usePage, type Sorting } from '../api';
-import { ListTable, type Column } from './ListTable';
 
 interface MembershipListProps<T extends { id: string }> {
   engine: string;

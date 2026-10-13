@@ -1,6 +1,11 @@
 import type { ReactNode } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
-import type { Sorting } from '../api';
+
+/** Sort field and order of a REST list query. */
+export interface Sorting {
+  sortBy: string;
+  sortOrder: 'asc' | 'desc';
+}
 
 export interface Column<T> {
   key: string;
@@ -22,7 +27,7 @@ interface ListTableProps<T> {
   leading?: (item: T) => ReactNode;
 }
 
-/** A list of users, groups, tenants, ...; a header click sorts by that column, a second click reverses. */
+/** A list (users, process definitions, ...); a header click sorts by that column, a second click reverses. */
 export function ListTable<T>({ columns, items, rowKey, sorting, sortable = true, onSortingChange, leading }: ListTableProps<T>) {
   const direction = (column: Column<T>) =>
     sorting && sorting.sortBy === column.sortBy ? (sorting.sortOrder === 'asc' ? 'ASC' : 'DESC') : 'NONE';

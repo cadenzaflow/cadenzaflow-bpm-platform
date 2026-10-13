@@ -16,7 +16,7 @@ import {
 import { Information } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { AdminPage } from '../components/AdminPage';
+import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useAnnualMetrics, useDiagnostics, useMonthlyMetrics } from './api';
 import { MetricsChart } from './MetricsChart';
 import { LEGACY_METRICS, formatDate, parseDate, subscriptionYear, type MetricKey, type MetricsRow } from './metrics';
@@ -50,11 +50,11 @@ export function SystemPage() {
           ))}
         </ul>
       </nav>
-      <AdminPage title={t(selected.label)} breadcrumbs={[t('SYSTEM_SYSTEM_SETTINGS'), t(selected.label)]}>
+      <PageFrame title={t(selected.label)} breadcrumbs={[t('SYSTEM_SYSTEM_SETTINGS'), t(selected.label)]}>
         {selected.id === 'system-settings-general' && <General engine={engine} />}
         {selected.id === 'system-settings-metrics' && <ExecutionMetrics engine={engine} />}
         {selected.id === 'diagnostics-system-settings' && <Diagnostics engine={engine} />}
-      </AdminPage>
+      </PageFrame>
     </div>
   );
 }

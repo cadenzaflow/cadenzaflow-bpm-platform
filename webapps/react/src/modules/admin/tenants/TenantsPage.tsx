@@ -2,9 +2,9 @@ import { Button } from '@carbon/react';
 import { Add } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PageFrame } from '../../../shared/ui/PageFrame';
+import type { Column } from '../../../shared/ui/ListTable';
 import { useResourceAccess, type Tenant } from '../api';
-import { AdminPage } from '../components/AdminPage';
-import type { Column } from '../components/ListTable';
 import { ResourceList } from '../components/ResourceList';
 import { TENANT_CRITERIA } from '../resources';
 import type { AdminListSearch } from '../search';
@@ -30,7 +30,7 @@ export function TenantsPage() {
   ];
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('TENANTS_LIST_OF_TENANTS')}
       breadcrumbs={[t('TENANTS_TENANTS')]}
       actions={
@@ -51,6 +51,6 @@ export function TenantsPage() {
         search={search}
         onSearchChange={(changes) => navigate({ search: (previous: AdminListSearch) => ({ ...previous, ...changes }) })}
       />
-    </AdminPage>
+    </PageFrame>
   );
 }

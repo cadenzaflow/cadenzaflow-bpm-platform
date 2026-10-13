@@ -2,9 +2,9 @@ import { Button } from '@carbon/react';
 import { Add } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PageFrame } from '../../../shared/ui/PageFrame';
+import type { Column } from '../../../shared/ui/ListTable';
 import { useResourceAccess, type User } from '../api';
-import { AdminPage } from '../components/AdminPage';
-import type { Column } from '../components/ListTable';
 import { ResourceList } from '../components/ResourceList';
 import type { AdminListSearch } from '../search';
 import { USER_CRITERIA } from './api';
@@ -32,7 +32,7 @@ export function UsersPage() {
   ];
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('USERS_LIST_OF_USERS')}
       breadcrumbs={[t('USERS_USERS')]}
       actions={
@@ -53,6 +53,6 @@ export function UsersPage() {
         search={search}
         onSearchChange={(changes) => navigate({ search: (previous: AdminListSearch) => ({ ...previous, ...changes }) })}
       />
-    </AdminPage>
+    </PageFrame>
   );
 }

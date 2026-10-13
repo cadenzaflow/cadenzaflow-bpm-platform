@@ -2,9 +2,9 @@ import { Button } from '@carbon/react';
 import { Add } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PageFrame } from '../../../shared/ui/PageFrame';
+import type { Column } from '../../../shared/ui/ListTable';
 import { useResourceAccess, type Group } from '../api';
-import { AdminPage } from '../components/AdminPage';
-import type { Column } from '../components/ListTable';
 import { ResourceList } from '../components/ResourceList';
 import { GROUP_CRITERIA } from '../resources';
 import type { AdminListSearch } from '../search';
@@ -31,7 +31,7 @@ export function GroupsPage() {
   ];
 
   return (
-    <AdminPage
+    <PageFrame
       title={t('GROUPS_LIST_GROUPS')}
       breadcrumbs={[t('GROUPS_GROUPS')]}
       actions={
@@ -52,6 +52,6 @@ export function GroupsPage() {
         search={search}
         onSearchChange={(changes) => navigate({ search: (previous: AdminListSearch) => ({ ...previous, ...changes }) })}
       />
-    </AdminPage>
+    </PageFrame>
   );
 }

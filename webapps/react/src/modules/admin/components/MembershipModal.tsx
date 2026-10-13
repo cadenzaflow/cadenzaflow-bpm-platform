@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { Checkbox, InlineNotification, Modal, PaginationNav, SkeletonText } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
+import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import { ADMIN_PAGE_SIZE, usePage, type Sorting } from '../api';
-import { ListTable, type Column } from './ListTable';
 
 interface MembershipModalProps<T extends { id: string }> {
   engine: string;
