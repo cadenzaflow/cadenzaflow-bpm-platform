@@ -18,6 +18,8 @@ import { GroupEditPage } from '../modules/admin/groups/GroupEditPage';
 import { TenantsPage } from '../modules/admin/tenants/TenantsPage';
 import { TenantCreatePage } from '../modules/admin/tenants/TenantCreatePage';
 import { TenantEditPage } from '../modules/admin/tenants/TenantEditPage';
+import { AuthorizationsPage } from '../modules/admin/authorizations/AuthorizationsPage';
+import { validateAuthorizationSearch } from '../modules/admin/authorizations/search';
 
 declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
@@ -77,6 +79,12 @@ const adminRoutes = [
     path: 'tenants/$tenantId',
     validateSearch: validateEditSearch,
     component: TenantEditPage,
+  }),
+  createRoute({
+    getParentRoute: () => adminRoute,
+    path: 'authorization',
+    validateSearch: validateAuthorizationSearch,
+    component: AuthorizationsPage,
   }),
 ];
 

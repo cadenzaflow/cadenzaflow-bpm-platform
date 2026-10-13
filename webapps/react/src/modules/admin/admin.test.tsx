@@ -19,6 +19,10 @@ function fakeBackend() {
     { id: 'sales', name: 'Sales', type: 'WORKFLOW' },
   ];
   const tenants = [{ id: 'tenant-one', name: 'Tenant One' }];
+  const authorizations = [
+    { id: 'a1', type: 1, permissions: ['ALL'], userId: null, groupId: 'cadenzaflow-admin', resourceType: 0, resourceId: '*' },
+    { id: 'a2', type: 1, permissions: ['ACCESS'], userId: 'demo', groupId: null, resourceType: 0, resourceId: 'tasklist' },
+  ];
   const lengthRule = (valid?: boolean) => ({ placeholder: 'PASSWORD_POLICY_LENGTH', parameter: { minLength: '10' }, valid });
 
   const fetchMock = vi.fn(async (url: string, init: RequestInit = {}) => {
@@ -58,6 +62,21 @@ function fakeBackend() {
       return user ? json(user) : json({ message: 'not found' }, 404);
     }
     if (profile || path === `${ENGINE}/user/mary/credentials` || path === `${ENGINE}/user/create`) {
+      return new Response(null, { status: 204 });
+    }
+    if (path === `${ENGINE}/authorization/check`) {
+      return json({ authorized: true });
+    }
+    if (path === `${ENGINE}/authorization/count`) {
+      return json({ count: query.get('resourceType') === '0' ? authorizations.length : 0 });
+    }
+    if (path === `${ENGINE}/authorization`) {
+      return json(query.get('resourceType') === '0' ? authorizations : []);
+    }
+    if (path === `${ENGINE}/authorization/create`) {
+      return json({ id: 'a3' });
+    }
+    if (path === `${ENGINE}/authorization/a2`) {
       return new Response(null, { status: 204 });
     }
     if (path === `${ENGINE}/identity/password-policy`) {
@@ -247,6 +266,54 @@ describe('admin groups and tenants', () => {
     expect(await screen.findByText('Tenant tenant-one successfully deleted.')).toBeInTheDocument();
     expect(history.location.pathname).toBe('/app/react/admin/default/tenants');
     expect(calls(fetchMock, 'DELETE', '/tenant/tenant-one')).toHaveLength(1);
+  });
+});
+
+describe('admin authorizations', () => {
+  it('creates, changes and deletes authorizations of a resource type', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/admin/default/authorization?resource=0');
+    const user = await logIn();
+
+    expect(await screen.findByText('cadenzaflow-admin')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Application' })).toBeInTheDocument();
+
+    // a new one: ALLOW for a group on all applications by default
+    await user.click(screen.getByRole('button', { name: 'Create new authorization' }));
+    await user.type(screen.getByPlaceholderText('Group ID'), 'accounting');
+    const resourceId = screen.getAllByPlaceholderText('(cockpit or tasklist *)')[0];
+    await user.clear(resourceId);
+    await user.type(resourceId, 'cockpit');
+    await user.click(screen.getByRole('button', { name: 'Save' }));
+    await waitFor(() => expect(calls(fetchMock, 'POST', '/authorization/create')).toHaveLength(1));
+    expect(JSON.parse(String(calls(fetchMock, 'POST', '/authorization/create')[0][1]?.body))).toEqual({
+      type: 1,
+      permissions: ['ALL'],
+      resourceType: 0,
+      resourceId: 'cockpit',
+      groupId: 'accounting',
+    });
+
+    // demo's tasklist access moves to cockpit; the type stays (the engine does not change it)
+    await user.click(screen.getAllByRole('button', { name: 'Edit' })[1]);
+    expect(screen.queryByLabelText('Type')).not.toBeInTheDocument();
+    const editedResource = screen.getByDisplayValue('tasklist');
+    await user.clear(editedResource);
+    await user.type(editedResource, 'cockpit');
+    await user.click(screen.getByRole('button', { name: 'Save' }));
+    await waitFor(() => expect(calls(fetchMock, 'PUT', '/authorization/a2')).toHaveLength(1));
+    expect(JSON.parse(String(calls(fetchMock, 'PUT', '/authorization/a2')[0][1]?.body))).toMatchObject({
+      type: 1,
+      userId: 'demo',
+      resourceId: 'cockpit',
+    });
+
+    await user.click(screen.getAllByRole('button', { name: 'Delete' })[1]);
+    const dialog = within(await screen.findByRole('dialog', { name: 'Confirm Delete' }));
+    expect(dialog.getByText('demo')).toBeInTheDocument();
+    await user.click(dialog.getByRole('button', { name: 'Delete' }));
+    expect(await screen.findByText('The authorization has been deleted successfully.')).toBeInTheDocument();
+    expect(calls(fetchMock, 'DELETE', '/authorization/a2')).toHaveLength(1);
   });
 });
 

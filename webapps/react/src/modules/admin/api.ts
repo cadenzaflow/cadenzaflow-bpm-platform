@@ -58,8 +58,9 @@ export async function fetchPage<T>(
   query: QueryParams,
   page: number,
   sorting: Sorting | undefined,
+  pageSize = ADMIN_PAGE_SIZE,
 ): Promise<Page<T>> {
-  const paging = { firstResult: (page - 1) * ADMIN_PAGE_SIZE, maxResults: ADMIN_PAGE_SIZE };
+  const paging = { firstResult: (page - 1) * pageSize, maxResults: pageSize };
   const { count } = await request<{ count: number }>(engineUrl(engine, `${path}/count`), { query });
   try {
     const items = await request<T[]>(engineUrl(engine, path), { query: { ...query, ...paging, ...sorting } });
@@ -73,11 +74,18 @@ export async function fetchPage<T>(
   }
 }
 
-export function usePage<T>(engine: string, path: string, query: QueryParams, page: number, sorting?: Sorting) {
+export function usePage<T>(
+  engine: string,
+  path: string,
+  query: QueryParams,
+  page: number,
+  sorting?: Sorting,
+  pageSize = ADMIN_PAGE_SIZE,
+) {
   return useQuery({
-    queryKey: ['admin-list', engine, path, query, page, sorting],
+    queryKey: ['admin-list', engine, path, query, page, sorting, pageSize],
     placeholderData: (previous) => previous,
-    queryFn: () => fetchPage<T>(engine, path, query, page, sorting),
+    queryFn: () => fetchPage<T>(engine, path, query, page, sorting, pageSize),
   });
 }
 
@@ -119,4 +127,32 @@ export function useMemberships(engine: string, url: (id: string) => string) {
     onSettled: invalidate,
   });
   return { add, remove };
+}
+
+/** Whether the current user has a permission, e.g. ALL on resource type 4 (authorization). */
+export function useAuthorizationCheck(engine: string, permissionName: string, resourceName: string, resourceType: number) {
+  return useQuery({
+    queryKey: ['resource-access', engine, 'check', permissionName, resourceName, resourceType],
+    staleTime: 60_000,
+    queryFn: async () =>
+      (
+        await request<{ authorized: boolean }>(engineUrl(engine, '/authorization/check'), {
+          query: { permissionName, resourceName, resourceType },
+        })
+      ).authorized,
+  });
+}
+
+/** Which Admin sections the current user may use; navigation and dashboard show the same. */
+export function useAdminAccess(engine: string) {
+  const users = useResourceAccess(engine, '/user');
+  const groups = useResourceAccess(engine, '/group');
+  const tenants = useResourceAccess(engine, '/tenant');
+  const authorizations = useAuthorizationCheck(engine, 'ALL', 'authorization', 4);
+  return {
+    users: users.data,
+    groups: groups.data,
+    tenants: tenants.data,
+    authorizations: !!authorizations.data,
+  };
 }

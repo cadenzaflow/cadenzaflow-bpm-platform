@@ -126,3 +126,55 @@
 .cz-admin-dashboard__section li {
   margin-bottom: $spacing-03;
 }
+
+// Resource types | authorizations of the chosen type.
+.cz-authorizations {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  min-height: 100%;
+}
+
+.cz-authorizations__resources {
+  padding: $spacing-05 0;
+  border-right: 1px solid $border-subtle;
+
+  a {
+    @include type-style('body-compact-01');
+    display: block;
+    padding: $spacing-03 $spacing-05;
+    border-left: 3px solid transparent;
+    color: $text-secondary;
+    text-decoration: none;
+
+    &:hover {
+      background: $layer-hover-01;
+      color: $text-primary;
+    }
+
+    &.is-active {
+      border-left-color: $border-interactive;
+      background: $layer-selected-01;
+      color: $text-primary;
+      font-weight: 600;
+    }
+  }
+}
+
+.cz-authorizations__permissions {
+  max-width: 24rem;
+  word-break: break-word;
+}
+
+.cz-authorization-identity {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+}
+
+.cz-authorization-editor td {
+  vertical-align: top;
+}
+
+.cz-authorizations__details {
+  margin-top: $spacing-05;
+}
