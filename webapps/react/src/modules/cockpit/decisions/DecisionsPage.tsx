@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { engineUrl } from '../../../shared/api/client';
 import type { ListSearch } from '../../../shared/search/list-search';
 import type { Column } from '../../../shared/ui/ListTable';
+import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { SearchableList } from '../../../shared/ui/SearchableList';
 import { useCount } from '../api';
@@ -54,6 +55,7 @@ export function DecisionsPage() {
         search={search}
         onSearchChange={(changes) => navigate({ search: (previous: ListSearch) => ({ ...previous, ...changes }) })}
       />
+      <PluginPoint module="cockpit" point="cockpit.decisions.dashboard" engine={engine} className="cz-plugin-section" />
     </PageFrame>
   );
 }

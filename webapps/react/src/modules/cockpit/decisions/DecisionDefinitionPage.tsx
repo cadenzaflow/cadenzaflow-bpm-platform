@@ -1,11 +1,12 @@
 import { lazy, Suspense, useMemo } from 'react';
-import { InlineNotification, Select, SelectItem, SkeletonPlaceholder, SkeletonText } from '@carbon/react';
+import { InlineNotification, Select, SelectItem, SkeletonPlaceholder, SkeletonText, Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { engineUrl } from '../../../shared/api/client';
 import { formatDateTime } from '../../../shared/format';
 import type { CriterionType } from '../../../shared/search/criteria';
-import type { ListSearch } from '../../../shared/search/list-search';
+import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../../shared/plugins/plugins';
 import type { Column } from '../../../shared/ui/ListTable';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { SearchableList } from '../../../shared/ui/SearchableList';
@@ -13,6 +14,9 @@ import { TimeToLive } from '../components/TimeToLive';
 import { InstanceLink } from '../process-instance/InstanceLink';
 import { DeploymentLink } from '../repository/DeploymentLink';
 import { useDecisionDefinition, useDecisionVersions, useDecisionXml, type DecisionInstance } from './api';
+import type { DecisionDefinitionSearch } from './search';
+
+const INSTANCES_TAB = 'decision-instances-table';
 
 const DmnViewer = lazy(() => import('../../../shared/diagram/DmnViewer'));
 
@@ -47,6 +51,10 @@ export function DecisionDefinitionPage() {
   const versions = useDecisionVersions(engine, definition.data);
   const fixedQuery = useMemo(() => ({ decisionDefinitionId: id }), [id]);
   const name = definition.data ? definition.data.name || definition.data.key : id;
+  const pluginTabs = usePluginPoint('cockpit', 'cockpit.decisionDefinition.tab');
+  const tabIndex = Math.max(0, [INSTANCES_TAB, ...pluginTabs.map((plugin) => plugin.id)].indexOf(search.tab ?? INSTANCES_TAB));
+  const update = (changes: Partial<DecisionDefinitionSearch>) =>
+    navigate({ search: (previous: DecisionDefinitionSearch) => ({ ...previous, ...changes }) });
 
   const value = (text: string | number | null | undefined) =>
     text === null || text === undefined || text === '' ? <span className="cz-null">{t('DECISION_DEFINITION_NULL')}</span> : text;
@@ -87,6 +95,23 @@ export function DecisionDefinitionPage() {
     { key: 'activityId', header: t('PLUGIN_DECISION_ACTIVITY_ID'), render: (instance) => instance.activityId },
   ];
 
+  const instances = (
+    <SearchableList<DecisionInstance>
+      scope={['cockpit', engine, 'list']}
+      listUrl={engineUrl(engine, '/history/decision-instance')}
+      countUrl={engineUrl(engine, '/history/decision-instance/count')}
+      namespace="cockpit"
+      criteria={INSTANCE_CRITERIA}
+      fixedQuery={fixedQuery}
+      defaultSortBy="evaluationTime"
+      defaultSortOrder="desc"
+      columns={columns}
+      emptyText={t('PLUGIN_DECISION_TABLE_NOT_FOUND')}
+      search={search}
+      onSearchChange={update}
+    />
+  );
+
   return (
     <PageFrame
       wide
@@ -97,6 +122,7 @@ export function DecisionDefinitionPage() {
         </Link>,
         name,
       ]}
+      actions={<PluginPoint module="cockpit" point="cockpit.decisionDefinition.action" engine={engine} props={{ decisionDefinitionId: id }} className="cz-plugin-inline" />}
     >
       {definition.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={definition.error.message} />}
       <div className="cz-definition">
@@ -158,25 +184,33 @@ export function DecisionDefinitionPage() {
               </Suspense>
             )
           )}
-          <section>
-            <h2 className="cz-section-title">{t('DECISION_DEFINITION_LABEL')}</h2>
-            <SearchableList<DecisionInstance>
-              scope={['cockpit', engine, 'list']}
-              listUrl={engineUrl(engine, '/history/decision-instance')}
-              countUrl={engineUrl(engine, '/history/decision-instance/count')}
-              namespace="cockpit"
-              criteria={INSTANCE_CRITERIA}
-              fixedQuery={fixedQuery}
-              defaultSortBy="evaluationTime"
-              defaultSortOrder="desc"
-              columns={columns}
-              emptyText={t('PLUGIN_DECISION_TABLE_NOT_FOUND')}
-              search={search}
-              onSearchChange={(changes) => navigate({ search: (previous: ListSearch) => ({ ...previous, ...changes }) })}
-            />
-          </section>
+          {/* the evaluations; with tabs of plugins as the first tab */}
+          {pluginTabs.length === 0 ? (
+            <section>
+              <h2 className="cz-section-title">{t('DECISION_DEFINITION_LABEL')}</h2>
+              {instances}
+            </section>
+          ) : (
+            <Tabs selectedIndex={tabIndex} onChange={({ selectedIndex }) => update({ tab: selectedIndex ? pluginTabs[selectedIndex - 1].id : undefined })}>
+              <TabList aria-label={name}>
+                <Tab>{t('DECISION_DEFINITION_LABEL')}</Tab>
+                {pluginTabs.map((plugin) => (
+                  <Tab key={plugin.id}>{t(plugin.label ?? plugin.id)}</Tab>
+                ))}
+              </TabList>
+              <TabPanels>
+                <TabPanel>{tabIndex === 0 && instances}</TabPanel>
+                {pluginTabs.map((plugin, index) => (
+                  <TabPanel key={plugin.id}>
+                    {tabIndex === index + 1 && <PluginView plugin={plugin} engine={engine} props={{ decisionDefinitionId: id }} />}
+                  </TabPanel>
+                ))}
+              </TabPanels>
+            </Tabs>
+          )}
         </div>
       </div>
     </PageFrame>
   );
+
 }

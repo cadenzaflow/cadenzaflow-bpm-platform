@@ -1,5 +1,7 @@
-import { Link, Outlet, getRouteApi } from '@tanstack/react-router';
+import { Link, Outlet, getRouteApi, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PluginPoint, PluginView } from '../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../shared/plugins/plugins';
 import './cockpit.scss';
 
 const route = getRouteApi('/cockpit/$engine');
@@ -9,10 +11,19 @@ const linkProps = {
   activeProps: { className: 'is-active', 'aria-current': 'page' as const },
 };
 
-/** Section navigation above every Cockpit page, in the order of the classic Cockpit. */
+/**
+ * Section navigation above every Cockpit page, in the order of the classic
+ * Cockpit, followed by the entries of navigation plugins. A route plugin's
+ * page (classic path, e.g. #/my-page) shows instead of the page when the URL
+ * names it.
+ */
 export function CockpitLayout() {
   const { t } = useTranslation('cockpit');
   const { engine } = route.useParams();
+  const { hash } = useLocation();
+  const routePlugins = usePluginPoint('cockpit', 'cockpit.route');
+  const reports = usePluginPoint('cockpit', 'cockpit.report');
+  const routePlugin = hash ? routePlugins.find((plugin) => plugin.properties?.path === hash) : undefined;
 
   return (
     <div className="cz-cockpit">
@@ -35,8 +46,20 @@ export function CockpitLayout() {
         <Link to="/cockpit/$engine/batch" params={{ engine }} {...linkProps}>
           {t('COCKPIT_BATCHES')}
         </Link>
+        {reports.length > 0 && (
+          <Link to="/cockpit/$engine/reports" params={{ engine }} {...linkProps}>
+            {t('COCKPIT_REPORTS')}
+          </Link>
+        )}
+        <PluginPoint module="cockpit" point="cockpit.navigation" engine={engine} className="cz-section-nav__plugin" />
       </nav>
-      <Outlet />
+      {routePlugin ? (
+        <section className="cz-page cz-page--wide">
+          <PluginView plugin={routePlugin} engine={engine} />
+        </section>
+      ) : (
+        <Outlet />
+      )}
     </div>
   );
 }

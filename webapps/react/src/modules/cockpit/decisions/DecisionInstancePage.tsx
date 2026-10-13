@@ -7,6 +7,8 @@ import { ApiError } from '../../../shared/api/client';
 import type { DmnValue } from '../../../shared/diagram/DmnViewer';
 import { formatDateTime } from '../../../shared/format';
 import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTable';
+import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { InstanceLink } from '../process-instance/InstanceLink';
 import { DeploymentLink } from '../repository/DeploymentLink';
@@ -105,7 +107,10 @@ export function DecisionInstancePage() {
   const instance = useDecisionInstance(engine, id);
   const definition = useDecisionDefinition(engine, instance.data?.decisionDefinitionId);
   const xml = useDecisionXml(engine, instance.data?.decisionDefinitionId);
-  const tabIndex = Math.max(0, TABS.findIndex((tab) => tab.id === search.tab));
+  const pluginTabs = usePluginPoint('cockpit', 'cockpit.decisionInstance.tab');
+  // inputs, outputs, then the tabs of plugins
+  const tabIds = [...TABS.map((tab) => tab.id as string), ...pluginTabs.map((plugin) => plugin.id)];
+  const tabIndex = Math.max(0, tabIds.indexOf(search.tab ?? ''));
   const inputs = instance.data?.inputs ?? [];
   const outputs = instance.data?.outputs ?? [];
   const name = instance.data ? instance.data.decisionDefinitionName || instance.data.decisionDefinitionKey : '';
@@ -144,6 +149,7 @@ export function DecisionInstancePage() {
           : []),
         id,
       ]}
+      actions={<PluginPoint module="cockpit" point="cockpit.decisionInstance.action" engine={engine} props={{ decisionInstanceId: id }} className="cz-plugin-inline" />}
     >
       {instance.isError && (
         <InlineNotification
@@ -206,10 +212,13 @@ export function DecisionInstancePage() {
               )
             )}
             {instance.data && (
-              <Tabs selectedIndex={tabIndex} onChange={({ selectedIndex }) => navigate({ search: { tab: TABS[selectedIndex].id } })}>
+              <Tabs selectedIndex={tabIndex} onChange={({ selectedIndex }) => navigate({ search: { tab: tabIds[selectedIndex] } })}>
                 <TabList aria-label={id}>
                   {TABS.map((tab) => (
                     <Tab key={tab.id}>{t(tab.label)}</Tab>
+                  ))}
+                  {pluginTabs.map((plugin) => (
+                    <Tab key={plugin.id}>{t(plugin.label ?? plugin.id)}</Tab>
                   ))}
                 </TabList>
                 <TabPanels>
@@ -219,6 +228,11 @@ export function DecisionInstancePage() {
                   <TabPanel>
                     <ValuesTable values={outputs} emptyText={t('PLUGIN_DECISION_LIS_NO_OUTPUT_TEXT')} />
                   </TabPanel>
+                  {pluginTabs.map((plugin, index) => (
+                    <TabPanel key={plugin.id}>
+                      {tabIndex === TABS.length + index && <PluginView plugin={plugin} engine={engine} props={{ decisionInstanceId: id }} />}
+                    </TabPanel>
+                  ))}
                 </TabPanels>
               </Tabs>
             )}

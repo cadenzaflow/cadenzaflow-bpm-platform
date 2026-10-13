@@ -22,6 +22,8 @@ interface BpmnDiagramProps {
   onElementClick?: (id: string, add: boolean) => void;
   /** Labels of the badges, for screen readers and tooltips. */
   badgeLabels?: { count: string; incidents: string };
+  /** The diagram was imported: e.g. diagram plugins get the viewer. Returns what to do when it goes away. */
+  onViewer?: (viewer: NavigatedViewer) => (() => void) | void;
 }
 
 interface Canvas {
@@ -66,10 +68,11 @@ function badgeElement(badge: DiagramBadge, labels?: { count: string; incidents: 
 }
 
 /** Read-only BPMN diagram with pan and zoom (bpmn-js). Load it lazily: bpmn-js is large. */
-export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels }: BpmnDiagramProps) {
+export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels, onViewer }: BpmnDiagramProps) {
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<NavigatedViewer | null>(null);
   const clickHandler = useRef(onElementClick);
+  const viewerHandler = useRef(onViewer);
   const [error, setError] = useState<string | null>(null);
   const [imported, setImported] = useState(0);
   const highlightKey = highlight.join(',');
@@ -77,6 +80,7 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
 
   useEffect(() => {
     clickHandler.current = onElementClick;
+    viewerHandler.current = onViewer;
   });
 
   // import the diagram; markers and badges follow in the effect below
@@ -84,6 +88,7 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
     const instance = new NavigatedViewer({ container: container.current! });
     viewer.current = instance;
     let active = true;
+    let release: (() => void) | void;
     setError(null);
     (instance.get('eventBus') as { on: (event: string, handler: (event: { element: DiagramElement; originalEvent?: MouseEvent }) => void) => void }).on(
       'element.click',
@@ -98,11 +103,13 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
         if (active) {
           (instance.get('canvas') as Canvas).zoom('fit-viewport');
           setImported((count) => count + 1);
+          release = viewerHandler.current?.(instance);
         }
       })
       .catch((failure: Error) => active && setError(failure.message));
     return () => {
       active = false;
+      release?.();
       viewer.current = null;
       instance.destroy();
     };

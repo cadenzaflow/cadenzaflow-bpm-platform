@@ -18,9 +18,12 @@ package org.cadenzaflow.bpm.webapp.impl.engine;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,6 +78,8 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
   public static final String PLUGIN_DEPENDENCIES_PLACEHOLDER = "$PLUGIN_DEPENDENCIES";
   public static final String PLUGIN_PACKAGES_PLACEHOLDER = "$PLUGIN_PACKAGES";
   public static final String CSP_NONCE_PLACEHOLDER = "$CSP_NONCE";
+  /** the plugins of the React apps, as JSON: {"cockpit": [{"id": ..., "location": ...}], ...} */
+  public static final String PLUGINS_PLACEHOLDER = "$PLUGINS";
 
   public static Pattern APP_PREFIX_PATTERN = Pattern.compile("/app/(?:([\\w-]+?)/(?:(index\\.html|[\\w-]+)?/?([^?]*)?)?)?");
 
@@ -258,6 +263,7 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
     String cspNonce = (String) servletContext.getAttribute(ContentSecurityPolicyProvider.ATTR_CSP_FILTER_NONCE);
     String data = getWebResourceContents(REACT_INDEX_PAGE)
       .replace(APP_ROOT_PLACEHOLDER, contextPath + applicationPath)
+      .replace(PLUGINS_PLACEHOLDER, createReactPluginsJson(applicationPath, contextPath))
       .replace(CSP_NONCE_PLACEHOLDER, cspNonce == null ? "" : String.format("nonce=\"%s\"", cspNonce));
 
     response.setContentLength(data.getBytes(StandardCharsets.UTF_8).length);
@@ -412,6 +418,54 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
     }
 
     return "[" + builder.toString() + "]";
+  }
+
+  /**
+   * The plugins of the React webapp's apps (the single-page app moves between
+   * them without loading the page again): per app their ids and where their
+   * files (app/plugin.js, app/plugin.css) are, as JSON that is safe inside a
+   * script element. Apps and plugins are sorted, so the page does not change
+   * from one start to the next.
+   */
+  protected String createReactPluginsJson(String applicationPath, String contextPath) {
+    StringBuilder builder = new StringBuilder("{");
+    for (String appName : new TreeSet<>(REACT_APPS)) {
+      if (builder.length() > 1) {
+        builder.append(',');
+      }
+      builder.append(toJsonString(appName)).append(":[");
+      List<AppPlugin> plugins = new ArrayList<>(getPlugins(appName));
+      plugins.sort(Comparator.comparing(AppPlugin::getId));
+      for (int index = 0; index < plugins.size(); index++) {
+        String id = plugins.get(index).getId();
+        String location = contextPath + applicationPath + "/api/" + appName + "/plugin/" + id + "/static/app";
+        builder.append(index > 0 ? "," : "")
+          .append("{\"id\":").append(toJsonString(id))
+          .append(",\"location\":").append(toJsonString(location))
+          .append('}');
+      }
+      builder.append(']');
+    }
+    return builder.append('}').toString();
+  }
+
+  /**
+   * A JSON string literal; besides quotes, backslashes and control characters,
+   * the characters that could end or confuse a script element (&lt;, &gt;, &amp;)
+   * and the JavaScript line separators are escaped.
+   */
+  protected static String toJsonString(String value) {
+    StringBuilder builder = new StringBuilder("\"");
+    for (char c : value.toCharArray()) {
+      if (c == '"' || c == '\\') {
+        builder.append('\\').append(c);
+      } else if (c < 0x20 || c == '<' || c == '>' || c == '&' || c == 0x2028 || c == 0x2029) {
+        builder.append(String.format("\\u%04x", (int) c));
+      } else {
+        builder.append(c);
+      }
+    }
+    return builder.append('"').toString();
   }
 
   @SuppressWarnings("unchecked")

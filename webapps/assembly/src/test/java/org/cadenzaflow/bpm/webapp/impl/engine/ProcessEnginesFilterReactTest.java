@@ -18,6 +18,7 @@ package org.cadenzaflow.bpm.webapp.impl.engine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,7 @@ import org.cadenzaflow.bpm.cockpit.impl.DefaultCockpitRuntimeDelegate;
 import org.cadenzaflow.bpm.engine.ProcessEngine;
 import org.cadenzaflow.bpm.engine.rest.spi.ProcessEngineProvider;
 import org.cadenzaflow.bpm.webapp.plugin.spi.AppPlugin;
+import org.cadenzaflow.bpm.webapp.plugin.spi.impl.AbstractAppPlugin;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +48,10 @@ public class ProcessEnginesFilterReactTest {
   protected MockServletContext servletContext;
   /** whether the engine still has no admin user */
   protected boolean initialUserNeeded;
+  /** the plugins of the cockpit; the other apps have none */
+  protected List<AppPlugin> plugins = new ArrayList<>();
+  /** the index pages: their name, the root and the plugins */
+  protected String template = "page=%s root=$APP_ROOT";
 
   @Before
   public void setUp() throws Exception {
@@ -70,7 +76,7 @@ public class ProcessEnginesFilterReactTest {
     filter = new ProcessEnginesFilter() {
       @Override
       protected String getWebResourceContents(String name) {
-        return "page=" + name + " root=$APP_ROOT";
+        return String.format(template, name);
       }
 
       @Override
@@ -79,8 +85,9 @@ public class ProcessEnginesFilterReactTest {
       }
 
       @Override
+      @SuppressWarnings("unchecked")
       protected <T extends AppPlugin> List<T> getPlugins(String appName) {
-        return Collections.emptyList();
+        return "cockpit".equals(appName) ? (List<T>) plugins : Collections.emptyList();
       }
 
       @Override
@@ -156,6 +163,34 @@ public class ProcessEnginesFilterReactTest {
   @Test
   public void shouldLeaveTheSetupPageOnceThereIsAnAdminUser() throws Exception {
     assertThat(get("/app/react/admin/default/setup").getRedirectedUrl()).isEqualTo(CONTEXT_PATH + "/app/react/admin/default/");
+  }
+
+  @Test
+  public void shouldListThePluginsOfEveryApp() throws Exception {
+    template = "plugins=$PLUGINS";
+    plugins.add(plugin("zeta"));
+    plugins.add(plugin("alpha"));
+
+    // the same on every page: the single-page app moves between the apps
+    for (String page : new String[] { "/app/react/cockpit/default/", "/app/react/tasklist/default/" }) {
+      assertThat(get(page).getContentAsString()).isEqualTo("plugins={\"admin\":[],\"cockpit\":["
+          + "{\"id\":\"alpha\",\"location\":\"" + CONTEXT_PATH + "/api/cockpit/plugin/alpha/static/app\"},"
+          + "{\"id\":\"zeta\",\"location\":\"" + CONTEXT_PATH + "/api/cockpit/plugin/zeta/static/app\"}],"
+          + "\"tasklist\":[],\"welcome\":[]}");
+    }
+  }
+
+  @Test
+  public void shouldKeepPluginIdsFromEndingTheScriptElement() throws Exception {
+    assertThat(ProcessEnginesFilter.toJsonString("a\"b\\c</script>&\n")).isEqualTo("\"a\\\"b\\\\c\\u003c/script\\u003e\\u0026\\u000a\"");
+  }
+
+  protected AppPlugin plugin(String id) {
+    return new AbstractAppPlugin() {
+      public String getId() {
+        return id;
+      }
+    };
   }
 
   protected MockHttpServletResponse get(String uri) throws Exception {

@@ -37,10 +37,80 @@ The AngularJS webapps stay at `/app/{app}/{engine}/` and remain the default.
 This app lives at `/app/react/{app}/{engine}/` (`app` = cockpit, tasklist,
 admin or welcome); its files are in `/app/react/assets/`. `ProcessEnginesFilter`
 answers every path below `/app/react/{app}/` with `app/react/index.html`
-(routing happens in the browser) and fills in two placeholders: `$APP_ROOT`
-(context path plus application path) and `$CSP_NONCE` (the nonce of the
-Content-Security-Policy; every `<script>` needs it). Modules that are not
-rewritten yet link to the classic UI, and the user menu switches to it.
+(routing happens in the browser) and fills in three placeholders: `$APP_ROOT`
+(context path plus application path), `$CSP_NONCE` (the nonce of the
+Content-Security-Policy; every `<script>` needs it) and `$PLUGINS` (the
+frontend plugins of every app, see below). Modules that are not rewritten yet
+link to the classic UI, and the user menu switches to it.
+
+## Frontend plugins (Cockpit)
+
+Plugins are packaged as for the AngularJS Cockpit: a jar with a
+`CockpitPlugin` (registered in
+`META-INF/services/org.cadenzaflow.bpm.cockpit.plugin.spi.CockpitPlugin`), a
+root resource `@Path("plugin/<id>")` extending `AbstractCockpitPluginRootResource`,
+and the files `plugin-webapp/<id>/app/plugin.js` (and optionally
+`app/plugin.css`). The server lists the plugins of every app in `index.html`;
+the app loads each `plugin.js` as an ES module (and its `plugin.css`). The
+plugins of the AngularJS webapps themselves (`cockpitPlugins`, `cockpitEE`,
+`adminPlugins`, `adminEE`, `tasklistPlugins`) and `legacy*` plugins are
+AngularJS modules and are not loaded.
+
+`plugin.js` exports one plugin or an array of them (the same contract as the
+AngularJS webapps' JavaScript plugins):
+
+```js
+export default [
+  {
+    id: 'my-tab',                                      // unique; also the tab's URL parameter
+    pluginPoint: 'cockpit.processInstance.runtime.tab',
+    label: 'My Tab',                                   // tabs, reports
+    priority: 10,                                      // higher first
+    render: (node, { api, processInstanceId }) => { /* draw into node */ },
+    unmount: () => { /* clean up */ },
+  },
+];
+```
+
+`render` gets a DOM element (for `*.diagram.plugin` the bpmn-js viewer) and
+the props `api` and, depending on the plugin point, the ids of what the page
+shows. `api` holds `adminApi`, `baseApi`, `cockpitApi`, `tasklistApi`,
+`engineApi` (the engine REST API of the current engine), `engine` and
+`CSRFToken` (send it as `X-XSRF-TOKEN` with POST, PUT and DELETE). When the
+page shows something else, the plugin is unmounted and rendered again;
+`unmount` is called without arguments. A plugin that throws is logged and
+leaves the page intact.
+
+| Plugin point | Where | Props besides `api` |
+|---|---|---|
+| `cockpit.dashboard` | below the dashboard | |
+| `cockpit.navigation` | in the section navigation | |
+| `cockpit.route` | a page of its own at `#<properties.path>`, e.g. `#/my-page` | |
+| `cockpit.report` | the Reports section (shown when there are report plugins) | |
+| `cockpit.processes.dashboard` | below the processes | |
+| `cockpit.processes.action` | an action column of the processes | `processDefinitionId` |
+| `cockpit.processDefinition.runtime.tab` | a tab of the process definition | `processDefinitionId` |
+| `cockpit.processDefinition.runtime.action` | an action of the process definition | `processDefinitionId` |
+| `cockpit.processDefinition.diagram.plugin` | the process definition's diagram (viewer) | `processDefinitionId` |
+| `cockpit.jobDefinition.action` | an action of a job definition | `jobDefinitionId` |
+| `cockpit.processInstance.runtime.tab` | a tab of the process instance | `processInstanceId` |
+| `cockpit.processInstance.runtime.action` | an action of the process instance | `processInstanceId` |
+| `cockpit.processInstance.diagram.plugin` | the process instance's diagram (viewer) | `processInstanceId` |
+| `cockpit.incident.action` | an action of an incident | `incidentId` |
+| `cockpit.decisions.dashboard` | below the decisions | |
+| `cockpit.decisionDefinition.tab` | a tab of the decision definition | `decisionDefinitionId` |
+| `cockpit.decisionDefinition.action` | an action of the decision definition | `decisionDefinitionId` |
+| `cockpit.decisionInstance.tab` | a tab of the evaluation | `decisionInstanceId` |
+| `cockpit.decisionInstance.action` | an action of the evaluation | `decisionInstanceId` |
+| `cockpit.tasks.dashboard` | below the human tasks | |
+| `cockpit.repository.deployments.list` | above the deployments | |
+| `cockpit.repository.deployment.action` | an action of a deployment | `deploymentId` |
+| `cockpit.repository.resource.action` | an action of a resource | `deploymentId`, `resourceId` |
+| `cockpit.repository.resource.detail` | below a resource | `deploymentId`, `resourceId` |
+
+Tabs of plugins come after the built-in tabs. To try a plugin with
+`npm run dev`, put its files below `src/` and list it in `CZ_PLUGINS`, e.g.
+`CZ_PLUGINS='{"cockpit":[{"id":"my-plugin","location":"/src/my-plugin"}]}'`.
 
 ## Code layout
 

@@ -576,5 +576,11 @@
   "PLGN_HIST_RETRIES": "Erneute Versuche",
   "PLGN_HIST_STATE": "Status",
   "PLGN_HIST_TIMESTAMPE": "Zeitstempel",
-  "PLGN_HIST_TYPE": "Typ"
+  "PLGN_HIST_TYPE": "Typ",
+  "COCKPIT_REPORTS": "Berichte",
+  "REPORTS_TYPE_AVAILABLE_REPORTS": "Verfügbare Berichte",
+  "REPORTS_TYPE_NO_AVAILABLE_REPORTS": "Keine Berichte verfügbar.",
+  "REPORTS_VIEW_BREAD_CRUMB": "Berichte",
+  "REPORTS_VIEW_TITLE_SET": "{{name}} Bericht",
+  "PLUGIN_PROCESS_DEF_ACTION": "Aktion"
 }

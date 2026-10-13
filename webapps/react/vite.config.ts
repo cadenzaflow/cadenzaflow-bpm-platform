@@ -11,6 +11,9 @@ const HTML_ASSET_BASE = '$APP_ROOT/app/react/';
 // app). Override both values when your backend differs.
 const DEV_BACKEND = process.env.CZ_BACKEND ?? 'http://localhost:8080';
 const DEV_APP_ROOT = process.env.CZ_APP_ROOT ?? '/cadenzaflow';
+// Frontend plugins to try out in dev mode, as the server would list them, e.g.
+// {"cockpit":[{"id":"my-plugin","location":"/src/dev-plugins/my-plugin"}]}
+const DEV_PLUGINS = process.env.CZ_PLUGINS ?? '{}';
 
 /**
  * The webapp's Content-Security-Policy uses a per-request nonce with
@@ -26,7 +29,7 @@ function serverPlaceholders(): Plugin {
       order: 'post',
       handler(html, ctx) {
         if (ctx.server) {
-          return html.replaceAll('$APP_ROOT', DEV_APP_ROOT);
+          return html.replaceAll('$APP_ROOT', DEV_APP_ROOT).replace('$PLUGINS', DEV_PLUGINS);
         }
         return html.replace(/<script(?=[\s>])/g, '<script $CSP_NONCE');
       },
