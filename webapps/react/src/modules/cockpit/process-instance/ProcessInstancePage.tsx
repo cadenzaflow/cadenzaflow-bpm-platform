@@ -19,6 +19,7 @@ import { useProcessDefinition, useProcessDefinitionXml } from '../process-defini
 import { ActivityTree } from './ActivityTree';
 import {
   activityBadges,
+  activityInstanceOfExecution,
   activityOf,
   allInstances,
   instancesOf,
@@ -74,6 +75,8 @@ export function ProcessInstancePage() {
     }
     return labels;
   }, [tree.data, names]);
+
+  const executionActivityInstances = useMemo(() => (tree.data ? activityInstanceOfExecution(tree.data) : new Map<string, string>()), [tree.data]);
 
   const update = (changes: Partial<ProcessInstanceSearch>) =>
     navigate({ search: (previous: ProcessInstanceSearch) => ({ ...previous, ...changes }) });
@@ -242,6 +245,7 @@ export function ProcessInstancePage() {
                           activityInstanceIds={activityInstanceIds}
                           activityNames={names}
                           activityInstanceNames={activityInstanceNames}
+                          executionActivityInstances={executionActivityInstances}
                           onActivitySelect={(activityId) => selectActivity(activityId, false)}
                           onActivityInstanceSelect={selectInstanceById}
                           search={search}

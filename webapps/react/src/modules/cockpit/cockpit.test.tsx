@@ -30,7 +30,10 @@ const activityTree: ActivityInstance = {
   activityId: 'invoice:2',
   activityName: 'Invoice Receipt',
   activityType: 'processDefinition',
-  childActivityInstances: [{ id: 'approveInvoice:ai-1', activityId: 'approveInvoice', activityName: 'Approve Invoice', activityType: 'userTask' }],
+  executionIds: ['pi-1'],
+  childActivityInstances: [
+    { id: 'approveInvoice:ai-1', activityId: 'approveInvoice', activityName: 'Approve Invoice', activityType: 'userTask', executionIds: ['ex-2'] },
+  ],
   childTransitionInstances: [
     {
       id: 'pi-1',
@@ -148,6 +151,35 @@ function fakeBackend() {
     }
     if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
       return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
+    }
+    if (path === `${ENGINE}/task/count` && method === 'POST') {
+      return json({ count: 1 });
+    }
+    if (path === `${ENGINE}/task` && method === 'POST') {
+      return json([
+        {
+          id: 'task-1',
+          name: 'Approve Invoice',
+          taskDefinitionKey: 'approveInvoice',
+          executionId: 'ex-2',
+          assignee: 'demo',
+          owner: null,
+          created: '2026-10-13T08:00:00.000+0000',
+          due: null,
+          followUp: null,
+          priority: 50,
+          delegationState: null,
+        },
+      ]);
+    }
+    if (path === `${ENGINE}/task/task-1/identity-links` && method === 'GET') {
+      return json([
+        { type: 'assignee', userId: 'demo', groupId: null },
+        { type: 'candidate', userId: null, groupId: 'accounting' },
+      ]);
+    }
+    if (path.startsWith(`${ENGINE}/task/task-1/`) && method === 'POST') {
+      return new Response(null, { status: 204 });
     }
     if (path === `${ENGINE}/variable-instance/count` && method === 'POST') {
       return json({ count: variables.length });
@@ -398,4 +430,43 @@ describe('cockpit process instance variables', () => {
       expect(JSON.parse(String(added?.[1]?.body))).toEqual({ type: 'String', value: 'hello' });
     });
   });
+});
+
+describe('cockpit process instance user tasks', () => {
+  it('lists the user tasks, changes the assignee and the candidate groups', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=user-tasks-tab');
+    const user = await logIn();
+
+    const row = within((await screen.findByRole('link', { name: 'task-1' })).closest('tr')!);
+    expect(screen.getByRole('link', { name: 'task-1' })).toHaveAttribute('href', '/app/react/tasklist/default?task=task-1');
+    // the activity instance of the task's execution
+    expect(row.getByRole('button', { name: 'Approve Invoice' })).toBeInTheDocument();
+    const query = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/task?`) && init?.method === 'POST');
+    expect(JSON.parse(String(query?.[1]?.body))).toEqual({ processInstanceId: 'pi-1', sortBy: 'created', sortOrder: 'desc' });
+
+    await user.click(row.getByRole('button', { name: 'Assignee' }));
+    const assignee = row.getByRole('textbox', { name: 'Assignee' });
+    await user.clear(assignee);
+    await user.type(assignee, 'john{Enter}');
+    expect(await screen.findByText("The assignee of the user task 'Approve Invoice' has been set to 'john' successfully")).toBeInTheDocument();
+    const assigned = fetchMock.mock.calls.find(([url]) => url.endsWith('/task/task-1/assignee'));
+    expect(JSON.parse(String(assigned?.[1]?.body))).toEqual({ userId: 'john' });
+
+    await user.click(row.getByRole('button', { name: "Manage group(s) for 'Approve Invoice'" }));
+    const groups = within(await screen.findByRole('dialog', { name: 'Manage groups' }));
+    expect(await groups.findByText('accounting')).toBeInTheDocument();
+    expect(groups.queryByText('demo')).not.toBeInTheDocument();
+    await user.type(groups.getByRole('textbox', { name: 'Add a group' }), 'sales{Enter}');
+    await waitFor(() => {
+      const added = fetchMock.mock.calls.find(([url, init]) => url.endsWith('/task/task-1/identity-links') && init?.method === 'POST');
+      expect(JSON.parse(String(added?.[1]?.body))).toEqual({ groupId: 'sales', type: 'candidate' });
+    });
+    await user.click(groups.getByRole('button', { name: 'Delete' }));
+    await waitFor(() => {
+      const removed = fetchMock.mock.calls.find(([url]) => url.endsWith('/task/task-1/identity-links/delete'));
+      expect(JSON.parse(String(removed?.[1]?.body))).toEqual({ groupId: 'accounting', type: 'candidate' });
+    });
+    // several dialogs and typed inputs
+  }, 15000);
 });

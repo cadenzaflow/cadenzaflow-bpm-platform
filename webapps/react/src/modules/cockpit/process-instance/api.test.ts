@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { activityBadges, instancesOf, treeIdOf, treeSelection, type ActivityInstance } from './api';
+import { activityBadges, activityInstanceOfExecution, instancesOf, treeIdOf, treeSelection, type ActivityInstance } from './api';
 
 /** A process instance with a multi-instance task (two instances, one incident) and a waiting async continuation. */
 const root: ActivityInstance = {
@@ -7,6 +7,7 @@ const root: ActivityInstance = {
   activityId: 'order:1',
   activityName: 'Order',
   activityType: 'processDefinition',
+  executionIds: ['pi-1'],
   childActivityInstances: [
     {
       id: 'check#multiInstanceBody:a1',
@@ -14,7 +15,7 @@ const root: ActivityInstance = {
       activityName: 'Check',
       activityType: 'multiInstanceBody',
       childActivityInstances: [
-        { id: 'check:a2', activityId: 'check', activityName: 'Check', activityType: 'userTask' },
+        { id: 'check:a2', activityId: 'check', activityName: 'Check', activityType: 'userTask', executionIds: ['ex-2'] },
         { id: 'check:a3', activityId: 'check', activityName: 'Check', activityType: 'userTask', incidents: [{ id: 'i1', activityId: 'check' }] },
       ],
     },
@@ -37,5 +38,12 @@ describe('activity instance tree', () => {
     expect(treeSelection(root, [], [])).toEqual(['pi-1']);
     expect(treeSelection(root, ['ship'], ['pi-1'])).toEqual(['transition:pi-1']);
     expect(treeSelection(root, ['check'], ['check:a2'])).toEqual(['check:a2']);
+  });
+
+  it('finds the innermost activity instance of an execution', () => {
+    const executions = activityInstanceOfExecution(root);
+    expect(executions.get('ex-2')).toBe('check:a2');
+    // the async continuation waits in the process instance's own execution
+    expect(executions.get('pi-1')).toBe('pi-1');
   });
 });
