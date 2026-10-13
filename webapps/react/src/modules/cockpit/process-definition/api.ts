@@ -6,10 +6,10 @@ import type { ProcessDefinition } from '../api';
 const definitionUrl = (engine: string, id: string, path = '') =>
   engineUrl(engine, `/process-definition/${encodeURIComponent(id)}${path}`);
 
-export function useProcessDefinition(engine: string, id: string) {
+export function useProcessDefinition(engine: string, id: string, enabled = true) {
   return useQuery({
     queryKey: ['cockpit', engine, 'process-definition', id],
-    queryFn: () => request<ProcessDefinition>(definitionUrl(engine, id)),
+    queryFn: !enabled ? skipToken : () => request<ProcessDefinition>(definitionUrl(engine, id)),
   });
 }
 

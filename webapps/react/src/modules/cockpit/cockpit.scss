@@ -93,3 +93,9 @@
   align-items: center;
   gap: $spacing-02;
 }
+
+.cz-activity-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: $spacing-03;
+}

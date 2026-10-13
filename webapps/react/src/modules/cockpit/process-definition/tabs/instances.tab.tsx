@@ -67,7 +67,11 @@ function InstancesTab({ engine, definition, activityIds, search, onSearchChange 
       method="POST"
       namespace="cockpit"
       criteria={INSTANCE_CRITERIA}
-      fixedQuery={{ processDefinitionId: definition.id, activityIdIn: activityIds.length ? activityIds : undefined }}
+      fixedQuery={{
+        processDefinitionId: definition.id,
+        activityIdIn: activityIds.length ? activityIds : undefined,
+        parentProcessDefinitionId: search.parentProcessDefinitionId,
+      }}
       defaultSortBy="startTime"
       defaultSortOrder="desc"
       columns={columns}
