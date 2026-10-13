@@ -205,7 +205,8 @@ describe('webapp shell', () => {
       approved: { value: true, type: 'Boolean' },
       creditor: { value: 'ACME', type: 'String' },
     });
-  });
+    // loads the embedded-form runtime lazily; slow on a cold first run
+  }, 20_000);
 
   it('starts a process with a business key', async () => {
     const fetchMock = fakeBackend();

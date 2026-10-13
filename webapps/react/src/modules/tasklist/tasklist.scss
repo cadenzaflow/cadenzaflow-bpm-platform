@@ -260,3 +260,38 @@
 .cz-task-card__label {
   color: $text-helper;
 }
+
+.cz-filter__color {
+  flex: 0 0 auto;
+  width: 0.25rem;
+  height: 1rem;
+}
+
+.cz-filter-form {
+  .cds--accordion__content {
+    padding-right: $spacing-05;
+  }
+}
+
+.cz-filter-form__row {
+  display: grid;
+  gap: $spacing-05;
+  grid-template-columns: 1fr 8rem;
+}
+
+.cz-filter-form__criterion {
+  display: grid;
+  align-items: start;
+  gap: $spacing-03;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 3rem;
+}
+
+.cz-filter-form__tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cz-filter-form__delete {
+  margin-top: $spacing-06;
+}
