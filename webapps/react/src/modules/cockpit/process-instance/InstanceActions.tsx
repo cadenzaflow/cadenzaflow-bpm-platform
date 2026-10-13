@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Button, Checkbox, Modal, Stack } from '@carbon/react';
-import { Pause, Play, TrashCan } from '@carbon/icons-react';
+import { Add, Pause, Play, TrashCan } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
+import { AddVariableModal } from '../variables/VariableDialogs';
 import { useCancelInstance, useInstanceSuspension, type ProcessInstance } from './api';
 
 interface InstanceActionsProps {
@@ -12,24 +13,35 @@ interface InstanceActionsProps {
   onCanceled: () => void;
 }
 
-/** Suspend/activate and cancel (delete) the process instance, as in the classic Cockpit. */
+/** Add a variable, suspend/activate and cancel (delete) the process instance, as in the classic Cockpit. */
 export function InstanceActions({ engine, instance, onCanceled }: InstanceActionsProps) {
   const { t } = useTranslation('cockpit');
   const suspension = useInstanceSuspension(engine, instance.id);
   const cancel = useCancelInstance(engine, instance.id);
-  const [dialog, setDialog] = useState<'suspension' | 'cancel' | null>(null);
+  const [dialog, setDialog] = useState<'variable' | 'suspension' | 'cancel' | null>(null);
   const [skipCustomListeners, setSkipCustomListeners] = useState(true);
   const [skipIoMappings, setSkipIoMappings] = useState(true);
   const suspend = !instance.suspended;
 
   return (
     <>
+      <Button
+        kind="tertiary"
+        size="md"
+        hasIconOnly
+        renderIcon={Add}
+        iconDescription={t('PLUGIN_ADD_VARIABLE_NEW_VARIABLE')}
+        tooltipPosition="bottom"
+        onClick={() => setDialog('variable')}
+      />
       <Button kind="tertiary" size="md" renderIcon={suspend ? Pause : Play} onClick={() => setDialog('suspension')}>
         {t(suspend ? 'PLUGIN_UPDATE_DIALOG_SUSPEND' : 'PLUGIN_UPDATE_DIALOG_ACTIVATE')}
       </Button>
       <Button kind="danger--tertiary" size="md" renderIcon={TrashCan} onClick={() => setDialog('cancel')}>
         {t('PLUGIN_CANCEL_PROCESS_DELETE_PROCESS_INSTANCE')}
       </Button>
+
+      {dialog === 'variable' && <AddVariableModal engine={engine} processInstanceId={instance.id} onClose={() => setDialog(null)} />}
 
       {dialog === 'suspension' && (
         <Modal

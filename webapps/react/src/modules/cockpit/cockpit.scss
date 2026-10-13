@@ -131,3 +131,25 @@
 .cz-instance-state {
   margin-left: $spacing-03;
 }
+
+// Variables
+.cz-row-actions {
+  display: inline-flex;
+  gap: $spacing-01;
+}
+
+.cz-variable-value {
+  overflow-wrap: anywhere;
+}
+
+.cz-variable-value--code,
+.cz-code-input textarea {
+  @include type-style('code-01');
+}
+
+.cz-variable-object-type {
+  @include type-style('helper-text-01');
+  display: block;
+  color: $text-secondary;
+  overflow-wrap: anywhere;
+}

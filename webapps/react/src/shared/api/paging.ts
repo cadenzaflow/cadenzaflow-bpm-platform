@@ -24,6 +24,8 @@ export interface PageRequest {
   pageSize?: number;
   /** POST: query and sorting in the body (lists, e.g. variables), paging in the URL */
   method?: 'GET' | 'POST';
+  /** more URL parameters of the list request, e.g. deserializeValues */
+  listQuery?: QueryParams;
 }
 
 /** One page of a list resource with the total count; retried unsorted when sorting fails. */
@@ -35,8 +37,9 @@ export async function fetchPage<T>({
   sorting,
   pageSize = DEFAULT_PAGE_SIZE,
   method = 'GET',
+  listQuery,
 }: PageRequest): Promise<Page<T>> {
-  const paging = { firstResult: (page - 1) * pageSize, maxResults: pageSize };
+  const paging = { ...listQuery, firstResult: (page - 1) * pageSize, maxResults: pageSize };
   const list = (withSorting: Sorting | undefined) =>
     method === 'POST'
       ? request<T[]>(listUrl, { method, query: paging, json: { ...query, ...withSorting } })
@@ -59,9 +62,9 @@ export async function fetchPage<T>({
  * so a module can reload all of its lists at once.
  */
 export function usePagedList<T>(scope: readonly unknown[], pageRequest: PageRequest) {
-  const { listUrl, query, page, sorting, pageSize = DEFAULT_PAGE_SIZE, method } = pageRequest;
+  const { listUrl, query, page, sorting, pageSize = DEFAULT_PAGE_SIZE, method, listQuery } = pageRequest;
   return useQuery({
-    queryKey: [...scope, listUrl, method, query, page, sorting, pageSize],
+    queryKey: [...scope, listUrl, method, query, listQuery, page, sorting, pageSize],
     placeholderData: (previous) => previous,
     queryFn: () => fetchPage<T>(pageRequest),
   });

@@ -1,9 +1,12 @@
+import { validateListSearch, type ListSearch } from '../../../shared/search/list-search';
+
 /**
- * State of the process instance page in the query string: the tab and the
+ * State of the process instance page in the query string: the tab, the
  * selection, by activity (from the diagram) and by activity instance (from
- * the tree), as in the classic Cockpit.
+ * the tree), as in the classic Cockpit, and the search, sorting and page of
+ * the tab's list.
  */
-export interface ProcessInstanceSearch {
+export interface ProcessInstanceSearch extends ListSearch {
   tab?: string;
   /** comma separated activity ids */
   activityIds?: string;
@@ -13,7 +16,12 @@ export interface ProcessInstanceSearch {
 
 export function validateProcessInstanceSearch(search: Record<string, unknown>): ProcessInstanceSearch {
   const text = (value: unknown) => (typeof value === 'string' && value ? value : undefined);
-  return { tab: text(search.tab), activityIds: text(search.activityIds), activityInstanceIds: text(search.activityInstanceIds) };
+  return {
+    ...validateListSearch(search),
+    tab: text(search.tab),
+    activityIds: text(search.activityIds),
+    activityInstanceIds: text(search.activityInstanceIds),
+  };
 }
 
 export const listOf = (value: string | undefined) => (value ?? '').split(',').filter(Boolean);

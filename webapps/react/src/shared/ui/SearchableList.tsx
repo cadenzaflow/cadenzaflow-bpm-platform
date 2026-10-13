@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
+import type { QueryParams } from '../api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../api/paging';
 import { toQuery, type CriterionType, type SearchState } from '../search/criteria';
 import { CriteriaSearch } from '../search/CriteriaSearch';
@@ -18,6 +19,8 @@ interface SearchableListProps<T extends { id: string }> {
   fixedQuery?: Record<string, unknown>;
   /** POST for queries with lists (e.g. variables) */
   method?: 'GET' | 'POST';
+  /** more URL parameters of the list request, e.g. deserializeValues */
+  listQuery?: QueryParams;
   defaultSortBy: string;
   defaultSortOrder?: 'asc' | 'desc';
   columns: Column<T>[];
@@ -43,6 +46,7 @@ export function SearchableList<T extends { id: string }>({
   emptyText,
   unsortedNotice,
   method,
+  listQuery,
   search,
   onSearchChange,
 }: SearchableListProps<T>) {
@@ -65,7 +69,7 @@ export function SearchableList<T extends { id: string }>({
     [search.searchQuery, criteria, fixedQuery],
   );
   const page = search.page ?? 1;
-  const list = usePagedList<T>(scope, { listUrl, countUrl, query, page, sorting, method });
+  const list = usePagedList<T>(scope, { listUrl, countUrl, query, page, sorting, method, listQuery });
   const pageCount = list.data ? Math.ceil(list.data.count / DEFAULT_PAGE_SIZE) : 0;
 
   return (

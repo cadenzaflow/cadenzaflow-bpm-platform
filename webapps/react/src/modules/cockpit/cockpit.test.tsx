@@ -6,6 +6,7 @@ import { json, logIn, renderApp } from '../../test/app';
 import { byProcess } from './dashboard/CockpitDashboard';
 import type { ProcessStatistics } from './api';
 import type { ActivityInstance } from './process-instance/api';
+import type { VariableInstance } from './variables/api';
 
 const ENGINE = '/api/engine/engine/default';
 const COCKPIT = '/api/cockpit/plugin/base/default';
@@ -41,6 +42,22 @@ const activityTree: ActivityInstance = {
     },
   ],
 };
+
+/** Variables of pi-1: a number on the process instance and a file in the user task. */
+const variables: VariableInstance[] = [
+  { id: 'v-1', name: 'amount', type: 'Double', value: 30.5, processInstanceId: 'pi-1', executionId: 'pi-1', activityInstanceId: 'pi-1', taskId: null },
+  {
+    id: 'v-2',
+    name: 'invoiceDocument',
+    type: 'File',
+    value: null,
+    valueInfo: { filename: 'invoice.pdf', mimeType: 'application/pdf' },
+    processInstanceId: 'pi-1',
+    executionId: 'ex-2',
+    activityInstanceId: 'approveInvoice:ai-1',
+    taskId: null,
+  },
+];
 
 function fakeBackend() {
   let loggedIn = false;
@@ -131,6 +148,18 @@ function fakeBackend() {
     }
     if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
       return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
+    }
+    if (path === `${ENGINE}/variable-instance/count` && method === 'POST') {
+      return json({ count: variables.length });
+    }
+    if (path === `${ENGINE}/variable-instance` && method === 'POST') {
+      return json(variables);
+    }
+    if (
+      (path === `${ENGINE}/execution/pi-1/localVariables/amount` && (method === 'PUT' || method === 'DELETE')) ||
+      (path === `${ENGINE}/process-instance/pi-1/variables/note` && method === 'PUT')
+    ) {
+      return new Response(null, { status: 204 });
     }
     if (path === `${COCKPIT}/process-instance/pi-1/called-process-instances` && method === 'POST') {
       return json([]);
@@ -247,7 +276,7 @@ describe('cockpit incidents', () => {
 describe('cockpit process instance', () => {
   it('shows the details and filters the tabs by the activity instances picked in the tree', async () => {
     const fetchMock = fakeBackend();
-    const history = renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const history = renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=incidents-tab');
     const user = await logIn();
 
     expect(await screen.findByText('INV-1')).toBeInTheDocument();
@@ -257,7 +286,7 @@ describe('cockpit process instance', () => {
     expect(node('Invoice Receipt')).toHaveAttribute('aria-selected', 'true');
 
     await user.click(tree.getByText('Approve Invoice'));
-    await waitFor(() => expect(history.location.search).toBe('?activityIds=approveInvoice&activityInstanceIds=approveInvoice%3Aai-1'));
+    await waitFor(() => expect(history.location.search).toBe('?tab=incidents-tab&activityIds=approveInvoice&activityInstanceIds=approveInvoice%3Aai-1'));
     await waitFor(() =>
       expect(
         fetchMock.mock.calls.some(
@@ -270,12 +299,12 @@ describe('cockpit process instance', () => {
 
     // the transition instance shares the process instance's id, it still selects only itself
     await user.click(tree.getByText('Prepare Bank Transfer'));
-    await waitFor(() => expect(history.location.search).toBe('?activityIds=prepareTransfer&activityInstanceIds=pi-1'));
+    await waitFor(() => expect(history.location.search).toBe('?tab=incidents-tab&activityIds=prepareTransfer&activityInstanceIds=pi-1'));
     expect(node('Prepare Bank Transfer')).toHaveAttribute('aria-selected', 'true');
     expect(node('Invoice Receipt')).toHaveAttribute('aria-selected', 'false');
 
     await user.click(tree.getByText('Invoice Receipt'));
-    await waitFor(() => expect(history.location.search).toBe(''));
+    await waitFor(() => expect(history.location.search).toBe('?tab=incidents-tab'));
   });
 
   it('suspends and deletes the instance', async () => {
@@ -297,5 +326,76 @@ describe('cockpit process instance', () => {
     await waitFor(() => expect(history.location.pathname).toBe('/app/react/cockpit/default/process-definition/invoice%3A2'));
     const deleted = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/process-instance/pi-1?`) && init?.method === 'DELETE');
     expect(deleted?.[0]).toContain('skipCustomListeners=true&skipIoMappings=false');
+  });
+});
+
+describe('cockpit process instance variables', () => {
+  const variableQueries = (fetchMock: ReturnType<typeof fakeBackend>) =>
+    fetchMock.mock.calls
+      .filter(([url, init]) => url.startsWith(`${ENGINE}/variable-instance?`) && init?.method === 'POST')
+      .map(([url, init]) => ({ url, body: JSON.parse(String(init?.body)) }));
+
+  it('lists the variables of the instance or of the selected activity instances', async () => {
+    const fetchMock = fakeBackend();
+    const history = renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+
+    expect(await screen.findByText('amount')).toBeInTheDocument();
+    expect(screen.getByText('30.5')).toBeInTheDocument();
+    expect(screen.getByText('invoice.pdf')).toBeInTheDocument();
+    expect(variableQueries(fetchMock)[0].url).toContain('deserializeValues=false&firstResult=0&maxResults=50');
+    expect(variableQueries(fetchMock)[0].body).toEqual({ processInstanceIdIn: ['pi-1'], sortBy: 'variableName', sortOrder: 'asc' });
+
+    // the scope of a variable selects its activity instance
+    await user.click(screen.getByRole('button', { name: 'Approve Invoice' }));
+    await waitFor(() => expect(history.location.search).toBe('?activityIds=approveInvoice&activityInstanceIds=approveInvoice%3Aai-1'));
+    await waitFor(() =>
+      expect(variableQueries(fetchMock).at(-1)?.body).toEqual({
+        processInstanceIdIn: ['pi-1'],
+        activityInstanceIdIn: ['approveInvoice:ai-1'],
+        sortBy: 'variableName',
+        sortOrder: 'asc',
+      }),
+    );
+  });
+
+  it('changes, deletes and adds variables', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+    const row = within((await screen.findByText('amount')).closest('tr')!);
+
+    await user.click(row.getByRole('button', { name: 'Change' }));
+    const edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    const value = edit.getByLabelText('Variable Value*');
+    await user.clear(value);
+    await user.type(value, 'many');
+    expect(edit.getByText('Only a Double value is allowed.')).toBeInTheDocument();
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.clear(value);
+    await user.type(value, '42');
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    expect(await screen.findByText("The variable 'amount' has been changed successfully.")).toBeInTheDocument();
+    const put = fetchMock.mock.calls.find(([url, init]) => url.endsWith('/execution/pi-1/localVariables/amount') && init?.method === 'PUT');
+    expect(JSON.parse(String(put?.[1]?.body))).toEqual({ type: 'Double', value: 42 });
+
+    await user.click(row.getByRole('button', { name: 'Delete' }));
+    const remove = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    expect(remove.getByText("Are you sure that you want to delete 'amount'")).toBeInTheDocument();
+    await user.click(remove.getByRole('button', { name: 'Delete' }));
+    await waitFor(() =>
+      expect(fetchMock.mock.calls.some(([url, init]) => url.endsWith('/execution/pi-1/localVariables/amount') && init?.method === 'DELETE')).toBe(true),
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Add a new variable to Process Instance' }));
+    const add = within(await screen.findByRole('dialog', { name: 'Add Variable to Process Instance' }));
+    expect(add.getByRole('button', { name: 'Add' })).toBeDisabled();
+    await user.type(add.getByLabelText('Variable Name*'), 'note');
+    await user.type(add.getByLabelText('Variable Value*'), 'hello');
+    await user.click(add.getByRole('button', { name: 'Add' }));
+    await waitFor(() => {
+      const added = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-instance/pi-1/variables/note'));
+      expect(JSON.parse(String(added?.[1]?.body))).toEqual({ type: 'String', value: 'hello' });
+    });
   });
 });

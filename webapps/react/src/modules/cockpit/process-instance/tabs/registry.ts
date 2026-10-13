@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import type { ListSearch } from '../../../../shared/search/list-search';
 import type { ProcessDefinition } from '../../api';
 import type { ProcessInstance } from '../api';
 
@@ -12,8 +13,15 @@ export interface InstanceTabProps {
   activityInstanceIds: string[];
   /** activity id → name, from the BPMN XML */
   activityNames: Map<string, string>;
+  /** activity instance id → name of its activity (the process instance's id → the process) */
+  activityInstanceNames: Map<string, string>;
   /** selects an activity, as a click in the diagram does */
   onActivitySelect: (activityId: string) => void;
+  /** selects an activity instance, as a click in the tree does */
+  onActivityInstanceSelect: (activityInstanceId: string) => void;
+  /** search, sorting and page of the tab's list, in the URL */
+  search: ListSearch;
+  onSearchChange: (changes: Partial<ListSearch>) => void;
 }
 
 /** A tab of the process instance page (the classic Cockpit's "cockpit.processInstance.runtime.tab" plugins). */

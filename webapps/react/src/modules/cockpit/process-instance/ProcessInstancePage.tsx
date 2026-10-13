@@ -64,13 +64,26 @@ export function ProcessInstancePage() {
   const tabIndex = Math.max(0, instanceTabs.findIndex((tab) => tab.id === search.tab));
   const definitionName = definition.data ? definition.data.name || definition.data.key : '';
 
+  const activityInstanceNames = useMemo(() => {
+    const labels = new Map<string, string>();
+    // the process instance first: a transition instance may have its id
+    for (const node of tree.data ? [tree.data, ...allInstances(tree.data)] : []) {
+      if (!labels.has(node.id)) {
+        labels.set(node.id, node.activityName || names.get(activityOf(node)) || node.activityId);
+      }
+    }
+    return labels;
+  }, [tree.data, names]);
+
   const update = (changes: Partial<ProcessInstanceSearch>) =>
     navigate({ search: (previous: ProcessInstanceSearch) => ({ ...previous, ...changes }) });
+  // another selection or tab starts the tab's list on its first page
+  const select = (changes: Partial<ProcessInstanceSearch>) => update({ ...changes, page: undefined });
 
   // a diagram click selects the activity and all its instances
   const selectActivity = (activityId: string, add: boolean) => {
     const next = activityId ? toggle(activityIds, activityId, add) : [];
-    update({
+    select({
       activityIds: textOf(next),
       activityInstanceIds: textOf(tree.data ? instancesOf(tree.data, next) : []),
     });
@@ -79,14 +92,21 @@ export function ProcessInstancePage() {
   // a tree click selects the activity instance (the root: the whole instance, no filter)
   const selectInstance = (node: ActivityInstance, add: boolean) => {
     if (!tree.data || node === tree.data) {
-      update({ activityIds: undefined, activityInstanceIds: undefined });
+      select({ activityIds: undefined, activityInstanceIds: undefined });
       return;
     }
     const next = toggle(activityInstanceIds, node.id, add);
     const selectedActivities = allInstances(tree.data)
       .filter((other) => next.includes(other.id))
       .map(activityOf);
-    update({ activityIds: textOf([...new Set(selectedActivities)]), activityInstanceIds: textOf(next) });
+    select({ activityIds: textOf([...new Set(selectedActivities)]), activityInstanceIds: textOf(next) });
+  };
+
+  const selectInstanceById = (activityInstanceId: string) => {
+    const node = tree.data && [tree.data, ...allInstances(tree.data)].find((other) => other.id === activityInstanceId);
+    if (node) {
+      selectInstance(node, false);
+    }
   };
 
   const value = (text: string | number | null | undefined) =>
@@ -202,7 +222,9 @@ export function ProcessInstancePage() {
               )
             )}
             {instance.data && definition.data && (
-              <Tabs selectedIndex={tabIndex} onChange={({ selectedIndex }) => update({ tab: instanceTabs[selectedIndex].id })}>
+              <Tabs selectedIndex={tabIndex} onChange={({ selectedIndex }) =>
+                  update({ tab: instanceTabs[selectedIndex].id, searchQuery: undefined, page: undefined, sortBy: undefined, sortOrder: undefined })
+                }>
                 <TabList aria-label={id}>
                   {instanceTabs.map((tab) => (
                     <Tab key={tab.id}>{t(tab.label)}</Tab>
@@ -219,7 +241,11 @@ export function ProcessInstancePage() {
                           activityIds={activityIds}
                           activityInstanceIds={activityInstanceIds}
                           activityNames={names}
+                          activityInstanceNames={activityInstanceNames}
                           onActivitySelect={(activityId) => selectActivity(activityId, false)}
+                          onActivityInstanceSelect={selectInstanceById}
+                          search={search}
+                          onSearchChange={update}
                         />
                       )}
                     </TabPanel>

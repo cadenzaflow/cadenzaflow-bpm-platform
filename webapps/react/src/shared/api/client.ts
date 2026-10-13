@@ -23,6 +23,8 @@ export interface RequestOptions {
   json?: unknown;
   /** Sent as application/x-www-form-urlencoded. */
   form?: Record<string, string>;
+  /** Sent as multipart/form-data, e.g. a file. */
+  multipart?: FormData;
   /** Defaults to application/json. Use application/hal+json for embedded resources. */
   accept?: string;
   /** 'text' returns the body as string, e.g. an HTML form. Defaults to 'json'. */
@@ -86,6 +88,9 @@ export async function request<T>(url: string, options: RequestOptions = {}): Pro
   } else if (options.form) {
     headers['Content-Type'] = 'application/x-www-form-urlencoded';
     body = new URLSearchParams(options.form).toString();
+  } else if (options.multipart) {
+    // the browser sets the content type with the boundary
+    body = options.multipart;
   }
 
   if (method !== 'GET') {
