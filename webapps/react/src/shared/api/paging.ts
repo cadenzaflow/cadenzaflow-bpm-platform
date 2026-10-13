@@ -17,26 +17,40 @@ export interface PageRequest {
   listUrl: string;
   /** its count, e.g. engineUrl(engine, '/user/count') */
   countUrl: string;
-  query: QueryParams;
+  query: QueryParams | Record<string, unknown>;
   /** 1-based */
   page: number;
   sorting?: Sorting;
   pageSize?: number;
+  /** POST: query and sorting in the body (lists, e.g. variables), paging in the URL */
+  method?: 'GET' | 'POST';
 }
 
 /** One page of a list resource with the total count; retried unsorted when sorting fails. */
-export async function fetchPage<T>({ listUrl, countUrl, query, page, sorting, pageSize = DEFAULT_PAGE_SIZE }: PageRequest): Promise<Page<T>> {
+export async function fetchPage<T>({
+  listUrl,
+  countUrl,
+  query,
+  page,
+  sorting,
+  pageSize = DEFAULT_PAGE_SIZE,
+  method = 'GET',
+}: PageRequest): Promise<Page<T>> {
   const paging = { firstResult: (page - 1) * pageSize, maxResults: pageSize };
-  const { count } = await request<{ count: number }>(countUrl, { query });
+  const list = (withSorting: Sorting | undefined) =>
+    method === 'POST'
+      ? request<T[]>(listUrl, { method, query: paging, json: { ...query, ...withSorting } })
+      : request<T[]>(listUrl, { query: { ...(query as QueryParams), ...paging, ...withSorting } });
+  const { count } = await (method === 'POST'
+    ? request<{ count: number }>(countUrl, { method, json: query })
+    : request<{ count: number }>(countUrl, { query: query as QueryParams }));
   try {
-    const items = await request<T[]>(listUrl, { query: { ...query, ...paging, ...sorting } });
-    return { items, count, sortable: true };
+    return { items: await list(sorting), count, sortable: true };
   } catch (error) {
     if (!sorting) {
       throw error;
     }
-    const items = await request<T[]>(listUrl, { query: { ...query, ...paging } });
-    return { items, count, sortable: false };
+    return { items: await list(undefined), count, sortable: false };
   }
 }
 
@@ -45,9 +59,9 @@ export async function fetchPage<T>({ listUrl, countUrl, query, page, sorting, pa
  * so a module can reload all of its lists at once.
  */
 export function usePagedList<T>(scope: readonly unknown[], pageRequest: PageRequest) {
-  const { listUrl, query, page, sorting, pageSize = DEFAULT_PAGE_SIZE } = pageRequest;
+  const { listUrl, query, page, sorting, pageSize = DEFAULT_PAGE_SIZE, method } = pageRequest;
   return useQuery({
-    queryKey: [...scope, listUrl, query, page, sorting, pageSize],
+    queryKey: [...scope, listUrl, method, query, page, sorting, pageSize],
     placeholderData: (previous) => previous,
     queryFn: () => fetchPage<T>(pageRequest),
   });

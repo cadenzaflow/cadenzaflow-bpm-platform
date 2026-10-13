@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
-import type { QueryParams } from '../api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../api/paging';
 import { toQuery, type CriterionType, type SearchState } from '../search/criteria';
 import { CriteriaSearch } from '../search/CriteriaSearch';
@@ -16,7 +15,9 @@ interface SearchableListProps<T extends { id: string }> {
   namespace: string;
   criteria: CriterionType[];
   /** query parts that are always sent, e.g. latestVersion */
-  fixedQuery?: QueryParams;
+  fixedQuery?: Record<string, unknown>;
+  /** POST for queries with lists (e.g. variables) */
+  method?: 'GET' | 'POST';
   defaultSortBy: string;
   defaultSortOrder?: 'asc' | 'desc';
   columns: Column<T>[];
@@ -41,6 +42,7 @@ export function SearchableList<T extends { id: string }>({
   columns,
   emptyText,
   unsortedNotice,
+  method,
   search,
   onSearchChange,
 }: SearchableListProps<T>) {
@@ -59,11 +61,11 @@ export function SearchableList<T extends { id: string }>({
 
   const sorting = sortingOf(search, defaultSortBy, defaultSortOrder);
   const query = useMemo(
-    () => ({ ...fixedQuery, ...(toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, criteria) as QueryParams) }),
+    () => ({ ...fixedQuery, ...toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, criteria) }),
     [search.searchQuery, criteria, fixedQuery],
   );
   const page = search.page ?? 1;
-  const list = usePagedList<T>(scope, { listUrl, countUrl, query, page, sorting });
+  const list = usePagedList<T>(scope, { listUrl, countUrl, query, page, sorting, method });
   const pageCount = list.data ? Math.ceil(list.data.count / DEFAULT_PAGE_SIZE) : 0;
 
   return (

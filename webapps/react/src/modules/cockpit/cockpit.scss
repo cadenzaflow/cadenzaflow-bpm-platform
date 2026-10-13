@@ -42,3 +42,39 @@
     fill: $support-error;
   }
 }
+
+// Process definition: details | diagram and tabs
+.cz-definition {
+  display: grid;
+  gap: $spacing-06;
+  grid-template-columns: 16rem minmax(0, 1fr);
+}
+
+.cz-definition__info {
+  dt {
+    @include type-style('label-01');
+    margin-top: $spacing-04;
+    color: $text-secondary;
+  }
+
+  dd {
+    @include type-style('body-compact-01');
+    margin-top: $spacing-02;
+  }
+}
+
+.cz-definition__id {
+  word-break: break-all;
+}
+
+.cz-definition__main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+.cz-null {
+  color: $text-placeholder;
+  font-style: italic;
+}

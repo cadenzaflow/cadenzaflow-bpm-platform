@@ -1,6 +1,6 @@
 import { Tag } from '@carbon/react';
 import { WarningFilled } from '@carbon/icons-react';
-import { getRouteApi } from '@tanstack/react-router';
+import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { cockpitUrl } from '../../../shared/api/client';
 import type { CriterionType } from '../../../shared/search/criteria';
@@ -70,7 +70,16 @@ export function ProcessesPage() {
       render: (definition) => definition.instances.toLocaleString(),
     },
     { key: 'key', header: t('PLUGIN_PROCESS_DEF_KEY'), sortBy: 'key', render: (definition) => definition.key },
-    { key: 'name', header: t('PLUGIN_PROCESS_DEF_NAME'), sortBy: 'name', render: (definition) => definition.name || definition.key },
+    {
+      key: 'name',
+      header: t('PLUGIN_PROCESS_DEF_NAME'),
+      sortBy: 'name',
+      render: (definition) => (
+        <Link to="/cockpit/$engine/process-definition/$id" params={{ engine, id: definition.id }}>
+          {definition.name || definition.key}
+        </Link>
+      ),
+    },
     { key: 'tenantId', header: t('PLUGIN_PROCESS_DEF_TENANT_ID'), sortBy: 'tenantId', render: (definition) => definition.tenantId },
   ];
 
