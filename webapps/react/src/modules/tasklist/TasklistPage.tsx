@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@carbon/react';
-import { Play } from '@carbon/icons-react';
+import { Add, Play } from '@carbon/icons-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { FilterList } from './FilterList';
 import { TaskList } from './TaskList';
 import { TaskDetail } from './TaskDetail';
-import { useTaskFilters } from './api';
+import { useTaskFilters, type TaskFilter } from './api';
+import { FilterModal } from './filters/FilterModal';
 import type { TasklistSearch } from './search';
 import { DEFAULT_SORTING } from './task-search';
 import { StartProcessModal } from './start-process/StartProcessModal';
@@ -22,6 +23,8 @@ export function TasklistPage() {
   const navigate = route.useNavigate();
   const filters = useTaskFilters(engine);
   const [startOpen, setStartOpen] = useState(false);
+  // undefined: closed, null: new filter
+  const [editedFilter, setEditedFilter] = useState<TaskFilter | null | undefined>(undefined);
 
   const update = (changes: Partial<TasklistSearch>) =>
     navigate({ search: (previous: TasklistSearch) => ({ ...previous, ...changes }) });
@@ -40,10 +43,16 @@ export function TasklistPage() {
         filters={filters}
         selectedId={search.filter}
         onSelect={(filter) => update({ filter, task: undefined, page: undefined })}
+        onEdit={setEditedFilter}
         actions={
-          <Button kind="ghost" size="sm" renderIcon={Play} onClick={() => setStartOpen(true)}>
-            {t('START_PROCESS')}
-          </Button>
+          <>
+            <Button kind="ghost" size="sm" renderIcon={Play} onClick={() => setStartOpen(true)}>
+              {t('START_PROCESS')}
+            </Button>
+            <Button kind="ghost" size="sm" renderIcon={Add} onClick={() => setEditedFilter(null)}>
+              {t('FILTER_CREATE')}
+            </Button>
+          </>
         }
       />
       <TaskList
@@ -71,6 +80,21 @@ export function TasklistPage() {
         onTabChange={(detailsTab) => update({ detailsTab })}
         onTaskCompleted={() => update({ task: undefined })}
       />
+      {editedFilter !== undefined && (
+        <FilterModal
+          engine={engine}
+          filter={editedFilter}
+          onClose={() => setEditedFilter(undefined)}
+          onSaved={(filter) => {
+            setEditedFilter(undefined);
+            update({ filter, task: undefined, page: undefined });
+          }}
+          onDeleted={() => {
+            setEditedFilter(undefined);
+            update({ filter: undefined, task: undefined, page: undefined });
+          }}
+        />
+      )}
       <StartProcessModal
         engine={engine}
         open={startOpen || !!search.processStart}

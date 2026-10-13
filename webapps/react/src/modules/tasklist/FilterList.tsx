@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { ContainedList, ContainedListItem, InlineNotification, SkeletonText, Tag } from '@carbon/react';
+import { Button, ContainedList, ContainedListItem, InlineNotification, SkeletonText, Tag } from '@carbon/react';
+import { Edit } from '@carbon/icons-react';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import type { TaskFilter } from './api';
@@ -8,11 +9,12 @@ interface FilterListProps {
   filters: UseQueryResult<TaskFilter[]>;
   selectedId: string | undefined;
   onSelect: (filterId: string) => void;
+  onEdit: (filter: TaskFilter) => void;
   /** Buttons above the filters (start process, ...). */
   actions?: ReactNode;
 }
 
-export function FilterList({ filters, selectedId, onSelect, actions }: FilterListProps) {
+export function FilterList({ filters, selectedId, onSelect, onEdit, actions }: FilterListProps) {
   const { t } = useTranslation('tasklist');
 
   return (
@@ -30,8 +32,26 @@ export function FilterList({ filters, selectedId, onSelect, actions }: FilterLis
             className={filter.id === selectedId ? 'cz-list-item--selected' : undefined}
             aria-current={filter.id === selectedId ? 'true' : undefined}
             onClick={() => onSelect(filter.id)}
+            action={
+              filter.id === selectedId && (
+                <Button
+                  kind="ghost"
+                  size="sm"
+                  hasIconOnly
+                  renderIcon={Edit}
+                  iconDescription={t('FILTER_EDIT')}
+                  tooltipPosition="left"
+                  onClick={() => onEdit(filter)}
+                />
+              )
+            }
           >
             <span className="cz-filter">
+              <span
+                className="cz-filter__color"
+                style={{ background: filter.properties?.color ?? 'transparent' }}
+                aria-hidden="true"
+              />
               <span className="cz-filter__name" title={filter.properties?.description}>
                 {filter.name}
               </span>
