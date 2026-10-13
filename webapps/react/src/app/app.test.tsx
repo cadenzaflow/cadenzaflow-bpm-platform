@@ -138,9 +138,13 @@ describe('webapp shell', () => {
 
     await user.click(screen.getByText('Approve Invoice'));
 
-    expect(await screen.findByText('Check the invoice amount.')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Claim' })).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: 'Claim' })).toBeInTheDocument();
     expect(history.location.search).toContain('task=t1');
+
+    // tabs render when selected; the selection goes into the URL
+    await user.click(screen.getByRole('tab', { name: 'Description' }));
+    expect(await screen.findByText('Check the invoice amount.')).toBeInTheDocument();
+    expect(history.location.search).toContain('detailsTab=description');
   });
 
   it('completes a task with the generic form', async () => {

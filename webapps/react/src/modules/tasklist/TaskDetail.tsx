@@ -95,9 +95,13 @@ function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: Task
             ))}
           </TabList>
           <TabPanels>
-            {tabs.map((tab) => (
+            {/* only the selected tab renders: hidden tabs would load their data, and
+                a diagram drawn into a hidden panel has no size */}
+            {tabs.map((tab, index) => (
               <TabPanel key={tab.id}>
-                <tab.component engine={engine} task={task} onTaskCompleted={onTaskCompleted} />
+                {index === selectedIndex && (
+                  <tab.component engine={engine} task={task} onTaskCompleted={onTaskCompleted} />
+                )}
               </TabPanel>
             ))}
           </TabPanels>

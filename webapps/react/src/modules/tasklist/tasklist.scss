@@ -134,3 +134,51 @@
   display: flex;
   gap: $spacing-03;
 }
+
+.cz-diagram-skeleton {
+  width: 100%;
+  height: 28rem;
+}
+
+.cz-history {
+  padding: $spacing-05 0;
+}
+
+.cz-history__day {
+  margin-bottom: $spacing-06;
+}
+
+.cz-history__date {
+  @include type-style('heading-compact-01');
+  margin-bottom: $spacing-03;
+}
+
+.cz-history__event {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+  padding: $spacing-03 0;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.cz-history__meta {
+  @include type-style('helper-text-01');
+  color: $text-helper;
+}
+
+.cz-history__comment {
+  white-space: pre-wrap;
+}
+
+.cz-history__changes div {
+  display: flex;
+  gap: $spacing-03;
+
+  dt {
+    color: $text-secondary;
+  }
+}
+
+.cz-history__empty-value {
+  color: $text-helper;
+}

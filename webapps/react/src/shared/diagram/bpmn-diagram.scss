@@ -1,0 +1,13 @@
+@use '@carbon/react/scss/theme' as *;
+
+.cz-bpmn-diagram {
+  height: 28rem;
+  border: 1px solid $border-subtle;
+  background: $layer-01;
+
+  // highlighted elements, e.g. the task of the Tasklist's diagram tab
+  .djs-element.cz-highlight .djs-visual > :first-child {
+    stroke: $interactive !important;
+    stroke-width: 3px !important;
+  }
+}

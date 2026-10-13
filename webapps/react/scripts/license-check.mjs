@@ -28,8 +28,9 @@ const ALLOWED_PACKAGES = [
   // server-side rendering only, which this app does not do.
   'isbot',
   // bpmn.io license = MIT plus: the bpmn.io watermark must stay visible.
-  // Camunda Forms renderer, needed to show Camunda Forms in the Tasklist.
+  // Renderers for Camunda Forms and BPMN diagrams.
   '@bpmn-io/form-js-viewer',
+  'bpmn-js',
 ];
 
 function query(selector) {
