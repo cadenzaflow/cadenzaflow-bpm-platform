@@ -152,5 +152,18 @@
   "PLUGIN_UPDATE_SUSPENSION_STATE_MESSAGE_2": "The update of the suspension state of the process definition has been scheduled.",
   "PLUGIN_UPDATE_SUSPENSION_STATE_MESSAGE_3": "Could not update the suspension state of the process definition: {{message}}",
   "PLUGIN_UPDATE_SUSPENSION_STATE_MESSAGE_4": "The update of the suspension state of the process definition could not be scheduled: {{message}}",
-  "PLUGIN_UPDATE_SUSPENSION_STATE_STATUS_FINISHED": "Finished"
+  "PLUGIN_UPDATE_SUSPENSION_STATE_STATUS_FINISHED": "Finished",
+  "TIME_TO_LIVE_DAY": "{{ttl}} day",
+  "TIME_TO_LIVE_DAYS": "{{ttl}} days",
+  "TIME_TO_LIVE_MESSAGE_ERR": "Failed to update history time to live.",
+  "TIME_TO_LIVE_NULL": "null",
+  "TIME_TO_LIVE_POPUP_RADIO_CLEAR": "Clear Value",
+  "TIME_TO_LIVE_POPUP_RADIO_UPDATE": "Update Value",
+  "TIME_TO_LIVE_POPUP_REMOVAL_TIME_NOT_UPDATED_INFO": "Updating the History Time To Live value does not affect instances that have already been completed. ",
+  "TIME_TO_LIVE_POPUP_RUN_BATCH_JOB_INFO": "Run a Batch Operation to update completed instances.",
+  "TIME_TO_LIVE_POPUP_STATE_SUCCESS": "Updated the history time to live value.",
+  "TIME_TO_LIVE_POPUP_STATE_SUCCESS_MESSAGE_CLEAR": "The history time to live value has been set to null.",
+  "TIME_TO_LIVE_POPUP_STATE_SUCCESS_MESSAGE_UPDATE": "The history time to live value has been updated to {{ttl}} days successfully.",
+  "TIME_TO_LIVE_POPUP_SUBTITLE": "Select one of the following options:",
+  "TIME_TO_LIVE_POPUP_TITLE_EDIT": "Edit History Time To Live value"
 }
