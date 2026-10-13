@@ -3,7 +3,7 @@ import { Tile } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAuthentication } from '../../../shared/auth/authentication';
-import { useResourceAccess } from '../api';
+import { useAdminAccess } from '../api';
 
 const route = getRouteApi('/admin/$engine/');
 
@@ -21,9 +21,7 @@ export function AdminDashboard() {
   const { t } = useTranslation('admin');
   const { engine } = route.useParams();
   const me = useAuthentication(engine).data?.userId;
-  const users = useResourceAccess(engine, '/user');
-  const groups = useResourceAccess(engine, '/group');
-  const tenants = useResourceAccess(engine, '/tenant');
+  const { users, groups, tenants, authorizations } = useAdminAccess(engine);
 
   return (
     <section className="cz-admin-page cz-admin-dashboard">
@@ -36,14 +34,14 @@ export function AdminDashboard() {
             </Link>
           }
         >
-          {users.data?.has('create') && (
+          {users?.has('create') && (
             <li>
               <Link to="/admin/$engine/user-create" params={{ engine }}>
                 {t('USERS_CREATE_NEW')}
               </Link>
             </li>
           )}
-          {users.data?.has('list') && (
+          {users?.has('list') && (
             <li>
               <Link to="/admin/$engine/users" params={{ engine }}>
                 {t('USERS_LIST_USERS')}
@@ -58,7 +56,7 @@ export function AdminDashboard() {
             </li>
           )}
         </Section>
-        {groups.data?.has('list') && (
+        {groups?.has('list') && (
           <Section
             title={
               <Link to="/admin/$engine/groups" params={{ engine }}>
@@ -66,7 +64,7 @@ export function AdminDashboard() {
               </Link>
             }
           >
-            {groups.data.has('create') && (
+            {groups.has('create') && (
               <li>
                 <Link to="/admin/$engine/group-create" params={{ engine }}>
                   {t('GROUPS_CREATE_NEW')}
@@ -80,7 +78,7 @@ export function AdminDashboard() {
             </li>
           </Section>
         )}
-        {tenants.data?.has('list') && (
+        {tenants?.has('list') && (
           <Section
             title={
               <Link to="/admin/$engine/tenants" params={{ engine }}>
@@ -88,7 +86,7 @@ export function AdminDashboard() {
               </Link>
             }
           >
-            {tenants.data.has('create') && (
+            {tenants.has('create') && (
               <li>
                 <Link to="/admin/$engine/tenant-create" params={{ engine }}>
                   {t('TENANTS_CREATE_NEW')}
@@ -98,6 +96,21 @@ export function AdminDashboard() {
             <li>
               <Link to="/admin/$engine/tenants" params={{ engine }}>
                 {t('TENANTS_LIST_TENANTS')}
+              </Link>
+            </li>
+          </Section>
+        )}
+        {authorizations && (
+          <Section
+            title={
+              <Link to="/admin/$engine/authorization" params={{ engine }}>
+                {t('AUTHORIZATION_AUTHORIZATIONS')}
+              </Link>
+            }
+          >
+            <li>
+              <Link to="/admin/$engine/authorization" params={{ engine }}>
+                {t('AUTHORIZATION_MANAGE_AUTHORIZATIONS')}
               </Link>
             </li>
           </Section>
