@@ -88,6 +88,7 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
   protected static final String REACT_INDEX_PAGE = "/app/react/index.html";
   protected static final String REACT_DEFAULT_APP = TASKLIST_APP_NAME;
   protected static final Set<String> REACT_APPS = Set.of(COCKPIT_APP_NAME, ADMIN_APP_NAME, TASKLIST_APP_NAME, WELCOME_APP_NAME);
+  protected static final String REACT_SETUP_PAGE = "setup";
 
   protected final CockpitRuntimeDelegate cockpitRuntimeDelegate;
   protected final AdminRuntimeDelegate adminRuntimeDelegate;
@@ -226,7 +227,7 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
                                   String applicationPath,
                                   String contextPath,
                                   HttpServletRequest request,
-                                  HttpServletResponse response) throws IOException {
+                                  HttpServletResponse response) throws IOException, ServletException {
     String reactRoot = contextPath + applicationPath + "/app/" + REACT_APP_NAME + "/";
 
     if (reactAppName == null) {
@@ -242,6 +243,16 @@ public class ProcessEnginesFilter extends AbstractTemplateFilter {
     }
 
     String engineName = pageUri.split("/", 2)[0];
+
+    // as long as no admin user exists, every page leads to the setup page of
+    // the admin, and the setup page is only there then
+    String adminRoot = reactRoot + ADMIN_APP_NAME + "/" + engineName + "/";
+    boolean setupPage = ADMIN_APP_NAME.equals(reactAppName) && pageUri.equals(engineName + "/" + REACT_SETUP_PAGE);
+    if (needsInitialUser(engineName) != setupPage) {
+      response.sendRedirect(setupPage ? adminRoot : adminRoot + REACT_SETUP_PAGE);
+      return true;
+    }
+
     ServletContext servletContext = request.getServletContext();
     setWebappInTelemetry(engineName, reactAppName, servletContext);
     String cspNonce = (String) servletContext.getAttribute(ContentSecurityPolicyProvider.ATTR_CSP_FILTER_NONCE);

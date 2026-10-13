@@ -44,6 +44,8 @@ public class ProcessEnginesFilterReactTest {
 
   protected ProcessEnginesFilter filter;
   protected MockServletContext servletContext;
+  /** whether the engine still has no admin user */
+  protected boolean initialUserNeeded;
 
   @Before
   public void setUp() throws Exception {
@@ -79,6 +81,11 @@ public class ProcessEnginesFilterReactTest {
       @Override
       protected <T extends AppPlugin> List<T> getPlugins(String appName) {
         return Collections.emptyList();
+      }
+
+      @Override
+      protected boolean needsInitialUser(String engineName) {
+        return initialUserNeeded;
       }
     };
     servletContext = new MockServletContext();
@@ -135,6 +142,20 @@ public class ProcessEnginesFilterReactTest {
     get("/app/cockpit/default/process-instance/42", chain);
 
     assertThat(chain.getRequest()).isNotNull();
+  }
+
+  @Test
+  public void shouldLeadToTheSetupPageWhileThereIsNoAdminUser() throws Exception {
+    initialUserNeeded = true;
+
+    assertThat(get("/app/react/tasklist/default/").getRedirectedUrl()).isEqualTo(CONTEXT_PATH + "/app/react/admin/default/setup");
+    assertThat(get("/app/react/admin/default/users").getRedirectedUrl()).isEqualTo(CONTEXT_PATH + "/app/react/admin/default/setup");
+    assertThat(get("/app/react/admin/default/setup").getContentAsString()).isEqualTo("page=/app/react/index.html root=" + CONTEXT_PATH);
+  }
+
+  @Test
+  public void shouldLeaveTheSetupPageOnceThereIsAnAdminUser() throws Exception {
+    assertThat(get("/app/react/admin/default/setup").getRedirectedUrl()).isEqualTo(CONTEXT_PATH + "/app/react/admin/default/");
   }
 
   protected MockHttpServletResponse get(String uri) throws Exception {

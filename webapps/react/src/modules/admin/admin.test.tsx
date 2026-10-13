@@ -1,5 +1,6 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { initI18n } from '../../shared/i18n';
 import { useNotifications } from '../../shared/notifications';
 import { json, logIn, renderApp } from '../../test/app';
@@ -62,6 +63,9 @@ function fakeBackend() {
       return user ? json(user) : json({ message: 'not found' }, 404);
     }
     if (profile || path === `${ENGINE}/user/mary/credentials` || path === `${ENGINE}/user/create`) {
+      return new Response(null, { status: 204 });
+    }
+    if (path === '/api/admin/setup/default/user/create' && method === 'POST') {
       return new Response(null, { status: 204 });
     }
     if (path === `${ENGINE}/authorization/check`) {
@@ -344,6 +348,31 @@ describe('admin system', () => {
     expect(await screen.findByText(/"vendor": "h2"/)).toBeInTheDocument();
     // internal counters are left out, as in the classic Admin
     expect(screen.queryByText(/"commands"/)).not.toBeInTheDocument();
+  });
+});
+
+describe('admin setup', () => {
+  it('creates the first admin user without a login', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/admin/default/setup');
+    const user = userEvent.setup();
+
+    expect(await screen.findByText('CadenzaFlow Setup')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Username')).not.toBeInTheDocument();
+    await user.type(screen.getByLabelText('User ID*'), 'admin');
+    await user.type(screen.getByLabelText('First Name*'), 'Ada');
+    await user.type(screen.getByLabelText('Last Name*'), 'Admin');
+    await user.type(screen.getByLabelText('Password*:'), 'secret');
+    await user.type(screen.getByLabelText('Password (repeat):*'), 'secret');
+    await user.click(screen.getByRole('button', { name: 'Create new User' }));
+
+    expect(await screen.findByText('You have created an initial user.')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'sign in page' })).toHaveAttribute('href', '/app/react/admin/default');
+    expect(fetchMock.mock.calls.find(([url]) => url === '/api/admin/setup/default/user/create')?.[1]?.body).toBe(
+      JSON.stringify({ profile: { id: 'admin', firstName: 'Ada', lastName: 'Admin', email: '' }, credentials: { password: 'secret' } }),
+    );
+    // the password policy needs a login: not asked
+    expect(fetchMock.mock.calls.some(([url]) => url.includes('password-policy'))).toBe(false);
   });
 });
 
