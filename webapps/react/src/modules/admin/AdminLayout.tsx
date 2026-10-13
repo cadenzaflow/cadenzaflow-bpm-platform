@@ -40,6 +40,9 @@ export function AdminLayout() {
             {t('AUTHORIZATION_AUTHORIZATIONS')}
           </Link>
         )}
+        <Link to="/admin/$engine/system" params={{ engine }} {...linkProps}>
+          {t('SYSTEM_SYSTEM')}
+        </Link>
       </nav>
       <Outlet />
     </div>
