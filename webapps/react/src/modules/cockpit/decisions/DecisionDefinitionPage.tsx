@@ -11,6 +11,7 @@ import { PageFrame } from '../../../shared/ui/PageFrame';
 import { SearchableList } from '../../../shared/ui/SearchableList';
 import { TimeToLive } from '../components/TimeToLive';
 import { InstanceLink } from '../process-instance/InstanceLink';
+import { DeploymentLink } from '../repository/DeploymentLink';
 import { useDecisionDefinition, useDecisionVersions, useDecisionXml, type DecisionInstance } from './api';
 
 const DmnViewer = lazy(() => import('../../../shared/diagram/DmnViewer'));
@@ -137,7 +138,9 @@ export function DecisionDefinitionPage() {
               <dt>{t('DECISION_DEFINITION_TENANT_ID')}</dt>
               <dd>{value(definition.data.tenantId)}</dd>
               <dt>{t('DECISION_DEFINITION_DEPLOYMENT_ID')}</dt>
-              <dd className="cz-definition__id">{definition.data.deploymentId}</dd>
+              <dd className="cz-definition__id">
+                <DeploymentLink engine={engine} deploymentId={definition.data.deploymentId} resourceName={definition.data.resource} />
+              </dd>
               <dt>{t('DECISION_DEFINITION_DECISION_REQUIREMENTS_DEFINITION')}</dt>
               <dd className="cz-definition__id">{value(definition.data.decisionRequirementsDefinitionId)}</dd>
             </dl>

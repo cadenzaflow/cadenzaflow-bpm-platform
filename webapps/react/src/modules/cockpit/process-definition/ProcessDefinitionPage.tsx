@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
 import { TimeToLive } from '../components/TimeToLive';
+import { DeploymentLink } from '../repository/DeploymentLink';
 import { DefinitionSuspension } from './DefinitionSuspension';
 import { selectedActivities, type ProcessDefinitionSearch } from './search';
 import { definitionTabs } from './tabs/registry';
@@ -133,7 +134,9 @@ export function ProcessDefinitionPage() {
               <dt>{t('PROCESS_DEFINITION_TENANT_ID')}</dt>
               <dd>{value(definition.data.tenantId)}</dd>
               <dt>{t('PROCESS_DEFINITION_DEPLOYMENT_ID')}</dt>
-              <dd className="cz-definition__id">{definition.data.deploymentId}</dd>
+              <dd className="cz-definition__id">
+                <DeploymentLink engine={engine} deploymentId={definition.data.deploymentId} resourceName={definition.data.resource} />
+              </dd>
               <dt>{t('PROCESS_DEFINITION_INSTANCES_RUNNING')}</dt>
               <dd>
                 {running.data ? (

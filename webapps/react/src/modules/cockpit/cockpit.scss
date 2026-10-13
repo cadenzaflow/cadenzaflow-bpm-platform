@@ -195,3 +195,140 @@
   margin-top: $spacing-03;
   color: $text-secondary;
 }
+
+// Deployments: deployments | resources | the selected resource
+.cz-repository {
+  display: grid;
+  gap: $spacing-05;
+  grid-template-columns: minmax(14rem, 18rem) minmax(14rem, 22rem) minmax(0, 1fr);
+
+  @media (max-width: 66rem) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cz-repository__column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-04;
+}
+
+.cz-repository__sorting {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+}
+
+.cz-repository__list {
+  border-top: 1px solid $border-subtle;
+}
+
+.cz-repository__item {
+  position: relative;
+  border-bottom: 1px solid $border-subtle;
+
+  &.is-selected {
+    background: $layer-selected;
+    box-shadow: inset 3px 0 0 $border-interactive;
+  }
+
+  // the delete button shows on hover and focus, as in the classic Cockpit
+  .cz-repository__delete {
+    position: absolute;
+    top: $spacing-02;
+    right: $spacing-02;
+    opacity: 0;
+  }
+
+  &:hover .cz-repository__delete,
+  .cz-repository__delete:focus {
+    opacity: 1;
+  }
+}
+
+.cz-repository__select {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: $spacing-02;
+  padding: $spacing-04 $spacing-08 $spacing-04 $spacing-04;
+  border: 0;
+  background: none;
+  color: $text-primary;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background: $layer-hover;
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+}
+
+.cz-repository__name {
+  @include type-style('heading-compact-01');
+  overflow-wrap: anywhere;
+}
+
+.cz-repository__path {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+  overflow-wrap: anywhere;
+}
+
+.cz-repository__meta {
+  @include type-style('helper-text-01');
+  display: grid;
+  gap: $spacing-01 $spacing-03;
+  grid-template-columns: auto minmax(0, 1fr);
+
+  dt {
+    color: $text-secondary;
+  }
+
+  dd {
+    overflow-wrap: anywhere;
+  }
+}
+
+.cz-repository__details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-04;
+}
+
+.cz-repository__file {
+  @include type-style('heading-03');
+  overflow-wrap: anywhere;
+}
+
+.cz-repository__version {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+}
+
+.cz-repository__source {
+  @include type-style('code-01');
+  max-height: 32rem;
+  overflow: auto;
+  padding: $spacing-04;
+  background: $layer-01;
+  white-space: pre;
+}
+
+.cz-repository__image {
+  max-width: 100%;
+  max-height: 32rem;
+  object-fit: contain;
+}
+
+.cz-repository__definitions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-04;
+}

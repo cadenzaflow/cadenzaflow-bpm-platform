@@ -51,6 +51,20 @@ describe('toQuery', () => {
     });
   });
 
+  it('uses the REST parameter a type names for an operator', () => {
+    const deploymentTime: CriterionType = {
+      key: 'deploymentTime',
+      label: 'TIME',
+      kind: 'property',
+      operators: ['Before', 'After'],
+      valueType: 'date',
+      params: { Before: 'before', After: 'after' },
+    };
+    expect(toQuery({ matchAny: false, criteria: [{ type: 'deploymentTime', operator: 'After', value: '2026-10-01T00:00' }] }, [deploymentTime])).toEqual({
+      after: toEngineDate(new Date(2026, 9, 1)),
+    });
+  });
+
   it('skips incomplete criteria and wraps "any" into orQueries', () => {
     expect(
       toQuery(

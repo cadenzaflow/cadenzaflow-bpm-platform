@@ -9,6 +9,7 @@ import { formatDateTime } from '../../../shared/format';
 import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTable';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { InstanceLink } from '../process-instance/InstanceLink';
+import { DeploymentLink } from '../repository/DeploymentLink';
 import { useDecisionDefinition, useDecisionInstance, useDecisionXml, type DecisionValue } from './api';
 
 const DmnViewer = lazy(() => import('../../../shared/diagram/DmnViewer'));
@@ -176,7 +177,9 @@ export function DecisionInstancePage() {
                 <dt>{t('DECISION_INSTANCE_TENANT_ID')}</dt>
                 <dd>{value(instance.data.tenantId)}</dd>
                 <dt>{t('DECISION_INSTANCE_DEPLOYMENT_ID')}</dt>
-                <dd className="cz-definition__id">{definition.data.deploymentId}</dd>
+                <dd className="cz-definition__id">
+                  <DeploymentLink engine={engine} deploymentId={definition.data.deploymentId} resourceName={definition.data.resource} />
+                </dd>
                 <dt>{t('DECISION_INSTANCE_PROCESS_INSTANCE_ID')}</dt>
                 <dd className="cz-definition__id">
                   {instance.data.processInstanceId ? <InstanceLink engine={engine} id={instance.data.processInstanceId} /> : value(null)}

@@ -30,6 +30,7 @@ import {
   useSuperProcessInstance,
   type ActivityInstance,
 } from './api';
+import { DeploymentLink } from '../repository/DeploymentLink';
 import { InstanceActions } from './InstanceActions';
 import { InstanceLink } from './InstanceLink';
 import { listOf, textOf, toggle, type ProcessInstanceSearch } from './search';
@@ -190,7 +191,9 @@ export function ProcessInstancePage() {
                 <dt>{t('PROCESS_INSTANCE_TENANT_ID')}</dt>
                 <dd>{value(instance.data.tenantId)}</dd>
                 <dt>{t('PROCESS_INSTANCE_DEPLOYMENT_ID')}</dt>
-                <dd className="cz-definition__id">{definition.data.deploymentId}</dd>
+                <dd className="cz-definition__id">
+                  <DeploymentLink engine={engine} deploymentId={definition.data.deploymentId} resourceName={definition.data.resource} />
+                </dd>
                 <dt>{t('PROCESS_INSTANCE_SUPER_PROCESS_INSTANCE_ID')}</dt>
                 <dd className="cz-definition__id">
                   {superInstance.data ? <InstanceLink engine={engine} id={superInstance.data.id} /> : value(null)}
