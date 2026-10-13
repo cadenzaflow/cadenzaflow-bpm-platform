@@ -114,6 +114,7 @@ body {
 
 .cz-page__header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-05;
@@ -122,10 +123,13 @@ body {
 
 .cz-page__title {
   @include type-style('heading-04');
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .cz-page__actions {
   display: flex;
+  flex-wrap: wrap;
   gap: $spacing-03;
 }
 

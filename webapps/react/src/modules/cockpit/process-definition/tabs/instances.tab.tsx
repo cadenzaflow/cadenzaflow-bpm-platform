@@ -6,6 +6,7 @@ import { formatDateTime } from '../../../../shared/format';
 import { VARIABLE_OPERATORS, type CriterionType } from '../../../../shared/search/criteria';
 import type { Column } from '../../../../shared/ui/ListTable';
 import { SearchableList } from '../../../../shared/ui/SearchableList';
+import { InstanceLink } from '../../process-instance/InstanceLink';
 import type { DefinitionTab, DefinitionTabProps } from './registry';
 
 /** A running process instance as the Cockpit plugin API lists it. */
@@ -49,7 +50,7 @@ function InstancesTab({ engine, definition, activityIds, search, onSearchChange 
         </>
       ),
     },
-    { key: 'id', header: t('PLUGIN_PROCESS_INSTANCE_ID'), render: (instance) => instance.id },
+    { key: 'id', header: t('PLUGIN_PROCESS_INSTANCE_ID'), render: (instance) => <InstanceLink engine={engine} id={instance.id} /> },
     {
       key: 'startTime',
       header: t('PLUGIN_PROCESS_INSTANCE_START_TIME'),

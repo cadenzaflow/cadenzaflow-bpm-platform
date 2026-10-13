@@ -99,3 +99,35 @@
   flex-wrap: wrap;
   gap: $spacing-03;
 }
+
+// text with a list in a dialog, sized like the dialog's paragraphs
+.cz-dialog-text {
+  @include type-style('body-02');
+}
+
+.cz-dialog-list {
+  margin: $spacing-03 0 $spacing-03 $spacing-06;
+  list-style: disc;
+}
+
+// Process instance: the activity instance tree below the details
+.cz-activity-tree {
+  margin-top: $spacing-06;
+  border-top: 1px solid $border-subtle;
+  padding-top: $spacing-04;
+}
+
+.cz-tree-node {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-02;
+}
+
+.cz-tree-node__incident {
+  flex-shrink: 0;
+  fill: $support-error;
+}
+
+.cz-instance-state {
+  margin-left: $spacing-03;
+}
