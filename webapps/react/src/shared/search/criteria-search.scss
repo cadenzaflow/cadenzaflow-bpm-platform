@@ -1,0 +1,40 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.cz-criteria {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.cz-criteria__item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+  padding: $spacing-03;
+  border: 1px solid $border-subtle;
+  background: $layer-01;
+}
+
+.cz-criteria__row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+
+  > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  > .cz-criteria__operator,
+  > .cds--btn {
+    flex: 0 0 auto;
+  }
+}
+
+.cz-criteria__tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-03;
+}

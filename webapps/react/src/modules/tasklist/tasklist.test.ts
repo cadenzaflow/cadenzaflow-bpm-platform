@@ -35,14 +35,19 @@ describe('fetchFilterTasks', () => {
       },
     });
 
-    const page = await fetchFilterTasks('default', 'f1', 3);
+    const page = await fetchFilterTasks('default', 'f1', 3, { sorting: [{ sortBy: 'priority', sortOrder: 'asc' }], name: 'x' });
 
     const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit & { headers: Record<string, string> }];
     expect(url).toBe('/api/engine/engine/default/filter/f1/list?firstResult=30&maxResults=15');
     expect(init.method).toBe('POST');
     expect(init.headers.Accept).toBe('application/hal+json');
+    expect(JSON.parse(String(init.body))).toEqual({
+      sorting: [{ sortBy: 'priority', sortOrder: 'asc' }],
+      name: 'x',
+      active: true,
+    });
     expect(page.count).toBe(31);
-    expect(page.tasks).toEqual([task]);
+    expect(page.tasks).toEqual([{ ...task, variables: [] }]);
     expect(page.processDefinitions.get('invoice:1')?.name).toBe('Invoice');
     expect(page.users.get('demo')?.firstName).toBe('Demo');
   });
@@ -94,11 +99,30 @@ describe('task tabs', () => {
 });
 
 describe('validateTasklistSearch', () => {
-  it('keeps known string parameters only', () => {
-    expect(validateTasklistSearch({ filter: 'f1', task: '', detailsTab: 3, other: 'x' })).toEqual({
+  it('keeps known parameters only', () => {
+    expect(validateTasklistSearch({ filter: 'f1', task: '', detailsTab: 3, other: 'x' })).toMatchObject({
       filter: 'f1',
       task: undefined,
       detailsTab: undefined,
+    });
+  });
+
+  it('reads page, sorting and search, as objects or JSON text', () => {
+    const search = validateTasklistSearch({
+      page: 2,
+      sorting: '[{"sortBy":"priority","sortOrder":"asc"}]',
+      searchQuery: [{ type: 'name', operator: 'Like', value: 'invoice' }],
+      searchMatch: 'any',
+    });
+    expect(search).toMatchObject({
+      page: 2,
+      sorting: [{ sortBy: 'priority', sortOrder: 'asc' }],
+      searchQuery: [{ type: 'name', operator: 'Like', value: 'invoice' }],
+      searchMatch: 'any',
+    });
+    expect(validateTasklistSearch({ sorting: 'nonsense', page: 1 })).toMatchObject({
+      page: undefined,
+      sorting: [{ sortBy: 'created', sortOrder: 'desc' }],
     });
   });
 });

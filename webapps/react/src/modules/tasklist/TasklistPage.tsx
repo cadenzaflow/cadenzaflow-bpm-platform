@@ -8,6 +8,7 @@ import { TaskList } from './TaskList';
 import { TaskDetail } from './TaskDetail';
 import { useTaskFilters } from './api';
 import type { TasklistSearch } from './search';
+import { DEFAULT_SORTING } from './task-search';
 import { StartProcessModal } from './start-process/StartProcessModal';
 import './tasklist.scss';
 
@@ -38,7 +39,7 @@ export function TasklistPage() {
       <FilterList
         filters={filters}
         selectedId={search.filter}
-        onSelect={(filter) => update({ filter, task: undefined })}
+        onSelect={(filter) => update({ filter, task: undefined, page: undefined })}
         actions={
           <Button kind="ghost" size="sm" renderIcon={Play} onClick={() => setStartOpen(true)}>
             {t('START_PROCESS')}
@@ -47,9 +48,21 @@ export function TasklistPage() {
       />
       <TaskList
         engine={engine}
-        filterId={search.filter}
+        filter={filters.data?.find((filter) => filter.id === search.filter)}
+        page={search.page ?? 1}
+        sorting={search.sorting?.[0] ?? DEFAULT_SORTING}
+        search={{ criteria: search.searchQuery ?? [], matchAny: search.searchMatch === 'any' }}
         selectedId={search.task}
         onSelect={(task) => update({ task })}
+        onPageChange={(page) => update({ page: page > 1 ? page : undefined })}
+        onSortingChange={(sorting) => update({ sorting: [sorting], page: undefined })}
+        onSearchChange={({ criteria, matchAny }) =>
+          update({
+            searchQuery: criteria.length ? criteria : undefined,
+            searchMatch: matchAny ? 'any' : undefined,
+            page: undefined,
+          })
+        }
       />
       <TaskDetail
         engine={engine}

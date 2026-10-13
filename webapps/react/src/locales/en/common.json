@@ -23,5 +23,21 @@
   "MODULES": "Modules",
   "MODULE_NOT_AVAILABLE_TEXT": "Use the classic UI for {{module}} until it has been rewritten.",
   "OPEN_IN_CLASSIC_UI": "Open in the classic UI",
-  "SWITCH_TO_CLASSIC_UI": "Switch to the classic UI"
+  "SWITCH_TO_CLASSIC_UI": "Switch to the classic UI",
+  "SEARCH_GREATER_THAN": ">",
+  "SEARCH_GREATER_THAN_EQUALS": ">=",
+  "SEARCH_LESS_THAN": "<",
+  "SEARCH_LESS_THAN_EQUALS": "<=",
+  "LIKE": "like",
+  "BEFORE": "before",
+  "AFTER": "after",
+  "VARIABLE_NAME": "Variable name",
+  "VALUE": "Value",
+  "SEARCH_CRITERION": "Criterion",
+  "ADD_CRITERION": "Add criterion",
+  "REMOVE_CRITERION": "Remove criterion",
+  "OPERATOR": "Operator",
+  "MATCH_ANY_CRITERION": "Criteria to match",
+  "MATCH_ALL": "All criteria",
+  "MATCH_ANY": "Any criterion"
 }
