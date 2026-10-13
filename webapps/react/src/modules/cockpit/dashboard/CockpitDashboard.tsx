@@ -67,7 +67,18 @@ export function CockpitDashboard() {
         <Card title={t('DASHBOARD_OPEN_INCIDENTS')} total={statistics.data ? processesLink(sum(incidents)) : <SkeletonText />}>
           <BarList items={incidents} label={t('DASHBOARD_OPEN_INCIDENTS')} othersLabel={t('DASHBOARD_OTHERS')} />
         </Card>
-        <Card title={t('DASHBOARD_OPEN_HUMAN_TASKS')} total={number(tasks.data)}>
+        <Card
+          title={t('DASHBOARD_OPEN_HUMAN_TASKS')}
+          total={
+            tasks.data === undefined ? (
+              '–'
+            ) : (
+              <Link to="/cockpit/$engine/tasks" params={{ engine }}>
+                {tasks.data.toLocaleString()}
+              </Link>
+            )
+          }
+        >
           <BarList
             items={[
               { key: 'user', label: t('DASHBOARD_ASSIGNED_TO_USER'), value: assigned.data ?? 0 },

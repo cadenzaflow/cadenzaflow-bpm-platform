@@ -26,6 +26,9 @@ export function CockpitLayout() {
         <Link to="/cockpit/$engine/decisions" params={{ engine }} {...linkProps}>
           {t('COCKPIT_DECISIONS')}
         </Link>
+        <Link to="/cockpit/$engine/tasks" params={{ engine }} {...linkProps}>
+          {t('COCKPIT_HUMAN_TASKS')}
+        </Link>
       </nav>
       <Outlet />
     </div>
