@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor, within } from '@testing-library/react';
 import { initI18n } from '../../shared/i18n';
+import { toEngineDate } from '../../shared/variables';
 import { useNotifications } from '../../shared/notifications';
 import { json, logIn, renderApp } from '../../test/app';
 import { byProcess } from './dashboard/CockpitDashboard';
@@ -151,6 +152,36 @@ function fakeBackend() {
     }
     if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
       return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
+    }
+    if (path === `${ENGINE}/job/count` && query.get('processInstanceId') === 'pi-1') {
+      return json({ count: 1 });
+    }
+    if (path === `${ENGINE}/job` && query.get('processInstanceId') === 'pi-1') {
+      return json([
+        {
+          id: 'job-1',
+          jobDefinitionId: 'jd-1',
+          dueDate: '2026-10-14T10:00:00.000+0000',
+          createTime: '2026-10-14T09:00:00.000+0000',
+          retries: 3,
+          suspended: false,
+          failedActivityId: null,
+        },
+      ]);
+    }
+    if (path === `${ENGINE}/job-definition/jd-1`) {
+      return json({ id: 'jd-1', activityId: 'waitForPayment' });
+    }
+    if (path.startsWith(`${ENGINE}/job/job-1/`) && (method === 'PUT' || method === 'POST')) {
+      return new Response(null, { status: 204 });
+    }
+    if (path === `${ENGINE}/external-task/count` && method === 'POST') {
+      return json({ count: 1 });
+    }
+    if (path === `${ENGINE}/external-task` && method === 'POST') {
+      return json([
+        { id: 'ext-1', activityId: 'prepareTransfer', retries: null, workerId: 'worker-1', lockExpirationTime: null, topicName: 'transfer', priority: 0 },
+      ]);
     }
     if (path === `${ENGINE}/task/count` && method === 'POST') {
       return json({ count: 1 });
@@ -469,4 +500,49 @@ describe('cockpit process instance user tasks', () => {
     });
     // several dialogs and typed inputs
   }, 15000);
+});
+
+describe('cockpit process instance jobs and external tasks', () => {
+  it('suspends a job and sets the due date of a timer', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=jobs-tab');
+    const user = await logIn();
+
+    const row = within((await screen.findByText('job-1')).closest('tr')!);
+    // the activity comes from the job definition
+    expect(await row.findByRole('button', { name: 'waitForPayment' })).toBeInTheDocument();
+    expect(fetchMock.mock.calls.some(([url]) => url.startsWith(`${ENGINE}/job?`) && url.includes('sortBy=jobId&sortOrder=desc'))).toBe(true);
+
+    await user.click(row.getByRole('button', { name: 'Suspend' }));
+    expect(await screen.findByText('The suspension state of the job has been updated successfully.')).toBeInTheDocument();
+    const suspended = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/suspended'));
+    expect(JSON.parse(String(suspended?.[1]?.body))).toEqual({ suspended: true });
+
+    await user.click(row.getByRole('button', { name: 'Change due date for this Job.' }));
+    const dialog = within(await screen.findByRole('dialog', { name: 'Change timer due date' }));
+    expect(dialog.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.click(dialog.getByRole('radio', { name: 'Set a specific date' }));
+    const date = dialog.getByRole('textbox', { name: 'Schedule at' });
+    await user.clear(date);
+    await user.type(date, '2026-12-01T10:00');
+    await user.click(dialog.getByRole('button', { name: 'Change' }));
+    expect(await screen.findByText('Due date was set successfully.')).toBeInTheDocument();
+    const dueDate = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/duedate'));
+    expect(JSON.parse(String(dueDate?.[1]?.body))).toEqual({ duedate: toEngineDate(new Date(2026, 11, 1, 10, 0)), cascade: true });
+  }, 15000);
+
+  it('lists the external tasks of the selected activities', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=external-tasks-process-instance-runtime&activityIds=prepareTransfer');
+    await logIn();
+
+    expect(await screen.findByText('worker-1')).toBeInTheDocument();
+    const query = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/external-task?`) && init?.method === 'POST');
+    expect(JSON.parse(String(query?.[1]?.body))).toEqual({
+      processInstanceId: 'pi-1',
+      activityIdIn: ['prepareTransfer'],
+      sortBy: 'taskPriority',
+      sortOrder: 'asc',
+    });
+  });
 });
