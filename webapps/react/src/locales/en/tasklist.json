@@ -84,5 +84,15 @@
   "name": "Name",
   "owner": "Owner",
   "parentTask": "Parent task",
-  "priority": "Priority"
+  "priority": "Priority",
+  "BACK": "Back",
+  "CLICK_PROCESS_TO_START": "Click on the process to start.",
+  "NO_PROCESS_DEFINITION_AVAILABLE": "Note there are no process definitions available.",
+  "PROCESS_START_ERROR": "The process could not be started.",
+  "PROCESS_START_OK": "The process has been started.",
+  "SEARCH_PROCESS_BY_NAME": "Search by process name.",
+  "START": "Start",
+  "START_PROCESS": "Start process",
+  "TENANT_ID": "Tenant ID",
+  "PROCESS_EXTERNAL_FORM_NOTE": "This process contains an external form to start a new process instance. In order to open the external form click on the \"Open external form\" link below."
 }

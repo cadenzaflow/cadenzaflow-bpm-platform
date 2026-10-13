@@ -3,10 +3,10 @@ import { InlineNotification, SkeletonText } from '@carbon/react';
 import { useQueryClient } from '@tanstack/react-query';
 import $ from 'jquery';
 import { useTranslation } from 'react-i18next';
-import { useAuthentication } from '../../../shared/auth/authentication';
-import { notify } from '../../../shared/notifications';
-import { FormActions } from '../task-form/FormActions';
-import type { FormProps } from '../task-form/TaskFormTab';
+import { useAuthentication } from '../../../../shared/auth/authentication';
+import { notify } from '../../../../shared/notifications';
+import { FormActions } from '../FormActions';
+import type { FormProps } from '../FormRenderer';
 import { CamundaForm, isType } from './sdk';
 import { createSdkClient, ReportedError } from './sdk-client';
 import './embedded-form.scss';
@@ -38,13 +38,14 @@ interface CamForm {
 /** An embedded HTML form (cam-variable-name & co.), as written for the AngularJS Tasklist. Loaded lazily. */
 export default function EmbeddedForm({
   engine,
-  task,
+  target,
   url,
   disabled,
-  complete,
-  completing,
+  submit,
+  submitting,
+  submitLabel,
   onTaskEnded,
-}: FormProps & { url: string; onTaskEnded: () => void }) {
+}: FormProps & { url: string }) {
   const { t } = useTranslation('tasklist');
   const queryClient = useQueryClient();
   const userId = useAuthentication(engine).data?.userId;
@@ -56,8 +57,9 @@ export default function EmbeddedForm({
   const [dirty, setDirty] = useState(false);
 
   // latest props for the runtime's callbacks, which are registered once per form
-  const latest = useRef({ complete, onTaskEnded, t });
-  latest.current = { complete, onTaskEnded, t };
+  const latest = useRef({ submit, onTaskEnded, t });
+  latest.current = { submit, onTaskEnded, t };
+  const targetId = target.kind === 'task' ? target.taskId : target.processDefinitionId;
 
   useEffect(() => {
     // a fresh host per form, so a late answer for a previous form cannot draw into this one
@@ -74,11 +76,19 @@ export default function EmbeddedForm({
       ]);
 
     new CamundaForm({
-      client: createSdkClient(engine, (variables) => latest.current.complete(variables)),
-      taskId: task.id,
+      client: createSdkClient(engine, (variables, businessKey) => latest.current.submit(variables, businessKey)),
+      ...(target.kind === 'task'
+        ? { taskId: target.taskId }
+        : { processDefinitionId: target.processDefinitionId, processDefinitionKey: target.processDefinitionKey }),
       formUrl: url,
       containerElement: $(host),
-      urlParams: { taskId: task.id, userId, engineName: engine },
+      urlParams: {
+        ...(target.kind === 'task'
+          ? { taskId: target.taskId }
+          : { processDefinitionKey: target.processDefinitionKey }),
+        userId,
+        engineName: engine,
+      },
       done: (error: Error | null, form: CamForm) => {
         if (!active) {
           return;
@@ -96,12 +106,12 @@ export default function EmbeddedForm({
         form.on('error-success', () => {
           notify({ kind: 'success', title: latest.current.t('BPMN_ERROR_OK') });
           refreshLists();
-          latest.current.onTaskEnded();
+          latest.current.onTaskEnded?.();
         });
         form.on('escalation-success', () => {
           notify({ kind: 'success', title: latest.current.t('ESCALATION_OK') });
           refreshLists();
-          queryClient.invalidateQueries({ queryKey: ['task', engine, task.id] });
+          queryClient.invalidateQueries({ queryKey: ['task', engine, targetId] });
         });
         const failed = (failure?: unknown) =>
           notify({ kind: 'error', title: latest.current.t('FORM_FAILURE'), subtitle: (failure as Error)?.message });
@@ -116,17 +126,22 @@ export default function EmbeddedForm({
       camForm.current = null;
       host.remove();
     };
-  }, [engine, task.id, url, userId, queryClient]);
+    // the target object is new on every render; its id identifies it
+  }, [engine, targetId, url, userId, queryClient]);
 
-  const onComplete = () => {
+  const onSubmit = () => {
     const form = camForm.current;
     if (!form || !form.formElement[0].reportValidity()) {
       return;
     }
     form.submit((error) => {
-      // server failures were reported by complete(); a form script may cancel on purpose
+      // server failures were reported by submit(); a form script may cancel on purpose
       if (error && !(error instanceof ReportedError) && error.message !== 'camForm submission prevented') {
-        notify({ kind: 'error', title: t('COMPLETE_ERROR'), subtitle: error.message });
+        notify({
+          kind: 'error',
+          title: t(target.kind === 'task' ? 'COMPLETE_ERROR' : 'PROCESS_START_ERROR'),
+          subtitle: error.message,
+        });
       }
     });
   };
@@ -146,10 +161,11 @@ export default function EmbeddedForm({
       {status.state === 'ready' && (
         <FormActions
           disabled={disabled}
-          completing={completing}
-          onComplete={onComplete}
+          submitting={submitting}
+          submitLabel={submitLabel}
+          onSubmit={onSubmit}
           saveDisabled={disabled || !dirty}
-          onSave={onSave}
+          onSave={target.kind === 'task' ? onSave : undefined}
         />
       )}
     </>

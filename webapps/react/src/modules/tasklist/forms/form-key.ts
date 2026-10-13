@@ -1,14 +1,14 @@
 import { appRoot } from '../../../shared/config';
-import { engineUrl } from '../../../shared/api/client';
+import { targetUrls, type FormTarget } from './target';
 
-/** GET /task/{id}/form */
+/** GET /task/{id}/form or /process-definition/{id}/startForm */
 export interface FormInfo {
   key: string | null;
   contextPath: string | null;
   camundaFormRef: unknown | null;
 }
 
-export type TaskForm =
+export type ResolvedForm =
   | { type: 'generic' }
   | { type: 'embedded'; url: string }
   | { type: 'camunda-forms'; url: string }
@@ -22,7 +22,8 @@ const DEPLOYMENT = 'deployment:';
 const ENGINE = 'engine:';
 
 /**
- * Resolves the form key of a task the same way the AngularJS Tasklist did:
+ * Resolves the form key of a task or start event the same way the AngularJS
+ * Tasklist did:
  * - no key and no Camunda Form reference: generic form
  * - camundaFormRef, or "camunda-forms:" prefix: Camunda Form (form-js)
  * - "embedded:" prefix: embedded HTML form
@@ -31,8 +32,8 @@ const ENGINE = 'engine:';
  * application), "deployment:" (resource of the deployment), "engine:"
  * (relative to the webapp) or a plain URL.
  */
-export function resolveTaskForm(form: FormInfo, engine: string, taskId: string): TaskForm {
-  const deployedForm = engineUrl(engine, `/task/${encodeURIComponent(taskId)}/deployed-form`);
+export function resolveForm(form: FormInfo, engine: string, target: FormTarget): ResolvedForm {
+  const { deployedForm } = targetUrls(engine, target);
   if (form.camundaFormRef) {
     return { type: 'camunda-forms', url: deployedForm };
   }
@@ -71,10 +72,14 @@ export function resolveTaskForm(form: FormInfo, engine: string, taskId: string):
   return { type, url: key };
 }
 
-/** External forms get the task id and a link back to the Tasklist. */
-export function externalFormUrl(url: string, taskId: string, callbackUrl: string, base = window.location.href): string {
-  const target = new URL(url, base);
-  target.searchParams.set('taskId', taskId);
-  target.searchParams.set('callbackUrl', callbackUrl);
-  return target.toString();
+/** External forms get the task id (or the process definition key) and a link back to the Tasklist. */
+export function externalFormUrl(url: string, target: FormTarget, callbackUrl: string, base = window.location.href): string {
+  const result = new URL(url, base);
+  if (target.kind === 'task') {
+    result.searchParams.set('taskId', target.taskId);
+  } else {
+    result.searchParams.set('processDefinitionKey', target.processDefinitionKey);
+  }
+  result.searchParams.set('callbackUrl', callbackUrl);
+  return result.toString();
 }

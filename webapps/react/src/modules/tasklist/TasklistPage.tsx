@@ -1,20 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Button } from '@carbon/react';
+import { Play } from '@carbon/icons-react';
 import { getRouteApi } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { FilterList } from './FilterList';
 import { TaskList } from './TaskList';
 import { TaskDetail } from './TaskDetail';
 import { useTaskFilters } from './api';
 import type { TasklistSearch } from './search';
+import { StartProcessModal } from './start-process/StartProcessModal';
 import './tasklist.scss';
 
 const route = getRouteApi('/tasklist/$engine');
 
 /** Filters | tasks of the selected filter | selected task. */
 export function TasklistPage() {
+  const { t } = useTranslation('tasklist');
   const { engine } = route.useParams();
   const search = route.useSearch();
   const navigate = route.useNavigate();
   const filters = useTaskFilters(engine);
+  const [startOpen, setStartOpen] = useState(false);
 
   const update = (changes: Partial<TasklistSearch>) =>
     navigate({ search: (previous: TasklistSearch) => ({ ...previous, ...changes }) });
@@ -33,6 +39,11 @@ export function TasklistPage() {
         filters={filters}
         selectedId={search.filter}
         onSelect={(filter) => update({ filter, task: undefined })}
+        actions={
+          <Button kind="ghost" size="sm" renderIcon={Play} onClick={() => setStartOpen(true)}>
+            {t('START_PROCESS')}
+          </Button>
+        }
       />
       <TaskList
         engine={engine}
@@ -46,6 +57,19 @@ export function TasklistPage() {
         tabId={search.detailsTab}
         onTabChange={(detailsTab) => update({ detailsTab })}
         onTaskCompleted={() => update({ task: undefined })}
+      />
+      <StartProcessModal
+        engine={engine}
+        open={startOpen || !!search.processStart}
+        definitionKey={search.processStart}
+        tenantId={search.processTenant}
+        onSelect={(definition) =>
+          update({ processStart: definition?.key, processTenant: definition?.tenantId ?? undefined })
+        }
+        onClose={() => {
+          setStartOpen(false);
+          update({ processStart: undefined, processTenant: undefined });
+        }}
       />
     </div>
   );

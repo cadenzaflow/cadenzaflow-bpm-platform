@@ -94,6 +94,18 @@ function fakeBackend() {
     if (path === '/api/engine/engine/default/task/t3/submit-form' && method === 'POST') {
       return new Response(null, { status: 204 });
     }
+    if (path === '/api/engine/engine/default/process-definition') {
+      return json([{ id: 'order:1', key: 'order', name: 'Order', version: 1, tenantId: null }]);
+    }
+    if (path === '/api/engine/engine/default/process-definition/count') {
+      return json({ count: 1 });
+    }
+    if (path === '/api/engine/engine/default/process-definition/order%3A1/startForm') {
+      return json({ key: null, contextPath: null, camundaFormRef: null });
+    }
+    if (path === '/api/engine/engine/default/process-definition/order%3A1/submit-form' && method === 'POST') {
+      return json({ id: 'pi9' });
+    }
     return json({ message: `unexpected ${method} ${url}` }, 500);
   });
   vi.stubGlobal('fetch', fetchMock);
@@ -193,6 +205,24 @@ describe('webapp shell', () => {
       approved: { value: true, type: 'Boolean' },
       creditor: { value: 'ACME', type: 'String' },
     });
+  });
+
+  it('starts a process with a business key', async () => {
+    const fetchMock = fakeBackend();
+    const history = renderApp('/app/react/tasklist/default?filter=f1');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Start process' }));
+    await user.click(await screen.findByText('Order'));
+    expect(history.location.search).toContain('processStart=order');
+
+    await user.type(await screen.findByLabelText('Business Key'), 'ORDER-1');
+    await user.click(screen.getByRole('button', { name: 'Start' }));
+
+    expect(await screen.findByText('The process has been started.')).toBeInTheDocument();
+    const submit = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-definition/order%3A1/submit-form'));
+    expect(JSON.parse(String(submit?.[1]?.body))).toEqual({ variables: {}, businessKey: 'ORDER-1' });
+    expect(history.location.search).not.toContain('processStart');
   });
 
   it('rejects wrong credentials', async () => {

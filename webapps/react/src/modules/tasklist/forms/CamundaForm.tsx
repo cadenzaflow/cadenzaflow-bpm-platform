@@ -8,25 +8,29 @@ import { request } from '../../../shared/api/client';
 import { fetchFormVariables } from './api';
 import { toFormData, toSubmitVariables, type FormSchema } from './camunda-form-data';
 import { FormActions } from './FormActions';
-import type { FormProps } from './TaskFormTab';
+import type { FormProps } from './FormRenderer';
+import { draftId } from './target';
 
-// Same key as the AngularJS Tasklist, so a saved draft survives the switch.
-const draftKey = (taskId: string) => `camunda-form:${taskId}`;
+// Same key as the AngularJS Tasklist, so a draft saved there shows up here.
+const draftKey = (id: string) => `camunda-form:${id}`;
 
-function readDraft(taskId: string): Record<string, unknown> {
+function readDraft(id: string | null): Record<string, unknown> {
   try {
-    return JSON.parse(localStorage.getItem(draftKey(taskId)) ?? '{}');
+    return id ? JSON.parse(localStorage.getItem(draftKey(id)) ?? '{}') : {};
   } catch {
     return {};
   }
 }
 
-function writeDraft(taskId: string, data: Record<string, unknown> | null) {
+function writeDraft(id: string | null, data: Record<string, unknown> | null) {
+  if (!id) {
+    return;
+  }
   try {
     if (data) {
-      localStorage.setItem(draftKey(taskId), JSON.stringify(data));
+      localStorage.setItem(draftKey(id), JSON.stringify(data));
     } else {
-      localStorage.removeItem(draftKey(taskId));
+      localStorage.removeItem(draftKey(id));
     }
   } catch {
     // storage blocked: drafts are a convenience only
@@ -34,7 +38,16 @@ function writeDraft(taskId: string, data: Record<string, unknown> | null) {
 }
 
 /** A Camunda Form (form-js schema) deployed with the process. Loaded lazily. */
-export default function CamundaForm({ engine, task, url, disabled, complete, completing }: FormProps & { url: string }) {
+export default function CamundaForm({
+  engine,
+  target,
+  url,
+  disabled,
+  submit,
+  submitting,
+  submitLabel,
+}: FormProps & { url: string }) {
+  const draft = draftId(target);
   const { t } = useTranslation('tasklist');
   const container = useRef<HTMLDivElement>(null);
   const form = useRef<Form | null>(null);
@@ -43,20 +56,20 @@ export default function CamundaForm({ engine, task, url, disabled, complete, com
   const saving = useRef(false);
 
   const loaded = useQuery({
-    queryKey: ['camunda-form', engine, task.id, url],
+    queryKey: ['camunda-form', engine, url],
     gcTime: 0,
     queryFn: async () => {
       const [schema, variables] = await Promise.all([
         request<FormSchema>(url, { query: { noCache: Date.now() } }),
-        fetchFormVariables(engine, task.id),
+        fetchFormVariables(engine, target),
       ]);
       return { schema, variables };
     },
   });
 
   // The latest props for the form-js event handlers registered once below.
-  const latest = useRef({ complete, disabled, completing });
-  latest.current = { complete, disabled, completing };
+  const latest = useRef({ submit, disabled, submitting });
+  latest.current = { submit, disabled, submitting };
 
   useEffect(() => {
     if (!loaded.data || !container.current) {
@@ -68,18 +81,18 @@ export default function CamundaForm({ engine, task, url, disabled, complete, com
     instance.on('changed', () => setDirty(true));
     // fired by our Complete button and by submit buttons inside the form
     instance.on('submit', ({ data, errors }: { data: Record<string, unknown>; errors: Record<string, unknown> }) => {
-      const { complete: submit, disabled: off, completing: busy } = latest.current;
+      const { submit: send, disabled: off, submitting: busy } = latest.current;
       if (saving.current || off || busy || Object.keys(errors).length > 0) {
         return;
       }
-      submit(toSubmitVariables(data, variables, schema)).then((completed) => completed && writeDraft(task.id, null));
+      send(toSubmitVariables(data, variables, schema)).then((sent) => sent && writeDraft(draft, null));
     });
-    instance.importSchema(schema, { ...toFormData(variables, schema), ...readDraft(task.id) });
+    instance.importSchema(schema, { ...toFormData(variables, schema), ...readDraft(draft) });
     return () => {
       instance.destroy();
       form.current = null;
     };
-  }, [loaded.data, task.id]);
+  }, [loaded.data, draft]);
 
   useEffect(() => {
     form.current?.setProperty('disabled', disabled);
@@ -104,18 +117,23 @@ export default function CamundaForm({ engine, task, url, disabled, complete, com
       <div ref={container} className="cz-camunda-form" />
       <FormActions
         disabled={disabled}
-        completing={completing}
-        onComplete={() => form.current?.submit()}
+        submitting={submitting}
+        submitLabel={submitLabel}
+        onSubmit={() => form.current?.submit()}
         saveDisabled={disabled || !dirty}
-        onSave={() => {
-          saving.current = true;
-          try {
-            writeDraft(task.id, form.current?.submit().data ?? null);
-          } finally {
-            saving.current = false;
-          }
-          setDirty(false);
-        }}
+        onSave={
+          draft
+            ? () => {
+                saving.current = true;
+                try {
+                  writeDraft(draft, form.current?.submit().data ?? null);
+                } finally {
+                  saving.current = false;
+                }
+                setDirty(false);
+              }
+            : undefined
+        }
       />
     </>
   );
