@@ -11,6 +11,7 @@ The structure is as follows:
 * `assembly-jakarta` - Java sources and tests for the CadenzaFlow web application based on `jakarta` namespace.
   * This module is created from the `assembly` module via code transformation.
 * `frontend` - HTML, CSS and Javascript sources as well as Plugins and tests for the CadenzaFlow webapplications Cockpit, Tasklist and Admin.
+* `react` - Cockpit, Tasklist and Admin in React, served next to `frontend` under `/app/react/` and independent of it (see [react/README.md](react/README.md)).
 
 ## FRONTEND
 

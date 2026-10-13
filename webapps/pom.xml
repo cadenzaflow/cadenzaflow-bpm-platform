@@ -32,6 +32,10 @@
 
     <skip.frontend.build>false</skip.frontend.build>
 
+    <!-- the React webapp (./react) needs a newer Node.js than the AngularJS one (./frontend) -->
+    <version.nodejs.react>24.21.0</version.nodejs.react>
+    <version.npm.react>11.19.0</version.npm.react>
+
     <authorizationCheckRevokes>auto</authorizationCheckRevokes>
 
     <jdbcBatchProcessing>true</jdbcBatchProcessing>
@@ -144,6 +148,9 @@
             <fileset>
               <directory>./frontend/target</directory>
             </fileset>
+            <fileset>
+              <directory>./react/target</directory>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -200,6 +207,68 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
+              <arguments>run build</arguments>
+            </configuration>
+          </execution>
+
+          <!-- React webapp: ./react, built into ./react/target/webapp/app/react -->
+          <execution>
+            <id>react-install-node-and-npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <workingDirectory>./react</workingDirectory>
+              <installDirectory>./react</installDirectory>
+              <nodeVersion>v${version.nodejs.react}</nodeVersion>
+              <npmVersion>${version.npm.react}</npmVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <id>react-npm-ci</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <workingDirectory>./react</workingDirectory>
+              <installDirectory>./react</installDirectory>
+              <arguments>ci</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>react-license-check</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <workingDirectory>./react</workingDirectory>
+              <installDirectory>./react</installDirectory>
+              <arguments>run license-check</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>react-test</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <workingDirectory>./react</workingDirectory>
+              <installDirectory>./react</installDirectory>
+              <arguments>test</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>react-build</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <workingDirectory>./react</workingDirectory>
+              <installDirectory>./react</installDirectory>
               <arguments>run build</arguments>
             </configuration>
           </execution>
