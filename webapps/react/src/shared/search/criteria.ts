@@ -15,6 +15,8 @@ export interface CriterionType {
   /** operator keys; the first is the default */
   operators: string[];
   valueType?: 'text' | 'number' | 'date' | 'list';
+  /** REST parameter per operator where it is not the key plus the operator, e.g. { Before: 'before' } */
+  params?: Record<string, string>;
 }
 
 export interface Criterion {
@@ -114,7 +116,7 @@ export function toQuery(state: SearchState, types: CriterionType[]): Record<stri
           break;
         case 'Before':
         case 'After':
-          query[`${type.key}${criterion.operator}`] = value;
+          query[type.params?.[criterion.operator] ?? `${type.key}${criterion.operator}`] = value;
           break;
         case 'min':
         case 'max':

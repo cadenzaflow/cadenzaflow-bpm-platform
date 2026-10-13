@@ -35,6 +35,8 @@ import { DecisionDefinitionPage } from '../modules/cockpit/decisions/DecisionDef
 import { DecisionInstancePage } from '../modules/cockpit/decisions/DecisionInstancePage';
 import { validateDecisionInstanceSearch } from '../modules/cockpit/decisions/search';
 import { TasksPage } from '../modules/cockpit/tasks/TasksPage';
+import { RepositoryPage } from '../modules/cockpit/repository/RepositoryPage';
+import { validateRepositorySearch } from '../modules/cockpit/repository/search';
 import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
@@ -142,6 +144,7 @@ const cockpitRoutes = [
     component: DecisionInstancePage,
   }),
   createRoute({ getParentRoute: () => cockpitRoute, path: 'tasks', component: TasksPage }),
+  createRoute({ getParentRoute: () => cockpitRoute, path: 'repository', validateSearch: validateRepositorySearch, component: RepositoryPage }),
 ];
 
 // The first admin user of an engine without one: no module, so no login and no header.

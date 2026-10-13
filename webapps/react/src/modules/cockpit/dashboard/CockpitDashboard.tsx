@@ -52,7 +52,15 @@ export function CockpitDashboard() {
       {value.toLocaleString()}
     </Link>
   );
-  const number = (value: number | undefined) => (value === undefined ? '–' : value.toLocaleString());
+  // a count that opens its section; a dash while loading
+  const countLink = (value: number | undefined, to: '/cockpit/$engine/tasks' | '/cockpit/$engine/decisions' | '/cockpit/$engine/repository') =>
+    value === undefined ? (
+      '–'
+    ) : (
+      <Link to={to} params={{ engine }}>
+        {value.toLocaleString()}
+      </Link>
+    );
 
   return (
     <section className="cz-page cz-cockpit-dashboard">
@@ -67,18 +75,7 @@ export function CockpitDashboard() {
         <Card title={t('DASHBOARD_OPEN_INCIDENTS')} total={statistics.data ? processesLink(sum(incidents)) : <SkeletonText />}>
           <BarList items={incidents} label={t('DASHBOARD_OPEN_INCIDENTS')} othersLabel={t('DASHBOARD_OTHERS')} />
         </Card>
-        <Card
-          title={t('DASHBOARD_OPEN_HUMAN_TASKS')}
-          total={
-            tasks.data === undefined ? (
-              '–'
-            ) : (
-              <Link to="/cockpit/$engine/tasks" params={{ engine }}>
-                {tasks.data.toLocaleString()}
-              </Link>
-            )
-          }
-        >
+        <Card title={t('DASHBOARD_OPEN_HUMAN_TASKS')} total={countLink(tasks.data, '/cockpit/$engine/tasks')}>
           <BarList
             items={[
               { key: 'user', label: t('DASHBOARD_ASSIGNED_TO_USER'), value: assigned.data ?? 0 },
@@ -97,19 +94,8 @@ export function CockpitDashboard() {
           title={t('DASHBOARD_PROCESS_DEFINITIONS')}
           total={processDefinitions.data === undefined ? '–' : processesLink(processDefinitions.data)}
         />
-        <Card
-          title={t('DASHBOARD_DECISION_DEFINITIONS')}
-          total={
-            decisionDefinitions.data === undefined ? (
-              '–'
-            ) : (
-              <Link to="/cockpit/$engine/decisions" params={{ engine }}>
-                {decisionDefinitions.data.toLocaleString()}
-              </Link>
-            )
-          }
-        />
-        <Card title={t('DASHBOARD_DEPLOYMENTS')} total={number(deployments.data)} />
+        <Card title={t('DASHBOARD_DECISION_DEFINITIONS')} total={countLink(decisionDefinitions.data, '/cockpit/$engine/decisions')} />
+        <Card title={t('DASHBOARD_DEPLOYMENTS')} total={countLink(deployments.data, '/cockpit/$engine/repository')} />
       </div>
     </section>
   );
