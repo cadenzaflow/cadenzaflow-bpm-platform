@@ -10,10 +10,12 @@ interface CriteriaSearchProps {
   types: CriterionType[];
   value: SearchState;
   onChange: (value: SearchState) => void;
+  /** false: the query has no "or" (e.g. users), all criteria must match */
+  allowMatchAny?: boolean;
 }
 
 /** Builds query criteria; incomplete ones are kept but not applied. */
-export function CriteriaSearch({ namespace, types, value, onChange }: CriteriaSearchProps) {
+export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAny = true }: CriteriaSearchProps) {
   const { t } = useTranslation(namespace);
   const operatorLabel = (key: string) => t(OPERATOR_LABELS[key] ?? key);
 
@@ -103,7 +105,7 @@ export function CriteriaSearch({ namespace, types, value, onChange }: CriteriaSe
         <Button kind="ghost" size="sm" renderIcon={Add} onClick={add}>
           {t('ADD_CRITERION')}
         </Button>
-        {value.criteria.length > 1 && (
+        {allowMatchAny && value.criteria.length > 1 && (
           <Toggle
             id="cz-criteria-match"
             size="sm"
