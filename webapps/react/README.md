@@ -74,6 +74,10 @@ src/
 - **Tabs of the Tasklist task detail** are registered by file: every
   `modules/tasklist/task-tabs/*.tab.tsx` exports a `tab` and appears in the
   panel, ordered by `order`.
+- **Keyboard shortcuts** (`useShortcut` in `shared/shortcuts.ts`; the
+  Tasklist's list is `modules/tasklist/shortcuts/shortcuts.ts`) use the default
+  keys of the classic Tasklist. They are fixed: `shortcuts` in the classic
+  `config.js` does not apply here. Typing in a field never triggers one.
 - **Translations** reuse the keys and texts of the AngularJS webapps
   (`../frontend/public/app/*/locales`) where the text already exists. A test
   checks that every language has every key.

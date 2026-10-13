@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Button,
   ContainedList,
@@ -14,7 +14,9 @@ import { useTranslation } from 'react-i18next';
 import { displayName, formatDateTime, formatRelative } from '../../shared/format';
 import { toQuery, type SearchState } from '../../shared/search/criteria';
 import { CriteriaSearch } from '../../shared/search/CriteriaSearch';
+import { focusFirst, useShortcut } from '../../shared/shortcuts';
 import { TASK_PAGE_SIZE, useFilterTasks, type TaskFilter, type TaskVariable } from './api';
+import { TASKLIST_SHORTCUTS } from './shortcuts/shortcuts';
 import { SORT_FIELDS, TASK_CRITERIA, type Sorting } from './task-search';
 
 interface TaskListProps {
@@ -52,6 +54,10 @@ export function TaskList({
   const { t, i18n } = useTranslation('tasklist');
   const [searchOpen, setSearchOpen] = useState(search.criteria.length > 0);
   const [draft, setDraft] = useState(search);
+  const section = useRef<HTMLElement>(null);
+  useShortcut(TASKLIST_SHORTCUTS.focusList.key, () =>
+    focusFirst(section.current, '.cds--contained-list-item__content'),
+  );
 
   // apply the search while typing, without a request per key
   useEffect(() => {
@@ -70,7 +76,7 @@ export function TaskList({
   const labels = new Map((filter?.properties?.variables ?? []).map((v) => [v.name, v.label || v.name]));
 
   return (
-    <section className="cz-tasklist__column cz-tasklist__tasks" aria-labelledby="cz-tasks-title">
+    <section ref={section} className="cz-tasklist__column cz-tasklist__tasks" aria-labelledby="cz-tasks-title">
       <div className="cz-tasklist__toolbar">
         <Select
           id="cz-task-sort"

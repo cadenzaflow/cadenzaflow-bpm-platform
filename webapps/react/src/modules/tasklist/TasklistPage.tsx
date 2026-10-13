@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@carbon/react';
-import { Add, Play } from '@carbon/icons-react';
+import { Add, Keyboard, Play, TaskAdd } from '@carbon/icons-react';
 import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { useShortcut } from '../../shared/shortcuts';
 import { FilterList } from './FilterList';
 import { TaskList } from './TaskList';
 import { TaskDetail } from './TaskDetail';
 import { useTaskFilters, type TaskFilter } from './api';
+import { CreateTaskModal } from './create-task/CreateTaskModal';
 import { FilterModal } from './filters/FilterModal';
 import type { TasklistSearch } from './search';
 import { DEFAULT_SORTING } from './task-search';
 import { StartProcessModal } from './start-process/StartProcessModal';
+import { ShortcutsModal } from './shortcuts/ShortcutsModal';
+import { TASKLIST_SHORTCUTS } from './shortcuts/shortcuts';
 import './tasklist.scss';
 
 const route = getRouteApi('/tasklist/$engine');
@@ -23,11 +27,15 @@ export function TasklistPage() {
   const navigate = route.useNavigate();
   const filters = useTaskFilters(engine);
   const [startOpen, setStartOpen] = useState(false);
+  const [createTaskOpen, setCreateTaskOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   // undefined: closed, null: new filter
   const [editedFilter, setEditedFilter] = useState<TaskFilter | null | undefined>(undefined);
 
   const update = (changes: Partial<TasklistSearch>) =>
     navigate({ search: (previous: TasklistSearch) => ({ ...previous, ...changes }) });
+
+  useShortcut(TASKLIST_SHORTCUTS.startProcess.key, () => setStartOpen(true));
 
   // Without ?filter the first filter (highest priority) is selected.
   const firstFilterId = filters.data?.[0]?.id;
@@ -49,8 +57,14 @@ export function TasklistPage() {
             <Button kind="ghost" size="sm" renderIcon={Play} onClick={() => setStartOpen(true)}>
               {t('START_PROCESS')}
             </Button>
+            <Button kind="ghost" size="sm" renderIcon={TaskAdd} onClick={() => setCreateTaskOpen(true)}>
+              {t('CREATE_TASK')}
+            </Button>
             <Button kind="ghost" size="sm" renderIcon={Add} onClick={() => setEditedFilter(null)}>
               {t('FILTER_CREATE')}
+            </Button>
+            <Button kind="ghost" size="sm" renderIcon={Keyboard} onClick={() => setShortcutsOpen(true)}>
+              {t('SHORTCUT_HELP')}
             </Button>
           </>
         }
@@ -95,6 +109,8 @@ export function TasklistPage() {
           }}
         />
       )}
+      {createTaskOpen && <CreateTaskModal engine={engine} onClose={() => setCreateTaskOpen(false)} />}
+      {shortcutsOpen && <ShortcutsModal onClose={() => setShortcutsOpen(false)} />}
       <StartProcessModal
         engine={engine}
         open={startOpen || !!search.processStart}

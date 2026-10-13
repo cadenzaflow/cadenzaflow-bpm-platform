@@ -1,7 +1,10 @@
+import { useRef } from 'react';
 import { InlineNotification, SkeletonText } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import { useAuthentication } from '../../../shared/auth/authentication';
 import { notify } from '../../../shared/notifications';
+import { focusFirst, useShortcut } from '../../../shared/shortcuts';
+import { TASKLIST_SHORTCUTS } from '../shortcuts/shortcuts';
 import type { TaskTabProps } from '../task-tabs/registry';
 import { useFormInfo, useSubmitForm } from './api';
 import { resolveForm } from './form-key';
@@ -14,6 +17,10 @@ export function TaskFormTab({ engine, task, onTaskCompleted }: TaskTabProps) {
   const userId = useAuthentication(engine).data?.userId;
   const target: FormTarget = { kind: 'task', taskId: task.id, processInstanceId: task.processInstanceId };
   const formInfo = useFormInfo(engine, target);
+  const container = useRef<HTMLDivElement>(null);
+  useShortcut(TASKLIST_SHORTCUTS.focusForm.key, () =>
+    focusFirst(container.current, 'input:not([type="hidden"]):not(:disabled), select:not(:disabled), textarea:not(:disabled)'),
+  );
   const submitForm = useSubmitForm(engine, target, {
     onSuccess: () => {
       notify({ kind: 'success', title: t('COMPLETE_OK') });
@@ -31,7 +38,7 @@ export function TaskFormTab({ engine, task, onTaskCompleted }: TaskTabProps) {
   const disabled = !userId || task.assignee !== userId;
 
   return (
-    <div className="cz-task-form">
+    <div ref={container} className="cz-task-form">
       {disabled && form.type !== 'external' && form.type !== 'error' && (
         <InlineNotification kind="info" lowContrast hideCloseButton subtitle={t('FORM_REQUIRES_CLAIM')} />
       )}

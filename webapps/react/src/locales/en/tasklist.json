@@ -191,5 +191,18 @@
   "FILTER_VARIABLE_NAME_PLACEHOLDER": "Machine name of variable",
   "FILTER_VARIABLE_LABEL": "Label",
   "FILTER_VARIABLE_LABEL_PLACEHOLDER": "Human readable label",
-  "ADD": "Add"
+  "ADD": "Add",
+  "CREATE_TASK": "Create task",
+  "NEW_TASK_NAME": "Name",
+  "NEW_TASK_ASSIGNEE": "Assignee",
+  "NEW_TASK_TENANT_ID": "Tenant ID",
+  "NEW_TASK_DESCRIPTION": "Description",
+  "TASK_SAVE_ERROR": "Something went wrong while saving the task",
+  "SHORTCUT": "Shortcut",
+  "SHORTCUT_HELP": "Keyboard Shortcuts",
+  "SHORTCUT_CLAIM_TASK": "Claims the selected task",
+  "SHORTCUT_FOCUS_FILTER": "Moves the focus to the first filter in the list",
+  "SHORTCUT_FOCUS_LIST": "Moves the focus to the first task in the list",
+  "SHORTCUT_FOCUS_FORM": "Moves the focus to the first field of the task form",
+  "SHORTCUT_START_PROCESS": "Opens the start process dialog"
 }

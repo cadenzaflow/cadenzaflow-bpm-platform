@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { useAuthentication } from '../../../shared/auth/authentication';
 import { displayName } from '../../../shared/format';
 import { notify } from '../../../shared/notifications';
+import { useShortcut } from '../../../shared/shortcuts';
 import { useAssignTask, type TaskDetails } from '../api';
+import { TASKLIST_SHORTCUTS } from '../shortcuts/shortcuts';
 import { useSetAssignee, userExists } from './api';
 
 /**
@@ -23,6 +25,8 @@ export function AssigneeField({ engine, details: { task, users } }: { engine: st
   const busy = claim.isPending || setAssignee.isPending;
 
   const failed = (key: string) => (error: Error) => notify({ kind: 'error', title: t(key), subtitle: error.message });
+  const claimForMe = () => claim.mutate(userId, { onError: failed('CLAIM_ERROR') });
+  useShortcut(TASKLIST_SHORTCUTS.claimTask.key, claimForMe, !task.assignee && !!userId && !busy);
 
   const save = async () => {
     const id = newAssignee.trim();
@@ -69,7 +73,7 @@ export function AssigneeField({ engine, details: { task, users } }: { engine: st
         {t('ASSIGNEE')}: {task.assignee ? displayName(users.get(task.assignee), task.assignee) : t('UNASSIGNED')}
       </span>
       {!task.assignee && userId && (
-        <Button size="sm" kind="primary" disabled={busy} onClick={() => claim.mutate(userId, { onError: failed('CLAIM_ERROR') })}>
+        <Button size="sm" kind="primary" disabled={busy} onClick={claimForMe}>
           {t('CLAIM_TASK')}
         </Button>
       )}
