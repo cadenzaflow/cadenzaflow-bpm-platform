@@ -6,13 +6,15 @@ import tasklistEn from '../locales/en/tasklist.json';
 import tasklistDe from '../locales/de/tasklist.json';
 import adminEn from '../locales/en/admin.json';
 import adminDe from '../locales/de/admin.json';
+import cockpitEn from '../locales/en/cockpit.json';
+import cockpitDe from '../locales/de/cockpit.json';
 
 // Texts that already exist in the AngularJS webapps (public/app/*/locales)
 // keep their key and translation, so existing translations carry over; only
 // the keys this UI uses are copied. New texts get new keys.
 export const resources = {
-  en: { common: commonEn, tasklist: tasklistEn, admin: adminEn },
-  de: { common: commonDe, tasklist: tasklistDe, admin: adminDe },
+  en: { common: commonEn, tasklist: tasklistEn, admin: adminEn, cockpit: cockpitEn },
+  de: { common: commonDe, tasklist: tasklistDe, admin: adminDe, cockpit: cockpitDe },
 } as const;
 
 export const SUPPORTED_LANGUAGES = Object.keys(resources);
@@ -32,7 +34,7 @@ export function initI18n(language = detectLanguage()) {
     resources,
     lng: language,
     fallbackLng: 'en',
-    ns: ['common', 'tasklist', 'admin'],
+    ns: ['common', 'tasklist', 'admin', 'cockpit'],
     defaultNS: 'common',
     fallbackNS: 'common',
     interpolation: { escapeValue: false },
