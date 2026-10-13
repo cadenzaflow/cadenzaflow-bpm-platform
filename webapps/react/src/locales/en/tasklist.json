@@ -204,5 +204,6 @@
   "SHORTCUT_FOCUS_FILTER": "Moves the focus to the first filter in the list",
   "SHORTCUT_FOCUS_LIST": "Moves the focus to the first task in the list",
   "SHORTCUT_FOCUS_FORM": "Moves the focus to the first field of the task form",
-  "SHORTCUT_START_PROCESS": "Opens the start process dialog"
+  "SHORTCUT_START_PROCESS": "Opens the start process dialog",
+  "ASSIGN_NOTE_PROCESS": "You are assigned to the following tasks in the same process"
 }

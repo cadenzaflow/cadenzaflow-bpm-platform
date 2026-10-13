@@ -44,7 +44,7 @@ export function useBusinessKey(engine: string, processInstanceId: string | null)
 export function useSubmitForm(
   engine: string,
   target: FormTarget,
-  callbacks: { onSuccess: () => void; onError: (error: Error) => void },
+  callbacks: { onSuccess: (result: unknown) => void; onError: (error: Error) => void },
 ) {
   const queryClient = useQueryClient();
   return useMutation({
@@ -53,8 +53,8 @@ export function useSubmitForm(
         method: 'POST',
         json: target.kind === 'start' && businessKey ? { variables, businessKey } : { variables },
       }),
-    onSuccess: () => {
-      callbacks.onSuccess();
+    onSuccess: (result) => {
+      callbacks.onSuccess(result);
       if (target.kind === 'task') {
         queryClient.removeQueries({ queryKey: ['task', engine, target.taskId] });
         queryClient.removeQueries({ queryKey: ['form-info', engine, 'task', target.taskId] });

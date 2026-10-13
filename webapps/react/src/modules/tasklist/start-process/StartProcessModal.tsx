@@ -12,7 +12,9 @@ import {
 } from '@carbon/react';
 import { ArrowLeft } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
+import { useAuthentication } from '../../../shared/auth/authentication';
 import { notify } from '../../../shared/notifications';
+import { useAssignNotification } from '../assign-notification';
 import { useFormInfo, useSubmitForm } from '../forms/api';
 import { resolveForm } from '../forms/form-key';
 import { FormRenderer } from '../forms/FormRenderer';
@@ -142,9 +144,12 @@ function StartForm({
   const { t } = useTranslation('tasklist');
   const target: FormTarget = { kind: 'start', processDefinitionId: definition.id, processDefinitionKey: definition.key };
   const formInfo = useFormInfo(engine, target);
+  const userId = useAuthentication(engine).data?.userId;
+  const notifyAssigned = useAssignNotification(engine);
   const submitForm = useSubmitForm(engine, target, {
-    onSuccess: () => {
+    onSuccess: (result) => {
       notify({ kind: 'success', title: t('PROCESS_START_OK') });
+      void notifyAssigned(userId, (result as { id?: string } | null)?.id);
       onStarted();
     },
     onError: (error) => notify({ kind: 'error', title: t('PROCESS_START_ERROR'), subtitle: error.message }),

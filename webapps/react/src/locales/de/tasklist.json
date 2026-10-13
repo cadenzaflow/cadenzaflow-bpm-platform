@@ -204,5 +204,6 @@
   "SHORTCUT_FOCUS_FILTER": "Setzt den Fokus auf den ersten Filter der Liste",
   "SHORTCUT_FOCUS_LIST": "Setzt den Fokus auf die erste Aufgabe der Liste",
   "SHORTCUT_FOCUS_FORM": "Setzt den Fokus auf das erste Feld des Aufgabenformulars",
-  "SHORTCUT_START_PROCESS": "Öffnet den Dialog zum Starten eines Prozesses"
+  "SHORTCUT_START_PROCESS": "Öffnet den Dialog zum Starten eines Prozesses",
+  "ASSIGN_NOTE_PROCESS": "Ihnen sind die folgenden Aufgaben desselben Prozesses zugewiesen"
 }
