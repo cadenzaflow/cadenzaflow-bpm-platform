@@ -6,7 +6,7 @@ import './admin.scss';
 const route = getRouteApi('/admin/$engine');
 
 const linkProps = {
-  className: 'cz-admin-nav__item',
+  className: 'cz-section-nav__item',
   activeProps: { className: 'is-active', 'aria-current': 'page' as const },
 };
 
@@ -18,7 +18,7 @@ export function AdminLayout() {
 
   return (
     <div className="cz-admin">
-      <nav className="cz-admin-nav" aria-label={t('ADMIN_SECTIONS')}>
+      <nav className="cz-section-nav" aria-label={t('ADMIN_SECTIONS')}>
         <Link to="/admin/$engine" params={{ engine }} activeOptions={{ exact: true }} {...linkProps}>
           {t('DASHBOARD_DASHBOARD')}
         </Link>

@@ -130,3 +130,8 @@ export function engineUrl(engine: string, path: string): string {
 export function adminUrl(path: string): string {
   return `${appRoot}/api/admin${path}`;
 }
+
+/** URL of the Cockpit's base plugin API (statistics and queries the engine REST API has not). */
+export function cockpitUrl(engine: string, path: string): string {
+  return `${appRoot}/api/cockpit/plugin/base/${encodeURIComponent(engine)}${path}`;
+}

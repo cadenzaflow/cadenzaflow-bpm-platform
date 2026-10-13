@@ -1,0 +1,44 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+
+.cz-cockpit {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.cz-cockpit-dashboard__section {
+  @include type-style('heading-03');
+  margin: $spacing-07 0 $spacing-05;
+}
+
+.cz-cockpit-dashboard__cards {
+  display: grid;
+  gap: $spacing-05;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+.cz-dashboard-card__title {
+  @include type-style('heading-compact-01');
+  color: $text-secondary;
+}
+
+.cz-dashboard-card__total {
+  @include type-style('fluid-display-01', true);
+  margin: $spacing-03 0 $spacing-05;
+}
+
+.cz-cockpit-count {
+  @include type-style('body-01');
+  margin-bottom: $spacing-05;
+}
+
+.cz-incident-count {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-02;
+
+  svg {
+    fill: $support-error;
+  }
+}

@@ -134,3 +134,70 @@ body {
 .cz-list-table {
   margin-top: $spacing-05;
 }
+
+// Section links under the header (Admin, Cockpit), styled like Carbon tabs.
+.cz-section-nav {
+  display: flex;
+  gap: $spacing-02;
+  padding: 0 $spacing-05;
+  border-bottom: 1px solid $border-subtle;
+  background: $layer-01;
+}
+
+.cz-section-nav__item {
+  @include type-style('body-compact-01');
+  padding: $spacing-04 $spacing-05;
+  border-bottom: 2px solid transparent;
+  color: $text-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &.is-active {
+    border-bottom-color: $border-interactive;
+    color: $text-primary;
+    font-weight: 600;
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+}
+
+// Shares of a total (shared/ui/BarList): label and number as text, one bar color.
+.cz-bar-list__row {
+  display: grid;
+  align-items: center;
+  column-gap: $spacing-03;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-bottom: $spacing-03;
+}
+
+.cz-bar-list__label {
+  @include type-style('body-compact-01');
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cz-bar-list__value {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+}
+
+.cz-bar-list__track {
+  display: block;
+  height: 0.5rem;
+  grid-column: 1 / -1;
+}
+
+.cz-bar-list__bar {
+  display: block;
+  min-width: 2px;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: #2a78d6;
+}

@@ -23,6 +23,10 @@ import { validateAuthorizationSearch } from '../modules/admin/authorizations/sea
 import { SystemPage } from '../modules/admin/system/SystemPage';
 import { validateSystemSearch } from '../modules/admin/system/search';
 import { SetupPage } from '../modules/admin/setup/SetupPage';
+import { CockpitLayout } from '../modules/cockpit/CockpitLayout';
+import { CockpitDashboard } from '../modules/cockpit/dashboard/CockpitDashboard';
+import { ProcessesPage } from '../modules/cockpit/processes/ProcessesPage';
+import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
@@ -92,6 +96,19 @@ const adminRoutes = [
   createRoute({ getParentRoute: () => adminRoute, path: 'system', validateSearch: validateSystemSearch, component: SystemPage }),
 ];
 
+// Cockpit: paths as in the classic Cockpit (#/dashboard, #/processes, ...).
+const cockpitRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'cockpit/$engine',
+  staticData: { module: 'cockpit' },
+  component: CockpitLayout,
+});
+
+const cockpitRoutes = [
+  createRoute({ getParentRoute: () => cockpitRoute, path: '/', component: CockpitDashboard }),
+  createRoute({ getParentRoute: () => cockpitRoute, path: 'processes', validateSearch: validateCockpitListSearch, component: ProcessesPage }),
+];
+
 // The first admin user of an engine without one: no module, so no login and no header.
 const setupRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -115,7 +132,7 @@ const routeTree = rootRoute.addChildren([
   tasklistRoute,
   adminRoute.addChildren(adminRoutes),
   setupRoute,
-  ...notYetAvailableRoutes('cockpit'),
+  cockpitRoute.addChildren(cockpitRoutes),
   ...notYetAvailableRoutes('welcome'),
 ]);
 

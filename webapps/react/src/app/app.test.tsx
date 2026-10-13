@@ -39,11 +39,11 @@ function fakeBackend() {
     const method = init.method ?? 'GET';
     const path = url.split('?')[0];
     if (path === '/api/admin/auth/user/default') {
-      return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit', 'tasklist'] }) : json({}, 404);
+      return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit', 'tasklist', 'welcome'] }) : json({}, 404);
     }
     if (/^\/api\/admin\/auth\/user\/default\/login\/\w+$/.test(path) && method === 'POST') {
       loggedIn = new URLSearchParams(String(init.body)).get('password') === 'demo';
-      return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit', 'tasklist'] }) : json({}, 401);
+      return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit', 'tasklist', 'welcome'] }) : json({}, 401);
     }
     if (path === '/api/engine/engine/default/user/demo/profile') {
       return json({ id: 'demo', firstName: 'Demo', lastName: 'User' });
@@ -267,12 +267,12 @@ describe('webapp shell', () => {
 
   it('points to the classic UI for modules that are not rewritten yet', async () => {
     const fetchMock = fakeBackend();
-    renderApp('/app/react/cockpit/default/processes');
+    renderApp('/app/react/welcome/default/');
 
     await logIn();
 
-    expect(await screen.findByText('Cockpit is not available in the new UI yet')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Open in the classic UI' })).toHaveAttribute('href', '/app/cockpit/default/');
-    expect(fetchMock).toHaveBeenCalledWith('/api/admin/auth/user/default/login/cockpit', expect.anything());
+    expect(await screen.findByText('Welcome is not available in the new UI yet')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Open in the classic UI' })).toHaveAttribute('href', '/app/welcome/default/');
+    expect(fetchMock).toHaveBeenCalledWith('/api/admin/auth/user/default/login/welcome', expect.anything());
   });
 });
