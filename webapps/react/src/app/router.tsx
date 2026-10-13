@@ -22,6 +22,7 @@ import { AuthorizationsPage } from '../modules/admin/authorizations/Authorizatio
 import { validateAuthorizationSearch } from '../modules/admin/authorizations/search';
 import { SystemPage } from '../modules/admin/system/SystemPage';
 import { validateSystemSearch } from '../modules/admin/system/search';
+import { SetupPage } from '../modules/admin/setup/SetupPage';
 
 declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
@@ -91,6 +92,13 @@ const adminRoutes = [
   createRoute({ getParentRoute: () => adminRoute, path: 'system', validateSearch: validateSystemSearch, component: SystemPage }),
 ];
 
+// The first admin user of an engine without one: no module, so no login and no header.
+const setupRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'admin/$engine/setup',
+  component: SetupPage,
+});
+
 /** Modules that are not rewritten yet point to the classic UI. */
 function notYetAvailableRoutes(module: ModuleName) {
   return [`${module}/$engine`, `${module}/$engine/$`].map((path) =>
@@ -106,6 +114,7 @@ function notYetAvailableRoutes(module: ModuleName) {
 const routeTree = rootRoute.addChildren([
   tasklistRoute,
   adminRoute.addChildren(adminRoutes),
+  setupRoute,
   ...notYetAvailableRoutes('cockpit'),
   ...notYetAvailableRoutes('welcome'),
 ]);
