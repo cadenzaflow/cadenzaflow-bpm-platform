@@ -61,11 +61,12 @@ export async function fetchPage<T>({
  * A page of a list; `scope` starts the cache key (e.g. ['admin-list', engine])
  * so a module can reload all of its lists at once.
  */
-export function usePagedList<T>(scope: readonly unknown[], pageRequest: PageRequest) {
+export function usePagedList<T>(scope: readonly unknown[], pageRequest: PageRequest, options: { refetchInterval?: number } = {}) {
   const { listUrl, query, page, sorting, pageSize = DEFAULT_PAGE_SIZE, method, listQuery } = pageRequest;
   return useQuery({
     queryKey: [...scope, listUrl, method, query, listQuery, page, sorting, pageSize],
     placeholderData: (previous) => previous,
+    refetchInterval: options.refetchInterval,
     queryFn: () => fetchPage<T>(pageRequest),
   });
 }

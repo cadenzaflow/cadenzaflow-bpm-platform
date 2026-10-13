@@ -32,6 +32,9 @@ export function CockpitLayout() {
         <Link to="/cockpit/$engine/repository" params={{ engine }} {...linkProps}>
           {t('COCKPIT_DEPLOYMENTS')}
         </Link>
+        <Link to="/cockpit/$engine/batch" params={{ engine }} {...linkProps}>
+          {t('COCKPIT_BATCHES')}
+        </Link>
       </nav>
       <Outlet />
     </div>

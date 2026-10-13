@@ -332,3 +332,30 @@
   flex-direction: column;
   gap: $spacing-04;
 }
+
+// Batches: lists | the selected batch
+.cz-batches {
+  display: grid;
+  gap: $spacing-07;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+}
+
+.cz-batches__lists,
+.cz-batches__details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: $spacing-06;
+}
+
+.cz-batches__details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-04;
+}
+
+// the batch shown on the right
+.cz-batches .cz-link-button[aria-current='true'] {
+  font-weight: 600;
+}
