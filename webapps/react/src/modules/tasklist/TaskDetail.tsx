@@ -1,9 +1,14 @@
-import { Button, InlineNotification, SkeletonText, Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
+import { InlineNotification, SkeletonText, Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../shared/api/client';
-import { useAuthentication } from '../../shared/auth/authentication';
-import { displayName, formatDateTime } from '../../shared/format';
-import { useAssignTask, useTask, type TaskDetails } from './api';
+import { formatDateTime } from '../../shared/format';
+import { notify } from '../../shared/notifications';
+import { useTask, type TaskDetails } from './api';
+import { useUpdateTask } from './task-meta/api';
+import { AssigneeField } from './task-meta/AssigneeField';
+import { CommentButton } from './task-meta/CommentButton';
+import { DateField } from './task-meta/DateField';
+import { GroupsField } from './task-meta/GroupsField';
 import { visibleTabs } from './task-tabs/registry';
 
 interface TaskDetailProps {
@@ -62,31 +67,57 @@ function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: Task
   const { task, processDefinition } = details;
   const tabs = visibleTabs(task);
   const selectedIndex = Math.max(0, tabs.findIndex((tab) => tab.id === tabId));
-
-  const fields: [string, string][] = [
-    [t('PROCESS_DEFINITION'), processDefinition ? processDefinition.name || processDefinition.key : ''],
-    [t('CREATED_AT'), formatDateTime(task.created, i18n.language)],
-    [t('DUE_DATE'), formatDateTime(task.due, i18n.language)],
-    [t('FOLLOW_UP_DATE'), formatDateTime(task.followUp, i18n.language)],
-    [t('PRIORITY'), String(task.priority)],
-  ];
+  const update = useUpdateTask(engine, task);
+  const saveDate = (field: 'due' | 'followUp') => (value: string | null) =>
+    update.mutateAsync({ [field]: value }).catch((error: Error) => {
+      notify({ kind: 'error', title: t('TASK_UPDATE_ERROR'), subtitle: error.message });
+      throw error;
+    });
 
   return (
     <article className="cz-task">
       <header className="cz-task__header">
         <h2 className="cz-task__name">{task.name || task.taskDefinitionKey}</h2>
-        <Assignment engine={engine} details={details} />
+        <AssigneeField engine={engine} details={details} />
       </header>
       <dl className="cz-task__fields">
-        {fields
-          .filter(([, value]) => value)
-          .map(([label, value]) => (
-            <div key={label} className="cz-task__field">
-              <dt>{label}</dt>
-              <dd>{value}</dd>
-            </div>
-          ))}
+        {processDefinition && (
+          <div className="cz-task__field">
+            <dt>{t('PROCESS_DEFINITION')}</dt>
+            <dd>{processDefinition.name || processDefinition.key}</dd>
+          </div>
+        )}
+        <div className="cz-task__field">
+          <dt>{t('CREATED_AT')}</dt>
+          <dd>{formatDateTime(task.created, i18n.language)}</dd>
+        </div>
+        <DateField
+          id="cz-task-due"
+          label={t('DUE_DATE')}
+          value={task.due}
+          setLabel={t('SET_DUE_DATE')}
+          resetLabel={t('RESET_DUE_DATE')}
+          disabled={update.isPending}
+          onSave={saveDate('due')}
+        />
+        <DateField
+          id="cz-task-follow-up"
+          label={t('FOLLOW_UP_DATE')}
+          value={task.followUp}
+          setLabel={t('SET_FOLLOW_UP_DATE')}
+          resetLabel={t('RESET_FOLLOW_UP_DATE')}
+          disabled={update.isPending}
+          onSave={saveDate('followUp')}
+        />
+        <div className="cz-task__field">
+          <dt>{t('PRIORITY')}</dt>
+          <dd>{task.priority}</dd>
+        </div>
+        <GroupsField engine={engine} taskId={task.id} />
       </dl>
+      <div className="cz-task__actions">
+        <CommentButton engine={engine} taskId={task.id} />
+      </div>
       {tabs.length > 0 && (
         <Tabs selectedIndex={selectedIndex} onChange={({ selectedIndex: index }) => onTabChange(tabs[index].id)}>
           <TabList aria-label={t('TASK')}>
@@ -108,37 +139,5 @@ function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: Task
         </Tabs>
       )}
     </article>
-  );
-}
-
-function Assignment({ engine, details: { task, users } }: { engine: string; details: TaskDetails }) {
-  const { t } = useTranslation('tasklist');
-  const userId = useAuthentication(engine).data?.userId ?? null;
-  const assign = useAssignTask(engine, task.id);
-
-  return (
-    <div className="cz-task__assignment">
-      <span>
-        {t('ASSIGNEE')}: {task.assignee ? displayName(users.get(task.assignee), task.assignee) : t('UNASSIGNED')}
-      </span>
-      {!task.assignee && userId && (
-        <Button size="sm" kind="primary" disabled={assign.isPending} onClick={() => assign.mutate(userId)}>
-          {t('CLAIM_TASK')}
-        </Button>
-      )}
-      {task.assignee && task.assignee === userId && (
-        <Button size="sm" kind="tertiary" disabled={assign.isPending} onClick={() => assign.mutate(null)}>
-          {t('UNCLAIM_TASK')}
-        </Button>
-      )}
-      {assign.isError && (
-        <InlineNotification
-          kind="error"
-          lowContrast
-          hideCloseButton
-          subtitle={task.assignee ? t('UNCLAIM_ERROR') : t('CLAIM_ERROR')}
-        />
-      )}
-    </div>
   );
 }
