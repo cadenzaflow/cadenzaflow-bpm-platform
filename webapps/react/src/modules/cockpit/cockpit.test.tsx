@@ -5,6 +5,7 @@ import { useNotifications } from '../../shared/notifications';
 import { json, logIn, renderApp } from '../../test/app';
 import { byProcess } from './dashboard/CockpitDashboard';
 import type { ProcessStatistics } from './api';
+import type { ActivityInstance } from './process-instance/api';
 
 const ENGINE = '/api/engine/engine/default';
 const COCKPIT = '/api/cockpit/plugin/base/default';
@@ -18,6 +19,28 @@ const statistics: ProcessStatistics[] = [
   { id: 'invoice:2', instances: 4, failedJobs: 0, incidents: [], definition: definition('invoice:2', 'invoice', 'Invoice Receipt', 2) },
   { id: 'order:1', instances: 2, failedJobs: 0, incidents: [], definition: definition('order:1', 'order', 'Order', 1) },
 ];
+
+/**
+ * Instance pi-1 of invoice:2: waiting in a user task, and in an async
+ * continuation whose transition instance has the process instance's id.
+ */
+const activityTree: ActivityInstance = {
+  id: 'pi-1',
+  activityId: 'invoice:2',
+  activityName: 'Invoice Receipt',
+  activityType: 'processDefinition',
+  childActivityInstances: [{ id: 'approveInvoice:ai-1', activityId: 'approveInvoice', activityName: 'Approve Invoice', activityType: 'userTask' }],
+  childTransitionInstances: [
+    {
+      id: 'pi-1',
+      executionId: 'pi-1',
+      activityId: 'prepareTransfer',
+      activityName: 'Prepare Bank Transfer',
+      activityType: 'serviceTask',
+      incidents: [{ id: 'inc-1', activityId: 'prepareTransfer' }],
+    },
+  ],
+};
 
 function fakeBackend() {
   let loggedIn = false;
@@ -96,6 +119,21 @@ function fakeBackend() {
     }
     if ((path === `${ENGINE}/job/job-1/retries` || path === `${ENGINE}/incident/inc-1/annotation`) && method === 'PUT') {
       return new Response(null, { status: 204 });
+    }
+    if (path === `${ENGINE}/process-instance/pi-1` && method === 'GET') {
+      return json({ id: 'pi-1', definitionId: 'invoice:2', businessKey: 'INV-1', suspended: false, ended: false, tenantId: null });
+    }
+    if ((path === `${ENGINE}/process-instance/pi-1/suspended` && method === 'PUT') || (path === `${ENGINE}/process-instance/pi-1` && method === 'DELETE')) {
+      return new Response(null, { status: 204 });
+    }
+    if (path === `${ENGINE}/process-instance/pi-1/activity-instances`) {
+      return json(activityTree);
+    }
+    if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
+      return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
+    }
+    if (path === `${COCKPIT}/process-instance/pi-1/called-process-instances` && method === 'POST') {
+      return json([]);
     }
     if (path === `${COCKPIT}/process-instance/count` && method === 'POST') {
       return json({ count: 1 });
@@ -203,5 +241,61 @@ describe('cockpit incidents', () => {
     expect(await screen.findByText('Incrementing the number of retries finished successfully.')).toBeInTheDocument();
     const put = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/retries'));
     expect(JSON.parse(String(put?.[1]?.body))).toEqual({ retries: 1 });
+  });
+});
+
+describe('cockpit process instance', () => {
+  it('shows the details and filters the tabs by the activity instances picked in the tree', async () => {
+    const fetchMock = fakeBackend();
+    const history = renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+
+    expect(await screen.findByText('INV-1')).toBeInTheDocument();
+    expect(await screen.findByRole('link', { name: 'super-1' })).toHaveAttribute('href', '/app/react/cockpit/default/process-instance/super-1');
+    const tree = within(await screen.findByRole('tree'));
+    const node = (label: string) => tree.getByText(label).closest('[role="treeitem"]');
+    expect(node('Invoice Receipt')).toHaveAttribute('aria-selected', 'true');
+
+    await user.click(tree.getByText('Approve Invoice'));
+    await waitFor(() => expect(history.location.search).toBe('?activityIds=approveInvoice&activityInstanceIds=approveInvoice%3Aai-1'));
+    await waitFor(() =>
+      expect(
+        fetchMock.mock.calls.some(
+          ([url, init]) =>
+            url.startsWith(`${COCKPIT}/incident?`) &&
+            init?.body === JSON.stringify({ processInstanceIdIn: ['pi-1'], activityIdIn: ['approveInvoice'], sortBy: 'incidentType', sortOrder: 'asc' }),
+        ),
+      ).toBe(true),
+    );
+
+    // the transition instance shares the process instance's id, it still selects only itself
+    await user.click(tree.getByText('Prepare Bank Transfer'));
+    await waitFor(() => expect(history.location.search).toBe('?activityIds=prepareTransfer&activityInstanceIds=pi-1'));
+    expect(node('Prepare Bank Transfer')).toHaveAttribute('aria-selected', 'true');
+    expect(node('Invoice Receipt')).toHaveAttribute('aria-selected', 'false');
+
+    await user.click(tree.getByText('Invoice Receipt'));
+    await waitFor(() => expect(history.location.search).toBe(''));
+  });
+
+  it('suspends and deletes the instance', async () => {
+    const fetchMock = fakeBackend();
+    const history = renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Suspend Process Instance' }));
+    const suspend = within(await screen.findByRole('dialog', { name: 'Suspend Process Instance' }));
+    await user.click(suspend.getByRole('button', { name: 'Suspend' }));
+    expect(await screen.findByText('Updated the suspension state of the process instance.')).toBeInTheDocument();
+    const put = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-instance/pi-1/suspended'));
+    expect(JSON.parse(String(put?.[1]?.body))).toEqual({ suspended: true });
+
+    await user.click(screen.getByRole('button', { name: 'Delete Process Instance' }));
+    const cancel = within(await screen.findByRole('dialog', { name: 'Delete running process instance' }));
+    await user.click(cancel.getByRole('checkbox', { name: 'Skip IO Mappings' }));
+    await user.click(cancel.getByRole('button', { name: 'Delete Process Instance' }));
+    await waitFor(() => expect(history.location.pathname).toBe('/app/react/cockpit/default/process-definition/invoice%3A2'));
+    const deleted = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/process-instance/pi-1?`) && init?.method === 'DELETE');
+    expect(deleted?.[0]).toContain('skipCustomListeners=true&skipIoMappings=false');
   });
 });

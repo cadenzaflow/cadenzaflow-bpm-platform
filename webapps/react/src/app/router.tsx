@@ -28,6 +28,8 @@ import { CockpitDashboard } from '../modules/cockpit/dashboard/CockpitDashboard'
 import { ProcessesPage } from '../modules/cockpit/processes/ProcessesPage';
 import { ProcessDefinitionPage } from '../modules/cockpit/process-definition/ProcessDefinitionPage';
 import { validateProcessDefinitionSearch } from '../modules/cockpit/process-definition/search';
+import { ProcessInstancePage } from '../modules/cockpit/process-instance/ProcessInstancePage';
+import { validateProcessInstanceSearch } from '../modules/cockpit/process-instance/search';
 import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
@@ -114,6 +116,12 @@ const cockpitRoutes = [
     path: 'process-definition/$id',
     validateSearch: validateProcessDefinitionSearch,
     component: ProcessDefinitionPage,
+  }),
+  createRoute({
+    getParentRoute: () => cockpitRoute,
+    path: 'process-instance/$id',
+    validateSearch: validateProcessInstanceSearch,
+    component: ProcessInstancePage,
   }),
 ];
 

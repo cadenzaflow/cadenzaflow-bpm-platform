@@ -6,6 +6,7 @@ import { cockpitUrl } from '../../../shared/api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../../../shared/api/paging';
 import { formatDateTime } from '../../../shared/format';
 import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTable';
+import { InstanceLink } from '../process-instance/InstanceLink';
 import { RETRYABLE, type Incident } from './api';
 import { AnnotationModal, RetryModal, StacktraceModal } from './IncidentDialogs';
 
@@ -57,7 +58,7 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
         ),
     },
     ...(showProcessInstance
-      ? [{ key: 'instance', header: t('PLUGIN_INCIDENTS_TAB_MESSAGE_PROCESS_INSTANCE'), render: (incident: Incident) => incident.processInstanceId }]
+      ? [{ key: 'instance', header: t('PLUGIN_INCIDENTS_TAB_MESSAGE_PROCESS_INSTANCE'), render: (incident: Incident) => <InstanceLink engine={engine} id={incident.processInstanceId} /> }]
       : []),
     {
       key: 'timestamp',
@@ -81,12 +82,12 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
     {
       key: 'cause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_INSTANCE_ID'),
-      render: (incident) => incident.causeIncidentProcessInstanceId,
+      render: (incident) => <InstanceLink engine={engine} id={incident.causeIncidentProcessInstanceId} />,
     },
     {
       key: 'rootCause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_ROOT_INSTANCE_ID'),
-      render: (incident) => incident.rootCauseIncidentProcessInstanceId,
+      render: (incident) => <InstanceLink engine={engine} id={incident.rootCauseIncidentProcessInstanceId} />,
     },
     {
       key: 'type',
