@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { ContainedList, ContainedListItem, InlineNotification, SkeletonText, Tag } from '@carbon/react';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -7,13 +8,16 @@ interface FilterListProps {
   filters: UseQueryResult<TaskFilter[]>;
   selectedId: string | undefined;
   onSelect: (filterId: string) => void;
+  /** Buttons above the filters (start process, ...). */
+  actions?: ReactNode;
 }
 
-export function FilterList({ filters, selectedId, onSelect }: FilterListProps) {
+export function FilterList({ filters, selectedId, onSelect, actions }: FilterListProps) {
   const { t } = useTranslation('tasklist');
 
   return (
     <section className="cz-tasklist__column cz-tasklist__filters" aria-labelledby="cz-filters-title">
+      {actions && <div className="cz-tasklist__actions">{actions}</div>}
       <ContainedList label={<span id="cz-filters-title">{t('FILTERS')}</span>} kind="on-page">
         {filters.isPending && <SkeletonText paragraph lineCount={3} />}
         {filters.isError && (

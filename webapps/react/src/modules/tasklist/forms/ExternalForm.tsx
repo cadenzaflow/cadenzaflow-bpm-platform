@@ -3,16 +3,16 @@ import { Launch } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { moduleUrl } from '../../../shared/config';
 import { externalFormUrl } from './form-key';
-import type { FormProps } from './TaskFormTab';
+import type { FormProps } from './FormRenderer';
 
-/** The task is completed in another application, which links back to the Tasklist. */
-export function ExternalForm({ engine, task, url }: FormProps & { url: string }) {
+/** The form lives in another application, which links back to the Tasklist. */
+export function ExternalForm({ engine, target, url }: FormProps & { url: string }) {
   const { t } = useTranslation('tasklist');
   const callbackUrl = new URL(moduleUrl('tasklist', engine), window.location.href).toString();
   return (
     <div className="cz-external-form">
-      <p className="cz-form-hint">{t('TASK_EXTERNAL_FORM_NOTE')}</p>
-      <Button kind="tertiary" href={externalFormUrl(url, task.id, callbackUrl)} renderIcon={Launch}>
+      <p className="cz-form-hint">{t(target.kind === 'task' ? 'TASK_EXTERNAL_FORM_NOTE' : 'PROCESS_EXTERNAL_FORM_NOTE')}</p>
+      <Button kind="tertiary" href={externalFormUrl(url, target, callbackUrl)} renderIcon={Launch}>
         {t('EXTERNAL_FORM_LINK')}
       </Button>
     </div>

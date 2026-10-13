@@ -84,5 +84,15 @@
   "name": "Name",
   "owner": "Besitzer",
   "parentTask": "Übergeordnete Aufgabe",
-  "priority": "Priorität"
+  "priority": "Priorität",
+  "BACK": "Zurück",
+  "CLICK_PROCESS_TO_START": "Wählen Sie den Prozess zum Starten aus.",
+  "NO_PROCESS_DEFINITION_AVAILABLE": "Es stehen keine Prozessdefinitionen zur Verfügung.",
+  "PROCESS_START_ERROR": "Der Prozess konnte nicht gestartet werden.",
+  "PROCESS_START_OK": "Der Prozess wurde gestartet.",
+  "SEARCH_PROCESS_BY_NAME": "Nach Prozessnamen suchen",
+  "START": "Start",
+  "START_PROCESS": "Prozess starten",
+  "TENANT_ID": "Mandanten-ID",
+  "PROCESS_EXTERNAL_FORM_NOTE": "Dieser Prozess enthält ein externes Formular um eine neue Prozessinstanz zu starten. Um das externe Formular zu öffnen, klicken Sie unten auf die Verknüpfung \"Externes Formular öffnen \"."
 }

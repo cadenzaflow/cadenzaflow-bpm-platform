@@ -15,7 +15,7 @@ import {
 } from '../../../shared/variables';
 import { fetchFormVariables, useBusinessKey } from './api';
 import { FormActions } from './FormActions';
-import type { FormProps } from './TaskFormTab';
+import type { FormProps } from './FormRenderer';
 
 interface Row {
   id: number;
@@ -61,10 +61,14 @@ export function toVariables(rows: Row[]): Variables {
   return variables;
 }
 
-/** Form for tasks without a form key: the user sets variables by hand. */
-export function GenericForm({ engine, task, disabled, complete, completing }: FormProps) {
+/**
+ * Form for tasks and start events without a form key: the user sets variables
+ * by hand. A start form also takes the business key of the new instance.
+ */
+export function GenericForm({ engine, target, disabled, submit, submitting, submitLabel }: FormProps) {
   const { t } = useTranslation('tasklist');
-  const businessKey = useBusinessKey(engine, task.processInstanceId);
+  const existingBusinessKey = useBusinessKey(engine, target.kind === 'task' ? target.processInstanceId : null);
+  const [businessKey, setBusinessKey] = useState('');
   const [rows, setRows] = useState<Row[]>([]);
   const [loadState, setLoadState] = useState<'idle' | 'loading' | 'loaded'>('idle');
 
@@ -76,7 +80,7 @@ export function GenericForm({ engine, task, disabled, complete, completing }: Fo
   const loadVariables = async () => {
     setLoadState('loading');
     try {
-      const variables = await fetchFormVariables(engine, task.id);
+      const variables = await fetchFormVariables(engine, target);
       const loaded: Row[] = Object.entries(variables).flatMap(([name, variable]): Row[] => {
         const type = variable.type ?? '';
         if (isPrimitiveType(type)) {
@@ -120,8 +124,18 @@ export function GenericForm({ engine, task, disabled, complete, completing }: Fo
   return (
     <Stack gap={6} className="cz-generic-form">
       <p className="cz-form-hint">{t('USE_GENERIC_FORM')}</p>
-      {businessKey.data && (
-        <TextInput id="cz-generic-business-key" labelText={t('BUSINESS_KEY')} value={businessKey.data} readOnly />
+      {target.kind === 'start' ? (
+        <TextInput
+          id="cz-generic-business-key"
+          labelText={t('BUSINESS_KEY')}
+          value={businessKey}
+          disabled={disabled}
+          onChange={(event) => setBusinessKey(event.target.value)}
+        />
+      ) : (
+        existingBusinessKey.data && (
+          <TextInput id="cz-generic-business-key" labelText={t('BUSINESS_KEY')} value={existingBusinessKey.data} readOnly />
+        )
       )}
       {rows.map((row) => {
         const rowError = row.touched ? errors.get(row.id) : undefined;
@@ -162,7 +176,11 @@ export function GenericForm({ engine, task, disabled, complete, completing }: Fo
               />
             ) : row.type === 'File' ? (
               <Link
-                href={engineUrl(engine, `/task/${encodeURIComponent(task.id)}/variables/${encodeURIComponent(row.name)}/data`)}
+                href={
+                  target.kind === 'task'
+                    ? engineUrl(engine, `/task/${encodeURIComponent(target.taskId)}/variables/${encodeURIComponent(row.name)}/data`)
+                    : undefined
+                }
               >
                 {t('DOWNLOAD')}
               </Link>
@@ -199,20 +217,23 @@ export function GenericForm({ engine, task, disabled, complete, completing }: Fo
         <Button kind="ghost" size="sm" renderIcon={Add} disabled={disabled} onClick={addRow}>
           {t('ADD_VARIABLE')}
         </Button>
-        <Button kind="ghost" size="sm" disabled={disabled || loadState !== 'idle'} onClick={loadVariables}>
-          {t('LOAD_VARIABLES')}
-        </Button>
+        {target.kind === 'task' && (
+          <Button kind="ghost" size="sm" disabled={disabled || loadState !== 'idle'} onClick={loadVariables}>
+            {t('LOAD_VARIABLES')}
+          </Button>
+        )}
       </div>
       <FormActions
         disabled={disabled}
-        completing={completing}
-        onComplete={() => {
+        submitting={submitting}
+        submitLabel={submitLabel}
+        onSubmit={() => {
           // show the errors of rows the user has not touched yet
           if (!valid) {
             setRows((current) => current.map((row) => ({ ...row, touched: true })));
             return;
           }
-          complete(toVariables(rows));
+          submit(toVariables(rows), businessKey.trim() || undefined);
         }}
       />
     </Stack>

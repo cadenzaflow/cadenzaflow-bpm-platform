@@ -1,4 +1,4 @@
-import { TaskFormTab } from '../task-form/TaskFormTab';
+import { TaskFormTab } from '../forms/TaskFormTab';
 import type { TaskTab } from './registry';
 
 export const tab: TaskTab = {

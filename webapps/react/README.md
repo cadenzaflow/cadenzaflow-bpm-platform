@@ -61,10 +61,11 @@ src/
 - **Routes** are declared in `app/router.tsx` (code-based TanStack Router
   routes, no generated files). Page state that should survive a reload or be
   shareable goes into the URL, e.g. the Tasklist's `?filter=&task=&detailsTab=`.
-- **Task forms** (`modules/tasklist/task-form`): generic form (no form key),
-  external form (link), Camunda Forms (form-js, loaded on demand) and
-  embedded HTML forms. Embedded forms run on the runtime of the old
-  camunda-bpm-sdk-js (`embedded-form/sdk`, ES modules, changes marked
+- **Forms** (`modules/tasklist/forms`), for task forms and start forms
+  alike (`FormTarget`): generic form (no form key), external form (link),
+  Camunda Forms (form-js, loaded on demand) and embedded HTML forms.
+  Embedded forms run on the runtime of the old camunda-bpm-sdk-js
+  (`forms/embedded/sdk`, ES modules, changes marked
   `CadenzaFlow:`): `cam-variable-*`, `cam-choices`, `cam-file-download`,
   `cam-error-code`, `cam-escalation-code` and `<script cam-script>` with
   `camForm`, `$` and `jQuery` work; AngularJS features (`ng-*`, `$scope`,

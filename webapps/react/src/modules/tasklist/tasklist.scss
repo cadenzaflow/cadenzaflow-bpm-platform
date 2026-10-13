@@ -182,3 +182,17 @@
 .cz-history__empty-value {
   color: $text-helper;
 }
+
+.cz-tasklist__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-03 0;
+}
+
+.cz-start-process {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+  min-height: 20rem;
+}
