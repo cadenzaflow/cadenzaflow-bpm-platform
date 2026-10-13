@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useLogout, useUserProfile, type Authentication } from '../shared/auth/authentication';
 import { classicUrl, moduleUrl, type ModuleName } from '../shared/config';
 import { displayName } from '../shared/format';
+import logo from '../assets/cadenzaflow-logo.png';
 
 /** Modules in the header navigation, in the order of the AngularJS app switcher. */
 const NAVIGATION: ModuleName[] = ['cockpit', 'tasklist', 'admin'];
@@ -37,8 +38,10 @@ export function AppHeader({ module, engine, authentication }: AppHeaderProps) {
 
   return (
     <Header aria-label={t('APP_VENDOR')}>
-      <HeaderName href={moduleUrl(module, engine)} prefix={t('APP_VENDOR')}>
-        {t(`${module.toUpperCase()}_APP`)}
+      {/* prefix rendered here: the logo comes before it (Carbon's default prefix is "IBM") */}
+      <HeaderName href={moduleUrl(module, engine)} prefix="">
+        <img src={logo} alt="" className="cz-header__logo" />
+        <span className="cds--header__name--prefix">{t('APP_VENDOR')}</span>&nbsp;{t(`${module.toUpperCase()}_APP`)}
       </HeaderName>
       <HeaderNavigation aria-label={t('MODULES')}>
         {NAVIGATION.filter((item) => authentication.authorizedApps.includes(item)).map((item) => (

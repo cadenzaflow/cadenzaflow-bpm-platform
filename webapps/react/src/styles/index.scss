@@ -16,6 +16,7 @@
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/theme' as *;
 @use '@carbon/react/scss/type' as *;
+@use 'brand';
 
 html,
 body,
@@ -203,7 +204,7 @@ body {
   min-width: 2px;
   height: 100%;
   border-radius: 0 4px 4px 0;
-  background: #2a78d6;
+  background: brand.$brand-interactive;
 }
 
 // Placeholder while a diagram (bpmn-js, loaded on demand) is not there yet.

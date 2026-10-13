@@ -1,0 +1,42 @@
+// CadenzaFlow brand on top of Carbon: the colors and the header of the
+// classic webapps (logo, accent line #5494b5). A rebrand changes this file
+// and assets/cadenzaflow-logo.png only.
+//
+// #5494b5 is the accent (lines, selection). On white it has a contrast of
+// 3.3:1, enough for lines but not for text and buttons; those use the same
+// hue, darker (#3e738e, 5.2:1 against white).
+
+$brand-accent: #5494b5;
+$brand-interactive: #3e738e;
+$brand-interactive-hover: #376780;
+$brand-interactive-active: #2e566b;
+$brand-highlight: #d4e4ed;
+
+:root {
+  --cds-interactive: #{$brand-interactive};
+  --cds-icon-interactive: #{$brand-interactive};
+  --cds-border-interactive: #{$brand-interactive};
+  --cds-focus: #{$brand-interactive};
+  --cds-highlight: #{$brand-highlight};
+  --cds-link-primary: #{$brand-interactive};
+  --cds-link-primary-hover: #{$brand-interactive-active};
+  --cds-link-secondary: #{$brand-interactive-active};
+  --cds-button-primary: #{$brand-interactive};
+  --cds-button-primary-hover: #{$brand-interactive-hover};
+  --cds-button-primary-active: #{$brand-interactive-active};
+  --cds-button-tertiary: #{$brand-interactive};
+  --cds-button-tertiary-hover: #{$brand-interactive-hover};
+  --cds-button-tertiary-active: #{$brand-interactive-active};
+}
+
+// The header as in the classic webapps: logo before the name, accent line below.
+.cds--header {
+  border-bottom: 3px solid $brand-accent;
+}
+
+.cz-header__logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  object-fit: contain;
+}
