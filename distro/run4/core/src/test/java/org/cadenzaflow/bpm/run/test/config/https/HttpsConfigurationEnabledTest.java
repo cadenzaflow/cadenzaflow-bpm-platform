@@ -45,7 +45,7 @@ public class HttpsConfigurationEnabledTest extends AbstractRestTest {
 
   @Before
   public void init() throws Exception {
-    TestUtils.trustSelfSignedSSL();
+    TestUtils.trustTestCertificate();
   }
 
   @Test
