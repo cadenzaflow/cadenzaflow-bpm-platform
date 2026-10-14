@@ -95,10 +95,10 @@ public class CamundaBpmSecurityAutoConfigOauth2ApplicationIT extends AbstractSpr
     mockMvc.perform(MockMvcRequestBuilders.get(baseUrl + "/cadenzaflow/api/engine/engine/default/user")
             .accept(MediaType.APPLICATION_JSON))
         .andDo(MockMvcResultHandlers.print())
-        // then oauth2 redirection occurs
+        // then oauth2 redirection occurs (Spring Security 7 redirects with a relative URI)
         .andExpect(MockMvcResultMatchers.status().isFound())
         .andExpect(MockMvcResultMatchers.header().exists("Location"))
-        .andExpect(MockMvcResultMatchers.header().string("Location", baseUrl + "/oauth2/authorization/" + PROVIDER));
+        .andExpect(MockMvcResultMatchers.header().string("Location", "/oauth2/authorization/" + PROVIDER));
   }
 
   @Test
@@ -127,10 +127,10 @@ public class CamundaBpmSecurityAutoConfigOauth2ApplicationIT extends AbstractSpr
     mockMvc.perform(MockMvcRequestBuilders.get(baseUrl + "/cadenzaflow/api/engine/engine/default/user")
             .accept(MediaType.APPLICATION_JSON)
             .with(authentication(authenticationToken)))
-        // then authorization fails and redirection occurs
+        // then authorization fails and redirection occurs (Spring Security 7 redirects with a relative URI)
         .andExpect(MockMvcResultMatchers.status().isFound())
         .andExpect(MockMvcResultMatchers.header().exists("Location"))
-        .andExpect(MockMvcResultMatchers.header().string("Location", baseUrl + "/oauth2/authorization/" + PROVIDER));
+        .andExpect(MockMvcResultMatchers.header().string("Location", "/oauth2/authorization/" + PROVIDER));
 
     String expectedWarn = "Authorize failed for '" + UNAUTHORIZED_USER + "'";
     assertThat(loggingRule.getFilteredLog(expectedWarn)).hasSize(1);
