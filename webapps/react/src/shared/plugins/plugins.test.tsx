@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PluginPoint } from './PluginPoint';
-import { loadPlugins, pluginApi, readPluginList, type FrontendPlugin } from './plugins';
+import { loadPlugins, logOutWith, pluginApi, readPluginList, type FrontendPlugin } from './plugins';
 
 function pluginList(json: string) {
   const doc = document.implementation.createHTMLDocument();
@@ -54,9 +54,10 @@ describe('loading plugins', () => {
     const doc = document.implementation.createHTMLDocument();
     const one = fakePlugin('one', 'cockpit.dashboard');
     const two = fakePlugin('two', 'cockpit.dashboard');
+    const logout = { id: 'logout', pluginPoint: 'cockpit.logout', logout: vi.fn() };
     const modules: Record<string, () => Promise<{ default?: unknown }>> = {
       '/a/plugin.js': async () => ({ default: one }),
-      '/b/plugin.js': async () => ({ default: [two, { id: 'broken' }] }),
+      '/b/plugin.js': async () => ({ default: [two, { id: 'broken' }, logout] }),
       '/c/plugin.js': async () => {
         throw new Error('404');
       },
@@ -73,7 +74,7 @@ describe('loading plugins', () => {
       doc,
     );
 
-    expect(plugins).toEqual([one, two]);
+    expect(plugins).toEqual([one, two, logout]);
     expect([...doc.head.querySelectorAll('link')].map((link) => link.getAttribute('href'))).toEqual(['/a/plugin.css', '/b/plugin.css', '/c/plugin.css']);
     expect(error).toHaveBeenCalledWith('The plugin c could not be loaded', expect.any(Error));
     error.mockRestore();
@@ -138,6 +139,22 @@ describe('plugin points', () => {
 
     expect(container.querySelector('[data-plugin-id="working"]')?.textContent).toBe('working for "pi-1"');
     expect(error).toHaveBeenCalledWith('The plugin failing failed to render', expect.any(Error));
+    error.mockRestore();
+  });
+});
+
+describe('logout plugins', () => {
+  it('log the user out with the REST APIs, or leave it to the webapp when they fail', () => {
+    const logout = vi.fn();
+    expect(logOutWith({ id: 'sso', pluginPoint: 'cockpit.logout', logout }, 'default')).toBe(true);
+    expect(logout).toHaveBeenCalledWith({ api: pluginApi('default') });
+
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const failing = vi.fn(() => {
+      throw new Error('broken');
+    });
+    expect(logOutWith({ id: 'failing', pluginPoint: 'cockpit.logout', logout: failing }, 'default')).toBe(false);
+    expect(error).toHaveBeenCalledWith('The plugin failing failed to log out', expect.any(Error));
     error.mockRestore();
   });
 });

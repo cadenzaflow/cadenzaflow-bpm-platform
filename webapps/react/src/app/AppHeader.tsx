@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useLogout, useUserProfile, type Authentication } from '../shared/auth/authentication';
 import { classicUrl, moduleUrl, type ModuleName } from '../shared/config';
 import { displayName } from '../shared/format';
+import { logOutWith, useLogoutPlugin } from '../shared/plugins/plugins';
 import logo from '../assets/cadenzaflow-logo.png';
 
 /** Modules in the header navigation, in the order of the AngularJS app switcher. */
@@ -33,8 +34,16 @@ export function AppHeader({ module, engine, authentication }: AppHeaderProps) {
   const navigate = useNavigate();
   const profile = useUserProfile(engine, authentication.userId);
   const logout = useLogout(engine);
+  const logoutPlugin = useLogoutPlugin(module);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userName = displayName(profile.data, authentication.userId);
+
+  // a logout plugin (e.g. single sign-on) replaces the webapp's own logout
+  const signOut = () => {
+    if (!logoutPlugin || !logOutWith(logoutPlugin, engine)) {
+      logout.mutate();
+    }
+  };
 
   return (
     <Header aria-label={t('APP_VENDOR')}>
@@ -89,7 +98,7 @@ export function AppHeader({ module, engine, authentication }: AppHeaderProps) {
             {t('SWITCH_TO_CLASSIC_UI')}
           </SwitcherItem>
           <SwitcherDivider />
-          <SwitcherItem aria-label={t('SIGN_OUT_ACTION')} onClick={() => logout.mutate()}>
+          <SwitcherItem aria-label={t('SIGN_OUT_ACTION')} onClick={signOut}>
             {t('SIGN_OUT_ACTION')}
           </SwitcherItem>
         </Switcher>

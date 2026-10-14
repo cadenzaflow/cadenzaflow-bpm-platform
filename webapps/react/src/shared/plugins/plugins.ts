@@ -22,9 +22,11 @@ export interface FrontendPlugin {
   /** e.g. the path of a cockpit.route plugin */
   properties?: Record<string, unknown>;
   /** renders into the node (for a diagram plugin point: the bpmn-js viewer) */
-  render: (node: unknown, props: PluginProps) => void;
+  render?: (node: unknown, props: PluginProps) => void;
   /** the plugin is no longer shown (called without arguments, as in the AngularJS webapps) */
   unmount?: () => void;
+  /** at {module}.logout: logs the user out instead of the webapp (e.g. a single sign-on logout) */
+  logout?: (props: PluginProps) => void;
 }
 
 export interface PluginApi {
@@ -79,7 +81,7 @@ export function readPluginList(module: ModuleName, doc: Document = document): Pl
 const isPlugin = (value: unknown): value is FrontendPlugin =>
   !!value &&
   typeof (value as FrontendPlugin).pluginPoint === 'string' &&
-  typeof (value as FrontendPlugin).render === 'function';
+  (typeof (value as FrontendPlugin).render === 'function' || typeof (value as FrontendPlugin).logout === 'function');
 
 /**
  * Loads the plugins: their stylesheet and their module. A plugin that fails
@@ -145,6 +147,22 @@ export function usePluginPoint(module: ModuleName, point: string): FrontendPlugi
   }, [plugins, point]);
 }
 
+/** The {module}.logout plugin with the highest priority (e.g. a single sign-on logout), if there is one. */
+export function useLogoutPlugin(module: ModuleName): FrontendPlugin | undefined {
+  return usePluginPoint(module, `${module}.logout`).find((plugin) => typeof plugin.logout === 'function');
+}
+
+/** Logs the user out with the plugin; false when it failed (logged), so the webapp logs out itself. */
+export function logOutWith(plugin: FrontendPlugin, engine: string): boolean {
+  try {
+    plugin.logout?.({ api: pluginApi(engine) });
+    return true;
+  } catch (error) {
+    console.error(`The plugin ${plugin.id} failed to log out`, error);
+    return false;
+  }
+}
+
 /**
  * Renders plugins into one target (e.g. a diagram viewer); a plugin that
  * fails is logged. Returns what unmounts them again.
@@ -152,7 +170,7 @@ export function usePluginPoint(module: ModuleName, point: string): FrontendPlugi
 export function renderPlugins(plugins: FrontendPlugin[], target: unknown, props: PluginProps): () => void {
   for (const plugin of plugins) {
     try {
-      plugin.render(target, props);
+      plugin.render?.(target, props);
     } catch (error) {
       console.error(`The plugin ${plugin.id} failed to render`, error);
     }

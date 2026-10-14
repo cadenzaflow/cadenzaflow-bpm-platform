@@ -16,6 +16,8 @@ const plugin = (id: string, pluginPoint: string, extra: Record<string, unknown> 
   },
 });
 
+const logout = vi.hoisted(() => vi.fn());
+
 // the plugin modules the server would deliver
 vi.mock('../../shared/plugins/import-plugin', () => ({
   importPlugin: async (url: string) => {
@@ -29,6 +31,7 @@ vi.mock('../../shared/plugins/import-plugin', () => ({
         plugin('demo-nav', 'cockpit.navigation'),
         plugin('demo-page', 'cockpit.route', { properties: { path: '/demo-page' } }),
         plugin('demo-report', 'cockpit.report', { label: 'Demo' }),
+        { id: 'demo-logout', pluginPoint: 'cockpit.logout', logout },
       ],
     };
   },
@@ -112,5 +115,17 @@ describe('cockpit plugins', () => {
 
     expect(await screen.findByRole('heading', { name: 'Demo report' })).toBeInTheDocument();
     expect(screen.getByText(`demo-report {} ${ENGINE}`)).toBeInTheDocument();
+  });
+
+  it('logs out with a logout plugin instead of its own logout', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/reports');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Demo Demo' }));
+    await user.click(screen.getByText('Log out'));
+
+    expect(logout).toHaveBeenCalledWith({ api: expect.objectContaining({ engineApi: ENGINE }) });
+    expect(vi.mocked(fetch).mock.calls.some(([url]) => String(url).endsWith('/logout'))).toBe(false);
   });
 });
