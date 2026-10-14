@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cadenzaflow.bpm</groupId>
+    <artifactId>cadenzaflow-database-settings</artifactId>
+    <version>1.2.0</version>
+    <relativePath>../../database</relativePath>
+  </parent>
+
+  <groupId>org.cadenzaflow.bpm.run</groupId>
+  <artifactId>cadenzaflow-bpm-run4-root</artifactId>
+  <name>CadenzaFlow Platform - Run 4 - Root</name>
+  <description>This is the root of CadenzaFlow Platform Run 4 (Spring Boot 4)</description>
+  <packaging>pom</packaging>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- The same versions as spring-boot-starter-4: spring-boot-dependencies
+           lags Tomcat/Jackson security releases, and a property override does
+           not reach an imported BOM, so they are pinned here, ahead of the Boot
+           import. -->
+      <dependency>
+        <!-- Override HK2 from 4.0.0-M3 (bundled with Spring Boot 4) to 4.0.0 stable -->
+        <groupId>org.glassfish.hk2</groupId>
+        <artifactId>hk2-bom</artifactId>
+        <version>4.0.0</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-framework-bom</artifactId>
+        <version>${version.spring.framework7}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${version.tomcat11}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${version.tomcat11}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-websocket</artifactId>
+        <version>${version.tomcat11}</version>
+      </dependency>
+      <dependency>
+        <groupId>tools.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson3}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5-h2</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${version.spring-boot4}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <!-- spring-context can leak an older 6.2.x via the BOM chain; pin to 7.x -->
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${version.spring.framework7}</version>
+      </dependency>
+
+      <!-- the Spring Boot 4 starters are not in the CadenzaFlow BOM -->
+      <dependency>
+        <groupId>org.cadenzaflow.bpm.springboot</groupId>
+        <artifactId>cadenzaflow-bpm-spring-boot-starter-4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.cadenzaflow.bpm.springboot</groupId>
+        <artifactId>cadenzaflow-bpm-spring-boot-starter-rest-4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.cadenzaflow.bpm.springboot</groupId>
+        <artifactId>cadenzaflow-bpm-spring-boot-starter-security-4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.cadenzaflow.bpm.springboot</groupId>
+        <artifactId>cadenzaflow-bpm-spring-boot-starter-webapp-4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.graalvm.js</groupId>
+        <artifactId>js</artifactId>
+        <version>${version.graal.js}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.graalvm.js</groupId>
+        <artifactId>js-scriptengine</artifactId>
+        <version>${version.graal.js}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>9.37.4</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${version.spring-boot4}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+
+      <!-- Enforces Java 17 during the build -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0-M1</version>
+        <configuration>
+          <rules>
+            <requireJavaVersion>
+              <version>[17,)</version>
+            </requireJavaVersion>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>distro</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>modules</module>
+        <module>modules/rest</module>
+        <module>modules/oauth2</module>
+        <module>modules/example</module>
+        <module>core</module>
+        <module>assembly</module>
+        <module>qa</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>distro-ce</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>modules/webapps</module>
+        <module>distro</module>
+        <module>qa</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>integration-test-cadenzaflow-run</id>
+      <modules>
+        <module>qa</module>
+      </modules>
+    </profile>
+  </profiles>
+
+</project>

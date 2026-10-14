@@ -7,12 +7,13 @@ name: CADENZAFLOW_RELEASE
 #
 # What it does, for that version:
 #   1. Align the reactor version to the tag (versions:set).
-#   2. Build the full platform (default 'distro' profile) — Tomcat + Run distros
+#   2. Build the full platform (default 'distro' profile) — Tomcat, Run and Run 4 distros
 #      and deploy the Maven artifacts (engine, engine-spring-7, webapps,
 #      starters, ...) to the CadenzaFlow Nexus.
-#   3. Create a GitHub Release for the tag and attach the four distro files:
+#   3. Create a GitHub Release for the tag and attach the six distro files:
 #        cadenzaflow-bpm-tomcat-<version>.{zip,tar.gz}
 #        cadenzaflow-bpm-run-<version>.{zip,tar.gz}
+#        cadenzaflow-bpm-run4-<version>.{zip,tar.gz}
 #   4. (Optional) Notify downloads.cadenzaflow.com: POST a repository_dispatch
 #      (event_type: cadenzaflow-release-published) to cadenzaflow-download so
 #      its PUBLISH workflow rolls the release onto the download portal.
@@ -347,7 +348,9 @@ jobs:
             "distro/tomcat/distro/target/cadenzaflow-bpm-tomcat-${VERSION}.zip" \
             "distro/tomcat/distro/target/cadenzaflow-bpm-tomcat-${VERSION}.tar.gz" \
             "distro/run/distro/target/cadenzaflow-bpm-run-${VERSION}.zip" \
-            "distro/run/distro/target/cadenzaflow-bpm-run-${VERSION}.tar.gz" ; do
+            "distro/run/distro/target/cadenzaflow-bpm-run-${VERSION}.tar.gz" \
+            "distro/run4/distro/target/cadenzaflow-bpm-run4-${VERSION}.zip" \
+            "distro/run4/distro/target/cadenzaflow-bpm-run4-${VERSION}.tar.gz" ; do
             if [ -f "$f" ]; then cp "$f" release-assets/; else echo "::warning::missing $f"; fi
           done
           echo "Collected:"; ls -la release-assets

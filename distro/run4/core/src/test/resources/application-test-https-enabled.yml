@@ -1,0 +1,10 @@
+server:
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: cadenzaflow
+    key-store-type: pkcs12
+    key-alias: cadenzaflow
+    key-password: cadenzaflow
+  # any free port: the Spring Boot 3 Run runs the same test in parallel builds
+  port: 0
+spring.http.clients.imperative.factory: simple
