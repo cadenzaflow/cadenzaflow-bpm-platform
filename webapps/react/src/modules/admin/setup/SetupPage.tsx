@@ -5,7 +5,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { adminUrl, request } from '../../../shared/api/client';
 import type { User } from '../api';
-import { PasswordFields, usePasswordCheck } from '../components/PasswordFields';
+import { PasswordFields, usePasswordCheck } from '../../../shared/ui/PasswordFields';
 import { ProfileFields, isEmail } from '../users/ProfileFields';
 import '../admin.scss';
 

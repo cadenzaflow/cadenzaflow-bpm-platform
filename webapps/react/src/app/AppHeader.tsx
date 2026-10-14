@@ -72,6 +72,19 @@ export function AppHeader({ module, engine, authentication }: AppHeaderProps) {
       <HeaderPanel expanded={userMenuOpen} aria-label={t('USER_MENU')} onHeaderPanelFocus={() => setUserMenuOpen(false)}>
         <p className="cz-user-menu__name">{userName}</p>
         <Switcher aria-label={t('USER_MENU')}>
+          {module !== 'welcome' && authentication.authorizedApps.includes('welcome') && (
+            <SwitcherItem
+              aria-label={t('MY_PROFILE')}
+              href={moduleUrl('welcome', engine)}
+              onClick={(event) => {
+                event.preventDefault();
+                setUserMenuOpen(false);
+                navigate({ to: '/welcome/$engine', params: { engine } });
+              }}
+            >
+              {t('MY_PROFILE')}
+            </SwitcherItem>
+          )}
           <SwitcherItem aria-label={t('SWITCH_TO_CLASSIC_UI')} href={classicUrl(module, engine)}>
             {t('SWITCH_TO_CLASSIC_UI')}
           </SwitcherItem>

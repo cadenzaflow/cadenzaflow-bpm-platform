@@ -1,0 +1,75 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/type' as *;
+@use '../../styles/brand';
+
+// applications and links | the profile
+.cz-welcome {
+  display: grid;
+  gap: $spacing-07;
+  grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+
+  @media (max-width: 48rem) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cz-welcome__main {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-07;
+}
+
+.cz-welcome__title {
+  @include type-style('heading-03');
+  margin-bottom: $spacing-05;
+}
+
+.cz-welcome__subtitle {
+  @include type-style('heading-compact-02');
+}
+
+.cz-welcome__apps {
+  display: grid;
+  gap: $spacing-05;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.cz-welcome__app.cds--tile {
+  @include type-style('heading-03');
+  min-height: 6rem;
+  box-shadow: inset 0 3px 0 brand.$brand-accent;
+}
+
+.cz-welcome__links {
+  display: grid;
+  gap: $spacing-05;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+}
+
+.cz-welcome__link-description,
+.cz-welcome__email {
+  @include type-style('body-compact-01');
+  margin-top: $spacing-02;
+  color: $text-secondary;
+}
+
+.cz-welcome__name {
+  @include type-style('heading-compact-02');
+  overflow-wrap: anywhere;
+}
+
+.cz-welcome__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-03;
+}
+
+.cz-welcome__groups {
+  @include type-style('body-compact-01');
+  margin-top: $spacing-03;
+
+  li + li {
+    margin-top: $spacing-02;
+  }
+}

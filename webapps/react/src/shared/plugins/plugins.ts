@@ -52,7 +52,7 @@ export interface PluginLocation {
 const PLUGIN_LIST_ID = 'cadenzaflow-plugins';
 
 /** The plugins of the AngularJS webapps themselves and their legacy (AngularJS) plugins: not for this UI. */
-const BUILT_IN = ['cockpitPlugins', 'cockpitEE', 'adminPlugins', 'adminEE', 'tasklistPlugins'];
+const BUILT_IN = ['cockpitPlugins', 'cockpitEE', 'adminPlugins', 'adminEE', 'tasklistPlugins', 'welcomePlugins'];
 
 /**
  * The plugins of a module, from the list the server writes into index.html
