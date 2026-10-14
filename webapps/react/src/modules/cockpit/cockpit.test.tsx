@@ -513,8 +513,7 @@ describe('cockpit process instance user tasks', () => {
       const removed = fetchMock.mock.calls.find(([url]) => url.endsWith('/task/task-1/identity-links/delete'));
       expect(JSON.parse(String(removed?.[1]?.body))).toEqual({ groupId: 'accounting', type: 'candidate' });
     });
-    // several dialogs and typed inputs
-  }, 15000);
+  });
 });
 
 describe('cockpit process instance jobs and external tasks', () => {
@@ -544,7 +543,7 @@ describe('cockpit process instance jobs and external tasks', () => {
     expect(await screen.findByText('Due date was set successfully.')).toBeInTheDocument();
     const dueDate = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/duedate'));
     expect(JSON.parse(String(dueDate?.[1]?.body))).toEqual({ duedate: toEngineDate(new Date(2026, 11, 1, 10, 0)), cascade: true });
-  }, 15000);
+  });
 
   it('lists the external tasks of the selected activities', async () => {
     const fetchMock = fakeBackend();

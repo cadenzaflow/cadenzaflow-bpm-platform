@@ -126,7 +126,7 @@ describe('batches', () => {
     expect(await log.findByText('Failed')).toBeInTheDocument();
     expect(log.getByText('Created')).toBeInTheDocument();
     expect(log.getByRole('link', { name: 'Process instance does not exist' })).toHaveAttribute('href', `${ENGINE}/history/job-log/log-2/stacktrace`);
-  }, 15000);
+  });
 
   it('deletes a running batch with its history', async () => {
     const fetchMock = fakeBackend();

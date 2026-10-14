@@ -166,7 +166,7 @@ describe('admin users', () => {
     await user.type(screen.getByLabelText('Password*:'), 'short');
     await user.type(screen.getByLabelText('Password (repeat)*:'), 'short');
     // the policy is checked a moment after typing stops
-    expect(await screen.findByText('Your Password is missing some criteria:')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('Your Password is missing some criteria:')).toBeInTheDocument());
     expect(screen.getByRole('button', { name: 'Create User' })).toBeDisabled();
 
     await user.type(screen.getByLabelText('Password*:'), 'enough!');

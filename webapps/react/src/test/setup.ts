@@ -1,4 +1,9 @@
 import '@testing-library/jest-dom/vitest';
+import { configure } from '@testing-library/react';
+
+// The tests run in parallel; under that load, loading an embedded form or a
+// debounced check can take longer than the default second of findBy/waitFor.
+configure({ asyncUtilTimeout: 3000 });
 
 // jsdom has no matchMedia; Carbon uses it for responsive behaviour.
 if (!window.matchMedia) {
