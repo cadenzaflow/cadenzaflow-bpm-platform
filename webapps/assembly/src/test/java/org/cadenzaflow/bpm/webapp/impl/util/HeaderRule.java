@@ -17,11 +17,11 @@
 package org.cadenzaflow.bpm.webapp.impl.util;
 
 import java.io.IOException;
-import java.net.BindException;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.junit.rules.ExternalResource;
 
@@ -30,10 +30,8 @@ import org.junit.rules.ExternalResource;
  */
 public class HeaderRule extends ExternalResource {
 
-  protected static final int SERVER_PORT = 8085;
-  protected static final int RETRIES = 3;
-
-  protected Server server = new Server(SERVER_PORT);
+  // a free port: the javax and the jakarta webapp run these tests at the same time in a parallel build
+  protected Server server = new Server(0);
   protected WebAppContext webAppContext = new WebAppContext();
   protected HttpURLConnection connection = null;
 
@@ -60,10 +58,6 @@ public class HeaderRule extends ExternalResource {
   }
 
   public void startServer(String webDescriptor, String scope, String contextPath) {
-    startServer(webDescriptor, scope, contextPath, RETRIES);
-  }
-
-  protected void startServer(String webDescriptor, String scope, String contextPath, int startUpRetries) {
     webAppContext.setContextPath(contextPath);
     webAppContext.setResourceBase("/");
     webAppContext.setDescriptor("src/test/resources/WEB-INF/" + scope + "/" + webDescriptor);
@@ -73,15 +67,7 @@ public class HeaderRule extends ExternalResource {
     try {
       server.start();
     } catch (Exception e) {
-      if (e.getCause() instanceof BindException && startUpRetries > 0) {
-        try {
-          Thread.sleep(500L);
-        } catch (Exception ex) {
-        }
-        startServer(webDescriptor, scope, contextPath, --startUpRetries);
-      } else {
-        throw new RuntimeException(e);
-      }
+      throw new RuntimeException(e);
     }
   }
 
@@ -100,7 +86,7 @@ public class HeaderRule extends ExternalResource {
   public void performRequestWithHeader(String name, String value, String path, String method) {
     try {
       connection =
-        (HttpURLConnection) new URL("http://localhost:" + SERVER_PORT + "/cadenzaflow" + path)
+        (HttpURLConnection) new URL("http://localhost:" + getPort() + "/cadenzaflow" + path)
           .openConnection();
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -123,6 +109,10 @@ public class HeaderRule extends ExternalResource {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  protected int getPort() {
+    return ((ServerConnector) server.getConnectors()[0]).getLocalPort();
   }
 
   public String getHeader(String headerName) {
