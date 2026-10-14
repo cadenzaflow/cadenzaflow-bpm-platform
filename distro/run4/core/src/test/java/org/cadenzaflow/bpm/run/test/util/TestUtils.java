@@ -16,30 +16,27 @@
  */
 package org.cadenzaflow.bpm.run.test.util;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
+import java.io.InputStream;
+import java.security.KeyStore;
 
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 
 public class TestUtils {
-  public static void trustSelfSignedSSL() throws NoSuchAlgorithmException, KeyManagementException {
-    SSLContext ctx = SSLContext.getInstance("SSL");
-    X509TrustManager tm = new X509TrustManager() {
 
-      public void checkClientTrusted(X509Certificate[] xcs, String string) {
-      }
-
-      public void checkServerTrusted(X509Certificate[] xcs, String string) {
-      }
-
-      public X509Certificate[] getAcceptedIssuers() {
-        return null;
-      }
-    };
-    ctx.init(null, new TrustManager[] { tm }, null);
+  /**
+   * Trusts the certificate of the test keystore (keystore.p12), which the
+   * HTTPS tests serve, and no other.
+   */
+  public static void trustTestCertificate() throws Exception {
+    KeyStore keyStore = KeyStore.getInstance("PKCS12");
+    try (InputStream keyStoreFile = TestUtils.class.getResourceAsStream("/keystore.p12")) {
+      keyStore.load(keyStoreFile, "cadenzaflow".toCharArray());
+    }
+    TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+    trustManagerFactory.init(keyStore);
+    SSLContext ctx = SSLContext.getInstance("TLS");
+    ctx.init(null, trustManagerFactory.getTrustManagers(), null);
     SSLContext.setDefault(ctx);
   }
 }
