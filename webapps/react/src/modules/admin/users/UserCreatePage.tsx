@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import type { User } from '../api';
-import { PasswordFields, usePasswordCheck } from '../components/PasswordFields';
+import { PasswordFields, usePasswordCheck } from '../../../shared/ui/PasswordFields';
 import { useCreateUser } from './api';
 import { ProfileFields, isEmail } from './ProfileFields';
 

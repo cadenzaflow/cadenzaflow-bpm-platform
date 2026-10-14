@@ -20,29 +20,6 @@
   padding-top: $spacing-05;
 }
 
-.cz-password-policy {
-  @include type-style('helper-text-01');
-  color: $text-secondary;
-
-  ul {
-    margin-top: $spacing-02;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: $spacing-02;
-  }
-
-  .is-valid svg {
-    fill: $support-success;
-  }
-
-  .is-invalid svg {
-    fill: $support-error;
-  }
-}
-
 .cz-admin-dashboard__sections {
   display: grid;
   gap: $spacing-05;

@@ -3,7 +3,6 @@ import { appRoot, BASE_PATH, type ModuleName } from '../shared/config';
 import { Shell } from './Shell';
 import { ErrorView } from './ErrorView';
 import { NotFound } from './NotFound';
-import { NotYetAvailable } from './NotYetAvailable';
 import { TasklistPage } from '../modules/tasklist/TasklistPage';
 import { validateTasklistSearch } from '../modules/tasklist/search';
 import { AdminLayout } from '../modules/admin/AdminLayout';
@@ -40,6 +39,7 @@ import { validateRepositorySearch } from '../modules/cockpit/repository/search';
 import { BatchesPage } from '../modules/cockpit/batches/BatchesPage';
 import { validateBatchesSearch } from '../modules/cockpit/batches/search';
 import { ReportsPage, validateReportsSearch } from '../modules/cockpit/reports/ReportsPage';
+import { WelcomePage, validateWelcomeSearch } from '../modules/welcome/WelcomePage';
 import { validateListSearch as validateCockpitListSearch } from '../shared/search/list-search';
 
 declare module '@tanstack/react-router' {
@@ -159,24 +159,21 @@ const setupRoute = createRoute({
   component: SetupPage,
 });
 
-/** Modules that are not rewritten yet point to the classic UI. */
-function notYetAvailableRoutes(module: ModuleName) {
-  return [`${module}/$engine`, `${module}/$engine/$`].map((path) =>
-    createRoute({
-      getParentRoute: () => rootRoute,
-      path,
-      staticData: { module },
-      component: () => <NotYetAvailable module={module} />,
-    }),
-  );
-}
+// Welcome: applications, links and the user's profile.
+const welcomeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'welcome/$engine',
+  staticData: { module: 'welcome' },
+  validateSearch: validateWelcomeSearch,
+  component: WelcomePage,
+});
 
 const routeTree = rootRoute.addChildren([
   tasklistRoute,
   adminRoute.addChildren(adminRoutes),
   setupRoute,
   cockpitRoute.addChildren(cockpitRoutes),
-  ...notYetAvailableRoutes('welcome'),
+  welcomeRoute,
 ]);
 
 /** Tests pass a memory history; the app uses the browser history. */

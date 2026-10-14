@@ -264,15 +264,4 @@ describe('webapp shell', () => {
 
     expect(await screen.findByText('Login Failed')).toBeInTheDocument();
   });
-
-  it('points to the classic UI for modules that are not rewritten yet', async () => {
-    const fetchMock = fakeBackend();
-    renderApp('/app/react/welcome/default/');
-
-    await logIn();
-
-    expect(await screen.findByText('Welcome is not available in the new UI yet')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Open in the classic UI' })).toHaveAttribute('href', '/app/welcome/default/');
-    expect(fetchMock).toHaveBeenCalledWith('/api/admin/auth/user/default/login/welcome', expect.anything());
-  });
 });

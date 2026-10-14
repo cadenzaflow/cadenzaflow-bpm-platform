@@ -8,7 +8,7 @@ import { displayName } from '../../../shared/format';
 import { notify } from '../../../shared/notifications';
 import type { User } from '../api';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { PasswordFields, usePasswordCheck } from '../components/PasswordFields';
+import { PasswordFields, usePasswordCheck } from '../../../shared/ui/PasswordFields';
 import { useDeleteUser, useUnlockUser, useUpdateCredentials } from './api';
 
 const route = getRouteApi('/admin/$engine/users/$userId');
