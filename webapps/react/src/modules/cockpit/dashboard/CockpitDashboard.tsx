@@ -25,7 +25,7 @@ function Card({ title, total, children }: { title: string; total: ReactNode; chi
   return (
     <Tile className="cz-dashboard-card">
       <h2 className="cz-dashboard-card__title">{title}</h2>
-      <p className="cz-dashboard-card__total">{total}</p>
+      <div className="cz-dashboard-card__total">{total}</div>
       {children}
     </Tile>
   );
