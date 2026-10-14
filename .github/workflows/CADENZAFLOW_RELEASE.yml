@@ -194,9 +194,11 @@ jobs:
           # every inter-module dependency, and unbuilt reactor modules fall
           # back to the repositories - where the new release version does not
           # exist yet (this failed the first 1.2.3 attempt). At the still-
-          # published reactor version resolution succeeds, and the external
-          # dependency set the gate scans is identical either way.
-          ./mvnw -B -q -DskipTests dependency:resolve
+          # published reactor version most of them resolve; modules added
+          # since that release (Run 4, Tomcat 11) do not, and the script
+          # tolerates exactly those. The external dependency set the gate
+          # scans is identical either way.
+          bash .github/scripts/pre-resolve-dependencies.sh
 
       - name: Align reactor version to the release tag
         run: |
