@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+
+  <artifactId>cadenzaflow-bpm-tomcat11</artifactId>
+  <packaging>pom</packaging>
+
+  <parent>
+    <groupId>org.cadenzaflow.bpm.tomcat</groupId>
+    <artifactId>cadenzaflow-tomcat11</artifactId>
+    <version>1.2.0</version>
+  </parent>
+
+  <name>CadenzaFlow Platform - Tomcat 11 Distro</name>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm.distro</groupId>
+      <artifactId>cadenzaflow-sql-scripts</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+    </dependency>
+
+    <!-- Tomcat 10 dependencies -->
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm.tomcat</groupId>
+      <artifactId>cadenzaflow-tomcat11-assembly</artifactId>
+      <version>${project.version}</version>
+      <type>tar.gz</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm.webapp</groupId>
+      <artifactId>cadenzaflow-webapp-tomcat-jakarta</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm</groupId>
+      <artifactId>cadenzaflow-engine-rest-jakarta</artifactId>
+      <version>${project.version}</version>
+      <classifier>tomcat</classifier>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cadenzaflow.bpm.example</groupId>
+      <artifactId>cadenzaflow-example-invoice-jakarta</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>distro-tomcat11</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>assembly.xml</descriptor>
+              </descriptors>
+              <finalName>cadenzaflow-bpm-tomcat11-${project.version}</finalName>
+              <attach>true</attach>
+              <appendAssemblyId>false</appendAssemblyId>
+              <outputDirectory>target/</outputDirectory>
+              <workDirectory>target/assembly/work</workDirectory>
+              <tarLongFileMode>gnu</tarLongFileMode>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
