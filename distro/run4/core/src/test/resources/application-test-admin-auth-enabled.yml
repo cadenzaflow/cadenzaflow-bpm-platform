@@ -1,0 +1,5 @@
+cadenzaflow.bpm.run.admin-auth:
+  enabled: true
+  authorization-enabled: true
+  administrator-group-name: admins
+  administrator-user-name: admin
