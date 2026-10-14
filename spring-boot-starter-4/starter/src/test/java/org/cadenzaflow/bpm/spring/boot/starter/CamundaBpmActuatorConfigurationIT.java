@@ -16,8 +16,9 @@
  */
 package org.cadenzaflow.bpm.spring.boot.starter;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
+import java.util.Map;
 import org.cadenzaflow.bpm.spring.boot.starter.test.nonpa.TestApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.resttestclient.TestRestTemplate;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -38,19 +38,21 @@ public class CamundaBpmActuatorConfigurationIT extends AbstractCamundaAutoConfig
 
   @Test
   public void jobExecutorHealthIndicatorTest() {
-    final String body = getHealthBody();
-    assertTrue("wrong body " + body, body.contains("jobExecutor\":{\"status\":\"UP\""));
+    final Map<?, ?> jobExecutor = getHealthComponent("jobExecutor");
+    assertEquals("wrong health " + jobExecutor, "UP", jobExecutor.get("status"));
   }
 
   @Test
   public void processEngineHealthIndicatorTest() {
-    final String body = getHealthBody();
-    assertTrue("wrong body " + body, body.contains("processEngine\":{\"status\":\"UP\",\"details\":{\"name\":\"testEngine\"}}"));
+    final Map<?, ?> processEngine = getHealthComponent("processEngine");
+    assertEquals("wrong health " + processEngine, "UP", processEngine.get("status"));
+    assertEquals("wrong health " + processEngine, Map.of("name", "testEngine"), processEngine.get("details"));
   }
 
-  private String getHealthBody() {
-    ResponseEntity<String> entity = testRestTemplate.getForEntity("/actuator/health", String.class);
-    final String body = entity.getBody();
-    return body;
+  // compared as JSON, not as text: the order of the properties is not fixed
+  private Map<?, ?> getHealthComponent(String name) {
+    final Map<?, ?> health = testRestTemplate.getForObject("/actuator/health", Map.class);
+    final Map<?, ?> components = (Map<?, ?>) health.get("components");
+    return (Map<?, ?>) components.get(name);
   }
 }
