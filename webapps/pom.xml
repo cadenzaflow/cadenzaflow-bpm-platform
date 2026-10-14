@@ -253,7 +253,8 @@
             <goals>
               <goal>npm</goal>
             </goals>
-            <phase>generate-resources</phase>
+            <!-- the plugin honours -DskipTests only in the test phase -->
+            <phase>test</phase>
             <configuration>
               <workingDirectory>./react</workingDirectory>
               <installDirectory>./react</installDirectory>
