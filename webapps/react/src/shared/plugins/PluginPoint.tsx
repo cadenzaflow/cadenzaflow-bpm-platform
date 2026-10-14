@@ -23,7 +23,7 @@ export function PluginView({ plugin, engine, props = {}, className }: PluginView
     const node = document.createElement('div');
     container.current?.appendChild(node);
     try {
-      plugin.render(node, { api: pluginApi(engine), ...props });
+      plugin.render?.(node, { api: pluginApi(engine), ...props });
     } catch (error) {
       console.error(`The plugin ${plugin.id} failed to render`, error);
     }

@@ -108,7 +108,15 @@ leaves the page intact.
 | `cockpit.repository.resource.action` | an action of a resource | `deploymentId`, `resourceId` |
 | `cockpit.repository.resource.detail` | below a resource | `deploymentId`, `resourceId` |
 
-Tabs of plugins come after the built-in tabs. To try a plugin with
+Tabs of plugins come after the built-in tabs.
+
+A plugin at `<app>.logout` (`cockpit.logout`, `tasklist.logout`,
+`admin.logout`, `welcome.logout`) has a `logout(props)` function instead of
+`render`: "Log out" in the user menu calls it instead of logging out itself
+(if it throws, the app logs out itself). The SSO logout of
+`starter-security` is such a plugin.
+
+To try a plugin with
 `npm run dev`, put its files below `src/` and list it in `CZ_PLUGINS`, e.g.
 `CZ_PLUGINS='{"cockpit":[{"id":"my-plugin","location":"/src/my-plugin"}]}'`.
 
