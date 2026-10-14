@@ -53,6 +53,15 @@ jobs:
             -DskipITs \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
+      # Uses what "Build & test" installed; the profile runs the *IT classes only.
+      - name: Integration tests of the Spring Boot 4 starters
+        run: |
+          ./mvnw verify \
+            --batch-mode \
+            --fail-at-end \
+            -f spring-boot-starter-4/pom.xml \
+            -P integration-test-spring-boot-starter
+
       - name: Upload Surefire reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -70,18 +79,25 @@ jobs:
         env:
           RUN_ID: ${{ github.run_id }}
         run: |
-          xml_count=$(find . -path '*/target/surefire-reports/TEST-*.xml' 2>/dev/null | wc -l)
-          failed_modules=0
-          if [ "$xml_count" -gt 0 ]; then
-            failed_modules=$(grep -lE '<failure|<error' \
-              $(find . -path '*/target/surefire-reports/TEST-*.xml') 2>/dev/null \
-              | xargs -I{} dirname {} | sort -u | wc -l)
-          fi
+          # "<report files> <modules with failure/error reports>" of surefire or failsafe
+          stats() {
+            local count failed=0
+            count=$(find . -path "*/target/$1-reports/TEST-*.xml" 2>/dev/null | wc -l)
+            if [ "$count" -gt 0 ]; then
+              failed=$(grep -lE '<failure|<error' \
+                $(find . -path "*/target/$1-reports/TEST-*.xml") 2>/dev/null \
+                | xargs -I{} dirname {} | sort -u | wc -l || true)
+            fi
+            echo "$count $failed"
+          }
+          read -r xml_count failed_modules <<< "$(stats surefire)"
+          read -r it_xml_count it_failed_modules <<< "$(stats failsafe)"
           {
             echo "## Test results"
             echo ""
             echo "- Surefire XML report files: **${xml_count}**"
-            echo "- Modules with failure/error reports: **${failed_modules}**"
+            echo "- Failsafe XML report files (integration tests): **${it_xml_count}**"
+            echo "- Modules with failure/error reports: **$((failed_modules + it_failed_modules))**"
             echo ""
             echo "_See **surefire-reports-${RUN_ID}** artifact for full XML._"
           } >> "$GITHUB_STEP_SUMMARY"
