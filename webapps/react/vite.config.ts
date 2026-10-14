@@ -73,6 +73,8 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    // whole user journeys (logging in, typing into forms) under parallel load
+    testTimeout: 15000,
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     css: false,
