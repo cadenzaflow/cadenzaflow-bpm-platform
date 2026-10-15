@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Checkbox, InlineNotification, Modal, SkeletonText, Stack } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
+import { useSettings } from '../../../shared/classic-settings';
 import { notify } from '../../../shared/notifications';
 import { useDeleteDeployment, useDeploymentInstanceCounts, type DeleteOptions, type Deployment } from './api';
 
@@ -13,7 +14,13 @@ export function DeleteDeploymentModal({ engine, deployment, onClose }: { engine:
   const { t } = useTranslation('cockpit');
   const counts = useDeploymentInstanceCounts(engine, deployment.id);
   const remove = useDeleteDeployment(engine);
-  const [options, setOptions] = useState<DeleteOptions>({ cascade: false, skipCustomListeners: true, skipIoMappings: true });
+  // defaults and visibility from the classic config.js (cascade, skipCustomListeners, skipIoMappings)
+  const settings = useSettings('cockpit');
+  const [options, setOptions] = useState<DeleteOptions>({
+    cascade: settings.cascadeDefault,
+    skipCustomListeners: settings.skipCustomListeners.default,
+    skipIoMappings: settings.skipIoMappings.default,
+  });
   const processes = counts.data?.processes ?? 0;
   const cases = counts.data?.cases ?? 0;
   const blocked = !options.cascade && processes + cases > 0;
@@ -75,8 +82,9 @@ export function DeleteDeploymentModal({ engine, deployment, onClose }: { engine:
             </InlineNotification>
           )}
           {option('cascade', 'REPOSITORY_DEPLOYMENTS_DELETE_CASCADE', 'REPOSITORY_DEPLOYMENTS_DELETE_CASCADE_TOOLTIP')}
-          {option('skipCustomListeners', 'REPOSITORY_DEPLOYMENTS_DELETE_SKIP', 'REPOSITORY_DEPLOYMENTS_DELETE_SKIP_TOOLTIP')}
-          {option('skipIoMappings', 'REPOSITORY_DEPLOYMENTS_DELETE_MAPPING', 'REPOSITORY_DEPLOYMENTS_DELETE_MAPPING_TOOLTIP')}
+          {!settings.skipCustomListeners.hidden &&
+            option('skipCustomListeners', 'REPOSITORY_DEPLOYMENTS_DELETE_SKIP', 'REPOSITORY_DEPLOYMENTS_DELETE_SKIP_TOOLTIP')}
+          {!settings.skipIoMappings.hidden && option('skipIoMappings', 'REPOSITORY_DEPLOYMENTS_DELETE_MAPPING', 'REPOSITORY_DEPLOYMENTS_DELETE_MAPPING_TOOLTIP')}
           <p>{t('REPOSITORY_DEPLOYMENTS_DELETE_SURE')}</p>
         </Stack>
       )}

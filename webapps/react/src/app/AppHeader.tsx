@@ -15,6 +15,7 @@ import { UserAvatar } from '@carbon/icons-react';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useLogout, useUserProfile, type Authentication } from '../shared/auth/authentication';
+import { useSettings } from '../shared/classic-settings';
 import { classicUrl, moduleUrl, type ModuleName } from '../shared/config';
 import { displayName } from '../shared/format';
 import { logOutWith, useLogoutPlugin } from '../shared/plugins/plugins';
@@ -37,6 +38,8 @@ export function AppHeader({ module, engine, authentication }: AppHeaderProps) {
   const logoutPlugin = useLogoutPlugin(module);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userName = displayName(profile.data, authentication.userId);
+  const settings = useSettings(module);
+  const vendor = settings.appVendor ?? t('APP_VENDOR');
 
   // a logout plugin (e.g. single sign-on) replaces the webapp's own logout
   const signOut = () => {
@@ -46,11 +49,11 @@ export function AppHeader({ module, engine, authentication }: AppHeaderProps) {
   };
 
   return (
-    <Header aria-label={t('APP_VENDOR')}>
+    <Header aria-label={vendor}>
       {/* prefix rendered here: the logo comes before it (Carbon's default prefix is "IBM") */}
       <HeaderName href={moduleUrl(module, engine)} prefix="">
         <img src={logo} alt="" className="cz-header__logo" />
-        <span className="cds--header__name--prefix">{t('APP_VENDOR')}</span>&nbsp;{t(`${module.toUpperCase()}_APP`)}
+        <span className="cds--header__name--prefix">{vendor}</span>&nbsp;{settings.appName ?? t(`${module.toUpperCase()}_APP`)}
       </HeaderName>
       <HeaderNavigation aria-label={t('MODULES')}>
         {NAVIGATION.filter((item) => authentication.authorizedApps.includes(item)).map((item) => (

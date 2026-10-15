@@ -527,6 +527,7 @@
   "BATCHES_PROGRESS_BATCH_DETAILS": "Batch Details",
   "BATCHES_PROGRESS_COMPLETED": "Completed",
   "BATCHES_PROGRESS_END": "Ended Batches",
+  "BATCHES_LOAD_ENDED": "Load ended batches",
   "BATCHES_PROGRESS_END_TIME": "Ended",
   "BATCHES_PROGRESS_EXCEPTION": "Exception",
   "BATCHES_PROGRESS_FAILED": "(Failed {{jobs}})",

@@ -527,6 +527,7 @@
   "BATCHES_PROGRESS_BATCH_DETAILS": "Stapel-Details",
   "BATCHES_PROGRESS_COMPLETED": "Abgeschlossen",
   "BATCHES_PROGRESS_END": "Beendete Stapel",
+  "BATCHES_LOAD_ENDED": "Beendete Stapel laden",
   "BATCHES_PROGRESS_END_TIME": "Beendet",
   "BATCHES_PROGRESS_EXCEPTION": "Ausnahme",
   "BATCHES_PROGRESS_FAILED": "Fehlgeschlagene {{jobs}}",

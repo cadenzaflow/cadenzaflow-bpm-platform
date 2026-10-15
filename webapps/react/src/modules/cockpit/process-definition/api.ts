@@ -47,10 +47,11 @@ interface ActivityStatistics {
   incidents: { incidentType: string; incidentCount: number }[];
 }
 
-/** Running instances and open incidents per activity, as badges for the diagram. */
-export function useActivityBadges(engine: string, id: string) {
+/** Running instances and open incidents per activity, as badges for the diagram (not loaded when disabled). */
+export function useActivityBadges(engine: string, id: string, enabled = true) {
   return useQuery({
     queryKey: ['cockpit', engine, 'activity-statistics', id],
+    enabled,
     queryFn: async () => {
       const statistics = await request<ActivityStatistics[]>(definitionUrl(engine, id, '/statistics'), { query: { incidents: true } });
       const badges: Record<string, DiagramBadge> = {};

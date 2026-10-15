@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { InlineNotification, Loading } from '@carbon/react';
 import { Outlet, useMatches, useParams } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { setCsrfCookieName } from '../shared/api/client';
 import { useAuthentication } from '../shared/auth/authentication';
+import { useClassicSettings } from '../shared/classic-settings';
+import { setDateTimePattern } from '../shared/format';
+import { chooseLanguage } from '../shared/i18n';
 import { LoginPage } from '../shared/auth/LoginPage';
 import { Notifications } from '../shared/notifications';
 import type { ModuleName } from '../shared/config';
@@ -21,15 +25,30 @@ export function Shell() {
 }
 
 function ModuleShell({ module, engine }: { module: ModuleName; engine: string }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const authentication = useAuthentication(engine);
-  const moduleName = t(`${module.toUpperCase()}_APP`);
+  // the settings of the classic app/{module}/scripts/config.js
+  const settings = useClassicSettings(module);
+  const language = settings.data ? chooseLanguage(settings.data.locales) : undefined;
+  const moduleName = settings.data?.appName ?? t(`${module.toUpperCase()}_APP`);
+  const vendor = settings.data?.appVendor ?? t('APP_VENDOR');
+
+  if (settings.data) {
+    setDateTimePattern(settings.data.dateFormat);
+    setCsrfCookieName(settings.data.csrfCookieName);
+  }
 
   useEffect(() => {
-    document.title = `${t('APP_VENDOR')} ${moduleName}`;
-  }, [t, moduleName]);
+    if (language && i18n.language !== language) {
+      void i18n.changeLanguage(language);
+    }
+  }, [i18n, language]);
 
-  if (authentication.isPending) {
+  useEffect(() => {
+    document.title = `${vendor} ${moduleName}`;
+  }, [vendor, moduleName]);
+
+  if (authentication.isPending || settings.isPending || (language && i18n.language !== language)) {
     return <Loading withOverlay={false} description={t('LOADING')} className="cz-page-loading" />;
   }
   if (authentication.isError) {

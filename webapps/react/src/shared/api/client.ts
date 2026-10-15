@@ -32,8 +32,15 @@ export interface RequestOptions {
   signal?: AbortSignal;
 }
 
-const CSRF_COOKIE = 'XSRF-TOKEN';
+const DEFAULT_CSRF_COOKIE = 'XSRF-TOKEN';
 const CSRF_HEADER = 'X-XSRF-TOKEN';
+
+let csrfCookie = DEFAULT_CSRF_COOKIE;
+
+/** The cookie the server writes the CSRF token to, if the classic config.js renames it (csrfCookieName). */
+export function setCsrfCookieName(name: string | undefined): void {
+  csrfCookie = name ?? DEFAULT_CSRF_COOKIE;
+}
 
 // The server sends the token as cookie and as response header whenever it
 // creates one; the header copy covers a renamed cookie (csrfCookieName).
@@ -47,7 +54,7 @@ function readCookie(name: string): string | null {
 
 /** The CSRF token to send with POST, PUT and DELETE (also handed to plugins). */
 export function csrfToken(): string | null {
-  return readCookie(CSRF_COOKIE) ?? csrfTokenFromHeader;
+  return readCookie(csrfCookie) ?? csrfTokenFromHeader;
 }
 
 function withQuery(url: string, query?: QueryParams): string {

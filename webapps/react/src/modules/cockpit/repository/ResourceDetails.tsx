@@ -3,6 +3,7 @@ import { Button, InlineNotification, SkeletonPlaceholder, SkeletonText } from '@
 import { Download } from '@carbon/icons-react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
 import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import {
@@ -101,6 +102,7 @@ function Definitions({ engine, resource, type }: { engine: string; resource: Dep
 export function ResourceDetails({ engine, resource }: { engine: string; resource: DeploymentResource | undefined }) {
   const { t } = useTranslation('cockpit');
   const text = useResourceText(engine, resource);
+  const extensions = useBpmnJsExtensions('cockpit');
   const definitions = useResourceDefinitions(engine, resource);
 
   if (!resource) {
@@ -131,10 +133,12 @@ export function ResourceDetails({ engine, resource }: { engine: string; resource
       <InlineNotification kind="error" lowContrast hideCloseButton title={t('REPOSITORY_DEPLOYMENT_RESOURCE_DIRECTIVES_RETURN_2')} subtitle={text.error.message} />
     );
   } else if (type === 'bpmn') {
-    content = (
+    content = extensions ? (
       <Suspense fallback={skeleton}>
-        <BpmnDiagram xml={text.data} />
+        <BpmnDiagram xml={text.data} extensions={extensions} />
       </Suspense>
+    ) : (
+      skeleton
     );
   } else if (type === 'dmn') {
     content = (

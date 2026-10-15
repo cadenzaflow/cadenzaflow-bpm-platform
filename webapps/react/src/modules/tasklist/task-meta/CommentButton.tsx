@@ -6,9 +6,9 @@ import { notify } from '../../../shared/notifications';
 import { useAddComment } from './api';
 
 /** "Add comment" and its dialog; comments show up in the history tab. */
-export function CommentButton({ engine, taskId }: { engine: string; taskId: string }) {
+export function CommentButton({ engine, taskId, processInstanceId }: { engine: string; taskId: string; processInstanceId?: string | null }) {
   const { t } = useTranslation('tasklist');
-  const addComment = useAddComment(engine, taskId);
+  const addComment = useAddComment(engine, taskId, processInstanceId);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
 

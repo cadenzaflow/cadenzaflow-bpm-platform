@@ -14,8 +14,10 @@ import {
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
+import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
 import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
+import { useSettings } from '../../../shared/classic-settings';
 import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
 import { TimeToLive } from '../components/TimeToLive';
 import { DeploymentLink } from '../repository/DeploymentLink';
@@ -41,7 +43,9 @@ export function ProcessDefinitionPage() {
   // reached from a calling definition: its instances are filtered by it
   const parent = useProcessDefinition(engine, search.parentProcessDefinitionId ?? '', !!search.parentProcessDefinitionId);
   const xml = useProcessDefinitionXml(engine, id);
-  const badges = useActivityBadges(engine, id);
+  const extensions = useBpmnJsExtensions('cockpit');
+  // runtimeActivityInstanceMetrics.display of the classic config.js: the statistics query can be expensive
+  const badges = useActivityBadges(engine, id, useSettings('cockpit').activityInstanceMetrics);
   const versions = useVersions(engine, definition.data);
   const running = useRunningInstances(engine, definition.data);
   const activityIds = selectedActivities(search);
@@ -171,13 +175,14 @@ export function ProcessDefinitionPage() {
         </aside>
         <div className="cz-definition__main">
           {xml.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={xml.error.message} />}
-          {xml.isPending ? (
+          {xml.isPending || !extensions ? (
             <SkeletonPlaceholder className="cz-diagram-skeleton" />
           ) : (
             xml.data && (
               <Suspense fallback={<SkeletonPlaceholder className="cz-diagram-skeleton" />}>
                 <BpmnDiagram
                   xml={xml.data}
+                  extensions={extensions}
                   badges={badges.data}
                   badgeLabels={badgeLabels}
                   selected={activityIds}

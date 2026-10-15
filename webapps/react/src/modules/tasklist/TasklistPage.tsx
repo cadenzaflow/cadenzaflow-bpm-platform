@@ -14,7 +14,7 @@ import type { TasklistSearch } from './search';
 import { DEFAULT_SORTING } from './task-search';
 import { StartProcessModal } from './start-process/StartProcessModal';
 import { ShortcutsModal } from './shortcuts/ShortcutsModal';
-import { TASKLIST_SHORTCUTS } from './shortcuts/shortcuts';
+import { useTasklistShortcuts } from './shortcuts/shortcuts';
 import './tasklist.scss';
 
 const route = getRouteApi('/tasklist/$engine');
@@ -35,7 +35,8 @@ export function TasklistPage() {
   const update = (changes: Partial<TasklistSearch>) =>
     navigate({ search: (previous: TasklistSearch) => ({ ...previous, ...changes }) });
 
-  useShortcut(TASKLIST_SHORTCUTS.startProcess.key, () => setStartOpen(true));
+  const shortcuts = useTasklistShortcuts();
+  useShortcut(shortcuts.startProcess.key, () => setStartOpen(true));
 
   // Without ?filter the first filter (highest priority) is selected.
   const firstFilterId = filters.data?.[0]?.id;

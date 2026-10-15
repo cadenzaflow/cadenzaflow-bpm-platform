@@ -3,6 +3,7 @@ import { InlineNotification } from '@carbon/react';
 import NavigatedViewer from 'bpmn-js/lib/NavigatedViewer';
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-js/dist/assets/bpmn-js.css';
+import type { BpmnJsExtensions } from './bpmn-extensions';
 import './bpmn-diagram.scss';
 
 /** Numbers shown on an element, e.g. running instances and open incidents of an activity. */
@@ -24,6 +25,8 @@ interface BpmnDiagramProps {
   badgeLabels?: { count: string; incidents: string };
   /** The diagram was imported: e.g. diagram plugins get the viewer. Returns what to do when it goes away. */
   onViewer?: (viewer: NavigatedViewer) => (() => void) | void;
+  /** bpmn-js modules and moddle extensions to add (e.g. from the classic config.js) */
+  extensions?: BpmnJsExtensions;
 }
 
 interface Canvas {
@@ -68,7 +71,7 @@ function badgeElement(badge: DiagramBadge, labels?: { count: string; incidents: 
 }
 
 /** Read-only BPMN diagram with pan and zoom (bpmn-js). Load it lazily: bpmn-js is large. */
-export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels, onViewer }: BpmnDiagramProps) {
+export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels, onViewer, extensions }: BpmnDiagramProps) {
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<NavigatedViewer | null>(null);
   const clickHandler = useRef(onElementClick);
@@ -85,7 +88,11 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
 
   // import the diagram; markers and badges follow in the effect below
   useEffect(() => {
-    const instance = new NavigatedViewer({ container: container.current! });
+    const instance = new NavigatedViewer({
+      container: container.current!,
+      additionalModules: (extensions?.additionalModules ?? []) as never[],
+      moddleExtensions: (extensions?.moddleExtensions ?? {}) as never,
+    });
     viewer.current = instance;
     let active = true;
     let release: (() => void) | void;
@@ -113,7 +120,7 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
       viewer.current = null;
       instance.destroy();
     };
-  }, [xml]);
+  }, [xml, extensions]);
 
   useEffect(() => {
     const instance = viewer.current;

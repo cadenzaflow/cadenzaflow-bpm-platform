@@ -116,7 +116,7 @@ function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: Task
         <GroupsField engine={engine} taskId={task.id} />
       </dl>
       <div className="cz-task__actions">
-        <CommentButton engine={engine} taskId={task.id} />
+        <CommentButton engine={engine} taskId={task.id} processInstanceId={task.processInstanceId} />
       </div>
       {tabs.length > 0 && (
         <Tabs selectedIndex={selectedIndex} onChange={({ selectedIndex: index }) => onTabChange(tabs[index].id)}>

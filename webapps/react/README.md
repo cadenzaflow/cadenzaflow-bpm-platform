@@ -120,6 +120,41 @@ To try a plugin with
 `npm run dev`, put its files below `src/` and list it in `CZ_PLUGINS`, e.g.
 `CZ_PLUGINS='{"cockpit":[{"id":"my-plugin","location":"/src/my-plugin"}]}'`.
 
+## Settings of the classic config.js
+
+Operators configure the AngularJS webapps in `app/{app}/scripts/config.js`
+(an ES module whose default export is the settings). This UI reads the same
+file of each app (`shared/classic-settings.ts`) before it shows the app, so
+existing settings keep working. A setting the file does not set keeps this
+UI's default, which is the default of the classic webapps - except the
+language and the date format, which come from the browser.
+
+| Setting | Apps | Effect here |
+|---|---|---|
+| `app.name`, `app.vendor` | all | the app name and vendor in the header and the page title |
+| `locales.availableLocales`, `locales.fallbackLocale` | all | the language: the browser's preferred one among the available ones this UI has (English, German), else the fallback |
+| `dateFormat.normal` | all | dates with time, as a moment.js format (`LLL`, `DD.MM.YYYY HH:mm`, ...) |
+| `csrfCookieName` | all | the cookie the CSRF token is read from |
+| `customScripts` | all | ES modules below `app/{app}/` that are loaded with the app; plugins they export (as `plugin.js` does) join the app's plugins |
+| `links` | Welcome | the links of the Welcome page |
+| `skipCustomListeners`, `skipIoMappings` (`default`, `hidden`) | Cockpit | the options when a process instance or a deployment is deleted |
+| `cascade.default` | Cockpit | whether deleting a deployment deletes its process instances |
+| `runtimeActivityInstanceMetrics.display` | Cockpit | `false`: no instance counts on the process definition diagram (the statistics query is not sent) |
+| `batchOperation.autoLoadEnded` | Cockpit | `false`: the ended batches are listed only on request |
+| `userOperationLogAnnotationLength` | Cockpit | the maximum length of an incident annotation |
+| `bpmnJs.additionalModules`, `bpmnJs.moddleExtensions` | Cockpit | bpmn-js modules (ES modules) and moddle extensions (JSON) below `app/cockpit/` for the Cockpit diagrams |
+| `shortcuts` | Tasklist | the keys of the shortcuts; a description changed from the shipped one replaces the translated text |
+| `assignProcessInstanceIdToTaskComment` | Tasklist | comments on a task carry its process instance |
+
+Not applied:
+
+- `requireJsConfig` and custom scripts that need AngularJS or RequireJS: this
+  UI has neither. Such a script fails to load; the error is logged.
+- `historicActivityInstanceMetrics`, `defaultFilter` and `batchOperation.mode`:
+  they configure views of the Enterprise Cockpit, which this UI does not have.
+- `disableWelcomeMessage`: the classic webapps do not use it either.
+- `previewHtml`: HTML resources of a deployment are shown as source.
+
 ## Code layout
 
 ```
@@ -160,9 +195,9 @@ src/
   `app/welcome/scripts/config.js`, the file operators already maintain for the
   AngularJS Welcome page; without it the documentation is linked.
 - **Keyboard shortcuts** (`useShortcut` in `shared/shortcuts.ts`; the
-  Tasklist's list is `modules/tasklist/shortcuts/shortcuts.ts`) use the default
-  keys of the classic Tasklist. They are fixed: `shortcuts` in the classic
-  `config.js` does not apply here. Typing in a field never triggers one.
+  Tasklist's list is `modules/tasklist/shortcuts/shortcuts.ts`) use the keys
+  of the classic Tasklist, as its `config.js` sets them (see below). Typing in
+  a field never triggers one.
 - **Translations** reuse the keys and texts of the AngularJS webapps
   (`../frontend/public/app/*/locales`) where the text already exists. A test
   checks that every language has every key.
