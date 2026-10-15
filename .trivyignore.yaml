@@ -22,3 +22,21 @@ vulnerabilities:
       (third-party/spring-webmvc-6.2.19-cadenzaflow). Review together with the
       Spring Boot 3 Community Edition phase-out (V1.3 LTS).
     expired_at: 2026-12-31
+
+  - id: CVE-2026-47890
+    paths:
+      - "spring-boot-starter/starter-webapp-core/pom.xml"
+    statement: >-
+      spring-webmvc/spring-webflux stream corruption when Server-Sent Events
+      render view fragments. CadenzaFlow uses neither Server-Sent Events nor
+      view fragments: Spring MVC only serves the static resources of the
+      webapps. Spring Framework 6.2 has no open-source fix (6.2.20 is Spring
+      Enterprise only). starter-webapp-core is a library published to Maven
+      Central: applications get spring-webmvc from their own Spring Boot
+      version. The Spring Boot 4 starters and Run 4 use Spring Framework 7.0.9,
+      which fixes it. The Spring Boot 3 Run ships spring-webmvc
+      6.2.19-cadenzaflow.1, which fixes only CVE-2026-47884; scanners do not
+      report this CVE there because of the version suffix, but the same
+      reasoning applies (third-party/spring-webmvc-6.2.19-cadenzaflow/README.md).
+      Review together with the Spring Boot 3 Community Edition phase-out (V1.3 LTS).
+    expired_at: 2026-12-31
