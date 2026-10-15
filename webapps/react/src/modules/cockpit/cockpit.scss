@@ -322,6 +322,17 @@
   white-space: pre;
 }
 
+// sandboxed: its height cannot follow the content, so it can be resized
+.cz-repository__html-preview {
+  display: block;
+  width: 100%;
+  height: 24rem;
+  resize: vertical;
+  overflow: auto;
+  border: 1px solid $border-subtle-01;
+  background: $field-01;
+}
+
 .cz-repository__image {
   max-width: 100%;
   max-height: 32rem;
