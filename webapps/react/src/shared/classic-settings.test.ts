@@ -63,6 +63,18 @@ describe('classic config.js settings', () => {
     });
   });
 
+  it('loads config.js anew each time, as the classic webapps do', async () => {
+    const { importClassicConfig } = await vi.importActual<typeof import('./classic-config')>('./classic-config');
+    const urls: string[] = [];
+    const config = await importClassicConfig('cockpit', async (url) => {
+      urls.push(url);
+      return { default: { previewHtml: false } };
+    });
+
+    expect(config).toEqual({ previewHtml: false });
+    expect(urls[0]).toMatch(/^\/app\/cockpit\/scripts\/config\.js\?bust=\d+$/);
+  });
+
   it('ignores values of the wrong type, as the defaults stand for them', () => {
     expect(
       readClassicSettings({
