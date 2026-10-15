@@ -4,6 +4,10 @@ import { initI18n } from '../shared/i18n';
 import { useNotifications } from '../shared/notifications';
 import { json, logIn, renderApp } from '../test/app';
 
+// the settings of the classic tasklist/scripts/config.js, per test
+const classicConfig = vi.hoisted(() => ({ value: {} as Record<string, unknown> }));
+vi.mock('../shared/classic-config', () => ({ importClassicConfig: async () => classicConfig.value }));
+
 const task = {
   id: 't1',
   name: 'Approve Invoice',
@@ -108,6 +112,9 @@ function fakeBackend() {
     if (path === '/api/engine/engine/default/task/create' && method === 'POST') {
       return new Response(null, { status: 204 });
     }
+    if (path === '/api/engine/engine/default/task/t2/comment/create' && method === 'POST') {
+      return json({ id: 'c1' });
+    }
     return json({ message: `unexpected ${method} ${url}` }, 500);
   });
   vi.stubGlobal('fetch', fetchMock);
@@ -118,6 +125,7 @@ beforeAll(() => initI18n('en'));
 afterEach(() => {
   vi.unstubAllGlobals();
   useNotifications.setState({ notifications: [] });
+  classicConfig.value = {};
 });
 
 describe('webapp shell', () => {
@@ -263,5 +271,43 @@ describe('webapp shell', () => {
     await logIn('wrong');
 
     expect(await screen.findByText('Login Failed')).toBeInTheDocument();
+  });
+});
+
+describe('tasklist with the settings of the classic config.js', () => {
+  it('takes the shortcut keys and comments with the process instance', async () => {
+    classicConfig.value = {
+      shortcuts: {
+        // the config.js the classic Tasklist ships: its descriptions keep the translations
+        claimTask: { key: 'ctrl+alt+c', description: 'claims the currently selected task' },
+        startProcess: { key: 'ctrl+alt+s', description: 'starts a process' },
+      },
+      assignProcessInstanceIdToTaskComment: true,
+    };
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/tasklist/default?filter=f1&task=t2');
+    const user = await logIn();
+    expect(await screen.findByRole('heading', { name: 'Check order' })).toBeInTheDocument();
+
+    await user.keyboard('{Control>}{Alt>}s{/Alt}{/Control}');
+    expect(await screen.findByText('Order')).toBeVisible();
+    await user.keyboard('{Escape}');
+
+    await user.click(screen.getByRole('button', { name: 'Keyboard Shortcuts' }));
+    const help = within(await screen.findByRole('dialog', { name: 'Keyboard Shortcuts' }));
+    expect(help.getByText('Ctrl + Alt + S')).toBeInTheDocument();
+    expect(help.getByText('starts a process')).toBeInTheDocument();
+    expect(help.getByText('Claims the selected task')).toBeInTheDocument();
+    await user.keyboard('{Escape}');
+
+    await user.click(screen.getByRole('button', { name: 'Add Comment' }));
+    const comment = within(await screen.findByRole('dialog', { name: 'Add Comment' }));
+    await user.type(comment.getByLabelText('Comment'), 'Looks good');
+    await user.click(comment.getByRole('button', { name: 'Save' }));
+    await waitFor(() =>
+      expect(fetchMock.mock.calls.some(([url]) => url.endsWith('/task/t2/comment/create'))).toBe(true),
+    );
+    const created = fetchMock.mock.calls.find(([url]) => url.endsWith('/task/t2/comment/create'));
+    expect(JSON.parse(String(created?.[1]?.body))).toEqual({ message: 'Looks good', processInstanceId: 'pi2' });
   });
 });

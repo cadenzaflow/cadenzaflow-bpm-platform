@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom/vitest';
 import { configure } from '@testing-library/react';
+import { vi } from 'vitest';
+
+// There is no classic app/{module}/scripts/config.js in the tests; a test that
+// needs its settings mocks this module itself.
+vi.mock('../shared/classic-config', () => ({ importClassicConfig: vi.fn(async () => ({})) }));
 
 // The tests run in parallel; under that load, loading an embedded form or a
 // debounced check can take longer than the default second of findBy/waitFor.

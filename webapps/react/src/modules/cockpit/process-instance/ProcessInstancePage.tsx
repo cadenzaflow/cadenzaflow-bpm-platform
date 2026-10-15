@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../../shared/api/client';
 import { elementNames } from '../../../shared/diagram/bpmn-names';
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
+import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
 import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useProcessDefinition, useProcessDefinitionXml } from '../process-definition/api';
@@ -56,6 +57,7 @@ export function ProcessInstancePage() {
   const instance = useProcessInstance(engine, id);
   const definition = useProcessDefinition(engine, instance.data?.definitionId ?? '', !!instance.data);
   const xml = useProcessDefinitionXml(engine, instance.data?.definitionId);
+  const extensions = useBpmnJsExtensions('cockpit');
   const tree = useActivityInstances(engine, id);
   const superInstance = useSuperProcessInstance(engine, id);
   const names = useMemo(() => elementNames(xml.data), [xml.data]);
@@ -227,13 +229,14 @@ export function ProcessInstancePage() {
           </aside>
           <div className="cz-definition__main">
             {xml.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={xml.error.message} />}
-            {instance.isPending || xml.isPending ? (
+            {instance.isPending || xml.isPending || !extensions ? (
               <SkeletonPlaceholder className="cz-diagram-skeleton" />
             ) : (
               xml.data && (
                 <Suspense fallback={<SkeletonPlaceholder className="cz-diagram-skeleton" />}>
                   <BpmnDiagram
                     xml={xml.data}
+                    extensions={extensions}
                     badges={badges}
                     badgeLabels={badgeLabels}
                     selected={activityIds}

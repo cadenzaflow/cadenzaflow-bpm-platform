@@ -3,6 +3,7 @@ import { CodeSnippet, InlineNotification, Link, Modal, RadioButton, RadioButtonG
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { request } from '../../../shared/api/client';
+import { useSettings } from '../../../shared/classic-settings';
 import { notify } from '../../../shared/notifications';
 import { toEngineDate, parseLocalDateTime, toLocalDateTimeText } from '../../../shared/variables';
 import { stacktraceUrl, useAnnotation, useRetry, type Incident } from './api';
@@ -43,6 +44,8 @@ export function StacktraceModal({ engine, incident, onClose }: DialogProps) {
 export function AnnotationModal({ engine, incident, onClose }: DialogProps) {
   const { t } = useTranslation('cockpit');
   const annotation = useAnnotation(engine);
+  // userOperationLogAnnotationLength of the classic config.js
+  const maxLength = useSettings('cockpit').annotationLength;
   const [text, setText] = useState(incident.annotation ?? '');
   return (
     <Modal
@@ -67,7 +70,7 @@ export function AnnotationModal({ engine, incident, onClose }: DialogProps) {
         labelText={t('PLUGIN_INCIDENTS_TAB_ANNOTATION')}
         hideLabel
         rows={4}
-        maxCount={4000}
+        maxCount={maxLength}
         enableCounter
         value={text}
         onChange={(event) => setText(event.target.value)}

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { csrfToken } from '../api/client';
+import { useSettings } from '../classic-settings';
 import { appRoot, type ModuleName } from '../config';
 import { importPlugin } from './import-plugin';
 
@@ -110,6 +111,31 @@ export async function loadPlugins(
   return modules.flat();
 }
 
+/**
+ * Loads the customScripts of the classic config.js: ES modules below
+ * app/{module}/, as in the classic webapps. Their code runs, and the plugins
+ * they export join the module's plugins. A script that fails to load (e.g.
+ * one written for AngularJS) is left out and logged.
+ */
+export async function loadCustomScripts(
+  module: ModuleName,
+  scripts: string[],
+  importModule: (url: string) => Promise<{ default?: unknown }> = importPlugin,
+): Promise<FrontendPlugin[]> {
+  const modules = await Promise.all(
+    scripts.map(async (script) => {
+      try {
+        const exported = (await importModule(`${appRoot}/app/${module}/${script.endsWith('.js') ? script : `${script}.js`}`)).default;
+        return exported === undefined ? [] : (Array.isArray(exported) ? exported : [exported]).filter(isPlugin);
+      } catch (error) {
+        console.error(`The custom script ${script} could not be loaded`, error);
+        return [];
+      }
+    }),
+  );
+  return modules.flat();
+}
+
 /** What every plugin gets: the REST APIs, the engine and the CSRF token. */
 export function pluginApi(engine: string): PluginApi {
   const api = `${appRoot}/api`;
@@ -124,13 +150,17 @@ export function pluginApi(engine: string): PluginApi {
   };
 }
 
-/** The plugins of the module, loaded once. */
+/** The plugins of the module (those of the server and the customScripts of the classic config.js), loaded once. */
 export function usePlugins(module: ModuleName) {
+  const { customScripts } = useSettings(module);
   return useQuery({
     queryKey: ['plugins', module],
     staleTime: Infinity,
     gcTime: Infinity,
-    queryFn: () => loadPlugins(readPluginList(module)),
+    queryFn: async () => {
+      const [plugins, scripted] = await Promise.all([loadPlugins(readPluginList(module)), loadCustomScripts(module, customScripts)]);
+      return [...plugins, ...scripted];
+    },
   });
 }
 

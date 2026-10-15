@@ -5,7 +5,7 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { focusFirst, useShortcut } from '../../shared/shortcuts';
 import type { TaskFilter } from './api';
-import { TASKLIST_SHORTCUTS } from './shortcuts/shortcuts';
+import { useTasklistShortcuts } from './shortcuts/shortcuts';
 
 interface FilterListProps {
   filters: UseQueryResult<TaskFilter[]>;
@@ -19,7 +19,8 @@ interface FilterListProps {
 export function FilterList({ filters, selectedId, onSelect, onEdit, actions }: FilterListProps) {
   const { t } = useTranslation('tasklist');
   const section = useRef<HTMLElement>(null);
-  useShortcut(TASKLIST_SHORTCUTS.focusFilter.key, () =>
+  const shortcuts = useTasklistShortcuts();
+  useShortcut(shortcuts.focusFilter.key, () =>
     focusFirst(section.current, '.cds--contained-list-item__content'),
   );
 

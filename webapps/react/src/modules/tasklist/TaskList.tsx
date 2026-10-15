@@ -16,7 +16,7 @@ import { toQuery, type SearchState } from '../../shared/search/criteria';
 import { CriteriaSearch } from '../../shared/search/CriteriaSearch';
 import { focusFirst, useShortcut } from '../../shared/shortcuts';
 import { TASK_PAGE_SIZE, useFilterTasks, type TaskFilter, type TaskVariable } from './api';
-import { TASKLIST_SHORTCUTS } from './shortcuts/shortcuts';
+import { useTasklistShortcuts } from './shortcuts/shortcuts';
 import { SORT_FIELDS, TASK_CRITERIA, type Sorting } from './task-search';
 
 interface TaskListProps {
@@ -55,7 +55,8 @@ export function TaskList({
   const [searchOpen, setSearchOpen] = useState(search.criteria.length > 0);
   const [draft, setDraft] = useState(search);
   const section = useRef<HTMLElement>(null);
-  useShortcut(TASKLIST_SHORTCUTS.focusList.key, () =>
+  const shortcuts = useTasklistShortcuts();
+  useShortcut(shortcuts.focusList.key, () =>
     focusFirst(section.current, '.cds--contained-list-item__content'),
   );
 

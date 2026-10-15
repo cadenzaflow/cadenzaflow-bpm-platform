@@ -4,6 +4,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { engineUrl } from '../../../shared/api/client';
 import { usePagedList } from '../../../shared/api/paging';
+import { useSettings } from '../../../shared/classic-settings';
 import { formatDateTime } from '../../../shared/format';
 import { toQuery, type CriterionType, type SearchState } from '../../../shared/search/criteria';
 import { CriteriaSearch } from '../../../shared/search/CriteriaSearch';
@@ -101,6 +102,9 @@ export function BatchesPage() {
   const navigate = route.useNavigate();
   const [draft, setDraft] = useState<SearchState>({ criteria: search.searchQuery ?? [], matchAny: false });
   const [creators, setCreators] = useState<string[]>([]);
+  // batchOperation.autoLoadEnded of the classic config.js: false lists the ended batches only on request
+  const settings = useSettings('cockpit');
+  const [showEnded, setShowEnded] = useState(settings.autoLoadEndedBatches);
   const userNames = useUserNames(engine, creators);
   const query = useMemo(() => toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, BATCH_CRITERIA), [search.searchQuery]);
 
@@ -184,14 +188,20 @@ export function BatchesPage() {
           </section>
           <section>
             <h2 className="cz-section-title">{t('BATCHES_PROGRESS_END')}</h2>
-            <BatchList
-              engine={engine}
-              kind="history"
-              query={ENDED}
-              defaultSorting={{ sortBy: 'startTime', sortOrder: 'desc' }}
-              columns={endedColumns}
-              emptyText={t('BATCHES_PROGRESS_NO_FINISHED')}
-            />
+            {showEnded ? (
+              <BatchList
+                engine={engine}
+                kind="history"
+                query={ENDED}
+                defaultSorting={{ sortBy: 'startTime', sortOrder: 'desc' }}
+                columns={endedColumns}
+                emptyText={t('BATCHES_PROGRESS_NO_FINISHED')}
+              />
+            ) : (
+              <Button kind="tertiary" size="sm" onClick={() => setShowEnded(true)}>
+                {t('BATCHES_LOAD_ENDED')}
+              </Button>
+            )}
           </section>
         </div>
         {search.details && (

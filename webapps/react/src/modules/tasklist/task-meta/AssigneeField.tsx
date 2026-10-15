@@ -7,7 +7,7 @@ import { displayName } from '../../../shared/format';
 import { notify } from '../../../shared/notifications';
 import { useShortcut } from '../../../shared/shortcuts';
 import { useAssignTask, type TaskDetails } from '../api';
-import { TASKLIST_SHORTCUTS } from '../shortcuts/shortcuts';
+import { useTasklistShortcuts } from '../shortcuts/shortcuts';
 import { useSetAssignee, userExists } from './api';
 
 /**
@@ -26,7 +26,8 @@ export function AssigneeField({ engine, details: { task, users } }: { engine: st
 
   const failed = (key: string) => (error: Error) => notify({ kind: 'error', title: t(key), subtitle: error.message });
   const claimForMe = () => claim.mutate(userId, { onError: failed('CLAIM_ERROR') });
-  useShortcut(TASKLIST_SHORTCUTS.claimTask.key, claimForMe, !task.assignee && !!userId && !busy);
+  const shortcuts = useTasklistShortcuts();
+  useShortcut(shortcuts.claimTask.key, claimForMe, !task.assignee && !!userId && !busy);
 
   const save = async () => {
     const id = newAssignee.trim();

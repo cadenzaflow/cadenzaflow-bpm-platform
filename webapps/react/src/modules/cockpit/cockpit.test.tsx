@@ -9,6 +9,10 @@ import type { ProcessStatistics } from './api';
 import type { ActivityInstance } from './process-instance/api';
 import type { VariableInstance } from './variables/api';
 
+// the settings of the classic cockpit/scripts/config.js, per test
+const classicConfig = vi.hoisted(() => ({ value: {} as Record<string, unknown> }));
+vi.mock('../../shared/classic-config', () => ({ importClassicConfig: async () => classicConfig.value }));
+
 const ENGINE = '/api/engine/engine/default';
 const COCKPIT = '/api/cockpit/plugin/base/default';
 
@@ -258,6 +262,7 @@ beforeAll(() => initI18n('en'));
 afterEach(() => {
   vi.unstubAllGlobals();
   useNotifications.setState({ notifications: [] });
+  classicConfig.value = {};
 });
 
 describe('cockpit dashboard', () => {
@@ -581,5 +586,43 @@ describe('cockpit process instance bulk retry', () => {
     expect(within(summary.getByText('failed-2').closest('tr')!).getByText('Failed')).toBeInTheDocument();
     const retried = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/failed-1/retries'));
     expect(JSON.parse(String(retried?.[1]?.body))).toEqual({ retries: 1 });
+  });
+});
+
+describe('cockpit with the settings of the classic config.js', () => {
+  it('names the app, formats dates and leaves out the activity statistics', async () => {
+    classicConfig.value = {
+      app: { name: 'Operations', vendor: 'Company' },
+      dateFormat: { normal: '[on] DD.MM.YYYY' },
+      runtimeActivityInstanceMetrics: { display: false },
+    };
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-definition/invoice:2');
+    await logIn();
+
+    expect(await screen.findByText('INV-1')).toBeInTheDocument();
+    expect(screen.getByText('Company')).toBeInTheDocument();
+    expect(screen.getByText('Operations')).toBeInTheDocument();
+    expect(document.title).toBe('Company Operations');
+    expect(screen.getByText('on 13.10.2026')).toBeInTheDocument();
+    expect(fetchMock.mock.calls.some(([url]) => url.startsWith(`${ENGINE}/process-definition/invoice%3A2/statistics`))).toBe(false);
+  });
+
+  it('starts the delete options as config.js says and hides those it hides', async () => {
+    classicConfig.value = { skipCustomListeners: { default: false, hidden: true }, skipIoMappings: { default: true } };
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Delete Process Instance' }));
+    const cancel = within(await screen.findByRole('dialog', { name: 'Delete running process instance' }));
+    expect(cancel.queryByRole('checkbox', { name: 'Skip Custom Listeners' })).not.toBeInTheDocument();
+    expect(cancel.getByRole('checkbox', { name: 'Skip IO Mappings' })).toBeChecked();
+    await user.click(cancel.getByRole('button', { name: 'Delete Process Instance' }));
+    await waitFor(() =>
+      expect(fetchMock.mock.calls.some(([url, init]) => url.startsWith(`${ENGINE}/process-instance/pi-1?`) && init?.method === 'DELETE')).toBe(true),
+    );
+    const deleted = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/process-instance/pi-1?`) && init?.method === 'DELETE');
+    expect(deleted?.[0]).toContain('skipCustomListeners=false&skipIoMappings=true');
   });
 });

@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useSettings } from '../../../shared/classic-settings';
 import { engineUrl, request } from '../../../shared/api/client';
 import type { Task } from '../api';
 
@@ -83,11 +84,16 @@ export function useChangeGroup(engine: string, taskId: string) {
   });
 }
 
-export function useAddComment(engine: string, taskId: string) {
+/** Comments a task; with assignProcessInstanceIdToTaskComment (classic config.js), also its process instance. */
+export function useAddComment(engine: string, taskId: string, processInstanceId?: string | null) {
   const refresh = useRefresh(engine, taskId);
+  const withInstance = useSettings('tasklist').assignProcessInstanceIdToTaskComment && !!processInstanceId;
   return useMutation({
     mutationFn: (message: string) =>
-      request<void>(engineUrl(engine, `${taskPath(taskId)}/comment/create`), { method: 'POST', json: { message } }),
+      request<void>(engineUrl(engine, `${taskPath(taskId)}/comment/create`), {
+        method: 'POST',
+        json: withInstance ? { message, processInstanceId } : { message },
+      }),
     onSuccess: refresh,
   });
 }

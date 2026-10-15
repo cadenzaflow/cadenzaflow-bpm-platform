@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Checkbox, Modal, Stack } from '@carbon/react';
 import { Add, Pause, Play, Renew, TrashCan } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
+import { useSettings } from '../../../shared/classic-settings';
 import { notify } from '../../../shared/notifications';
 import { AddVariableModal } from '../variables/VariableDialogs';
 import { useCancelInstance, useInstanceSuspension, type ProcessInstance } from './api';
@@ -22,8 +23,10 @@ export function InstanceActions({ engine, instance, onCanceled, scopeOf }: Insta
   const suspension = useInstanceSuspension(engine, instance.id);
   const cancel = useCancelInstance(engine, instance.id);
   const [dialog, setDialog] = useState<'variable' | 'retry' | 'suspension' | 'cancel' | null>(null);
-  const [skipCustomListeners, setSkipCustomListeners] = useState(true);
-  const [skipIoMappings, setSkipIoMappings] = useState(true);
+  // defaults and visibility from the classic config.js (skipCustomListeners, skipIoMappings)
+  const settings = useSettings('cockpit');
+  const [skipCustomListeners, setSkipCustomListeners] = useState(settings.skipCustomListeners.default);
+  const [skipIoMappings, setSkipIoMappings] = useState(settings.skipIoMappings.default);
   const suspend = !instance.suspended;
 
   return (
@@ -141,20 +144,24 @@ export function InstanceActions({ engine, instance, onCanceled, scopeOf }: Insta
             <p>
               {t('PLUGIN_CANCEL_PROCESS_ID')}: <code>{instance.id}</code>
             </p>
-            <Checkbox
-              id="cz-cancel-skip-listeners"
-              labelText={t('PLUGIN_CANCEL_PROCESS_SKIP_CUSTOM_LISTENERS')}
-              helperText={t('PLUGIN_CANCEL_PROCESS_TOOLTIP_VALUE_ENABLED')}
-              checked={skipCustomListeners}
-              onChange={(_, { checked }) => setSkipCustomListeners(checked)}
-            />
-            <Checkbox
-              id="cz-cancel-skip-io"
-              labelText={t('PLUGIN_CANCEL_PROCESS_SKIP_IO_MAPPINGS')}
-              helperText={t('PLUGIN_CANCEL_PROCESS_TOOLTIP_VALUE_ENABLED_IO')}
-              checked={skipIoMappings}
-              onChange={(_, { checked }) => setSkipIoMappings(checked)}
-            />
+            {!settings.skipCustomListeners.hidden && (
+              <Checkbox
+                id="cz-cancel-skip-listeners"
+                labelText={t('PLUGIN_CANCEL_PROCESS_SKIP_CUSTOM_LISTENERS')}
+                helperText={t('PLUGIN_CANCEL_PROCESS_TOOLTIP_VALUE_ENABLED')}
+                checked={skipCustomListeners}
+                onChange={(_, { checked }) => setSkipCustomListeners(checked)}
+              />
+            )}
+            {!settings.skipIoMappings.hidden && (
+              <Checkbox
+                id="cz-cancel-skip-io"
+                labelText={t('PLUGIN_CANCEL_PROCESS_SKIP_IO_MAPPINGS')}
+                helperText={t('PLUGIN_CANCEL_PROCESS_TOOLTIP_VALUE_ENABLED_IO')}
+                checked={skipIoMappings}
+                onChange={(_, { checked }) => setSkipIoMappings(checked)}
+              />
+            )}
           </Stack>
         </Modal>
       )}

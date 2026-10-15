@@ -21,14 +21,24 @@ export const resources = {
 
 export const SUPPORTED_LANGUAGES = Object.keys(resources);
 
+const baseLanguage = (language: string) => language.toLowerCase().split('-')[0];
+
 export function detectLanguage(languages: readonly string[] = navigator.languages ?? [navigator.language]): string {
-  for (const language of languages) {
-    const base = language.toLowerCase().split('-')[0];
-    if (SUPPORTED_LANGUAGES.includes(base)) {
-      return base;
-    }
-  }
-  return 'en';
+  return chooseLanguage(undefined, languages);
+}
+
+/**
+ * The browser's preferred language among those this UI has and the classic
+ * config.js allows (locales.availableLocales), else its fallbackLocale, else English.
+ */
+export function chooseLanguage(
+  locales: { available: string[]; fallback: string } | undefined,
+  languages: readonly string[] = navigator.languages ?? [navigator.language],
+): string {
+  const allowed = locales ? SUPPORTED_LANGUAGES.filter((language) => locales.available.map(baseLanguage).includes(language)) : SUPPORTED_LANGUAGES;
+  const preferred = languages.map(baseLanguage).find((language) => allowed.includes(language));
+  const fallback = locales ? baseLanguage(locales.fallback) : 'en';
+  return preferred ?? (SUPPORTED_LANGUAGES.includes(fallback) ? fallback : 'en');
 }
 
 export function initI18n(language = detectLanguage()) {

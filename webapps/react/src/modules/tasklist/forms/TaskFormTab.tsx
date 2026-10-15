@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuthentication } from '../../../shared/auth/authentication';
 import { notify } from '../../../shared/notifications';
 import { focusFirst, useShortcut } from '../../../shared/shortcuts';
-import { TASKLIST_SHORTCUTS } from '../shortcuts/shortcuts';
+import { useTasklistShortcuts } from '../shortcuts/shortcuts';
 import { useAssignNotification } from '../assign-notification';
 import type { TaskTabProps } from '../task-tabs/registry';
 import { useFormInfo, useSubmitForm } from './api';
@@ -20,7 +20,8 @@ export function TaskFormTab({ engine, task, onTaskCompleted }: TaskTabProps) {
   const formInfo = useFormInfo(engine, target);
   const notifyAssigned = useAssignNotification(engine);
   const container = useRef<HTMLDivElement>(null);
-  useShortcut(TASKLIST_SHORTCUTS.focusForm.key, () =>
+  const shortcuts = useTasklistShortcuts();
+  useShortcut(shortcuts.focusForm.key, () =>
     focusFirst(container.current, 'input:not([type="hidden"]):not(:disabled), select:not(:disabled), textarea:not(:disabled)'),
   );
   const submitForm = useSubmitForm(engine, target, {

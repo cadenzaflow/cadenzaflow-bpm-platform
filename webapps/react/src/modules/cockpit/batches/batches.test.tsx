@@ -4,6 +4,10 @@ import { initI18n } from '../../../shared/i18n';
 import { json, logIn, renderApp } from '../../../test/app';
 import { progressOf, validateBatchesSearch } from './search';
 
+// the settings of the classic cockpit/scripts/config.js, per test
+const classicConfig = vi.hoisted(() => ({ value: {} as Record<string, unknown> }));
+vi.mock('../../../shared/classic-config', () => ({ importClassicConfig: async () => classicConfig.value }));
+
 const ENGINE = '/api/engine/engine/default';
 
 const running = {
@@ -84,7 +88,10 @@ function fakeBackend() {
 }
 
 beforeAll(() => initI18n('en'));
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  classicConfig.value = {};
+});
 
 describe('batches', () => {
   it('computes the progress once a job completed', () => {
@@ -140,5 +147,21 @@ describe('batches', () => {
     await waitFor(() => expect(history.location.search).toBe(''));
     const deleted = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/batch/batch-1`) && init?.method === 'DELETE');
     expect(deleted?.[0]).toContain('cascade=true');
+  });
+});
+
+describe('batches with the settings of the classic config.js', () => {
+  it('lists the ended batches only on request when config.js turns autoLoadEnded off', async () => {
+    classicConfig.value = { batchOperation: { autoLoadEnded: false } };
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/batch');
+    const user = await logIn();
+
+    expect(await screen.findByRole('button', { name: 'batch-1' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'batch-0' })).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.some(([url]) => url.startsWith(`${ENGINE}/history/batch`))).toBe(false);
+
+    await user.click(screen.getByRole('button', { name: 'Load ended batches' }));
+    expect(await screen.findByRole('button', { name: 'batch-0' })).toBeInTheDocument();
   });
 });
