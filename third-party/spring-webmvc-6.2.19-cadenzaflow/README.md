@@ -10,6 +10,13 @@ A patched build of Spring Framework's `spring-webmvc` 6.2.19. It fixes **CVE-202
 
 CadenzaFlow itself does not use `XsltView`. The patched jar removes the vulnerable code path from what we ship anyway, so the release security gate does not need an exception for Run.
 
+## Not fixed here
+
+- CVE-2026-47890: stream corruption when Server-Sent Events render view fragments (Spring Framework 6.2.0 - 6.2.19, fixed in 7.0.9; 6.2.20 is Spring Enterprise only). This jar still contains it.
+  - CadenzaFlow uses neither Server-Sent Events nor view fragments: Spring MVC only serves the static resources of the webapps.
+  - Scanners compare `6.2.19-cadenzaflow.1` with the affected range `<= 6.2.19` and do not report it. That is not a fix. The `.trivyignore.yaml` entry for `starter-webapp-core` gives the reasoning.
+  - Run 4 (Spring Framework 7.0.9) does not have it.
+
 ## What is in the artifact
 
 `org.springframework:spring-webmvc:6.2.19-cadenzaflow.1` is the official 6.2.19 jar from Maven Central with exactly three changes:
