@@ -82,7 +82,8 @@ jobs:
           # which 429-rate-limits this runner's IP and makes Trivy exit FATAL
           # before writing a report (every scan since at least 2026-06-29 died
           # this way). With the local repo populated, Trivy never goes remote.
-          ./mvnw -B -q -DskipTests dependency:resolve
+          # The script tolerates only reactor modules that are not released yet.
+          bash .github/scripts/pre-resolve-dependencies.sh
 
       - name: Trivy filesystem scan
         id: trivy_fs
