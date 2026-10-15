@@ -142,6 +142,7 @@ language and the date format, which come from the browser.
 | `runtimeActivityInstanceMetrics.display` | Cockpit | `false`: no instance counts on the process definition diagram (the statistics query is not sent) |
 | `batchOperation.autoLoadEnded` | Cockpit | `false`: the ended batches are listed only on request |
 | `userOperationLogAnnotationLength` | Cockpit | the maximum length of an incident annotation |
+| `previewHtml` | Cockpit | `false`: HTML resources of a deployment are shown only as source; otherwise also as a form preview in a sandboxed frame (no scripts, no access to the page or the session, no submission) |
 | `bpmnJs.additionalModules`, `bpmnJs.moddleExtensions` | Cockpit | bpmn-js modules (ES modules) and moddle extensions (JSON) below `app/cockpit/` for the Cockpit diagrams |
 | `shortcuts` | Tasklist | the keys of the shortcuts; a description changed from the shipped one replaces the translated text |
 | `assignProcessInstanceIdToTaskComment` | Tasklist | comments on a task carry its process instance |
@@ -153,7 +154,6 @@ Not applied:
 - `historicActivityInstanceMetrics`, `defaultFilter` and `batchOperation.mode`:
   they configure views of the Enterprise Cockpit, which this UI does not have.
 - `disableWelcomeMessage`: the classic webapps do not use it either.
-- `previewHtml`: HTML resources of a deployment are shown as source.
 
 ## Code layout
 

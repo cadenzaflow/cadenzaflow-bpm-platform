@@ -4,6 +4,7 @@ import { Download } from '@carbon/icons-react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
+import { useSettings } from '../../../shared/classic-settings';
 import { PluginPoint } from '../../../shared/plugins/PluginPoint';
 import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import {
@@ -17,6 +18,7 @@ import {
   type ResourceDefinition,
   type ResourceType,
 } from './api';
+import { HtmlPreview } from './HtmlPreview';
 
 const BpmnDiagram = lazy(() => import('../../../shared/diagram/BpmnDiagram'));
 const DmnViewer = lazy(() => import('../../../shared/diagram/DmnViewer'));
@@ -95,14 +97,16 @@ function Definitions({ engine, resource, type }: { engine: string; resource: Dep
 
 /**
  * The selected resource: BPMN and DMN as diagrams, Camunda Forms as a
- * read-only form, images as images and everything else as text (HTML files
- * too: they are never rendered), with a download link and, for BPMN, DMN and
- * CMMN, the definitions deployed from it.
+ * read-only form, HTML files rendered in a sandbox (unless previewHtml of the
+ * classic config.js is off) and as source, images as images and everything
+ * else as text, with a download link and, for BPMN, DMN and CMMN, the
+ * definitions deployed from it.
  */
 export function ResourceDetails({ engine, resource }: { engine: string; resource: DeploymentResource | undefined }) {
   const { t } = useTranslation('cockpit');
   const text = useResourceText(engine, resource);
   const extensions = useBpmnJsExtensions('cockpit');
+  const { previewHtml } = useSettings('cockpit');
   const definitions = useResourceDefinitions(engine, resource);
 
   if (!resource) {
@@ -153,6 +157,15 @@ export function ResourceDetails({ engine, resource }: { engine: string; resource
         <Suspense fallback={skeleton}>
           <FormPreview schema={text.data} errorTitle={t('FORM_FAILURE')} />
         </Suspense>
+        <h3 className="cz-section-title">{t('REPOSITORY_RESOURCES_RAW_DATA')}</h3>
+        {source(text.data)}
+      </>
+    );
+  } else if (type === 'html' && previewHtml) {
+    content = (
+      <>
+        <h3 className="cz-section-title">{t('REPOSITORY_RESOURCES_FORM_PREVIEW')}</h3>
+        <HtmlPreview html={text.data} title={t('REPOSITORY_RESOURCES_FORM_PREVIEW')} />
         <h3 className="cz-section-title">{t('REPOSITORY_RESOURCES_RAW_DATA')}</h3>
         {source(text.data)}
       </>

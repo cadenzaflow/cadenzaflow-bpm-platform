@@ -41,6 +41,8 @@ export interface ClassicSettings {
   autoLoadEndedBatches: boolean;
   /** the maximum length of an annotation */
   annotationLength: number;
+  /** HTML resources of a deployment are shown rendered (in a sandbox), not only as source */
+  previewHtml: boolean;
   /** bpmn-js modules (ES modules below app/{module}/, without .js) and moddle extensions (JSON, without .json) */
   bpmnJs: { additionalModules: string[]; moddleExtensions: Record<string, string> };
   shortcuts: Record<string, ShortcutSetting>;
@@ -82,6 +84,7 @@ export function readClassicSettings(config: Record<string, unknown>): ClassicSet
     activityInstanceMetrics: flag(isRecord(config.runtimeActivityInstanceMetrics) ? config.runtimeActivityInstanceMetrics.display : undefined, true),
     autoLoadEndedBatches: flag(isRecord(config.batchOperation) ? config.batchOperation.autoLoadEnded : undefined, true),
     annotationLength: typeof annotationLength === 'number' && annotationLength > 0 ? annotationLength : 4000,
+    previewHtml: flag(config.previewHtml, true),
     bpmnJs: {
       additionalModules: texts(bpmnJs.additionalModules),
       moddleExtensions: Object.fromEntries(Object.entries(moddleExtensions).filter((entry): entry is [string, string] => typeof entry[1] === 'string')),

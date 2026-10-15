@@ -5,7 +5,12 @@ import { json, logIn, renderApp } from '../../../test/app';
 import { resourceType } from './api';
 import { commonPath } from './search';
 
+// the settings of the classic cockpit/scripts/config.js, per test
+const classicConfig = vi.hoisted(() => ({ value: {} as Record<string, unknown> }));
+vi.mock('../../../shared/classic-config', () => ({ importClassicConfig: async () => classicConfig.value }));
+
 const ENGINE = '/api/engine/engine/default';
+const FORM = '<form><input cam-variable-name="amount"><script>alert(1)</script></form>';
 
 function fakeBackend() {
   let loggedIn = false;
@@ -35,7 +40,11 @@ function fakeBackend() {
       return json([
         { id: 'res-1', name: 'process/invoice.bpmn', deploymentId: 'dep-1' },
         { id: 'res-2', name: 'process/readme.txt', deploymentId: 'dep-1' },
+        { id: 'res-3', name: 'process/approve.html', deploymentId: 'dep-1' },
       ]);
+    }
+    if (path === `${ENGINE}/deployment/dep-1/resources/res-3/data`) {
+      return new Response(FORM, { status: 200, headers: { 'Content-Type': 'text/html' } });
     }
     if (path === `${ENGINE}/deployment/dep-1/resources/res-2/data`) {
       return new Response('Hello from the deployment', { status: 200, headers: { 'Content-Type': 'text/plain' } });
@@ -57,7 +66,10 @@ function fakeBackend() {
 }
 
 beforeAll(() => initI18n('en'));
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  classicConfig.value = {};
+});
 
 describe('deployment resources', () => {
   it('knows the kind of a resource by its name', () => {
@@ -111,5 +123,32 @@ describe('cockpit deployments', () => {
       const deleted = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/deployment/dep-1?`) && init?.method === 'DELETE');
       expect(deleted?.[0]).toContain('cascade=true&skipCustomListeners=true&skipIoMappings=true');
     });
+  });
+});
+
+describe('html resources', () => {
+  it('render in a sandbox, as a disabled form, next to their source', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/repository');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'approve.html' }));
+    const preview = await screen.findByTitle('Form Preview');
+    // an empty sandbox: no scripts, no access to this page, no form submission; nothing is loaded
+    expect(preview).toHaveAttribute('sandbox', '');
+    expect(preview.getAttribute('srcdoc')).toContain(`<fieldset disabled>${FORM}</fieldset>`);
+    expect(preview.getAttribute('srcdoc')).toContain(`content="default-src 'none'; style-src 'unsafe-inline'; img-src data:"`);
+    expect(screen.getByText(FORM)).toBeInTheDocument();
+  });
+
+  it('show only their source when config.js turns previewHtml off', async () => {
+    classicConfig.value = { previewHtml: false };
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/repository');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'approve.html' }));
+    expect(await screen.findByText(FORM)).toBeInTheDocument();
+    expect(screen.queryByTitle('Form Preview')).not.toBeInTheDocument();
   });
 });
