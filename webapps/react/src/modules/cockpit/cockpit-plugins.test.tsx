@@ -1,4 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useEffect, type ReactNode } from 'react';
 import { screen, within } from '@testing-library/react';
 import { initI18n } from '../../shared/i18n';
 import { json, logIn, renderApp } from '../../test/app';
@@ -17,6 +18,7 @@ const plugin = (id: string, pluginPoint: string, extra: Record<string, unknown> 
 });
 
 const logout = vi.hoisted(() => vi.fn());
+const loginResult = vi.hoisted(() => vi.fn());
 
 // the plugin modules the server would deliver
 vi.mock('../../shared/plugins/import-plugin', () => ({
@@ -32,8 +34,19 @@ vi.mock('../../shared/plugins/import-plugin', () => ({
         plugin('demo-page', 'cockpit.route', { properties: { path: '/demo-page' } }),
         plugin('demo-report', 'cockpit.report', { label: 'Demo' }),
         { id: 'demo-logout', pluginPoint: 'cockpit.logout', logout },
+        plugin('demo-login', 'cockpit.login'),
+        { id: 'demo-login-data', pluginPoint: 'cockpit.login.data', result: loginResult },
+        plugin('demo-diagram-action', 'cockpit.processDefinition.diagram.action'),
       ],
     };
+  },
+}));
+
+// bpmn-js does not draw in jsdom: a diagram that hands over a viewer and shows its actions
+vi.mock('../../shared/diagram/BpmnDiagram', () => ({
+  default: function FakeDiagram({ onViewer, actions }: { onViewer?: (viewer: unknown) => (() => void) | void; actions?: ReactNode }) {
+    useEffect(() => onViewer?.({ viewer: 'bpmn-js' }) ?? undefined, [onViewer]);
+    return <div>{actions}</div>;
   },
 }));
 
@@ -48,8 +61,8 @@ function fakeBackend() {
         return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit'] }) : json({}, 404);
       }
       if (path === '/api/admin/auth/user/default/login/cockpit' && method === 'POST') {
-        loggedIn = true;
-        return json({ userId: 'demo', authorizedApps: ['cockpit'] });
+        loggedIn = new URLSearchParams(String(init.body)).get('password') === 'demo';
+        return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit'] }) : json({}, 401);
       }
       if (path === `${ENGINE}/user/demo/profile`) {
         return json({ id: 'demo', firstName: 'Demo', lastName: 'Demo' });
@@ -62,6 +75,9 @@ function fakeBackend() {
       }
       if (path === `${ENGINE}/process-definition/invoice%3A2`) {
         return json({ id: 'invoice:2', key: 'invoice', name: 'Invoice', version: 2, deploymentId: 'd-1', resource: 'invoice.bpmn' });
+      }
+      if (path === `${ENGINE}/process-definition/invoice%3A2/xml`) {
+        return json({ id: 'invoice:2', bpmn20Xml: '<definitions />' });
       }
       if (path === `${ENGINE}/process-instance`) {
         return json([]);
@@ -127,5 +143,32 @@ describe('cockpit plugins', () => {
 
     expect(logout).toHaveBeenCalledWith({ api: expect.objectContaining({ engineApi: ENGINE }) });
     expect(vi.mocked(fetch).mock.calls.some(([url]) => String(url).endsWith('/logout'))).toBe(false);
+  });
+
+  it('shows the actions of plugins on the process definition diagram, with the viewer', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/process-definition/invoice:2');
+    await logIn();
+
+    expect(
+      await screen.findByText(`demo-diagram-action {"processDefinitionId":"invoice:2","viewer":{"viewer":"bpmn-js"}} ${ENGINE}`),
+    ).toBeInTheDocument();
+  });
+
+  it('shows login plugins below the login form and hands them each login', async () => {
+    loginResult.mockClear();
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/');
+
+    expect(await screen.findByText(`demo-login {} ${ENGINE}`)).toBeInTheDocument();
+    // a failed login: the promise rejects
+    await logIn('wrong');
+    await expect(loginResult.mock.calls[0][0]).rejects.toBeDefined();
+    // a successful one: the authentication as in the AngularJS webapps
+    await logIn();
+    const authentication = await loginResult.mock.calls[1][0];
+    expect(authentication).toMatchObject({ name: 'demo', authorizedApps: ['cockpit'] });
+    expect(authentication.canAccess('cockpit')).toBe(true);
+    expect(authentication.canAccess('admin')).toBe(false);
   });
 });

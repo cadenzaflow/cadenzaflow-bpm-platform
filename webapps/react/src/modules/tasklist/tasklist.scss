@@ -245,6 +245,10 @@
   padding: $spacing-03;
 }
 
+.cz-tasklist__plugin {
+  padding: $spacing-03 $spacing-03 0;
+}
+
 .cz-task-card__variables {
   @include type-style('helper-text-01');
   display: flex;

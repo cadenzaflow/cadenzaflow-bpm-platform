@@ -22,6 +22,18 @@
   }
 }
 
+.cz-bpmn-diagram__frame {
+  position: relative;
+}
+
+.cz-bpmn-diagram__actions {
+  position: absolute;
+  top: $spacing-03;
+  right: $spacing-03;
+  display: flex;
+  gap: $spacing-02;
+}
+
 .cz-bpmn-diagram--selectable .djs-element.djs-shape {
   cursor: pointer;
 }

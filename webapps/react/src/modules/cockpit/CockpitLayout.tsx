@@ -1,7 +1,7 @@
 import { Link, Outlet, getRouteApi, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PluginPoint, PluginView } from '../../shared/plugins/PluginPoint';
-import { usePluginPoint } from '../../shared/plugins/plugins';
+import { usePluginPoint, useRoutePlugin } from '../../shared/plugins/plugins';
 import './cockpit.scss';
 
 const route = getRouteApi('/cockpit/$engine');
@@ -21,9 +21,8 @@ export function CockpitLayout() {
   const { t } = useTranslation('cockpit');
   const { engine } = route.useParams();
   const { hash } = useLocation();
-  const routePlugins = usePluginPoint('cockpit', 'cockpit.route');
+  const routePlugin = useRoutePlugin('cockpit', hash);
   const reports = usePluginPoint('cockpit', 'cockpit.report');
-  const routePlugin = hash ? routePlugins.find((plugin) => plugin.properties?.path === hash) : undefined;
 
   return (
     <div className="cz-cockpit">

@@ -16,7 +16,7 @@ import { ApiError } from '../../../shared/api/client';
 import { elementNames } from '../../../shared/diagram/bpmn-names';
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
-import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
+import { useDiagramPlugins, useDiagramViewer, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useProcessDefinition, useProcessDefinitionXml } from '../process-definition/api';
 import { ActivityTree } from './ActivityTree';
@@ -69,7 +69,8 @@ export function ProcessInstancePage() {
   const activityIds = listOf(search.activityIds);
   const activityInstanceIds = listOf(search.activityInstanceIds);
   const pluginTabs = usePluginPoint('cockpit', 'cockpit.processInstance.runtime.tab');
-  const onViewer = useDiagramPlugins('cockpit', 'cockpit.processInstance.diagram.plugin', engine, { processInstanceId: id });
+  const [viewer, onViewer] = useDiagramViewer();
+  useDiagramPlugins('cockpit', 'cockpit.processInstance.diagram.plugin', engine, viewer, { processInstanceId: id });
   // the built-in tabs, then those of plugins
   const tabs = [
     ...instanceTabs.map((tab) => ({ id: tab.id, label: tab.label, plugin: undefined })),

@@ -3,6 +3,8 @@ import { Tile } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAuthentication } from '../../../shared/auth/authentication';
+import { PluginView } from '../../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { useAdminAccess } from '../api';
 import { SYSTEM_SECTIONS } from '../system/search';
 
@@ -17,12 +19,17 @@ function Section({ title, children }: { title: ReactNode; children: ReactNode })
   );
 }
 
-/** Entry points of the Admin sections, shown as far as the user may use them (as in the classic Admin). */
+/**
+ * Entry points of the Admin sections, shown as far as the user may use them
+ * (as in the classic Admin), followed by the sections of plugins.
+ */
 export function AdminDashboard() {
   const { t } = useTranslation('admin');
   const { engine } = route.useParams();
   const me = useAuthentication(engine).data?.userId;
   const { users, groups, tenants, authorizations } = useAdminAccess(engine);
+  const sectionPlugins = usePluginPoint('admin', 'admin.dashboard.section');
+  const systemPlugins = usePluginPoint('admin', 'admin.system');
 
   return (
     <section className="cz-page cz-admin-dashboard">
@@ -123,14 +130,22 @@ export function AdminDashboard() {
             </Link>
           }
         >
-          {SYSTEM_SECTIONS.map((section) => (
-            <li key={section.id}>
-              <Link to="/admin/$engine/system" params={{ engine }} search={{ section: section.id }}>
-                {t(section.label)}
-              </Link>
-            </li>
-          ))}
+          {[...SYSTEM_SECTIONS, ...systemPlugins.map((plugin) => ({ id: plugin.id, label: plugin.label ?? plugin.id }))].map(
+            (section) => (
+              <li key={section.id}>
+                <Link to="/admin/$engine/system" params={{ engine }} search={{ section: section.id }}>
+                  {t(section.label)}
+                </Link>
+              </li>
+            ),
+          )}
         </Section>
+        {sectionPlugins.map((plugin) => (
+          <Tile key={plugin.id} className="cz-admin-dashboard__section">
+            <h2 className="cz-admin-dashboard__title">{t(plugin.label ?? plugin.id)}</h2>
+            <PluginView plugin={plugin} engine={engine} />
+          </Tile>
+        ))}
       </div>
     </section>
   );

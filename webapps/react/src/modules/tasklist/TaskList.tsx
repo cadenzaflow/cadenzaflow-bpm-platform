@@ -12,6 +12,7 @@ import {
 import { Search, SortAscending, SortDescending } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { displayName, formatDateTime, formatRelative } from '../../shared/format';
+import { PluginPoint } from '../../shared/plugins/PluginPoint';
 import { toQuery, type SearchState } from '../../shared/search/criteria';
 import { CriteriaSearch } from '../../shared/search/CriteriaSearch';
 import { focusFirst, useShortcut } from '../../shared/shortcuts';
@@ -109,12 +110,14 @@ export function TaskList({
           {t('SEARCH')}
           {search.criteria.length > 0 && ` (${search.criteria.length})`}
         </Button>
+        <PluginPoint module="tasklist" point="tasklist.header" engine={engine} className="cz-plugin-inline" />
       </div>
       {searchOpen && (
         <div className="cz-tasklist__search">
           <CriteriaSearch namespace="tasklist" types={TASK_CRITERIA} value={draft} onChange={setDraft} />
         </div>
       )}
+      <PluginPoint module="tasklist" point="tasklist.list" engine={engine} className="cz-tasklist__plugin" />
       <ContainedList label={<span id="cz-tasks-title">{t('TASKS')}</span>} kind="on-page">
         {tasks.isPending && filter && <SkeletonText paragraph lineCount={5} />}
         {tasks.isError && (
@@ -146,6 +149,7 @@ export function TaskList({
                     ))}
                   </span>
                 )}
+                <PluginPoint module="tasklist" point="tasklist.card" engine={engine} props={{ taskId: task.id }} />
                 <span className="cz-task-card__meta">
                   <span title={t('CREATION_DATE')}>{formatRelative(task.created, i18n.language)}</span>
                   <span>

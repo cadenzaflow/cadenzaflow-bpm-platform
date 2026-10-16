@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@carbon/react';
 import { Add, Keyboard, Play, TaskAdd } from '@carbon/icons-react';
-import { getRouteApi } from '@tanstack/react-router';
+import { getRouteApi, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PluginPoint, PluginView } from '../../shared/plugins/PluginPoint';
+import { useRoutePlugin } from '../../shared/plugins/plugins';
 import { useShortcut } from '../../shared/shortcuts';
 import { FilterList } from './FilterList';
 import { TaskList } from './TaskList';
@@ -19,13 +21,18 @@ import './tasklist.scss';
 
 const route = getRouteApi('/tasklist/$engine');
 
-/** Filters | tasks of the selected filter | selected task. */
+/**
+ * Filters | tasks of the selected filter | selected task. A route plugin's
+ * page (classic path, e.g. #/my-page) shows instead when the URL names it.
+ */
 export function TasklistPage() {
   const { t } = useTranslation('tasklist');
   const { engine } = route.useParams();
   const search = route.useSearch();
   const navigate = route.useNavigate();
   const filters = useTaskFilters(engine);
+  const { hash } = useLocation();
+  const routePlugin = useRoutePlugin('tasklist', hash);
   const [startOpen, setStartOpen] = useState(false);
   const [createTaskOpen, setCreateTaskOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
@@ -41,10 +48,18 @@ export function TasklistPage() {
   // Without ?filter the first filter (highest priority) is selected.
   const firstFilterId = filters.data?.[0]?.id;
   useEffect(() => {
-    if (!search.filter && firstFilterId) {
+    if (!routePlugin && !search.filter && firstFilterId) {
       navigate({ search: (previous: TasklistSearch) => ({ ...previous, filter: firstFilterId }), replace: true });
     }
-  }, [search.filter, firstFilterId, navigate]);
+  }, [routePlugin, search.filter, firstFilterId, navigate]);
+
+  if (routePlugin) {
+    return (
+      <section className="cz-page cz-page--wide">
+        <PluginView plugin={routePlugin} engine={engine} />
+      </section>
+    );
+  }
 
   return (
     <div className="cz-tasklist">
@@ -67,6 +82,7 @@ export function TasklistPage() {
             <Button kind="ghost" size="sm" renderIcon={Keyboard} onClick={() => setShortcutsOpen(true)}>
               {t('SHORTCUT_HELP')}
             </Button>
+            <PluginPoint module="tasklist" point="tasklist.navbar.action" engine={engine} className="cz-plugin-inline" />
           </>
         }
       />

@@ -244,3 +244,13 @@ body {
     fill: $support-error;
   }
 }
+
+// Frontend plugins: inline next to buttons, or as a section of their own
+.cz-plugin-inline {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cz-plugin-section:not(:empty) {
+  margin-top: $spacing-07;
+}
