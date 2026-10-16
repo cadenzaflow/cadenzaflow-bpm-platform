@@ -16,6 +16,8 @@ import {
 import { Information } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PluginView } from '../../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useAnnualMetrics, useDiagnostics, useMonthlyMetrics } from './api';
 import { MetricsChart } from './MetricsChart';
@@ -24,18 +26,26 @@ import { SYSTEM_SECTIONS, type SystemSearch } from './search';
 
 const route = getRouteApi('/admin/$engine/system');
 
-/** General information, execution metrics and diagnostics (?section=, as in the classic Admin). */
+/**
+ * General information, execution metrics and diagnostics (?section=, as in
+ * the classic Admin), followed by the sections of admin.system plugins.
+ */
 export function SystemPage() {
   const { t } = useTranslation('admin');
   const { engine } = route.useParams();
   const { section } = route.useSearch();
-  const selected = SYSTEM_SECTIONS.find((candidate) => candidate.id === section) ?? SYSTEM_SECTIONS[0];
+  const plugins = usePluginPoint('admin', 'admin.system');
+  const sections = [
+    ...SYSTEM_SECTIONS.map((candidate) => ({ id: candidate.id as string, label: candidate.label as string, plugin: undefined })),
+    ...plugins.map((plugin) => ({ id: plugin.id, label: plugin.label ?? plugin.id, plugin })),
+  ];
+  const selected = sections.find((candidate) => candidate.id === section) ?? sections[0];
 
   return (
     <div className="cz-admin-split">
       <nav className="cz-admin-split__nav" aria-label={t('SYSTEM_SYSTEM_SETTINGS')}>
         <ul>
-          {SYSTEM_SECTIONS.map((candidate) => (
+          {sections.map((candidate) => (
             <li key={candidate.id}>
               <Link
                 to="/admin/$engine/system"
@@ -54,6 +64,7 @@ export function SystemPage() {
         {selected.id === 'system-settings-general' && <General engine={engine} />}
         {selected.id === 'system-settings-metrics' && <ExecutionMetrics engine={engine} />}
         {selected.id === 'diagnostics-system-settings' && <Diagnostics engine={engine} />}
+        {selected.plugin && <PluginView plugin={selected.plugin} engine={engine} />}
       </PageFrame>
     </div>
   );

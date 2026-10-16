@@ -9,6 +9,7 @@ export interface SystemSearch {
   section?: string;
 }
 
+/** A built-in section or one of a plugin (its id); the page shows the first section for one it does not have. */
 export function validateSystemSearch(search: Record<string, unknown>): SystemSearch {
-  return { section: SYSTEM_SECTIONS.some((section) => section.id === search.section) ? (search.section as string) : undefined };
+  return { section: typeof search.section === 'string' && search.section ? search.section : undefined };
 }

@@ -11,13 +11,14 @@ import {
   TextInput,
   Tile,
 } from '@carbon/react';
-import { getRouteApi, useNavigate } from '@tanstack/react-router';
+import { getRouteApi, useLocation, useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { useAuthentication, useUserProfile, type UserProfile } from '../../shared/auth/authentication';
 import { moduleUrl, type ModuleName } from '../../shared/config';
 import { displayName } from '../../shared/format';
 import { notify } from '../../shared/notifications';
-import { PluginPoint } from '../../shared/plugins/PluginPoint';
+import { PluginPoint, PluginView } from '../../shared/plugins/PluginPoint';
+import { useRoutePlugin } from '../../shared/plugins/plugins';
 import { PasswordFields, usePasswordCheck } from '../../shared/ui/PasswordFields';
 import { useChangePassword, useMemberGroups, useUpdateProfile, useWelcomeLinks } from './api';
 import './welcome.scss';
@@ -193,7 +194,8 @@ function PasswordForm({ engine, profile, onDone }: { engine: string; profile: Us
 /**
  * The Welcome page as in the classic webapps: the applications the user may
  * open and the configured links, next to the user's profile (shown, edited,
- * or the password changed).
+ * or the password changed). A route plugin's page (classic path, e.g.
+ * #/my-page) shows instead when the URL names it.
  */
 export function WelcomePage() {
   const { t } = useTranslation('welcome');
@@ -206,6 +208,16 @@ export function WelcomePage() {
   const links = useWelcomeLinks();
   const apps = APPS.filter((app) => authentication.data?.authorizedApps.includes(app));
   const showForm = (form: WelcomeSearch['form']) => navigate({ to: '/welcome/$engine', params: { engine }, search: { form } });
+  const { hash } = useLocation();
+  const routePlugin = useRoutePlugin('welcome', hash);
+
+  if (routePlugin) {
+    return (
+      <section className="cz-page cz-page--wide">
+        <PluginView plugin={routePlugin} engine={engine} />
+      </section>
+    );
+  }
 
   return (
     <div className="cz-page cz-welcome">

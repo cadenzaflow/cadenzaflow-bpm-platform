@@ -20,7 +20,7 @@ export interface FrontendPlugin {
   priority?: number;
   /** tabs, navigation and reports: the title (an i18n key or plain text) */
   label?: string;
-  /** e.g. the path of a cockpit.route plugin */
+  /** e.g. the path of a {module}.route plugin */
   properties?: Record<string, unknown>;
   /** renders into the node (for a diagram plugin point: the bpmn-js viewer) */
   render?: (node: unknown, props: PluginProps) => void;
@@ -175,6 +175,12 @@ export function usePluginPoint(module: ModuleName, point: string): FrontendPlugi
       ? matching.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0) || a.id.localeCompare(b.id))
       : NO_PLUGINS;
   }, [plugins, point]);
+}
+
+/** The {module}.route plugin whose path (as in the classic webapps, e.g. /my-page) the URL's hash names, if any. */
+export function useRoutePlugin(module: ModuleName, hash: string): FrontendPlugin | undefined {
+  const plugins = usePluginPoint(module, `${module}.route`);
+  return hash ? plugins.find((plugin) => plugin.properties?.path === hash) : undefined;
 }
 
 /** The {module}.logout plugin with the highest priority (e.g. a single sign-on logout), if there is one. */

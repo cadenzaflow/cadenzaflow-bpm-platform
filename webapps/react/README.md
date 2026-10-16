@@ -43,18 +43,21 @@ Content-Security-Policy; every `<script>` needs it) and `$PLUGINS` (the
 frontend plugins of every app, see below). Modules that are not rewritten yet
 link to the classic UI, and the user menu switches to it.
 
-## Frontend plugins (Cockpit)
+## Frontend plugins
 
-Plugins are packaged as for the AngularJS Cockpit: a jar with a
-`CockpitPlugin` (registered in
-`META-INF/services/org.cadenzaflow.bpm.cockpit.plugin.spi.CockpitPlugin`), a
-root resource `@Path("plugin/<id>")` extending `AbstractCockpitPluginRootResource`,
+Plugins are packaged as for the AngularJS webapps: a jar with the plugin
+class of the app (`CockpitPlugin`, `TasklistPlugin`, `AdminPlugin` or
+`WelcomePlugin`, registered in
+`META-INF/services/org.cadenzaflow.bpm.<app>.plugin.spi.<class>`), a root
+resource `@Path("plugin/<id>")` extending the root resource class of the app
+(`AbstractCockpitPluginRootResource`, `AbstractTasklistPluginRootResource`,
+`AbstractAdminPluginRootResource` or `AbstractWelcomePluginRootResource`),
 and the files `plugin-webapp/<id>/app/plugin.js` (and optionally
 `app/plugin.css`). The server lists the plugins of every app in `index.html`;
 the app loads each `plugin.js` as an ES module (and its `plugin.css`). The
 plugins of the AngularJS webapps themselves (`cockpitPlugins`, `cockpitEE`,
-`adminPlugins`, `adminEE`, `tasklistPlugins`) and `legacy*` plugins are
-AngularJS modules and are not loaded.
+`adminPlugins`, `adminEE`, `tasklistPlugins`, `welcomePlugins`) and `legacy*`
+plugins are AngularJS modules and are not loaded.
 
 `plugin.js` exports one plugin or an array of them (the same contract as the
 AngularJS webapps' JavaScript plugins):
@@ -107,8 +110,21 @@ leaves the page intact.
 | `cockpit.repository.deployment.action` | an action of a deployment | `deploymentId` |
 | `cockpit.repository.resource.action` | an action of a resource | `deploymentId`, `resourceId` |
 | `cockpit.repository.resource.detail` | below a resource | `deploymentId`, `resourceId` |
+| `tasklist.route` | a page of its own at `#<properties.path>` | |
+| `tasklist.navbar.action` | next to "Start process", "Create task", ... | |
+| `tasklist.header` | in the bar above the tasks (sorting, search) | |
+| `tasklist.list` | above the tasks | |
+| `tasklist.card` | in each task of the list | `taskId` |
+| `tasklist.task.action` | an action of the task | `taskId` |
+| `tasklist.task.detail` | a tab of the task | `taskId` |
+| `admin.route` | a page of its own at `#<properties.path>` | |
+| `admin.dashboard.section` | a section of the dashboard, titled with `label` | |
+| `admin.system` | a section of the system settings (`?section=<id>`), titled with `label`; the dashboard links it | |
+| `welcome.route` | a page of its own at `#<properties.path>` | |
+| `welcome.dashboard` | below the applications and links | |
+| `welcome.profile` | below the profile | |
 
-Tabs of plugins come after the built-in tabs.
+Tabs and sections of plugins come after the built-in ones.
 
 A plugin at `<app>.logout` (`cockpit.logout`, `tasklist.logout`,
 `admin.logout`, `welcome.logout`) has a `logout(props)` function instead of

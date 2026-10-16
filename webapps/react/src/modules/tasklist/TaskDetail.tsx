@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../shared/api/client';
 import { formatDateTime } from '../../shared/format';
 import { notify } from '../../shared/notifications';
+import { PluginPoint, PluginView } from '../../shared/plugins/PluginPoint';
+import { usePluginPoint } from '../../shared/plugins/plugins';
 import { useTask, type TaskDetails } from './api';
 import { useUpdateTask } from './task-meta/api';
 import { AssigneeField } from './task-meta/AssigneeField';
@@ -65,7 +67,12 @@ type TaskViewProps = { engine: string; details: TaskDetails } & Pick<
 function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: TaskViewProps) {
   const { t, i18n } = useTranslation('tasklist');
   const { task, processDefinition } = details;
-  const tabs = visibleTabs(task);
+  const pluginTabs = usePluginPoint('tasklist', 'tasklist.task.detail');
+  // the built-in tabs, then those of plugins
+  const tabs = [
+    ...visibleTabs(task).map((tab) => ({ id: tab.id, label: tab.label, tab, plugin: undefined })),
+    ...pluginTabs.map((plugin) => ({ id: plugin.id, label: plugin.label ?? plugin.id, tab: undefined, plugin })),
+  ];
   const selectedIndex = Math.max(0, tabs.findIndex((tab) => tab.id === tabId));
   const update = useUpdateTask(engine, task);
   const saveDate = (field: 'due' | 'followUp') => (value: string | null) =>
@@ -117,6 +124,7 @@ function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: Task
       </dl>
       <div className="cz-task__actions">
         <CommentButton engine={engine} taskId={task.id} processInstanceId={task.processInstanceId} />
+        <PluginPoint module="tasklist" point="tasklist.task.action" engine={engine} props={{ taskId: task.id }} className="cz-plugin-inline" />
       </div>
       {tabs.length > 0 && (
         <Tabs selectedIndex={selectedIndex} onChange={({ selectedIndex: index }) => onTabChange(tabs[index].id)}>
@@ -128,10 +136,13 @@ function TaskView({ engine, details, tabId, onTabChange, onTaskCompleted }: Task
           <TabPanels>
             {/* only the selected tab renders: hidden tabs would load their data, and
                 a diagram drawn into a hidden panel has no size */}
-            {tabs.map((tab, index) => (
-              <TabPanel key={tab.id}>
-                {index === selectedIndex && (
-                  <tab.component engine={engine} task={task} onTaskCompleted={onTaskCompleted} />
+            {tabs.map((entry, index) => (
+              <TabPanel key={entry.id}>
+                {index === selectedIndex && entry.tab && (
+                  <entry.tab.component engine={engine} task={task} onTaskCompleted={onTaskCompleted} />
+                )}
+                {index === selectedIndex && entry.plugin && (
+                  <PluginView plugin={entry.plugin} engine={engine} props={{ taskId: task.id }} />
                 )}
               </TabPanel>
             ))}
