@@ -15,7 +15,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
-import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
+import { useDiagramPlugins, useDiagramViewer, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useSettings } from '../../../shared/classic-settings';
 import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
@@ -54,7 +54,10 @@ export function ProcessDefinitionPage() {
     [t],
   );
   const pluginTabs = usePluginPoint('cockpit', 'cockpit.processDefinition.runtime.tab');
-  const onViewer = useDiagramPlugins('cockpit', 'cockpit.processDefinition.diagram.plugin', engine, { processDefinitionId: id });
+  const [viewer, onViewer] = useDiagramViewer();
+  useDiagramPlugins('cockpit', 'cockpit.processDefinition.diagram.plugin', engine, viewer, { processDefinitionId: id });
+  // diagram actions get the viewer, as in the classic Cockpit
+  const actionObjects = useMemo(() => ({ viewer }), [viewer]);
   // the built-in tabs, then those of plugins
   const tabs = [
     ...definitionTabs.map((tab) => ({ id: tab.id, label: tab.label, plugin: undefined })),
@@ -188,6 +191,18 @@ export function ProcessDefinitionPage() {
                   selected={activityIds}
                   onElementClick={selectActivity}
                   onViewer={onViewer}
+                  actions={
+                    viewer ? (
+                      <PluginPoint
+                        module="cockpit"
+                        point="cockpit.processDefinition.diagram.action"
+                        engine={engine}
+                        props={{ processDefinitionId: id }}
+                        objects={actionObjects}
+                        className="cz-plugin-inline"
+                      />
+                    ) : undefined
+                  }
                 />
               </Suspense>
             )

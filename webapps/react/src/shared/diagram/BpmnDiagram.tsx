@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { InlineNotification } from '@carbon/react';
 import NavigatedViewer from 'bpmn-js/lib/NavigatedViewer';
 import 'bpmn-js/dist/assets/diagram-js.css';
@@ -25,6 +25,8 @@ interface BpmnDiagramProps {
   badgeLabels?: { count: string; incidents: string };
   /** The diagram was imported: e.g. diagram plugins get the viewer. Returns what to do when it goes away. */
   onViewer?: (viewer: NavigatedViewer) => (() => void) | void;
+  /** shown in the top right corner of the diagram, e.g. the actions of plugins */
+  actions?: ReactNode;
   /** bpmn-js modules and moddle extensions to add (e.g. from the classic config.js) */
   extensions?: BpmnJsExtensions;
 }
@@ -71,7 +73,7 @@ function badgeElement(badge: DiagramBadge, labels?: { count: string; incidents: 
 }
 
 /** Read-only BPMN diagram with pan and zoom (bpmn-js). Load it lazily: bpmn-js is large. */
-export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels, onViewer, extensions }: BpmnDiagramProps) {
+export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels, onViewer, extensions, actions }: BpmnDiagramProps) {
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<NavigatedViewer | null>(null);
   const clickHandler = useRef(onElementClick);
@@ -155,7 +157,10 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
   return (
     <>
       {error && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={error} />}
-      <div ref={container} className={`cz-bpmn-diagram${onElementClick ? ' cz-bpmn-diagram--selectable' : ''}`} />
+      <div className="cz-bpmn-diagram__frame">
+        <div ref={container} className={`cz-bpmn-diagram${onElementClick ? ' cz-bpmn-diagram--selectable' : ''}`} />
+        {actions && <div className="cz-bpmn-diagram__actions">{actions}</div>}
+      </div>
     </>
   );
 }

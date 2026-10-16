@@ -2,6 +2,8 @@ import { useState, type FormEvent } from 'react';
 import { Button, Form, InlineNotification, PasswordInput, Stack, TextInput, Tile } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import type { ModuleName } from '../config';
+import { PluginPoint } from '../plugins/PluginPoint';
+import { passLogin, usePluginPoint } from '../plugins/plugins';
 import { useLogin } from './authentication';
 
 interface LoginPageProps {
@@ -9,15 +11,19 @@ interface LoginPageProps {
   module: ModuleName;
 }
 
+/** The login form, followed by the {module}.login plugins; {module}.login.data plugins get each login. */
 export function LoginPage({ engine, module }: LoginPageProps) {
   const { t } = useTranslation();
   const login = useLogin(engine, module);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const loginDataPlugins = usePluginPoint(module, `${module}.login.data`);
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
-    login.mutate({ username, password }, { onError: () => setPassword('') });
+    const result = login.mutateAsync({ username, password });
+    passLogin(loginDataPlugins, result);
+    result.catch(() => setPassword(''));
   };
 
   return (
@@ -57,6 +63,7 @@ export function LoginPage({ engine, module }: LoginPageProps) {
             </Button>
           </Stack>
         </Form>
+        <PluginPoint module={module} point={`${module}.login`} engine={engine} className="cz-plugin-section" />
       </Tile>
     </main>
   );
