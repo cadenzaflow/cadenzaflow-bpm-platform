@@ -56,7 +56,7 @@ export function TasklistPage() {
   if (routePlugin) {
     return (
       <section className="cz-page cz-page--wide">
-        <PluginView plugin={routePlugin} engine={engine} />
+        <PluginView key={hash} plugin={routePlugin} engine={engine} />
       </section>
     );
   }

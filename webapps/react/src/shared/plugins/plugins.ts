@@ -189,10 +189,45 @@ export function usePluginPoint(module: ModuleName, point: string): FrontendPlugi
   }, [plugins, point]);
 }
 
-/** The {module}.route plugin whose path (as in the classic webapps, e.g. /my-page) the URL's hash names, if any. */
+const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * Whether the URL's hash (e.g. /my-page/42?tab=log) is a page of a route
+ * plugin's path, read as by the routes of the classic webapps: a segment
+ * :name stands for any one segment, :name* for one or more, :name? for an
+ * optional one, and the query after ? does not count.
+ */
+export function matchesRoutePath(path: string, hash: string): boolean {
+  if (!path.startsWith('/')) {
+    return path === hash;
+  }
+  const segments = path
+    .slice(1)
+    .split('/')
+    .map((segment) => {
+      const param = /^:\w+(\*\?|\*|\?)?$/.exec(segment);
+      switch (param ? (param[1] ?? '') : undefined) {
+        case undefined:
+          return `/${escapeRegExp(segment)}`;
+        case '?':
+          return '(?:/[^/?#]+)?';
+        case '*':
+          return '/[^?#]+';
+        case '*?':
+          return '(?:/[^?#]+)?';
+        default:
+          return '/[^/?#]+';
+      }
+    });
+  return new RegExp(`^${segments.join('')}(?:[?#]|$)`).test(hash);
+}
+
+/** The {module}.route plugin whose path (as in the classic webapps, e.g. /my-page or /my-page/:id) the URL's hash names, if any. */
 export function useRoutePlugin(module: ModuleName, hash: string): FrontendPlugin | undefined {
   const plugins = usePluginPoint(module, `${module}.route`);
-  return hash ? plugins.find((plugin) => plugin.properties?.path === hash) : undefined;
+  return hash
+    ? plugins.find((plugin) => typeof plugin.properties?.path === 'string' && matchesRoutePath(plugin.properties.path, hash))
+    : undefined;
 }
 
 /** The {module}.logout plugin with the highest priority (e.g. a single sign-on logout), if there is one. */

@@ -129,6 +129,13 @@ leaves the page intact.
 
 Tabs and sections of plugins come after the built-in ones.
 
+The `path` of a route plugin is read as by the routes of the AngularJS
+webapps: `:name` stands for one segment (`/my-page/:id` is the page of
+`#/my-page/42`), `:name?` for an optional one and `:name*` for one or more;
+what follows `?` does not count. The plugin reads the parameters from
+`location.hash`. When the hash changes, the plugin is unmounted and rendered
+again.
+
 A plugin at `<app>.logout` (`cockpit.logout`, `tasklist.logout`,
 `admin.logout`, `welcome.logout`) has a `logout(props)` function instead of
 `render`: "Log out" in the user menu calls it instead of logging out itself
