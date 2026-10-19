@@ -188,6 +188,18 @@ function fakeBackend() {
         },
       ]);
     }
+    if (path === `${ENGINE}/job-definition` && query.get('processDefinitionId') === 'invoice:2') {
+      return json([
+        { id: 'jd-1', activityId: 'approveInvoice', jobType: 'async-continuation' },
+        { id: 'jd-2', activityId: 'waitForPayment', jobType: 'timer-intermediate-transition' },
+      ]);
+    }
+    if (path === `${ENGINE}/job-definition/jd-1/jobPriority` && method === 'PUT') {
+      return new Response(null, { status: 204 });
+    }
+    if (path === `${ENGINE}/job-definition/jd-2/jobPriority` && method === 'PUT') {
+      return json({ message: 'not allowed' }, 403);
+    }
     if (path === `${ENGINE}/job-definition/jd-1`) {
       return json({ id: 'jd-1', activityId: 'waitForPayment' });
     }
@@ -250,7 +262,10 @@ function fakeBackend() {
       return json({ count: 1 });
     }
     if (path === `${COCKPIT}/process-instance` && method === 'POST') {
-      return json([{ id: 'pi-1', businessKey: 'INV-1', startTime: '2026-10-13T08:00:00.000+0000', incidents: [], suspensionState: 1 }]);
+      return json([
+        { id: 'pi-1', businessKey: 'INV-1', startTime: '2026-10-13T08:00:00.000+0000', incidents: [], suspended: false },
+        { id: 'pi-9', businessKey: 'INV-9', startTime: '2026-10-12T08:00:00.000+0000', incidents: [], suspended: true },
+      ]);
     }
     return json({ message: `unexpected ${method} ${url}` }, 500);
   });
@@ -314,6 +329,8 @@ describe('cockpit process definition', () => {
     await logIn();
 
     expect(await screen.findByText('INV-1')).toBeInTheDocument();
+    expect(within(screen.getByText('INV-9').closest('tr')!).getByText('Suspended')).toBeInTheDocument();
+    expect(within(screen.getByText('INV-1').closest('tr')!).queryByText('Suspended')).not.toBeInTheDocument();
     expect(screen.getByLabelText('Definition Version:')).toHaveValue('invoice:2');
     expect(await screen.findByText('current version: 4')).toBeInTheDocument();
     expect(screen.getByText('all versions: 7')).toBeInTheDocument();
@@ -329,6 +346,31 @@ describe('cockpit process definition', () => {
   });
 });
 
+describe('cockpit job priority of all job definitions', () => {
+  it('overrides the priority of every job definition and reports each one', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-definition/invoice:2');
+    const user = await logIn();
+
+    await user.click(await screen.findByRole('button', { name: 'Change Overriding Job Priority for all Job Definitions' }));
+    const dialog = within(await screen.findByRole('dialog', { name: 'Change Overriding Job Priority' }));
+    await user.type(dialog.getByLabelText('Priority'), '10');
+    await user.click(dialog.getByLabelText('Include Existing Jobs'));
+    await user.click(await dialog.findByRole('button', { name: 'Override' }));
+
+    expect(await dialog.findByText('Successful')).toBeInTheDocument();
+    expect(dialog.getByText('Failed')).toBeInTheDocument();
+    expect(within(dialog.getByText('Successful').closest('tr')!).getByText('async-continuation')).toBeInTheDocument();
+    const puts = fetchMock.mock.calls.filter(([url, init]) => url.endsWith('/jobPriority') && init?.method === 'PUT');
+    expect(puts.map(([url]) => url.split('/').at(-2))).toEqual(['jd-1', 'jd-2']);
+    expect(puts.map(([, init]) => JSON.parse(String(init?.body)))).toEqual([
+      { priority: 10, includeJobs: true },
+      { priority: 10, includeJobs: true },
+    ]);
+    expect(await screen.findByText('Overriding the priority was not successful.')).toBeInTheDocument();
+  });
+});
+
 describe('cockpit incidents', () => {
   it('lists the incidents of a definition, annotates and retries them', async () => {
     const fetchMock = fakeBackend();
@@ -336,6 +378,7 @@ describe('cockpit incidents', () => {
     const user = await logIn();
 
     expect(await screen.findByRole('button', { name: 'Bean not found' })).toBeInTheDocument();
+    expect(screen.getByRole('columnheader', { name: 'Failing Activity' })).toBeInTheDocument();
     const query = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${COCKPIT}/incident?`) && init?.method === 'POST');
     expect(JSON.parse(String(query?.[1]?.body))).toEqual({ processDefinitionIdIn: ['invoice:2'], sortBy: 'incidentType', sortOrder: 'asc' });
 

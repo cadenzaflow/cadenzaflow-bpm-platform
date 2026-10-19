@@ -1,7 +1,8 @@
 import { skipToken, useQuery } from '@tanstack/react-query';
-import { engineUrl, request } from '../../../shared/api/client';
+import { cockpitUrl, engineUrl, request } from '../../../shared/api/client';
 import type { DiagramBadge } from '../../../shared/diagram/BpmnDiagram';
 import type { ProcessDefinition } from '../api';
+import type { CalledDefinition } from './called';
 
 const definitionUrl = (engine: string, id: string, path = '') =>
   engineUrl(engine, `/process-definition/${encodeURIComponent(id)}${path}`);
@@ -82,4 +83,26 @@ export function useRunningInstances(engine: string, definition: ProcessDefinitio
           return { current, all };
         },
   });
+}
+
+/**
+ * Process definitions called from this one: those with instances called
+ * right now from the given activities (all when there are none), and those
+ * referenced in the BPMN.
+ */
+export function useCalledDefinitions(engine: string, definitionId: string, activityIds: string[]) {
+  const id = encodeURIComponent(definitionId);
+  const running = useQuery({
+    queryKey: ['cockpit', engine, 'called-definitions', definitionId, activityIds],
+    queryFn: () =>
+      request<CalledDefinition[]>(cockpitUrl(engine, `/process-definition/${id}/called-process-definitions`), {
+        method: 'POST',
+        json: activityIds.length ? { activityIdIn: activityIds } : {},
+      }),
+  });
+  const referenced = useQuery({
+    queryKey: ['cockpit', engine, 'static-called-definitions', definitionId],
+    queryFn: () => request<CalledDefinition[]>(engineUrl(engine, `/process-definition/${id}/static-called-process-definitions`)),
+  });
+  return { running, referenced };
 }

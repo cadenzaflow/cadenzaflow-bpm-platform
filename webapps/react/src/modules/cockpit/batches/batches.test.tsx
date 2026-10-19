@@ -110,6 +110,8 @@ describe('batches', () => {
     expect(await row.findByText('Demo User')).toBeInTheDocument();
     expect(row.getByText('75%')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'batch-0' })).toBeInTheDocument();
+    // the number of running batches the search finds, as in the classic Cockpit
+    expect(screen.getByTitle('Total number of results')).toHaveTextContent('1');
 
     await user.click(screen.getByRole('button', { name: 'batch-1' }));
     await waitFor(() => expect(history.location.search).toBe('?details=batch-1&type=runtime'));

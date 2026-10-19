@@ -35,7 +35,8 @@ interface BatchListProps {
   defaultSorting: Sorting;
   columns: Column<Batch>[];
   emptyText: string;
-  onLoaded?: (batches: Batch[]) => void;
+  /** the batches of the page and the number of all that match */
+  onLoaded?: (batches: Batch[], count: number) => void;
 }
 
 /** One page of running or ended batches, sorted by a header click, refreshed every few seconds. */
@@ -59,7 +60,7 @@ function BatchList({ engine, kind, query, defaultSorting, columns, emptyText, on
 
   useEffect(() => {
     if (batches.data) {
-      onLoaded?.(batches.data.items);
+      onLoaded?.(batches.data.items, batches.data.count);
     }
   }, [batches.data]);
 
@@ -102,6 +103,8 @@ export function BatchesPage() {
   const navigate = route.useNavigate();
   const [draft, setDraft] = useState<SearchState>({ criteria: search.searchQuery ?? [], matchAny: false });
   const [creators, setCreators] = useState<string[]>([]);
+  // the number of running batches the search finds, shown next to it
+  const [runningCount, setRunningCount] = useState<number | undefined>(undefined);
   // batchOperation.autoLoadEnded of the classic config.js: false lists the ended batches only on request
   const settings = useSettings('cockpit');
   const [showEnded, setShowEnded] = useState(settings.autoLoadEndedBatches);
@@ -156,7 +159,14 @@ export function BatchesPage() {
       render: (batch) => {
         const progress = progressOf(batch);
         return progress === undefined ? null : (
-          <ProgressBar label={t('BATCHES_PROGRESS_PROGRESS')} hideLabel value={progress} size="small" helperText={`${progress}%`} />
+          <ProgressBar
+            label={t('BATCHES_PROGRESS_PROGRESS')}
+            hideLabel
+            value={progress}
+            size="small"
+            status={progress >= 100 ? 'finished' : 'active'}
+            helperText={`${progress}%`}
+          />
         );
       },
     },
@@ -175,7 +185,7 @@ export function BatchesPage() {
         <div className="cz-batches__lists">
           <section>
             <h2 className="cz-section-title">{t('BATCHES_PROGRESS_IN')}</h2>
-            <CriteriaSearch namespace="cockpit" types={BATCH_CRITERIA} value={draft} onChange={setDraft} allowMatchAny={false} />
+            <CriteriaSearch namespace="cockpit" types={BATCH_CRITERIA} value={draft} onChange={setDraft} allowMatchAny={false} total={runningCount} />
             <BatchList
               engine={engine}
               kind="runtime"
@@ -183,7 +193,10 @@ export function BatchesPage() {
               defaultSorting={{ sortBy: 'batchId', sortOrder: 'asc' }}
               columns={runningColumns}
               emptyText={t('BATCHES_PROGRESS_NO_RUNNING')}
-              onLoaded={(batches) => setCreators(batches.map((batch) => batch.createUserId).filter((id): id is string => !!id))}
+              onLoaded={(batches, count) => {
+                setCreators(batches.map((batch) => batch.createUserId).filter((id): id is string => !!id));
+                setRunningCount(count);
+              }}
             />
           </section>
           <section>

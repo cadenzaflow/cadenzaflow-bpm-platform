@@ -12,11 +12,14 @@ interface CriteriaSearchProps {
   onChange: (value: SearchState) => void;
   /** false: the query has no "or" (e.g. users), all criteria must match */
   allowMatchAny?: boolean;
+  /** the number of results of the search, shown next to it */
+  total?: number;
 }
 
 /** Builds query criteria; incomplete ones are kept but not applied. */
-export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAny = true }: CriteriaSearchProps) {
+export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAny = true, total }: CriteriaSearchProps) {
   const { t } = useTranslation(namespace);
+  const totalLabel = t('CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS');
   const operatorLabel = (key: string) => t(OPERATOR_LABELS[key] ?? key);
 
   const update = (index: number, changes: Partial<Criterion>) =>
@@ -116,6 +119,12 @@ export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAn
             toggled={value.matchAny}
             onToggle={(matchAny) => onChange({ ...value, matchAny })}
           />
+        )}
+        {total !== undefined && (
+          <span className="cz-criteria__total" title={totalLabel}>
+            <span className="cds--visually-hidden">{totalLabel}: </span>
+            {total.toLocaleString()}
+          </span>
         )}
       </div>
     </div>

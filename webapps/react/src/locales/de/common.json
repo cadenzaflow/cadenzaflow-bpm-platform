@@ -47,5 +47,6 @@
   "PASSWORD_POLICY_UPPERCASE": "{{minUpperCase}} Großbuchstaben",
   "PASSWORD_POLICY_USER_DATA": "Es darf keine Benutzerdaten enthalten",
   "USERS_PASSWORDS_NOT_EQUAL": "Passwörter müssen übereinstimmen.",
-  "MY_PROFILE": "Mein Profil"
+  "MY_PROFILE": "Mein Profil",
+  "CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS": "Anzahl der Ergebnisse"
 }

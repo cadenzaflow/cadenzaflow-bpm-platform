@@ -1,13 +1,11 @@
 import { useMemo } from 'react';
 import { Button, InlineNotification, SkeletonText } from '@carbon/react';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { cockpitUrl, engineUrl, request } from '../../../../shared/api/client';
 import { elementNames } from '../../../../shared/diagram/bpmn-names';
 import { ListTable, type Column } from '../../../../shared/ui/ListTable';
-import { useProcessDefinitionXml } from '../api';
-import { mergeCalled, type CalledDefinition, type CalledRow } from '../called';
+import { useCalledDefinitions, useProcessDefinitionXml } from '../api';
+import { mergeCalled, type CalledRow } from '../called';
 import type { DefinitionTab, DefinitionTabProps } from './registry';
 
 /** Process definitions called from this one: running now, referenced in the BPMN, or both. */
@@ -15,19 +13,7 @@ function CalledDefinitionsTab({ engine, definition, activityIds, onSearchChange 
   const { t } = useTranslation('cockpit');
   const xml = useProcessDefinitionXml(engine, definition.id);
   const names = useMemo(() => elementNames(xml.data), [xml.data]);
-  const id = encodeURIComponent(definition.id);
-  const running = useQuery({
-    queryKey: ['cockpit', engine, 'called-definitions', definition.id, activityIds],
-    queryFn: () =>
-      request<CalledDefinition[]>(cockpitUrl(engine, `/process-definition/${id}/called-process-definitions`), {
-        method: 'POST',
-        json: activityIds.length ? { activityIdIn: activityIds } : {},
-      }),
-  });
-  const referenced = useQuery({
-    queryKey: ['cockpit', engine, 'static-called-definitions', definition.id],
-    queryFn: () => request<CalledDefinition[]>(engineUrl(engine, `/process-definition/${id}/static-called-process-definitions`)),
-  });
+  const { running, referenced } = useCalledDefinitions(engine, definition.id, activityIds);
   const rows = running.data && referenced.data ? mergeCalled(running.data, referenced.data, activityIds) : undefined;
   const failure = running.error ?? referenced.error;
 

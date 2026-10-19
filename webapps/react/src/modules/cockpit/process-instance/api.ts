@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { engineUrl, request } from '../../../shared/api/client';
+import { cockpitUrl, engineUrl, request } from '../../../shared/api/client';
 import type { DiagramBadge } from '../../../shared/diagram/BpmnDiagram';
 import { useInvalidateCockpit } from '../incidents/api';
 
@@ -133,5 +133,29 @@ export function useCancelInstance(engine: string, id: string) {
     mutationFn: (options: { skipCustomListeners: boolean; skipIoMappings: boolean }) =>
       request<void>(instanceUrl(engine, id), { method: 'DELETE', query: options }),
     onSettled: invalidate,
+  });
+}
+
+/** A process instance called from a call activity of another one (Cockpit plugin API). */
+export interface CalledInstance {
+  id: string;
+  businessKey: string | null;
+  processDefinitionId: string;
+  processDefinitionKey: string;
+  processDefinitionName: string | null;
+  callActivityId: string;
+  callActivityInstanceId: string;
+  incidents: { incidentType: string; incidentCount: number }[];
+}
+
+/** The instances called from this one (all, or those of the given activity instances). */
+export function useCalledInstances(engine: string, id: string, activityInstanceIds: string[]) {
+  return useQuery({
+    queryKey: ['cockpit', engine, 'called-instances', id, activityInstanceIds],
+    queryFn: () =>
+      request<CalledInstance[]>(cockpitUrl(engine, `/process-instance/${encodeURIComponent(id)}/called-process-instances`), {
+        method: 'POST',
+        json: activityInstanceIds.length ? { activityInstanceIdIn: activityInstanceIds } : {},
+      }),
   });
 }

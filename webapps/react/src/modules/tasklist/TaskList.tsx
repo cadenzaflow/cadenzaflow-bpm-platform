@@ -114,7 +114,7 @@ export function TaskList({
       </div>
       {searchOpen && (
         <div className="cz-tasklist__search">
-          <CriteriaSearch namespace="tasklist" types={TASK_CRITERIA} value={draft} onChange={setDraft} />
+          <CriteriaSearch namespace="tasklist" types={TASK_CRITERIA} value={draft} onChange={setDraft} total={tasks.data?.count} />
         </div>
       )}
       <PluginPoint module="tasklist" point="tasklist.list" engine={engine} className="cz-tasklist__plugin" />
