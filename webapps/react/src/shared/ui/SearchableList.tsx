@@ -78,7 +78,7 @@ export function SearchableList<T extends { id: string }>({
   return (
     <>
       {criteria.length > 0 && (
-        <CriteriaSearch namespace={namespace} types={criteria} value={draft} onChange={setDraft} allowMatchAny={false} />
+        <CriteriaSearch namespace={namespace} types={criteria} value={draft} onChange={setDraft} allowMatchAny={false} total={list.data?.count} />
       )}
       {list.data && !list.data.sortable && unsortedNotice && (
         <InlineNotification kind="info" lowContrast hideCloseButton title={unsortedNotice.title} subtitle={unsortedNotice.subtitle} />

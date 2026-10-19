@@ -33,6 +33,21 @@
   margin-bottom: $spacing-05;
 }
 
+// the outcome of a bulk action per item
+.cz-outcome {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-02;
+
+  svg {
+    fill: $support-success;
+  }
+}
+
+.cz-outcome--failed svg {
+  fill: $support-error;
+}
+
 .cz-incident-count {
   display: inline-flex;
   align-items: center;

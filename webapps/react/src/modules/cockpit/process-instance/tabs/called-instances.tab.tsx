@@ -1,35 +1,16 @@
 import { Button, InlineNotification, SkeletonText } from '@carbon/react';
 import { WarningFilled } from '@carbon/icons-react';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { cockpitUrl, request } from '../../../../shared/api/client';
 import { ListTable, type Column } from '../../../../shared/ui/ListTable';
+import { useCalledInstances, type CalledInstance } from '../api';
 import { InstanceLink } from '../InstanceLink';
 import type { InstanceTab, InstanceTabProps } from './registry';
-
-interface CalledInstance {
-  id: string;
-  businessKey: string | null;
-  processDefinitionId: string;
-  processDefinitionKey: string;
-  processDefinitionName: string | null;
-  callActivityId: string;
-  callActivityInstanceId: string;
-  incidents: { incidentType: string; incidentCount: number }[];
-}
 
 /** Instances called from this one's call activities (all, or those of the selected activity instances). */
 function CalledInstancesTab({ engine, instance, activityInstanceIds, activityNames, onActivitySelect }: InstanceTabProps) {
   const { t } = useTranslation('cockpit');
-  const called = useQuery({
-    queryKey: ['cockpit', engine, 'called-instances', instance.id, activityInstanceIds],
-    queryFn: () =>
-      request<CalledInstance[]>(cockpitUrl(engine, `/process-instance/${encodeURIComponent(instance.id)}/called-process-instances`), {
-        method: 'POST',
-        json: activityInstanceIds.length ? { activityInstanceIdIn: activityInstanceIds } : {},
-      }),
-  });
+  const called = useCalledInstances(engine, instance.id, activityInstanceIds);
 
   const columns: Column<CalledInstance>[] = [
     {

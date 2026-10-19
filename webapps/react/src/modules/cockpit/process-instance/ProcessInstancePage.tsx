@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense, useCallback, useMemo } from 'react';
 import {
   InlineNotification,
   SkeletonPlaceholder,
@@ -13,6 +13,7 @@ import {
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../../shared/api/client';
+import type { DiagramDrilldown } from '../../../shared/diagram/BpmnDiagram';
 import { elementNames } from '../../../shared/diagram/bpmn-names';
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
@@ -29,6 +30,7 @@ import {
   treeIdOf,
   treeSelection,
   useActivityInstances,
+  useCalledInstances,
   useProcessInstance,
   useSuperProcessInstance,
   type ActivityInstance,
@@ -94,6 +96,41 @@ export function ProcessInstancePage() {
     navigate({ search: (previous: ProcessInstanceSearch) => ({ ...previous, ...changes }) });
   // another selection or tab starts the tab's list on its first page
   const select = (changes: Partial<ProcessInstanceSearch>) => update({ ...changes, page: undefined });
+
+  // A call activity's button leads to the instance it called; when it ran
+  // several times, the called instances tab lists them (as in the classic Cockpit).
+  const calledInstances = useCalledInstances(engine, id, []);
+  const drilldown = useCallback(
+    (activityId: string): DiagramDrilldown | undefined => {
+      if (!tree.data || !calledInstances.data) {
+        return undefined;
+      }
+      const instances = allInstances(tree.data).filter((node) => activityOf(node) === activityId && !node.activityId.endsWith('#multiInstanceBody'));
+      const called = calledInstances.data.filter((other) => other.callActivityId === activityId);
+      if (!instances.length || !called.length) {
+        return undefined;
+      }
+      const label = t('PLUGIN_ACTIVITY_INSTANCE_SHOW_CALLED_PROCESS_INSTANCES');
+      if (instances.length > 1) {
+        return {
+          label,
+          onClick: () =>
+            navigate({
+              search: (previous: ProcessInstanceSearch) => ({
+                ...previous,
+                tab: 'called-process-instances-tab',
+                activityIds: activityId,
+                activityInstanceIds: textOf(instances.map((node) => node.id)),
+                page: undefined,
+              }),
+            }),
+        };
+      }
+      const target = called.find((other) => other.callActivityInstanceId === instances[0].id) ?? called[0];
+      return { label, onClick: () => navigate({ to: '/cockpit/$engine/process-instance/$id', params: { engine, id: target.id } }) };
+    },
+    [tree.data, calledInstances.data, engine, navigate, t],
+  );
 
   // a diagram click selects the activity and all its instances
   const selectActivity = (activityId: string, add: boolean) => {
@@ -243,6 +280,7 @@ export function ProcessInstancePage() {
                     selected={activityIds}
                     onElementClick={selectActivity}
                     onViewer={onViewer}
+                    drilldown={drilldown}
                   />
                 </Suspense>
               )
