@@ -10,6 +10,8 @@ const route = getRouteApi('/admin/$engine');
 const linkProps = {
   className: 'cz-section-nav__item',
   activeProps: { className: 'is-active', 'aria-current': 'page' as const },
+  // the page of a route plugin (#/my-page) is none of the sections
+  activeOptions: { includeHash: true },
 };
 
 /**
@@ -27,7 +29,7 @@ export function AdminLayout() {
   return (
     <div className="cz-admin">
       <nav className="cz-section-nav" aria-label={t('ADMIN_SECTIONS')}>
-        <Link to="/admin/$engine" params={{ engine }} activeOptions={{ exact: true }} {...linkProps}>
+        <Link to="/admin/$engine" params={{ engine }} {...linkProps} activeOptions={{ ...linkProps.activeOptions, exact: true }}>
           {t('DASHBOARD_DASHBOARD')}
         </Link>
         <Link to="/admin/$engine/users" params={{ engine }} {...linkProps}>
