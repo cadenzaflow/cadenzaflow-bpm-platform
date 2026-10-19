@@ -208,6 +208,9 @@
             <phase>generate-resources</phase>
             <configuration>
               <arguments>run build</arguments>
+              <environmentVariables>
+                <CADENZAFLOW_VERSION>${project.version}</CADENZAFLOW_VERSION>
+              </environmentVariables>
             </configuration>
           </execution>
 
