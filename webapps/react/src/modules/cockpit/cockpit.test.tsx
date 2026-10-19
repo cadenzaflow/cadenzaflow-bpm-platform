@@ -312,6 +312,9 @@ describe('cockpit processes', () => {
 
     expect(await screen.findByText('Invoice Receipt')).toBeInTheDocument();
     expect(screen.getByText('Suspended')).toBeInTheDocument();
+    // the state says whether a definition has incidents, as in the classic Cockpit
+    expect(within(screen.getByText('Invoice Receipt').closest('tr')!).getByLabelText('With Incidents')).toBeInTheDocument();
+    expect(within(screen.getByText('Order').closest('tr')!).queryByLabelText('With Incidents')).not.toBeInTheDocument();
     expect(screen.getByText('process definitions deployed')).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: /Running Instances/ }));
