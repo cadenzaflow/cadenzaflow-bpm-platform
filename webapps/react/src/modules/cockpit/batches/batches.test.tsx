@@ -94,9 +94,11 @@ afterEach(() => {
 });
 
 describe('batches', () => {
-  it('computes the progress once a job completed', () => {
+  it('computes the progress of a batch with jobs', () => {
     expect(progressOf({ completedJobs: 3, remainingJobs: 1 })).toBe(75);
-    expect(progressOf({ completedJobs: 0, remainingJobs: 4 })).toBeUndefined();
+    // none done yet: 0 %, as in the classic Cockpit
+    expect(progressOf({ completedJobs: 0, remainingJobs: 4 })).toBe(0);
+    expect(progressOf({ completedJobs: 0, remainingJobs: 0 })).toBeUndefined();
     expect(validateBatchesSearch({ details: 'b', type: 'history', page: 2 })).toEqual({ searchQuery: undefined, details: 'b', type: 'history' });
     expect(validateBatchesSearch({ type: 'other' }).type).toBeUndefined();
   });

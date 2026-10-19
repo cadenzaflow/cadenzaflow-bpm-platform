@@ -18,9 +18,9 @@ export function validateBatchesSearch(search: Record<string, unknown>): BatchesS
   };
 }
 
-/** Completed jobs of all jobs, in percent; nothing before the first job completed. */
+/** Completed jobs of all jobs, in percent; nothing for a batch without jobs. */
 export function progressOf(batch: { completedJobs?: number; remainingJobs?: number }): number | undefined {
   const completed = batch.completedJobs ?? 0;
   const total = completed + (batch.remainingJobs ?? 0);
-  return completed > 0 && total > 0 ? Math.round((100 * completed) / total) : undefined;
+  return total > 0 ? Math.round((100 * completed) / total) : undefined;
 }
