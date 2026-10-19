@@ -129,6 +129,8 @@ describe('cockpit plugins', () => {
     await logIn();
 
     expect(await screen.findByText(`demo-page {} ${ENGINE}`)).toBeInTheDocument();
+    // the page is none of the sections
+    expect(screen.getByRole('link', { name: 'Dashboard' })).not.toHaveAttribute('aria-current');
   });
 
   it('shows the page of a route plugin whose path has a parameter, and renders it again for another one', async () => {

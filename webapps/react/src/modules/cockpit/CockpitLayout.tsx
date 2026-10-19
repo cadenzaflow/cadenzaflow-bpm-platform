@@ -9,6 +9,8 @@ const route = getRouteApi('/cockpit/$engine');
 const linkProps = {
   className: 'cz-section-nav__item',
   activeProps: { className: 'is-active', 'aria-current': 'page' as const },
+  // the page of a route plugin (#/my-page) is none of the sections
+  activeOptions: { includeHash: true },
 };
 
 /**
@@ -27,7 +29,7 @@ export function CockpitLayout() {
   return (
     <div className="cz-cockpit">
       <nav className="cz-section-nav" aria-label={t('COCKPIT_SECTIONS')}>
-        <Link to="/cockpit/$engine" params={{ engine }} activeOptions={{ exact: true }} {...linkProps}>
+        <Link to="/cockpit/$engine" params={{ engine }} {...linkProps} activeOptions={{ ...linkProps.activeOptions, exact: true }}>
           {t('DASHBOARD_DASHBOARD')}
         </Link>
         <Link to="/cockpit/$engine/processes" params={{ engine }} {...linkProps}>
