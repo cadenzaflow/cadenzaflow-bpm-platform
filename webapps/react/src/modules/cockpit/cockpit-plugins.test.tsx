@@ -18,6 +18,12 @@ const plugin = (id: string, pluginPoint: string, extra: Record<string, unknown> 
 });
 
 const logout = vi.hoisted(() => vi.fn());
+const itemRender = vi.hoisted(() =>
+  vi.fn((node: HTMLElement) => {
+    node.textContent = 'demo-item';
+  }),
+);
+const itemUnmount = vi.hoisted(() => vi.fn());
 const loginResult = vi.hoisted(() => vi.fn());
 
 // the plugin modules the server would deliver
@@ -32,6 +38,7 @@ vi.mock('../../shared/plugins/import-plugin', () => ({
         plugin('demo-action', 'cockpit.processInstance.runtime.action'),
         plugin('demo-nav', 'cockpit.navigation'),
         plugin('demo-page', 'cockpit.route', { properties: { path: '/demo-page' } }),
+        { ...plugin('demo-item', 'cockpit.route', { properties: { path: '/demo-item/:id' } }), render: itemRender, unmount: itemUnmount },
         plugin('demo-report', 'cockpit.report', { label: 'Demo' }),
         { id: 'demo-logout', pluginPoint: 'cockpit.logout', logout },
         plugin('demo-login', 'cockpit.login'),
@@ -122,6 +129,18 @@ describe('cockpit plugins', () => {
     await logIn();
 
     expect(await screen.findByText(`demo-page {} ${ENGINE}`)).toBeInTheDocument();
+  });
+
+  it('shows the page of a route plugin whose path has a parameter, and renders it again for another one', async () => {
+    fakeBackend();
+    const history = renderApp('/app/react/cockpit/default/#/demo-item/42?tab=log');
+    await logIn();
+
+    expect(await screen.findByText('demo-item')).toBeInTheDocument();
+    expect(itemRender).toHaveBeenCalledTimes(1);
+    history.push('/app/react/cockpit/default/#/demo-item/43');
+    await vi.waitFor(() => expect(itemRender).toHaveBeenCalledTimes(2));
+    expect(itemUnmount).toHaveBeenCalledTimes(1);
   });
 
   it('shows the reports of report plugins', async () => {
