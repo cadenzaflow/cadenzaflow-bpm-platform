@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { ModuleName } from '../config';
-import { pluginApi, usePluginPoint, type FrontendPlugin } from './plugins';
+import { moduleOf, pluginApi, usePluginLookup, usePluginPoint, type FrontendPlugin } from './plugins';
 
 interface PluginViewProps {
   plugin: FrontendPlugin;
@@ -20,12 +20,13 @@ interface PluginViewProps {
 export function PluginView({ plugin, engine, props = {}, objects, className }: PluginViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const propsKey = JSON.stringify(props);
+  const lookup = usePluginLookup(moduleOf(plugin.pluginPoint));
 
   useEffect(() => {
     const node = document.createElement('div');
     container.current?.appendChild(node);
     try {
-      plugin.render?.(node, { api: pluginApi(engine), ...props, ...objects });
+      plugin.render?.(node, { api: pluginApi(engine), plugins: lookup, ...props, ...objects });
     } catch (error) {
       console.error(`The plugin ${plugin.id} failed to render`, error);
     }
@@ -37,7 +38,7 @@ export function PluginView({ plugin, engine, props = {}, objects, className }: P
       }
       node.remove();
     };
-  }, [plugin, engine, propsKey, objects]);
+  }, [plugin, engine, propsKey, objects, lookup]);
 
   return <div ref={container} className={className ?? 'cz-plugin'} data-plugin-id={plugin.id} />;
 }

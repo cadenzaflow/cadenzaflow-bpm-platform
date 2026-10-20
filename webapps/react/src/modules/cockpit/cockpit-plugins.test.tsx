@@ -39,6 +39,20 @@ vi.mock('../../shared/plugins/import-plugin', () => ({
         plugin('demo-nav', 'cockpit.navigation'),
         plugin('demo-page', 'cockpit.route', { properties: { path: '/demo-page' } }),
         { ...plugin('demo-item', 'cockpit.route', { properties: { path: '/demo-item/:id' } }), render: itemRender, unmount: itemUnmount },
+        // a plugin with a plugin point of its own, and a plugin there
+        {
+          id: 'demo-host',
+          pluginPoint: 'cockpit.route',
+          properties: { path: '/demo-host' },
+          render: (node: HTMLElement, props: { api: unknown; plugins: (point: string) => { render: (node: HTMLElement, props: unknown) => void }[] }) => {
+            for (const hosted of props.plugins('cockpit.demoHost.tab')) {
+              const section = document.createElement('section');
+              node.appendChild(section);
+              hosted.render(section, { api: props.api, hostedIn: 'demo-host' });
+            }
+          },
+        },
+        plugin('demo-hosted', 'cockpit.demoHost.tab'),
         plugin('demo-report', 'cockpit.report', { label: 'Demo' }),
         { id: 'demo-logout', pluginPoint: 'cockpit.logout', logout },
         plugin('demo-login', 'cockpit.login'),
@@ -143,6 +157,14 @@ describe('cockpit plugins', () => {
     history.push('/app/react/cockpit/default/#/demo-item/43');
     await vi.waitFor(() => expect(itemRender).toHaveBeenCalledTimes(2));
     expect(itemUnmount).toHaveBeenCalledTimes(1);
+  });
+
+  it('lets a plugin show the plugins of a plugin point of its own', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/#/demo-host');
+    await logIn();
+
+    expect(await screen.findByText(`demo-hosted {"hostedIn":"demo-host"} ${ENGINE}`)).toBeInTheDocument();
   });
 
   it('shows the reports of report plugins', async () => {

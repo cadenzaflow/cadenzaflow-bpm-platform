@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { csrfToken } from '../api/client';
 import { useSettings } from '../classic-settings';
-import { appRoot, type ModuleName } from '../config';
+import { MODULES, appRoot, type ModuleName } from '../config';
 import { importPlugin } from './import-plugin';
 
 /**
@@ -54,7 +54,14 @@ export interface PluginApi {
   CSRFToken: string;
 }
 
-export type PluginProps = { api: PluginApi } & Record<string, unknown>;
+/**
+ * The plugins of a plugin point of the app, highest priority first: a plugin
+ * that offers plugin points of its own renders them (render(node, props),
+ * unmount() when it removes them).
+ */
+export type PluginLookup = (point: string) => FrontendPlugin[];
+
+export type PluginProps = { api: PluginApi; plugins?: PluginLookup } & Record<string, unknown>;
 
 /** Where a plugin's files are (app/plugin.js, app/plugin.css), from the server. */
 export interface PluginLocation {
@@ -178,15 +185,37 @@ export function usePlugins(module: ModuleName) {
 
 const NO_PLUGINS: FrontendPlugin[] = [];
 
+/** The plugins of one plugin point, highest priority first. */
+function pluginsOf(plugins: FrontendPlugin[] | undefined, point: string): FrontendPlugin[] {
+  const matching = (plugins ?? []).filter((plugin) => plugin.pluginPoint === point);
+  return matching.length ? matching.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0) || a.id.localeCompare(b.id)) : NO_PLUGINS;
+}
+
 /** The plugins of one plugin point, highest priority first (the same array until the plugins change). */
 export function usePluginPoint(module: ModuleName, point: string): FrontendPlugin[] {
   const plugins = usePlugins(module).data;
-  return useMemo(() => {
-    const matching = (plugins ?? []).filter((plugin) => plugin.pluginPoint === point);
-    return matching.length
-      ? matching.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0) || a.id.localeCompare(b.id))
-      : NO_PLUGINS;
-  }, [plugins, point]);
+  return useMemo(() => pluginsOf(plugins, point), [plugins, point]);
+}
+
+/** The app of a plugin point: its first part (cockpit.route: cockpit). */
+export function moduleOf(point: string): ModuleName | undefined {
+  const module = point.split('.')[0];
+  return (MODULES as readonly string[]).includes(module) ? (module as ModuleName) : undefined;
+}
+
+const NO_LOOKUP: PluginLookup = () => NO_PLUGINS;
+
+/**
+ * What plugins get as props.plugins: the plugins of the app's plugin points.
+ * It reads the app's loaded plugins when it is called (a plugin that gets it
+ * was itself found among them), so it stays the same function.
+ */
+export function usePluginLookup(module: ModuleName | undefined): PluginLookup {
+  const client = useQueryClient();
+  return useMemo(
+    () => (module ? (point: string) => pluginsOf(client.getQueryData<FrontendPlugin[]>(['plugins', module]), point) : NO_LOOKUP),
+    [client, module],
+  );
 }
 
 const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -311,12 +340,13 @@ export function useDiagramViewer(): [unknown, (viewer: unknown) => () => void] {
  */
 export function useDiagramPlugins(module: ModuleName, point: string, engine: string, viewer: unknown, props: Record<string, unknown>) {
   const plugins = usePluginPoint(module, point);
+  const lookup = usePluginLookup(module);
   const propsKey = JSON.stringify(props);
 
   useEffect(() => {
     if (!viewer || !plugins.length) {
       return;
     }
-    return renderPlugins(plugins, viewer, { api: pluginApi(engine), ...props });
-  }, [viewer, plugins, engine, propsKey]);
+    return renderPlugins(plugins, viewer, { api: pluginApi(engine), plugins: lookup, ...props });
+  }, [viewer, plugins, lookup, engine, propsKey]);
 }

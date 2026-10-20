@@ -77,8 +77,8 @@ export default [
 ```
 
 `render` gets a DOM element (for `*.diagram.plugin` the bpmn-js viewer) and
-the props `api` and, depending on the plugin point, the ids of what the page
-shows. `api` holds `adminApi`, `baseApi`, `cockpitApi`, `tasklistApi`,
+the props `api`, `plugins` and, depending on the plugin point, the ids of what
+the page shows. `api` holds `adminApi`, `baseApi`, `cockpitApi`, `tasklistApi`,
 `engineApi` (the engine REST API of the current engine), `engine` and
 `CSRFToken` (send it as `X-XSRF-TOKEN` with POST, PUT and DELETE). When the
 page shows something else, the plugin is unmounted and rendered again;
@@ -135,6 +135,13 @@ webapps: `:name` stands for one segment (`/my-page/:id` is the page of
 what follows `?` does not count. The plugin reads the parameters from
 `location.hash`. When the hash changes, the plugin is unmounted and rendered
 again.
+
+A plugin can offer plugin points of its own, as the plugins of the AngularJS
+webapps could. `plugins(point)` returns the plugins of a plugin point of the
+app, highest priority first. The plugin renders each of them into an element
+of its own, with `render(node, { api, plugins, ... })`, and calls their
+`unmount()` when it removes them. Give such a plugin point a name of the app,
+e.g. `cockpit.myPage.tab`.
 
 A plugin at `<app>.logout` (`cockpit.logout`, `tasklist.logout`,
 `admin.logout`, `welcome.logout`) has a `logout(props)` function instead of
