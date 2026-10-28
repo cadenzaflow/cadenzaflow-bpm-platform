@@ -43,6 +43,12 @@ public class ClientLoggerUtil extends LoggerUtil {
     logDebug("005", "Client backoff strategy found");
   }
 
+  public void useCreateTimeIgnored(String orderByCreateTime) {
+    logWarn("008", "Both \"useCreateTime\" and \"orderByCreateTime\" are set. " +
+        "Tasks are fetched by create time in the order '{}' of \"orderByCreateTime\"; " +
+        "\"useCreateTime\" is ignored", orderByCreateTime);
+  }
+
   public SpringExternalTaskClientException noUniqueClientException() {
     return new SpringExternalTaskClientException(exceptionMessage(
         "006", "Multiple matching client bean candidates have been found " +

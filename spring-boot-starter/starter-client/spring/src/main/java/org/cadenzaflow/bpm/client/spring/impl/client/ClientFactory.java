@@ -107,48 +107,54 @@ public class ClientFactory
   }
 
   protected void tryConfigureCreateTimeOrder(ExternalTaskClientBuilder builder) {
-    checkForCreateTimeMisconfiguration();
-
-    if (isUseCreateTimeEnabled()) {
-      builder.orderByCreateTime().desc();
+    if (isOrderByCreateTimeEnabled()) {
+      if (isUseCreateTimeEnabled()) {
+        LOG.useCreateTimeIgnored(getOrderByCreateTime());
+      }
+      handleOrderByCreateTimeConfig(builder);
       return;
     }
 
-    if (isOrderByCreateTimeEnabled()) {
-      handleOrderByCreateTimeConfig(builder);
+    if (isUseCreateTimeEnabled()) {
+      builder.orderByCreateTime().desc();
     }
   }
 
   protected void handleOrderByCreateTimeConfig(ExternalTaskClientBuilder builder) {
-    String orderByCreateTime = clientConfiguration.getOrderByCreateTime();
+    String orderByCreateTime = getOrderByCreateTime();
 
-    if (STRING_ORDER_BY_ASC_VALUE.equals(orderByCreateTime)) {
+    if (STRING_ORDER_BY_ASC_VALUE.equalsIgnoreCase(orderByCreateTime)) {
       builder.orderByCreateTime().asc();
       return;
     }
 
-    if (STRING_ORDER_BY_DESC_VALUE.equals(orderByCreateTime)) {
+    if (STRING_ORDER_BY_DESC_VALUE.equalsIgnoreCase(orderByCreateTime)) {
       builder.orderByCreateTime().desc();
       return;
     }
 
-    throw new SpringExternalTaskClientException("Invalid value " + clientConfiguration.getOrderByCreateTime()
+    throw new SpringExternalTaskClientException("Invalid value " + orderByCreateTime
         + ". Please use either \"asc\" or \"desc\" value for configuring \"orderByCreateTime\" on the client");
   }
 
+  /**
+   * @return the configured order without surrounding whitespace,
+   * or <code>null</code> when it is not set or empty
+   */
+  protected String getOrderByCreateTime() {
+    String orderByCreateTime = clientConfiguration.getOrderByCreateTime();
+    if (orderByCreateTime == null || orderByCreateTime.trim().isEmpty()) {
+      return null;
+    }
+    return orderByCreateTime.trim();
+  }
+
   protected boolean isOrderByCreateTimeEnabled() {
-    return clientConfiguration.getOrderByCreateTime() != null;
+    return getOrderByCreateTime() != null;
   }
 
   protected boolean isUseCreateTimeEnabled() {
     return Boolean.TRUE.equals(clientConfiguration.getUseCreateTime());
-  }
-
-  protected void checkForCreateTimeMisconfiguration() {
-    if (isUseCreateTimeEnabled() && isOrderByCreateTimeEnabled()) {
-      throw new SpringExternalTaskClientException(
-          "Both \"useCreateTime\" and \"orderByCreateTime\" are enabled. Please use one or the other");
-    }
   }
 
   @Autowired(required = false)
