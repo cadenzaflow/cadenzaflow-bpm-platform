@@ -16,6 +16,13 @@
  */
 package org.cadenzaflow.bpm.client.spring.boot.starter.client;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import org.cadenzaflow.bpm.client.ExternalTaskClientBuilder;
 import org.cadenzaflow.bpm.client.spring.boot.starter.ClientProperties;
 import org.cadenzaflow.bpm.client.spring.boot.starter.MockHelper;
@@ -24,7 +31,9 @@ import org.cadenzaflow.bpm.client.spring.exception.SpringExternalTaskClientExcep
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -32,15 +41,20 @@ import static org.mockito.Mockito.verify;
 public class CreateTimeOrderConfigurationTest {
 
   protected ClientProperties properties;
+  protected ListAppender<ILoggingEvent> logs;
 
   @Before
   public void initMocks() {
     MockHelper.initMocks();
     properties = new ClientProperties();
+    logs = new ListAppender<>();
+    logs.start();
+    clientLogger().addAppender(logs);
   }
 
   @After
   public void reset() {
+    clientLogger().detachAppender(logs);
     MockHelper.reset();
   }
 
@@ -94,13 +108,61 @@ public class CreateTimeOrderConfigurationTest {
   }
 
   @Test
-  public void shouldRejectUseCreateTimeTogetherWithOrderByCreateTime() {
+  public void shouldAcceptTheOrderInAnyCase() {
+    properties.setOrderByCreateTime("ASC");
+
+    buildClient();
+
+    verify(clientBuilder()).orderByCreateTime();
+    verify(clientBuilder()).asc();
+    verify(clientBuilder(), never()).desc();
+  }
+
+  @Test
+  public void shouldIgnoreSpacesAroundTheOrder() {
+    properties.setOrderByCreateTime(" Desc ");
+
+    buildClient();
+
+    verify(clientBuilder()).orderByCreateTime();
+    verify(clientBuilder()).desc();
+    verify(clientBuilder(), never()).asc();
+  }
+
+  @Test
+  public void shouldNotOrderByCreateTimeWhenTheOrderIsEmpty() {
+    properties.setOrderByCreateTime(" ");
+
+    buildClient();
+
+    verify(clientBuilder(), never()).orderByCreateTime();
+  }
+
+  @Test
+  public void shouldUseCreateTimeWhenTheOrderIsEmpty() {
+    properties.setUseCreateTime(true);
+    properties.setOrderByCreateTime("");
+
+    buildClient();
+
+    verify(clientBuilder()).orderByCreateTime();
+    verify(clientBuilder()).desc();
+    assertThat(warnings()).isEmpty();
+  }
+
+  @Test
+  public void shouldPreferOrderByCreateTimeOverUseCreateTime() {
     properties.setUseCreateTime(true);
     properties.setOrderByCreateTime("asc");
 
-    assertThatThrownBy(this::buildClient)
-        .isInstanceOf(SpringExternalTaskClientException.class)
-        .hasMessageContaining("Both \"useCreateTime\" and \"orderByCreateTime\" are enabled");
+    buildClient();
+
+    verify(clientBuilder()).orderByCreateTime();
+    verify(clientBuilder()).asc();
+    verify(clientBuilder(), never()).desc();
+    assertThat(warnings()).singleElement().asString()
+        .contains("\"useCreateTime\" is ignored")
+        .contains("'asc'");
   }
 
   @Test
@@ -120,6 +182,17 @@ public class CreateTimeOrderConfigurationTest {
 
   protected ExternalTaskClientBuilder clientBuilder() {
     return MockHelper.getClientBuilder();
+  }
+
+  protected Logger clientLogger() {
+    return (Logger) LoggerFactory.getLogger("org.cadenzaflow.bpm.client.spring");
+  }
+
+  protected List<String> warnings() {
+    return logs.list.stream()
+        .filter(event -> event.getLevel() == Level.WARN)
+        .map(ILoggingEvent::getFormattedMessage)
+        .collect(Collectors.toList());
   }
 
 }
