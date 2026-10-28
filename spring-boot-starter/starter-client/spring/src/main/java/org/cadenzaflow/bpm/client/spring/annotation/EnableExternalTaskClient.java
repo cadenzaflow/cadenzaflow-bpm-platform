@@ -98,18 +98,20 @@ public @interface EnableExternalTaskClient {
   boolean usePriority() default true;
 
   /**
-   * Specifies whether tasks should be fetched based on their createTime.
+   * Specifies whether tasks should be fetched based on their createTime, newest first.
    * This is optional. The default is <code>false</code>.
+   * Ignored when {@link #orderByCreateTime()} is set.
    *
    * @return useCreateTime when fetching and locking tasks
    */
   boolean useCreateTime() default false;
 
   /**
-   * Specifies whether tasks should be fetched based on their createTime with a configured order ()
+   * Specifies whether tasks should be fetched based on their createTime in the given order:
+   * <code>asc</code> or <code>desc</code>, in any case. An empty value means no order.
    * This information is optional.
    *
-   * @return useCreateTime when fetching and locking tasks
+   * @return orderByCreateTime when fetching and locking tasks
    */
   String orderByCreateTime() default STRING_NULL_VALUE;
 
