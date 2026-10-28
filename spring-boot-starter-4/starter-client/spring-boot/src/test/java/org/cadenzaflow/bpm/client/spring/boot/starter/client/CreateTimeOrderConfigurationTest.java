@@ -59,6 +59,7 @@ public class CreateTimeOrderConfigurationTest {
 
     verify(clientBuilder()).orderByCreateTime();
     verify(clientBuilder()).asc();
+    verify(clientBuilder(), never()).desc();
   }
 
   @Test
@@ -69,6 +70,7 @@ public class CreateTimeOrderConfigurationTest {
 
     verify(clientBuilder()).orderByCreateTime();
     verify(clientBuilder()).desc();
+    verify(clientBuilder(), never()).asc();
   }
 
   @Test
@@ -79,6 +81,16 @@ public class CreateTimeOrderConfigurationTest {
 
     verify(clientBuilder()).orderByCreateTime();
     verify(clientBuilder()).desc();
+    verify(clientBuilder(), never()).asc();
+  }
+
+  @Test
+  public void shouldNotOrderByCreateTimeWhenUseCreateTimeIsFalse() {
+    properties.setUseCreateTime(false);
+
+    buildClient();
+
+    verify(clientBuilder(), never()).orderByCreateTime();
   }
 
   @Test
