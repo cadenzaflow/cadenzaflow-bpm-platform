@@ -11,6 +11,6 @@
     "react-dom": "19.1.0"
   },
   "overrides": {
-    "dompurify": "^3.4.1"
+    "dompurify": "^3.4.17"
   }
 }
