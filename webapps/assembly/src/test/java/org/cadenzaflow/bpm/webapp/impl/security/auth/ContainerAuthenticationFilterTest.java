@@ -138,6 +138,20 @@ public class ContainerAuthenticationFilterTest {
         {"/api/welcome/plugin/some-plugin/default/process-instance", "default", false, true},
         {"/api/welcome/plugin/some-plugin/static/process-instance", null, false, false},
 
+        {"/app/react/cockpit/default/", "default", false, true},
+        {"/app/react/cockpit/default", "default", false, true},
+        {"/app/react/cockpit/engine2/process-instance/some-id", "engine2", false, true},
+        {"/app/react/tasklist/default/", "default", false, true},
+        {"/app/react/admin/default/users", "default", false, true},
+        {"/app/react/welcome/default/", "default", false, true},
+
+        {"/app/react/cockpit/default/", "default", true, false},
+        {"/app/react/tasklist/engine2/", "engine2", true, false},
+
+        {"/app/react/", null, false, false},
+        {"/app/react/assets/index.js", null, false, false},
+        {"/app/react/unknown/default/", null, false, false},
+
         {"/api/engine/engine/default/process-instance", "default", false, true},
         {"/api/engine/engine/engine2/process-instance", "engine2", false, true},
 
