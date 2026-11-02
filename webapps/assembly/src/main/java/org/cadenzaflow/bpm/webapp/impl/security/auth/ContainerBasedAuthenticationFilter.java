@@ -43,6 +43,8 @@ import org.cadenzaflow.bpm.webapp.impl.util.ServletContextUtil;
 public class ContainerBasedAuthenticationFilter implements Filter {
 
   public static Pattern APP_PATTERN = Pattern.compile("/app/(cockpit|admin|tasklist|welcome)/([^/]+)/");
+  // the React webapps are single-page apps: every path below /app/react/{app}/{engine} is one of their pages
+  public static Pattern REACT_APP_PATTERN = Pattern.compile("/app/react/(cockpit|admin|tasklist|welcome)/([^/]+)(/.*)?");
   public static Pattern API_ENGINE_PATTERN = Pattern.compile("/api/engine/engine/([^/]+)/.*");
   public static Pattern API_STATIC_PLUGIN_PATTERN = Pattern.compile("/api/(cockpit|admin|tasklist|welcome)/plugin/[^/]+/static/.*");
   public static Pattern API_PLUGIN_PATTERN = Pattern.compile("/api/(cockpit|admin|tasklist|welcome)/plugin/[^/]+/([^/]+)/.*");
@@ -142,6 +144,11 @@ public class ContainerBasedAuthenticationFilter implements Filter {
     Matcher appMatcher = APP_PATTERN.matcher(requestUri);
     if (appMatcher.matches()) {
       return appMatcher.group(2);
+    }
+
+    Matcher reactAppMatcher = REACT_APP_PATTERN.matcher(requestUri);
+    if (reactAppMatcher.matches()) {
+      return reactAppMatcher.group(2);
     }
 
     Matcher apiEngineMatcher = API_ENGINE_PATTERN.matcher(requestUri);
