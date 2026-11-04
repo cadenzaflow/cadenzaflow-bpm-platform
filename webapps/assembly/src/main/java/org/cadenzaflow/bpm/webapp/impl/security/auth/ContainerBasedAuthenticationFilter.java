@@ -103,6 +103,12 @@ public class ContainerBasedAuthenticationFilter implements Filter {
         List<String> tenants = authenticationResult.getTenants();
 
         UserAuthentication authentication = createAuthentication(engine, authenticatedUser, groups, tenants);
+        if (authentication == null) {
+          // the container authenticated a user the engine's identity provider does not know
+          resp.setStatus(Status.UNAUTHORIZED.getStatusCode());
+          authenticationProvider.augmentResponseByAuthenticationChallenge(resp, engine);
+          return;
+        }
         authentications.addOrReplace(authentication);
       }
 
