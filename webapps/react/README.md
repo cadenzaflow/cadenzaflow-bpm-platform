@@ -136,6 +136,23 @@ what follows `?` does not count. The plugin reads the parameters from
 `location.hash`. When the hash changes, the plugin is unmounted and rendered
 again.
 
+A plugin opens a page of the app without loading the app again by adding the
+page to the browser history and telling the app about it:
+
+```js
+const appRoot = api.cockpitApi.replace(/\/api\/cockpit$/, ''); // e.g. /cadenzaflow
+const url = `${appRoot}/app/react/cockpit/${api.engine}/process-instance/${id}`; // or …/#/my-page
+history.pushState(null, '', url);
+dispatchEvent(new PopStateEvent('popstate'));
+```
+
+The back and forward buttons of the browser work as on the pages of the app.
+A plain link opens the page as well, but loads the app again.
+
+When the REST API answers a plugin with 401, the session has ended (timeout,
+logout in another tab). Reload the page (`location.reload()`): the app shows
+its login page and, after the login, the same page.
+
 A plugin can offer plugin points of its own, as the plugins of the AngularJS
 webapps could. `plugins(point)` returns the plugins of a plugin point of the
 app, highest priority first. The plugin renders each of them into an element
