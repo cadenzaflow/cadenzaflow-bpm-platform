@@ -1,4 +1,4 @@
-import { Link, Outlet, getRouteApi, useLocation } from '@tanstack/react-router';
+import { Link, Outlet, getRouteApi, useLocation, useMatches } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PluginPoint, PluginView } from '../../shared/plugins/PluginPoint';
 import { usePluginPoint, useRoutePlugin } from '../../shared/plugins/plugins';
@@ -13,6 +13,16 @@ const linkProps = {
   activeOptions: { includeHash: true },
 };
 
+/** The pages of a definition or an instance belong to a section, as in the classic Cockpit. */
+const SECTION_OF_PAGE: Record<string, 'processes' | 'decisions'> = {
+  '/cockpit/$engine/process-definition/$id': 'processes',
+  '/cockpit/$engine/process-instance/$id': 'processes',
+  '/cockpit/$engine/decision-definition/$id': 'decisions',
+  '/cockpit/$engine/decision-instance/$id': 'decisions',
+};
+
+const markedProps = { className: 'cz-section-nav__item is-active', 'aria-current': 'page' as const };
+
 /**
  * Section navigation above every Cockpit page, in the order of the classic
  * Cockpit, followed by the entries of navigation plugins. A route plugin's
@@ -25,6 +35,8 @@ export function CockpitLayout() {
   const { hash } = useLocation();
   const routePlugin = useRoutePlugin('cockpit', hash);
   const reports = usePluginPoint('cockpit', 'cockpit.report');
+  const pageSection = useMatches({ select: (matches) => matches.map((match) => SECTION_OF_PAGE[match.routeId]).find(Boolean) });
+  const section = routePlugin ? undefined : pageSection;
 
   return (
     <div className="cz-cockpit">
@@ -32,10 +44,10 @@ export function CockpitLayout() {
         <Link to="/cockpit/$engine" params={{ engine }} {...linkProps} activeOptions={{ ...linkProps.activeOptions, exact: true }}>
           {t('DASHBOARD_DASHBOARD')}
         </Link>
-        <Link to="/cockpit/$engine/processes" params={{ engine }} {...linkProps}>
+        <Link to="/cockpit/$engine/processes" params={{ engine }} {...linkProps} {...(section === 'processes' ? markedProps : {})}>
           {t('COCKPIT_PROCESSES')}
         </Link>
-        <Link to="/cockpit/$engine/decisions" params={{ engine }} {...linkProps}>
+        <Link to="/cockpit/$engine/decisions" params={{ engine }} {...linkProps} {...(section === 'decisions' ? markedProps : {})}>
           {t('COCKPIT_DECISIONS')}
         </Link>
         <Link to="/cockpit/$engine/tasks" params={{ engine }} {...linkProps}>
