@@ -64,7 +64,8 @@
   gap: $spacing-02;
 }
 
-.cz-bpmn-diagram--selectable .djs-element.djs-shape {
+.cz-bpmn-diagram--selectable .djs-element.djs-shape,
+.cz-bpmn-diagram--selectable .cz-diagram-badge {
   cursor: pointer;
 }
 
