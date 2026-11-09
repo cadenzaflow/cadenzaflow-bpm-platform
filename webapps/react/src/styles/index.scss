@@ -62,13 +62,27 @@ body {
   padding: $spacing-05;
 }
 
-.cz-login__tile {
+.cz-login__content {
   width: 100%;
   max-width: 24rem;
 }
 
+// logo and name of the webapp above the form, as on the classic login page
+.cz-login__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-05;
+  margin-bottom: $spacing-07;
+}
+
+.cz-login__logo {
+  max-width: 100%;
+  max-height: 150px;
+}
+
 .cz-login__title {
-  @include type-style('heading-03');
+  @include type-style('heading-04');
 }
 
 .cz-user-menu__name {

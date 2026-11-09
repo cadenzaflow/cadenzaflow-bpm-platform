@@ -340,8 +340,9 @@ src/
   per module, class names prefixed with `cz-`. Fonts are bundled because the
   CSP only allows fonts from the server itself. The CadenzaFlow brand (logo,
   header line and colors of the classic webapps, buttons and links in a
-  darker shade for contrast) is in `styles/_brand.scss` and
-  `assets/cadenzaflow-logo.png`.
+  darker shade for contrast) is in `styles/_brand.scss`,
+  `assets/cadenzaflow-logo.png` (header) and `assets/cadenzaflow-login-logo.png`
+  (login page, the logo of the classic login page).
 - **TypeScript** runs with `strict` off but `strictNullChecks` on (TanStack
   Router requires it).
 

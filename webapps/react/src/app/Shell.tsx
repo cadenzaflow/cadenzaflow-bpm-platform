@@ -65,7 +65,7 @@ function ModuleShell({ module, engine }: { module: ModuleName; engine: string })
     );
   }
   if (!authentication.data) {
-    return <LoginPage engine={engine} module={module} />;
+    return <LoginPage engine={engine} module={module} appName={moduleName} vendor={vendor} />;
   }
 
   const authorized = authentication.data.authorizedApps.includes(module);
