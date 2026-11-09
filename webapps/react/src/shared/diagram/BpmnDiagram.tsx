@@ -62,9 +62,11 @@ interface DiagramElement {
 
 const isFlowNode = (element: DiagramElement) => !!element.businessObject?.$instanceOf?.('bpmn:FlowNode');
 
-function badgeElement(badge: DiagramBadge, labels?: { count: string; incidents: string }) {
+/** `onClick` gets whether Ctrl/Cmd was held. */
+function badgeElement(badge: DiagramBadge, labels: { count: string; incidents: string } | undefined, onClick: (add: boolean) => void) {
   const html = document.createElement('div');
   html.className = 'cz-diagram-badge';
+  html.addEventListener('click', (event) => onClick(event.ctrlKey || event.metaKey));
   const add = (value: number | undefined, className: string, label: string | undefined) => {
     if (!value) {
       return;
@@ -188,7 +190,9 @@ export default function BpmnDiagram({
     overlays.remove({ type: 'cz-badge' });
     for (const [id, badge] of Object.entries(badges ?? {})) {
       if (registry.get(id) && (badge.count || badge.incidents)) {
-        overlays.add(id, 'cz-badge', { position: { bottom: 8, left: -8 }, html: badgeElement(badge, badgeLabels) });
+        // a click on the badges selects the activity, as a click on the activity does (as in the classic Cockpit)
+        const html = badgeElement(badge, badgeLabels, (add) => clickHandler.current?.(id, add));
+        overlays.add(id, 'cz-badge', { position: { bottom: 8, left: -8 }, html });
       }
     }
     return () => {
