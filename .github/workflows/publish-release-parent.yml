@@ -10,14 +10,19 @@ name: Publish release parent
 # validation. The upload is not public then: someone publishes the deployment at
 # https://central.sonatype.com/publishing/deployments. Maven Central is append-only, a
 # published version can never be replaced or removed.
+#
+# The build of the release parent runs with the signing key and the Central token. So
+# the workflow builds one commit, named by its full SHA: the commit that was reviewed,
+# not whatever a branch points to when the workflow starts. The actions are pinned to a
+# commit for the same reason.
 
 on:
   workflow_dispatch:
     inputs:
-      ref:
-        description: 'Branch, tag or commit of cadenzaflow-bpm-release-parent'
+      commit:
+        description: 'Commit of cadenzaflow-bpm-release-parent to publish (full SHA, 40 characters)'
         type: string
-        default: 'cadenzaflow-v1.0.0'
+        required: true
       publish:
         description: 'Upload to Maven Central (off = build and sign only)'
         type: boolean
@@ -35,15 +40,38 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: Check the commit input
+        env:
+          COMMIT: ${{ inputs.commit }}
+        run: |
+          if ! printf '%s' "${COMMIT}" | grep -Eq '^[0-9a-f]{40}$'; then
+            echo "::error::The commit has to be a full SHA: 40 characters, 0-9 and a-f."
+            exit 1
+          fi
+
       - name: Checkout the release parent
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: cadenzaflow/cadenzaflow-bpm-release-parent
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.commit }}
+          # the whole history: the next step looks for the commit on the branches
+          fetch-depth: 0
           persist-credentials: false
 
+      - name: Check that the commit is on a branch of the release parent
+        run: |
+          # GitHub also serves the commits of forks through the repository they were
+          # forked from. Such a commit is on no branch of the repository itself.
+          BRANCHES="$(git branch -r --contains HEAD)"
+          if [ -z "${BRANCHES}" ]; then
+            echo "::error::Commit $(git rev-parse HEAD) is on no branch of cadenzaflow-bpm-release-parent."
+            exit 1
+          fi
+          echo "Commit $(git rev-parse HEAD) is on:"
+          echo "${BRANCHES}"
+
       - name: Set up JDK 17 (Eclipse Temurin)
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4.9.1
         with:
           distribution: temurin
           java-version: '17'
@@ -57,7 +85,7 @@ jobs:
             exit 1
           fi
           echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "Release parent ${VERSION}, commit $(git rev-parse HEAD)"
+          echo "Release parent ${VERSION}"
 
           URL="https://repo1.maven.org/maven2/org/cadenzaflow/cadenzaflow-bpm-release-parent/${VERSION}/cadenzaflow-bpm-release-parent-${VERSION}.pom"
           CODE="$(curl -s -o /dev/null -w '%{http_code}' "$URL")"
@@ -85,17 +113,11 @@ jobs:
           printf '%s' "${GPG_KEY}" | gpg --batch --import
           gpg --list-secret-keys --keyid-format=long | sed -n '1,6p'
 
-      - name: Write settings.xml with the Central Portal token
-        env:
-          CENTRAL_USR: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
-          CENTRAL_PSW: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+      - name: Write settings.xml
         run: |
-          if [ -z "${CENTRAL_USR}" ] || [ -z "${CENTRAL_PSW}" ]; then
-            echo "::error::CENTRAL_TOKEN_USERNAME or CENTRAL_TOKEN_PASSWORD secret is missing."
-            exit 1
-          fi
-          # The publishing plugin reads the token from the server `central`. The file
-          # holds no secret: Maven takes the values from the environment of the build.
+          # The file holds no secret. Maven takes the Central token (server `central`,
+          # read by the publishing plugin) and the passphrase of the signing key from the
+          # environment of the build, so neither is in a file or on a command line.
           mkdir -p ~/.m2
           cat > ~/.m2/settings.xml <<'SETTINGS'
           <?xml version="1.0" encoding="UTF-8"?>
@@ -107,6 +129,17 @@ jobs:
                 <password>${env.CENTRAL_TOKEN_PASSWORD}</password>
               </server>
             </servers>
+            <profiles>
+              <profile>
+                <id>signing</id>
+                <properties>
+                  <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                </properties>
+              </profile>
+            </profiles>
+            <activeProfiles>
+              <activeProfile>signing</activeProfile>
+            </activeProfiles>
           </settings>
           SETTINGS
 
@@ -115,11 +148,14 @@ jobs:
         env:
           GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
         run: |
+          if [ -z "${GPG_PASSPHRASE}" ]; then
+            echo "::error::MAVEN_GPG_PASSPHRASE secret is missing."
+            exit 1
+          fi
           # sonatype-oss-release is a profile of the parent of the release parent: it
-          # signs the POM. `verify` stops before the upload.
-          mvn --batch-mode clean verify \
-            -Psonatype-oss-release \
-            -Dgpg.passphrase="${GPG_PASSPHRASE}"
+          # signs the POM. `verify` stops before the upload, and this step does not get
+          # the Central token.
+          mvn --batch-mode clean verify -Psonatype-oss-release
           find target -name "*.asc"
 
       - name: Build, sign and upload to Maven Central
@@ -129,25 +165,27 @@ jobs:
           CENTRAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
         run: |
+          if [ -z "${CENTRAL_TOKEN_USERNAME}" ] || [ -z "${CENTRAL_TOKEN_PASSWORD}" ] || [ -z "${GPG_PASSPHRASE}" ]; then
+            echo "::error::CENTRAL_TOKEN_USERNAME, CENTRAL_TOKEN_PASSWORD or MAVEN_GPG_PASSPHRASE secret is missing."
+            exit 1
+          fi
           # The publishing plugin of the same profile uploads the signed POM and waits
           # until Central has validated it. The POM does not switch the automatic
           # publishing on, so nothing is public after this step.
-          mvn --batch-mode clean deploy \
-            -Psonatype-oss-release \
-            -Dgpg.passphrase="${GPG_PASSPHRASE}"
+          mvn --batch-mode clean deploy -Psonatype-oss-release
 
       - name: Summary
         if: always()
         env:
           VERSION: ${{ steps.v.outputs.VERSION }}
-          REF: ${{ inputs.ref }}
+          COMMIT: ${{ inputs.commit }}
           PUBLISH: ${{ inputs.publish }}
         run: |
           {
             echo "## Release parent"
             echo ""
             echo "- Version: \`${VERSION}\`"
-            echo "- Ref: \`${REF}\`"
+            echo "- Commit: \`${COMMIT}\`"
             echo "- Upload to Maven Central: \`${PUBLISH}\`"
             echo "- Status: \`${{ job.status }}\`"
             if [ "${PUBLISH}" = "true" ]; then
