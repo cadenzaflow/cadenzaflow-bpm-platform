@@ -379,6 +379,17 @@
       <properties>
         <skipTests>false</skipTests>
       </properties>
+      <repositories>
+        <!-- the SQL scripts of ${cadenzaflow.version.old} are published to the CadenzaFlow Nexus only -->
+        <repository>
+          <id>cadenzaflow-nexus</id>
+          <name>CadenzaFlow Nexus</name>
+          <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
       <build>
         <plugins>
           <plugin>

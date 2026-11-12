@@ -248,6 +248,13 @@
         <artifactId>jboss-javaee-6.0</artifactId>
         <version>${version.jboss-javaee-spec}</version>
         <type>pom</type>
+        <exclusions>
+          <!-- a JBoss build of xalan, published to the JBoss repository only; nothing here needs it -->
+          <exclusion>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
@@ -255,6 +262,13 @@
         <artifactId>jboss-javaee-web-6.0</artifactId>
         <version>${version.jboss-javaee-spec}</version>
         <type>pom</type>
+        <exclusions>
+          <!-- a JBoss build of xalan, published to the JBoss repository only; nothing here needs it -->
+          <exclusion>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>

@@ -15,6 +15,8 @@
   <properties>
     <ldap.server.port>10389</ldap.server.port>
     <ldap.server.port.posix>5027</ldap.server.port.posix>
+    <!-- implementation packages only: the javadoc jar for Maven Central has them -->
+    <cadenzaflow.javadoc.excludePackageNames />
   </properties>
 
   <dependencies>
