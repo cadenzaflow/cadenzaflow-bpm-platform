@@ -1,0 +1,157 @@
+name: Publish release parent
+
+# Publishes org.cadenzaflow:cadenzaflow-bpm-release-parent to Maven Central. Every module
+# of the platform inherits from it. Its sources are in the repository
+# cadenzaflow/cadenzaflow-bpm-release-parent; the signing key and the Central token are
+# secrets of this repository, so the workflow is here.
+#
+# Without `publish`, the workflow builds and signs the POM and uploads nothing.
+# With `publish`, it uploads the signed POM to the Central Portal and waits for the
+# validation. The upload is not public then: someone publishes the deployment at
+# https://central.sonatype.com/publishing/deployments. Maven Central is append-only, a
+# published version can never be replaced or removed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch, tag or commit of cadenzaflow-bpm-release-parent'
+        type: string
+        default: 'cadenzaflow-v1.0.0'
+      publish:
+        description: 'Upload to Maven Central (off = build and sign only)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Build, sign and upload
+    # A GitHub-hosted runner: the build is one POM, and the signing key does not stay on
+    # a machine that other jobs use.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout the release parent
+        uses: actions/checkout@v4
+        with:
+          repository: cadenzaflow/cadenzaflow-bpm-release-parent
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Set up JDK 17 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Read the version
+        id: v
+        run: |
+          VERSION="$(mvn --batch-mode -q help:evaluate -Dexpression=project.version -DforceStdout)"
+          if [ -z "${VERSION}" ]; then
+            echo "::error::Could not read the version of the POM."
+            exit 1
+          fi
+          echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Release parent ${VERSION}, commit $(git rev-parse HEAD)"
+
+          URL="https://repo1.maven.org/maven2/org/cadenzaflow/cadenzaflow-bpm-release-parent/${VERSION}/cadenzaflow-bpm-release-parent-${VERSION}.pom"
+          CODE="$(curl -s -o /dev/null -w '%{http_code}' "$URL")"
+          echo "GET $URL -> $CODE"
+          if [ "$CODE" = "200" ]; then
+            echo "::error::Version ${VERSION} is on Maven Central already. Central is append-only: publish a new version."
+            exit 1
+          fi
+
+      - name: Import the release signing key
+        env:
+          GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+        run: |
+          if [ -z "${GPG_KEY}" ]; then
+            echo "::error::MAVEN_GPG_PRIVATE_KEY secret is missing."
+            exit 1
+          fi
+          # The parent of the release parent pins maven-gpg-plugin 1.4, which cannot tell
+          # gpg to take the passphrase without a terminal. gpg is configured directly.
+          mkdir -p ~/.gnupg && chmod 700 ~/.gnupg
+          printf 'pinentry-mode loopback\nbatch\nno-tty\n' >> ~/.gnupg/gpg.conf
+          printf 'allow-loopback-pinentry\n' >> ~/.gnupg/gpg-agent.conf
+          gpgconf --kill gpg-agent || true
+
+          printf '%s' "${GPG_KEY}" | gpg --batch --import
+          gpg --list-secret-keys --keyid-format=long | sed -n '1,6p'
+
+      - name: Write settings.xml with the Central Portal token
+        env:
+          CENTRAL_USR: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          CENTRAL_PSW: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+        run: |
+          if [ -z "${CENTRAL_USR}" ] || [ -z "${CENTRAL_PSW}" ]; then
+            echo "::error::CENTRAL_TOKEN_USERNAME or CENTRAL_TOKEN_PASSWORD secret is missing."
+            exit 1
+          fi
+          # The publishing plugin reads the token from the server `central`. The file
+          # holds no secret: Maven takes the values from the environment of the build.
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<'SETTINGS'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${env.CENTRAL_TOKEN_USERNAME}</username>
+                <password>${env.CENTRAL_TOKEN_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          SETTINGS
+
+      - name: Build and sign
+        if: ${{ !inputs.publish }}
+        env:
+          GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: |
+          # sonatype-oss-release is a profile of the parent of the release parent: it
+          # signs the POM. `verify` stops before the upload.
+          mvn --batch-mode clean verify \
+            -Psonatype-oss-release \
+            -Dgpg.passphrase="${GPG_PASSPHRASE}"
+          find target -name "*.asc"
+
+      - name: Build, sign and upload to Maven Central
+        if: ${{ inputs.publish }}
+        env:
+          CENTRAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          CENTRAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: |
+          # The publishing plugin of the same profile uploads the signed POM and waits
+          # until Central has validated it. The POM does not switch the automatic
+          # publishing on, so nothing is public after this step.
+          mvn --batch-mode clean deploy \
+            -Psonatype-oss-release \
+            -Dgpg.passphrase="${GPG_PASSPHRASE}"
+
+      - name: Summary
+        if: always()
+        env:
+          VERSION: ${{ steps.v.outputs.VERSION }}
+          REF: ${{ inputs.ref }}
+          PUBLISH: ${{ inputs.publish }}
+        run: |
+          {
+            echo "## Release parent"
+            echo ""
+            echo "- Version: \`${VERSION}\`"
+            echo "- Ref: \`${REF}\`"
+            echo "- Upload to Maven Central: \`${PUBLISH}\`"
+            echo "- Status: \`${{ job.status }}\`"
+            if [ "${PUBLISH}" = "true" ]; then
+              echo ""
+              echo "The upload is not public yet. Publish the deployment at https://central.sonatype.com/publishing/deployments."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
