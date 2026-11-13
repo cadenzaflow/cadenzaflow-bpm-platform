@@ -12,6 +12,8 @@
 
   <properties>
     <jaxb-runtime.version>4.0.1</jaxb-runtime.version>
+    <!-- implementation packages only: the javadoc jar for Maven Central has them -->
+    <cadenzaflow.javadoc.excludePackageNames />
   </properties>
 
   <dependencies>

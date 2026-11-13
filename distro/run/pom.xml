@@ -131,6 +131,21 @@
     </plugins>
   </build>
 
+  <repositories>
+    <!-- Run needs one artifact that is published to the CadenzaFlow Nexus only: the backported
+         spring-webmvc (see dependencyManagement). Only Run declares this repository. The POMs
+         published to Maven Central declare none, so the builds of their users resolve from the
+         repositories the users choose. -->
+    <repository>
+      <id>cadenzaflow-nexus</id>
+      <name>CadenzaFlow Nexus</name>
+      <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <profiles>
     <profile>
       <id>distro</id>

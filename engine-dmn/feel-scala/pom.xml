@@ -11,6 +11,8 @@
   <name>CadenzaFlow DMN - engine FEEL - SCALA</name>
   <properties>
     <cadenzaflow.artifact>org.cadenzaflow.bpm.dmn.feel.impl.scala</cadenzaflow.artifact>
+    <!-- implementation packages only: the javadoc jar for Maven Central has them -->
+    <cadenzaflow.javadoc.excludePackageNames />
   </properties>
   <dependencies>
 
