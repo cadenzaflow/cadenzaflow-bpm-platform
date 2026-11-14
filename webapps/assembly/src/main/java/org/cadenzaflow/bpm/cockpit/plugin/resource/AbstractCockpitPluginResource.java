@@ -162,14 +162,13 @@ public class AbstractCockpitPluginResource extends AbstractAppPluginResource<Coc
     }
   }
 
+  /**
+   * A permission is disabled when its name is in the disabled permissions of the
+   * process engine configuration, as in the authorization checks of the engine.
+   */
   protected boolean isPermissionDisabled(Permission permission) {
     List<String> disabledPermissions = getProcessEngine().getProcessEngineConfiguration().getDisabledPermissions();
-    for (String disabledPerm : disabledPermissions) {
-      if (!disabledPerm.equals(permission.getName())) {
-        return true;
-      }
-    }
-    return false;
+    return disabledPermissions != null && disabledPermissions.contains(permission.getName());
   }
 
 }

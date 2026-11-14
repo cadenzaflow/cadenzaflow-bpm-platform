@@ -22,7 +22,50 @@
   }
 }
 
-.cz-bpmn-diagram--selectable .djs-element.djs-shape {
+// the drill-down button of a call activity
+.cz-diagram-drilldown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: $interactive;
+  color: $text-on-color;
+  cursor: pointer;
+
+  &:hover {
+    background: $link-primary-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $focus;
+    outline-offset: 1px;
+  }
+
+  &:disabled {
+    background: $layer-accent-01;
+    color: $text-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.cz-bpmn-diagram__frame {
+  position: relative;
+}
+
+.cz-bpmn-diagram__actions {
+  position: absolute;
+  top: $spacing-03;
+  right: $spacing-03;
+  display: flex;
+  gap: $spacing-02;
+}
+
+.cz-bpmn-diagram--selectable .djs-element.djs-shape,
+.cz-bpmn-diagram--selectable .cz-diagram-badge {
   cursor: pointer;
 }
 

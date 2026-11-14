@@ -1,10 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { InlineNotification } from '@carbon/react';
 import NavigatedViewer from 'bpmn-js/lib/NavigatedViewer';
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-js/dist/assets/bpmn-js.css';
 import type { BpmnJsExtensions } from './bpmn-extensions';
 import './bpmn-diagram.scss';
+
+/** The drill-down button of a call activity: where it leads (without onClick it is disabled). */
+export interface DiagramDrilldown {
+  /** the button's tooltip and accessible name */
+  label: string;
+  onClick?: () => void;
+}
 
 /** Numbers shown on an element, e.g. running instances and open incidents of an activity. */
 export interface DiagramBadge {
@@ -25,8 +32,12 @@ interface BpmnDiagramProps {
   badgeLabels?: { count: string; incidents: string };
   /** The diagram was imported: e.g. diagram plugins get the viewer. Returns what to do when it goes away. */
   onViewer?: (viewer: NavigatedViewer) => (() => void) | void;
+  /** shown in the top right corner of the diagram, e.g. the actions of plugins */
+  actions?: ReactNode;
   /** bpmn-js modules and moddle extensions to add (e.g. from the classic config.js) */
   extensions?: BpmnJsExtensions;
+  /** the drill-down button of each call activity; none for a call activity it returns nothing for */
+  drilldown?: (activityId: string) => DiagramDrilldown | undefined;
 }
 
 interface Canvas {
@@ -41,6 +52,7 @@ interface Overlays {
 }
 interface Registry {
   get: (id: string) => unknown;
+  filter: (predicate: (element: DiagramElement) => boolean) => DiagramElement[];
 }
 interface DiagramElement {
   id: string;
@@ -50,9 +62,11 @@ interface DiagramElement {
 
 const isFlowNode = (element: DiagramElement) => !!element.businessObject?.$instanceOf?.('bpmn:FlowNode');
 
-function badgeElement(badge: DiagramBadge, labels?: { count: string; incidents: string }) {
+/** `onClick` gets whether Ctrl/Cmd was held. */
+function badgeElement(badge: DiagramBadge, labels: { count: string; incidents: string } | undefined, onClick: (add: boolean) => void) {
   const html = document.createElement('div');
   html.className = 'cz-diagram-badge';
+  html.addEventListener('click', (event) => onClick(event.ctrlKey || event.metaKey));
   const add = (value: number | undefined, className: string, label: string | undefined) => {
     if (!value) {
       return;
@@ -70,8 +84,41 @@ function badgeElement(badge: DiagramBadge, labels?: { count: string; incidents: 
   return html;
 }
 
+function drilldownElement({ label, onClick }: DiagramDrilldown) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'cz-diagram-drilldown';
+  button.title = label;
+  button.setAttribute('aria-label', label);
+  // an arrow out of a box: "open what this calls"
+  button.innerHTML =
+    '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false">' +
+    '<path fill="currentColor" d="M13 13H3V3h4V2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9h-1z"/>' +
+    '<path fill="currentColor" d="M10 1v1h3.3L8.15 7.15l.7.7L14 2.7V6h1V1z"/></svg>';
+  if (onClick) {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      onClick();
+    });
+  } else {
+    button.disabled = true;
+  }
+  return button;
+}
+
 /** Read-only BPMN diagram with pan and zoom (bpmn-js). Load it lazily: bpmn-js is large. */
-export default function BpmnDiagram({ xml, highlight = [], selected = [], badges, onElementClick, badgeLabels, onViewer, extensions }: BpmnDiagramProps) {
+export default function BpmnDiagram({
+  xml,
+  highlight = [],
+  selected = [],
+  badges,
+  onElementClick,
+  badgeLabels,
+  onViewer,
+  extensions,
+  actions,
+  drilldown,
+}: BpmnDiagramProps) {
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<NavigatedViewer | null>(null);
   const clickHandler = useRef(onElementClick);
@@ -143,7 +190,9 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
     overlays.remove({ type: 'cz-badge' });
     for (const [id, badge] of Object.entries(badges ?? {})) {
       if (registry.get(id) && (badge.count || badge.incidents)) {
-        overlays.add(id, 'cz-badge', { position: { bottom: 8, left: -8 }, html: badgeElement(badge, badgeLabels) });
+        // a click on the badges selects the activity, as a click on the activity does (as in the classic Cockpit)
+        const html = badgeElement(badge, badgeLabels, (add) => clickHandler.current?.(id, add));
+        overlays.add(id, 'cz-badge', { position: { bottom: 8, left: -8 }, html });
       }
     }
     return () => {
@@ -152,10 +201,31 @@ export default function BpmnDiagram({ xml, highlight = [], selected = [], badges
     };
   }, [imported, highlightKey, selectedKey, badges, badgeLabels]);
 
+  // the drill-down buttons of call activities (as in the classic Cockpit)
+  useEffect(() => {
+    const instance = viewer.current;
+    if (!instance || !imported || !drilldown) {
+      return;
+    }
+    const registry = instance.get('elementRegistry') as Registry;
+    const overlays = instance.get('overlays') as Overlays;
+    overlays.remove({ type: 'cz-drilldown' });
+    for (const element of registry.filter((candidate) => !!candidate.businessObject?.$instanceOf?.('bpmn:CallActivity'))) {
+      const link = drilldown(element.id);
+      if (link) {
+        overlays.add(element.id, 'cz-drilldown', { position: { bottom: -7, right: -8 }, html: drilldownElement(link) });
+      }
+    }
+    return () => overlays.remove({ type: 'cz-drilldown' });
+  }, [imported, drilldown]);
+
   return (
     <>
       {error && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={error} />}
-      <div ref={container} className={`cz-bpmn-diagram${onElementClick ? ' cz-bpmn-diagram--selectable' : ''}`} />
+      <div className="cz-bpmn-diagram__frame">
+        <div ref={container} className={`cz-bpmn-diagram${onElementClick ? ' cz-bpmn-diagram--selectable' : ''}`} />
+        {actions && <div className="cz-bpmn-diagram__actions">{actions}</div>}
+      </div>
     </>
   );
 }

@@ -38,3 +38,9 @@
   justify-content: space-between;
   gap: $spacing-03;
 }
+
+// the number of results, at the end of the row
+.cz-criteria__total {
+  margin-left: auto;
+  color: $text-secondary;
+}

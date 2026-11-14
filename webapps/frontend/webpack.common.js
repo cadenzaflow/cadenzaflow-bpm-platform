@@ -25,7 +25,11 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-const {version} = require(path.resolve(__dirname, './package.json'));
+// the version of the Maven build (webapps/pom.xml sets it), else the one of package.json;
+// it is shown in the footer and is the cache key of every file (?bust=)
+const version =
+  process.env.CADENZAFLOW_VERSION ||
+  require(path.resolve(__dirname, './package.json')).version;
 
 module.exports = (_env, argv = {}) => {
   const eeBuild = !!argv.eeBuild;

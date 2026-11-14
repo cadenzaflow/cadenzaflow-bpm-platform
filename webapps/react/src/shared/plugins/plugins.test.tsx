@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PluginPoint } from './PluginPoint';
-import { loadPlugins, logOutWith, pluginApi, readPluginList, type FrontendPlugin } from './plugins';
+import { loadPlugins, logOutWith, matchesRoutePath, pluginApi, readPluginList, type FrontendPlugin } from './plugins';
 
 function pluginList(json: string) {
   const doc = document.implementation.createHTMLDocument();
@@ -91,6 +91,28 @@ describe('loading plugins', () => {
       engine: 'default',
       CSRFToken: 'token-1',
     });
+  });
+});
+
+describe('route plugin paths', () => {
+  it('are read as by the routes of the classic webapps', () => {
+    expect(matchesRoutePath('/my-page', '/my-page')).toBe(true);
+    expect(matchesRoutePath('/my-page', '/my-page?tab=log')).toBe(true);
+    expect(matchesRoutePath('/my-page', '/my-page/42')).toBe(false);
+    expect(matchesRoutePath('/my-page', '/my-pages')).toBe(false);
+    // :name is one segment
+    expect(matchesRoutePath('/my-page/:id', '/my-page/42')).toBe(true);
+    expect(matchesRoutePath('/my-page/:id', '/my-page/42?tab=log')).toBe(true);
+    expect(matchesRoutePath('/my-page/:id', '/my-page')).toBe(false);
+    expect(matchesRoutePath('/my-page/:id', '/my-page/42/log')).toBe(false);
+    // :name? may be left out, :name* takes one segment or more
+    expect(matchesRoutePath('/my-page/:id?', '/my-page')).toBe(true);
+    expect(matchesRoutePath('/my-page/:id?', '/my-page/42')).toBe(true);
+    expect(matchesRoutePath('/my-page/:rest*', '/my-page/42/log')).toBe(true);
+    expect(matchesRoutePath('/my-page/:rest*', '/my-page')).toBe(false);
+    // the rest of the path is text, not a pattern
+    expect(matchesRoutePath('/a.b', '/axb')).toBe(false);
+    expect(matchesRoutePath('/a.b', '/a.b')).toBe(true);
   });
 });
 

@@ -1,4 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useEffect, type ReactNode } from 'react';
 import { screen, within } from '@testing-library/react';
 import { initI18n } from '../../shared/i18n';
 import { json, logIn, renderApp } from '../../test/app';
@@ -17,6 +18,13 @@ const plugin = (id: string, pluginPoint: string, extra: Record<string, unknown> 
 });
 
 const logout = vi.hoisted(() => vi.fn());
+const itemRender = vi.hoisted(() =>
+  vi.fn((node: HTMLElement) => {
+    node.textContent = 'demo-item';
+  }),
+);
+const itemUnmount = vi.hoisted(() => vi.fn());
+const loginResult = vi.hoisted(() => vi.fn());
 
 // the plugin modules the server would deliver
 vi.mock('../../shared/plugins/import-plugin', () => ({
@@ -30,10 +38,36 @@ vi.mock('../../shared/plugins/import-plugin', () => ({
         plugin('demo-action', 'cockpit.processInstance.runtime.action'),
         plugin('demo-nav', 'cockpit.navigation'),
         plugin('demo-page', 'cockpit.route', { properties: { path: '/demo-page' } }),
+        { ...plugin('demo-item', 'cockpit.route', { properties: { path: '/demo-item/:id' } }), render: itemRender, unmount: itemUnmount },
+        // a plugin with a plugin point of its own, and a plugin there
+        {
+          id: 'demo-host',
+          pluginPoint: 'cockpit.route',
+          properties: { path: '/demo-host' },
+          render: (node: HTMLElement, props: { api: unknown; plugins: (point: string) => { render: (node: HTMLElement, props: unknown) => void }[] }) => {
+            for (const hosted of props.plugins('cockpit.demoHost.tab')) {
+              const section = document.createElement('section');
+              node.appendChild(section);
+              hosted.render(section, { api: props.api, hostedIn: 'demo-host' });
+            }
+          },
+        },
+        plugin('demo-hosted', 'cockpit.demoHost.tab'),
         plugin('demo-report', 'cockpit.report', { label: 'Demo' }),
         { id: 'demo-logout', pluginPoint: 'cockpit.logout', logout },
+        plugin('demo-login', 'cockpit.login'),
+        { id: 'demo-login-data', pluginPoint: 'cockpit.login.data', result: loginResult },
+        plugin('demo-diagram-action', 'cockpit.processDefinition.diagram.action'),
       ],
     };
+  },
+}));
+
+// bpmn-js does not draw in jsdom: a diagram that hands over a viewer and shows its actions
+vi.mock('../../shared/diagram/BpmnDiagram', () => ({
+  default: function FakeDiagram({ onViewer, actions }: { onViewer?: (viewer: unknown) => (() => void) | void; actions?: ReactNode }) {
+    useEffect(() => onViewer?.({ viewer: 'bpmn-js' }) ?? undefined, [onViewer]);
+    return <div>{actions}</div>;
   },
 }));
 
@@ -48,8 +82,8 @@ function fakeBackend() {
         return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit'] }) : json({}, 404);
       }
       if (path === '/api/admin/auth/user/default/login/cockpit' && method === 'POST') {
-        loggedIn = true;
-        return json({ userId: 'demo', authorizedApps: ['cockpit'] });
+        loggedIn = new URLSearchParams(String(init.body)).get('password') === 'demo';
+        return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit'] }) : json({}, 401);
       }
       if (path === `${ENGINE}/user/demo/profile`) {
         return json({ id: 'demo', firstName: 'Demo', lastName: 'Demo' });
@@ -62,6 +96,9 @@ function fakeBackend() {
       }
       if (path === `${ENGINE}/process-definition/invoice%3A2`) {
         return json({ id: 'invoice:2', key: 'invoice', name: 'Invoice', version: 2, deploymentId: 'd-1', resource: 'invoice.bpmn' });
+      }
+      if (path === `${ENGINE}/process-definition/invoice%3A2/xml`) {
+        return json({ id: 'invoice:2', bpmn20Xml: '<definitions />' });
       }
       if (path === `${ENGINE}/process-instance`) {
         return json([]);
@@ -106,6 +143,28 @@ describe('cockpit plugins', () => {
     await logIn();
 
     expect(await screen.findByText(`demo-page {} ${ENGINE}`)).toBeInTheDocument();
+    // the page is none of the sections
+    expect(screen.getByRole('link', { name: 'Dashboard' })).not.toHaveAttribute('aria-current');
+  });
+
+  it('shows the page of a route plugin whose path has a parameter, and renders it again for another one', async () => {
+    fakeBackend();
+    const history = renderApp('/app/react/cockpit/default/#/demo-item/42?tab=log');
+    await logIn();
+
+    expect(await screen.findByText('demo-item')).toBeInTheDocument();
+    expect(itemRender).toHaveBeenCalledTimes(1);
+    history.push('/app/react/cockpit/default/#/demo-item/43');
+    await vi.waitFor(() => expect(itemRender).toHaveBeenCalledTimes(2));
+    expect(itemUnmount).toHaveBeenCalledTimes(1);
+  });
+
+  it('lets a plugin show the plugins of a plugin point of its own', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/#/demo-host');
+    await logIn();
+
+    expect(await screen.findByText(`demo-hosted {"hostedIn":"demo-host"} ${ENGINE}`)).toBeInTheDocument();
   });
 
   it('shows the reports of report plugins', async () => {
@@ -127,5 +186,32 @@ describe('cockpit plugins', () => {
 
     expect(logout).toHaveBeenCalledWith({ api: expect.objectContaining({ engineApi: ENGINE }) });
     expect(vi.mocked(fetch).mock.calls.some(([url]) => String(url).endsWith('/logout'))).toBe(false);
+  });
+
+  it('shows the actions of plugins on the process definition diagram, with the viewer', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/process-definition/invoice:2');
+    await logIn();
+
+    expect(
+      await screen.findByText(`demo-diagram-action {"processDefinitionId":"invoice:2","viewer":{"viewer":"bpmn-js"}} ${ENGINE}`),
+    ).toBeInTheDocument();
+  });
+
+  it('shows login plugins below the login form and hands them each login', async () => {
+    loginResult.mockClear();
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/');
+
+    expect(await screen.findByText(`demo-login {} ${ENGINE}`)).toBeInTheDocument();
+    // a failed login: the promise rejects
+    await logIn('wrong');
+    await expect(loginResult.mock.calls[0][0]).rejects.toBeDefined();
+    // a successful one: the authentication as in the AngularJS webapps
+    await logIn();
+    const authentication = await loginResult.mock.calls[1][0];
+    expect(authentication).toMatchObject({ name: 'demo', authorizedApps: ['cockpit'] });
+    expect(authentication.canAccess('cockpit')).toBe(true);
+    expect(authentication.canAccess('admin')).toBe(false);
   });
 });

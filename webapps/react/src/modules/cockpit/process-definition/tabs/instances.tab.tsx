@@ -15,8 +15,7 @@ interface InstanceOverview {
   businessKey: string | null;
   startTime: string;
   incidents: { incidentType: string; incidentCount: number }[];
-  /** 1 active, 2 suspended */
-  suspensionState: number;
+  suspended: boolean;
 }
 
 const INSTANCE_CRITERIA: CriterionType[] = [
@@ -42,7 +41,7 @@ function InstancesTab({ engine, definition, activityIds, search, onSearchChange 
               <WarningFilled aria-label={t('PLUGIN_PROCESS_INSTANCE_WITH_INCIDENTS')} />
             </span>
           )}
-          {instance.suspensionState === 2 && (
+          {instance.suspended && (
             <Tag size="sm" type="gray">
               {t('PROCESS_DEFINITION_SUSPENDED')}
             </Tag>

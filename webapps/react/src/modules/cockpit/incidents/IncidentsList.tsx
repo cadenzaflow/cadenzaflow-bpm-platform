@@ -81,6 +81,11 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
         ),
     },
     {
+      key: 'failingActivity',
+      header: t('PLGN_HIST_FAILING_ACTIVITY'),
+      render: (incident) => activity(incident.failedActivityId),
+    },
+    {
       key: 'cause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_INSTANCE_ID'),
       render: (incident) => <InstanceLink engine={engine} id={incident.causeIncidentProcessInstanceId} />,

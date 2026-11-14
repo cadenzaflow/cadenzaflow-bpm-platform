@@ -106,7 +106,14 @@ export function DeploymentsColumn({ engine, search, onSearchChange, onSelect }: 
           onClick={() => onSearchChange({ sortBy: sorting.sortBy, sortOrder: sorting.sortOrder === 'asc' ? 'desc' : 'asc', page: undefined })}
         />
       </div>
-      <CriteriaSearch namespace="cockpit" types={DEPLOYMENT_CRITERIA} value={draft} onChange={setDraft} allowMatchAny={false} />
+      <CriteriaSearch
+        namespace="cockpit"
+        types={DEPLOYMENT_CRITERIA}
+        value={draft}
+        onChange={setDraft}
+        allowMatchAny={false}
+        total={deployments.data?.count}
+      />
       <PluginPoint module="cockpit" point="cockpit.repository.deployments.list" engine={engine} />
       {deployments.isPending && <SkeletonText paragraph lineCount={6} />}
       {deployments.isError && (

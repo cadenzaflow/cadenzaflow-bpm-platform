@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.cadenzaflow</groupId>
     <artifactId>cadenzaflow-bpm-release-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <!-- do not remove empty tag - http://jira.codehaus.org/browse/MNG-4687 -->
     <relativePath />
   </parent>
@@ -44,6 +44,12 @@
       Maven deploy, it takes a signed bundle uploaded by Sonatype's plugin.
     -->
     <cadenzaflow.deploy.skip>false</cadenzaflow.deploy.skip>
+    <!--
+      The packages that the javadoc jars for Maven Central leave out (see the central-publish
+      profile). A module that has implementation packages only sets this to nothing: Maven
+      Central wants a javadoc jar next to every jar.
+    -->
+    <cadenzaflow.javadoc.excludePackageNames>*.impl:*.impl.*</cadenzaflow.javadoc.excludePackageNames>
   </properties>
 
   <build>
@@ -153,6 +159,80 @@
               <publishingServerId>central</publishingServerId>
               <autoPublish>false</autoPublish>
               <waitUntil>validated</waitUntil>
+              <!--
+                Maven Central limits what an organization publishes per month (files and
+                size). Central needs an MD5 and a SHA-1 checksum of every file, not SHA-256
+                and SHA-512 as well.
+              -->
+              <checksums>required</checksums>
+              <!--
+                These modules are published to our Nexus only: QA and test projects,
+                Java EE, the web archives for application servers, the OpenAPI
+                description, the shaded jars of the distributions, and the javax and
+                Spring 5 variants of modules that have a Jakarta / Spring 6 and 7 variant.
+                No module published to Central depends on them (outside of test scope).
+                Users who need one add our Nexus to their Maven settings.
+              -->
+              <excludeArtifacts>
+                <!-- QA and test projects -->
+                <artifact>engine-variable-test</artifact>
+                <artifact>cadenzaflow-external-task-client-qa</artifact>
+                <artifact>cadenzaflow-bpm-spring-boot-starter-qa</artifact>
+                <artifact>qa-liquibase</artifact>
+                <artifact>qa-plugins</artifact>
+                <artifact>qa-plugins-spin</artifact>
+                <artifact>qa-plugins-spin-dataformat-all</artifact>
+                <artifact>qa-plugins-spin-dataformat-json-jackson</artifact>
+                <artifact>qa-request-scope</artifact>
+                <artifact>qa-simple</artifact>
+                <artifact>qa-webapp</artifact>
+                <artifact>qa-webapp-ce-runtime</artifact>
+                <artifact>qa-webapp-invoice-example</artifact>
+                <artifact>cadenzaflow-bpm-quarkus-engine-qa</artifact>
+                <artifact>docs</artifact>
+                <!-- Java EE -->
+                <artifact>cadenzaflow-ejb-client</artifact>
+                <artifact>cadenzaflow-ejb-client-jakarta</artifact>
+                <artifact>cadenzaflow-cdi-compatibility-root</artifact>
+                <artifact>cadenzaflow-engine-cdi</artifact>
+                <artifact>cadenzaflow-engine-cdi-jakarta</artifact>
+                <!-- web archives for application servers -->
+                <artifact>cadenzaflow-engine-rest</artifact>
+                <artifact>cadenzaflow-engine-rest-jakarta</artifact>
+                <artifact>cadenzaflow-webapp</artifact>
+                <!-- OpenAPI description of the REST API -->
+                <artifact>cadenzaflow-engine-rest-openapi</artifact>
+                <artifact>cadenzaflow-engine-rest-openapi-generator</artifact>
+                <!-- shaded jars of the distributions -->
+                <artifact>cadenzaflow-spin-dataformat-all</artifact>
+                <artifact>cadenzaflow-connect-connectors-all</artifact>
+                <!-- javax and Spring 5 variants -->
+                <artifact>cadenzaflow-engine-rest-core</artifact>
+                <artifact>cadenzaflow-engine-spring</artifact>
+                <artifact>cadenzaflow-spin-dataformat-xml-dom</artifact>
+              </excludeArtifacts>
+            </configuration>
+          </plugin>
+          <plugin>
+            <!-- the test sources stay on our Nexus (the sonatype-oss-release profile attaches them) -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-test-sources</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <!--
+              Javadoc of the public API only, as the engine's API documentation always was:
+              most of the javadoc of the engine is its implementation (the impl packages).
+            -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <excludePackageNames>${cadenzaflow.javadoc.excludePackageNames}</excludePackageNames>
             </configuration>
           </plugin>
         </plugins>
@@ -443,27 +523,6 @@
     </profile>
 
   </profiles>
-
-  <repositories>
-    <repository>
-      <id>maven-central</id>
-      <name>Maven Central</name>
-      <url>https://repo1.maven.org/maven2</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>cadenzaflow-nexus</id>
-      <name>CadenzaFlow Nexus Repository</name>
-      <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-nexus</url>
-    </repository>
-    <repository>
-      <id>cadenzaflow-release</id>
-      <name>CadenzaFlow Release Repository (HTTPS)</name>
-      <url>https://nexus.cadenzaflow.com/repository/cadenzaflow-release</url>
-    </repository>
-  </repositories>
 
   <licenses>
     <license>

@@ -45,12 +45,20 @@ export function ProcessesPage() {
     {
       key: 'state',
       header: t('PLUGIN_PROCESS_DEF_STATE'),
-      render: (definition) =>
-        definition.suspensionState === 2 ? (
-          <Tag size="sm" type="gray">
-            {t('PROCESS_DEFINITION_SUSPENDED')}
-          </Tag>
-        ) : null,
+      render: (definition) => (
+        <>
+          {definition.incidents > 0 && (
+            <span className="cz-incident-count" title={t('PLUGIN_PROCESS_INSTANCE_WITH_INCIDENTS')}>
+              <WarningFilled aria-label={t('PLUGIN_PROCESS_INSTANCE_WITH_INCIDENTS')} />
+            </span>
+          )}
+          {definition.suspensionState === 2 && (
+            <Tag size="sm" type="gray">
+              {t('PROCESS_DEFINITION_SUSPENDED')}
+            </Tag>
+          )}
+        </>
+      ),
     },
     {
       key: 'incidents',

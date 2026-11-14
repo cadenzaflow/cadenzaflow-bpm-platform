@@ -30,7 +30,7 @@ export function formatDateTime(value: string | null | undefined, language: strin
   }
   return dateTimePattern
     ? formatMoment(date, dateTimePattern, language)
-    : new Intl.DateTimeFormat(language, { dateStyle: 'medium', timeStyle: 'short' }).format(date);
+    : new Intl.DateTimeFormat(language, { dateStyle: 'medium', timeStyle: 'medium' }).format(date);
 }
 
 /** moment.js' localized formats, in the language's own order */

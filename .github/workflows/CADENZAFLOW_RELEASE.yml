@@ -540,24 +540,26 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' || github.event.inputs.notify_download == 'true' }}
     steps:
-      # PUBLISH.yml is invoked once per package. It currently downloads ALL release
-      # assets per call, so tomcat and run files land in both package folders — a
-      # known limitation of cadenzaflow-download/PUBLISH.yml to tighten later
-      # (filter assets by package name).
-      - name: Dispatch cadenzaflow-release-published (tomcat + run)
+      # PUBLISH.yml is invoked once per package and takes only that package's
+      # assets. Its runs must not overlap: each one commits config.json and
+      # builds the site image from it, and two at once fail to push. Published
+      # by hand, the packages go one after the other. The dispatch below starts
+      # all four at once - PUBLISH has to queue them before
+      # DOWNLOAD_DISPATCH_TOKEN is set.
+      - name: Dispatch cadenzaflow-release-published (tomcat, tomcat11, run, run4)
         env:
           DISPATCH_TOKEN: ${{ secrets.DOWNLOAD_DISPATCH_TOKEN }}
         run: |
           if [ -z "${DISPATCH_TOKEN}" ]; then
             echo "::warning::DOWNLOAD_DISPATCH_TOKEN not set — skipping auto-publish."
-            echo "Run cadenzaflow-download › PUBLISH manually with:"
+            echo "Run cadenzaflow-download › PUBLISH manually, one package after the other, with:"
             echo "  source_repo=${{ github.repository }}"
             echo "  release_tag=${{ needs.release.outputs.tag }}"
-            echo "  package=cadenzaflow-bpm-tomcat | cadenzaflow-bpm-run"
+            echo "  package=cadenzaflow-bpm-tomcat | cadenzaflow-bpm-tomcat11 | cadenzaflow-bpm-run | cadenzaflow-bpm-run4"
             echo "  package_version=${{ needs.release.outputs.minor }}"
             exit 0
           fi
-          for PKG in cadenzaflow-bpm-tomcat cadenzaflow-bpm-run; do
+          for PKG in cadenzaflow-bpm-tomcat cadenzaflow-bpm-tomcat11 cadenzaflow-bpm-run cadenzaflow-bpm-run4; do
             echo "Dispatching publish for ${PKG} ..."
             curl -sS --fail -X POST \
               -H "Authorization: token ${DISPATCH_TOKEN}" \

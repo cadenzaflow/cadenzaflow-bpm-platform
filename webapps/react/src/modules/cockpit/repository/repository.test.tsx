@@ -97,6 +97,8 @@ describe('cockpit deployments', () => {
     const user = await logIn();
 
     const resources = await screen.findByRole('button', { name: 'readme.txt' });
+    // the number of deployments the search finds, as in the classic Cockpit
+    expect(screen.getByTitle('Total number of results')).toHaveTextContent('2');
     // the shared path is shown once, not on every resource
     expect(screen.queryByText('process/')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: /invoice.*Time:/ })).toHaveAttribute('aria-current', 'true');

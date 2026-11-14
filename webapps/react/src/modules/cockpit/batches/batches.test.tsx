@@ -94,9 +94,11 @@ afterEach(() => {
 });
 
 describe('batches', () => {
-  it('computes the progress once a job completed', () => {
+  it('computes the progress of a batch with jobs', () => {
     expect(progressOf({ completedJobs: 3, remainingJobs: 1 })).toBe(75);
-    expect(progressOf({ completedJobs: 0, remainingJobs: 4 })).toBeUndefined();
+    // none done yet: 0 %, as in the classic Cockpit
+    expect(progressOf({ completedJobs: 0, remainingJobs: 4 })).toBe(0);
+    expect(progressOf({ completedJobs: 0, remainingJobs: 0 })).toBeUndefined();
     expect(validateBatchesSearch({ details: 'b', type: 'history', page: 2 })).toEqual({ searchQuery: undefined, details: 'b', type: 'history' });
     expect(validateBatchesSearch({ type: 'other' }).type).toBeUndefined();
   });
@@ -110,6 +112,8 @@ describe('batches', () => {
     expect(await row.findByText('Demo User')).toBeInTheDocument();
     expect(row.getByText('75%')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'batch-0' })).toBeInTheDocument();
+    // the number of running batches the search finds, as in the classic Cockpit
+    expect(screen.getByTitle('Total number of results')).toHaveTextContent('1');
 
     await user.click(screen.getByRole('button', { name: 'batch-1' }));
     await waitFor(() => expect(history.location.search).toBe('?details=batch-1&type=runtime'));

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { DEFAULT_SETTINGS, readClassicSettings } from './classic-settings';
 import { loadBpmnJsExtensions } from './diagram/bpmn-extensions';
-import { formatMoment } from './format';
+import { formatDateTime, formatMoment } from './format';
 import { chooseLanguage } from './i18n';
 import { loadCustomScripts } from './plugins/plugins';
 
@@ -102,6 +102,13 @@ describe('dates in a moment.js format', () => {
     expect(formatMoment(date, 'D/M/YY h:mm a', 'en')).toBe('5/10/26 2:07 pm');
     expect(formatMoment(date, '[Today is] dddd', 'en')).toBe('Today is Monday');
     expect(formatMoment(date, 'MMMM', 'de')).toBe('Oktober');
+  });
+
+  it('shows the seconds without a format of config.js, as the classic webapps do', () => {
+    expect(formatDateTime('2026-10-05T14:07:09.000+0200', 'en')).toBe(
+      new Intl.DateTimeFormat('en', { dateStyle: 'medium', timeStyle: 'medium' }).format(new Date('2026-10-05T14:07:09.000+02:00')),
+    );
+    expect(formatDateTime('2026-10-05T14:07:09.000+0200', 'en')).toMatch(/:09/);
   });
 
   it('formats the localized formats in the language', () => {

@@ -272,9 +272,27 @@ describe('webapp shell', () => {
 
     expect(await screen.findByText('Login Failed')).toBeInTheDocument();
   });
+
+  it('shows the logo and the name of the webapp on the login page, as the classic webapps do', async () => {
+    fakeBackend();
+    renderApp('/app/react/tasklist/default');
+
+    expect(await screen.findByRole('heading', { level: 1, name: 'Tasklist' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'CadenzaFlow' })).toBeInTheDocument();
+    expect(screen.getByRole('form', { name: 'Please Log in' })).toContainElement(screen.getByLabelText('Username'));
+  });
 });
 
 describe('tasklist with the settings of the classic config.js', () => {
+  it('shows its app name and vendor on the login page', async () => {
+    classicConfig.value = { app: { name: 'Work Queue', vendor: 'Example Corp' } };
+    fakeBackend();
+    renderApp('/app/react/tasklist/default');
+
+    expect(await screen.findByRole('heading', { level: 1, name: 'Work Queue' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Example Corp' })).toBeInTheDocument();
+  });
+
   it('takes the shortcut keys and comments with the process instance', async () => {
     classicConfig.value = {
       shortcuts: {

@@ -1,10 +1,12 @@
 name: "CodeQL"
 
+# Release branches (cadenzaflow-X.Y.Z) are analysed like master, as Test and
+# Security Scan already do.
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "cadenzaflow-*.*.*" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "cadenzaflow-*.*.*" ]
 
 # SARIF upload to code scanning needs security-events: write; without an explicit
 # permissions block the default token is read-only and the upload step fails with

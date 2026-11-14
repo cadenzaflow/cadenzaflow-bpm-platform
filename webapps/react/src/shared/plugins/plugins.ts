@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { csrfToken } from '../api/client';
 import { useSettings } from '../classic-settings';
-import { appRoot, type ModuleName } from '../config';
+import { MODULES, appRoot, type ModuleName } from '../config';
 import { importPlugin } from './import-plugin';
 
 /**
@@ -20,7 +20,7 @@ export interface FrontendPlugin {
   priority?: number;
   /** tabs, navigation and reports: the title (an i18n key or plain text) */
   label?: string;
-  /** e.g. the path of a cockpit.route plugin */
+  /** e.g. the path of a {module}.route plugin */
   properties?: Record<string, unknown>;
   /** renders into the node (for a diagram plugin point: the bpmn-js viewer) */
   render?: (node: unknown, props: PluginProps) => void;
@@ -28,6 +28,16 @@ export interface FrontendPlugin {
   unmount?: () => void;
   /** at {module}.logout: logs the user out instead of the webapp (e.g. a single sign-on logout) */
   logout?: (props: PluginProps) => void;
+  /** at {module}.login.data: gets the login (see passLogin) */
+  result?: (login: Promise<ClassicAuthentication>) => void;
+}
+
+/** The authentication as the AngularJS webapps hand it to plugins. */
+export interface ClassicAuthentication {
+  /** the user id */
+  name: string;
+  authorizedApps: string[];
+  canAccess: (app: string) => boolean;
 }
 
 export interface PluginApi {
@@ -44,7 +54,14 @@ export interface PluginApi {
   CSRFToken: string;
 }
 
-export type PluginProps = { api: PluginApi } & Record<string, unknown>;
+/**
+ * The plugins of a plugin point of the app, highest priority first: a plugin
+ * that offers plugin points of its own renders them (render(node, props),
+ * unmount() when it removes them).
+ */
+export type PluginLookup = (point: string) => FrontendPlugin[];
+
+export type PluginProps = { api: PluginApi; plugins?: PluginLookup } & Record<string, unknown>;
 
 /** Where a plugin's files are (app/plugin.js, app/plugin.css), from the server. */
 export interface PluginLocation {
@@ -82,7 +99,9 @@ export function readPluginList(module: ModuleName, doc: Document = document): Pl
 const isPlugin = (value: unknown): value is FrontendPlugin =>
   !!value &&
   typeof (value as FrontendPlugin).pluginPoint === 'string' &&
-  (typeof (value as FrontendPlugin).render === 'function' || typeof (value as FrontendPlugin).logout === 'function');
+  (typeof (value as FrontendPlugin).render === 'function' ||
+    typeof (value as FrontendPlugin).logout === 'function' ||
+    typeof (value as FrontendPlugin).result === 'function');
 
 /**
  * Loads the plugins: their stylesheet and their module. A plugin that fails
@@ -166,15 +185,78 @@ export function usePlugins(module: ModuleName) {
 
 const NO_PLUGINS: FrontendPlugin[] = [];
 
+/** The plugins of one plugin point, highest priority first. */
+function pluginsOf(plugins: FrontendPlugin[] | undefined, point: string): FrontendPlugin[] {
+  const matching = (plugins ?? []).filter((plugin) => plugin.pluginPoint === point);
+  return matching.length ? matching.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0) || a.id.localeCompare(b.id)) : NO_PLUGINS;
+}
+
 /** The plugins of one plugin point, highest priority first (the same array until the plugins change). */
 export function usePluginPoint(module: ModuleName, point: string): FrontendPlugin[] {
   const plugins = usePlugins(module).data;
-  return useMemo(() => {
-    const matching = (plugins ?? []).filter((plugin) => plugin.pluginPoint === point);
-    return matching.length
-      ? matching.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0) || a.id.localeCompare(b.id))
-      : NO_PLUGINS;
-  }, [plugins, point]);
+  return useMemo(() => pluginsOf(plugins, point), [plugins, point]);
+}
+
+/** The app of a plugin point: its first part (cockpit.route: cockpit). */
+export function moduleOf(point: string): ModuleName | undefined {
+  const module = point.split('.')[0];
+  return (MODULES as readonly string[]).includes(module) ? (module as ModuleName) : undefined;
+}
+
+const NO_LOOKUP: PluginLookup = () => NO_PLUGINS;
+
+/**
+ * What plugins get as props.plugins: the plugins of the app's plugin points.
+ * It reads the app's loaded plugins when it is called (a plugin that gets it
+ * was itself found among them), so it stays the same function.
+ */
+export function usePluginLookup(module: ModuleName | undefined): PluginLookup {
+  const client = useQueryClient();
+  return useMemo(
+    () => (module ? (point: string) => pluginsOf(client.getQueryData<FrontendPlugin[]>(['plugins', module]), point) : NO_LOOKUP),
+    [client, module],
+  );
+}
+
+const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * Whether the URL's hash (e.g. /my-page/42?tab=log) is a page of a route
+ * plugin's path, read as by the routes of the classic webapps: a segment
+ * :name stands for any one segment, :name* for one or more, :name? for an
+ * optional one, and the query after ? does not count.
+ */
+export function matchesRoutePath(path: string, hash: string): boolean {
+  if (!path.startsWith('/')) {
+    return path === hash;
+  }
+  const segments = path
+    .slice(1)
+    .split('/')
+    .map((segment) => {
+      const param = /^:\w+(\*\?|\*|\?)?$/.exec(segment);
+      switch (param ? (param[1] ?? '') : undefined) {
+        case undefined:
+          return `/${escapeRegExp(segment)}`;
+        case '?':
+          return '(?:/[^/?#]+)?';
+        case '*':
+          return '/[^?#]+';
+        case '*?':
+          return '(?:/[^?#]+)?';
+        default:
+          return '/[^/?#]+';
+      }
+    });
+  return new RegExp(`^${segments.join('')}(?:[?#]|$)`).test(hash);
+}
+
+/** The {module}.route plugin whose path (as in the classic webapps, e.g. /my-page or /my-page/:id) the URL's hash names, if any. */
+export function useRoutePlugin(module: ModuleName, hash: string): FrontendPlugin | undefined {
+  const plugins = usePluginPoint(module, `${module}.route`);
+  return hash
+    ? plugins.find((plugin) => typeof plugin.properties?.path === 'string' && matchesRoutePath(plugin.properties.path, hash))
+    : undefined;
 }
 
 /** The {module}.logout plugin with the highest priority (e.g. a single sign-on logout), if there is one. */
@@ -190,6 +272,31 @@ export function logOutWith(plugin: FrontendPlugin, engine: string): boolean {
   } catch (error) {
     console.error(`The plugin ${plugin.id} failed to log out`, error);
     return false;
+  }
+}
+
+/**
+ * Hands a login to the {module}.login.data plugins: a promise of the
+ * authentication, as in the AngularJS webapps, that rejects when the login
+ * fails. A plugin that throws is logged; the login goes on.
+ */
+export function passLogin(plugins: FrontendPlugin[], login: Promise<{ userId: string; authorizedApps: string[] }>) {
+  if (!plugins.length) {
+    return;
+  }
+  const authentication = login.then(({ userId, authorizedApps }) => ({
+    name: userId,
+    authorizedApps,
+    canAccess: (app: string) => authorizedApps.includes(app),
+  }));
+  // the login page shows a failed login; plugins that ignore it do not make it an unhandled rejection
+  authentication.catch(() => {});
+  for (const plugin of plugins) {
+    try {
+      plugin.result?.(authentication);
+    } catch (error) {
+      console.error(`The plugin ${plugin.id} failed to take the login`, error);
+    }
   }
 }
 
@@ -216,25 +323,30 @@ export function renderPlugins(plugins: FrontendPlugin[], target: unknown, props:
   };
 }
 
+/** The bpmn-js viewer of a diagram while it is shown, and the callback for the diagram's onViewer. */
+export function useDiagramViewer(): [unknown, (viewer: unknown) => () => void] {
+  const [viewer, setViewer] = useState<unknown>(null);
+  const onViewer = useCallback((next: unknown) => {
+    setViewer(next);
+    return () => setViewer(null);
+  }, []);
+  return [viewer, onViewer];
+}
+
 /**
  * Diagram plugins (e.g. cockpit.processInstance.diagram.plugin) get the
- * bpmn-js viewer instead of a DOM node. Returns the callback for the
- * diagram's onViewer; plugins that load after the diagram are rendered too.
+ * bpmn-js viewer instead of a DOM node. They are rendered while the viewer is
+ * there; plugins that load after the diagram are rendered too.
  */
-export function useDiagramPlugins(module: ModuleName, point: string, engine: string, props: Record<string, unknown>) {
+export function useDiagramPlugins(module: ModuleName, point: string, engine: string, viewer: unknown, props: Record<string, unknown>) {
   const plugins = usePluginPoint(module, point);
-  const [viewer, setViewer] = useState<unknown>(null);
+  const lookup = usePluginLookup(module);
   const propsKey = JSON.stringify(props);
 
   useEffect(() => {
     if (!viewer || !plugins.length) {
       return;
     }
-    return renderPlugins(plugins, viewer, { api: pluginApi(engine), ...props });
-  }, [viewer, plugins, engine, propsKey]);
-
-  return useCallback((next: unknown) => {
-    setViewer(next);
-    return () => setViewer(null);
-  }, []);
+    return renderPlugins(plugins, viewer, { api: pluginApi(engine), plugins: lookup, ...props });
+  }, [viewer, plugins, lookup, engine, propsKey]);
 }

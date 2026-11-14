@@ -43,18 +43,22 @@ Content-Security-Policy; every `<script>` needs it) and `$PLUGINS` (the
 frontend plugins of every app, see below). Modules that are not rewritten yet
 link to the classic UI, and the user menu switches to it.
 
-## Frontend plugins (Cockpit)
+## Frontend plugins
 
-Plugins are packaged as for the AngularJS Cockpit: a jar with a
-`CockpitPlugin` (registered in
-`META-INF/services/org.cadenzaflow.bpm.cockpit.plugin.spi.CockpitPlugin`), a
-root resource `@Path("plugin/<id>")` extending `AbstractCockpitPluginRootResource`,
+Plugins are packaged as for the AngularJS webapps: a jar with the plugin
+class of the app (`CockpitPlugin`, `TasklistPlugin`, `AdminPlugin` or
+`WelcomePlugin`, registered in
+`META-INF/services/org.cadenzaflow.bpm.<app>.plugin.spi.<class>`), a root
+resource `@Path("plugin/<id>")` extending the root resource class of the app
+(`AbstractCockpitPluginRootResource`, `AbstractTasklistPluginRootResource`,
+`AbstractAdminPluginRootResource` or `AbstractWelcomePluginRootResource`),
 and the files `plugin-webapp/<id>/app/plugin.js` (and optionally
 `app/plugin.css`). The server lists the plugins of every app in `index.html`;
 the app loads each `plugin.js` as an ES module (and its `plugin.css`). The
 plugins of the AngularJS webapps themselves (`cockpitPlugins`, `cockpitEE`,
-`adminPlugins`, `adminEE`, `tasklistPlugins`) and `legacy*` plugins are
-AngularJS modules and are not loaded.
+`adminPlugins`, `adminEE`, `tasklistPlugins`, `welcomePlugins`) and `legacy*`
+plugins are AngularJS modules and are not loaded (see
+[Plugins of the AngularJS webapps](#plugins-of-the-angularjs-webapps)).
 
 `plugin.js` exports one plugin or an array of them (the same contract as the
 AngularJS webapps' JavaScript plugins):
@@ -73,8 +77,8 @@ export default [
 ```
 
 `render` gets a DOM element (for `*.diagram.plugin` the bpmn-js viewer) and
-the props `api` and, depending on the plugin point, the ids of what the page
-shows. `api` holds `adminApi`, `baseApi`, `cockpitApi`, `tasklistApi`,
+the props `api`, `plugins` and, depending on the plugin point, the ids of what
+the page shows. `api` holds `adminApi`, `baseApi`, `cockpitApi`, `tasklistApi`,
 `engineApi` (the engine REST API of the current engine), `engine` and
 `CSRFToken` (send it as `X-XSRF-TOKEN` with POST, PUT and DELETE). When the
 page shows something else, the plugin is unmounted and rendered again;
@@ -92,6 +96,7 @@ leaves the page intact.
 | `cockpit.processDefinition.runtime.tab` | a tab of the process definition | `processDefinitionId` |
 | `cockpit.processDefinition.runtime.action` | an action of the process definition | `processDefinitionId` |
 | `cockpit.processDefinition.diagram.plugin` | the process definition's diagram (viewer) | `processDefinitionId` |
+| `cockpit.processDefinition.diagram.action` | an action in the corner of the process definition's diagram | `processDefinitionId`, `viewer` (the bpmn-js viewer) |
 | `cockpit.jobDefinition.action` | an action of a job definition | `jobDefinitionId` |
 | `cockpit.processInstance.runtime.tab` | a tab of the process instance | `processInstanceId` |
 | `cockpit.processInstance.runtime.action` | an action of the process instance | `processInstanceId` |
@@ -107,8 +112,53 @@ leaves the page intact.
 | `cockpit.repository.deployment.action` | an action of a deployment | `deploymentId` |
 | `cockpit.repository.resource.action` | an action of a resource | `deploymentId`, `resourceId` |
 | `cockpit.repository.resource.detail` | below a resource | `deploymentId`, `resourceId` |
+| `tasklist.route` | a page of its own at `#<properties.path>` | |
+| `tasklist.navbar.action` | next to "Start process", "Create task", ... | |
+| `tasklist.header` | in the bar above the tasks (sorting, search) | |
+| `tasklist.list` | above the tasks | |
+| `tasklist.card` | in each task of the list | `taskId` |
+| `tasklist.task.action` | an action of the task | `taskId` |
+| `tasklist.task.detail` | a tab of the task | `taskId` |
+| `admin.route` | a page of its own at `#<properties.path>` | |
+| `admin.dashboard.section` | a section of the dashboard, titled with `label` | |
+| `admin.system` | a section of the system settings (`?section=<id>`), titled with `label`; the dashboard links it | |
+| `welcome.route` | a page of its own at `#<properties.path>` | |
+| `welcome.dashboard` | below the applications and links | |
+| `welcome.profile` | below the profile | |
+| `cockpit.login`, `tasklist.login`, `admin.login`, `welcome.login` | below the login form | |
 
-Tabs of plugins come after the built-in tabs.
+Tabs and sections of plugins come after the built-in ones.
+
+The `path` of a route plugin is read as by the routes of the AngularJS
+webapps: `:name` stands for one segment (`/my-page/:id` is the page of
+`#/my-page/42`), `:name?` for an optional one and `:name*` for one or more;
+what follows `?` does not count. The plugin reads the parameters from
+`location.hash`. When the hash changes, the plugin is unmounted and rendered
+again.
+
+A plugin opens a page of the app without loading the app again by adding the
+page to the browser history and telling the app about it:
+
+```js
+const appRoot = api.cockpitApi.replace(/\/api\/cockpit$/, ''); // e.g. /cadenzaflow
+const url = `${appRoot}/app/react/cockpit/${api.engine}/process-instance/${id}`; // or …/#/my-page
+history.pushState(null, '', url);
+dispatchEvent(new PopStateEvent('popstate'));
+```
+
+The back and forward buttons of the browser work as on the pages of the app.
+A plain link opens the page as well, but loads the app again.
+
+When the REST API answers a plugin with 401, the session has ended (timeout,
+logout in another tab). Reload the page (`location.reload()`): the app shows
+its login page and, after the login, the same page.
+
+A plugin can offer plugin points of its own, as the plugins of the AngularJS
+webapps could. `plugins(point)` returns the plugins of a plugin point of the
+app, highest priority first. The plugin renders each of them into an element
+of its own, with `render(node, { api, plugins, ... })`, and calls their
+`unmount()` when it removes them. Give such a plugin point a name of the app,
+e.g. `cockpit.myPage.tab`.
 
 A plugin at `<app>.logout` (`cockpit.logout`, `tasklist.logout`,
 `admin.logout`, `welcome.logout`) has a `logout(props)` function instead of
@@ -116,9 +166,94 @@ A plugin at `<app>.logout` (`cockpit.logout`, `tasklist.logout`,
 (if it throws, the app logs out itself). The SSO logout of
 `starter-security` is such a plugin.
 
+A plugin at `<app>.login.data` has a `result(login)` function instead of
+`render`. Each login on the login page calls it with a promise of the
+authentication, as in the AngularJS webapps: `{ name, authorizedApps,
+canAccess(app) }`, where `name` is the user id. The promise rejects when the
+login fails.
+
 To try a plugin with
 `npm run dev`, put its files below `src/` and list it in `CZ_PLUGINS`, e.g.
 `CZ_PLUGINS='{"cockpit":[{"id":"my-plugin","location":"/src/my-plugin"}]}'`.
+
+### Plugins of the AngularJS webapps
+
+A plugin written for the JavaScript plugin API of the AngularJS webapps (its
+`plugin.js` exports plugins with `render`, `logout` or `result`) works here
+unchanged, at the plugin points above: it gets the same `api` and the same
+ids. A plugin rewritten that way works in both UIs.
+
+These plugin points of the AngularJS webapps are not available here:
+
+- `cockpit.processDefinition.view`, `cockpit.processInstance.view`,
+  `cockpit.decisionDefinition.table`, `cockpit.decisionInstance.table` and
+  `cockpit.dashboard.metrics`: they extend parts of the AngularJS pages (the
+  switch between views, the decision table, the metrics panel) or hand
+  AngularJS objects to the plugin.
+- `cockpit.cases.dashboard`, `cockpit.caseDefinition.*` and
+  `cockpit.caseInstance.*`: this UI has no CMMN views.
+- `cockpit.batch.operation`, `cockpit.processDefinition.history.*`,
+  `cockpit.processInstance.history.*` and `cockpit.drd.*`: views of the
+  Enterprise Cockpit.
+
+An AngularJS plugin (an AngularJS module that registers its views with
+`ViewsProvider.registerDefaultView`, or a `legacy*` plugin) does not run here.
+To move it to the JavaScript plugin API:
+
+1. Keep the jar, the plugin class and the root resource with its REST
+   endpoints. Only `app/plugin.js` changes.
+2. Export the plugin as an object with `id`, `pluginPoint`, `label` and
+   `priority`, as in the registration.
+3. Replace the template and controller by `render(node, props)`: draw into
+   `node` with the DOM or with a library of your choice, and release what you
+   set up in `unmount()`.
+4. Replace the data of `$scope` by the ids in `props` (e.g.
+   `processInstanceId`), and `$http` by `fetch` against the URLs in
+   `props.api` (`engineApi` for the engine REST API, `cockpitApi` and the
+   others for the plugin's own endpoints). Send `props.api.CSRFToken` as
+   `X-XSRF-TOKEN` with POST, PUT and DELETE.
+
+For example, a tab with the number of variables of a process instance, as
+an AngularJS plugin:
+
+```js
+ngModule.config(['ViewsProvider', function (ViewsProvider) {
+  ViewsProvider.registerDefaultView('cockpit.processInstance.runtime.tab', {
+    id: 'variable-count',
+    label: 'Variable count',
+    priority: 10,
+    template: '<p>{{ count }} variables</p>',
+    controller: ['$scope', '$http', 'Uri', function ($scope, $http, Uri) {
+      $http
+        .get(Uri.appUri('engine://engine/:engine/variable-instance/count'), {
+          params: { processInstanceIdIn: $scope.processInstance.id },
+        })
+        .then(function (response) {
+          $scope.count = response.data.count;
+        });
+    }],
+  });
+}]);
+```
+
+and the same tab with the JavaScript plugin API:
+
+```js
+export default {
+  id: 'variable-count',
+  pluginPoint: 'cockpit.processInstance.runtime.tab',
+  label: 'Variable count',
+  priority: 10,
+  render: (node, { api, processInstanceId }) => {
+    const query = new URLSearchParams({ processInstanceIdIn: processInstanceId });
+    fetch(`${api.engineApi}/variable-instance/count?${query}`)
+      .then((response) => response.json())
+      .then(({ count }) => {
+        node.textContent = `${count} variables`;
+      });
+  },
+};
+```
 
 ## Settings of the classic config.js
 
@@ -205,8 +340,9 @@ src/
   per module, class names prefixed with `cz-`. Fonts are bundled because the
   CSP only allows fonts from the server itself. The CadenzaFlow brand (logo,
   header line and colors of the classic webapps, buttons and links in a
-  darker shade for contrast) is in `styles/_brand.scss` and
-  `assets/cadenzaflow-logo.png`.
+  darker shade for contrast) is in `styles/_brand.scss`,
+  `assets/cadenzaflow-logo.png` (header) and `assets/cadenzaflow-login-logo.png`
+  (login page, the logo of the classic login page).
 - **TypeScript** runs with `strict` off but `strictNullChecks` on (TanStack
   Router requires it).
 

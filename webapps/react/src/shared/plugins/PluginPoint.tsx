@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react';
 import type { ModuleName } from '../config';
-import { pluginApi, usePluginPoint, type FrontendPlugin } from './plugins';
+import { moduleOf, pluginApi, usePluginLookup, usePluginPoint, type FrontendPlugin } from './plugins';
 
 interface PluginViewProps {
   plugin: FrontendPlugin;
   engine: string;
   /** what the page shows, e.g. { processInstanceId } */
   props?: Record<string, unknown>;
+  /** props that are no plain data, e.g. { viewer } (keep the object the same while they are) */
+  objects?: Record<string, unknown>;
   className?: string;
 }
 
@@ -15,15 +17,16 @@ interface PluginViewProps {
  * unmount) when the page shows something else; a plugin that fails is logged
  * and leaves the page intact.
  */
-export function PluginView({ plugin, engine, props = {}, className }: PluginViewProps) {
+export function PluginView({ plugin, engine, props = {}, objects, className }: PluginViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const propsKey = JSON.stringify(props);
+  const lookup = usePluginLookup(moduleOf(plugin.pluginPoint));
 
   useEffect(() => {
     const node = document.createElement('div');
     container.current?.appendChild(node);
     try {
-      plugin.render?.(node, { api: pluginApi(engine), ...props });
+      plugin.render?.(node, { api: pluginApi(engine), plugins: lookup, ...props, ...objects });
     } catch (error) {
       console.error(`The plugin ${plugin.id} failed to render`, error);
     }
@@ -35,7 +38,7 @@ export function PluginView({ plugin, engine, props = {}, className }: PluginView
       }
       node.remove();
     };
-  }, [plugin, engine, propsKey]);
+  }, [plugin, engine, propsKey, objects, lookup]);
 
   return <div ref={container} className={className ?? 'cz-plugin'} data-plugin-id={plugin.id} />;
 }
@@ -46,16 +49,17 @@ interface PluginPointProps {
   point: string;
   engine: string;
   props?: Record<string, unknown>;
+  objects?: Record<string, unknown>;
   className?: string;
 }
 
 /** All plugins of a plugin point, highest priority first; nothing when there are none. */
-export function PluginPoint({ module, point, engine, props, className }: PluginPointProps) {
+export function PluginPoint({ module, point, engine, props, objects, className }: PluginPointProps) {
   const plugins = usePluginPoint(module, point);
   return (
     <>
       {plugins.map((plugin) => (
-        <PluginView key={plugin.id} plugin={plugin} engine={engine} props={props} className={className} />
+        <PluginView key={plugin.id} plugin={plugin} engine={engine} props={props} objects={objects} className={className} />
       ))}
     </>
   );

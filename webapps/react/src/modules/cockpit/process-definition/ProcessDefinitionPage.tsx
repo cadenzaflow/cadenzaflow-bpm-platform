@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense, useCallback, useMemo } from 'react';
 import {
   InlineNotification,
   Select,
@@ -15,12 +15,21 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
-import { useDiagramPlugins, usePluginPoint } from '../../../shared/plugins/plugins';
+import { useDiagramPlugins, useDiagramViewer, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { useSettings } from '../../../shared/classic-settings';
-import { useActivityBadges, useProcessDefinition, useProcessDefinitionXml, useRunningInstances, useVersions } from './api';
+import type { DiagramDrilldown } from '../../../shared/diagram/BpmnDiagram';
+import {
+  useActivityBadges,
+  useCalledDefinitions,
+  useProcessDefinition,
+  useProcessDefinitionXml,
+  useRunningInstances,
+  useVersions,
+} from './api';
 import { TimeToLive } from '../components/TimeToLive';
 import { DeploymentLink } from '../repository/DeploymentLink';
+import { BulkJobPriority } from './BulkJobPriority';
 import { DefinitionSuspension } from './DefinitionSuspension';
 import { selectedActivities, type ProcessDefinitionSearch } from './search';
 import { definitionTabs } from './tabs/registry';
@@ -54,7 +63,10 @@ export function ProcessDefinitionPage() {
     [t],
   );
   const pluginTabs = usePluginPoint('cockpit', 'cockpit.processDefinition.runtime.tab');
-  const onViewer = useDiagramPlugins('cockpit', 'cockpit.processDefinition.diagram.plugin', engine, { processDefinitionId: id });
+  const [viewer, onViewer] = useDiagramViewer();
+  useDiagramPlugins('cockpit', 'cockpit.processDefinition.diagram.plugin', engine, viewer, { processDefinitionId: id });
+  // diagram actions get the viewer, as in the classic Cockpit
+  const actionObjects = useMemo(() => ({ viewer }), [viewer]);
   // the built-in tabs, then those of plugins
   const tabs = [
     ...definitionTabs.map((tab) => ({ id: tab.id, label: tab.label, plugin: undefined })),
@@ -65,6 +77,44 @@ export function ProcessDefinitionPage() {
 
   const update = (changes: Partial<ProcessDefinitionSearch>) =>
     navigate({ search: (previous: ProcessDefinitionSearch) => ({ ...previous, ...changes }) });
+
+  // A call activity's button leads to the definition it calls: the one in the
+  // BPMN, else the one it calls right now; when it calls several right now,
+  // the called definitions tab lists them (as in the classic Cockpit).
+  const called = useCalledDefinitions(engine, id, []);
+  const drilldown = useCallback(
+    (activityId: string): DiagramDrilldown | undefined => {
+      if (!called.referenced.data || !called.running.data) {
+        return undefined;
+      }
+      const open = (calledId: string) => () =>
+        navigate({ to: '/cockpit/$engine/process-definition/$id', params: { engine, id: calledId }, search: { parentProcessDefinitionId: id } });
+      const referenced = called.referenced.data.find((other) => other.calledFromActivityIds.includes(activityId));
+      if (referenced) {
+        return { label: t('PLUGIN_ACTIVITY_DEFINITION_SHOW_CALLED_PROCESS_DEFINITION'), onClick: open(referenced.id) };
+      }
+      const running = called.running.data.filter((other) => other.calledFromActivityIds.includes(activityId));
+      if (running.length > 1) {
+        return {
+          label: t('PLUGIN_ACTIVITY_DEFINITION_CALLED_DYNAMIC_MULTI_RESOLVABLE'),
+          onClick: () =>
+            navigate({
+              search: (previous: ProcessDefinitionSearch) => ({
+                ...previous,
+                tab: 'call-process-definitions-table',
+                activityIds: activityId,
+                page: undefined,
+              }),
+            }),
+        };
+      }
+      if (running.length === 1) {
+        return { label: t('PLUGIN_ACTIVITY_DEFINITION_CALLED_DYNAMIC_RESOLVABLE'), onClick: open(running[0].id) };
+      }
+      return { label: t('PLUGIN_ACTIVITY_DEFINITION_CALLED_NOT_RESOLVABLE') };
+    },
+    [called.referenced.data, called.running.data, engine, id, navigate, t],
+  );
   const selectActivity = (activityId: string, add: boolean) => {
     const next = !activityId
       ? []
@@ -101,6 +151,7 @@ export function ProcessDefinitionPage() {
       actions={
         <>
           {definition.data && <DefinitionSuspension engine={engine} definition={definition.data} />}
+          {definition.data && <BulkJobPriority engine={engine} processDefinitionId={definition.data.id} />}
           <PluginPoint module="cockpit" point="cockpit.processDefinition.runtime.action" engine={engine} props={{ processDefinitionId: id }} className="cz-plugin-inline" />
         </>
       }
@@ -188,6 +239,19 @@ export function ProcessDefinitionPage() {
                   selected={activityIds}
                   onElementClick={selectActivity}
                   onViewer={onViewer}
+                  drilldown={drilldown}
+                  actions={
+                    viewer ? (
+                      <PluginPoint
+                        module="cockpit"
+                        point="cockpit.processDefinition.diagram.action"
+                        engine={engine}
+                        props={{ processDefinitionId: id }}
+                        objects={actionObjects}
+                        className="cz-plugin-inline"
+                      />
+                    ) : undefined
+                  }
                 />
               </Suspense>
             )
