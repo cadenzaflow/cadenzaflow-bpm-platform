@@ -135,9 +135,11 @@ public class InvoiceApplicationHelper {
         ClockUtil.setCurrentTime(calendar.getTime());
 
         processEngine.getIdentityService().setAuthentication("demo", Arrays.asList(Groups.CAMUNDA_ADMIN));
-        Task task = processEngine.getTaskService().createTaskQuery().processInstanceId(pi.getId()).singleResult();
-        processEngine.getTaskService().claim(task.getId(), "demo");
-        processEngine.getTaskService().complete(task.getId(), createVariables().putValue("approved", true));
+        runWithoutAuthorization(processEngineConfiguration, () -> {
+          Task task = processEngine.getTaskService().createTaskQuery().processInstanceId(pi.getId()).singleResult();
+          processEngine.getTaskService().claim(task.getId(), "demo");
+          processEngine.getTaskService().complete(task.getId(), createVariables().putValue("approved", true));
+        });
       }
       finally{
         processEngineConfiguration.getDbMetricsReporter().reportNow();
@@ -169,9 +171,11 @@ public class InvoiceApplicationHelper {
         ClockUtil.setCurrentTime(calendar.getTime());
 
         processEngine.getIdentityService().setAuthenticatedUserId("mary");
-        Task task = processEngine.getTaskService().createTaskQuery().processInstanceId(pi.getId()).singleResult();
-        processEngine.getTaskService().createComment(null, pi.getId(), "I cannot approve this invoice: the amount is missing.\n\n Could you please provide the amount?");
-        processEngine.getTaskService().complete(task.getId(), createVariables().putValue("approved", false));
+        runWithoutAuthorization(processEngineConfiguration, () -> {
+          Task task = processEngine.getTaskService().createTaskQuery().processInstanceId(pi.getId()).singleResult();
+          processEngine.getTaskService().createComment(null, pi.getId(), "I cannot approve this invoice: the amount is missing.\n\n Could you please provide the amount?");
+          processEngine.getTaskService().complete(task.getId(), createVariables().putValue("approved", false));
+        });
       }
       finally{
         processEngineConfiguration.getDbMetricsReporter().reportNow();
@@ -183,6 +187,21 @@ public class InvoiceApplicationHelper {
           + " version " + processDefinition.getVersion()
           + " started, there are " + numberOfRunningProcessInstances + " instances running");
     }
+  }
+
+  /**
+   * Runs the steps of a demo user without checking the authorizations of that
+   * user. The demo users and their authorizations only exist if this example
+   * created them: an engine that already has a user "demo", or that reads its
+   * users from another system, has neither. The user still is the author of
+   * what the steps do.
+   */
+  protected static void runWithoutAuthorization(ProcessEngineConfigurationImpl processEngineConfiguration, Runnable steps) {
+    processEngineConfiguration.getCommandExecutorTxRequired().execute(commandContext ->
+      commandContext.runWithoutAuthorization(() -> {
+        steps.run();
+        return null;
+      }));
   }
 
   protected static void createUsers(ProcessEngine processEngine) {
