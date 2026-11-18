@@ -1,15 +1,7 @@
 # This file defines the github labels that we use for pull requests (only)
-# These are ci: and bot: labels. You can use this file to sync those labels
+# These are ci: labels. You can use this file to sync those labels
 # with our repositories (see README)
 
-# Bot labels
-- name: "bot:java-dependency-tree"
-  description: "When assigned to a PR, scans the code for Maven dependency changes and prints a diff."
-  color: "D4C5F9"
-- name: "bot:java-dependency-check"
-  description: "When assigned to a PR, generates SBOMs for the PR and base branch and compares them."
-  color: "D4C5F9"
-  
 # CI labels
 - name: "ci:all-as"
   description: "Runs the builds for all application servers."
