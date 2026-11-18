@@ -106,7 +106,10 @@ public class ContainerBasedAuthenticationFilter implements Filter {
 
         UserAuthentication authentication = createAuthentication(engine, authenticatedUser, groups, tenants);
         if (authentication == null) {
-          // the container authenticated a user the engine's identity provider does not know
+          // the container authenticated a user the engine's identity provider does not know:
+          // an authentication of an earlier user of this session must not stay valid for the engine
+          authentications.removeByEngineName(engineName);
+          AuthenticationUtil.updateSession(req.getSession(false), authentications);
           resp.setStatus(Status.UNAUTHORIZED.getStatusCode());
           authenticationProvider.augmentResponseByAuthenticationChallenge(resp, engine);
           return;
