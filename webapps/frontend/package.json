@@ -130,7 +130,7 @@
       "minimatch": "^9.0.7"
     },
     "lodash.set": "^4.17.19",
-    "node-forge": "^1.4.0",
+    "node-forge": "^1.4.3",
     "on-headers": "^1.1.0",
     "path-to-regexp": "^0.1.13",
     "picomatch": "^2.3.2",
