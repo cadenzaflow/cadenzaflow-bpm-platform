@@ -106,4 +106,34 @@ public class ContainerAuthenticationFilterUnknownUserTest {
     verify(authentications, never()).addOrReplace(any());
     verify(chain, never()).doFilter(any(), any());
   }
+
+  @Test
+  public void shouldRemoveTheAuthenticationOfAnEarlierUserOfTheSession() throws Exception {
+    // the session still holds the authentication of the user who was signed in before
+    Authentications sessionAuthentications = new Authentications();
+    sessionAuthentications.addOrReplace(new UserAuthentication("earlierUser", "default"));
+    sessionAuthentications.addOrReplace(new UserAuthentication("earlierUser", "engine2"));
+    authenticationUtilMockedStatic.when(() -> AuthenticationUtil.getAuthsFromSession(any()))
+        .thenReturn(sessionAuthentications);
+
+    MockHttpServletRequest request = new MockHttpServletRequest();
+    request.setRequestURI(SERVICE_PATH + "/app/cockpit/default/");
+    request.setContextPath(SERVICE_PATH);
+    request.setMethod("GET");
+    Principal principal = mock(Principal.class);
+    when(principal.getName()).thenReturn(MockProvider.EXAMPLE_USER_ID);
+    request.setUserPrincipal(principal);
+    MockHttpServletResponse response = new MockHttpServletResponse();
+    FilterChain chain = mock(FilterChain.class);
+
+    authenticationFilter.doFilter(request, response, chain);
+
+    Assert.assertEquals(Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
+    // nobody is authenticated for the engine of the request any more
+    Assert.assertNull(sessionAuthentications.getAuthenticationForProcessEngine("default"));
+    // the other engine was not part of the request
+    Assert.assertNotNull(sessionAuthentications.getAuthenticationForProcessEngine("engine2"));
+    authenticationUtilMockedStatic.verify(() -> AuthenticationUtil.updateSession(any(), any()));
+    verify(chain, never()).doFilter(any(), any());
+  }
 }
