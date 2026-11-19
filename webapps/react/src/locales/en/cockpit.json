@@ -614,5 +614,7 @@
   "VARIABLE_INSPECT_DESERIALIZED": "Deserialized",
   "VARIABLE_INSPECT_DESERIALIZED_ERROR": "Deserialization Error:",
   "VARIABLE_INSPECT_MESSAGE_ERR_1": "Could not parse JSON input: {{exception}}",
-  "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Set value to \"null\""
+  "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Set value to \"null\"",
+  "PLUGIN_CANCEL_PROCESS_BEFORE_DELETION": "If you delete this process instance the following sub process instances will also be deleted:",
+  "PLUGIN_CANCEL_PROCESS_OTHER_PROCESS_INSTANCES": "and {{count}} other process instances."
 }

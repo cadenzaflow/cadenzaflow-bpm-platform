@@ -1,12 +1,51 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Button, Checkbox, Modal, Stack } from '@carbon/react';
 import { Add, Pause, Play, Renew, TrashCan } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
+import { engineUrl, request } from '../../../shared/api/client';
 import { useSettings } from '../../../shared/classic-settings';
 import { notify } from '../../../shared/notifications';
 import { AddVariableModal } from '../variables/VariableDialogs';
 import { useCancelInstance, useInstanceSuspension, type ProcessInstance } from './api';
+import { InstanceLink } from './InstanceLink';
 import { BulkRetryModal } from './jobs/BulkRetryModal';
+
+// the classic dialog names five of the called instances and counts the rest
+const SUB_INSTANCES_SHOWN = 5;
+
+/** The instances this one called: deleting it deletes them too. */
+function SubInstances({ engine, instanceId }: { engine: string; instanceId: string }) {
+  const { t } = useTranslation('cockpit');
+  const called = useQuery({
+    queryKey: ['cockpit', engine, 'sub-instances', instanceId],
+    queryFn: async () => {
+      const query = { superProcessInstance: instanceId };
+      const [instances, { count }] = await Promise.all([
+        request<{ id: string }[]>(engineUrl(engine, '/process-instance'), { query: { ...query, firstResult: 0, maxResults: SUB_INSTANCES_SHOWN } }),
+        request<{ count: number }>(engineUrl(engine, '/process-instance/count'), { query }),
+      ]);
+      return { instances, count };
+    },
+  });
+  if (!called.data?.instances.length) {
+    return null;
+  }
+  const { instances, count } = called.data;
+  return (
+    <div>
+      <p>{t('PLUGIN_CANCEL_PROCESS_BEFORE_DELETION')}</p>
+      <ul>
+        {instances.map((sub) => (
+          <li key={sub.id}>
+            <InstanceLink engine={engine} id={sub.id} />
+          </li>
+        ))}
+        {count > instances.length && <li>{t('PLUGIN_CANCEL_PROCESS_OTHER_PROCESS_INSTANCES', { count: count - instances.length })}</li>}
+      </ul>
+    </div>
+  );
+}
 
 interface InstanceActionsProps {
   engine: string;
@@ -144,6 +183,7 @@ export function InstanceActions({ engine, instance, onCanceled, scopeOf }: Insta
             <p>
               {t('PLUGIN_CANCEL_PROCESS_ID')}: <code>{instance.id}</code>
             </p>
+            <SubInstances engine={engine} instanceId={instance.id} />
             {!settings.skipCustomListeners.hidden && (
               <Checkbox
                 id="cz-cancel-skip-listeners"

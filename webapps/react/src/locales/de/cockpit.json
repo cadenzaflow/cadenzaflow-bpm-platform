@@ -614,5 +614,7 @@
   "VARIABLE_INSPECT_DESERIALIZED": "Deserialisiert",
   "VARIABLE_INSPECT_DESERIALIZED_ERROR": "Deserialisierungs Fehler:",
   "VARIABLE_INSPECT_MESSAGE_ERR_1": "JSON-Eingabe konnte nicht verarbeitet werden: {{exception}}",
-  "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Wert auf \"null\" setzen"
+  "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Wert auf \"null\" setzen",
+  "PLUGIN_CANCEL_PROCESS_BEFORE_DELETION": "Falls Sie diese Prozessinstanz löschen, werden auch die folgenden Sub-Prozessinstanzen gelöscht:",
+  "PLUGIN_CANCEL_PROCESS_OTHER_PROCESS_INSTANCES": "und {{count}} weitere Prozessinstanzen."
 }

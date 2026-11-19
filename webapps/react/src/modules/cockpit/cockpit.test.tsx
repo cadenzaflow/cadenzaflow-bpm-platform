@@ -169,6 +169,9 @@ function fakeBackend(incidents: unknown[] = [ownIncident]) {
     if (path === `${ENGINE}/process-instance/pi-1/activity-instances`) {
       return json(activityTree);
     }
+    if (path === `${ENGINE}/process-instance` && query.get('superProcessInstance') === 'pi-1') {
+      return json([{ id: 'sub-1' }, { id: 'sub-2' }, { id: 'sub-3' }, { id: 'sub-4' }, { id: 'sub-5' }]);
+    }
     if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
       return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
     }
@@ -512,6 +515,10 @@ describe('cockpit process instance', () => {
 
     await user.click(screen.getByRole('button', { name: 'Delete Process Instance' }));
     const cancel = within(await screen.findByRole('dialog', { name: 'Delete running process instance' }));
+    // the instances it called go with it: five by name, the rest counted
+    expect(await cancel.findByText('If you delete this process instance the following sub process instances will also be deleted:')).toBeInTheDocument();
+    expect(cancel.getByRole('link', { name: 'sub-5' })).toHaveAttribute('href', '/app/react/cockpit/default/process-instance/sub-5');
+    expect(cancel.getByText('and 2 other process instances.')).toBeInTheDocument();
     await user.click(cancel.getByRole('checkbox', { name: 'Skip IO Mappings' }));
     await user.click(cancel.getByRole('button', { name: 'Delete Process Instance' }));
     await waitFor(() => expect(history.location.pathname).toBe('/app/react/cockpit/default/process-definition/invoice%3A2'));
