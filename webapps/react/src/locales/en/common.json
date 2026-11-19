@@ -54,5 +54,8 @@
   "SAVED_CRITERIA_SAVE": "Save",
   "SAVED_CRITERIA_DELETE": "Delete {{name}}",
   "SAVED_CRITERIA_NONE": "No criteria saved yet.",
-  "SAVED_CRITERIA_NOT_KEPT": "The browser did not keep the criteria."
+  "SAVED_CRITERIA_NOT_KEPT": "The browser did not keep the criteria.",
+  "DIAGRAM_ZOOM_IN": "Zoom in",
+  "DIAGRAM_ZOOM_OUT": "Zoom out",
+  "DIAGRAM_ZOOM_RESET": "Reset zoom"
 }

@@ -64,6 +64,16 @@
   gap: $spacing-02;
 }
 
+.cz-bpmn-diagram__zoom {
+  position: absolute;
+  right: $spacing-03;
+  // above the bpmn.io mark in the corner
+  bottom: $spacing-08;
+  display: flex;
+  flex-direction: column;
+  background: $layer-01;
+}
+
 .cz-bpmn-diagram--selectable .djs-element.djs-shape,
 .cz-bpmn-diagram--selectable .cz-diagram-badge {
   cursor: pointer;

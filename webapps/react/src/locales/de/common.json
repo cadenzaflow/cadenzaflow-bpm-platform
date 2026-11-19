@@ -54,5 +54,8 @@
   "SAVED_CRITERIA_SAVE": "Speichern",
   "SAVED_CRITERIA_DELETE": "{{name}} löschen",
   "SAVED_CRITERIA_NONE": "Noch keine Kriterien gespeichert.",
-  "SAVED_CRITERIA_NOT_KEPT": "Der Browser hat die Kriterien nicht gespeichert."
+  "SAVED_CRITERIA_NOT_KEPT": "Der Browser hat die Kriterien nicht gespeichert.",
+  "DIAGRAM_ZOOM_IN": "Vergrößern",
+  "DIAGRAM_ZOOM_OUT": "Verkleinern",
+  "DIAGRAM_ZOOM_RESET": "Zoom zurücksetzen"
 }
