@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
 import type { QueryParams } from '../api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../api/paging';
@@ -27,6 +27,8 @@ interface SearchableListProps<T extends { id: string }> {
   defaultSortBy: string;
   defaultSortOrder?: 'asc' | 'desc';
   columns: Column<T>[];
+  /** another view of the found items in place of the table, e.g. tiles; search and pages stay */
+  renderItems?: (items: T[]) => ReactNode;
   emptyText: string;
   /** shown when the backend could not sort (e.g. LDAP) */
   unsortedNotice?: { title: string; subtitle: string };
@@ -49,6 +51,7 @@ export function SearchableList<T extends { id: string }>({
   defaultSortBy,
   defaultSortOrder = 'asc',
   columns,
+  renderItems,
   emptyText,
   unsortedNotice,
   method,
@@ -97,7 +100,8 @@ export function SearchableList<T extends { id: string }>({
       {list.isPending && <SkeletonText paragraph lineCount={5} />}
       {list.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={list.error.message} />}
       {list.data?.items.length === 0 && <p className="cz-list-empty">{emptyText}</p>}
-      {!!list.data?.items.length && (
+      {!!list.data?.items.length && renderItems?.(list.data.items)}
+      {!!list.data?.items.length && !renderItems && (
         <ListTable
           columns={columns}
           items={list.data.items}

@@ -332,6 +332,24 @@ describe('cockpit dashboard', () => {
 });
 
 describe('cockpit processes', () => {
+  it('shows the definitions as previews with their names and counts', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/processes');
+    const user = await logIn();
+    await screen.findByRole('link', { name: 'Invoice Receipt' });
+    expect(screen.getByRole('table')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('tab', { name: 'Previews' }));
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    const tile = within(screen.getByRole('link', { name: 'Invoice Receipt' }).closest('li')!);
+    expect(tile.getByRole('link', { name: 'Invoice Receipt' })).toHaveAttribute('href', '/app/react/cockpit/default/process-definition/invoice%3A2');
+    expect(tile.getByText('7 Running Instances')).toBeInTheDocument();
+    expect(tile.getByLabelText('Incidents')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('tab', { name: 'List' }));
+    expect(await screen.findByRole('table')).toBeInTheDocument();
+  });
+
   it('lists the process definitions and sorts them in the URL', async () => {
     const fetchMock = fakeBackend();
     const history = renderApp('/app/react/cockpit/default/processes');
