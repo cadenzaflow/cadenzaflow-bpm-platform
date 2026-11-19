@@ -2,6 +2,7 @@ import { Button, InlineNotification, SkeletonText } from '@carbon/react';
 import { WarningFilled } from '@carbon/icons-react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { useClientSorting } from '../../../../shared/ui/client-sorting';
 import { ListTable, type Column } from '../../../../shared/ui/ListTable';
 import { useCalledInstances, type CalledInstance } from '../api';
 import { InstanceLink } from '../InstanceLink';
@@ -11,11 +12,23 @@ import type { InstanceTab, InstanceTabProps } from './registry';
 function CalledInstancesTab({ engine, instance, activityInstanceIds, activityNames, onActivitySelect }: InstanceTabProps) {
   const { t } = useTranslation('cockpit');
   const called = useCalledInstances(engine, instance.id, activityInstanceIds);
+  const { sorted, sorting, setSorting } = useClientSorting(
+    called.data,
+    {
+      incidents: (row) => row.incidents.length,
+      id: (row) => row.id,
+      processDefinitionLabel: (row) => row.processDefinitionName || row.processDefinitionKey,
+      activity: (row) => activityNames.get(row.callActivityId) || row.callActivityId,
+      businessKey: (row) => row.businessKey,
+    },
+    { sortBy: 'processDefinitionLabel', sortOrder: 'asc' },
+  );
 
   const columns: Column<CalledInstance>[] = [
     {
       key: 'state',
       header: t('PLUGIN_PROCESS_INSTANCE_STATE'),
+      sortBy: 'incidents',
       render: (row) =>
         row.incidents.length > 0 && (
           <span className="cz-incident-count">
@@ -26,11 +39,13 @@ function CalledInstancesTab({ engine, instance, activityInstanceIds, activityNam
     {
       key: 'instance',
       header: t('PLUGIN_CALLED_PROCESS_PROCESS_INSTANCE'),
+      sortBy: 'id',
       render: (row) => <InstanceLink engine={engine} id={row.id} />,
     },
     {
       key: 'definition',
       header: t('PLUGIN_CALLED_PROCESS_PROCESS_DEFINITION'),
+      sortBy: 'processDefinitionLabel',
       render: (row) => (
         <Link to="/cockpit/$engine/process-definition/$id" params={{ engine, id: row.processDefinitionId }}>
           {row.processDefinitionName || row.processDefinitionKey}
@@ -40,13 +55,14 @@ function CalledInstancesTab({ engine, instance, activityInstanceIds, activityNam
     {
       key: 'activity',
       header: t('PLUGIN_CALLED_PROCESS_ACTIVITY'),
+      sortBy: 'activity',
       render: (row) => (
         <Button kind="ghost" size="sm" className="cz-link-button" onClick={() => onActivitySelect(row.callActivityId)}>
           {activityNames.get(row.callActivityId) || row.callActivityId}
         </Button>
       ),
     },
-    { key: 'businessKey', header: t('PLUGIN_CALLED_PROCESS_BUSINESS_KEY'), render: (row) => row.businessKey },
+    { key: 'businessKey', header: t('PLUGIN_CALLED_PROCESS_BUSINESS_KEY'), sortBy: 'businessKey', render: (row) => row.businessKey },
   ];
 
   return (
@@ -54,7 +70,7 @@ function CalledInstancesTab({ engine, instance, activityInstanceIds, activityNam
       {called.isPending && <SkeletonText paragraph lineCount={3} />}
       {called.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={called.error.message} />}
       {called.data?.length === 0 && <p className="cz-list-empty">{t('PLUGIN_CALLED_PROCESS_NO_PROCESS_INSTANCES')}</p>}
-      {!!called.data?.length && <ListTable columns={columns} items={called.data} rowKey={(row) => row.id} />}
+      {!!sorted?.length && <ListTable columns={columns} items={sorted} rowKey={(row) => row.id} sorting={sorting} onSortingChange={setSorting} />}
     </>
   );
 }

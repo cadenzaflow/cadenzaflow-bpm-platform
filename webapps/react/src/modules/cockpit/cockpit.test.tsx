@@ -499,6 +499,12 @@ describe('cockpit process instance', () => {
 
     await user.click(tree.getByText('Invoice Receipt'));
     await waitFor(() => expect(history.location.search).toBe('?tab=incidents-tab'));
+
+    // the field above the tree keeps the instances with the name, in their scope
+    await user.type(screen.getByRole('searchbox', { name: 'Filters activity instances that have the entered name.' }), 'bank');
+    expect(tree.getByText('Prepare Bank Transfer')).toBeInTheDocument();
+    expect(tree.getByText('Invoice Receipt')).toBeInTheDocument();
+    expect(tree.queryByText('Approve Invoice')).not.toBeInTheDocument();
   });
 
   it('suspends and deletes the instance', async () => {

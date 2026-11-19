@@ -616,5 +616,7 @@
   "VARIABLE_INSPECT_MESSAGE_ERR_1": "Could not parse JSON input: {{exception}}",
   "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Set value to \"null\"",
   "PLUGIN_CANCEL_PROCESS_BEFORE_DELETION": "If you delete this process instance the following sub process instances will also be deleted:",
-  "PLUGIN_CANCEL_PROCESS_OTHER_PROCESS_INSTANCES": "and {{count}} other process instances."
+  "PLUGIN_CANCEL_PROCESS_OTHER_PROCESS_INSTANCES": "and {{count}} other process instances.",
+  "QUICK_FILTER_TOOLTIP_FILTERS_ACTIVITY": "Filters activity instances that have the entered name.",
+  "QUICK_FILTER_TOOLTIP_CLICK_HERE": "Click here to clear the field value."
 }
