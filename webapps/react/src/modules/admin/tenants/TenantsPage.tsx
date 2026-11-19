@@ -45,6 +45,7 @@ export function TenantsPage() {
         engine={engine}
         listPath="/tenant"
         criteria={TENANT_CRITERIA}
+        savedCriteriaGroup="ANT"
         defaultSortBy="id"
         columns={columns}
         emptyText={t('TENANTS_NO_TENANTS')}

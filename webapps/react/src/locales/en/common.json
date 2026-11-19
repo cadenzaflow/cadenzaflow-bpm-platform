@@ -59,5 +59,6 @@
   "DIAGRAM_ZOOM_OUT": "Zoom out",
   "DIAGRAM_ZOOM_RESET": "Reset zoom",
   "CAM_WIDGET_COPY": "Click to copy '{{value}}'",
-  "COPIED": "Copied"
+  "COPIED": "Copied",
+  "SELECT_ALL": "Select all"
 }

@@ -45,11 +45,9 @@ export function AdminLayout() {
             {t('TENANTS_TENANTS')}
           </Link>
         )}
-        {access.authorizations && (
-          <Link to="/admin/$engine/authorization" params={{ engine }} {...linkProps}>
-            {t('AUTHORIZATION_AUTHORIZATIONS')}
-          </Link>
-        )}
+        <Link to="/admin/$engine/authorization" params={{ engine }} {...linkProps}>
+          {t('AUTHORIZATION_AUTHORIZATIONS')}
+        </Link>
         <Link to="/admin/$engine/system" params={{ engine }} {...linkProps}>
           {t('SYSTEM_SYSTEM')}
         </Link>

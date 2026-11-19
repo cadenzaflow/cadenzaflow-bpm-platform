@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Button,
   InlineNotification,
@@ -14,8 +14,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  Tooltip,
 } from '@carbon/react';
-import { Add, Edit, TrashCan, User, UserMultiple } from '@carbon/icons-react';
+import { Add, Edit, TrashCan, User, UserMultiple, WarningAlt } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { notify } from '../../../shared/notifications';
@@ -55,6 +56,16 @@ export function AuthorizationsPage() {
   const pageCount = list.data ? Math.ceil(list.data.count / AUTHORIZATION_PAGE_SIZE) : 0;
   const resourceLabel = t(RESOURCE_TYPES.find((type) => type.id === resourceType)?.label ?? 'AUTHORIZATION_AUTHORIZATIONS');
   const typeLabel = (type: number) => t(AUTHORIZATION_TYPES.find((candidate) => candidate.id === type)?.label ?? String(type));
+  // as in the classic Admin: the resources by their names, the authorizations of a page by their user or group
+  const resources = useMemo(
+    () => RESOURCE_TYPES.map((type) => ({ id: type.id, name: t(type.label) })).sort((a, b) => a.name.localeCompare(b.name)),
+    [t],
+  );
+  const identityId = (authorization: Authorization) => authorization.userId ?? authorization.groupId ?? '';
+  const authorizations = useMemo(
+    () => [...(list.data?.items ?? [])].sort((a, b) => identityId(a).localeCompare(identityId(b))),
+    [list.data],
+  );
 
   const identity = (authorization: Authorization) => (
     <span className="cz-authorization-identity">
@@ -95,7 +106,7 @@ export function AuthorizationsPage() {
     <div className="cz-admin-split">
       <nav className="cz-admin-split__nav" aria-label={t('AUTHORIZATION_RESOURCE')}>
         <ul>
-          {RESOURCE_TYPES.map((type) => (
+          {resources.map((type) => (
             <li key={type.id}>
               <Link
                 to="/admin/$engine/authorization"
@@ -105,7 +116,7 @@ export function AuthorizationsPage() {
                 aria-current={type.id === resourceType ? 'page' : undefined}
                 onClick={() => setDraft(null)}
               >
-                {t(type.label)}
+                {type.name}
               </Link>
             </li>
           ))}
@@ -134,9 +145,6 @@ export function AuthorizationsPage() {
           </Button>
         }
       >
-        {resourceType === 1 && (
-          <InlineNotification kind="info" lowContrast hideCloseButton subtitle={t('AUTHORIZATION_USER_AUTH_INFO')} />
-        )}
         {list.isPending && <SkeletonText paragraph lineCount={5} />}
         {list.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={list.error.message} />}
         {list.data && (
@@ -152,7 +160,7 @@ export function AuthorizationsPage() {
             </TableHead>
             <TableBody>
               {draft && !draft.id && editor(draft)}
-              {list.data.items.map((authorization) =>
+              {authorizations.map((authorization) =>
                 draft?.id === authorization.id ? (
                   editor(draft)
                 ) : (
@@ -180,6 +188,13 @@ export function AuthorizationsPage() {
                         disabled={!!draft}
                         onClick={() => setDeleting(authorization)}
                       />
+                      {authorization.userId && (
+                        <Tooltip align="left" label={t('AUTHORIZATION_USER_AUTH_INFO')}>
+                          <button type="button" className="cz-authorizations__hint" aria-label={t('AUTHORIZATION_USER_AUTH_INFO')}>
+                            <WarningAlt />
+                          </button>
+                        </Tooltip>
+                      )}
                     </TableCell>
                   </TableRow>
                 ),

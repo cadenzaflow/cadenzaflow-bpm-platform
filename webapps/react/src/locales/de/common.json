@@ -59,5 +59,6 @@
   "DIAGRAM_ZOOM_OUT": "Verkleinern",
   "DIAGRAM_ZOOM_RESET": "Zoom zurücksetzen",
   "CAM_WIDGET_COPY": "Klicken, um '{{value}}' zu kopieren",
-  "COPIED": "Kopiert"
+  "COPIED": "Kopiert",
+  "SELECT_ALL": "Alle auswählen"
 }

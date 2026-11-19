@@ -46,6 +46,7 @@ export function GroupsPage() {
         engine={engine}
         listPath="/group"
         criteria={GROUP_CRITERIA}
+        savedCriteriaGroup="ANG"
         defaultSortBy="id"
         columns={columns}
         emptyText={t('GROUPS_NO_GROUPS')}

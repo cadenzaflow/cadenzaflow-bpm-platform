@@ -292,5 +292,8 @@
   "SETUP_USER_REDIRECT_1": "Head over to the",
   "SETUP_USER_REDIRECT_2": "sign in page",
   "SETUP_USER_REDIRECT_3": "to login using the newly created credentials.",
-  "SETUP_USER_LDAP": "Set up LDAP instead"
+  "SETUP_USER_LDAP": "Set up LDAP instead",
+  "GROUP_MEMBERSHIP_GROUP_MESSAGE_HERE": "here",
+  "GROUP_MEMBERSHIP_TENANT_MESSAGE_HERE": "here",
+  "USER_MEMBERSHIP_TENANT_MESSAGE_HERE": "here"
 }

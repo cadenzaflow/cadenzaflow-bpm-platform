@@ -24,8 +24,8 @@ export function SetupPage() {
   const [profile, setProfile] = useState<User>({ id: '', firstName: '', lastName: '', email: '' });
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
-  // the engine API needs a login; the engine checks a password policy itself
-  const check = usePasswordCheck(engine, password, profile, false);
+  // the password policy is one of the few resources of the engine API that need no login
+  const check = usePasswordCheck(engine, password, profile);
   const createUser = useMutation({
     mutationFn: () =>
       request<void>(adminUrl(`/setup/${encodeURIComponent(engine)}/user/create`), {

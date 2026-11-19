@@ -40,17 +40,23 @@ export function useAnnualMetrics(engine: string, contractStart: Date) {
   });
 }
 
-/** The engine's diagnostics (telemetry) data, without its internal command and metric counters. */
+export interface DiagnosticsData {
+  product?: { internals?: Record<string, unknown> };
+}
+
+/** The engine's diagnostics (telemetry) data. */
 export function useDiagnostics(engine: string) {
   return useQuery({
     queryKey: ['admin-diagnostics', engine],
-    queryFn: async () => {
-      const data = await request<{ product?: { internals?: Record<string, unknown> } }>(engineUrl(engine, '/telemetry/data'));
-      if (data.product?.internals) {
-        delete data.product.internals.commands;
-        delete data.product.internals.metrics;
-      }
-      return data;
-    },
+    queryFn: () => request<DiagnosticsData>(engineUrl(engine, '/telemetry/data')),
   });
+}
+
+/** The diagnostics data without its command and metric counters: what is copied along with the metrics, as in the classic Admin. */
+export function withoutCounters(data: DiagnosticsData | undefined): DiagnosticsData {
+  if (!data?.product?.internals) {
+    return data ?? {};
+  }
+  const { commands: _commands, metrics: _metrics, ...internals } = data.product.internals;
+  return { ...data, product: { ...data.product, internals } };
 }

@@ -47,6 +47,7 @@ export function UsersPage() {
         engine={engine}
         listPath="/user"
         criteria={USER_CRITERIA}
+        savedCriteriaGroup="ANU"
         defaultSortBy="userId"
         columns={columns}
         emptyText={t('USERS_NOT_FOUND')}

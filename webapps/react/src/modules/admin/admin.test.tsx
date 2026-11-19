@@ -5,6 +5,8 @@ import { initI18n } from '../../shared/i18n';
 import { useNotifications } from '../../shared/notifications';
 import { json, logIn, renderApp } from '../../test/app';
 import { validateListSearch } from './search';
+import { withoutCounters } from './system/api';
+import { isEmail } from './users/ProfileFields';
 
 const ENGINE = '/api/engine/engine/default';
 
@@ -20,9 +22,10 @@ function fakeBackend() {
     { id: 'sales', name: 'Sales', type: 'WORKFLOW' },
   ];
   const tenants = [{ id: 'tenant-one', name: 'Tenant One' }];
+  // (the engine does not sort them: the user demo comes before the group cadenzaflow-admin)
   const authorizations = [
-    { id: 'a1', type: 1, permissions: ['ALL'], userId: null, groupId: 'cadenzaflow-admin', resourceType: 0, resourceId: '*' },
     { id: 'a2', type: 1, permissions: ['ACCESS'], userId: 'demo', groupId: null, resourceType: 0, resourceId: 'tasklist' },
+    { id: 'a1', type: 1, permissions: ['ALL'], userId: null, groupId: 'cadenzaflow-admin', resourceType: 0, resourceId: '*' },
   ];
   const lengthRule = (valid?: boolean) => ({ placeholder: 'PASSWORD_POLICY_LENGTH', parameter: { minLength: '10' }, valid });
 
@@ -93,7 +96,7 @@ function fakeBackend() {
       );
     }
     if (path === `${ENGINE}/telemetry/data`) {
-      return json({ installation: 'abc', product: { name: 'CadenzaFlow', internals: { database: { vendor: 'h2' }, commands: {} } } });
+      return json({ installation: 'abc', product: { name: 'CadenzaFlow', internals: { database: { vendor: 'h2' }, commands: { StartCmd: { count: 3 } } } } });
     }
     if (path === `${ENGINE}/identity/password-policy`) {
       return method === 'POST'
@@ -153,6 +156,13 @@ describe('admin users', () => {
 
     await waitFor(() => expect(history.location.search).toContain('sortBy=firstName'));
     expect(calls(fetchMock, 'GET', '/user').some(([url]) => url.includes('sortBy=firstName&sortOrder=asc'))).toBe(true);
+    // the criteria of a search can be saved, as in the classic Admin
+    expect(screen.getByRole('button', { name: 'Saved criteria' })).toBeInTheDocument();
+  });
+
+  it('accepts the email addresses the classic webapps accept', () => {
+    expect(['', null, 'mary@example.org', 'm.a-b+c@sub.example.co', 'mary@[10.0.0.1]'].map(isEmail)).toEqual([true, true, true, true, true]);
+    expect(['mary', 'mary@example', 'mary@example.o', 'ma ry@example.org', '@example.org'].map(isEmail)).toEqual([false, false, false, false, false]);
   });
 
   it('creates a user with a password the policy accepts', async () => {
@@ -252,7 +262,14 @@ describe('admin groups and tenants', () => {
     expect(await screen.findByText('Group Accounting is currently not member of any tenants.')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Add to a tenant' }));
     const dialog = within(await screen.findByRole('dialog', { name: 'Select Tenants' }));
-    await user.click(await dialog.findByLabelText('tenant-one'));
+    // all tenants of the page at once, and none again
+    await user.click(await dialog.findByLabelText('Select all'));
+    expect(dialog.getByLabelText('tenant-one')).toBeChecked();
+    await user.click(dialog.getByLabelText('Select all'));
+    expect(dialog.getByLabelText('tenant-one')).not.toBeChecked();
+    expect(dialog.getByRole('button', { name: 'Add to a tenant' })).toBeDisabled();
+    await user.click(dialog.getByLabelText('tenant-one'));
+    expect(dialog.getByLabelText('Select all')).toBeChecked();
     await user.click(dialog.getByRole('button', { name: 'Add to a tenant' }));
 
     expect(await screen.findByText('User was successfully added to selected tenants.')).toBeInTheDocument();
@@ -293,6 +310,15 @@ describe('admin authorizations', () => {
 
     expect(await screen.findByText('cadenzaflow-admin')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Application' })).toBeInTheDocument();
+    // as in the classic Admin: the resources by name, the authorizations by their user or group
+    const resources = within(screen.getByRole('navigation', { name: 'Resource' })).getAllByRole('link');
+    expect(resources.slice(0, 4).map((link) => link.textContent)).toEqual(['Application', 'Authorization', 'Batch', 'Decision Definition']);
+    const rows = screen.getAllByRole('row').slice(1);
+    expect(rows.map((row) => within(row).getAllByRole('cell')[1].textContent)).toEqual(['cadenzaflow-admin', 'demo']);
+    // the authorizations of a user stay when the user is deleted: said on the rows of users only
+    const hint = /^Authorizations are not deleted automatically when you delete the user/;
+    expect(within(rows[1]).getByRole('button', { name: hint })).toBeInTheDocument();
+    expect(within(rows[0]).queryByRole('button', { name: hint })).not.toBeInTheDocument();
 
     // a new one: ALLOW for a group on all applications by default
     await user.click(screen.getByRole('button', { name: 'Create new authorization' }));
@@ -346,8 +372,16 @@ describe('admin system', () => {
     await user.click(screen.getByRole('link', { name: 'Diagnostics' }));
     expect(history.location.search).toContain('section=diagnostics-system-settings');
     expect(await screen.findByText(/"vendor": "h2"/)).toBeInTheDocument();
-    // internal counters are left out, as in the classic Admin
-    expect(screen.queryByText(/"commands"/)).not.toBeInTheDocument();
+    // the whole data, the counters of the engine's commands too, as in the classic Admin
+    expect(screen.getByText(/"StartCmd"/)).toBeInTheDocument();
+  });
+
+  it('leaves the counters out of the diagnostics data that is copied with the metrics', () => {
+    const data = { installation: 'abc', product: { name: 'CadenzaFlow', internals: { database: { vendor: 'h2' }, commands: { a: 1 }, metrics: { b: 2 } } } };
+    expect(withoutCounters(data)).toEqual({ installation: 'abc', product: { name: 'CadenzaFlow', internals: { database: { vendor: 'h2' } } } });
+    // the data itself is not changed: the diagnostics page shows all of it
+    expect(data.product.internals.commands).toEqual({ a: 1 });
+    expect(withoutCounters(undefined)).toEqual({});
   });
 });
 
@@ -362,17 +396,22 @@ describe('admin setup', () => {
     await user.type(screen.getByLabelText('User ID*'), 'admin');
     await user.type(screen.getByLabelText('First Name*'), 'Ada');
     await user.type(screen.getByLabelText('Last Name*'), 'Admin');
+    // the password policy is shown and checked before anyone can log in
+    expect(await screen.findByText(/10 characters/)).toBeInTheDocument();
     await user.type(screen.getByLabelText('Password*:'), 'secret');
     await user.type(screen.getByLabelText('Password (repeat):*'), 'secret');
+    await waitFor(() => expect(calls(fetchMock, 'POST', '/identity/password-policy')).toHaveLength(1));
+    expect(screen.getByRole('button', { name: 'Create new User' })).toBeDisabled();
+    await user.type(screen.getByLabelText('Password*:'), '-12345');
+    await user.type(screen.getByLabelText('Password (repeat):*'), '-12345');
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Create new User' })).toBeEnabled());
     await user.click(screen.getByRole('button', { name: 'Create new User' }));
 
     expect(await screen.findByText('You have created an initial user.')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'sign in page' })).toHaveAttribute('href', '/app/react/admin/default');
     expect(fetchMock.mock.calls.find(([url]) => url === '/api/admin/setup/default/user/create')?.[1]?.body).toBe(
-      JSON.stringify({ profile: { id: 'admin', firstName: 'Ada', lastName: 'Admin', email: '' }, credentials: { password: 'secret' } }),
+      JSON.stringify({ profile: { id: 'admin', firstName: 'Ada', lastName: 'Admin', email: '' }, credentials: { password: 'secret-12345' } }),
     );
-    // the password policy needs a login: not asked
-    expect(fetchMock.mock.calls.some(([url]) => url.includes('password-policy'))).toBe(false);
   });
 });
 

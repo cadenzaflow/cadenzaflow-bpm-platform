@@ -227,6 +227,7 @@ export function GroupEditPage() {
           defaultSortBy="id"
           memberIds={tenantIds.data}
           emptyText={t('GROUP_MEMBERSHIP_TENANT_MESSAGE_AVAILABLE_TENANTS')}
+          create={{ to: '/admin/$engine/tenant-create', label: t('GROUP_MEMBERSHIP_TENANT_MESSAGE_HERE') }}
           emptyPageText={t('GROUP_MEMBERSHIP_TENANT_MESSAGE_AVAILABLE_TENANTS')}
           addLabel={t('GROUP_EDIT_ADD_TO_TENANT')}
           onAdd={(ids) =>
