@@ -10,6 +10,7 @@ import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTab
 import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
+import { CopyValue } from '../../../shared/ui/CopyValue';
 import { InstanceLink } from '../process-instance/InstanceLink';
 import { DeploymentLink } from '../repository/DeploymentLink';
 import { useDecisionDefinition, useDecisionInstance, useDecisionXml, type DecisionValue } from './api';
@@ -187,7 +188,9 @@ export function DecisionInstancePage() {
             {instance.data && definition.data && (
               <dl>
                 <dt>{t('DECISION_INSTANCE_INSTANCE_ID')}</dt>
-                <dd className="cz-definition__id">{instance.data.id}</dd>
+                <dd className="cz-definition__id">
+                  <CopyValue text={instance.data.id} />
+                </dd>
                 <dt>{t('DECISION_INSTANCE_DEFINITION_VERSION')}</dt>
                 <dd>{definition.data.version}</dd>
                 <dt>{t('DECISION_INSTANCE_DEFINITION_ID')}</dt>
@@ -197,7 +200,9 @@ export function DecisionInstancePage() {
                   </Link>
                 </dd>
                 <dt>{t('DECISION_INSTANCE_DEFINITION_KEY')}</dt>
-                <dd>{instance.data.decisionDefinitionKey}</dd>
+                <dd>
+                  <CopyValue text={instance.data.decisionDefinitionKey} />
+                </dd>
                 <dt>{t('DECISION_INSTANCE_DEFINITION_NAME')}</dt>
                 <dd>{value(instance.data.decisionDefinitionName)}</dd>
                 <dt>{t('DECISION_INSTANCE_TENANT_ID')}</dt>

@@ -405,3 +405,25 @@
 .cz-definition__statistics {
   margin-top: $spacing-03;
 }
+
+// a value and the button that copies it: the button shows on the value
+.cz-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-01;
+
+  .cz-copy__button {
+    min-height: 1.5rem;
+    block-size: 1.5rem;
+    inline-size: 1.5rem;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  &:hover .cz-copy__button,
+  &:focus-within .cz-copy__button {
+    opacity: 1;
+  }
+}

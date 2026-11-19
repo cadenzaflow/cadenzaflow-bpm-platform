@@ -9,6 +9,7 @@ import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { usePluginPoint } from '../../../shared/plugins/plugins';
 import type { Column } from '../../../shared/ui/ListTable';
 import { PageFrame } from '../../../shared/ui/PageFrame';
+import { CopyValue } from '../../../shared/ui/CopyValue';
 import { SearchableList } from '../../../shared/ui/SearchableList';
 import { TimeToLive } from '../components/TimeToLive';
 import { InstanceLink } from '../process-instance/InstanceLink';
@@ -153,9 +154,13 @@ export function DecisionDefinitionPage() {
               <dt>{t('DECISION_DEFINITION_VERSION_TAG')}</dt>
               <dd>{value(definition.data.versionTag)}</dd>
               <dt>{t('DECISION_DEFINITION_DEFINITION_ID')}</dt>
-              <dd className="cz-definition__id">{definition.data.id}</dd>
+              <dd className="cz-definition__id">
+                <CopyValue text={definition.data.id} />
+              </dd>
               <dt>{t('DECISION_DEFINITION_DEFINITION_KEY')}</dt>
-              <dd>{definition.data.key}</dd>
+              <dd>
+                <CopyValue text={definition.data.key} />
+              </dd>
               <dt>{t('DECISION_DEFINITION_DEFINITION_NAME')}</dt>
               <dd>{value(definition.data.name)}</dd>
               <dt>{t('DECISION_DEFINITION_HISTORY_TIME_TO_LIVE')}</dt>

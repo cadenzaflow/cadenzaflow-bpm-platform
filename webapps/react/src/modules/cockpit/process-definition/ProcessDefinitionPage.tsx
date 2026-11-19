@@ -18,6 +18,7 @@ import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
 import { useDiagramPlugins, useDiagramViewer, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
+import { CopyValue } from '../../../shared/ui/CopyValue';
 import { useSettings } from '../../../shared/classic-settings';
 import type { DiagramDrilldown } from '../../../shared/diagram/BpmnDiagram';
 import {
@@ -189,9 +190,13 @@ export function ProcessDefinitionPage() {
               <dt>{t('PROCESS_DEFINITION_VERSION_TAG')}</dt>
               <dd>{value(definition.data.versionTag)}</dd>
               <dt>{t('PROCESS_DEFINITION_DEFINITION_ID')}</dt>
-              <dd className="cz-definition__id">{definition.data.id}</dd>
+              <dd className="cz-definition__id">
+                <CopyValue text={definition.data.id} />
+              </dd>
               <dt>{t('PROCESS_DEFINITION_DEFINITION_KEY')}</dt>
-              <dd>{definition.data.key}</dd>
+              <dd>
+                <CopyValue text={definition.data.key} />
+              </dd>
               <dt>{t('PROCESS_DEFINITION_DEFINITION_NAME')}</dt>
               <dd>{value(definition.data.name)}</dd>
               <dt>{t('PROCESS_DEFINITION_HISTORY_TIME_TO_LIVE')}</dt>

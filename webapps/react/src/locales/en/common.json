@@ -57,5 +57,7 @@
   "SAVED_CRITERIA_NOT_KEPT": "The browser did not keep the criteria.",
   "DIAGRAM_ZOOM_IN": "Zoom in",
   "DIAGRAM_ZOOM_OUT": "Zoom out",
-  "DIAGRAM_ZOOM_RESET": "Reset zoom"
+  "DIAGRAM_ZOOM_RESET": "Reset zoom",
+  "CAM_WIDGET_COPY": "Click to copy '{{value}}'",
+  "COPIED": "Copied"
 }
