@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Button, InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
 import { Edit, Renew } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@tanstack/react-router';
 import { cockpitUrl } from '../../../shared/api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../../../shared/api/paging';
 import { formatDateTime } from '../../../shared/format';
 import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTable';
 import { InstanceLink } from '../process-instance/InstanceLink';
 import { PluginPoint } from '../../../shared/plugins/PluginPoint';
-import { RETRYABLE, type Incident } from './api';
+import { canRetry, messageOf, RETRYABLE, type Incident } from './api';
 import { AnnotationModal, RetryModal, StacktraceModal } from './IncidentDialogs';
 
 interface IncidentsListProps {
@@ -43,6 +44,18 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
   });
   const pageCount = incidents.data ? Math.ceil(incidents.data.count / DEFAULT_PAGE_SIZE) : 0;
   const activity = (id: string | null) => (id ? activityNames.get(id) || id : '');
+  /** The instance an incident comes from, when it is another one: its incidents, at the activity that failed. */
+  const causeLink = (incident: Incident, id: string | null, activityId: string | null | undefined) =>
+    id && id !== incident.processInstanceId ? (
+      <Link
+        to="/cockpit/$engine/process-instance/$id"
+        params={{ engine, id }}
+        search={{ tab: 'incidents-tab', activityIds: activityId ?? undefined }}
+        className="cz-instance-link"
+      >
+        {id}
+      </Link>
+    ) : null;
 
   const columns: Column<Incident>[] = [
     {
@@ -52,10 +65,10 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
       render: (incident) =>
         RETRYABLE.includes(incident.incidentType) ? (
           <Button kind="ghost" size="sm" className="cz-link-button" onClick={() => setDialog({ kind: 'stacktrace', incident })}>
-            {incident.incidentMessage || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')}
+            {messageOf(incident) || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')}
           </Button>
         ) : (
-          incident.incidentMessage || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')
+          messageOf(incident) || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')
         ),
     },
     ...(showProcessInstance
@@ -88,12 +101,12 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
     {
       key: 'cause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_INSTANCE_ID'),
-      render: (incident) => <InstanceLink engine={engine} id={incident.causeIncidentProcessInstanceId} />,
+      render: (incident) => causeLink(incident, incident.causeIncidentProcessInstanceId, incident.causeIncidentActivityId),
     },
     {
       key: 'rootCause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_ROOT_INSTANCE_ID'),
-      render: (incident) => <InstanceLink engine={engine} id={incident.rootCauseIncidentProcessInstanceId} />,
+      render: (incident) => causeLink(incident, incident.rootCauseIncidentProcessInstanceId, incident.rootCauseIncidentActivityId),
     },
     {
       key: 'type',
@@ -123,7 +136,7 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
       header: t('PLUGIN_INCIDENTS_TAB_ACTION'),
       render: (incident) => (
         <span className="cz-row-actions">
-          {RETRYABLE.includes(incident.incidentType) && (
+          {canRetry(incident) && (
             <Button
               kind="ghost"
               size="sm"

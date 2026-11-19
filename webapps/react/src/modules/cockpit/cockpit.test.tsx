@@ -67,7 +67,27 @@ const variables: VariableInstance[] = [
   },
 ];
 
-function fakeBackend() {
+/** An incident of the instance pi-1 itself: its own cause and root cause. */
+const ownIncident = {
+  id: 'inc-1',
+  processDefinitionId: 'invoice:2',
+  processInstanceId: 'pi-1',
+  incidentTimestamp: '2026-10-13T08:00:00.000+0000',
+  incidentType: 'failedJob',
+  activityId: 'approveInvoice',
+  failedActivityId: 'approveInvoice',
+  incidentMessage: 'Bean not found',
+  configuration: 'job-1',
+  causeIncidentProcessInstanceId: 'pi-1',
+  causeIncidentActivityId: 'approveInvoice',
+  rootCauseIncidentProcessInstanceId: 'pi-1',
+  rootCauseIncidentActivityId: 'approveInvoice',
+  rootCauseIncidentConfiguration: 'job-1',
+  rootCauseIncidentMessage: 'Bean not found',
+  annotation: null,
+};
+
+function fakeBackend(incidents: unknown[] = [ownIncident]) {
   let loggedIn = false;
   const fetchMock = vi.fn(async (url: string, init: RequestInit = {}) => {
     const method = init.method ?? 'GET';
@@ -124,23 +144,7 @@ function fakeBackend() {
       return json({ count: 1 });
     }
     if (path === `${COCKPIT}/incident` && method === 'POST') {
-      return json([
-        {
-          id: 'inc-1',
-          processDefinitionId: 'invoice:2',
-          processInstanceId: 'pi-1',
-          incidentTimestamp: '2026-10-13T08:00:00.000+0000',
-          incidentType: 'failedJob',
-          activityId: 'approveInvoice',
-          failedActivityId: 'approveInvoice',
-          incidentMessage: 'Bean not found',
-          configuration: 'job-1',
-          causeIncidentProcessInstanceId: 'pi-1',
-          rootCauseIncidentProcessInstanceId: 'pi-1',
-          rootCauseIncidentConfiguration: 'job-1',
-          annotation: null,
-        },
-      ]);
+      return json(incidents);
     }
     if ((path === `${ENGINE}/job/job-1/retries` || path === `${ENGINE}/incident/inc-1/annotation`) && method === 'PUT') {
       return new Response(null, { status: 204 });
@@ -399,6 +403,47 @@ describe('cockpit incidents', () => {
     expect(await screen.findByText('Incrementing the number of retries finished successfully.')).toBeInTheDocument();
     const put = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/retries'));
     expect(JSON.parse(String(put?.[1]?.body))).toEqual({ retries: 1 });
+  });
+
+  it('names no other instance for an incident of the instance itself', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=incidents-tab');
+    await logIn();
+
+    const row = (await screen.findByRole('button', { name: 'Bean not found' })).closest('tr')!;
+    expect(within(row).queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('shows the message and the instances an incident of a called instance goes back to', async () => {
+    // what the engine creates on the calling instance: no message of its own
+    fakeBackend([
+      {
+        ...ownIncident,
+        id: 'inc-2',
+        incidentMessage: null,
+        configuration: null,
+        causeIncidentProcessInstanceId: 'pi-child',
+        causeIncidentActivityId: 'callGrandchild',
+        rootCauseIncidentProcessInstanceId: 'pi-grandchild',
+        rootCauseIncidentActivityId: 'ship',
+        rootCauseIncidentConfiguration: 'job-9',
+        rootCauseIncidentMessage: 'Shipping failed',
+      },
+    ]);
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=incidents-tab');
+    await logIn();
+
+    const row = within((await screen.findByRole('button', { name: 'Shipping failed' })).closest('tr')!);
+    expect(row.getByRole('link', { name: 'pi-child' })).toHaveAttribute(
+      'href',
+      '/app/react/cockpit/default/process-instance/pi-child?tab=incidents-tab&activityIds=callGrandchild',
+    );
+    expect(row.getByRole('link', { name: 'pi-grandchild' })).toHaveAttribute(
+      'href',
+      '/app/react/cockpit/default/process-instance/pi-grandchild?tab=incidents-tab&activityIds=ship',
+    );
+    // the job to retry belongs to the called instance
+    expect(row.queryByRole('button', { name: 'Increment Number of Retries' })).not.toBeInTheDocument();
   });
 });
 

@@ -11,20 +11,34 @@ export interface Incident {
   activityId: string;
   failedActivityId: string | null;
   incidentMessage: string | null;
-  /** the job or external task id */
-  configuration: string;
+  /** the job or external task id; none on an incident passed up from a called instance */
+  configuration: string | null;
   causeIncidentProcessInstanceId: string | null;
+  causeIncidentActivityId?: string | null;
   rootCauseIncidentProcessInstanceId: string | null;
+  rootCauseIncidentActivityId?: string | null;
   rootCauseIncidentConfiguration: string | null;
+  /** the message of the incident this one goes back to; its own message for a root cause */
+  rootCauseIncidentMessage?: string | null;
   annotation: string | null;
 }
 
-/** The incident types whose job or external task can be retried. */
+/**
+ * What went wrong. An incident passed up from a called instance has no
+ * message of its own: it shows the message of its root cause, as the classic
+ * Cockpit does.
+ */
+export const messageOf = (incident: Incident) => incident.rootCauseIncidentMessage || incident.incidentMessage;
+
+/** The incident types that have a job or an external task, with a stack trace. */
 export const RETRYABLE = ['failedJob', 'failedExternalTask'];
+
+/** Whether the incident has a job or an external task of its own to retry (as in the classic Cockpit). */
+export const canRetry = (incident: Incident) => RETRYABLE.includes(incident.incidentType) && !!incident.configuration;
 
 /** Where the stack trace of an incident's root cause is (a job's stack trace, an external task's error details). */
 export function stacktraceUrl(engine: string, incident: Incident): string {
-  const id = encodeURIComponent(incident.rootCauseIncidentConfiguration ?? incident.configuration);
+  const id = encodeURIComponent(incident.rootCauseIncidentConfiguration ?? incident.configuration ?? '');
   return incident.incidentType === 'failedExternalTask'
     ? engineUrl(engine, `/external-task/${id}/errorDetails`)
     : engineUrl(engine, `/job/${id}/stacktrace`);
@@ -45,11 +59,11 @@ export function useRetry(engine: string) {
   return useMutation({
     mutationFn: ({ incident, dueDate }: { incident: Incident; dueDate?: string }) =>
       incident.incidentType === 'failedExternalTask'
-        ? request<void>(engineUrl(engine, `/external-task/${encodeURIComponent(incident.configuration)}/retries`), {
+        ? request<void>(engineUrl(engine, `/external-task/${encodeURIComponent(incident.configuration ?? '')}/retries`), {
             method: 'PUT',
             json: { retries: 1 },
           })
-        : request<void>(engineUrl(engine, `/job/${encodeURIComponent(incident.configuration)}/retries`), {
+        : request<void>(engineUrl(engine, `/job/${encodeURIComponent(incident.configuration ?? '')}/retries`), {
             method: 'PUT',
             json: dueDate ? { retries: 1, dueDate } : { retries: 1 },
           }),
