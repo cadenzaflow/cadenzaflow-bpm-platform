@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { toEngineDate } from '../variables';
-import { isComplete, likePattern, parseVariableValue, toQuery, type CriterionType } from './criteria';
+import { isComplete, likePattern, parseVariableValue, toQuery, withFixedQuery, type CriterionType } from './criteria';
 
 const types: CriterionType[] = [
   { key: 'processVariables', label: 'PV', kind: 'variable', operators: ['eq', 'gt'] },
@@ -121,5 +121,35 @@ describe('toQuery', () => {
       ),
     ).toEqual({ orQueries: [{ name: 'Review' }] });
     expect(isComplete({ type: 'priority', operator: 'eq', value: 'x' }, types[2])).toBe(false);
+  });
+});
+
+describe('list criteria', () => {
+  const activity: CriterionType = { key: 'activityIdIn', label: 'ACTIVITY', kind: 'property', operators: ['In'], valueType: 'list' };
+  const searched = toQuery(
+    {
+      matchAny: false,
+      criteria: [
+        { type: 'activityIdIn', operator: 'In', value: 'approve' },
+        { type: 'activityIdIn', operator: 'In', value: 'ship, approve' },
+      ],
+    },
+    [activity],
+  );
+
+  it('add up when a type is used more than once', () => {
+    expect(searched).toEqual({ activityIdIn: ['approve', 'ship'] });
+  });
+
+  it('add to the list that is always asked for', () => {
+    expect(withFixedQuery({ processDefinitionId: 'order:1', activityIdIn: ['charge'] }, searched)).toEqual({
+      processDefinitionId: 'order:1',
+      activityIdIn: ['charge', 'approve', 'ship'],
+    });
+    expect(withFixedQuery({ processDefinitionId: 'order:1', activityIdIn: undefined }, searched)).toEqual({
+      processDefinitionId: 'order:1',
+      activityIdIn: ['approve', 'ship'],
+    });
+    expect(withFixedQuery({ activityIdIn: ['charge'] }, {})).toEqual({ activityIdIn: ['charge'] });
   });
 });

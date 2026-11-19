@@ -22,8 +22,8 @@ const PAGE_SIZE = 10;
 const BATCH_CRITERIA: CriterionType[] = [
   { key: 'createdBy', label: 'BATCHES_USER_ID', kind: 'property', operators: ['eq'] },
   { key: 'started', label: 'BATCHES_START_TIME', kind: 'property', operators: ['Before', 'After'], valueType: 'date' },
-  { key: 'withFailures', label: 'BATCHES_HAS_FAILED_JOBS', kind: 'flag', operators: [] },
-  { key: 'withoutFailures', label: 'BATCHES_HAS_NO_FAILED_JOBS', kind: 'flag', operators: [] },
+  { key: 'withFailures', label: 'BATCHES_HAS_FAILED_JOBS', kind: 'flag', operators: [], group: 'failures' },
+  { key: 'withoutFailures', label: 'BATCHES_HAS_NO_FAILED_JOBS', kind: 'flag', operators: [], group: 'failures' },
 ];
 
 const ENDED = { completed: true };

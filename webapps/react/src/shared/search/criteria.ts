@@ -17,6 +17,8 @@ export interface CriterionType {
   valueType?: 'text' | 'number' | 'date' | 'list';
   /** REST parameter per operator where it is not the key plus the operator, e.g. { Before: 'before' } */
   params?: Record<string, string>;
+  /** criteria of one group exclude each other, e.g. with and without failures */
+  group?: string;
 }
 
 export interface Criterion {
@@ -110,6 +112,23 @@ export function isComplete(criterion: Criterion, type: CriterionType | undefined
 
 const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
+const unite = (a: unknown[], b: unknown[]) => [...new Set([...a, ...b])];
+
+/**
+ * The query of a list: what is always asked for plus the search. Where both
+ * name a list (the activities selected in the diagram and an activity
+ * criterion), the lists add up; the search does not undo the selection.
+ */
+export function withFixedQuery(fixed: Record<string, unknown> | undefined, searched: Record<string, unknown>): Record<string, unknown> {
+  const query = { ...fixed, ...searched };
+  for (const [key, value] of Object.entries(fixed ?? {})) {
+    if (Array.isArray(value) && Array.isArray(searched[key])) {
+      query[key] = unite(value, searched[key] as unknown[]);
+    }
+  }
+  return query;
+}
+
 /** Turns the complete criteria into the body of a task / instance query. */
 export function toQuery(state: SearchState, types: CriterionType[]): Record<string, unknown> {
   const query: Record<string, unknown> = {};
@@ -147,7 +166,8 @@ export function toQuery(state: SearchState, types: CriterionType[]): Record<stri
           query[`${criterion.operator}${capitalize(type.key)}`] = value;
           break;
         default:
-          query[type.key] = value;
+          // several criteria of a list type add up, e.g. one activity each
+          query[type.key] = Array.isArray(value) && Array.isArray(query[type.key]) ? unite(query[type.key] as unknown[], value) : value;
       }
     }
   }

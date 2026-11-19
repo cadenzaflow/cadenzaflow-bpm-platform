@@ -14,7 +14,7 @@ import { DeleteDeploymentModal } from './DeleteDeploymentModal';
 import type { RepositorySearch } from './search';
 
 const DEPLOYMENT_CRITERIA: CriterionType[] = [
-  { key: 'name', label: 'REPOSITORY_SEARCH_TYPE_NAME', kind: 'property', operators: ['Like', 'eq'] },
+  { key: 'name', label: 'REPOSITORY_SEARCH_TYPE_NAME', kind: 'property', operators: ['eq', 'Like'] },
   { key: 'id', label: 'REPOSITORY_SEARCH_TYPE_ID', kind: 'property', operators: ['eq'] },
   {
     key: 'deploymentTime',

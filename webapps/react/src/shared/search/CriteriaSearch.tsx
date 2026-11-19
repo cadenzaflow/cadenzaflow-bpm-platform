@@ -44,7 +44,14 @@ export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAn
                 value={criterion.type}
                 onChange={(event) => {
                   const next = types.find((candidate) => candidate.key === event.target.value)!;
-                  update(index, { type: next.key, operator: next.operators[0] ?? 'eq', name: undefined, value: '' });
+                  const changed = { ...criterion, type: next.key, operator: next.operators[0] ?? 'eq', name: undefined, value: '' };
+                  // a criterion takes the place of the others of its group
+                  const excluded = (other: Criterion) =>
+                    !!next.group && types.find((candidate) => candidate.key === other.type)?.group === next.group;
+                  onChange({
+                    ...value,
+                    criteria: value.criteria.flatMap((other, i) => (i === index ? [changed] : excluded(other) ? [] : [other])),
+                  });
                 }}
               >
                 {types.map((candidate) => (

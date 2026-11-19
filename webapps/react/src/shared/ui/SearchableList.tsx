@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
 import type { QueryParams } from '../api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../api/paging';
-import { toQuery, type CriterionType, type SearchState } from '../search/criteria';
+import { toQuery, withFixedQuery, type CriterionType, type SearchState } from '../search/criteria';
 import { CriteriaSearch } from '../search/CriteriaSearch';
 import { sortingOf, type ListSearch } from '../search/list-search';
 import { ListTable, type Column } from './ListTable';
@@ -68,7 +68,7 @@ export function SearchableList<T extends { id: string }>({
 
   const sorting = sortingOf(search, defaultSortBy, defaultSortOrder);
   const query = useMemo(
-    () => ({ ...fixedQuery, ...toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, criteria) }),
+    () => withFixedQuery(fixedQuery, toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, criteria)),
     [search.searchQuery, criteria, fixedQuery],
   );
   const page = search.page ?? 1;
