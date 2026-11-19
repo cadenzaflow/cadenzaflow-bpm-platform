@@ -146,6 +146,7 @@ function VariablesTab({ engine, instance, activityInstanceIds, activityInstanceN
         listQuery={LIST_QUERY}
         namespace="cockpit"
         criteria={VARIABLE_CRITERIA}
+        savedCriteriaGroup="VI"
         fixedQuery={fixedQuery}
         defaultSortBy="variableName"
         columns={columns}

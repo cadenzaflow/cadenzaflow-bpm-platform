@@ -102,6 +102,7 @@ export function DecisionDefinitionPage() {
       countUrl={engineUrl(engine, '/history/decision-instance/count')}
       namespace="cockpit"
       criteria={INSTANCE_CRITERIA}
+      savedCriteriaGroup="DI"
       fixedQuery={fixedQuery}
       defaultSortBy="evaluationTime"
       defaultSortOrder="desc"

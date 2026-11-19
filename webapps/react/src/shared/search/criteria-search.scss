@@ -44,3 +44,20 @@
   margin-left: auto;
   color: $text-secondary;
 }
+
+.cz-saved-criteria__save {
+  display: flex;
+  align-items: flex-end;
+  gap: $spacing-03;
+
+  > :first-child {
+    flex: 1 1 auto;
+  }
+}
+
+.cz-saved-criteria__sets li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $border-subtle;
+}

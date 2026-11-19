@@ -113,6 +113,7 @@ export function DeploymentsColumn({ engine, search, onSearchChange, onSelect }: 
         onChange={setDraft}
         allowMatchAny={false}
         total={deployments.data?.count}
+        savedGroup="DEP"
       />
       <PluginPoint module="cockpit" point="cockpit.repository.deployments.list" engine={engine} />
       {deployments.isPending && <SkeletonText paragraph lineCount={6} />}

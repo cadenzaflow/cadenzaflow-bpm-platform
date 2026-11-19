@@ -16,6 +16,8 @@ interface SearchableListProps<T extends { id: string }> {
   namespace?: string;
   /** without criteria the list has no search */
   criteria?: CriterionType[];
+  /** names the search, so that its criteria can be saved in the browser */
+  savedCriteriaGroup?: string;
   /** query parts that are always sent, e.g. latestVersion */
   fixedQuery?: Record<string, unknown>;
   /** POST for queries with lists (e.g. variables) */
@@ -42,6 +44,7 @@ export function SearchableList<T extends { id: string }>({
   countUrl,
   namespace = 'common',
   criteria = NO_CRITERIA,
+  savedCriteriaGroup,
   fixedQuery,
   defaultSortBy,
   defaultSortOrder = 'asc',
@@ -78,7 +81,15 @@ export function SearchableList<T extends { id: string }>({
   return (
     <>
       {criteria.length > 0 && (
-        <CriteriaSearch namespace={namespace} types={criteria} value={draft} onChange={setDraft} allowMatchAny={false} total={list.data?.count} />
+        <CriteriaSearch
+          namespace={namespace}
+          types={criteria}
+          value={draft}
+          onChange={setDraft}
+          allowMatchAny={false}
+          total={list.data?.count}
+          savedGroup={savedCriteriaGroup}
+        />
       )}
       {list.data && !list.data.sortable && unsortedNotice && (
         <InlineNotification kind="info" lowContrast hideCloseButton title={unsortedNotice.title} subtitle={unsortedNotice.subtitle} />

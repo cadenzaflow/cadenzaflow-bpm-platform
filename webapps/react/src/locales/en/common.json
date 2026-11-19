@@ -48,5 +48,11 @@
   "PASSWORD_POLICY_USER_DATA": "It must not contain any user data",
   "USERS_PASSWORDS_NOT_EQUAL": "Passwords must match.",
   "MY_PROFILE": "My profile",
-  "CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS": "Total number of results"
+  "CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS": "Total number of results",
+  "SAVED_CRITERIA": "Saved criteria",
+  "SAVED_CRITERIA_NAME": "Save the criteria as",
+  "SAVED_CRITERIA_SAVE": "Save",
+  "SAVED_CRITERIA_DELETE": "Delete {{name}}",
+  "SAVED_CRITERIA_NONE": "No criteria saved yet.",
+  "SAVED_CRITERIA_NOT_KEPT": "The browser did not keep the criteria."
 }

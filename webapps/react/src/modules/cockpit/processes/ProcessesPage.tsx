@@ -120,6 +120,7 @@ export function ProcessesPage() {
         countUrl={cockpitUrl(engine, '/process-definition/statistics-count')}
         namespace="cockpit"
         criteria={PROCESS_CRITERIA}
+        savedCriteriaGroup="PD"
         defaultSortBy="name"
         columns={columns}
         emptyText={t('PLUGIN_PROCESS_DEF_NO_PROCESS_DEF')}

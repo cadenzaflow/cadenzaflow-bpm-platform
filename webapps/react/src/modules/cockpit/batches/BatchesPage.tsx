@@ -185,7 +185,15 @@ export function BatchesPage() {
         <div className="cz-batches__lists">
           <section>
             <h2 className="cz-section-title">{t('BATCHES_PROGRESS_IN')}</h2>
-            <CriteriaSearch namespace="cockpit" types={BATCH_CRITERIA} value={draft} onChange={setDraft} allowMatchAny={false} total={runningCount} />
+            <CriteriaSearch
+              namespace="cockpit"
+              types={BATCH_CRITERIA}
+              value={draft}
+              onChange={setDraft}
+              allowMatchAny={false}
+              total={runningCount}
+              savedGroup="BIP"
+            />
             <BatchList
               engine={engine}
               kind="runtime"
