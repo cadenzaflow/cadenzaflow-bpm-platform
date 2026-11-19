@@ -157,6 +157,9 @@ function fakeBackend(incidents: unknown[] = [ownIncident]) {
     if (path === `${COCKPIT}/incident` && method === 'POST') {
       return json(incidents);
     }
+    if (path === `${ENGINE}/job/job-1/stacktrace`) {
+      return new Response('java.lang.IllegalStateException: Bean not found', { status: 200, headers: { 'Content-Type': 'text/plain' } });
+    }
     if ((path === `${ENGINE}/job/job-1/retries` || path === `${ENGINE}/incident/inc-1/annotation`) && method === 'PUT') {
       return new Response(null, { status: 204 });
     }
@@ -401,13 +404,21 @@ describe('cockpit job priority of all job definitions', () => {
 describe('cockpit incidents', () => {
   it('lists the incidents of a definition, annotates and retries them', async () => {
     const fetchMock = fakeBackend();
-    renderApp('/app/react/cockpit/default/process-definition/invoice:2?tab=pd-incidents-tab');
+    const history = renderApp('/app/react/cockpit/default/process-definition/invoice:2?tab=pd-incidents-tab');
     const user = await logIn();
 
     expect(await screen.findByRole('button', { name: 'Bean not found' })).toBeInTheDocument();
     expect(screen.getByRole('columnheader', { name: 'Failing Activity' })).toBeInTheDocument();
     const query = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${COCKPIT}/incident?`) && init?.method === 'POST');
     expect(JSON.parse(String(query?.[1]?.body))).toEqual({ processDefinitionIdIn: ['invoice:2'], sortBy: 'incidentType', sortOrder: 'asc' });
+
+    // the open stack trace is in the URL, so a link shows it
+    await user.click(screen.getByRole('button', { name: 'Bean not found' }));
+    const stacktrace = within(await screen.findByRole('dialog', { name: 'View stacktrace' }));
+    expect(await stacktrace.findByText(/java\.lang\.IllegalStateException/)).toBeInTheDocument();
+    expect(history.location.search).toBe('?tab=pd-incidents-tab&incidentStacktrace=job-1');
+    await user.click(stacktrace.getByRole('button', { name: 'Close' }));
+    await waitFor(() => expect(history.location.search).toBe('?tab=pd-incidents-tab'));
 
     await user.click(screen.getByRole('button', { name: 'Annotation' }));
     const annotation = within(await screen.findByRole('dialog', { name: 'Annotation' }));

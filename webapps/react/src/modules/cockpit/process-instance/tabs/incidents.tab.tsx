@@ -2,7 +2,7 @@ import { IncidentsList } from '../../incidents/IncidentsList';
 import type { InstanceTab, InstanceTabProps } from './registry';
 
 /** Open incidents of this instance, filtered by the selected activities. */
-function IncidentsTab({ engine, instance, activityIds, activityNames, onActivitySelect }: InstanceTabProps) {
+function IncidentsTab({ engine, instance, activityIds, activityNames, onActivitySelect, search, onSearchChange }: InstanceTabProps) {
   return (
     <IncidentsList
       engine={engine}
@@ -10,6 +10,8 @@ function IncidentsTab({ engine, instance, activityIds, activityNames, onActivity
       activityIds={activityIds}
       activityNames={activityNames}
       onActivitySelect={onActivitySelect}
+      stacktrace={search.incidentStacktrace}
+      onStacktraceChange={(incidentStacktrace) => onSearchChange({ incidentStacktrace })}
     />
   );
 }

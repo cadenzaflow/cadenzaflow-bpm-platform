@@ -9,6 +9,8 @@ export interface ProcessDefinitionSearch extends ListSearch {
   tab?: string;
   /** comma separated activity ids, as in the classic Cockpit */
   activityIds?: string;
+  /** the job or external task whose stack trace is open, so that a link shows it (as in the classic Cockpit) */
+  incidentStacktrace?: string;
   /** only instances called by instances of this (calling) definition */
   parentProcessDefinitionId?: string;
 }
@@ -19,6 +21,7 @@ export function validateProcessDefinitionSearch(search: Record<string, unknown>)
     ...validateListSearch(search),
     tab: text(search.tab),
     activityIds: text(search.activityIds),
+    incidentStacktrace: text(search.incidentStacktrace),
     parentProcessDefinitionId: text(search.parentProcessDefinitionId),
   };
 }
