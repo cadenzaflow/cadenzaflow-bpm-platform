@@ -1,5 +1,5 @@
 import { lazy, Suspense, useMemo, useState } from 'react';
-import { InlineNotification, SkeletonPlaceholder, SkeletonText, Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
+import { Button, InlineNotification, Modal, SkeletonPlaceholder, SkeletonText, Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +23,9 @@ const NOT_SHOWN = ['Object', 'Bytes', 'File'];
 
 const PREVIEW_LENGTH = 100;
 
+/** Types whose value opens in a dialog, in full (as in the classic Cockpit). */
+const IN_DIALOG = ['String', 'Object', 'Json', 'Xml'];
+
 export const TABS = [
   { id: 'decision-input-table', label: 'PLUGIN_INPUT_TABLE_LABEL' },
   { id: 'decision-output-table', label: 'PLUGIN_OUTPUT_TABLE_LABEL' },
@@ -45,6 +48,7 @@ const nameOf = (value: DecisionValue) => value.clauseName || value.clauseId || v
 function ValuesTable({ values, emptyText }: { values: DecisionValue[]; emptyText?: string }) {
   const { t, i18n } = useTranslation('cockpit');
   const [sorting, setSorting] = useState<Sorting | undefined>();
+  const [shown, setShown] = useState<{ name: string; text: string } | null>(null);
   const sorted = useMemo(() => {
     if (!sorting) {
       return values;
@@ -79,10 +83,17 @@ function ValuesTable({ values, emptyText }: { values: DecisionValue[]; emptyText
         }
         const text = value.type === 'Date' ? formatDateTime(String(value.value), i18n.language) : String(value.value);
         const code = ['Object', 'Json', 'Xml'].includes(value.type);
-        return (
+        const preview = (
           <span className={code ? 'cz-variable-value cz-variable-value--code' : 'cz-variable-value'} title={text}>
             {text.length > PREVIEW_LENGTH ? `${text.slice(0, PREVIEW_LENGTH)}…` : text}
           </span>
+        );
+        return IN_DIALOG.includes(value.type) ? (
+          <Button kind="ghost" size="sm" className="cz-link-button" onClick={() => setShown({ name: nameOf(value), text })}>
+            {preview}
+          </Button>
+        ) : (
+          preview
         );
       },
     },
@@ -91,7 +102,16 @@ function ValuesTable({ values, emptyText }: { values: DecisionValue[]; emptyText
   if (!values.length) {
     return emptyText ? <p className="cz-list-empty">{emptyText}</p> : null;
   }
-  return <ListTable columns={columns} items={sorted} rowKey={(value) => value.id} sorting={sorting} onSortingChange={setSorting} />;
+  return (
+    <>
+      <ListTable columns={columns} items={sorted} rowKey={(value) => value.id} sorting={sorting} onSortingChange={setSorting} />
+      {shown && (
+        <Modal open passiveModal size="lg" modalLabel={t('PLUGIN_VARIABLE_VALUE')} modalHeading={shown.name} onRequestClose={() => setShown(null)}>
+          <pre className="cz-code-block">{shown.text}</pre>
+        </Modal>
+      )}
+    </>
+  );
 }
 
 /**
@@ -207,7 +227,14 @@ export function DecisionInstancePage() {
               xml.data &&
               instance.data && (
                 <Suspense fallback={<SkeletonPlaceholder className="cz-diagram-skeleton" />}>
-                  <DmnViewer xml={xml.data} decision={instance.data.decisionDefinitionKey} rules={rules} inputs={tableInputs} outputs={tableOutputs} />
+                  <DmnViewer
+                    xml={xml.data}
+                    decision={instance.data.decisionDefinitionKey}
+                    withRequirements
+                    rules={rules}
+                    inputs={tableInputs}
+                    outputs={tableOutputs}
+                  />
                 </Suspense>
               )
             )}

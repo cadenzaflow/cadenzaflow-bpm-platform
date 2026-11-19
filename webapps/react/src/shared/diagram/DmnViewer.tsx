@@ -25,8 +25,14 @@ export interface DmnValue {
 
 interface DmnViewerProps {
   xml: string;
-  /** id (or name) of the decision to open, alone (no way to its DRD); without it, the DRD */
+  /** id (or name) of the decision to open; without it, the DRD */
   decision?: string;
+  /**
+   * the decision can be left for its requirements diagram (the "View DRD" of
+   * dmn-js) and for the decisions it needs, as on the decision instance page
+   * of the classic Cockpit; without it the decision is shown alone
+   */
+  withRequirements?: boolean;
   /** rules that fired, highlighted */
   rules?: string[];
   inputs?: DmnValue[];
@@ -60,15 +66,18 @@ function valueElement(value: DmnValue, className: string) {
  * the fired rules are highlighted and the input and output values shown.
  * Load it lazily: dmn-js is large.
  */
-export default function DmnViewer({ xml, decision, rules = [], inputs = [], outputs = [] }: DmnViewerProps) {
+export default function DmnViewer({ xml, decision, withRequirements, rules = [], inputs = [], outputs = [] }: DmnViewerProps) {
   const container = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [opened, setOpened] = useState(0);
 
   useEffect(() => {
-    const viewer = decision ? new DecisionViewer({ container: container.current! }) : new Viewer({ container: container.current! });
+    const alone = decision && !withRequirements;
+    const viewer = alone ? new DecisionViewer({ container: container.current! }) : new Viewer({ container: container.current! });
     let active = true;
     setError(null);
+    // coming back from the DRD renders the table anew: values and highlights are added again
+    viewer.on('views.changed', () => active && setOpened((count) => count + 1));
     migrateDiagram(fixNamespace(xml))
       .then((dmn13) => viewer.importXML(dmn13))
       .then(() => {
@@ -81,7 +90,7 @@ export default function DmnViewer({ xml, decision, rules = [], inputs = [], outp
       active = false;
       viewer.destroy();
     };
-  }, [xml, decision]);
+  }, [xml, decision, withRequirements]);
 
   // values and highlights are added to the rendered table (dmn-js offers no API for them)
   useEffect(() => {

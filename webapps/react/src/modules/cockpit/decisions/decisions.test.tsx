@@ -135,7 +135,12 @@ describe('cockpit decisions', () => {
     const user = await logIn();
 
     expect(await screen.findByText('Invoice Category')).toBeInTheDocument();
-    expect(screen.getByText('Travel')).toBeInTheDocument();
+    // a text value opens in full
+    await user.click(screen.getByRole('button', { name: 'Travel' }));
+    const dialog = within(await screen.findByRole('dialog', { name: 'Value' }));
+    expect(dialog.getByRole('heading', { name: 'Invoice Category' })).toBeInTheDocument();
+    expect(dialog.getByText('Travel')).toBeInTheDocument();
+    await user.click(dialog.getByRole('button', { name: 'Close' }));
     expect(screen.getByRole('link', { name: 'Assign Approver' })).toHaveAttribute(
       'href',
       '/app/react/cockpit/default/decision-definition/approver%3A2',
