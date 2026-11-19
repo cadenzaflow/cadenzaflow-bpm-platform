@@ -111,6 +111,13 @@ var ChoicesFieldHandler = AbstractFormField.extend(
       this.previousValue = this.element.val() || '';
       var variableValue = this.variableManager.variableValue(this.variableName);
 
+      // CadenzaFlow: without a value the select keeps the option its markup
+      // selects, which is what the AngularJS Tasklist showed and submitted.
+      // Writing '' would deselect every option.
+      if (variableValue === null || typeof variableValue === 'undefined') {
+        return this;
+      }
+
       // check if variable is defined before writing values to the html
       // variableValue can be the Number 0 or negative, so `|| ''` does not work here
       variableValue = variableValue === null ? '' : variableValue;
@@ -146,7 +153,10 @@ var ChoicesFieldHandler = AbstractFormField.extend(
           value.push($(this).val());
         });
       } else {
-        value = this.element.find('option:selected').attr('value');
+        // CadenzaFlow: val() instead of attr('value'). An option without a
+        // value attribute stands for its text; AngularJS added the attribute
+        // in the old Tasklist, here the option is read as the browser reads it.
+        value = this.element.find('option:selected').val();
       }
 
       // write value to variable
