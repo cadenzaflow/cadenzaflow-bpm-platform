@@ -14,7 +14,14 @@ describe('variable drafts', () => {
         value: '{"id":1}',
         valueInfo: { objectTypeName: 'com.example.Order', serializationDataFormat: 'application/json' },
       }),
-    ).toEqual({ name: 'order', type: 'Object', text: '{"id":1}', objectTypeName: 'com.example.Order', serializationDataFormat: 'application/json' });
+    ).toEqual({
+      name: 'order',
+      type: 'Object',
+      text: '{"id":1}',
+      isNull: false,
+      objectTypeName: 'com.example.Order',
+      serializationDataFormat: 'application/json',
+    });
   });
 
   it('needs a name, a valid value and, for objects, the type name and format', () => {
@@ -38,5 +45,45 @@ describe('variable drafts', () => {
     expect(
       valueOf({ ...emptyDraft(), type: 'Object', text: '{}', objectTypeName: ' java.util.HashMap ', serializationDataFormat: 'application/json' }),
     ).toEqual({ type: 'Object', value: '{}', valueInfo: { objectTypeName: 'java.util.HashMap', serializationDataFormat: 'application/json' } });
+  });
+
+  it('keeps the type of a variable without a value, and sets a value to null', () => {
+    const empty = draftOf({ name: 'count', type: 'Integer', value: null });
+    expect(empty.isNull).toBe(true);
+    expect(problemOf(empty, false)).toBeNull();
+    expect(valueOf(empty)).toEqual({ type: 'Integer', value: null });
+    // taking the null away asks for a value again
+    expect(problemOf({ ...empty, isNull: false }, false)).toBe('required');
+
+    expect(valueOf({ ...emptyDraft(), type: 'Date', text: '2026-10-14T09:30:00', isNull: true })).toEqual({ type: 'Date', value: null });
+    expect(
+      valueOf({ ...emptyDraft(), type: 'Object', text: '{}', isNull: true, objectTypeName: 'java.util.HashMap', serializationDataFormat: 'application/json' }),
+    ).toEqual({ type: 'Object', value: null, valueInfo: { objectTypeName: 'java.util.HashMap', serializationDataFormat: 'application/json' } });
+    expect(draftOf({ name: 'nothing', type: 'Null', value: null }).isNull).toBe(false);
+    expect(draftOf({ name: 'scan', type: 'File', value: null }).isNull).toBe(false);
+  });
+
+  it('keeps the milliseconds of a date', () => {
+    const draft = draftOf({ name: 'due', type: 'Date', value: '2026-10-14T09:30:00.250+0000' });
+    expect(draft.text).toMatch(/:30:00\.250$/);
+    expect(problemOf(draft, false)).toBeNull();
+    expect(String(valueOf(draft).value)).toMatch(/:30:00\.250[+-]\d{4}$/);
+  });
+
+  it('wants Json and Xml values, and a JSON-serialized object, to be well-formed', () => {
+    const json = { ...emptyDraft(), type: 'Json' };
+    expect(problemOf(json, false)).toBe('required');
+    expect(problemOf({ ...json, text: '{"a":' }, false)).toEqual({ key: 'VARIABLE_ADD_VARIABLE_ONLY', values: { type: 'Json' } });
+    expect(problemOf({ ...json, text: '{"a":1}' }, false)).toBeNull();
+
+    const xml = { ...emptyDraft(), type: 'Xml' };
+    expect(problemOf({ ...xml, text: '<order><id>1</order>' }, false)).toEqual({ key: 'VARIABLE_ADD_VARIABLE_ONLY', values: { type: 'Xml' } });
+    expect(problemOf({ ...xml, text: '<order><id>1</id></order>' }, false)).toBeNull();
+
+    const object = { ...emptyDraft(), type: 'Object', objectTypeName: 'java.util.HashMap', serializationDataFormat: 'application/json' };
+    expect(problemOf({ ...object, text: '{"a"' }, false)).toMatchObject({ key: 'VARIABLE_INSPECT_MESSAGE_ERR_1' });
+    expect(problemOf({ ...object, text: '{"a":1}' }, false)).toBeNull();
+    // another format is the engine's to check
+    expect(problemOf({ ...object, serializationDataFormat: 'application/x-java-serialized-object', text: 'rO0AB' }, false)).toBeNull();
   });
 });

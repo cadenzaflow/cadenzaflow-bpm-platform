@@ -86,7 +86,7 @@ export function GenericForm({ engine, target, disabled, submit, submitting, subm
         if (isPrimitiveType(type)) {
           const value =
             type === 'Date'
-              ? toLocalDateTimeText(parseEngineDate(variable.value as string) ?? new Date(NaN))
+              ? toLocalDateTimeText(parseEngineDate(variable.value as string) ?? new Date(NaN), true)
               : type === 'Boolean'
                 ? variable.value === true
                 : String(variable.value ?? '');

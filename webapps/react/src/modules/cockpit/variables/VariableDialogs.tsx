@@ -1,10 +1,18 @@
 import { useState } from 'react';
-import { FileUploader, InlineNotification, Modal, Stack } from '@carbon/react';
+import { ContentSwitcher, FileUploader, InlineNotification, Modal, SkeletonText, Stack, Switch, TextArea } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../../shared/api/client';
 import { notify } from '../../../shared/notifications';
-import { useAddVariable, useDeleteVariable, useSaveVariable, useUploadVariable, type VariableInstance } from './api';
-import { draftOf, emptyDraft, problemOf, valueOf } from './variable-draft';
+import {
+  useAddVariable,
+  useDeleteVariable,
+  useDeserializedValue,
+  useSaveDeserialized,
+  useSaveVariable,
+  useUploadVariable,
+  type VariableInstance,
+} from './api';
+import { draftOf, emptyDraft, isBinary, jsonProblem, problemOf, valueOf } from './variable-draft';
 import { VariableFields } from './VariableFields';
 
 const isAuthorizationError = (error: Error) => error instanceof ApiError && error.type === 'AuthorizationException';
@@ -15,12 +23,50 @@ interface VariableDialogProps {
   onClose: () => void;
 }
 
-/** Changes type and value of a variable; an Object's serialized value with a warning, as in the classic inspect dialog. */
+/**
+ * Changes type and value of a variable. An Object is changed as it is stored
+ * (with a warning) or as the engine deserializes it, as in the classic
+ * inspect dialog; a variable that becomes a binary one takes a file.
+ */
 export function EditVariableModal({ engine, variable, onClose }: VariableDialogProps) {
   const { t } = useTranslation('cockpit');
   const save = useSaveVariable(engine);
+  const upload = useUploadVariable(engine);
+  const saveDeserialized = useSaveDeserialized(engine);
   const [draft, setDraft] = useState(() => draftOf(variable));
+  const [file, setFile] = useState<File | null>(null);
+  const [view, setView] = useState<'serialized' | 'deserialized'>('serialized');
+  /** the deserialized value as edited; null while it is as loaded */
+  const [json, setJson] = useState<string | null>(null);
+
+  const isObject = variable.type === 'Object' && draft.type === 'Object';
+  const editsDeserialized = isObject && view === 'deserialized';
+  const deserialized = useDeserializedValue(engine, variable, editsDeserialized);
+  const deserializationError = deserialized.data?.errorMessage ?? deserialized.error?.message;
+  const loadedJson = deserialized.data && !deserializationError ? JSON.stringify(deserialized.data.value) : null;
+  const jsonError = json === null ? null : jsonProblem(json);
   const problem = problemOf(draft, false);
+
+  const unchanged = json === null || json === loadedJson;
+  const blocked = editsDeserialized ? unchanged || !!jsonError || !!deserializationError : isBinary(draft.type) ? !file : !!problem;
+  const outcome = {
+    onSuccess: () => {
+      notify({
+        kind: 'success' as const,
+        title: t('PLUGIN_VARIABLE_INSTANCES_STATUS_VARIABLE'),
+        subtitle: t('PLUGIN_VARIABLE_INSTANCES_MESSAGES_ADD_1', { name: variable.name }),
+      });
+      onClose();
+    },
+    onError: (error: Error) =>
+      notify({
+        kind: 'error' as const,
+        title: t('PLUGIN_VARIABLE_INSTANCES_STATUS_VARIABLE'),
+        subtitle: isAuthorizationError(error)
+          ? t('PLUGIN_VARIABLE_INSTANCES_MESSAGES_ERROR_2', { message: error.message })
+          : `${t('PLUGIN_VARIABLE_INSTANCES_MESSAGES_ERROR_1', { name: variable.name })} ${error.message}`,
+      }),
+  };
 
   return (
     <Modal
@@ -29,31 +75,19 @@ export function EditVariableModal({ engine, variable, onClose }: VariableDialogP
       modalHeading={variable.name}
       primaryButtonText={t('VARIABLE_INSPECT_CHANGE')}
       secondaryButtonText={t('VARIABLE_INSPECT_CLOSE')}
-      primaryButtonDisabled={!!problem || save.isPending}
+      primaryButtonDisabled={blocked || save.isPending || upload.isPending || saveDeserialized.isPending}
       onRequestClose={onClose}
-      onRequestSubmit={() =>
-        save.mutate(
-          { variable, value: valueOf(draft) },
-          {
-            onSuccess: () => {
-              notify({
-                kind: 'success',
-                title: t('PLUGIN_VARIABLE_INSTANCES_STATUS_VARIABLE'),
-                subtitle: t('PLUGIN_VARIABLE_INSTANCES_MESSAGES_ADD_1', { name: variable.name }),
-              });
-              onClose();
-            },
-            onError: (error) =>
-              notify({
-                kind: 'error',
-                title: t('PLUGIN_VARIABLE_INSTANCES_STATUS_VARIABLE'),
-                subtitle: isAuthorizationError(error)
-                  ? t('PLUGIN_VARIABLE_INSTANCES_MESSAGES_ERROR_2', { message: error.message })
-                  : `${t('PLUGIN_VARIABLE_INSTANCES_MESSAGES_ERROR_1', { name: variable.name })} ${error.message}`,
-              }),
-          },
-        )
-      }
+      onRequestSubmit={() => {
+        if (editsDeserialized) {
+          saveDeserialized.mutate({ variable, json: json ?? '' }, outcome);
+        } else if (isBinary(draft.type)) {
+          if (file) {
+            upload.mutate({ variable, file, type: draft.type }, outcome);
+          }
+        } else {
+          save.mutate({ variable, value: valueOf(draft) }, outcome);
+        }
+      }}
     >
       <Stack gap={5}>
         {variable.type === 'Object' && (
@@ -61,7 +95,49 @@ export function EditVariableModal({ engine, variable, onClose }: VariableDialogP
             {t('VARIABLE_INSPECT_WARNING_MESSAGE')}
           </InlineNotification>
         )}
-        <VariableFields id="cz-edit-variable" draft={draft} onChange={setDraft} problem={problem} />
+        {isObject && (
+          <ContentSwitcher
+            size="sm"
+            selectedIndex={view === 'serialized' ? 0 : 1}
+            onChange={({ name }) => setView(name === 'deserialized' ? 'deserialized' : 'serialized')}
+          >
+            <Switch name="serialized" text={t('VARIABLE_INSPECT_SERIALIZED')} />
+            <Switch name="deserialized" text={t('VARIABLE_INSPECT_DESERIALIZED')} />
+          </ContentSwitcher>
+        )}
+        {editsDeserialized && deserialized.isPending && <SkeletonText paragraph lineCount={4} />}
+        {editsDeserialized && deserializationError && (
+          <InlineNotification kind="error" lowContrast hideCloseButton title={t('VARIABLE_INSPECT_DESERIALIZED_ERROR')} subtitle={deserializationError} />
+        )}
+        {editsDeserialized && loadedJson !== null && (
+          <TextArea
+            id="cz-edit-variable-deserialized"
+            labelText={t('VARIABLE_INSPECT_DESERIALIZED')}
+            rows={8}
+            className="cz-code-input"
+            value={json ?? loadedJson}
+            invalid={!!jsonError}
+            invalidText={jsonError ? t('VARIABLE_INSPECT_MESSAGE_ERR_1', { exception: jsonError }) : undefined}
+            onChange={(event) => setJson(event.target.value)}
+          />
+        )}
+        {!editsDeserialized && (
+          <>
+            <VariableFields id="cz-edit-variable" draft={draft} onChange={setDraft} problem={problem} existing />
+            {isBinary(draft.type) && (
+              <FileUploader
+                labelTitle={t('VARIABLE_UPLOAD_FILE')}
+                labelDescription={t('VARIABLE_UPLOAD_SELECT_FILE')}
+                buttonLabel={t('VARIABLE_UPLOAD_FILE')}
+                buttonKind="tertiary"
+                filenameStatus="edit"
+                iconDescription={t('VARIABLE_UPLOAD_CLOSE')}
+                onChange={(event) => setFile((event.target as HTMLInputElement).files?.[0] ?? null)}
+                onDelete={() => setFile(null)}
+              />
+            )}
+          </>
+        )}
       </Stack>
     </Modal>
   );

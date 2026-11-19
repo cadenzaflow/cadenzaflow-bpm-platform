@@ -609,5 +609,10 @@
   "BULK_OVERRIDE_OVERRIDE": "Override",
   "BULK_OVERRIDE_CLOSE": "Close",
   "BULK_OVERRIDE_OK": "OK",
-  "BULK_OVERRIDE_NO_JOB_DEFINITIONS": "This process definition has no job definitions. Their job priority cannot be overridden."
+  "BULK_OVERRIDE_NO_JOB_DEFINITIONS": "This process definition has no job definitions. Their job priority cannot be overridden.",
+  "VARIABLE_INSPECT_SERIALIZED": "Serialized",
+  "VARIABLE_INSPECT_DESERIALIZED": "Deserialized",
+  "VARIABLE_INSPECT_DESERIALIZED_ERROR": "Deserialization Error:",
+  "VARIABLE_INSPECT_MESSAGE_ERR_1": "Could not parse JSON input: {{exception}}",
+  "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Set value to \"null\""
 }

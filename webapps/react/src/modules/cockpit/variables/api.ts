@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { engineUrl, request } from '../../../shared/api/client';
 import type { VariableValue } from '../../../shared/variables';
 import { useInvalidateCockpit } from '../incidents/api';
@@ -45,14 +45,46 @@ export function useDeleteVariable(engine: string) {
   });
 }
 
-/** Replaces the content of a binary variable, keeping its type (Bytes or File). */
+/** Replaces the content of a variable by a file; the variable keeps its binary type or becomes the one given (Bytes or File). */
 export function useUploadVariable(engine: string) {
   const invalidate = useInvalidateCockpit(engine);
   return useMutation({
-    mutationFn: ({ variable, file }: { variable: VariableInstance; file: File }) => {
+    mutationFn: ({ variable, file, type }: { variable: VariableInstance; file: File; type?: string }) => {
       const data = new FormData();
       data.append('data', file);
-      data.append('valueType', variable.type);
+      data.append('valueType', type ?? variable.type);
+      return request<void>(localUrl(engine, variable, '/data'), { method: 'POST', multipart: data });
+    },
+    onSettled: invalidate,
+  });
+}
+
+/** What a deserialized variable instance answers: the value as JSON, or why it could not be deserialized. */
+interface DeserializedVariable {
+  value: unknown;
+  errorMessage?: string | null;
+}
+
+/** The value of an Object variable as the engine deserializes it. */
+export function useDeserializedValue(engine: string, variable: VariableInstance, enabled: boolean) {
+  return useQuery({
+    queryKey: ['cockpit', engine, 'variable-deserialized', variable.id],
+    queryFn: () => request<DeserializedVariable>(engineUrl(engine, `/variable-instance/${segment(variable.id)}`)),
+    enabled,
+    // what is edited must be what is stored now
+    gcTime: 0,
+    staleTime: 0,
+  });
+}
+
+/** Sets an Object variable from JSON; the engine reads it into the variable's Java type. */
+export function useSaveDeserialized(engine: string) {
+  const invalidate = useInvalidateCockpit(engine);
+  return useMutation({
+    mutationFn: ({ variable, json }: { variable: VariableInstance; json: string }) => {
+      const data = new FormData();
+      data.append('data', new Blob([json], { type: 'application/json' }));
+      data.append('type', String(variable.valueInfo?.objectTypeName ?? ''));
       return request<void>(localUrl(engine, variable, '/data'), { method: 'POST', multipart: data });
     },
     onSettled: invalidate,

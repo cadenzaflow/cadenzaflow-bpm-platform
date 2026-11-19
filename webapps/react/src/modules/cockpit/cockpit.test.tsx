@@ -51,7 +51,7 @@ const activityTree: ActivityInstance = {
   ],
 };
 
-/** Variables of pi-1: a number on the process instance and a file in the user task. */
+/** Variables of pi-1: a number and an object on the process instance and a file in the user task. */
 const variables: VariableInstance[] = [
   { id: 'v-1', name: 'amount', type: 'Double', value: 30.5, processInstanceId: 'pi-1', executionId: 'pi-1', activityInstanceId: 'pi-1', taskId: null },
   {
@@ -63,6 +63,17 @@ const variables: VariableInstance[] = [
     processInstanceId: 'pi-1',
     executionId: 'ex-2',
     activityInstanceId: 'approveInvoice:ai-1',
+    taskId: null,
+  },
+  {
+    id: 'v-3',
+    name: 'order',
+    type: 'Object',
+    value: '{"id":1}',
+    valueInfo: { objectTypeName: 'com.example.Order', serializationDataFormat: 'application/json' },
+    processInstanceId: 'pi-1',
+    executionId: 'pi-1',
+    activityInstanceId: 'pi-1',
     taskId: null,
   },
 ];
@@ -252,6 +263,12 @@ function fakeBackend(incidents: unknown[] = [ownIncident]) {
     }
     if (path === `${ENGINE}/variable-instance` && method === 'POST') {
       return json(variables);
+    }
+    if (path === `${ENGINE}/variable-instance/v-3` && method === 'GET') {
+      return json({ ...variables[2], value: { id: 1 } });
+    }
+    if (path.startsWith(`${ENGINE}/execution/pi-1/localVariables/`) && path.endsWith('/data') && method === 'POST') {
+      return new Response(null, { status: 204 });
     }
     if (
       (path === `${ENGINE}/execution/pi-1/localVariables/amount` && (method === 'PUT' || method === 'DELETE')) ||
@@ -571,6 +588,55 @@ describe('cockpit process instance variables', () => {
       const added = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-instance/pi-1/variables/note'));
       expect(JSON.parse(String(added?.[1]?.body))).toEqual({ type: 'String', value: 'hello' });
     });
+  });
+
+  it('sets a variable to null, makes it a file and changes an object as it is deserialized', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+    const row = (name: string) => within(screen.getByText(name).closest('tr')!);
+    const sent = (path: string, method: string) => fetchMock.mock.calls.filter(([url, init]) => url.endsWith(path) && init?.method === method);
+    await screen.findByText('amount');
+
+    // null keeps the type
+    await user.click(row('amount').getByRole('button', { name: 'Change' }));
+    let edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    await user.click(edit.getByRole('checkbox', { name: 'Set value to "null"' }));
+    expect(edit.queryByLabelText('Variable Value*')).not.toBeInTheDocument();
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    await waitFor(() => expect(sent('/execution/pi-1/localVariables/amount', 'PUT')).toHaveLength(1));
+    expect(JSON.parse(String(sent('/execution/pi-1/localVariables/amount', 'PUT')[0][1]?.body))).toEqual({ type: 'Double', value: null });
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Variable' })).not.toBeInTheDocument());
+
+    // a binary type takes a file
+    await user.click(row('amount').getByRole('button', { name: 'Change' }));
+    edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    await user.selectOptions(edit.getByLabelText('Variable Type*'), 'File');
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.upload(edit.getByLabelText('File', { selector: 'input' }), new File(['%PDF'], 'scan.pdf', { type: 'application/pdf' }));
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    await waitFor(() => expect(sent('/execution/pi-1/localVariables/amount/data', 'POST')).toHaveLength(1));
+    const upload = sent('/execution/pi-1/localVariables/amount/data', 'POST')[0][1]?.body as FormData;
+    expect(upload.get('valueType')).toBe('File');
+    expect((upload.get('data') as File).name).toBe('scan.pdf');
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Variable' })).not.toBeInTheDocument());
+
+    // an object: the value the engine deserializes, sent back as JSON for its Java type
+    await user.click(row('order').getByRole('button', { name: 'Change' }));
+    edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    await user.click(edit.getByRole('tab', { name: 'Deserialized' }));
+    const value = await edit.findByRole('textbox', { name: 'Deserialized' });
+    expect(value).toHaveValue('{"id":1}');
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.clear(value);
+    await user.type(value, '{{"id":');
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.type(value, '2}');
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    await waitFor(() => expect(sent('/execution/pi-1/localVariables/order/data', 'POST')).toHaveLength(1));
+    const changed = sent('/execution/pi-1/localVariables/order/data', 'POST')[0][1]?.body as FormData;
+    expect(changed.get('type')).toBe('com.example.Order');
+    expect(await (changed.get('data') as Blob).text()).toBe('{"id":2}');
   });
 });
 

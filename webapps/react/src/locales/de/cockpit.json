@@ -609,5 +609,10 @@
   "BULK_OVERRIDE_OVERRIDE": "Überschreiben",
   "BULK_OVERRIDE_CLOSE": "Schließen",
   "BULK_OVERRIDE_OK": "OK",
-  "BULK_OVERRIDE_NO_JOB_DEFINITIONS": "Diese Prozessdefinition hat keine Job-Definitionen. Ihre Job-Priorität kann nicht überschrieben werden."
+  "BULK_OVERRIDE_NO_JOB_DEFINITIONS": "Diese Prozessdefinition hat keine Job-Definitionen. Ihre Job-Priorität kann nicht überschrieben werden.",
+  "VARIABLE_INSPECT_SERIALIZED": "Serialisiert",
+  "VARIABLE_INSPECT_DESERIALIZED": "Deserialisiert",
+  "VARIABLE_INSPECT_DESERIALIZED_ERROR": "Deserialisierungs Fehler:",
+  "VARIABLE_INSPECT_MESSAGE_ERR_1": "JSON-Eingabe konnte nicht verarbeitet werden: {{exception}}",
+  "CAM_WIDGET_VARIABLE_SET_VALUE_NULL": "Wert auf \"null\" setzen"
 }
