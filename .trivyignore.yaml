@@ -1,7 +1,7 @@
 # Documented exceptions for the Trivy release gate and the weekly security scan.
 #
 # Rules for every entry:
-# - one CVE, scoped with `paths` to the exact pom.xml it applies to;
+# - one CVE, scoped with `paths` to the exact pom.xml or lock file it applies to;
 # - a written statement: why it is acceptable and what we ship instead;
 # - `expired_at`: after this date the entry stops applying and the finding
 #   blocks the release again. Renew only after re-checking the statement.
@@ -39,4 +39,19 @@ vulnerabilities:
       report this CVE there because of the version suffix, but the same
       reasoning applies (third-party/spring-webmvc-6.2.19-cadenzaflow/README.md).
       Review together with the Spring Boot 3 Community Edition phase-out (V1.3 LTS).
+    expired_at: 2026-12-31
+
+  - id: CVE-2026-112366
+    paths:
+      - "webapps/react/package-lock.json"
+    statement: >-
+      picomatch regular expression denial of service through crafted extglob
+      patterns. There is no fixed release: 4.0.7 is the newest version and is
+      affected. In webapps/react picomatch is used by build tools only: sass
+      (a peer dependency of @carbon/react) brings it with its optional file
+      watcher @parcel/watcher, and vite and vitest use it for file matching.
+      None of this is part of the built webapps; their bundle contains no
+      picomatch code. The patterns these tools match come from the build
+      configuration in this repository, not from requests. Replace this entry
+      with a version update as soon as a fixed picomatch is released.
     expired_at: 2026-12-31
