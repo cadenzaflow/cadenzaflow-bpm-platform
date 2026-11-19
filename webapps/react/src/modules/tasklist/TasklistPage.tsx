@@ -128,19 +128,21 @@ export function TasklistPage() {
       )}
       {createTaskOpen && <CreateTaskModal engine={engine} onClose={() => setCreateTaskOpen(false)} />}
       {shortcutsOpen && <ShortcutsModal onClose={() => setShortcutsOpen(false)} />}
-      <StartProcessModal
-        engine={engine}
-        open={startOpen || !!search.processStart}
-        definitionKey={search.processStart}
-        tenantId={search.processTenant}
-        onSelect={(definition) =>
-          update({ processStart: definition?.key, processTenant: definition?.tenantId ?? undefined })
-        }
-        onClose={() => {
-          setStartOpen(false);
-          update({ processStart: undefined, processTenant: undefined });
-        }}
-      />
+      {/* mounted only while open: the next start begins with the list, not with the last form and its input */}
+      {(startOpen || !!search.processStart) && (
+        <StartProcessModal
+          engine={engine}
+          definitionKey={search.processStart}
+          tenantId={search.processTenant}
+          onSelect={(definition) =>
+            update({ processStart: definition?.key, processTenant: definition?.tenantId ?? undefined })
+          }
+          onClose={() => {
+            setStartOpen(false);
+            update({ processStart: undefined, processTenant: undefined });
+          }}
+        />
+      )}
     </div>
   );
 }
