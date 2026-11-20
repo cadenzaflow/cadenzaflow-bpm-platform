@@ -1,0 +1,163 @@
+name: Docker images
+
+# Builds the Docker images of a released version and, on request, pushes them to Docker Hub.
+#
+# An image is the archive of a GitHub Release on top of the Java base image that
+# docker/Dockerfile (Tomcat) and docker/Dockerfile.run (Run) pin. Nothing is compiled here.
+#
+# Run it by hand
+# - after a release: with "push" and "latest", to publish the images of the new version;
+# - after the Java of the base image changed (the pinned tag in docker/Dockerfile*): with "push",
+#   once for every supported version. The archives are the same, the Java is new, the tags stay.
+# Without "push" it builds and tests only, so it can be tried at any time.
+#
+# A pull request that touches the Dockerfiles builds and tests the images of the latest release;
+# that is how a Java update is checked before it is merged. It never pushes.
+#
+# Tags, as they exist on Docker Hub:
+#   Tomcat: <version>      and, with "latest": latest, tomcat-latest
+#   Run:    run-<version>  and, with "latest": run-latest
+#
+# Secrets (repository settings): DOCKERHUB_USERNAME and DOCKERHUB_TOKEN, an access token of the
+# Docker Hub account with write access to the repository below. Only the push step reads them.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Released version, e.g. 1.3.0. Empty: the latest release."
+        required: false
+        type: string
+      push:
+        description: "Push the images to Docker Hub (off: build and test only)"
+        type: boolean
+        default: false
+      latest:
+        description: "Also move latest, tomcat-latest and run-latest to these images"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - 'docker/**'
+      - '.github/scripts/docker-smoke-test.sh'
+      - '.github/workflows/docker-images.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ inputs.version }}
+  cancel-in-progress: false
+
+env:
+  IMAGE: cadenzaflow/cadenzaflow-bpm-platform
+
+jobs:
+  image:
+    name: ${{ matrix.distro }}
+    # a hosted runner: the job needs Docker and the network, not the build node
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - distro: tomcat
+            dockerfile: docker/Dockerfile
+            tag_prefix: ""
+            latest_tags: "latest tomcat-latest"
+          - distro: run
+            dockerfile: docker/Dockerfile.run
+            tag_prefix: "run-"
+            latest_tags: "run-latest"
+    env:
+      DISTRO: ${{ matrix.distro }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve the version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED: ${{ inputs.version }}
+        run: |
+          version="$REQUESTED"
+          if [ -z "$version" ]; then
+            tag=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
+            version="${tag#cadenzaflow-v}"
+          fi
+          if ! printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
+            echo "::error::'$version' is not a version"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Download the archive of the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release download "cadenzaflow-v$VERSION" --repo "$GITHUB_REPOSITORY" \
+            --pattern "cadenzaflow-bpm-$DISTRO-$VERSION.tar.gz" \
+            --output "docker/cadenzaflow-bpm-$DISTRO.tar.gz"
+
+      - name: Build the image
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          DOCKERFILE: ${{ matrix.dockerfile }}
+        run: |
+          docker build --pull \
+            --file "$DOCKERFILE" \
+            --build-arg "CADENZAFLOW_VERSION=$VERSION" \
+            --tag "local/$DISTRO:$VERSION" \
+            docker
+
+      - name: Test the image
+        id: test
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: bash .github/scripts/docker-smoke-test.sh "local/$DISTRO:$VERSION" "$VERSION"
+
+      - name: Push to Docker Hub
+        id: push
+        if: github.event_name == 'workflow_dispatch' && inputs.push
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG_PREFIX: ${{ matrix.tag_prefix }}
+          LATEST: ${{ inputs.latest }}
+          LATEST_TAGS: ${{ matrix.latest_tags }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          if [ -z "$DOCKERHUB_USERNAME" ] || [ -z "$DOCKERHUB_TOKEN" ]; then
+            echo "::error::The secrets DOCKERHUB_USERNAME and DOCKERHUB_TOKEN are not set"
+            exit 1
+          fi
+          printf '%s' "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+          tags="$TAG_PREFIX$VERSION"
+          if [ "$LATEST" = "true" ]; then
+            tags="$tags $LATEST_TAGS"
+          fi
+          for tag in $tags; do
+            docker tag "local/$DISTRO:$VERSION" "$IMAGE:$tag"
+            docker push "$IMAGE:$tag"
+          done
+          docker logout
+          echo "tags=$tags" >> "$GITHUB_OUTPUT"
+
+      - name: Summary
+        if: always()
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          JAVA: ${{ steps.test.outputs.java }}
+          TEST: ${{ steps.test.outcome }}
+          PUSHED: ${{ steps.push.outputs.tags }}
+        run: |
+          {
+            echo "### $DISTRO $VERSION"
+            echo "- Java of the image: ${JAVA:-unknown}"
+            echo "- Test: $TEST"
+            echo "- Pushed tags: ${PUSHED:-none}"
+          } >> "$GITHUB_STEP_SUMMARY"

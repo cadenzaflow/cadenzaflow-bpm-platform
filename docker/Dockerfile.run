@@ -1,0 +1,25 @@
+# CadenzaFlow Run.
+#
+# Build context: this directory, with the archive of the release next to this file as
+#   cadenzaflow-bpm-run.tar.gz
+# .github/workflows/docker-images.yml takes it from the GitHub Release, builds the image and tests it.
+#
+# The Java of the image is the base image below. It is pinned to an exact version and digest, so the
+# Java of a published image is known, and a new Java release arrives as a pull request (Dependabot).
+FROM eclipse-temurin:17.0.21.1_2-jre-resolute@sha256:40d3f718716a41b3c0297f35b9f0d36281ebf4775f4ffb45f7b893bdc458465b
+
+# The version of the release in the image
+ARG CADENZAFLOW_VERSION
+ENV CADENZAFLOW_VERSION=${CADENZAFLOW_VERSION}
+
+WORKDIR /opt/cadenzaflow
+
+# The archive is mounted for this step only, so it does not stay in a layer of the image.
+RUN --mount=type=bind,source=cadenzaflow-bpm-run.tar.gz,target=/tmp/cadenzaflow-bpm-run.tar.gz \
+    tar -xzf /tmp/cadenzaflow-bpm-run.tar.gz -C /opt/cadenzaflow
+
+ENV JAVA_OPTS="-Xms256m -Xmx512m -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true"
+
+EXPOSE 8080
+
+CMD ["/opt/cadenzaflow/internal/run.sh", "start", "--webapps", "--rest"]

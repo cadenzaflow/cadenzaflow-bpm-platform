@@ -1,0 +1,32 @@
+name: Docker image Java
+
+# Every day: is the Java inside the Docker images that "latest" and "run-latest" point to the
+# latest Java of its line?
+#
+# The Java of an image is not a dependency of the build, so neither the dependency scan nor the
+# tests see it. This check reads it from the published image and compares it with the latest
+# release of Eclipse Temurin. It fails when an image is behind; the failed run is the notice.
+#
+# What to do then: update the base image in docker/Dockerfile and docker/Dockerfile.run (Dependabot
+# opens that pull request once the new base image has been out for a few days) and publish the
+# images of the supported versions again with the workflow "Docker images".
+
+on:
+  schedule:
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Java of the published images
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compare with the latest Java
+        run: python3 .github/scripts/docker_image_java.py cadenzaflow/cadenzaflow-bpm-platform latest run-latest
