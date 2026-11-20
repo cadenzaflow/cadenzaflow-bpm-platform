@@ -1,4 +1,5 @@
-import { Tag } from '@carbon/react';
+import { useState } from 'react';
+import { ContentSwitcher, Switch, Tag } from '@carbon/react';
 import { WarningFilled } from '@carbon/icons-react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +12,7 @@ import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
 import { SearchableList } from '../../../shared/ui/SearchableList';
 import { useCount } from '../api';
+import { ProcessPreviews } from './ProcessPreviews';
 
 const route = getRouteApi('/cockpit/$engine/processes');
 
@@ -40,6 +42,7 @@ export function ProcessesPage() {
   const navigate = route.useNavigate();
   const deployed = useCount(engine, '/process-definition/count', { latestVersion: true });
   const rowActions = usePluginPoint('cockpit', 'cockpit.processes.action');
+  const [view, setView] = useState<'list' | 'previews'>('list');
 
   const columns: Column<ProcessDefinitionOverview>[] = [
     {
@@ -108,20 +111,33 @@ export function ProcessesPage() {
 
   return (
     <PageFrame title={t('COCKPIT_PROCESSES')} breadcrumbs={[t('COCKPIT_PROCESSES')]}>
-      {deployed.data !== undefined && (
-        <p className="cz-cockpit-count">
-          <strong>{deployed.data.toLocaleString()}</strong>{' '}
-          {t(deployed.data === 1 ? 'PLUGIN_PROCESS_DEF_PROCESS_DEFINITION_DEPLOYED' : 'PLUGIN_PROCESS_DEF_PROCESS_DEFINITIONS_DEPLOYED')}
-        </p>
-      )}
+      <div className="cz-processes__head">
+        {deployed.data !== undefined && (
+          <p className="cz-cockpit-count">
+            <strong>{deployed.data.toLocaleString()}</strong>{' '}
+            {t(deployed.data === 1 ? 'PLUGIN_PROCESS_DEF_PROCESS_DEFINITION_DEPLOYED' : 'PLUGIN_PROCESS_DEF_PROCESS_DEFINITIONS_DEPLOYED')}
+          </p>
+        )}
+        <ContentSwitcher
+          size="sm"
+          className="cz-processes__view"
+          selectedIndex={view === 'list' ? 0 : 1}
+          onChange={({ name }) => setView(name === 'previews' ? 'previews' : 'list')}
+        >
+          <Switch name="list" text={t('PLUGIN_PROCESS_DEF_LIST')} />
+          <Switch name="previews" text={t('PLUGIN_PROCESS_DEF_PREVIEWS')} />
+        </ContentSwitcher>
+      </div>
       <SearchableList<ProcessDefinitionOverview>
         scope={['cockpit', engine, 'list']}
         listUrl={cockpitUrl(engine, '/process-definition/statistics')}
         countUrl={cockpitUrl(engine, '/process-definition/statistics-count')}
         namespace="cockpit"
         criteria={PROCESS_CRITERIA}
+        savedCriteriaGroup="PD"
         defaultSortBy="name"
         columns={columns}
+        renderItems={view === 'previews' ? (definitions) => <ProcessPreviews engine={engine} definitions={definitions} /> : undefined}
         emptyText={t('PLUGIN_PROCESS_DEF_NO_PROCESS_DEF')}
         search={search}
         onSearchChange={(changes) => navigate({ search: (previous: ListSearch) => ({ ...previous, ...changes }) })}

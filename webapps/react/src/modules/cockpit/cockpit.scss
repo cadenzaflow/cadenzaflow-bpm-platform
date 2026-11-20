@@ -391,3 +391,96 @@
   display: flex;
   align-items: stretch;
 }
+
+// a value shown in full, in a dialog
+.cz-code-block {
+  max-height: 60vh;
+  overflow: auto;
+  @include type-style('code-01');
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+// the switch of the activity statistics, below the diagram
+.cz-definition__statistics {
+  margin-top: $spacing-03;
+}
+
+// a value and the button that copies it: the button shows on the value
+.cz-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-01;
+
+  .cz-copy__button {
+    min-height: 1.5rem;
+    block-size: 1.5rem;
+    inline-size: 1.5rem;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  &:hover .cz-copy__button,
+  &:focus-within .cz-copy__button {
+    opacity: 1;
+  }
+}
+
+// the processes page: the count and the choice between list and previews
+.cz-processes__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-05;
+}
+
+.cz-processes__view {
+  flex: 0 0 14rem;
+  inline-size: 14rem;
+}
+
+.cz-process-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: $spacing-05;
+  margin-top: $spacing-05;
+}
+
+.cz-process-tile {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+  padding: $spacing-05;
+  border: 1px solid $border-subtle;
+  background: $layer-01;
+}
+
+.cz-process-tile__name {
+  @include type-style('heading-compact-01');
+}
+
+// a picture of the process: no selecting, no zooming
+.cz-process-tile__diagram {
+  pointer-events: none;
+
+  .cz-bpmn-diagram,
+  .cz-process-tile__skeleton {
+    block-size: 11rem;
+    inline-size: 100%;
+    border: 0;
+  }
+
+  .cz-bpmn-diagram__zoom {
+    display: none;
+  }
+}
+
+.cz-process-tile__counts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-03;
+  color: $text-secondary;
+}

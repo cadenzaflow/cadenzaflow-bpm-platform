@@ -10,6 +10,8 @@ interface ResourceListProps<T extends { id: string }> {
   /** list resource of the engine REST API, e.g. /user */
   listPath: string;
   criteria: CriterionType[];
+  /** the name under which the browser keeps the saved criteria of this list (as the classic Admin: ANU, ANG, ANT) */
+  savedCriteriaGroup: string;
   defaultSortBy: string;
   columns: Column<T>[];
   emptyText: string;

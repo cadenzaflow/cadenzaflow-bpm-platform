@@ -2,6 +2,7 @@ import { Button, Select, SelectItem, TextInput, Toggle } from '@carbon/react';
 import { Add, TrashCan } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { OPERATOR_LABELS, isComplete, type Criterion, type CriterionType, type SearchState } from './criteria';
+import { SavedCriteria } from './SavedCriteria';
 import './criteria-search.scss';
 
 interface CriteriaSearchProps {
@@ -14,10 +15,12 @@ interface CriteriaSearchProps {
   allowMatchAny?: boolean;
   /** the number of results of the search, shown next to it */
   total?: number;
+  /** names the search: its criteria can then be saved in the browser and loaded again */
+  savedGroup?: string;
 }
 
 /** Builds query criteria; incomplete ones are kept but not applied. */
-export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAny = true, total }: CriteriaSearchProps) {
+export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAny = true, total, savedGroup }: CriteriaSearchProps) {
   const { t } = useTranslation(namespace);
   const totalLabel = t('CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS');
   const operatorLabel = (key: string) => t(OPERATOR_LABELS[key] ?? key);
@@ -44,7 +47,14 @@ export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAn
                 value={criterion.type}
                 onChange={(event) => {
                   const next = types.find((candidate) => candidate.key === event.target.value)!;
-                  update(index, { type: next.key, operator: next.operators[0] ?? 'eq', name: undefined, value: '' });
+                  const changed = { ...criterion, type: next.key, operator: next.operators[0] ?? 'eq', name: undefined, value: '' };
+                  // a criterion takes the place of the others of its group
+                  const excluded = (other: Criterion) =>
+                    !!next.group && types.find((candidate) => candidate.key === other.type)?.group === next.group;
+                  onChange({
+                    ...value,
+                    criteria: value.criteria.flatMap((other, i) => (i === index ? [changed] : excluded(other) ? [] : [other])),
+                  });
                 }}
               >
                 {types.map((candidate) => (
@@ -125,6 +135,9 @@ export function CriteriaSearch({ namespace, types, value, onChange, allowMatchAn
             <span className="cds--visually-hidden">{totalLabel}: </span>
             {total.toLocaleString()}
           </span>
+        )}
+        {savedGroup && (
+          <SavedCriteria group={savedGroup} criteria={value.criteria} onLoad={(criteria) => onChange({ ...value, criteria })} />
         )}
       </div>
     </div>

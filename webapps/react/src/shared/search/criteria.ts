@@ -17,6 +17,8 @@ export interface CriterionType {
   valueType?: 'text' | 'number' | 'date' | 'list';
   /** REST parameter per operator where it is not the key plus the operator, e.g. { Before: 'before' } */
   params?: Record<string, string>;
+  /** criteria of one group exclude each other, e.g. with and without failures */
+  group?: string;
 }
 
 export interface Criterion {
@@ -51,19 +53,42 @@ export const OPERATOR_LABELS: Record<string, string> = {
   In: 'in',
 };
 
-/** "true" → true, "42" → 42, anything else stays text; quotes force text: "42" → '42'. */
+const DATE_TIME = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
+
+/**
+ * The value of a variable criterion, read as the AngularJS webapps read it:
+ * true and false are booleans, 42 is a number, NULL is no value,
+ * yyyy-MM-ddTHH:mm:ss is a date (local time) and anything else is text.
+ * Quotes force text: '42' and "42" are the text 42.
+ */
 export function parseVariableValue(text: string): unknown {
   const value = text.trim();
-  if (/^".*"$/.test(value)) {
+  if (/^".*"$/.test(value) || /^'.*'$/.test(value)) {
     return value.slice(1, -1);
   }
   if (value === 'true' || value === 'false') {
     return value === 'true';
   }
+  if (value === 'NULL') {
+    return null;
+  }
   if (value !== '' && !Number.isNaN(Number(value))) {
     return Number(value);
   }
+  if (DATE_TIME.test(value)) {
+    const date = parseLocalDateTime(value);
+    return date ? toEngineDate(date) : value;
+  }
   return value;
+}
+
+/**
+ * The value of a "like" comparison. Text without a wildcard is looked for
+ * anywhere in the value (%text%), as in the AngularJS webapps; text with
+ * % or _ is the pattern itself. \% and \_ are the characters, not wildcards.
+ */
+export function likePattern(text: string): string {
+  return /[%_]/.test(text.replace(/\\[%_]/g, '')) ? text : `%${text}%`;
 }
 
 export function isComplete(criterion: Criterion, type: CriterionType | undefined): boolean {
@@ -87,6 +112,23 @@ export function isComplete(criterion: Criterion, type: CriterionType | undefined
 
 const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
+const unite = (a: unknown[], b: unknown[]) => [...new Set([...a, ...b])];
+
+/**
+ * The query of a list: what is always asked for plus the search. Where both
+ * name a list (the activities selected in the diagram and an activity
+ * criterion), the lists add up; the search does not undo the selection.
+ */
+export function withFixedQuery(fixed: Record<string, unknown> | undefined, searched: Record<string, unknown>): Record<string, unknown> {
+  const query = { ...fixed, ...searched };
+  for (const [key, value] of Object.entries(fixed ?? {})) {
+    if (Array.isArray(value) && Array.isArray(searched[key])) {
+      query[key] = unite(value, searched[key] as unknown[]);
+    }
+  }
+  return query;
+}
+
 /** Turns the complete criteria into the body of a task / instance query. */
 export function toQuery(state: SearchState, types: CriterionType[]): Record<string, unknown> {
   const query: Record<string, unknown> = {};
@@ -99,7 +141,8 @@ export function toQuery(state: SearchState, types: CriterionType[]): Record<stri
       query[type.key] = true;
     } else if (type.kind === 'variable') {
       const list = (query[type.key] as unknown[] | undefined) ?? [];
-      list.push({ name: criterion.name!.trim(), operator: criterion.operator, value: parseVariableValue(criterion.value) });
+      const value = criterion.operator === 'like' ? likePattern(criterion.value.trim()) : parseVariableValue(criterion.value);
+      list.push({ name: criterion.name!.trim(), operator: criterion.operator, value });
       query[type.key] = list;
     } else {
       const value =
@@ -112,7 +155,7 @@ export function toQuery(state: SearchState, types: CriterionType[]): Record<stri
               : criterion.value.trim();
       switch (criterion.operator) {
         case 'Like':
-          query[`${type.key}Like`] = `%${value}%`;
+          query[`${type.key}Like`] = likePattern(String(value));
           break;
         case 'Before':
         case 'After':
@@ -123,7 +166,8 @@ export function toQuery(state: SearchState, types: CriterionType[]): Record<stri
           query[`${criterion.operator}${capitalize(type.key)}`] = value;
           break;
         default:
-          query[type.key] = value;
+          // several criteria of a list type add up, e.g. one activity each
+          query[type.key] = Array.isArray(value) && Array.isArray(query[type.key]) ? unite(query[type.key] as unknown[], value) : value;
       }
     }
   }

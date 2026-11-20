@@ -27,10 +27,9 @@ export function sortDefinitions(definitions: StartableDefinition[]): StartableDe
   );
 }
 
-export function useStartableDefinitions(engine: string, search: string, page: number, enabled: boolean) {
+export function useStartableDefinitions(engine: string, search: string, page: number) {
   return useQuery({
     queryKey: ['startable-definitions', engine, search, page],
-    enabled,
     placeholderData: keepPreviousData,
     queryFn: async () => {
       const filter: QueryParams = { ...STARTABLE, nameLike: search ? `%${search}%` : undefined };

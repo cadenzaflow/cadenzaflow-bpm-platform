@@ -51,7 +51,7 @@ const activityTree: ActivityInstance = {
   ],
 };
 
-/** Variables of pi-1: a number on the process instance and a file in the user task. */
+/** Variables of pi-1: a number and an object on the process instance and a file in the user task. */
 const variables: VariableInstance[] = [
   { id: 'v-1', name: 'amount', type: 'Double', value: 30.5, processInstanceId: 'pi-1', executionId: 'pi-1', activityInstanceId: 'pi-1', taskId: null },
   {
@@ -65,9 +65,40 @@ const variables: VariableInstance[] = [
     activityInstanceId: 'approveInvoice:ai-1',
     taskId: null,
   },
+  {
+    id: 'v-3',
+    name: 'order',
+    type: 'Object',
+    value: '{"id":1}',
+    valueInfo: { objectTypeName: 'com.example.Order', serializationDataFormat: 'application/json' },
+    processInstanceId: 'pi-1',
+    executionId: 'pi-1',
+    activityInstanceId: 'pi-1',
+    taskId: null,
+  },
 ];
 
-function fakeBackend() {
+/** An incident of the instance pi-1 itself: its own cause and root cause. */
+const ownIncident = {
+  id: 'inc-1',
+  processDefinitionId: 'invoice:2',
+  processInstanceId: 'pi-1',
+  incidentTimestamp: '2026-10-13T08:00:00.000+0000',
+  incidentType: 'failedJob',
+  activityId: 'approveInvoice',
+  failedActivityId: 'approveInvoice',
+  incidentMessage: 'Bean not found',
+  configuration: 'job-1',
+  causeIncidentProcessInstanceId: 'pi-1',
+  causeIncidentActivityId: 'approveInvoice',
+  rootCauseIncidentProcessInstanceId: 'pi-1',
+  rootCauseIncidentActivityId: 'approveInvoice',
+  rootCauseIncidentConfiguration: 'job-1',
+  rootCauseIncidentMessage: 'Bean not found',
+  annotation: null,
+};
+
+function fakeBackend(incidents: unknown[] = [ownIncident]) {
   let loggedIn = false;
   const fetchMock = vi.fn(async (url: string, init: RequestInit = {}) => {
     const method = init.method ?? 'GET';
@@ -124,23 +155,10 @@ function fakeBackend() {
       return json({ count: 1 });
     }
     if (path === `${COCKPIT}/incident` && method === 'POST') {
-      return json([
-        {
-          id: 'inc-1',
-          processDefinitionId: 'invoice:2',
-          processInstanceId: 'pi-1',
-          incidentTimestamp: '2026-10-13T08:00:00.000+0000',
-          incidentType: 'failedJob',
-          activityId: 'approveInvoice',
-          failedActivityId: 'approveInvoice',
-          incidentMessage: 'Bean not found',
-          configuration: 'job-1',
-          causeIncidentProcessInstanceId: 'pi-1',
-          rootCauseIncidentProcessInstanceId: 'pi-1',
-          rootCauseIncidentConfiguration: 'job-1',
-          annotation: null,
-        },
-      ]);
+      return json(incidents);
+    }
+    if (path === `${ENGINE}/job/job-1/stacktrace`) {
+      return new Response('java.lang.IllegalStateException: Bean not found', { status: 200, headers: { 'Content-Type': 'text/plain' } });
     }
     if ((path === `${ENGINE}/job/job-1/retries` || path === `${ENGINE}/incident/inc-1/annotation`) && method === 'PUT') {
       return new Response(null, { status: 204 });
@@ -153,6 +171,9 @@ function fakeBackend() {
     }
     if (path === `${ENGINE}/process-instance/pi-1/activity-instances`) {
       return json(activityTree);
+    }
+    if (path === `${ENGINE}/process-instance` && query.get('superProcessInstance') === 'pi-1') {
+      return json([{ id: 'sub-1' }, { id: 'sub-2' }, { id: 'sub-3' }, { id: 'sub-4' }, { id: 'sub-5' }]);
     }
     if (path === `${ENGINE}/process-instance` && query.get('subProcessInstance') === 'pi-1') {
       return json([{ id: 'super-1', definitionId: 'order:1', businessKey: null, suspended: false, ended: false, tenantId: null }]);
@@ -249,6 +270,12 @@ function fakeBackend() {
     if (path === `${ENGINE}/variable-instance` && method === 'POST') {
       return json(variables);
     }
+    if (path === `${ENGINE}/variable-instance/v-3` && method === 'GET') {
+      return json({ ...variables[2], value: { id: 1 } });
+    }
+    if (path.startsWith(`${ENGINE}/execution/pi-1/localVariables/`) && path.endsWith('/data') && method === 'POST') {
+      return new Response(null, { status: 204 });
+    }
     if (
       (path === `${ENGINE}/execution/pi-1/localVariables/amount` && (method === 'PUT' || method === 'DELETE')) ||
       (path === `${ENGINE}/process-instance/pi-1/variables/note` && method === 'PUT')
@@ -305,6 +332,24 @@ describe('cockpit dashboard', () => {
 });
 
 describe('cockpit processes', () => {
+  it('shows the definitions as previews with their names and counts', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/processes');
+    const user = await logIn();
+    await screen.findByRole('link', { name: 'Invoice Receipt' });
+    expect(screen.getByRole('table')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('tab', { name: 'Previews' }));
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    const tile = within(screen.getByRole('link', { name: 'Invoice Receipt' }).closest('li')!);
+    expect(tile.getByRole('link', { name: 'Invoice Receipt' })).toHaveAttribute('href', '/app/react/cockpit/default/process-definition/invoice%3A2');
+    expect(tile.getByText('7 Running Instances')).toBeInTheDocument();
+    expect(tile.getByLabelText('Incidents')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('tab', { name: 'List' }));
+    expect(await screen.findByRole('table')).toBeInTheDocument();
+  });
+
   it('lists the process definitions and sorts them in the URL', async () => {
     const fetchMock = fakeBackend();
     const history = renderApp('/app/react/cockpit/default/processes');
@@ -377,13 +422,21 @@ describe('cockpit job priority of all job definitions', () => {
 describe('cockpit incidents', () => {
   it('lists the incidents of a definition, annotates and retries them', async () => {
     const fetchMock = fakeBackend();
-    renderApp('/app/react/cockpit/default/process-definition/invoice:2?tab=pd-incidents-tab');
+    const history = renderApp('/app/react/cockpit/default/process-definition/invoice:2?tab=pd-incidents-tab');
     const user = await logIn();
 
     expect(await screen.findByRole('button', { name: 'Bean not found' })).toBeInTheDocument();
     expect(screen.getByRole('columnheader', { name: 'Failing Activity' })).toBeInTheDocument();
     const query = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${COCKPIT}/incident?`) && init?.method === 'POST');
     expect(JSON.parse(String(query?.[1]?.body))).toEqual({ processDefinitionIdIn: ['invoice:2'], sortBy: 'incidentType', sortOrder: 'asc' });
+
+    // the open stack trace is in the URL, so a link shows it
+    await user.click(screen.getByRole('button', { name: 'Bean not found' }));
+    const stacktrace = within(await screen.findByRole('dialog', { name: 'View stacktrace' }));
+    expect(await stacktrace.findByText(/java\.lang\.IllegalStateException/)).toBeInTheDocument();
+    expect(history.location.search).toBe('?tab=pd-incidents-tab&incidentStacktrace=job-1');
+    await user.click(stacktrace.getByRole('button', { name: 'Close' }));
+    await waitFor(() => expect(history.location.search).toBe('?tab=pd-incidents-tab'));
 
     await user.click(screen.getByRole('button', { name: 'Annotation' }));
     const annotation = within(await screen.findByRole('dialog', { name: 'Annotation' }));
@@ -399,6 +452,47 @@ describe('cockpit incidents', () => {
     expect(await screen.findByText('Incrementing the number of retries finished successfully.')).toBeInTheDocument();
     const put = fetchMock.mock.calls.find(([url]) => url.endsWith('/job/job-1/retries'));
     expect(JSON.parse(String(put?.[1]?.body))).toEqual({ retries: 1 });
+  });
+
+  it('names no other instance for an incident of the instance itself', async () => {
+    fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=incidents-tab');
+    await logIn();
+
+    const row = (await screen.findByRole('button', { name: 'Bean not found' })).closest('tr')!;
+    expect(within(row).queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('shows the message and the instances an incident of a called instance goes back to', async () => {
+    // what the engine creates on the calling instance: no message of its own
+    fakeBackend([
+      {
+        ...ownIncident,
+        id: 'inc-2',
+        incidentMessage: null,
+        configuration: null,
+        causeIncidentProcessInstanceId: 'pi-child',
+        causeIncidentActivityId: 'callGrandchild',
+        rootCauseIncidentProcessInstanceId: 'pi-grandchild',
+        rootCauseIncidentActivityId: 'ship',
+        rootCauseIncidentConfiguration: 'job-9',
+        rootCauseIncidentMessage: 'Shipping failed',
+      },
+    ]);
+    renderApp('/app/react/cockpit/default/process-instance/pi-1?tab=incidents-tab');
+    await logIn();
+
+    const row = within((await screen.findByRole('button', { name: 'Shipping failed' })).closest('tr')!);
+    expect(row.getByRole('link', { name: 'pi-child' })).toHaveAttribute(
+      'href',
+      '/app/react/cockpit/default/process-instance/pi-child?tab=incidents-tab&activityIds=callGrandchild',
+    );
+    expect(row.getByRole('link', { name: 'pi-grandchild' })).toHaveAttribute(
+      'href',
+      '/app/react/cockpit/default/process-instance/pi-grandchild?tab=incidents-tab&activityIds=ship',
+    );
+    // the job to retry belongs to the called instance
+    expect(row.queryByRole('button', { name: 'Increment Number of Retries' })).not.toBeInTheDocument();
   });
 });
 
@@ -434,6 +528,12 @@ describe('cockpit process instance', () => {
 
     await user.click(tree.getByText('Invoice Receipt'));
     await waitFor(() => expect(history.location.search).toBe('?tab=incidents-tab'));
+
+    // the field above the tree keeps the instances with the name, in their scope
+    await user.type(screen.getByRole('searchbox', { name: 'Filters activity instances that have the entered name.' }), 'bank');
+    expect(tree.getByText('Prepare Bank Transfer')).toBeInTheDocument();
+    expect(tree.getByText('Invoice Receipt')).toBeInTheDocument();
+    expect(tree.queryByText('Approve Invoice')).not.toBeInTheDocument();
   });
 
   it('suspends and deletes the instance', async () => {
@@ -450,6 +550,10 @@ describe('cockpit process instance', () => {
 
     await user.click(screen.getByRole('button', { name: 'Delete Process Instance' }));
     const cancel = within(await screen.findByRole('dialog', { name: 'Delete running process instance' }));
+    // the instances it called go with it: five by name, the rest counted
+    expect(await cancel.findByText('If you delete this process instance the following sub process instances will also be deleted:')).toBeInTheDocument();
+    expect(cancel.getByRole('link', { name: 'sub-5' })).toHaveAttribute('href', '/app/react/cockpit/default/process-instance/sub-5');
+    expect(cancel.getByText('and 2 other process instances.')).toBeInTheDocument();
     await user.click(cancel.getByRole('checkbox', { name: 'Skip IO Mappings' }));
     await user.click(cancel.getByRole('button', { name: 'Delete Process Instance' }));
     await waitFor(() => expect(history.location.pathname).toBe('/app/react/cockpit/default/process-definition/invoice%3A2'));
@@ -526,6 +630,55 @@ describe('cockpit process instance variables', () => {
       const added = fetchMock.mock.calls.find(([url]) => url.endsWith('/process-instance/pi-1/variables/note'));
       expect(JSON.parse(String(added?.[1]?.body))).toEqual({ type: 'String', value: 'hello' });
     });
+  });
+
+  it('sets a variable to null, makes it a file and changes an object as it is deserialized', async () => {
+    const fetchMock = fakeBackend();
+    renderApp('/app/react/cockpit/default/process-instance/pi-1');
+    const user = await logIn();
+    const row = (name: string) => within(screen.getByText(name).closest('tr')!);
+    const sent = (path: string, method: string) => fetchMock.mock.calls.filter(([url, init]) => url.endsWith(path) && init?.method === method);
+    await screen.findByText('amount');
+
+    // null keeps the type
+    await user.click(row('amount').getByRole('button', { name: 'Change' }));
+    let edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    await user.click(edit.getByRole('checkbox', { name: 'Set value to "null"' }));
+    expect(edit.queryByLabelText('Variable Value*')).not.toBeInTheDocument();
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    await waitFor(() => expect(sent('/execution/pi-1/localVariables/amount', 'PUT')).toHaveLength(1));
+    expect(JSON.parse(String(sent('/execution/pi-1/localVariables/amount', 'PUT')[0][1]?.body))).toEqual({ type: 'Double', value: null });
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Variable' })).not.toBeInTheDocument());
+
+    // a binary type takes a file
+    await user.click(row('amount').getByRole('button', { name: 'Change' }));
+    edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    await user.selectOptions(edit.getByLabelText('Variable Type*'), 'File');
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.upload(edit.getByLabelText('File', { selector: 'input' }), new File(['%PDF'], 'scan.pdf', { type: 'application/pdf' }));
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    await waitFor(() => expect(sent('/execution/pi-1/localVariables/amount/data', 'POST')).toHaveLength(1));
+    const upload = sent('/execution/pi-1/localVariables/amount/data', 'POST')[0][1]?.body as FormData;
+    expect(upload.get('valueType')).toBe('File');
+    expect((upload.get('data') as File).name).toBe('scan.pdf');
+    await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Variable' })).not.toBeInTheDocument());
+
+    // an object: the value the engine deserializes, sent back as JSON for its Java type
+    await user.click(row('order').getByRole('button', { name: 'Change' }));
+    edit = within(await screen.findByRole('dialog', { name: 'Variable' }));
+    await user.click(edit.getByRole('tab', { name: 'Deserialized' }));
+    const value = await edit.findByRole('textbox', { name: 'Deserialized' });
+    expect(value).toHaveValue('{"id":1}');
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.clear(value);
+    await user.type(value, '{{"id":');
+    expect(edit.getByRole('button', { name: 'Change' })).toBeDisabled();
+    await user.type(value, '2}');
+    await user.click(edit.getByRole('button', { name: 'Change' }));
+    await waitFor(() => expect(sent('/execution/pi-1/localVariables/order/data', 'POST')).toHaveLength(1));
+    const changed = sent('/execution/pi-1/localVariables/order/data', 'POST')[0][1]?.body as FormData;
+    expect(changed.get('type')).toBe('com.example.Order');
+    expect(await (changed.get('data') as Blob).text()).toBe('{"id":2}');
   });
 });
 

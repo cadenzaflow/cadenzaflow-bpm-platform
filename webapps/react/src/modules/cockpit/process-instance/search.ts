@@ -10,6 +10,8 @@ export interface ProcessInstanceSearch extends ListSearch {
   tab?: string;
   /** comma separated activity ids */
   activityIds?: string;
+  /** the job or external task whose stack trace is open, so that a link shows it (as in the classic Cockpit) */
+  incidentStacktrace?: string;
   /** comma separated activity instance ids */
   activityInstanceIds?: string;
 }
@@ -20,6 +22,7 @@ export function validateProcessInstanceSearch(search: Record<string, unknown>): 
     ...validateListSearch(search),
     tab: text(search.tab),
     activityIds: text(search.activityIds),
+    incidentStacktrace: text(search.incidentStacktrace),
     activityInstanceIds: text(search.activityInstanceIds),
   };
 }

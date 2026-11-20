@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useMemo } from 'react';
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react';
 import {
   InlineNotification,
   Select,
@@ -10,6 +10,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Toggle,
 } from '@carbon/react';
 import { Link, getRouteApi } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +18,7 @@ import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
 import { useDiagramPlugins, useDiagramViewer, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
+import { CopyValue } from '../../../shared/ui/CopyValue';
 import { useSettings } from '../../../shared/classic-settings';
 import type { DiagramDrilldown } from '../../../shared/diagram/BpmnDiagram';
 import {
@@ -53,8 +55,10 @@ export function ProcessDefinitionPage() {
   const parent = useProcessDefinition(engine, search.parentProcessDefinitionId ?? '', !!search.parentProcessDefinitionId);
   const xml = useProcessDefinitionXml(engine, id);
   const extensions = useBpmnJsExtensions('cockpit');
-  // runtimeActivityInstanceMetrics.display of the classic config.js: the statistics query can be expensive
-  const badges = useActivityBadges(engine, id, useSettings('cockpit').activityInstanceMetrics);
+  // runtimeActivityInstanceMetrics.display of the classic config.js: the statistics query can be expensive.
+  // The setting is where the switch below the diagram starts; the user turns the statistics on or off.
+  const [statistics, setStatistics] = useState(useSettings('cockpit').activityInstanceMetrics);
+  const badges = useActivityBadges(engine, id, statistics);
   const versions = useVersions(engine, definition.data);
   const running = useRunningInstances(engine, definition.data);
   const activityIds = selectedActivities(search);
@@ -186,9 +190,13 @@ export function ProcessDefinitionPage() {
               <dt>{t('PROCESS_DEFINITION_VERSION_TAG')}</dt>
               <dd>{value(definition.data.versionTag)}</dd>
               <dt>{t('PROCESS_DEFINITION_DEFINITION_ID')}</dt>
-              <dd className="cz-definition__id">{definition.data.id}</dd>
+              <dd className="cz-definition__id">
+                <CopyValue text={definition.data.id} />
+              </dd>
               <dt>{t('PROCESS_DEFINITION_DEFINITION_KEY')}</dt>
-              <dd>{definition.data.key}</dd>
+              <dd>
+                <CopyValue text={definition.data.key} />
+              </dd>
               <dt>{t('PROCESS_DEFINITION_DEFINITION_NAME')}</dt>
               <dd>{value(definition.data.name)}</dd>
               <dt>{t('PROCESS_DEFINITION_HISTORY_TIME_TO_LIVE')}</dt>
@@ -234,7 +242,7 @@ export function ProcessDefinitionPage() {
                 <BpmnDiagram
                   xml={xml.data}
                   extensions={extensions}
-                  badges={badges.data}
+                  badges={statistics ? badges.data : undefined}
                   badgeLabels={badgeLabels}
                   selected={activityIds}
                   onElementClick={selectActivity}
@@ -256,6 +264,16 @@ export function ProcessDefinitionPage() {
               </Suspense>
             )
           )}
+          <Toggle
+            id="cz-activity-statistics"
+            size="sm"
+            className="cz-definition__statistics"
+            labelText={t('PLUGIN_DIAGRAM_ACTIVITY_STATISTICS')}
+            labelA={t('PLUGIN_DIAGRAM_ACTIVITY_STATISTICS_OFF')}
+            labelB={t('PLUGIN_DIAGRAM_ACTIVITY_STATISTICS_ON')}
+            toggled={statistics}
+            onToggle={setStatistics}
+          />
           {definition.data && (
             <Tabs
               selectedIndex={tabIndex}

@@ -84,8 +84,39 @@
   vertical-align: top;
 }
 
+// the buttons of a row stay next to each other
+.cz-authorizations__table td:last-child {
+  white-space: nowrap;
+}
+
 .cz-authorizations__details {
   margin-top: $spacing-05;
+}
+
+// "the authorizations of a user are not deleted with the user", on the rows of users
+.cz-authorizations__hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: $spacing-07;
+  block-size: $spacing-07;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: $text-secondary;
+  cursor: help;
+  vertical-align: middle;
+
+  &:focus-visible {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+}
+
+// the text of the info box, as the subtitle of a notification (a child of the box has no type of its own)
+.cz-metrics__info {
+  @include type-style('body-compact-01');
+  padding: $spacing-04 0;
 }
 
 .cz-metrics__start {
@@ -95,9 +126,16 @@
 
 .cz-metrics__heading {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: $spacing-03 $spacing-06;
   margin-top: $spacing-07;
+
+  // the checkbox next to the heading keeps its own width, at the other end
+  .cds--form-item {
+    flex: none;
+  }
 }
 
 .cz-metrics__table {

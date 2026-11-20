@@ -151,7 +151,7 @@ export function TenantEditPage() {
                   listPath="/group"
                   query={{ memberOfTenant: tenantId }}
                   columns={groupColumns}
-                  defaultSortBy="id"
+                  defaultSortBy="name"
                   emptyText={t('TENANTS_NO_GROUPS', { tenant: name })}
                 />
               )}

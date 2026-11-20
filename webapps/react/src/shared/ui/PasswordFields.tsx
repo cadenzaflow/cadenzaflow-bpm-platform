@@ -33,8 +33,8 @@ export interface PasswordCheck {
  * Checks a password against the engine's password policy
  * (/identity/password-policy), like the classic webapps: the rules are shown,
  * the password is checked a moment after typing stops. Without a policy any
- * non-empty password is fine. `enabled = false` skips the policy (e.g. before
- * login, where the engine API is not available; the engine still checks it).
+ * non-empty password is fine. `enabled = false` skips the policy (the engine
+ * still checks it).
  */
 export function usePasswordCheck(engine: string, password: string, profile: PasswordProfile, enabled = true): PasswordCheck {
   const [typed, setTyped] = useState(password);

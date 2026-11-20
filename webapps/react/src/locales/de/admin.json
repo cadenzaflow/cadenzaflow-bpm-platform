@@ -292,5 +292,8 @@
   "SETUP_USER_REDIRECT_1": "Besuchen Sie die",
   "SETUP_USER_REDIRECT_2": "Anmelde-Seite",
   "SETUP_USER_REDIRECT_3": "um sich mit den neuen Login-Daten anzumelden.",
-  "SETUP_USER_LDAP": "Stattdessen LDAP einrichten"
+  "SETUP_USER_LDAP": "Stattdessen LDAP einrichten",
+  "GROUP_MEMBERSHIP_GROUP_MESSAGE_HERE": "hier",
+  "GROUP_MEMBERSHIP_TENANT_MESSAGE_HERE": "hier",
+  "USER_MEMBERSHIP_TENANT_MESSAGE_HERE": "hier"
 }

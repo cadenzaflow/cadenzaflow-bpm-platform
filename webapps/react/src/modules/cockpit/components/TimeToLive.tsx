@@ -105,7 +105,7 @@ export function TimeToLive({ engine, resource, id, value }: TimeToLiveProps) {
               kind="info"
               lowContrast
               hideCloseButton
-              subtitle={`${t('TIME_TO_LIVE_POPUP_REMOVAL_TIME_NOT_UPDATED_INFO')} ${t('TIME_TO_LIVE_POPUP_RUN_BATCH_JOB_INFO')}`}
+              subtitle={t('TIME_TO_LIVE_POPUP_REMOVAL_TIME_NOT_UPDATED_INFO')}
             />
           </Stack>
         </Modal>

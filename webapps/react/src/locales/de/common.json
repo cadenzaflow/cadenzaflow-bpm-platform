@@ -48,5 +48,17 @@
   "PASSWORD_POLICY_USER_DATA": "Es darf keine Benutzerdaten enthalten",
   "USERS_PASSWORDS_NOT_EQUAL": "Passwörter müssen übereinstimmen.",
   "MY_PROFILE": "Mein Profil",
-  "CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS": "Anzahl der Ergebnisse"
+  "CAM_WIDGET_SEARCH_TOTAL_NUMBER_RESULTS": "Anzahl der Ergebnisse",
+  "SAVED_CRITERIA": "Gespeicherte Kriterien",
+  "SAVED_CRITERIA_NAME": "Kriterien speichern als",
+  "SAVED_CRITERIA_SAVE": "Speichern",
+  "SAVED_CRITERIA_DELETE": "{{name}} löschen",
+  "SAVED_CRITERIA_NONE": "Noch keine Kriterien gespeichert.",
+  "SAVED_CRITERIA_NOT_KEPT": "Der Browser hat die Kriterien nicht gespeichert.",
+  "DIAGRAM_ZOOM_IN": "Vergrößern",
+  "DIAGRAM_ZOOM_OUT": "Verkleinern",
+  "DIAGRAM_ZOOM_RESET": "Zoom zurücksetzen",
+  "CAM_WIDGET_COPY": "Klicken, um '{{value}}' zu kopieren",
+  "COPIED": "Kopiert",
+  "SELECT_ALL": "Alle auswählen"
 }

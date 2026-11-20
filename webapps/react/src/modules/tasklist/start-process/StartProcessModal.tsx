@@ -23,7 +23,6 @@ import { START_PAGE_SIZE, useStartableDefinition, useStartableDefinitions, type 
 
 interface StartProcessModalProps {
   engine: string;
-  open: boolean;
   /** Pre-selected definition (from the ?processStart link). */
   definitionKey?: string;
   tenantId?: string;
@@ -33,8 +32,12 @@ interface StartProcessModalProps {
 
 const label = (definition: StartableDefinition) => definition.name || definition.key;
 
-/** Pick a process the user may start, fill in its start form, start it. */
-export function StartProcessModal({ engine, open, definitionKey, tenantId, onSelect, onClose }: StartProcessModalProps) {
+/**
+ * Pick a process the user may start, fill in its start form, start it.
+ * The page renders the dialog only while it is open, so every opening starts
+ * without a selected process.
+ */
+export function StartProcessModal({ engine, definitionKey, tenantId, onSelect, onClose }: StartProcessModalProps) {
   const { t } = useTranslation('tasklist');
   const preselected = useStartableDefinition(engine, definitionKey, tenantId);
   const [selected, setSelected] = useState<StartableDefinition | null>(null);
@@ -52,7 +55,7 @@ export function StartProcessModal({ engine, open, definitionKey, tenantId, onSel
 
   return (
     <Modal
-      open={open}
+      open
       passiveModal
       size="lg"
       modalHeading={selected ? label(selected) : t('START_PROCESS')}
@@ -61,26 +64,18 @@ export function StartProcessModal({ engine, open, definitionKey, tenantId, onSel
       {selected ? (
         <StartForm engine={engine} definition={selected} onBack={() => select(null)} onStarted={onClose} />
       ) : (
-        <DefinitionList engine={engine} open={open} onSelect={select} />
+        <DefinitionList engine={engine} onSelect={select} />
       )}
     </Modal>
   );
 }
 
-function DefinitionList({
-  engine,
-  open,
-  onSelect,
-}: {
-  engine: string;
-  open: boolean;
-  onSelect: (definition: StartableDefinition) => void;
-}) {
+function DefinitionList({ engine, onSelect }: { engine: string; onSelect: (definition: StartableDefinition) => void }) {
   const { t } = useTranslation('tasklist');
   const [input, setInput] = useState('');
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const definitions = useStartableDefinitions(engine, search, page, open);
+  const definitions = useStartableDefinitions(engine, search, page);
 
   // search while typing, without a request per key
   useEffect(() => {

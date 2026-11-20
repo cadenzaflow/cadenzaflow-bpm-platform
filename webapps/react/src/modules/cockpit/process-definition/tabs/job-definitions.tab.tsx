@@ -7,6 +7,7 @@ import { engineUrl, request } from '../../../../shared/api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../../../../shared/api/paging';
 import { elementNames } from '../../../../shared/diagram/bpmn-names';
 import { notify } from '../../../../shared/notifications';
+import { useClientSorting } from '../../../../shared/ui/client-sorting';
 import { ListTable, type Column } from '../../../../shared/ui/ListTable';
 import { SuspensionModal } from '../../components/SuspensionModal';
 import { useInvalidateCockpit } from '../../incidents/api';
@@ -39,23 +40,40 @@ function JobDefinitionsTab({ engine, definition, activityIds }: DefinitionTabPro
     page,
   });
   // as in the classic Cockpit, the selection filters the loaded page
-  const shown = (jobDefinitions.data?.items ?? []).filter((job) => !activityIds.length || activityIds.includes(job.activityId));
+  const filtered = useMemo(
+    () => (jobDefinitions.data?.items ?? []).filter((job) => !activityIds.length || activityIds.includes(job.activityId)),
+    [jobDefinitions.data, activityIds.join(',')],
+  );
+  // ... and its columns sort the loaded page, suspended ones last to begin with
+  const { sorted, sorting, setSorting } = useClientSorting(
+    filtered,
+    {
+      suspended: (job) => job.suspended,
+      activityName: (job) => names.get(job.activityId) || job.activityId,
+      jobType: (job) => job.jobType,
+      jobConfiguration: (job) => job.jobConfiguration,
+      overridingJobPriority: (job) => job.overridingJobPriority,
+    },
+    { sortBy: 'suspended', sortOrder: 'asc' },
+  );
+  const shown = sorted ?? [];
   const pageCount = jobDefinitions.data ? Math.ceil(jobDefinitions.data.count / DEFAULT_PAGE_SIZE) : 0;
 
   const columns: Column<JobDefinition>[] = [
     {
       key: 'state',
       header: t('PLUGIN_JOBDEFINITION_STATE'),
+      sortBy: 'suspended',
       render: (job) => (
         <Tag size="sm" type={job.suspended ? 'gray' : 'green'}>
           {t(job.suspended ? 'PLUGIN_JOBDEFINITION_SUSPENDED' : 'PLUGIN_JOBDEFINITION_ACTIVE')}
         </Tag>
       ),
     },
-    { key: 'activity', header: t('PLUGIN_JOBDEFINITION_ACTIVITY'), render: (job) => names.get(job.activityId) || job.activityId },
-    { key: 'type', header: t('PLUGIN_JOBDEFINITION_TYPE'), render: (job) => job.jobType },
-    { key: 'configuration', header: t('PLUGIN_JOBDEFINITION_CONFIGURATION'), render: (job) => job.jobConfiguration },
-    { key: 'priority', header: t('PLUGIN_JOBDEFINITION_JOB_PRIORITY'), render: (job) => job.overridingJobPriority },
+    { key: 'activity', header: t('PLUGIN_JOBDEFINITION_ACTIVITY'), sortBy: 'activityName', render: (job) => names.get(job.activityId) || job.activityId },
+    { key: 'type', header: t('PLUGIN_JOBDEFINITION_TYPE'), sortBy: 'jobType', render: (job) => job.jobType },
+    { key: 'configuration', header: t('PLUGIN_JOBDEFINITION_CONFIGURATION'), sortBy: 'jobConfiguration', render: (job) => job.jobConfiguration },
+    { key: 'priority', header: t('PLUGIN_JOBDEFINITION_JOB_PRIORITY'), sortBy: 'overridingJobPriority', render: (job) => job.overridingJobPriority },
     {
       key: 'action',
       header: t('PLUGIN_JOBDEFINITION_ACTION'),
@@ -88,7 +106,7 @@ function JobDefinitionsTab({ engine, definition, activityIds }: DefinitionTabPro
       {jobDefinitions.isPending && <SkeletonText paragraph lineCount={3} />}
       {jobDefinitions.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={jobDefinitions.error.message} />}
       {jobDefinitions.data && shown.length === 0 && <p className="cz-list-empty">{t('PLUGIN_JOBDEFINITION_NO_JOB_DEFINITION')}</p>}
-      {shown.length > 0 && <ListTable columns={columns} items={shown} rowKey={(job) => job.id} />}
+      {shown.length > 0 && <ListTable columns={columns} items={shown} rowKey={(job) => job.id} sorting={sorting} onSortingChange={setSorting} />}
       {pageCount > 1 && (
         <PaginationNav totalItems={pageCount} page={page - 1} itemsShown={7} onChange={(index: number) => setPage(index + 1)} />
       )}

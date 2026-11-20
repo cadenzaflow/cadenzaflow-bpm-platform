@@ -18,7 +18,7 @@ export function isPrimitiveType(type: string): type is PrimitiveType {
 
 const INTEGER = /^[-+]?\d+$/;
 const DOUBLE = /^[-+]?(\d+\.?\d*|\.\d+)([eE][-+]?\d+)?$/;
-const LOCAL_DATE_TIME = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/;
+const LOCAL_DATE_TIME = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?$/;
 
 const RANGES: Record<'Short' | 'Integer' | 'Long', [number, number]> = {
   Short: [-32768, 32767],
@@ -26,14 +26,16 @@ const RANGES: Record<'Short' | 'Integer' | 'Long', [number, number]> = {
   Long: [Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER],
 };
 
-/** Parses "yyyy-MM-ddTHH:mm[:ss]" as local time. */
+/** Parses "yyyy-MM-ddTHH:mm[:ss[.SSS]]" as local time. */
 export function parseLocalDateTime(text: string): Date | null {
   const match = LOCAL_DATE_TIME.exec(text.trim());
   if (!match) {
     return null;
   }
-  const [year, month, day, hours, minutes, seconds] = match.slice(1).map((part) => Number(part ?? 0));
-  const date = new Date(year, month - 1, day, hours, minutes, seconds);
+  const [year, month, day, hours, minutes, seconds] = match.slice(1, 7).map((part) => Number(part ?? 0));
+  // ".5" is half a second
+  const milliseconds = Number((match[7] ?? '').padEnd(3, '0'));
+  const date = new Date(year, month - 1, day, hours, minutes, seconds, milliseconds);
   // rejects 2026-02-31 and the like, which Date would roll over
   return date.getMonth() === month - 1 && date.getDate() === day ? date : null;
 }
@@ -50,11 +52,15 @@ export function toEngineDate(date: Date): string {
   );
 }
 
-/** Engine date → "yyyy-MM-ddTHH:mm:ss" in local time, for editing. */
-export function toLocalDateTimeText(date: Date): string {
+/**
+ * Engine date → "yyyy-MM-ddTHH:mm:ss" in local time, for editing.
+ * @param withMilliseconds adds ".SSS" where the date has milliseconds, for a value that must not lose them
+ */
+export function toLocalDateTimeText(date: Date, withMilliseconds = false): string {
   return (
     `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
-    `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+    `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}` +
+    (withMilliseconds && date.getMilliseconds() ? `.${pad(date.getMilliseconds(), 3)}` : '')
   );
 }
 

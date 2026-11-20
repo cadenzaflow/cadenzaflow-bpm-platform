@@ -5,7 +5,7 @@ import { useProcessDefinitionXml } from '../api';
 import type { DefinitionTab, DefinitionTabProps } from './registry';
 
 /** Open incidents of the definition's instances, filtered by the selected activities. */
-function IncidentsTab({ engine, definition, activityIds, onSearchChange }: DefinitionTabProps) {
+function IncidentsTab({ engine, definition, activityIds, search, onSearchChange }: DefinitionTabProps) {
   const xml = useProcessDefinitionXml(engine, definition.id);
   const names = useMemo(() => elementNames(xml.data), [xml.data]);
   return (
@@ -16,6 +16,8 @@ function IncidentsTab({ engine, definition, activityIds, onSearchChange }: Defin
       activityNames={names}
       onActivitySelect={(activityId) => onSearchChange({ activityIds: activityId, page: undefined })}
       showProcessInstance
+      stacktrace={search.incidentStacktrace}
+      onStacktraceChange={(incidentStacktrace) => onSearchChange({ incidentStacktrace })}
     />
   );
 }

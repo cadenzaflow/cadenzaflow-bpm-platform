@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { toEngineDate } from '../variables';
-import { isComplete, parseVariableValue, toQuery, type CriterionType } from './criteria';
+import { isComplete, likePattern, parseVariableValue, toQuery, withFixedQuery, type CriterionType } from './criteria';
 
 const types: CriterionType[] = [
   { key: 'processVariables', label: 'PV', kind: 'variable', operators: ['eq', 'gt'] },
@@ -17,6 +17,47 @@ describe('parseVariableValue', () => {
     expect(parseVariableValue(' 42 ')).toBe(42);
     expect(parseVariableValue('"42"')).toBe('42');
     expect(parseVariableValue('ACME')).toBe('ACME');
+  });
+
+  it('reads the literals of the AngularJS search: NULL, single quotes, a date', () => {
+    expect(parseVariableValue('NULL')).toBeNull();
+    expect(parseVariableValue("'42'")).toBe('42');
+    expect(parseVariableValue("'NULL'")).toBe('NULL');
+    expect(parseVariableValue('2026-10-20T13:00:05')).toBe(toEngineDate(new Date(2026, 9, 20, 13, 0, 5)));
+    expect(parseVariableValue('2026-02-31T13:00:05')).toBe('2026-02-31T13:00:05');
+  });
+});
+
+describe('likePattern', () => {
+  it('looks for plain text anywhere and leaves a pattern as it is', () => {
+    expect(likePattern('inv')).toBe('%inv%');
+    expect(likePattern('inv%')).toBe('inv%');
+    expect(likePattern('in_oice')).toBe('in_oice');
+    // an escaped wildcard is a character, not a pattern
+    expect(likePattern('50\\%')).toBe('%50\\%%');
+  });
+
+  it('applies to variables and to properties', () => {
+    const variables: CriterionType = { key: 'variables', label: 'V', kind: 'variable', operators: ['eq', 'like'] };
+    expect(
+      toQuery(
+        {
+          matchAny: false,
+          criteria: [
+            { type: 'variables', name: 'customer', operator: 'like', value: 'acme' },
+            { type: 'variables', name: 'code', operator: 'like', value: 'A_1' },
+            { type: 'name', operator: 'Like', value: 'inv%' },
+          ],
+        },
+        [variables, ...types],
+      ),
+    ).toEqual({
+      variables: [
+        { name: 'customer', operator: 'like', value: '%acme%' },
+        { name: 'code', operator: 'like', value: 'A_1' },
+      ],
+      nameLike: 'inv%',
+    });
   });
 });
 
@@ -80,5 +121,35 @@ describe('toQuery', () => {
       ),
     ).toEqual({ orQueries: [{ name: 'Review' }] });
     expect(isComplete({ type: 'priority', operator: 'eq', value: 'x' }, types[2])).toBe(false);
+  });
+});
+
+describe('list criteria', () => {
+  const activity: CriterionType = { key: 'activityIdIn', label: 'ACTIVITY', kind: 'property', operators: ['In'], valueType: 'list' };
+  const searched = toQuery(
+    {
+      matchAny: false,
+      criteria: [
+        { type: 'activityIdIn', operator: 'In', value: 'approve' },
+        { type: 'activityIdIn', operator: 'In', value: 'ship, approve' },
+      ],
+    },
+    [activity],
+  );
+
+  it('add up when a type is used more than once', () => {
+    expect(searched).toEqual({ activityIdIn: ['approve', 'ship'] });
+  });
+
+  it('add to the list that is always asked for', () => {
+    expect(withFixedQuery({ processDefinitionId: 'order:1', activityIdIn: ['charge'] }, searched)).toEqual({
+      processDefinitionId: 'order:1',
+      activityIdIn: ['charge', 'approve', 'ship'],
+    });
+    expect(withFixedQuery({ processDefinitionId: 'order:1', activityIdIn: undefined }, searched)).toEqual({
+      processDefinitionId: 'order:1',
+      activityIdIn: ['approve', 'ship'],
+    });
+    expect(withFixedQuery({ activityIdIn: ['charge'] }, {})).toEqual({ activityIdIn: ['charge'] });
   });
 });

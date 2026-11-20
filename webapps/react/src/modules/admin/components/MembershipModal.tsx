@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { Checkbox, InlineNotification, Modal, PaginationNav, SkeletonText } from '@carbon/react';
+import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { ListTable, type Column } from '../../../shared/ui/ListTable';
 import { ADMIN_PAGE_SIZE, usePage, type Sorting } from '../api';
@@ -15,6 +16,8 @@ interface MembershipModalProps<T extends { id: string }> {
   memberIds: Set<string> | undefined;
   /** shown when there is nothing to add */
   emptyText: ReactNode;
+  /** the page that creates what is missing, linked after the text for nothing to add ("... You can create a new group here.") */
+  create?: { to: '/admin/$engine/group-create' | '/admin/$engine/tenant-create'; label: string };
   /** shown when this page offers nothing to add but other pages may */
   emptyPageText: string;
   addLabel: string;
@@ -31,6 +34,7 @@ export function MembershipModal<T extends { id: string }>({
   defaultSortBy,
   memberIds,
   emptyText,
+  create,
   emptyPageText,
   addLabel,
   onAdd,
@@ -45,6 +49,19 @@ export function MembershipModal<T extends { id: string }>({
   const available = (list.data?.items ?? []).filter((item) => !memberIds?.has(item.id));
   const pageCount = list.data ? Math.ceil(list.data.count / ADMIN_PAGE_SIZE) : 0;
 
+  const allSelected = available.length > 0 && available.every((item) => selected.has(item.id));
+  const toggleAll = (checked: boolean) =>
+    setSelected((current) => {
+      const next = new Set(current);
+      for (const item of available) {
+        if (checked) {
+          next.add(item.id);
+        } else {
+          next.delete(item.id);
+        }
+      }
+      return next;
+    });
   const toggle = (id: string, checked: boolean) =>
     setSelected((current) => {
       const next = new Set(current);
@@ -76,7 +93,26 @@ export function MembershipModal<T extends { id: string }>({
     >
       {(list.isPending || !memberIds) && <SkeletonText paragraph lineCount={4} />}
       {list.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={list.error.message} />}
-      {list.data && memberIds && available.length === 0 && <p>{pageCount > 1 ? emptyPageText : emptyText}</p>}
+      {list.data && memberIds && available.length === 0 && (
+        <p>
+          {pageCount > 1 ? (
+            emptyPageText
+          ) : (
+            <>
+              {emptyText}
+              {create && (
+                <>
+                  {' '}
+                  <Link to={create.to} params={{ engine }}>
+                    {create.label}
+                  </Link>
+                  .
+                </>
+              )}
+            </>
+          )}
+        </p>
+      )}
       {list.data && memberIds && available.length > 0 && (
         <ListTable
           columns={columns}
@@ -85,6 +121,16 @@ export function MembershipModal<T extends { id: string }>({
           sorting={sorting}
           sortable={list.data.sortable}
           onSortingChange={setSorting}
+          leadingHeader={
+            <Checkbox
+              id="cz-membership-all"
+              labelText={t('SELECT_ALL', { ns: 'common' })}
+              hideLabel
+              checked={allSelected}
+              indeterminate={!allSelected && available.some((item) => selected.has(item.id))}
+              onChange={(_, { checked }) => toggleAll(checked)}
+            />
+          }
           leading={(item) => (
             <Checkbox
               id={`cz-membership-${item.id}`}

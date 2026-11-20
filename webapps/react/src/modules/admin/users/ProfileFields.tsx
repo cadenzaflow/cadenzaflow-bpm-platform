@@ -3,9 +3,13 @@ import { TextInput } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import type { User } from '../api';
 
-/** Empty, or something@something (like an HTML email field). */
+// the rule of the classic webapps: a name, then a domain with an ending of two letters or more, or an IP address in brackets
+const EMAIL =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+/** Empty, or an email address as the classic webapps accept it. */
 export function isEmail(value: string | null | undefined): boolean {
-  return !value || /^[^\s@]+@[^\s@]+$/.test(value);
+  return !value || EMAIL.test(value);
 }
 
 /** First name, last name (both required) and email of a user. */

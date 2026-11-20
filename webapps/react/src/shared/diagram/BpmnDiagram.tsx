@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { InlineNotification } from '@carbon/react';
+import { Button, InlineNotification } from '@carbon/react';
+import { ZoomIn, ZoomOut, ZoomReset } from '@carbon/icons-react';
+import { useTranslation } from 'react-i18next';
 import NavigatedViewer from 'bpmn-js/lib/NavigatedViewer';
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-js/dist/assets/bpmn-js.css';
@@ -119,6 +121,7 @@ export default function BpmnDiagram({
   actions,
   drilldown,
 }: BpmnDiagramProps) {
+  const { t } = useTranslation('common');
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<NavigatedViewer | null>(null);
   const clickHandler = useRef(onElementClick);
@@ -219,12 +222,30 @@ export default function BpmnDiagram({
     return () => overlays.remove({ type: 'cz-drilldown' });
   }, [imported, drilldown]);
 
+  // the zoom buttons of the classic diagrams, for those without a wheel
+  const zoom = (step: number) => {
+    const instance = viewer.current;
+    if (!instance) {
+      return;
+    }
+    if (step) {
+      (instance.get('zoomScroll') as { stepZoom: (delta: number) => void }).stepZoom(step);
+    } else {
+      (instance.get('canvas') as Canvas).zoom('fit-viewport');
+    }
+  };
+
   return (
     <>
       {error && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={error} />}
       <div className="cz-bpmn-diagram__frame">
         <div ref={container} className={`cz-bpmn-diagram${onElementClick ? ' cz-bpmn-diagram--selectable' : ''}`} />
         {actions && <div className="cz-bpmn-diagram__actions">{actions}</div>}
+        <div className="cz-bpmn-diagram__zoom">
+          <Button kind="ghost" size="sm" hasIconOnly renderIcon={ZoomIn} iconDescription={t('DIAGRAM_ZOOM_IN')} tooltipPosition="left" onClick={() => zoom(1)} />
+          <Button kind="ghost" size="sm" hasIconOnly renderIcon={ZoomOut} iconDescription={t('DIAGRAM_ZOOM_OUT')} tooltipPosition="left" onClick={() => zoom(-1)} />
+          <Button kind="ghost" size="sm" hasIconOnly renderIcon={ZoomReset} iconDescription={t('DIAGRAM_ZOOM_RESET')} tooltipPosition="left" onClick={() => zoom(0)} />
+        </div>
       </div>
     </>
   );

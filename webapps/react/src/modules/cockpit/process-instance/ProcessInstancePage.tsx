@@ -19,6 +19,7 @@ import { PluginPoint, PluginView } from '../../../shared/plugins/PluginPoint';
 import { useBpmnJsExtensions } from '../../../shared/diagram/bpmn-extensions';
 import { useDiagramPlugins, useDiagramViewer, usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
+import { CopyValue } from '../../../shared/ui/CopyValue';
 import { useProcessDefinition, useProcessDefinitionXml } from '../process-definition/api';
 import { ActivityTree } from './ActivityTree';
 import {
@@ -219,7 +220,7 @@ export function ProcessInstancePage() {
               <dl>
                 <dt>{t('PROCESS_INSTANCE_INSTANCE_ID')}</dt>
                 <dd className="cz-definition__id">
-                  {instance.data.id}
+                  <CopyValue text={instance.data.id} />
                   {instance.data.suspended && (
                     <Tag size="sm" type="gray" className="cz-instance-state">
                       {t('PLUGIN_PROCESS_INSTANCE_SUSPENDED')}
@@ -227,17 +228,21 @@ export function ProcessInstancePage() {
                   )}
                 </dd>
                 <dt>{t('PROCESS_INSTANCE_BUSINESS_KEY')}</dt>
-                <dd>{value(instance.data.businessKey)}</dd>
+                <dd>{instance.data.businessKey ? <CopyValue text={instance.data.businessKey} /> : value(null)}</dd>
                 <dt>{t('PROCESS_INSTANCE_DEFINITION_VERSION')}</dt>
                 <dd>{definition.data.version}</dd>
                 <dt>{t('PROCESS_INSTANCE_DEFINITION_ID')}</dt>
                 <dd className="cz-definition__id">
-                  <Link to="/cockpit/$engine/process-definition/$id" params={{ engine, id: definition.data.id }}>
-                    {definition.data.id}
-                  </Link>
+                  <CopyValue text={definition.data.id}>
+                    <Link to="/cockpit/$engine/process-definition/$id" params={{ engine, id: definition.data.id }}>
+                      {definition.data.id}
+                    </Link>
+                  </CopyValue>
                 </dd>
                 <dt>{t('PROCESS_INSTANCE_DEFINITION_KEY')}</dt>
-                <dd>{definition.data.key}</dd>
+                <dd>
+                  <CopyValue text={definition.data.key} />
+                </dd>
                 <dt>{t('PROCESS_INSTANCE_DEFINITION_NAME')}</dt>
                 <dd>{value(definition.data.name)}</dd>
                 <dt>{t('PROCESS_INSTANCE_TENANT_ID')}</dt>

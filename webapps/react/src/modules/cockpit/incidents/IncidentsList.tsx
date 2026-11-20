@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Button, InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
 import { Edit, Renew } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@tanstack/react-router';
 import { cockpitUrl } from '../../../shared/api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../../../shared/api/paging';
 import { formatDateTime } from '../../../shared/format';
 import { ListTable, type Column, type Sorting } from '../../../shared/ui/ListTable';
 import { InstanceLink } from '../process-instance/InstanceLink';
 import { PluginPoint } from '../../../shared/plugins/PluginPoint';
-import { RETRYABLE, type Incident } from './api';
+import { canRetry, messageOf, RETRYABLE, type Incident } from './api';
 import { AnnotationModal, RetryModal, StacktraceModal } from './IncidentDialogs';
 
 interface IncidentsListProps {
@@ -23,12 +24,25 @@ interface IncidentsListProps {
   onActivitySelect?: (activityId: string) => void;
   /** the process instance column (on the definition page) */
   showProcessInstance?: boolean;
+  /** the job or external task whose stack trace is open, from the URL */
+  stacktrace?: string;
+  /** keeps the open stack trace in the URL; without it the dialog is not linkable */
+  onStacktraceChange?: (configuration: string | undefined) => void;
 }
 
 type Dialog = { kind: 'stacktrace' | 'annotation' | 'retry'; incident: Incident } | null;
 
 /** Open incidents with their stack traces, annotations and retries (the classic Cockpit's incidents tab). */
-export function IncidentsList({ engine, scope, activityIds, activityNames, onActivitySelect, showProcessInstance }: IncidentsListProps) {
+export function IncidentsList({
+  engine,
+  scope,
+  activityIds,
+  activityNames,
+  onActivitySelect,
+  showProcessInstance,
+  stacktrace,
+  onStacktraceChange,
+}: IncidentsListProps) {
   const { t, i18n } = useTranslation('cockpit');
   const [page, setPage] = useState(1);
   const [sorting, setSorting] = useState<Sorting>({ sortBy: 'incidentType', sortOrder: 'asc' });
@@ -43,6 +57,26 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
   });
   const pageCount = incidents.data ? Math.ceil(incidents.data.count / DEFAULT_PAGE_SIZE) : 0;
   const activity = (id: string | null) => (id ? activityNames.get(id) || id : '');
+  const stacktraceOf = (incident: Incident) => incident.rootCauseIncidentConfiguration ?? incident.configuration ?? undefined;
+  const showStacktrace = (incident: Incident) =>
+    onStacktraceChange && stacktraceOf(incident) ? onStacktraceChange(stacktraceOf(incident)) : setDialog({ kind: 'stacktrace', incident });
+  // the stack trace a link names: of the listed incident, or (not on this page of the list) of the job itself
+  const linked: Incident | undefined = stacktrace
+    ? (incidents.data?.items.find((incident) => stacktraceOf(incident) === stacktrace) ??
+      (incidents.data ? ({ incidentType: 'failedJob', configuration: stacktrace, rootCauseIncidentConfiguration: stacktrace } as Incident) : undefined))
+    : undefined;
+  /** The instance an incident comes from, when it is another one: its incidents, at the activity that failed. */
+  const causeLink = (incident: Incident, id: string | null, activityId: string | null | undefined) =>
+    id && id !== incident.processInstanceId ? (
+      <Link
+        to="/cockpit/$engine/process-instance/$id"
+        params={{ engine, id }}
+        search={{ tab: 'incidents-tab', activityIds: activityId ?? undefined }}
+        className="cz-instance-link"
+      >
+        {id}
+      </Link>
+    ) : null;
 
   const columns: Column<Incident>[] = [
     {
@@ -51,11 +85,11 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
       sortBy: 'incidentMessage',
       render: (incident) =>
         RETRYABLE.includes(incident.incidentType) ? (
-          <Button kind="ghost" size="sm" className="cz-link-button" onClick={() => setDialog({ kind: 'stacktrace', incident })}>
-            {incident.incidentMessage || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')}
+          <Button kind="ghost" size="sm" className="cz-link-button" onClick={() => showStacktrace(incident)}>
+            {messageOf(incident) || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')}
           </Button>
         ) : (
-          incident.incidentMessage || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')
+          messageOf(incident) || t('PLUGIN_INCIDENTS_TAB_MESSAGE_NULL')
         ),
     },
     ...(showProcessInstance
@@ -88,12 +122,12 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
     {
       key: 'cause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_INSTANCE_ID'),
-      render: (incident) => <InstanceLink engine={engine} id={incident.causeIncidentProcessInstanceId} />,
+      render: (incident) => causeLink(incident, incident.causeIncidentProcessInstanceId, incident.causeIncidentActivityId),
     },
     {
       key: 'rootCause',
       header: t('PLUGIN_INCIDENTS_TAB_CAUSE_ROOT_INSTANCE_ID'),
-      render: (incident) => <InstanceLink engine={engine} id={incident.rootCauseIncidentProcessInstanceId} />,
+      render: (incident) => causeLink(incident, incident.rootCauseIncidentProcessInstanceId, incident.rootCauseIncidentActivityId),
     },
     {
       key: 'type',
@@ -123,7 +157,7 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
       header: t('PLUGIN_INCIDENTS_TAB_ACTION'),
       render: (incident) => (
         <span className="cz-row-actions">
-          {RETRYABLE.includes(incident.incidentType) && (
+          {canRetry(incident) && (
             <Button
               kind="ghost"
               size="sm"
@@ -160,6 +194,7 @@ export function IncidentsList({ engine, scope, activityIds, activityNames, onAct
         <PaginationNav totalItems={pageCount} page={page - 1} itemsShown={7} onChange={(index: number) => setPage(index + 1)} />
       )}
       {dialog?.kind === 'stacktrace' && <StacktraceModal engine={engine} incident={dialog.incident} onClose={() => setDialog(null)} />}
+      {linked && <StacktraceModal engine={engine} incident={linked} onClose={() => onStacktraceChange?.(undefined)} />}
       {dialog?.kind === 'annotation' && <AnnotationModal engine={engine} incident={dialog.incident} onClose={() => setDialog(null)} />}
       {dialog?.kind === 'retry' && <RetryModal engine={engine} incident={dialog.incident} onClose={() => setDialog(null)} />}
     </>

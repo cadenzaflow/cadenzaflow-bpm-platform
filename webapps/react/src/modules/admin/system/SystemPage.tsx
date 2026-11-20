@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { PluginView } from '../../../shared/plugins/PluginPoint';
 import { usePluginPoint } from '../../../shared/plugins/plugins';
 import { PageFrame } from '../../../shared/ui/PageFrame';
-import { useAnnualMetrics, useDiagnostics, useMonthlyMetrics } from './api';
+import { useAnnualMetrics, useDiagnostics, useMonthlyMetrics, withoutCounters } from './api';
 import { MetricsChart } from './MetricsChart';
 import { LEGACY_METRICS, formatDate, parseDate, subscriptionYear, type MetricKey, type MetricsRow } from './metrics';
 import { SYSTEM_SECTIONS, type SystemSearch } from './search';
@@ -133,12 +133,12 @@ function ExecutionMetrics({ engine }: { engine: string }) {
     return t(year.current ? 'EXECUTION_METRICS_ANNUAL_FORMAT_CURRENT' : 'EXECUTION_METRICS_ANNUAL_FORMAT', year);
   };
   const copyText = (row: MetricsRow) =>
-    [yearLabel(row), ...allKeys.map((key) => `- ${key}: ${row.sums[key].toLocaleString()}`), '', JSON.stringify(diagnostics.data ?? {}, null, 2)].join('\n');
+    [yearLabel(row), ...allKeys.map((key) => `- ${key}: ${row.sums[key].toLocaleString()}`), '', JSON.stringify(withoutCounters(diagnostics.data), null, 2)].join('\n');
 
   return (
     <div className="cz-metrics">
       <InlineNotification kind="info" lowContrast hideCloseButton>
-        <span>
+        <span className="cz-metrics__info">
           {t('EXECUTION_METRICS_INFO_1')} <strong>{t('EXECUTION_METRICS_FNI')}</strong>, <strong>{t('EXECUTION_METRICS_EDE')}</strong>,{' '}
           <strong>{t('EXECUTION_METRICS_RPI')}</strong> {t('EXECUTION_METRICS_AND')} <strong>{t('EXECUTION_METRICS_DI')}</strong>{' '}
           {t('EXECUTION_METRICS_INFO_2')} {t('EXECUTION_METRICS_AND')} <strong>{t('EXECUTION_METRICS_TW')}</strong>{' '}

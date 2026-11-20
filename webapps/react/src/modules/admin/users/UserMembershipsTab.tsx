@@ -95,6 +95,11 @@ export function UserMembershipsTab({ engine, profile, kind, adding, onAddingDone
           defaultSortBy="id"
           memberIds={memberIds.data}
           emptyText={t(group ? 'GROUP_MEMBERSHIP_GROUP_MESSAGE_AVAILABLE_GROUPS' : 'USER_MEMBERSHIP_TENANT_MESSAGE_AVAILABLE_TENANTS')}
+          create={
+            group
+              ? { to: '/admin/$engine/group-create', label: t('GROUP_MEMBERSHIP_GROUP_MESSAGE_HERE') }
+              : { to: '/admin/$engine/tenant-create', label: t('USER_MEMBERSHIP_TENANT_MESSAGE_HERE') }
+          }
           emptyPageText={t(group ? 'GROUP_MEMBERSHIP_GROUP_MESSAGE_AVAILABLE_GROUPS_PAGE' : 'USER_MEMBERSHIP_TENANT_MESSAGE_AVAILABLE_TENANTS')}
           addLabel={t(group ? 'GROUP_MEMBERSHIP_GROUP_ADD_GROUPS' : 'USERS_ADD_TO_A_TENANT')}
           onAdd={(ids) =>

@@ -67,6 +67,7 @@ function InstancesTab({ engine, definition, activityIds, search, onSearchChange 
       method="POST"
       namespace="cockpit"
       criteria={INSTANCE_CRITERIA}
+      savedCriteriaGroup="PDI"
       fixedQuery={{
         processDefinitionId: definition.id,
         activityIdIn: activityIds.length ? activityIds : undefined,

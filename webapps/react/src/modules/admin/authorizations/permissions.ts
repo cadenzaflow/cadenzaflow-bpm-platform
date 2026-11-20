@@ -1,4 +1,4 @@
-/** Resource types of the authorization API with their i18n keys, in the order of the classic Admin. */
+/** Resource types of the authorization API with their i18n keys (the page lists them by their names, as the classic Admin). */
 export const RESOURCE_TYPES: { id: number; label: string }[] = [
   { id: 0, label: 'AUTHORIZATION_APPLICATION' },
   { id: 1, label: 'AUTHORIZATION_USER' },

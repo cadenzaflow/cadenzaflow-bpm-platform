@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { InlineNotification, PaginationNav, SkeletonText } from '@carbon/react';
 import type { QueryParams } from '../api/client';
 import { DEFAULT_PAGE_SIZE, usePagedList } from '../api/paging';
-import { toQuery, type CriterionType, type SearchState } from '../search/criteria';
+import { toQuery, withFixedQuery, type CriterionType, type SearchState } from '../search/criteria';
 import { CriteriaSearch } from '../search/CriteriaSearch';
 import { sortingOf, type ListSearch } from '../search/list-search';
 import { ListTable, type Column } from './ListTable';
@@ -16,6 +16,8 @@ interface SearchableListProps<T extends { id: string }> {
   namespace?: string;
   /** without criteria the list has no search */
   criteria?: CriterionType[];
+  /** names the search, so that its criteria can be saved in the browser */
+  savedCriteriaGroup?: string;
   /** query parts that are always sent, e.g. latestVersion */
   fixedQuery?: Record<string, unknown>;
   /** POST for queries with lists (e.g. variables) */
@@ -25,6 +27,8 @@ interface SearchableListProps<T extends { id: string }> {
   defaultSortBy: string;
   defaultSortOrder?: 'asc' | 'desc';
   columns: Column<T>[];
+  /** another view of the found items in place of the table, e.g. tiles; search and pages stay */
+  renderItems?: (items: T[]) => ReactNode;
   emptyText: string;
   /** shown when the backend could not sort (e.g. LDAP) */
   unsortedNotice?: { title: string; subtitle: string };
@@ -42,10 +46,12 @@ export function SearchableList<T extends { id: string }>({
   countUrl,
   namespace = 'common',
   criteria = NO_CRITERIA,
+  savedCriteriaGroup,
   fixedQuery,
   defaultSortBy,
   defaultSortOrder = 'asc',
   columns,
+  renderItems,
   emptyText,
   unsortedNotice,
   method,
@@ -68,7 +74,7 @@ export function SearchableList<T extends { id: string }>({
 
   const sorting = sortingOf(search, defaultSortBy, defaultSortOrder);
   const query = useMemo(
-    () => ({ ...fixedQuery, ...toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, criteria) }),
+    () => withFixedQuery(fixedQuery, toQuery({ criteria: search.searchQuery ?? [], matchAny: false }, criteria)),
     [search.searchQuery, criteria, fixedQuery],
   );
   const page = search.page ?? 1;
@@ -78,7 +84,15 @@ export function SearchableList<T extends { id: string }>({
   return (
     <>
       {criteria.length > 0 && (
-        <CriteriaSearch namespace={namespace} types={criteria} value={draft} onChange={setDraft} allowMatchAny={false} total={list.data?.count} />
+        <CriteriaSearch
+          namespace={namespace}
+          types={criteria}
+          value={draft}
+          onChange={setDraft}
+          allowMatchAny={false}
+          total={list.data?.count}
+          savedGroup={savedCriteriaGroup}
+        />
       )}
       {list.data && !list.data.sortable && unsortedNotice && (
         <InlineNotification kind="info" lowContrast hideCloseButton title={unsortedNotice.title} subtitle={unsortedNotice.subtitle} />
@@ -86,7 +100,8 @@ export function SearchableList<T extends { id: string }>({
       {list.isPending && <SkeletonText paragraph lineCount={5} />}
       {list.isError && <InlineNotification kind="error" lowContrast hideCloseButton subtitle={list.error.message} />}
       {list.data?.items.length === 0 && <p className="cz-list-empty">{emptyText}</p>}
-      {!!list.data?.items.length && (
+      {!!list.data?.items.length && renderItems?.(list.data.items)}
+      {!!list.data?.items.length && !renderItems && (
         <ListTable
           columns={columns}
           items={list.data.items}

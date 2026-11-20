@@ -1,6 +1,6 @@
-import { Select, SelectItem, Stack, TextArea, TextInput, Toggle } from '@carbon/react';
+import { Checkbox, Select, SelectItem, Stack, TextArea, TextInput, Toggle } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
-import { EDITABLE_TYPES, type DraftProblem, type VariableDraft } from './variable-draft';
+import { BINARY_TYPES, EDITABLE_TYPES, isBinary, type DraftProblem, type VariableDraft } from './variable-draft';
 
 interface VariableFieldsProps {
   /** prefix of the input ids */
@@ -10,13 +10,20 @@ interface VariableFieldsProps {
   problem: DraftProblem;
   /** a new variable: its name is entered too */
   withName?: boolean;
+  /**
+   * an existing variable: it can be set to null keeping its type, and it can
+   * become a binary one (the content is then uploaded by the dialog)
+   */
+  existing?: boolean;
 }
 
 /** Name, type and value of a variable, the value input fitting the type (as in the classic Cockpit dialogs). */
-export function VariableFields({ id, draft, onChange, problem, withName }: VariableFieldsProps) {
+export function VariableFields({ id, draft, onChange, problem, withName, existing }: VariableFieldsProps) {
   const { t } = useTranslation('cockpit');
   const set = (changes: Partial<VariableDraft>) => onChange({ ...draft, ...changes });
   const invalidText = problem && problem !== 'required' ? t(problem.key, problem.values) : undefined;
+  const types = existing ? [...EDITABLE_TYPES, ...BINARY_TYPES] : EDITABLE_TYPES;
+  const withoutValue = draft.type === 'Null' || draft.isNull || isBinary(draft.type);
 
   return (
     <Stack gap={5}>
@@ -35,14 +42,27 @@ export function VariableFields({ id, draft, onChange, problem, withName }: Varia
         value={draft.type}
         // switching between Boolean and the other types starts with a fitting value
         onChange={(event) =>
-          set({ type: event.target.value, text: event.target.value === 'Boolean' ? 'false' : draft.type === 'Boolean' ? '' : draft.text })
+          set({
+            type: event.target.value,
+            // Boolean starts as true, as in the classic Cockpit
+            text: event.target.value === 'Boolean' ? 'true' : draft.type === 'Boolean' ? '' : draft.text,
+            isNull: draft.isNull && event.target.value !== 'Null' && !isBinary(event.target.value),
+          })
         }
       >
-        {(EDITABLE_TYPES.includes(draft.type) ? EDITABLE_TYPES : [draft.type, ...EDITABLE_TYPES]).map((type) => (
+        {(types.includes(draft.type) ? types : [draft.type, ...types]).map((type) => (
           <SelectItem key={type} value={type} text={type} />
         ))}
       </Select>
-      {draft.type === 'Boolean' && (
+      {existing && draft.type !== 'Null' && !isBinary(draft.type) && (
+        <Checkbox
+          id={`${id}-null`}
+          labelText={t('CAM_WIDGET_VARIABLE_SET_VALUE_NULL')}
+          checked={draft.isNull}
+          onChange={(_, { checked }) => set({ isNull: checked, text: !checked && draft.type === 'Boolean' && !draft.text ? 'true' : draft.text })}
+        />
+      )}
+      {draft.type === 'Boolean' && !withoutValue && (
         <Toggle
           id={`${id}-value`}
           labelText={t('VARIABLE_ADD_VARIABLE_VALUE')}
@@ -69,17 +89,19 @@ export function VariableFields({ id, draft, onChange, problem, withName }: Varia
           />
         </>
       )}
-      {['Object', 'Json', 'Xml'].includes(draft.type) && (
+      {['Object', 'Json', 'Xml'].includes(draft.type) && !withoutValue && (
         <TextArea
           id={`${id}-value`}
           labelText={t(draft.type === 'Object' ? 'VARIABLE_SERIALIZED_VALUE' : 'VARIABLE_ADD_VARIABLE_VALUE')}
           rows={8}
           className="cz-code-input"
           value={draft.text}
+          invalid={!!invalidText}
+          invalidText={invalidText}
           onChange={(event) => set({ text: event.target.value })}
         />
       )}
-      {!['Boolean', 'Null', 'Object', 'Json', 'Xml'].includes(draft.type) && (
+      {!['Boolean', 'Object', 'Json', 'Xml'].includes(draft.type) && !withoutValue && (
         <TextInput
           id={`${id}-value`}
           labelText={t('VARIABLE_ADD_VARIABLE_VALUE')}

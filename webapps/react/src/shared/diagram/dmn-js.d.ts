@@ -16,6 +16,8 @@ declare module 'dmn-js/lib/Viewer' {
     getViews(): DmnView[];
     getActiveView(): DmnView | undefined;
     open(view: DmnView): Promise<unknown>;
+    /** e.g. 'views.changed', when another view was opened */
+    on(event: string, callback: () => void): void;
     destroy(): void;
   }
 }
