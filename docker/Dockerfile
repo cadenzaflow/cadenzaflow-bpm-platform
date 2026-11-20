@@ -39,27 +39,24 @@ RUN addgroup -g 1000 -S cadenzaflow && \
     adduser -u 1000 -S cadenzaflow -G cadenzaflow -h /cadenzaflow -s /bin/bash -D cadenzaflow
 
 # The Tomcat of the archive (server/apache-tomcat-<version>/) becomes /cadenzaflow.
-# The archive is mounted for this step only, so it does not stay in a layer of the image.
+# The archive is mounted for this step only, so it does not stay in a layer of the image; the
+# files get their owner in the same step, so they are in the image once.
 RUN --mount=type=bind,source=cadenzaflow-bpm-tomcat.tar.gz,target=/tmp/cadenzaflow-bpm-tomcat.tar.gz \
-    mkdir -p /cadenzaflow \
-    && tar -xzf /tmp/cadenzaflow-bpm-tomcat.tar.gz -C /cadenzaflow --strip-components=2
+    mkdir -p /cadenzaflow/javaagent \
+    && tar -xzf /tmp/cadenzaflow-bpm-tomcat.tar.gz -C /cadenzaflow --strip-components=2 \
+    && chown -R cadenzaflow:cadenzaflow /cadenzaflow
 
 # The PostgreSQL JDBC driver, for a database other than the built-in H2
-ADD https://jdbc.postgresql.org/download/postgresql-42.7.3.jar /cadenzaflow/lib/postgresql-42.7.3.jar
+ADD --chown=cadenzaflow:cadenzaflow https://jdbc.postgresql.org/download/postgresql-42.7.3.jar /cadenzaflow/lib/postgresql-42.7.3.jar
 
 WORKDIR /cadenzaflow
-USER root
 
 # The start script and the configuration it fills in from the settings above
-COPY cadenzaflow-lib.sh /cadenzaflow/
-COPY cadenzaflow-tomcat.sh /cadenzaflow/cadenzaflow.sh
-COPY prometheus-jmx.yml /cadenzaflow/javaagent/prometheus-jmx.yml
-COPY server.xml /cadenzaflow/conf/server.xml
-COPY bpm-platform.xml /cadenzaflow/conf/bpm-platform.xml
-
-RUN chmod +x /cadenzaflow/*.sh \
-    && mkdir -p /cadenzaflow/javaagent \
-    && chown -R cadenzaflow:cadenzaflow /cadenzaflow
+COPY --chown=cadenzaflow:cadenzaflow --chmod=755 cadenzaflow-lib.sh /cadenzaflow/
+COPY --chown=cadenzaflow:cadenzaflow --chmod=755 cadenzaflow-tomcat.sh /cadenzaflow/cadenzaflow.sh
+COPY --chown=cadenzaflow:cadenzaflow prometheus-jmx.yml /cadenzaflow/javaagent/prometheus-jmx.yml
+COPY --chown=cadenzaflow:cadenzaflow server.xml /cadenzaflow/conf/server.xml
+COPY --chown=cadenzaflow:cadenzaflow bpm-platform.xml /cadenzaflow/conf/bpm-platform.xml
 
 USER cadenzaflow
 
