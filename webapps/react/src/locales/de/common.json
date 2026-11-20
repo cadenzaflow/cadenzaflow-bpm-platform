@@ -60,5 +60,10 @@
   "DIAGRAM_ZOOM_RESET": "Zoom zurücksetzen",
   "CAM_WIDGET_COPY": "Klicken, um '{{value}}' zu kopieren",
   "COPIED": "Kopiert",
-  "SELECT_ALL": "Alle auswählen"
+  "SELECT_ALL": "Alle auswählen",
+  "CAM_WIDGET_FOOTER_POWERED_BY": "Angetrieben durch",
+  "CAM_WIDGET_FOOTER_TIMEZONE": "Datum und Uhrzeit werden in der lokalen Zeitzone angezeigt:",
+  "DIRECTIVE_ENGINE_SELECT_MESSAGE_NOT_FOUND": "Die ausgewählte Engine existiert nicht.",
+  "PROCESS_ENGINE": "Process Engine",
+  "DIRECTIVE_ENGINE_SELECT_TOOLTIP": "Wenn mehrere Engines laufen, können Sie hier die Process Engine auswählen. Die in dieser Anwendung angezeigten Daten basieren nur auf der gewählten Engine."
 }

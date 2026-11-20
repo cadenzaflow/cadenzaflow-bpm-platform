@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import type { ModuleName } from '../config';
 import { PluginPoint } from '../plugins/PluginPoint';
 import { passLogin, usePluginPoint } from '../plugins/plugins';
+import { EngineLinks } from '../ui/EngineLinks';
 import logo from '../../assets/cadenzaflow-login-logo.png';
 import { useLogin } from './authentication';
 
@@ -14,13 +15,15 @@ interface LoginPageProps {
   appName: string;
   /** e.g. "CadenzaFlow" (`app.vendor` of the classic config.js) */
   vendor: string;
+  /** the process engines of the server: with more than one, the page says which one it logs in to and links the others */
+  engines: string[];
 }
 
 /**
  * The logo and the name of the webapp, as on the login page of the classic webapps, then the
  * login form, followed by the {module}.login plugins; {module}.login.data plugins get each login.
  */
-export function LoginPage({ engine, module, appName, vendor }: LoginPageProps) {
+export function LoginPage({ engine, module, appName, vendor, engines }: LoginPageProps) {
   const { t } = useTranslation();
   const login = useLogin(engine, module);
   const [username, setUsername] = useState('');
@@ -75,6 +78,7 @@ export function LoginPage({ engine, module, appName, vendor }: LoginPageProps) {
           </Form>
           <PluginPoint module={module} point={`${module}.login`} engine={engine} className="cz-plugin-section" />
         </Tile>
+        {engines.length > 1 && <EngineLinks module={module} engine={engine} engines={engines} />}
       </div>
     </main>
   );

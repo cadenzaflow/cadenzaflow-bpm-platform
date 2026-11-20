@@ -274,6 +274,10 @@
               <workingDirectory>./react</workingDirectory>
               <installDirectory>./react</installDirectory>
               <arguments>run build</arguments>
+              <!-- the footer shows it, as the one of the AngularJS webapps does -->
+              <environmentVariables>
+                <CADENZAFLOW_VERSION>${project.version}</CADENZAFLOW_VERSION>
+              </environmentVariables>
             </configuration>
           </execution>
         </executions>

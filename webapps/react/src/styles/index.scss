@@ -28,10 +28,79 @@ body {
   background: $background;
 }
 
+// The page (it scrolls by itself) above the footer.
+.cz-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cz-shell__page {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+// The time zone of the dates and the version, as in the AngularJS webapps.
+.cz-footer {
+  @include type-style('helper-text-01');
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $spacing-01 $spacing-06;
+  padding: $spacing-02 $spacing-05;
+  border-top: 1px solid $border-subtle;
+  background: $layer-01;
+  color: $text-secondary;
+
+  .cds--link {
+    font-size: inherit;
+  }
+}
+
 // Space for the fixed 48px Carbon header.
 .cz-content {
   height: 100%;
   padding-top: 3rem;
+}
+
+// The engine selection of the header: the name of the engine next to its icon.
+.cz-header__engine {
+  @include type-style('body-compact-01');
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-03;
+  inline-size: auto;
+  max-inline-size: 16rem;
+  padding: 0 $spacing-05;
+  color: $text-secondary;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// The process engines as links, where there is no header (login page, unknown engine).
+.cz-engine-links {
+  @include type-style('body-compact-01');
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-02 $spacing-03;
+  margin-top: $spacing-05;
+  color: $text-secondary;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-02 $spacing-05;
+  }
+
+  .cds--link {
+    font-size: inherit;
+  }
 }
 
 .cz-page-loading {
@@ -89,6 +158,12 @@ body {
   @include type-style('heading-compact-01');
   padding: $spacing-05 $spacing-05 $spacing-03;
   color: $text-primary;
+}
+
+.cz-user-menu__hint {
+  @include type-style('helper-text-01');
+  padding: 0 $spacing-05 $spacing-03;
+  color: $text-secondary;
 }
 
 // Selected entry of a ContainedList used as navigation (filters, tasks).

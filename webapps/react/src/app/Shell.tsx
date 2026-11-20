@@ -6,27 +6,36 @@ import { setCsrfCookieName } from '../shared/api/client';
 import { useAuthentication } from '../shared/auth/authentication';
 import { useClassicSettings } from '../shared/classic-settings';
 import { setDateTimePattern } from '../shared/format';
+import { useEngines } from '../shared/engines';
 import { chooseLanguage } from '../shared/i18n';
 import { LoginPage } from '../shared/auth/LoginPage';
 import { Notifications } from '../shared/notifications';
+import { EngineLinks } from '../shared/ui/EngineLinks';
 import type { ModuleName } from '../shared/config';
+import { AppFooter } from './AppFooter';
 import { AppHeader } from './AppHeader';
 
-/** Resolves module and engine of the current URL and puts header and login in front of every module. */
+/**
+ * Resolves module and engine of the current URL and puts header and login in
+ * front of every module; the footer is below every page.
+ */
 export function Shell() {
   const matches = useMatches();
   const { engine } = useParams({ strict: false }) as { engine?: string };
   const module = matches.map((match) => match.staticData?.module).filter(Boolean).pop();
 
-  if (!module || !engine) {
-    return <Outlet />;
-  }
-  return <ModuleShell module={module} engine={engine} />;
+  return (
+    <div className="cz-shell">
+      <div className="cz-shell__page">{!module || !engine ? <Outlet /> : <ModuleShell module={module} engine={engine} />}</div>
+      <AppFooter />
+    </div>
+  );
 }
 
 function ModuleShell({ module, engine }: { module: ModuleName; engine: string }) {
   const { t, i18n } = useTranslation();
   const authentication = useAuthentication(engine);
+  const engines = useEngines();
   // the settings of the classic app/{module}/scripts/config.js
   const settings = useClassicSettings(module);
   const language = settings.data ? chooseLanguage(settings.data.locales) : undefined;
@@ -48,8 +57,24 @@ function ModuleShell({ module, engine }: { module: ModuleName; engine: string })
     document.title = `${vendor} ${moduleName}`;
   }, [vendor, moduleName]);
 
-  if (authentication.isPending || settings.isPending || (language && i18n.language !== language)) {
+  // an engine the server does not have (a mistyped or an old link); nobody can be logged in to it
+  const unknownEngine = !!engines.data && !engines.data.includes(engine);
+  if (settings.isPending || (language && i18n.language !== language) || (authentication.isPending && !unknownEngine)) {
     return <Loading withOverlay={false} description={t('LOADING')} className="cz-page-loading" />;
+  }
+  if (unknownEngine) {
+    return (
+      <main className="cz-page-message">
+        <InlineNotification
+          kind="error"
+          lowContrast
+          hideCloseButton
+          title={t('PAGES_STATUS_NOT_FOUND')}
+          subtitle={t('DIRECTIVE_ENGINE_SELECT_MESSAGE_NOT_FOUND')}
+        />
+        <EngineLinks module={module} engine={engine} engines={engines.data ?? []} />
+      </main>
+    );
   }
   if (authentication.isError) {
     return (
@@ -65,7 +90,7 @@ function ModuleShell({ module, engine }: { module: ModuleName; engine: string })
     );
   }
   if (!authentication.data) {
-    return <LoginPage engine={engine} module={module} appName={moduleName} vendor={vendor} />;
+    return <LoginPage engine={engine} module={module} appName={moduleName} vendor={vendor} engines={engines.data ?? []} />;
   }
 
   const authorized = authentication.data.authorizedApps.includes(module);
