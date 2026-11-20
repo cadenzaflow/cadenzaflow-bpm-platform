@@ -35,6 +35,8 @@ vi.mock('bpmn-js/lib/NavigatedViewer', () => ({
         // the test clicks the activity through this
         clickActivity: (id: string, ctrlKey: boolean) =>
           handlers['element.click']({ element: { id, businessObject: { $instanceOf: () => true } }, originalEvent: { ctrlKey } }),
+        // ... and any element of the diagram through this
+        click: (element: unknown) => handlers['element.click']({ element, originalEvent: {} }),
       };
       return services[service];
     }
@@ -76,6 +78,29 @@ describe('the badges of the BPMN diagram', () => {
     fireEvent.click(screen.getByTitle('Running Activity Instances: 1'), { metaKey: true });
     expect(onElementClick).toHaveBeenLastCalledWith('ship', true);
     expect(onElementClick).toHaveBeenCalledTimes(2);
+  });
+
+  it('a click on the name below an event selects the event, not the name', async () => {
+    const onElementClick = vi.fn();
+    let viewer: { get: (service: string) => unknown } | undefined;
+    render(
+      <BpmnDiagram
+        xml="<definitions/>"
+        badges={{ ship: { count: 1 } }}
+        badgeLabels={labels}
+        onElementClick={onElementClick}
+        onViewer={(imported) => {
+          viewer = imported as never;
+        }}
+      />,
+    );
+    await screen.findByTitle('Running Activity Instances: 1');
+
+    // bpmn-js draws the name of an event as an element of its own, with the id "<id>_label"
+    const flowNode = { $instanceOf: () => true };
+    const event = { id: 'ordered', type: 'bpmn:StartEvent', businessObject: flowNode };
+    (viewer!.get('click') as (element: unknown) => void)({ id: 'ordered_label', type: 'label', businessObject: flowNode, labelTarget: event });
+    expect(onElementClick).toHaveBeenLastCalledWith('ordered', false);
   });
 
   it('call the click handler of the latest render', async () => {

@@ -60,6 +60,8 @@ interface DiagramElement {
   id: string;
   type: string;
   businessObject?: { $instanceOf?: (type: string) => boolean };
+  /** of the name below an event, gateway or data element (an element of its own, "<id>_label"): the element it names */
+  labelTarget?: DiagramElement;
 }
 
 const isFlowNode = (element: DiagramElement) => !!element.businessObject?.$instanceOf?.('bpmn:FlowNode');
@@ -149,7 +151,9 @@ export default function BpmnDiagram({
     setError(null);
     (instance.get('eventBus') as { on: (event: string, handler: (event: { element: DiagramElement; originalEvent?: MouseEvent }) => void) => void }).on(
       'element.click',
-      ({ element, originalEvent }) => {
+      ({ element: clicked, originalEvent }) => {
+        // a click on the name below an event means the event
+        const element = clicked.labelTarget ?? clicked;
         const add = !!(originalEvent?.ctrlKey || originalEvent?.metaKey);
         clickHandler.current?.(isFlowNode(element) ? element.id : '', add);
       },
