@@ -1,4 +1,5 @@
-# Dependabot version updates for the Maven build.
+# Dependabot version updates for the Maven build and for the Java of the Docker images
+# (second entry, at the end).
 #
 # Why version updates and not only security alerts: advisory databases can lag
 # behind upstream releases. Tomcat 10.1.60 (2026-09) fixed 12 CVEs that were
@@ -78,3 +79,29 @@ updates:
       - dependency-name: "org.apache.tomcat.embed:*"
         versions:
           - ">= 7.0.51, < 8"
+
+  # The Java of the Docker images: the base image that docker/Dockerfile and
+  # docker/Dockerfile.run pin to an exact version and digest. The Java of an
+  # image is no Maven dependency, so nothing else in this repository follows it.
+  # A new Java patch release arrives as a pull request; the workflow "Docker
+  # images" builds and tests the images of that pull request.
+  #
+  # Same cadence and cooldown as above. The daily workflow "Docker image Java"
+  # is the faster notice; it compares the published images with the latest Java.
+  # A newer Java line (17 -> 21) is a product decision and is not proposed.
+  - package-ecosystem: docker
+    directory: "/docker"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: Europe/Istanbul
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: "eclipse-temurin"
+        update-types:
+          - "version-update:semver-major"
