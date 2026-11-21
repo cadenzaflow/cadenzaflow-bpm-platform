@@ -134,6 +134,11 @@ export async function request<T>(url: string, options: RequestOptions = {}): Pro
   return (text ? JSON.parse(text) : undefined) as T;
 }
 
+/** URL of the list of the process engines of the server. */
+export function enginesUrl(): string {
+  return `${appRoot}/api/engine/engine/`;
+}
+
 /** URL of the engine REST API of the given process engine, e.g. engineUrl('default', '/task'). */
 export function engineUrl(engine: string, path: string): string {
   return `${appRoot}/api/engine/engine/${encodeURIComponent(engine)}${path}`;

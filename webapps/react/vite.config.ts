@@ -1,5 +1,11 @@
+import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+
+// The version the footer shows: the one of the Maven build (webapps/pom.xml
+// sets it, as for the AngularJS webapps), else the one of package.json.
+const VERSION: string =
+  process.env.CADENZAFLOW_VERSION || JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')).version;
 
 // The webapp serves this bundle under <app root>/app/react/. The app root
 // (servlet context path + webapp application path, e.g. "/cadenzaflow") is
@@ -39,6 +45,7 @@ function serverPlaceholders(): Plugin {
 
 export default defineConfig({
   plugins: [react(), serverPlaceholders()],
+  define: { __CADENZAFLOW_VERSION__: JSON.stringify(VERSION) },
   css: {
     // Carbon's Sass still uses syntax that newer Sass versions deprecate
     preprocessorOptions: { scss: { quietDeps: true } },

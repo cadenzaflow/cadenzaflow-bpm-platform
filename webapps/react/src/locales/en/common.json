@@ -60,5 +60,10 @@
   "DIAGRAM_ZOOM_RESET": "Reset zoom",
   "CAM_WIDGET_COPY": "Click to copy '{{value}}'",
   "COPIED": "Copied",
-  "SELECT_ALL": "Select all"
+  "SELECT_ALL": "Select all",
+  "CAM_WIDGET_FOOTER_POWERED_BY": "Powered by",
+  "CAM_WIDGET_FOOTER_TIMEZONE": "Date and Time displayed in local timezone:",
+  "DIRECTIVE_ENGINE_SELECT_MESSAGE_NOT_FOUND": "The process engine you are trying to access does not exist",
+  "PROCESS_ENGINE": "Process engine",
+  "DIRECTIVE_ENGINE_SELECT_TOOLTIP": "If you have multiple engines running you can select the process engine here. The data displayed in this application is based on the selected engine only."
 }

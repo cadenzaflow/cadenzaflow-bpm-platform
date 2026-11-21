@@ -36,12 +36,15 @@ const embeddedForm = `
   </script>
 </form>`;
 
-/** A minimal backend: login with demo/demo, one filter with one task. */
-function fakeBackend() {
+/** A minimal backend: login with demo/demo, one filter with one task; the process engines of the server. */
+function fakeBackend(engines = ['default']) {
   let loggedIn = false;
   const fetchMock = vi.fn(async (url: string, init: RequestInit = {}) => {
     const method = init.method ?? 'GET';
     const path = url.split('?')[0];
+    if (path === '/api/engine/engine/') {
+      return json(engines.map((name) => ({ name })));
+    }
     if (path === '/api/admin/auth/user/default') {
       return loggedIn ? json({ userId: 'demo', authorizedApps: ['cockpit', 'tasklist', 'welcome'] }) : json({}, 404);
     }
@@ -280,6 +283,66 @@ describe('webapp shell', () => {
     expect(await screen.findByRole('heading', { level: 1, name: 'Tasklist' })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'CadenzaFlow' })).toBeInTheDocument();
     expect(screen.getByRole('form', { name: 'Please Log in' })).toContainElement(screen.getByLabelText('Username'));
+  });
+
+  it('has the footer of the classic webapps: the time zone of the dates and the version', async () => {
+    fakeBackend();
+    renderApp('/app/react/tasklist/default');
+
+    // on the login page already
+    await screen.findByLabelText('Username');
+    const footer = within(screen.getByRole('contentinfo'));
+    expect(footer.getByText('Date and Time displayed in local timezone:', { exact: false })).toBeInTheDocument();
+    expect(footer.getByText(Intl.DateTimeFormat().resolvedOptions().timeZone)).toBeInTheDocument();
+    expect(footer.getByRole('link', { name: 'CadenzaFlow Platform' })).toHaveAttribute('href', 'https://cadenzaflow.org');
+    expect(footer.getByText(/^v\d+\.\d+\.\d+/)).toBeInTheDocument();
+
+    // and below the pages
+    await logIn();
+    expect(await screen.findByText('My tasks')).toBeInTheDocument();
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+    // one engine: nothing to select
+    expect(screen.queryByRole('button', { name: /Process engine/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole('navigation', { name: 'Process engine' })).not.toBeInTheDocument();
+  });
+});
+
+describe('a server with more than one process engine', () => {
+  it('names the engine on the login page and in the header, with links to the others', async () => {
+    fakeBackend(['default', 'second']);
+    renderApp('/app/react/tasklist/default');
+
+    // the login page says which engine it logs in to
+    const links = within(await screen.findByRole('navigation', { name: 'Process engine' }));
+    expect(links.getByText('default')).toHaveAttribute('aria-current', 'true');
+    expect(links.getByRole('link', { name: 'second' })).toHaveAttribute('href', '/app/react/tasklist/second/');
+
+    const user = await logIn();
+    const button = await screen.findByRole('button', { name: 'Process engine: default' });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    await user.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    // the same webapp of the other engine; the engine of the page is marked
+    const menu = within(screen.getByRole('list', { name: 'Process engine' }));
+    expect(menu.getByRole('link', { name: 'second' })).toHaveAttribute('href', '/app/react/tasklist/second/');
+    expect(menu.getByRole('link', { name: 'default' })).toHaveAttribute('aria-current', 'true');
+    expect(screen.getByText(/The data displayed in this application is based on the selected engine only/)).toBeInTheDocument();
+
+    // one menu at a time
+    await user.click(screen.getByRole('button', { name: 'Demo User' }));
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('says that the server does not have the engine of the URL, and links the ones it has', async () => {
+    fakeBackend(['default', 'second']);
+    renderApp('/app/react/tasklist/nope');
+
+    expect(await screen.findByText('The process engine you are trying to access does not exist')).toBeInTheDocument();
+    const links = within(screen.getByRole('navigation', { name: 'Process engine' }));
+    expect(links.getByRole('link', { name: 'default' })).toHaveAttribute('href', '/app/react/tasklist/default/');
+    expect(links.getByRole('link', { name: 'second' })).toHaveAttribute('href', '/app/react/tasklist/second/');
+    // nobody can log in to it
+    expect(screen.queryByLabelText('Username')).not.toBeInTheDocument();
   });
 });
 
