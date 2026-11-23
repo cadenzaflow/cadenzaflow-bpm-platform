@@ -1,7 +1,8 @@
 name: Distribution tests
 
 # Starts each distribution archive the way a user does and tests it: the REST
-# API and, in a browser, the classic and the React webapps (qa/e2e).
+# API and, in a browser, the classic and the React webapps (qa/e2e). Run is
+# tested a second time on PostgreSQL.
 #
 # Called by test.yml with the archives of the build, and by
 # CADENZAFLOW_RELEASE.yml with the archives of the release.
@@ -26,7 +27,7 @@ permissions:
 
 jobs:
   distribution:
-    name: ${{ matrix.distribution }} on Java ${{ matrix.java }}
+    name: ${{ matrix.distribution }} on Java ${{ matrix.java }}${{ matrix.database && format(' and {0}', matrix.database) || '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -47,6 +48,28 @@ jobs:
           - distribution: run4
             java: '21'
             authorization: 'false'
+          # Run once more on PostgreSQL instead of the H2 it ships with: the
+          # schema scripts of that database and the SQL of the webapps on it.
+          - distribution: run
+            java: '17'
+            authorization: 'false'
+            database: postgresql
+
+    services:
+      postgres:
+        # only for the entry that tests PostgreSQL: an empty image starts no service
+        image: ${{ matrix.database == 'postgresql' && 'postgres:16' || '' }}
+        env:
+          POSTGRES_USER: cadenzaflow
+          POSTGRES_PASSWORD: cadenzaflow
+          POSTGRES_DB: cadenzaflow
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U cadenzaflow"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
 
     defaults:
       run:
@@ -95,8 +118,36 @@ jobs:
           diff zip.txt tar.txt
           echo "$(wc -l < zip.txt) files in both archives"
 
+      # As a user does it: the JDBC driver goes into the distribution, the data
+      # source into its configuration (here through the environment). The
+      # driver is the version the platform is built and tested with.
+      - name: Point the distribution at PostgreSQL
+        if: ${{ matrix.database == 'postgresql' }}
+        run: |
+          version="$(grep -m1 -o '<version.postgresql>[^<]*' ../../database/pom.xml | cut -d'>' -f2)"
+          driver="${RUNNER_TEMP}/postgresql-${version}.jar"
+          central="https://repo1.maven.org/maven2/org/postgresql/postgresql/${version}/postgresql-${version}.jar"
+          curl -sSfL -o "$driver" "$central"
+          echo "$(curl -sSfL "${central}.sha1")  ${driver}" | sha1sum -c -
+          {
+            echo "E2E_USERLIB=${driver}"
+            echo "SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/cadenzaflow"
+            echo "SPRING_DATASOURCE_USERNAME=cadenzaflow"
+            echo "SPRING_DATASOURCE_PASSWORD=cadenzaflow"
+            echo "SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver"
+          } >> "$GITHUB_ENV"
+
       - name: Start the distribution
         run: env/start.sh "${ARCHIVE}.tar.gz"
+
+      - name: The engine created its tables in PostgreSQL
+        if: ${{ matrix.database == 'postgresql' }}
+        env:
+          PGPASSWORD: cadenzaflow
+        run: |
+          tables="$(psql -h localhost -U cadenzaflow -d cadenzaflow -tAc "select count(*) from information_schema.tables where table_name like 'act\_%'")"
+          echo "${tables} engine tables in PostgreSQL"
+          [ "$tables" -gt 40 ]
 
       - name: Test the distribution
         env:
@@ -113,7 +164,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: distribution-tests-${{ matrix.distribution }}-${{ github.run_id }}
+          name: distribution-tests-${{ matrix.distribution }}${{ matrix.database && format('-{0}', matrix.database) || '' }}-${{ github.run_id }}
           path: |
             qa/e2e/playwright-report/**
             qa/e2e/test-results/**

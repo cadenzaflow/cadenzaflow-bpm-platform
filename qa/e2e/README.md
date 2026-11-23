@@ -33,6 +33,7 @@ script the archive ships.
 | `E2E_SERVER` | the server, default `http://localhost:8080` |
 | `E2E_VERSION` | the version the distribution has to report |
 | `E2E_AUTHORIZATION` | `true` when the distribution checks authorizations (the Tomcat distributions), `false` when it does not (Run and Run 4 as shipped) |
+| `E2E_USERLIB` | for `env/start.sh`: files to add to the libraries of the distribution, e.g. a JDBC driver; Run takes its data source from `SPRING_DATASOURCE_URL`, `_USERNAME`, `_PASSWORD` and `_DRIVER_CLASS_NAME` |
 | `E2E_CHANNEL` | `msedge` or `chrome`: use that browser of the machine instead of the installed Chromium |
 
 The tests deploy their own processes (`tests/processes.ts`) once per engine

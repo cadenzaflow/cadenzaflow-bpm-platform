@@ -21,6 +21,18 @@ cd "$work"
 # the start scripts open the welcome page in a browser when they find one
 export BROWSER=/bin/true
 
+# Libraries a user adds to the distribution, e.g. the JDBC driver of another
+# database (E2E_USERLIB: files, separated by spaces). Run takes its data
+# source from SPRING_DATASOURCE_URL, _USERNAME, _PASSWORD and
+# _DRIVER_CLASS_NAME in the environment.
+for library in ${E2E_USERLIB:-}; do
+  if [ -d configuration/userlib ]; then
+    cp "$library" configuration/userlib/
+  else
+    cp "$library" server/apache-tomcat-*/lib/
+  fi
+done
+
 if [ -f start-cadenzaflow.sh ]; then
   kind=tomcat
   log=$(echo server/apache-tomcat-*/logs)/catalina.out
