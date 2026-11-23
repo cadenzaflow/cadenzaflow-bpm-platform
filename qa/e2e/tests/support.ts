@@ -11,6 +11,8 @@ export const runKey = (name: string) => `${name}-${Date.now().toString(36)}-${Ma
 export interface Variable {
   value: unknown;
   type?: string;
+  /** e.g. the file name and MIME type of a File */
+  valueInfo?: Record<string, unknown>;
 }
 
 /** The engine's REST API: what the tests prepare and what they check afterwards. */

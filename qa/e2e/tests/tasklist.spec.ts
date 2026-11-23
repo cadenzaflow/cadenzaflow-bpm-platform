@@ -88,7 +88,7 @@ test.describe('forms of the React Tasklist', () => {
       invoiceNumber: { value: key, type: 'String' },
       // the form offers the document as a download
       invoiceDocument: { value: Buffer.from('an invoice').toString('base64'), type: 'File', valueInfo: { filename: 'invoice.txt', mimeType: 'text/plain' } },
-    } as never);
+    });
     const [task] = await engine.tasks(instance);
     expect(task.name).toBe('Approve Invoice');
     const panel = await openTask(page, task.id);
