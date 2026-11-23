@@ -7,9 +7,9 @@ in a browser, the webapps. Nothing is mocked.
 | File | What it covers |
 | --- | --- |
 | `tests/distribution.spec.ts` | version, engine and example; a process over a user task, a gateway and an external task; a decision; a called process; a timer job; the classic and the React pages with their files; security headers; session, CSRF token and logout |
-| `tests/login.spec.ts` | login of the classic webapps and of the React webapps, deep links, logout |
+| `tests/login.spec.ts` | login of the classic webapps and of the React webapps, deep links, logout; the classic Tasklist completes a task, the classic Cockpit shows a definition and an instance |
 | `tests/tasklist.spec.ts` | React Tasklist: Camunda Forms, generic and embedded forms; due date, comment, candidate groups, assignee, history and diagram of a task; starting a process; creating a task; filters; search and sorting |
-| `tests/cockpit.spec.ts` | React Cockpit: dashboard, definition and instance pages, the diagram, variables, suspension, incidents and retries, called instances, user and external tasks, job definitions, history time to live, decisions, deployments, human tasks, batches |
+| `tests/cockpit.spec.ts` | React Cockpit: dashboard, definition and instance pages, the diagram, variables, suspension, incidents and retries, called instances, user and external tasks, job definitions, history time to live, decisions, deployments, human tasks, batches, tenants |
 | `tests/admin.spec.ts` | React Admin: users, groups, tenants, authorizations, system; the Welcome page |
 
 What a test does in the browser it checks at the engine through REST.

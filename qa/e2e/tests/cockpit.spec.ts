@@ -325,6 +325,47 @@ test.describe('the React Cockpit', () => {
     expect(await engine.get<unknown[]>(`/process-instance?businessKey=${name}`)).toHaveLength(0);
   });
 
+  test('shows the tenant of a process, and the same process of another tenant apart from it', async ({ page, request }) => {
+    const engine = new Engine(request);
+    // the same process for two tenants (ids of letters and digits, as the engine wants them)
+    const stamp = Date.now().toString(36);
+    const tenants = [`e2etenanta${stamp}`, `e2etenantb${stamp}`];
+    const key = `e2e-tenant-${stamp}`;
+    const deployments: string[] = [];
+    try {
+      for (const tenant of tenants) {
+        const deployed = await request.post(`${REST}/deployment/create`, {
+          multipart: {
+            'deployment-name': `${key}-${tenant}`,
+            'tenant-id': tenant,
+            file: { name: 'e2e-wait.bpmn', mimeType: 'application/octet-stream', buffer: Buffer.from(RESOURCES['e2e-wait.bpmn'].replaceAll('e2e-wait', key)) },
+          },
+        });
+        expect(deployed.status()).toBe(200);
+        deployments.push((await deployed.json()).id);
+      }
+      const instance = (await engine.post<{ id: string }>(`/process-definition/key/${key}/tenant-id/${tenants[1]}/start`, { businessKey: key }))!.id;
+
+      // the list has the process once per tenant
+      await open(page, `${COCKPIT}/processes`);
+      const rows = page.getByRole('row').filter({ hasText: key });
+      await expect(rows).toHaveCount(2);
+      await expect(rows.filter({ hasText: tenants[0] })).toHaveCount(1);
+      await expect(rows.filter({ hasText: tenants[1] })).toContainText('1');
+
+      // the definition of the second tenant, with its instance
+      await rows.filter({ hasText: tenants[1] }).getByRole('link').click();
+      const facts = page.getByRole('complementary');
+      await expect(facts.getByText(tenants[1], { exact: true })).toBeVisible();
+      await page.getByRole('tabpanel', { name: 'Process Instances' }).getByRole('link', { name: instance }).click();
+      await expect(page.getByRole('complementary').getByText(tenants[1], { exact: true })).toBeVisible();
+    } finally {
+      for (const id of deployments) {
+        await engine.delete(`/deployment/${id}?cascade=true&skipCustomListeners=true`);
+      }
+    }
+  });
+
   test('counts the human tasks as the engine does', async ({ page, request }) => {
     const engine = new Engine(request);
     const count = async (query: string) => (await engine.get<{ count: number }>(`/task/count?${query}`)).count;

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { open } from './support';
+import { Engine, open, runKey } from './support';
 
 async function logInClassic(page: Page, app: string) {
   await page.goto(`app/${app}/default/`);
@@ -31,6 +31,40 @@ test.describe('the classic webapps', () => {
 
     await page.goto('app/welcome/default/');
     await expect(page.getByRole('heading', { name: 'Applications' })).toBeVisible();
+  });
+});
+
+test.describe('the classic Tasklist and Cockpit at work', () => {
+  test('Tasklist: a task is claimed and completed', async ({ page, request }) => {
+    const engine = new Engine(request);
+    const key = runKey('classic');
+    const instance = await engine.start('e2e-plain', key);
+    const [task] = await engine.tasks(instance);
+    await logInClassic(page, 'tasklist');
+
+    await page.goto(`app/tasklist/default/#/?task=${task.id}`);
+    await expect(page.getByRole('heading', { name: 'Review request' })).toBeVisible();
+    await page.getByRole('button', { name: 'Claim' }).or(page.getByRole('link', { name: 'Claim' })).first().click();
+    await expect.poll(async () => (await engine.tasks(instance))[0]?.assignee).toBe('demo');
+    await page.getByRole('button', { name: 'Complete' }).click();
+
+    await expect.poll(() => engine.state(instance)).toBe('COMPLETED');
+  });
+
+  test('Cockpit: a process definition shows its diagram and its instances', async ({ page, request }) => {
+    const engine = new Engine(request);
+    const key = runKey('classic');
+    const instance = await engine.start('e2e-order', key);
+    await logInClassic(page, 'cockpit');
+
+    await page.goto(`app/cockpit/default/#/process-definition/${encodeURIComponent(await engine.definitionId('e2e-order'))}/runtime`);
+    await expect(page.locator('.djs-container [data-element-id="check"]')).toBeVisible();
+    await expect(page.getByRole('link', { name: instance })).toBeVisible();
+
+    await page.getByRole('link', { name: instance }).click();
+    await expect(page).toHaveURL(new RegExp(`process-instance/${instance}`));
+    await expect(page.locator('.djs-container [data-element-id="check"]')).toBeVisible();
+    await engine.removeInstances(key);
   });
 });
 
