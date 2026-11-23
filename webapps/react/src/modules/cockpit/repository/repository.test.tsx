@@ -14,6 +14,8 @@ const FORM = '<form><input cam-variable-name="amount"><script>alert(1)</script><
 
 function fakeBackend() {
   let loggedIn = false;
+  // dep-1 can be deleted; the engine knows nothing of it afterwards
+  let deleted = false;
   const fetchMock = vi.fn(async (url: string, init: RequestInit = {}) => {
     const method = init.method ?? 'GET';
     const [path] = url.split('?');
@@ -28,13 +30,21 @@ function fakeBackend() {
       return json({ id: 'demo', firstName: 'Demo', lastName: 'Demo' });
     }
     if (path === `${ENGINE}/deployment/count`) {
-      return json({ count: 2 });
+      return json({ count: deleted ? 1 : 2 });
     }
     if (path === `${ENGINE}/deployment`) {
-      return json([
-        { id: 'dep-1', name: 'invoice', deploymentTime: '2026-10-13T08:00:00.000+0000', source: 'process application', tenantId: null },
-        { id: 'dep-2', name: null, deploymentTime: '2026-10-12T08:00:00.000+0000', source: null, tenantId: null },
-      ]);
+      return json(
+        [
+          { id: 'dep-1', name: 'invoice', deploymentTime: '2026-10-13T08:00:00.000+0000', source: 'process application', tenantId: null },
+          { id: 'dep-2', name: null, deploymentTime: '2026-10-12T08:00:00.000+0000', source: null, tenantId: null },
+        ].slice(deleted ? 1 : 0),
+      );
+    }
+    if (path === `${ENGINE}/deployment/dep-2/resources`) {
+      return json([]);
+    }
+    if (deleted && path.startsWith(`${ENGINE}/deployment/dep-1/`)) {
+      return json({ type: 'InvalidRequestException', message: 'Deployment with id dep-1 does not exist' }, 404);
     }
     if (path === `${ENGINE}/deployment/dep-1/resources`) {
       return json([
@@ -57,6 +67,7 @@ function fakeBackend() {
       return json({ message: 'not found' }, 404);
     }
     if (path === `${ENGINE}/deployment/dep-1` && method === 'DELETE') {
+      deleted = true;
       return new Response(null, { status: 204 });
     }
     return json({ message: `unexpected ${method} ${url}` }, 500);
@@ -125,6 +136,13 @@ describe('cockpit deployments', () => {
       const deleted = fetchMock.mock.calls.find(([url, init]) => url.startsWith(`${ENGINE}/deployment/dep-1?`) && init?.method === 'DELETE');
       expect(deleted?.[0]).toContain('cascade=true&skipCustomListeners=true&skipIoMappings=true');
     });
+
+    // the deployment was the selected one: the next one is shown, and the engine is not asked for what is gone
+    await waitFor(() => expect(screen.getByRole('button', { name: /dep-2/ })).toHaveAttribute('aria-current', 'true'));
+    expect(screen.queryByRole('button', { name: /invoice.*Time:/ })).not.toBeInTheDocument();
+    const deletion = fetchMock.mock.calls.findIndex(([, init]) => init?.method === 'DELETE');
+    const afterwards = fetchMock.mock.calls.slice(deletion + 1).map(([url]) => url);
+    expect(afterwards.filter((url) => url.startsWith(`${ENGINE}/deployment/dep-1/`))).toEqual([]);
   });
 });
 

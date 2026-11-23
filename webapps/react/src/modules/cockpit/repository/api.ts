@@ -1,4 +1,4 @@
-import { skipToken, useMutation, useQuery } from '@tanstack/react-query';
+import { skipToken, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { engineUrl, request } from '../../../shared/api/client';
 import { useInvalidateCockpit } from '../incidents/api';
 
@@ -147,10 +147,15 @@ export interface DeleteOptions {
 }
 
 export function useDeleteDeployment(engine: string) {
+  const queryClient = useQueryClient();
   const invalidate = useInvalidateCockpit(engine);
   return useMutation({
     mutationFn: ({ id, options }: { id: string; options: DeleteOptions }) =>
       request<void>(engineUrl(engine, `/deployment/${segment(id)}`), { method: 'DELETE', query: { ...options } }),
+    // What was loaded of the deployment went with it: the reload below must
+    // not ask the engine for its resources again.
+    onSuccess: (_, { id }) =>
+      queryClient.removeQueries({ predicate: ({ queryKey }) => queryKey[0] === 'cockpit' && queryKey[1] === engine && queryKey.includes(id) }),
     onSettled: invalidate,
   });
 }
