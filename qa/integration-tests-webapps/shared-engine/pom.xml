@@ -507,6 +507,7 @@
               </dependenciesToScan>
               <systemPropertyVariables>
                 <selenium.screenshot.directory>${project.build.directory}/selenium-screenshots</selenium.screenshot.directory>
+                <chrome.version>${version.chrome}</chrome.version>
               </systemPropertyVariables>
             </configuration>
           </plugin>
