@@ -22,7 +22,9 @@ jobs:
   build-and-test:
     name: Build & test (push-trigger scope)
     runs-on: cadenzaflow-runner
-    timeout-minutes: 90
+    timeout-minutes: 120
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - name: Checkout
@@ -51,7 +53,7 @@ jobs:
             --fail-at-end \
             --threads 1C \
             -DskipITs \
-            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/integration-tests-webapps,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
+            -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
       # Uses what "Build & test" installed; the profile runs the *IT classes only.
       - name: Integration tests of the Spring Boot 4 starters
@@ -61,6 +63,62 @@ jobs:
             --fail-at-end \
             -f spring-boot-starter-4/pom.xml \
             -P integration-test-spring-boot-starter
+
+      # The Liquibase test is left out until the Liquibase changelog of the
+      # engine creates the schema again: it has no baseline change set and the
+      # test names a changelog file the engine does not ship.
+      - name: Integration tests of the Spring Boot 3 starters
+        run: |
+          ./mvnw verify \
+            --batch-mode \
+            --fail-at-end \
+            -f spring-boot-starter/pom.xml \
+            -P integration-test-spring-boot-starter \
+            -pl '!starter-qa/integration-test-liquibase'
+
+      # These start the Run distributions that "Build & test" assembled, with
+      # and without the REST API, the webapps and the example, and log in to
+      # the webapps in a browser (Selenium fetches Chrome for Testing).
+      - name: Integration tests of Run
+        run: |
+          ./mvnw verify \
+            --batch-mode \
+            --fail-at-end \
+            -f distro/run/pom.xml \
+            -P integration-test-cadenzaflow-run
+
+      - name: Integration tests of Run 4
+        run: |
+          ./mvnw verify \
+            --batch-mode \
+            --fail-at-end \
+            -f distro/run4/pom.xml \
+            -P integration-test-cadenzaflow-run
+
+      - name: Read the version of the build
+        id: version
+        run: echo "version=$(./mvnw -q help:evaluate -Dexpression=project.version -DforceStdout)" >> "$GITHUB_OUTPUT"
+
+      # for the distribution tests below
+      - name: Collect the distribution archives
+        run: |
+          mkdir -p distribution-archives
+          cp distro/tomcat/distro/target/cadenzaflow-bpm-tomcat-*.tar.gz \
+             distro/tomcat11/distro/target/cadenzaflow-bpm-tomcat11-*.tar.gz \
+             distro/run/distro/target/cadenzaflow-bpm-run-*.tar.gz \
+             distro/run4/distro/target/cadenzaflow-bpm-run4-*.tar.gz \
+             distribution-archives/
+          ls -la distribution-archives
+
+      - name: Upload the distribution archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: distributions-${{ github.run_id }}
+          path: distribution-archives/*.tar.gz
+          # the archives are compressed already
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
 
       - name: Upload Surefire reports
         if: always()
@@ -101,3 +159,13 @@ jobs:
             echo ""
             echo "_See **surefire-reports-${RUN_ID}** artifact for full XML._"
           } >> "$GITHUB_STEP_SUMMARY"
+
+  # Every distribution of this build is started and tested through its REST
+  # API and its webapps.
+  distributions:
+    name: Distribution
+    needs: build-and-test
+    uses: ./.github/workflows/distribution-tests.yml
+    with:
+      artifact: distributions-${{ github.run_id }}
+      version: ${{ needs.build-and-test.outputs.version }}

@@ -1,0 +1,123 @@
+name: Distribution tests
+
+# Starts each distribution archive the way a user does and tests it: the REST
+# API and, in a browser, the classic and the React webapps (qa/e2e).
+#
+# Called by test.yml with the archives of the build, and by
+# CADENZAFLOW_RELEASE.yml with the archives of the release.
+#
+# Runs on GitHub's runners: they have a browser's system libraries, and the
+# single self-hosted node stays free for the next build.
+
+on:
+  workflow_call:
+    inputs:
+      artifact:
+        description: 'Workflow artifact that holds the archives (cadenzaflow-bpm-<distribution>-<version>.tar.gz, optionally the .zip next to it)'
+        required: true
+        type: string
+      version:
+        description: 'The version the distributions have to report'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  distribution:
+    name: ${{ matrix.distribution }} on Java ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Java: the oldest version each distribution supports, and the newest once.
+          # authorization: whether the distribution checks authorizations as shipped.
+          - distribution: tomcat
+            java: '11'
+            authorization: 'true'
+          - distribution: tomcat11
+            java: '17'
+            authorization: 'true'
+          - distribution: run
+            java: '17'
+            authorization: 'false'
+          - distribution: run4
+            java: '21'
+            authorization: 'false'
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: qa/e2e
+
+    env:
+      ARCHIVE: ${{ github.workspace }}/archives/cadenzaflow-bpm-${{ matrix.distribution }}-${{ inputs.version }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the archives
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact }}
+          path: archives
+
+      - name: Set up Java ${{ matrix.java }} (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: qa/e2e/package-lock.json
+
+      - name: Install the tests and their browser
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: The zip archive holds what the tar.gz holds
+        run: |
+          if [ ! -f "${ARCHIVE}.zip" ]; then
+            echo "no zip archive in this build"
+            exit 0
+          fi
+          unzip -Z1 "${ARCHIVE}.zip" | grep -v '/$' | sort > zip.txt
+          tar -tzf "${ARCHIVE}.tar.gz" | grep -v '/$' | sort > tar.txt
+          diff zip.txt tar.txt
+          echo "$(wc -l < zip.txt) files in both archives"
+
+      - name: Start the distribution
+        run: env/start.sh "${ARCHIVE}.tar.gz"
+
+      - name: Test the distribution
+        env:
+          CI: 'true'
+          E2E_VERSION: ${{ inputs.version }}
+          E2E_AUTHORIZATION: ${{ matrix.authorization }}
+        run: npm test
+
+      - name: Stop the distribution and check its log
+        if: always()
+        run: env/stop.sh
+
+      - name: Upload the report and the server logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution-tests-${{ matrix.distribution }}-${{ github.run_id }}
+          path: |
+            qa/e2e/playwright-report/**
+            qa/e2e/test-results/**
+            qa/e2e/.work/distribution/run-console.log
+            qa/e2e/.work/distribution/server/apache-tomcat-*/logs/**
+          retention-days: 14
+          if-no-files-found: warn
