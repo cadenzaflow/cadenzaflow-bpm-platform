@@ -87,6 +87,7 @@ jobs:
     timeout-minutes: 240
     permissions:
       contents: write
+      actions: read
     outputs:
       version: ${{ steps.v.outputs.VERSION }}
       tag: ${{ steps.v.outputs.TAG }}
@@ -118,6 +119,23 @@ jobs:
           echo "TAG=$TAG"         >> "$GITHUB_OUTPUT"
           echo "MINOR=$MINOR"     >> "$GITHUB_OUTPUT"
           echo "Releasing version=$VERSION tag=$TAG (config.json key $MINOR)"
+
+      # The Test workflow builds this commit, runs every test and starts and
+      # tests each distribution. A commit that did not pass it is not released.
+      - name: Release gate - the Test workflow passed on this commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          SHA="$(git rev-parse HEAD)"
+          RUNS="$(curl -sS --fail -H "Authorization: Bearer ${GH_TOKEN}" -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/test.yml/runs?head_sha=${SHA}&status=success&per_page=1")"
+          COUNT="$(echo "$RUNS" | grep -m1 -o '"total_count"[[:space:]]*:[[:space:]]*[0-9]*' | grep -o '[0-9]*$' || true)"
+          if [ "${COUNT:-0}" -lt 1 ]; then
+            echo "::error::No successful run of the Test workflow for commit ${SHA}. Let it pass on this commit first, then release."
+            exit 1
+          fi
+          echo "The Test workflow passed on ${SHA}."
 
       - name: Set up JDK 17 (Eclipse Temurin)
         uses: actions/setup-java@v4
@@ -365,11 +383,25 @@ jobs:
             exit 1
           fi
 
+      # for the tests of the release archives (job verify_distributions)
+      - name: Upload the distribution archives for their tests
+        if: ${{ github.event.inputs.build_distros != 'false' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-distributions-${{ github.run_id }}
+          path: release-assets/*
+          # the archives are compressed already
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+
       - name: Create / publish GitHub Release with assets
         if: ${{ github.event.inputs.build_distros != 'false' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # The release is created as a pre-release: the job publish_release
+          # makes it a release once its archives passed their tests.
           # REST, not the gh CLI: this self-hosted runner image does not ship
           # gh ("gh: command not found"), unlike GitHub-hosted runners. curl is
           # present and the job token is enough for both calls.
@@ -384,7 +416,7 @@ jobs:
           if [ -z "${ID:-}" ]; then
             echo "Creating release $TAG"
             ID="$(curl -sS -X POST -H "$AUTH" -H 'Content-Type: application/json' \
-              -d "{\"tag_name\":\"$TAG\",\"name\":\"$TAG\",\"generate_release_notes\":true}" \
+              -d "{\"tag_name\":\"$TAG\",\"name\":\"$TAG\",\"generate_release_notes\":true,\"prerelease\":true}" \
               "$API/releases" | rel_id)"
           else
             echo "Reusing release $TAG (id $ID)"
@@ -534,9 +566,38 @@ jobs:
             echo "- Status: \`${{ job.status }}\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
+  # The archives of this release are started and tested: REST API and webapps,
+  # on the Java versions the distributions support.
+  verify_distributions:
+    name: Distribution
+    needs: release
+    if: ${{ github.event.inputs.build_distros != 'false' }}
+    uses: ./.github/workflows/distribution-tests.yml
+    with:
+      artifact: release-distributions-${{ github.run_id }}
+      version: ${{ needs.release.outputs.version }}
+
+  # Only a release whose archives passed their tests stops being a pre-release.
+  publish_release:
+    name: Publish the GitHub Release
+    needs: [release, verify_distributions]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Make the pre-release a release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ needs.release.outputs.tag }}
+        run: |
+          set -euo pipefail
+          ID="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${TAG}" --jq .id)"
+          # make_latest "legacy": GitHub marks it as the latest release when it is the newest version
+          gh api -X PATCH "repos/${GITHUB_REPOSITORY}/releases/${ID}" -F prerelease=false -f make_latest=legacy             --jq '"\(.tag_name): prerelease=\(.prerelease), draft=\(.draft)"'
+
   notify_download:
     name: Trigger downloads.cadenzaflow.com publish
-    needs: release
+    needs: [release, verify_distributions]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' || github.event.inputs.notify_download == 'true' }}
     steps:
