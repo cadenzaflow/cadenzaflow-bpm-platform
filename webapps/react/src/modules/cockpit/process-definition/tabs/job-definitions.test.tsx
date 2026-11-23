@@ -101,7 +101,7 @@ describe('the job definitions tab of a process definition', () => {
   it('suspends a job definition with its jobs at once', async () => {
     const calls = fakeBackend();
     renderTab();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(within(await rowOf('Prepare Bank Transfer')).getByRole('button', { name: 'Suspend Job Definition' }));
     const dialog = screen.getByRole('dialog');
@@ -115,7 +115,7 @@ describe('the job definitions tab of a process definition', () => {
   it('activates a suspended job definition later, leaving its jobs as they are', async () => {
     const calls = fakeBackend();
     renderTab();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(within(await rowOf('Wait a week')).getByRole('button', { name: 'Activate Job Definition' }));
     const dialog = screen.getByRole('dialog');
@@ -142,7 +142,7 @@ describe('the job definitions tab of a process definition', () => {
   it('overrides the priority of the jobs, of the existing ones too', async () => {
     const calls = fakeBackend();
     renderTab();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(within(await rowOf('Wait a week')).getByRole('button', { name: 'Change Overriding Job Priority' }));
     const dialog = screen.getByRole('dialog');
@@ -164,7 +164,7 @@ describe('the job definitions tab of a process definition', () => {
   it('clears an overriding priority', async () => {
     const calls = fakeBackend();
     renderTab();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(within(await rowOf('Prepare Bank Transfer')).getByRole('button', { name: 'Change Overriding Job Priority' }));
     const dialog = screen.getByRole('dialog');

@@ -13,6 +13,9 @@ beforeAll(() => initI18n('en'));
 
 afterEach(() => vi.unstubAllGlobals());
 
+// whole dialogs are typed in: that takes its time when the tests of the build run in parallel
+vi.setConfig({ testTimeout: 40_000 });
+
 const ENGINE = '/api/engine/engine/default';
 
 interface Call {
@@ -78,7 +81,7 @@ describe('FilterModal', () => {
   it('creates a filter with criteria, a shown variable and read permissions', async () => {
     const calls = fakeBackend();
     const { onSaved } = renderModal(null);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.type(screen.getByLabelText('Name'), ' Sales ');
     await user.type(screen.getByLabelText('Description'), 'Tasks of sales');
@@ -135,7 +138,7 @@ describe('FilterModal', () => {
   it('saves criteria that match any of them as an OR query', async () => {
     const calls = fakeBackend();
     const { onSaved } = renderModal(null);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.type(screen.getByLabelText('Name'), 'Open');
     await user.click(screen.getByRole('button', { name: 'Add criterion' }));
@@ -155,7 +158,7 @@ describe('FilterModal', () => {
   it('does not save while the name, the priority or a criterion is invalid', async () => {
     const calls = fakeBackend();
     renderModal(null);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(screen.getByRole('button', { name: 'Add criterion' }));
     await user.selectOptions(screen.getAllByLabelText('Key')[0], 'minPriority');
@@ -180,7 +183,7 @@ describe('FilterModal', () => {
   it('shows a stored filter and changes it, taking the read permission from a removed user', async () => {
     const calls = fakeBackend([grant('a-1', { userId: 'john' }), grant('a-2', { groupId: 'sales' }, ['READ', 'UPDATE'])]);
     const { onSaved } = renderModal(myTasks);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     expect(screen.getByLabelText('Name', { selector: '#cz-filter-name' })).toHaveValue('My tasks');
     expect(screen.getByLabelText('Priority')).toHaveValue('5');
@@ -213,7 +216,7 @@ describe('FilterModal', () => {
   it('refuses a user who may read the filter already', async () => {
     fakeBackend([grant('a-1', { userId: 'john' })]);
     renderModal(myTasks);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await screen.findByText('john');
     await user.type(screen.getByPlaceholderText('User ID'), 'john');
@@ -225,7 +228,7 @@ describe('FilterModal', () => {
   it('leaves the permissions alone when the user may not read them', async () => {
     const calls = fakeBackend('forbidden');
     const { onSaved } = renderModal(myTasks);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     expect(await screen.findByText(/In order to edit the read permissions/)).toBeInTheDocument();
     expect(screen.queryByLabelText('Accessible by all users')).not.toBeInTheDocument();
@@ -238,7 +241,7 @@ describe('FilterModal', () => {
   it('deletes the filter only after the warning was confirmed', async () => {
     const calls = fakeBackend();
     const { onDeleted } = renderModal(myTasks);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(screen.getByRole('button', { name: 'Delete filter' }));
     expect(screen.getByText(/Deleting the filter cannot be undone/)).toBeInTheDocument();

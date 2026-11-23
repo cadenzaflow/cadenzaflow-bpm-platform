@@ -76,7 +76,7 @@ describe('the assignee of a task', () => {
   it('is the user who claims an unassigned task', async () => {
     const calls = fakeBackend();
     inApp(<AssigneeField engine="default" details={details(null)} />);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     expect(screen.getByText('Assignee: Unassigned')).toBeInTheDocument();
     await user.click(await screen.findByRole('button', { name: 'Claim' }));
@@ -87,7 +87,7 @@ describe('the assignee of a task', () => {
   it('gives the task back when the user unclaims it', async () => {
     const calls = fakeBackend();
     inApp(<AssigneeField engine="default" details={details('demo')} />);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(await screen.findByRole('button', { name: 'Unclaim' }));
 
@@ -99,7 +99,7 @@ describe('the assignee of a task', () => {
   it('shows the name of another assignee and takes the task away from them', async () => {
     const calls = fakeBackend();
     inApp(<AssigneeField engine="default" details={details('mary')} />);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     expect(screen.getByText('Assignee: Mary Anne')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Reset assignee' }));
@@ -111,7 +111,7 @@ describe('the assignee of a task', () => {
   it('gives the task to another user, who has to exist', async () => {
     const calls = fakeBackend();
     inApp(<AssigneeField engine="default" details={details('demo')} />);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(screen.getByRole('button', { name: 'Change assignee' }));
     const field = screen.getByPlaceholderText('Assignee');
@@ -134,7 +134,7 @@ describe('the assignee of a task', () => {
   it('leaves the assignee as it is when the change is cancelled', async () => {
     const calls = fakeBackend();
     inApp(<AssigneeField engine="default" details={details('demo')} />);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(screen.getByRole('button', { name: 'Change assignee' }));
     await user.type(screen.getByPlaceholderText('Assignee'), 'x');
@@ -171,7 +171,7 @@ describe('the candidate groups of a task', () => {
   it('are added and removed in the dialog, none twice', async () => {
     const calls = fakeBackend(['accounting']);
     renderGroups();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await user.click(await screen.findByRole('button', { name: 'Manage Groups' }));
     const dialog = within(screen.getByRole('dialog'));

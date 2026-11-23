@@ -81,7 +81,7 @@ describe('a Camunda Form in the Tasklist', () => {
   it('shows the variables of the task and completes it with what the user entered', async () => {
     fakeBackend();
     const { submit } = renderForm();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     const creditor = await screen.findByLabelText(/Creditor/);
     expect(creditor).toHaveValue('Great Pizza for Everyone Inc.');
@@ -98,7 +98,7 @@ describe('a Camunda Form in the Tasklist', () => {
   it('does not complete the task while a required field is empty', async () => {
     fakeBackend();
     const { submit } = renderForm();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     enter(await screen.findByLabelText(/Creditor/), '');
     await user.click(screen.getByRole('button', { name: 'Complete' }));
@@ -110,7 +110,7 @@ describe('a Camunda Form in the Tasklist', () => {
   it('keeps a draft in the browser and drops it once the task is completed', async () => {
     fakeBackend();
     const first = renderForm();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     // nothing to save before the user changed something
     await screen.findByLabelText(/Creditor/);

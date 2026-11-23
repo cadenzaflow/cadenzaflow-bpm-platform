@@ -58,7 +58,7 @@ describe('the history time to live of a definition', () => {
   it('is set to another number of days', async () => {
     const calls = fakeBackend();
     renderValue(null);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     expect(screen.getByText('null')).toBeInTheDocument();
     const dialog = await openDialog(user);
@@ -76,7 +76,7 @@ describe('the history time to live of a definition', () => {
   it('refuses a negative number of days', async () => {
     const calls = fakeBackend();
     renderValue(30);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     const dialog = await openDialog(user);
     fireEvent.change(dialog.getByRole('spinbutton'), { target: { value: '-1' } });
@@ -88,7 +88,7 @@ describe('the history time to live of a definition', () => {
   it('is cleared', async () => {
     const calls = fakeBackend();
     renderValue(30);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     const dialog = await openDialog(user);
     await user.click(dialog.getByLabelText('Clear Value'));
@@ -102,7 +102,7 @@ describe('the history time to live of a definition', () => {
   it('keeps the dialog open and says why when the engine refuses the change', async () => {
     fakeBackend(404);
     renderValue(30);
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     const dialog = await openDialog(user);
     await user.click(dialog.getByRole('button', { name: 'Save' }));

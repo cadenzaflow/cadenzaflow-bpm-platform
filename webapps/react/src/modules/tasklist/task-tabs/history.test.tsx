@@ -105,7 +105,7 @@ describe('the history tab of a task', () => {
   it('pages through a long history; the comments come with the first page only', async () => {
     const requests = fakeBackend(operations, 120);
     renderTab();
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
 
     await screen.findByText('Claim');
     await user.click(screen.getByRole('button', { name: /2/ }));
