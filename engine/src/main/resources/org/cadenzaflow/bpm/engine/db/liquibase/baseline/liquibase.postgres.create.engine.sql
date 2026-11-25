@@ -41,9 +41,6 @@ insert into ACT_GE_PROPERTY
 values ('startup.lock', '0', 1);
 
 insert into ACT_GE_PROPERTY
-values ('telemetry.lock', '0', 1);
-
-insert into ACT_GE_PROPERTY
 values ('installationId.lock', '0', 1);
 
 create table ACT_GE_BYTEARRAY (
@@ -69,7 +66,7 @@ create table ACT_GE_SCHEMA_LOG (
 );
 
 insert into ACT_GE_SCHEMA_LOG
-values ('0', CURRENT_TIMESTAMP, '7.16.0');
+values ('0', CURRENT_TIMESTAMP, '1.0.0');
 
 create table ACT_RE_DEPLOYMENT (
     ID_ varchar(64),
@@ -101,17 +98,19 @@ create table ACT_RU_EXECUTION (
     CACHED_ENT_STATE_ integer,
     SEQUENCE_COUNTER_ bigint,
     TENANT_ID_ varchar(64),
+    PROC_DEF_KEY_ varchar(255),
     primary key (ID_)
 );
 
 create table ACT_RU_JOB (
     ID_ varchar(64) NOT NULL,
-	  REV_ integer,
+    REV_ integer,
     TYPE_ varchar(255) NOT NULL,
     LOCK_EXP_TIME_ timestamp,
     LOCK_OWNER_ varchar(255),
     EXCLUSIVE_ boolean,
     EXECUTION_ID_ varchar(64),
+    ROOT_PROC_INST_ID_ varchar(64),
     PROCESS_INSTANCE_ID_ varchar(64),
     PROCESS_DEF_ID_ varchar(64),
     PROCESS_DEF_KEY_ varchar(255),
@@ -131,6 +130,8 @@ create table ACT_RU_JOB (
     SEQUENCE_COUNTER_ bigint,
     TENANT_ID_ varchar(64),
     CREATE_TIME_ timestamp,
+    LAST_FAILURE_LOG_ID_ varchar(64),
+    BATCH_ID_ varchar(64),
     primary key (ID_)
 );
 
@@ -197,10 +198,12 @@ create table ACT_RU_TASK (
     DELEGATION_ varchar(64),
     PRIORITY_ integer,
     CREATE_TIME_ timestamp,
+    LAST_UPDATED_ timestamp,
     DUE_DATE_ timestamp,
     FOLLOW_UP_DATE_ timestamp,
     SUSPENSION_STATE_ integer,
     TENANT_ID_ varchar(64),
+    TASK_STATE_ varchar(64),
     primary key (ID_)
 );
 
@@ -325,6 +328,7 @@ create table ACT_RU_EXT_TASK (
   ERROR_MSG_ varchar(4000),
   ERROR_DETAILS_ID_ varchar(64),
   LOCK_EXP_TIME_ timestamp,
+  CREATE_TIME_ timestamp,
   SUSPENSION_STATE_ integer,
   EXECUTION_ID_ varchar(64),
   PROC_INST_ID_ varchar(64),
@@ -334,6 +338,7 @@ create table ACT_RU_EXT_TASK (
   ACT_INST_ID_ varchar(64),
   TENANT_ID_ varchar(64),
   PRIORITY_ bigint NOT NULL DEFAULT 0,
+  LAST_FAILURE_LOG_ID_ varchar(64),
   primary key (ID_)
 );
 
@@ -352,6 +357,8 @@ create table ACT_RU_BATCH (
   CONFIGURATION_ varchar(255),
   TENANT_ID_ varchar(64),
   CREATE_USER_ID_ varchar(255),
+  START_TIME_ timestamp,
+  EXEC_START_TIME_ timestamp,
   primary key (ID_)
 );
 
@@ -359,6 +366,7 @@ create index ACT_IDX_EXE_ROOT_PI on ACT_RU_EXECUTION(ROOT_PROC_INST_ID_);
 create index ACT_IDX_EXEC_BUSKEY on ACT_RU_EXECUTION(BUSINESS_KEY_);
 create index ACT_IDX_EXEC_TENANT_ID on ACT_RU_EXECUTION(TENANT_ID_);
 create index ACT_IDX_TASK_CREATE on ACT_RU_TASK(CREATE_TIME_);
+create index ACT_IDX_TASK_LAST_UPDATED on ACT_RU_TASK(LAST_UPDATED_);
 create index ACT_IDX_TASK_ASSIGNEE on ACT_RU_TASK(ASSIGNEE_);
 create index ACT_IDX_TASK_OWNER on ACT_RU_TASK(OWNER_);
 create index ACT_IDX_TASK_TENANT_ID on ACT_RU_TASK(TENANT_ID_);
@@ -377,6 +385,7 @@ create index ACT_IDX_INC_TENANT_ID on ACT_RU_INCIDENT(TENANT_ID_);
 create index ACT_IDX_JOB_EXECUTION_ID on ACT_RU_JOB(EXECUTION_ID_);
 create index ACT_IDX_JOB_HANDLER on ACT_RU_JOB(HANDLER_TYPE_,HANDLER_CFG_);
 create index ACT_IDX_JOB_PROCINST on ACT_RU_JOB(PROCESS_INSTANCE_ID_);
+create index ACT_IDX_JOB_ROOT_PROCINST on ACT_RU_JOB(ROOT_PROC_INST_ID_);
 create index ACT_IDX_JOB_TENANT_ID on ACT_RU_JOB(TENANT_ID_);
 create index ACT_IDX_JOBDEF_TENANT_ID on ACT_RU_JOBDEF(TENANT_ID_);
 

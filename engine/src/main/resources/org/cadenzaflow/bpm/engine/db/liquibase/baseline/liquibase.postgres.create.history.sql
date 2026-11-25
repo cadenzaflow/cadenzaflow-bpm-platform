@@ -35,6 +35,7 @@ create table ACT_HI_PROCINST (
     DELETE_REASON_ varchar(4000),
     TENANT_ID_ varchar(64),
     STATE_ varchar(255),
+    RESTARTED_PROC_INST_ID_ varchar(64),
     primary key (ID_),
     unique (PROC_INST_ID_)
 );
@@ -91,6 +92,7 @@ create table ACT_HI_TASKINST (
     FOLLOW_UP_DATE_ timestamp,
     TENANT_ID_ varchar(64),
     REMOVAL_TIME_ timestamp,
+    TASK_STATE_ varchar(64),
     primary key (ID_)
 );
 
@@ -184,6 +186,7 @@ create table ACT_HI_COMMENT (
     FULL_MSG_ bytea,
     TENANT_ID_ varchar(64),
     REMOVAL_TIME_ timestamp,
+    REV_ integer not null default 1,
     primary key (ID_)
 );
 
@@ -286,6 +289,7 @@ create table ACT_HI_JOB_LOG (
     TENANT_ID_ varchar(64),
     HOSTNAME_ varchar(255),
     REMOVAL_TIME_ timestamp,
+    BATCH_ID_ varchar(64),
     primary key (ID_)
 );
 
@@ -303,6 +307,7 @@ create table ACT_HI_BATCH (
     START_TIME_ timestamp not null,
     END_TIME_ timestamp,
     REMOVAL_TIME_ timestamp,
+    EXEC_START_TIME_ timestamp,
     primary key (ID_)
 );
 
@@ -337,6 +342,7 @@ create index ACT_IDX_HI_PRO_INST_PROC_TIME on ACT_HI_PROCINST(START_TIME_, END_T
 create index ACT_IDX_HI_PI_PDEFID_END_TIME on ACT_HI_PROCINST(PROC_DEF_ID_, END_TIME_);
 create index ACT_IDX_HI_PRO_INST_ROOT_PI on ACT_HI_PROCINST(ROOT_PROC_INST_ID_);
 create index ACT_IDX_HI_PRO_INST_RM_TIME on ACT_HI_PROCINST(REMOVAL_TIME_);
+create index ACT_IDX_HI_PRO_RST_PRO_INST_ID on ACT_HI_PROCINST(RESTARTED_PROC_INST_ID_);
 
 create index ACT_IDX_HI_ACTINST_ROOT_PI on ACT_HI_ACTINST(ROOT_PROC_INST_ID_);
 create index ACT_IDX_HI_ACT_INST_START_END on ACT_HI_ACTINST(START_TIME_, END_TIME_);
@@ -391,6 +397,8 @@ create index ACT_IDX_HI_VAR_INST_PROC_DEF_KEY on ACT_HI_VARINST(PROC_DEF_KEY_);
 create index ACT_IDX_HI_VARINST_BYTEAR on ACT_HI_VARINST(BYTEARRAY_ID_);
 create index ACT_IDX_HI_VARINST_RM_TIME on ACT_HI_VARINST(REMOVAL_TIME_);
 create index ACT_IDX_HI_VAR_PI_NAME_TYPE on ACT_HI_VARINST(PROC_INST_ID_, NAME_, VAR_TYPE_);
+create index ACT_IDX_HI_VARINST_NAME on ACT_HI_VARINST(NAME_);
+create index ACT_IDX_HI_VARINST_ACT_INST_ID on ACT_HI_VARINST(ACT_INST_ID_);
 
 create index ACT_IDX_HI_INCIDENT_TENANT_ID on ACT_HI_INCIDENT(TENANT_ID_);
 create index ACT_IDX_HI_INCIDENT_PROC_DEF_KEY on ACT_HI_INCIDENT(PROC_DEF_KEY_);

@@ -17,22 +17,28 @@
 package org.cadenzaflow.bpm.sql.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assume.assumeTrue;
 
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import liquibase.Contexts;
+import liquibase.LabelExpression;
 import liquibase.Liquibase;
 import liquibase.change.Change;
 import liquibase.change.core.SQLFileChange;
 import liquibase.changelog.ChangeSet;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
+import liquibase.database.jvm.JdbcConnection;
 import liquibase.diff.DiffGeneratorFactory;
 import liquibase.diff.DiffResult;
 import liquibase.diff.ObjectDifferences;
@@ -55,6 +61,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SqlScriptTest {
+
+  protected static final String CHANGELOG = "cadenzaflow-changelog.xml";
 
   /*
    * The following unique constraints are present on both databases (manual and
@@ -120,7 +128,42 @@ public class SqlScriptTest {
   }
 
   @Test
+  public void shouldLeaveSchemaOfCreateScriptsAsItIsOnceSyncedToItsVersion() throws Exception {
+    // given a schema installed with the SQL scripts
+    executeSqlScript("create", "engine");
+    executeSqlScript("create", "identity");
+    // where creating a table is part of a transaction, the schema is there for Liquibase once it is committed
+    database.commit();
+    DatabaseSnapshot snapshotScripts = createCurrentDatabaseSnapshot();
+    String schemaVersion = getSchemaVersion();
+
+    // when it is handed over to Liquibase: synced to the tag of its version, then updated
+    liquibase.changeLogSync(schemaVersion, new Contexts(), new LabelExpression());
+    liquibase.update(new Contexts());
+
+    // then the changelog has a tag for this version and nothing was left to apply
+    assertThat(liquibase.tagExists(schemaVersion))
+        .withFailMessage("The changelog has no tag for the schema version %s", schemaVersion)
+        .isTrue();
+    assertThat(getSchemaVersion()).isEqualTo(schemaVersion);
+
+    DatabaseSnapshot snapshotSynced = createCurrentDatabaseSnapshot();
+    DiffResult diffResult = databaseDiffer.compare(snapshotScripts, snapshotSynced, new CompareControl());
+    List<ChangeSet> changeSetsToApply = new DiffToChangeLog(diffResult, new CustomDiffOutputControl())
+        .generateChangeSets();
+
+    assertThat(changeSetsToApply)
+        .withFailMessage("Liquibase changed a schema that was up to date: %s", getChanges(changeSetsToApply))
+        .isEmpty();
+  }
+
+  @Test
   public void shouldEqualOldUpgradedAndNewCreatedViaLiquibase() throws Exception {
+    // the releases up to 1.3.0 ship a changelog that cannot install a schema
+    // (and under another file name), so there is no installation of them to update
+    assumeTrue("The old release ships no changelog that installs a schema",
+        getClass().getClassLoader().getResource("scripts-old/sql/liquibase/" + CHANGELOG) != null);
+
     try (Liquibase liquibaseOld = getLiquibase("scripts-old/", getDatabase())) {
       // given
       liquibase.update(new Contexts());
@@ -213,7 +256,25 @@ public class SqlScriptTest {
   }
 
   protected static Liquibase getLiquibase(String baseDirectory, Database database) throws URISyntaxException {
-    return new Liquibase("cadenzaflow-changelog.xml", getAccessorForChangelogDirectory(baseDirectory), database);
+    return new Liquibase(CHANGELOG, getAccessorForChangelogDirectory(baseDirectory), database);
+  }
+
+  /** The version of the row with the highest ID in ACT_GE_SCHEMA_LOG, as the manual tells the user to read it. */
+  protected String getSchemaVersion() throws Exception {
+    Connection connection = ((JdbcConnection) database.getConnection()).getUnderlyingConnection();
+    try (Statement statement = connection.createStatement();
+         ResultSet rows = statement.executeQuery("select ID_, VERSION_ from ACT_GE_SCHEMA_LOG")) {
+      int highestId = -1;
+      String version = null;
+      while (rows.next()) {
+        int id = Integer.parseInt(rows.getString(1));
+        if (id > highestId) {
+          highestId = id;
+          version = rows.getString(2);
+        }
+      }
+      return version;
+    }
   }
 
   protected static FileSystemResourceAccessor getAccessorForChangelogDirectory(String baseDirectory) throws URISyntaxException {
