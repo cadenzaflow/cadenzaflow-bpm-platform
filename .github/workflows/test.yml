@@ -55,6 +55,17 @@ jobs:
             -DskipITs \
             -pl '!qa/integration-tests-engine,!qa/integration-tests-engine-jakarta,!qa/test-db-instance-migration,!qa/test-db-rolling-update,!qa/test-old-engine,!qa/large-data-tests,!qa/performance-tests-engine,!qa/tomcat-runtime,!qa/tomcat9-runtime,!qa/wildfly-runtime,!qa/wildfly26-runtime'
 
+      # Installs the schema with the Liquibase changelog and with the SQL
+      # scripts, on H2, and compares the two; the same for a schema of the
+      # previous minor release after its upgrade scripts. The profile fetches
+      # the SQL scripts of that release.
+      - name: Tests of the SQL scripts and the Liquibase changelog
+        run: |
+          ./mvnw verify \
+            --batch-mode \
+            -f distro/sql-script/pom.xml \
+            -P check-sql,h2
+
       # Uses what "Build & test" installed; the profile runs the *IT classes only.
       - name: Integration tests of the Spring Boot 4 starters
         run: |
@@ -64,17 +75,13 @@ jobs:
             -f spring-boot-starter-4/pom.xml \
             -P integration-test-spring-boot-starter
 
-      # The Liquibase test is left out until the Liquibase changelog of the
-      # engine creates the schema again: it has no baseline change set and the
-      # test names a changelog file the engine does not ship.
       - name: Integration tests of the Spring Boot 3 starters
         run: |
           ./mvnw verify \
             --batch-mode \
             --fail-at-end \
             -f spring-boot-starter/pom.xml \
-            -P integration-test-spring-boot-starter \
-            -pl '!starter-qa/integration-test-liquibase'
+            -P integration-test-spring-boot-starter
 
       # These start the Run distributions that "Build & test" assembled, with
       # and without the REST API, the webapps and the example, and log in to
