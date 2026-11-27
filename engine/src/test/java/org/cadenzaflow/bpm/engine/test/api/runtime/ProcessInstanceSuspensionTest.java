@@ -26,12 +26,16 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.assertj.core.api.SoftAssertions;
 import org.cadenzaflow.bpm.engine.BadUserRequestException;
 import org.cadenzaflow.bpm.engine.ProcessEngineException;
 import org.cadenzaflow.bpm.engine.SuspendedEntityInteractionException;
 import org.cadenzaflow.bpm.engine.externaltask.ExternalTask;
 import org.cadenzaflow.bpm.engine.impl.history.HistoryLevel;
+import org.cadenzaflow.bpm.engine.impl.persistence.entity.SuspensionState;
+import org.cadenzaflow.bpm.engine.impl.persistence.entity.TaskEntity;
 import org.cadenzaflow.bpm.engine.impl.util.ClockUtil;
 import org.cadenzaflow.bpm.engine.repository.ProcessDefinition;
 import org.cadenzaflow.bpm.engine.runtime.EventSubscription;
@@ -2224,6 +2228,34 @@ public class ProcessInstanceSuspensionTest extends PluggableProcessEngineTest {
 
     // then
     assertTrue(job.isSuspended());
+  }
+
+  @Deployment(resources={"org/cadenzaflow/bpm/engine/test/api/runtime/oneTaskProcess.bpmn20.xml"})
+  @Test
+  public void testTaskSuspensionUpdateByProcessInstanceIdAndProcessDefinitionIdSuspendsOnlyTheMatchingTask() {
+    // given
+    ProcessInstance instanceOne = runtimeService.startProcessInstanceByKey("oneTaskProcess");
+    ProcessInstance instanceTwo = runtimeService.startProcessInstanceByKey("oneTaskProcess");
+
+    Map<String, Object> parameters = new HashMap<>();
+    parameters.put("processInstanceId", instanceOne.getId());
+    parameters.put("processDefinitionId", instanceOne.getProcessDefinitionId());
+    parameters.put("suspensionState", SuspensionState.SUSPENDED.getStateCode());
+
+    // when the task suspension update gets two criteria, which no engine caller sets today
+    processEngineConfiguration.getCommandExecutorTxRequired().execute(commandContext -> {
+      commandContext.getDbEntityManager().update(TaskEntity.class, "updateTaskSuspensionStateByParameters",
+          commandContext.getTenantManager().configureQuery(parameters));
+      return null;
+    });
+
+    // then only the task that matches both criteria is suspended
+    Task taskOne = taskService.createTaskQuery().processInstanceId(instanceOne.getId()).singleResult();
+    Task taskTwo = taskService.createTaskQuery().processInstanceId(instanceTwo.getId()).singleResult();
+    SoftAssertions softly = new SoftAssertions();
+    softly.assertThat(taskOne.isSuspended()).isTrue();
+    softly.assertThat(taskTwo.isSuspended()).isFalse();
+    softly.assertAll();
   }
 
 }
