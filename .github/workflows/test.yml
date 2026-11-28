@@ -46,6 +46,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      # The browser tests of the integration test steps start a headless
+      # Chrome for Testing that Selenium fetches. The image of the runner
+      # (Ubuntu 24.04) has none of the system libraries Chrome and its driver
+      # link to, so the driver ends with exit value 127. This step runs before
+      # the build, so a runner that cannot install them fails at once.
+      - name: Install the libraries of headless Chrome
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            libnss3 libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libdrm2 \
+            libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
+            libgbm1 libasound2t64 libpango-1.0-0 libcairo2 fonts-liberation
+
       - name: Build & test
         run: |
           ./mvnw clean install \
