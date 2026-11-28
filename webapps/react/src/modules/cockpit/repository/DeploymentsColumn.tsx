@@ -168,7 +168,15 @@ export function DeploymentsColumn({ engine, search, onSearchChange, onSelect }: 
           onChange={(index: number) => onSearchChange({ page: index > 0 ? index + 1 : undefined })}
         />
       )}
-      {deleting && <DeleteDeploymentModal engine={engine} deployment={deleting} onClose={() => setDeleting(null)} />}
+      {deleting && (
+        <DeleteDeploymentModal
+          engine={engine}
+          deployment={deleting}
+          // the selected deployment is gone: nothing is selected until the list is there again
+          onDeleted={() => deleting.id === search.deployment && onSelect(undefined, true)}
+          onClose={() => setDeleting(null)}
+        />
+      )}
     </section>
   );
 }

@@ -14,14 +14,10 @@
   <packaging>pom</packaging>
 
   <properties>
-    <!-- default os -->
-    <os.type>linux64</os.type>
-
     <version.jersey-json>1.15</version.jersey-json>
     <version.jersey-apache-client>1.15</version.jersey-apache-client>
     <version.httpcomponents>5.3.1</version.httpcomponents>
     <version.junit>4.13.1</version.junit>
-    <version.chromedriver>112.0.5615.49</version.chromedriver>
   </properties>
 
   <dependencyManagement>
@@ -38,7 +34,7 @@
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
-        <version>4.10.0</version>
+        <version>${version.selenium}</version>
       </dependency>
 
       <!-- using 4.13 in order to have @BeforeParam/@AfterParam for parameterized 

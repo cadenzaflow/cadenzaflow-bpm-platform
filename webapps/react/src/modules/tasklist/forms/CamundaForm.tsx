@@ -78,7 +78,18 @@ export default function CamundaForm({
     const { schema, variables } = loaded.data;
     const instance = new Form({ container: container.current });
     form.current = instance;
-    instance.on('changed', () => setDirty(true));
+    // form-js fires 'changed' for every state change, also for the import
+    // itself and for properties like "disabled": only changed data counts,
+    // and only once the form is there.
+    let imported = false;
+    let shown = '';
+    instance.on('changed', ({ data }: { data: Record<string, unknown> }) => {
+      const now = JSON.stringify(data);
+      if (imported && now !== shown) {
+        setDirty(true);
+      }
+      shown = now;
+    });
     // fired by our Complete button and by submit buttons inside the form
     instance.on('submit', ({ data, errors }: { data: Record<string, unknown>; errors: Record<string, unknown> }) => {
       const { submit: send, disabled: off, submitting: busy } = latest.current;
@@ -87,7 +98,13 @@ export default function CamundaForm({
       }
       send(toSubmitVariables(data, variables, schema)).then((sent) => sent && writeDraft(draft, null));
     });
-    instance.importSchema(schema, { ...toFormData(variables, schema), ...readDraft(draft) });
+    instance.importSchema(schema, { ...toFormData(variables, schema), ...readDraft(draft) }).then(
+      () => {
+        imported = true;
+      },
+      // form-js shows what is wrong with the schema itself
+      () => {},
+    );
     return () => {
       instance.destroy();
       form.current = null;

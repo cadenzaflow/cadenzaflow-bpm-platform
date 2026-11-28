@@ -125,6 +125,7 @@ function fakeBackend() {
     if (
       (path === `${ENGINE}/group/sales/members/mary` && method === 'PUT') ||
       path === `${ENGINE}/group/create` ||
+      path === `${ENGINE}/tenant/create` ||
       path === `${ENGINE}/tenant/tenant-one/group-members/accounting` ||
       path === `${ENGINE}/tenant/tenant-one`
     ) {
@@ -249,6 +250,44 @@ describe('admin groups and tenants', () => {
       name: 'Support',
       type: null,
     });
+  });
+
+  it('creates a tenant, which needs an id and a name', async () => {
+    const fetchMock = fakeBackend();
+    const history = renderApp('/app/react/admin/default/tenant-create');
+    const user = await logIn();
+
+    const id = await screen.findByLabelText('ID*');
+    const create = screen.getByRole('button', { name: 'Create new tenant' });
+    expect(create).toBeDisabled();
+
+    // leaving a field empty says what is missing
+    await user.click(id);
+    await user.click(screen.getByLabelText('Name*'));
+    expect(await screen.findByText('Tenant ID is required.')).toBeInTheDocument();
+    await user.tab();
+    expect(await screen.findByText('Name is required.')).toBeInTheDocument();
+
+    await user.type(id, ' tenant-two ');
+    expect(create).toBeDisabled();
+    await user.type(screen.getByLabelText('Name*'), 'Tenant Two');
+    await user.click(create);
+
+    expect(await screen.findByText('Created new tenant tenant-two')).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/app/react/admin/default/tenants');
+    expect(JSON.parse(String(calls(fetchMock, 'POST', '/tenant/create')[0][1]?.body))).toEqual({ id: 'tenant-two', name: 'Tenant Two' });
+  });
+
+  it('goes back to the tenants without creating one when cancelled', async () => {
+    const fetchMock = fakeBackend();
+    const history = renderApp('/app/react/admin/default/tenant-create');
+    const user = await logIn();
+
+    await user.type(await screen.findByLabelText('ID*'), 'tenant-two');
+    await user.click(screen.getByRole('button', { name: 'Cancel' }));
+
+    await waitFor(() => expect(history.location.pathname).toBe('/app/react/admin/default/tenants'));
+    expect(calls(fetchMock, 'POST', '/tenant/create')).toHaveLength(0);
   });
 
   it('shows the users of a group and adds the group to a tenant', async () => {

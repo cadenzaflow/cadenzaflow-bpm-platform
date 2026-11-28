@@ -10,7 +10,18 @@ import { useDeleteDeployment, useDeploymentInstanceCounts, type DeleteOptions, t
  * only go together with them (cascade), as in the classic Cockpit; listeners
  * and input/output mappings are skipped by default.
  */
-export function DeleteDeploymentModal({ engine, deployment, onClose }: { engine: string; deployment: Deployment; onClose: () => void }) {
+export function DeleteDeploymentModal({
+  engine,
+  deployment,
+  onDeleted,
+  onClose,
+}: {
+  engine: string;
+  deployment: Deployment;
+  /** the deployment is gone (before the dialog closes) */
+  onDeleted: () => void;
+  onClose: () => void;
+}) {
   const { t } = useTranslation('cockpit');
   const counts = useDeploymentInstanceCounts(engine, deployment.id);
   const remove = useDeleteDeployment(engine);
@@ -56,7 +67,10 @@ export function DeleteDeploymentModal({ engine, deployment, onClose }: { engine:
         remove.mutate(
           { id: deployment.id, options },
           {
-            onSuccess: onClose,
+            onSuccess: () => {
+              onDeleted();
+              onClose();
+            },
             onError: (error) =>
               notify({
                 kind: 'error',
